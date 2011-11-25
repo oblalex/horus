@@ -25,7 +25,12 @@
 
     <name>horus-web</name>
 
-    <repositories>
+    <repositories>        
+        <repository>
+            <id>repository.jboss.org</id>
+            <name>JBoss Repository</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+        </repository>
         <repository>
             <id>codehaus.snapshots</id>
             <url>http://ci.repository.codehaus.org</url>
@@ -55,14 +60,6 @@
             </snapshots>
         </repository>
         <repository>
-            <id>devlab722-snapshot-repo</id>
-            <url>http://nexus.devlab722.net/nexus/content/repositories/snapshots
-            </url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-        <repository>
             <id>cedarsoft-thirdparty</id>
             <url>http://maven.cedarsoft.com/content/repositories/thirdparty/</url>
         </repository>
@@ -74,6 +71,12 @@
             <version>${project.version}</version>
             <artifactId>horus-core</artifactId>
         </dependency>  
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-6.0</artifactId>
+            <version>3.0.0.Beta1</version>
+            <type>pom</type>
+        </dependency>
         <dependency>
             <groupId>org.got5</groupId>
             <artifactId>tapestry5-jquery</artifactId>
@@ -98,17 +101,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.2</version>
-        </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>6.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.4</version>
         </dependency>
         <dependency>
             <groupId>javassist</groupId>
