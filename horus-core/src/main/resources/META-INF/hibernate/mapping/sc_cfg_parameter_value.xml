@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.servercommander.config.ConfigParameterValue" table="sc_cfg_parameter_value">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">sc_cfg_parameter_value_seq</param>
+      </generator>
+    </id>
+    <property column="value" name="value" not-null="true" type="string"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.servercommander.config.ConfigParameter" column="parameter_id" name="parameter" not-null="true" unique="false"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.servercommander.config.ConfigScheme" column="config_scheme_id" name="configScheme" not-null="true" unique="false"/>
+  </class>
+</hibernate-mapping>

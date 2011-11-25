@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.gameflow.MissionEvent" table="gameflow_mission_event">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">gameflow_mission_event_seq</param>
+      </generator>
+    </id>
+    <property name="type">
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">ua.cn.stu.oop.horus.core.domain.gameflow.MissionEvent$MissionEventType</param>
+        <param name="type">12</param>
+      </type>
+    </property>
+    <property column="point" name="point" not-null="true" type="org.hibernatespatial.GeometryUserType"/>
+    <property column="event_real_time" name="eventRealTime" not-null="true" type="timestamp"/>
+    <property column="event_game_time" name="eventGameTime" not-null="true" type="timestamp"/>
+    <property column="object_attacked" name="objectAttacked" not-null="true" type="boolean"/>
+    <property column="object_was_attacked" name="objectWasAttacked" not-null="true" type="boolean"/>
+    <property column="ai_attacked" name="AI_Attacked" not-null="true" type="boolean"/>
+    <property column="ai_was_attacked" name="AI_WasAttacked" not-null="true" type="boolean"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.gameflow.Mission" column="mission_id" name="mission" not-null="true"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.gameflow.Sortie" column="attacker_sortie_id" name="attackerSortie"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.gameflow.Sortie" column="victim_sortie_id" name="victimSortie"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.object.GameObject" column="attacker_object_id" name="attackerObject"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.object.GameObject" column="victim_object_id" name="victimObject"/>
+  </class>
+</hibernate-mapping>

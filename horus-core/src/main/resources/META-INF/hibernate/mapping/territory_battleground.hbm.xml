@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.territory.Battleground" table="territory_battleground">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">
+                    territory_battleground_seq
+                </param>
+      </generator>
+    </id>
+    <property column="summer_variant_loader_directory_title" name="summerVariantLoaderDirectoryTitle" not-null="true" type="string" unique="true"/>
+    <property column="autumn_variant_loader_directory_title" name="autumnVariantLoaderDirectoryTitle" not-null="true" type="string" unique="true"/>
+    <property column="winter_variant_loader_directory_title" name="winterVariantLoaderDirectoryTitle" not-null="true" type="string" unique="true"/>
+    <property column="spring_variant_loader_directory_title" name="springVariantLoaderDirectoryTitle" not-null="true" type="string" unique="true"/>
+    <property column="length_metres" name="lengthMetres" not-null="true" type="int"/>
+    <property column="width_metres" name="widthMetres" not-null="true" type="int"/>
+    <property column="time_zone_UTC" name="timeZoneUTC" not-null="true" type="short"/>
+    <property column="image_scale_km_per_100_px" name="imageScaleKmPer100Px" not-null="true" type="float"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.text.TitleLink" column="title_link_id" name="titleLink" not-null="true" unique="true"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.territory.Node" column="node_id" name="node" not-null="true" unique="true"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.file.DBFile" column="image_file_id" name="image" not-null="true" unique="true"/>
+  </class>
+</hibernate-mapping>

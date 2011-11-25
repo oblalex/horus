@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.user.group.air.AirGroupStatusInAirForce" table="user_group_air_status_in_air_force">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">
+                    user_group_air_status_in_air_force_seq
+                </param>
+      </generator>
+    </id>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.user.group.air.AirForce" column="air_force_id" name="airForce"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.user.group.air.AirGroupStatus" column="status_id" name="status"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.text.TitleLink" column="title_link_id" name="titleLink" not-null="true" unique="true"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.file.DBFile" column="emblem_image_file_id" name="emblemImage" not-null="true" unique="true"/>
+  </class>
+</hibernate-mapping>

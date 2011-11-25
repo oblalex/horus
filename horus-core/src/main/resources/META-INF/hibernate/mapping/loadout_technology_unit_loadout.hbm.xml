@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.loadout.TechnologyUnitLoadout" table="loadout_technology_unit_loadout">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">loadout_technology_unit_loadout_seq</param>
+      </generator>
+    </id>
+    <properties name="unique_constraint" unique="true">
+      <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.loadout.Loadout" column="loadout_id" name="loadout" not-null="true"/>
+      <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.object.TechnologyUnit" column="technology_unit_id" name="technologyUnit" not-null="true"/>
+    </properties>
+  </class>
+</hibernate-mapping>

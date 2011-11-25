@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.user.group.air.AirGroupSpecializationType" table="user_group_air_specialization_type">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">
+                    user_group_air_specialization_type_seq
+                </param>
+      </generator>
+    </id>
+    <properties name="unique_constraint" unique="true">
+      <many-to-one class="ua.cn.stu.oop.horus.core.domain.type.Type" column="type_id" name="type"/>
+      <many-to-one class="ua.cn.stu.oop.horus.core.domain.user.group.air.AirGroupSpecialization" column="specialization_id" name="specialization"/>
+    </properties>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.series.Series" table="series">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">series_seq</param>
+      </generator>
+    </id>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.text.TitleLink" column="title_link_id" name="titleLink" not-null="true" unique="true"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.territory.Country" column="manufacturer_id" name="manufacturer" not-null="true"/>
+  </class>
+</hibernate-mapping>

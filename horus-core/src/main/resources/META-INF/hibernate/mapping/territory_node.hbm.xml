@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.territory.Node" table="territory_node">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">
+                    territory_node_seq
+                </param>
+      </generator>
+    </id>
+    <property name="type" not-null="true">
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">
+                    ua.cn.stu.oop.horus.core.domain.territory.Node$NodeType
+                </param>
+        <param name="type">
+                    12
+                </param>
+      </type>
+    </property>
+    <property column="point" name="point" not-null="true" type="org.hibernatespatial.GeometryUserType"/>
+    <property column="deletable" name="deletable" not-null="true" type="true_false"/>
+    <property column="reconnoitred_by_foe" name="reconnoitredByFoe" not-null="true" type="true_false"/>
+    <property column="connected_to_neighbour_map" name="connectedToNeighbourMap" not-null="true" type="true_false"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.territory.Node" column="current_owner_id" name="currentOwner"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.territory.Node" column="default_owner_id" name="defaultOwner"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.Belligerent" column="belligerent_id" name="belligerent" not-null="true"/>
+  </class>
+</hibernate-mapping>

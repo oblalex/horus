@@ -1,0 +1,43 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+    <head>
+        <link rel="icon" type="image/ico" href="${context:img/favicon.ico}"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>${pageFullTitle}</title>
+    </head>
+    <body>        
+        
+        <div class="roof" id="roof">
+            <div class="roof_bd">
+                <t:roof />
+            </div>
+        </div>
+        
+        <div class="super_wrapper">
+            <div class="wrapper">
+                <div class="bd_wrapper">
+                    
+                    <div class="header">
+                        <div class="header_bd">
+                            <t:header />
+                        </div>
+                    </div>
+                    
+                    <div class="content">
+                        <div class="content_bd">
+                            <t:body />
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer_bd">
+                <t:footer />
+            </div>
+        </div>
+        
+    </body>
+</html>

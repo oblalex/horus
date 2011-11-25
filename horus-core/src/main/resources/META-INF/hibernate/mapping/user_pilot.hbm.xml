@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.user.pilot.Pilot" table="user_pilot">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">user_pilot_seq</param>
+      </generator>
+    </id>
+    <property column="callsign" name="callsign" not-null="true" type="string" unique="true"/>
+    <property column="score" name="score" not-null="true" type="long"/>
+    <property column="life_number" name="lifeNumber" not-null="true" type="long"/>
+    <property column="time_to_idle_milliseconds" name="timeToIdleMilliseconds" not-null="true" type="long"/>
+    <property column="fly_time_milliseconds" name="flyTimeMilliseconds" not-null="true" type="long"/>
+    <property column="experience" name="experience" not-null="true" type="float"/>
+    <property column="allowed_to_enter_game_servers" name="allowedToEnterGameServers" not-null="true" type="true_false"/>
+    <properties name="unique_constraint" unique="true">
+      <property column="aircraft_tail_number" name="aircraftTailNumber" not-null="true" type="string"/>
+      <many-to-one class="ua.cn.stu.oop.horus.core.domain.user.group.air.AirGroup" column="air_group_id" name="AirGroup" not-null="true"/>
+    </properties>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.user.User" column="user_id" name="user" not-null="true"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.user.pilot.rank.Rank" column="rank_id" name="rank" not-null="true"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.territory.Airfield" column="home_base_id" name="homeBase" not-null="true"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.territory.Airfield" column="current_base_id" name="currentBase" not-null="true"/>
+  </class>
+</hibernate-mapping>

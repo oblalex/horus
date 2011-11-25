@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.file.DBFile" table="db_file">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">
+                    db_file_seq
+                </param>
+      </generator>
+    </id>
+    <property column="notes" name="notes" type="string"/>
+    <property column="content_type" name="contentType" not-null="true" type="string"/>
+    <property column="data" name="data" not-null="true" type="binary"/>
+    <property column="last_modification_time" name="lastModificationTime" not-null="true" type="timestamp"/>
+    <properties name="uniqueConstraint" unique="true">
+      <property column="title" name="title" not-null="true" type="string"/>
+      <many-to-one class="ua.cn.stu.oop.horus.core.domain.file.DBFileDirectory" column="directory_id" name="directory"/>
+    </properties>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.user.User" column="user_id" name="user"/>
+  </class>
+</hibernate-mapping>

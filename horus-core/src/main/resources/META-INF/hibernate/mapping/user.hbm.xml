@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.user.User" table="user_">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">
+                    user_seq
+                </param>
+      </generator>
+    </id>
+    <property column="preferred_locale" name="preferredLocale" not-null="true">
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">
+                    ua.cn.stu.oop.horus.core.language.AvailableLocale
+                </param>
+        <param name="type">
+                    12
+                </param>
+      </type>
+    </property>
+    <property column="login" name="login" not-null="true" type="string" unique="true"/>
+    <property column="salt" length="128" name="salt" not-null="true" type="binary"/>
+    <property column="hashed_password" name="hashedPassword" not-null="true" type="string"/>
+    <property column="email" name="email" not-null="true" type="string"/>
+    <property column="email_confirmed" name="emailConfirmed" not-null="true" type="true_false"/>
+    <property column="registration_date" name="registrationDate" not-null="true" type="timestamp"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.file.DBFile" column="avatar_file_id" name="avatar"/>
+    <property column="time_zone_UTC" name="timeZoneUTC" not-null="true" type="short"/>
+  </class>
+  <sql-query name="findUserOrNullByLoginNativeSQL">
+        <return alias="user_" class="ua.cn.stu.oop.horus.core.domain.user.User"/>
+        
+            select distinct * from user_ usr where usr.login = ?
+        
+    </sql-query>
+  <sql-query name="isLoginUsedNativeSQL">
+        <return-scalar column="login_used" type="true_false"/>
+        
+            select (count(usr.id)&gt;0) as login_used from user_ usr where usr.login=?
+        
+    </sql-query>
+  <sql-query name="findUserOrNullByEmailNativeSQL">
+        <return alias="user_" class="ua.cn.stu.oop.horus.core.domain.user.User"/>
+        
+            select distinct * from user_ usr where usr.email = ?
+        
+    </sql-query>
+  <sql-query name="isEmailUsedNativeSQL">
+        <return-scalar column="email_used" type="true_false"/>
+        
+            select (count(usr.id)&gt;0) as email_used from user_ usr where usr.email=?
+        
+    </sql-query>
+  <sql-query name="isEmailConfirmedNativeSQL">
+        <return-scalar column="email_confirmed" type="true_false"/>
+        
+            select distinct usr.email_confirmed from user_ usr where (usr.id = ?)
+        
+    </sql-query>
+</hibernate-mapping>

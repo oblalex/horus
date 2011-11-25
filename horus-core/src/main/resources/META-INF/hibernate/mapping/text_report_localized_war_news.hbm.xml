@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.text.report.LocalizedWarNews" table="text_report_localized_war_news">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">text_report_localized_war_news_seq</param>
+      </generator>
+    </id>
+    <property column="locale" name="locale" not-null="true">
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">ua.cn.stu.oop.horus.core.language.AvailableLocale</param>
+        <param name="type">12</param>
+      </type>
+    </property>
+    <property column="news_body" name="newsBody" not-null="true" type="string"/>
+    <property column="publication_real_time" name="publicationRealTime" not-null="true" type="timestamp"/>
+    <property column="publication_game_time" name="publicationGameTime" not-null="true" type="timestamp"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.territory.Node" column="territory_node_id" name="territoryNode"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.Belligerent" column="receiving_belligerent_id" name="receivingBelligerent"/>
+  </class>
+</hibernate-mapping>

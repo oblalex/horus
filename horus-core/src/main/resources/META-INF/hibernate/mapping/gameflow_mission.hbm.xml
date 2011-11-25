@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.gameflow.Mission" table="gameflow_mission">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">gameflow_mission_seq</param>
+      </generator>
+    </id>
+    <property column="end_result" name="endResult">
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">ua.cn.stu.oop.horus.core.domain.gameflow.Mission$MissionEndResult</param>
+        <param name="type">12</param>
+      </type>
+    </property>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.gameflow.WeatherReport" column="weather_report_id" name="weatherReport" not-null="true"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.territory.Battleground" column="battleground_id" name="battleground" not-null="true"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.gameflow.MissionBlock" column="block_id" name="block" not-null="true" unique="true"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.file.DBFile" column="file_id" name="file" not-null="true" unique="true"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.servercommander.ServerCommander" column="server_sommander_id" name="serverCommander" not-null="true"/>
+  </class>
+</hibernate-mapping>

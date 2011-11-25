@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.territory.Airfield" table="territory_airfield">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">
+                    territory_airfield_seq
+                </param>
+      </generator>
+    </id>
+    <property name="type">
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">
+                    ua.cn.stu.oop.horus.core.domain.territory.Airfield$AirfieldType
+                </param>
+        <param name="type">
+                    12
+                </param>
+      </type>
+    </property>
+    <property column="active" name="active" not-null="true" type="true_false"/>
+    <property column="range_metres" name="rangeMetres" not-null="true" type="int"/>
+    <property column="above_mean_sea_level_metres" name="aboveMeanSeaLevelMetres" not-null="true" type="int"/>
+    <property column="landing_heading" name="landingHeading" not-null="true" type="int"/>
+    <property column="friction_coefficient_x100" name="frictionCoefficientX100" not-null="true" type="int"/>
+    <property column="enemy_detection_range_km" name="enemyDetectionRangeKm" not-null="true" type="int"/>
+    <property column="enemy_detection_altitude_metres_max" name="enemyDetectionAltitudeMetresMax" not-null="true" type="int"/>
+    <property column="enemy_detection_altitude_metres_min" name="enemyDetectionAltitudeMetresMin" not-null="true" type="int"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.text.TitleLink" column="title_link_id" name="titleLink" not-null="true" unique="true"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.territory.Node" column="node_id" name="node" not-null="true" unique="true"/>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.user.group.air.AirGroupAircraft" table="user_group_air_craft">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">user_group_air_craft_seq</param>
+      </generator>
+    </id>
+    <property column="damages_count" name="damagesCount" not-null="true" type="short"/>
+    <property column="game_date_to_idle" name="gameDateToIdle" not-null="true" type="timestamp"/>
+    <property column="point" name="point" not-null="true" type="org.hibernatespatial.GeometryUserType"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.territory.Battleground" column="battleground_id" name="battleground" not-null="true"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.user.group.air.AirGroup" column="air_group_id" name="airGroup"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.object.Aircraft" column="aircraft_id" name="aircraft"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.user.pilot.Pilot" column="pilot_id" name="pilot" unique="true"/>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.object.TechnologyUnit" table="object_technology_unit">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">object_technology_unit_seq</param>
+      </generator>
+    </id>
+    <property column="quantity_produced" name="quantityProduced" not-null="true" type="int"/>
+    <property column="maximum_speed_in_kmh" name="maximumSpeedInKMH" not-null="true" type="int"/>
+    <property column="average_speed_in_kmh" name="averageSpeedInKMH" not-null="true" type="int"/>
+    <property column="best_distance_betweenUnits_in_group_metres" name="bestDistanceBetweenUnitsInGroupMetres" not-null="true" type="int"/>
+    <property column="maximum_range_in_km" name="maximumRangeInKM" not-null="true" type="int"/>
+    <property column="crew" name="crew" not-null="true" type="int"/>
+    <property column="prototype" name="prototype" not-null="true" type="true_false"/>
+    <property column="can_swim" name="canSwim" not-null="true" type="true_false"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.series.Series" column="series_id" name="series" not-null="true"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.object.GameObject" column="game_object_id" name="gameObject" not-null="true" unique="true"/>
+  </class>
+</hibernate-mapping>

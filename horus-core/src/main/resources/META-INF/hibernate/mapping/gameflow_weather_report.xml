@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.gameflow.WeatherReport" table="gameflow_weather_report">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">gameflow_weather_report_seq</param>
+      </generator>
+    </id>
+    <property column="publication_real_time" name="publicationRealTime" not-null="true" type="timestamp"/>
+    <property column="publication_game_time" name="publicationGameTime" not-null="true" type="timestamp"/>
+    <property column="clouds_height_metres" name="cloudsHeightMetres" not-null="true" type="int"/>
+    <property column="wind_direction_degrees" name="windDirectionDegrees" not-null="true" type="int"/>
+    <property column="wind_speed_metres_per_second" name="windSpeedMetresPerSecond" not-null="true" type="short"/>
+    <property column="gust_type" name="gustType" not-null="true">
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">ua.cn.stu.oop.horus.core.weather.GustType</param>
+        <param name="type">12</param>
+      </type>
+    </property>
+    <property column="turbulence_type" name="turbulenceType" not-null="true">
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">ua.cn.stu.oop.horus.core.weather.TurbulenceType</param>
+        <param name="type">12</param>
+      </type>
+    </property>
+    <property column="weather_type" name="weatherType" not-null="true">
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">ua.cn.stu.oop.horus.core.weather.WeatherType</param>
+        <param name="type">12</param>
+      </type>
+    </property>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.territory.Battleground" column="battleground_id" name="battleground" not-null="true"/>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+
+.label_check input 
+.label_radio input  { margin-right: 5px; }
+
+.label_check, .label_radio{
+    cursor: pointer;
+    line-height: 25px;
+    padding-bottom: 9px;
+    text-shadow: 1px 1px 1px #fff;
+    font-family: Arial;
+}
+
+.has-js .label_check,
+.has-js .label_radio    { padding-left: 34px; }
+
+.has-js .label_radio    { background: url(../img/controls/radio-off.png) no-repeat; }
+.has-js .label_radio:hover    { background: url(../img/controls/radio-off-hover.png) no-repeat; }
+
+.has-js .label_check    { background: url(../img/controls/check-off.png) no-repeat; }
+.has-js .label_check:hover    { background: url(../img/controls/check-off-hover.png) no-repeat; }
+
+.has-js label.c_on      { background: url(../img/controls/check-on.png) no-repeat; }
+.has-js label.c_on:hover      { background: url(../img/controls/check-on-hover.png) no-repeat; }
+
+.has-js label.r_on      { background: url(../img/controls/radio-on.png) no-repeat; }
+.has-js label.r_on:hover      { background: url(../img/controls/radio-on-hover.png) no-repeat; }
+
+.has-js .label_check input,
+.has-js .label_radio input  { position: absolute; left: -9999px; }

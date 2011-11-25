@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.territory.SpacetimeUsageInfo" table="territory_spacetime_usage_info">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">
+                    territory_spacetime_usage_info_seq
+                </param>
+      </generator>
+    </id>
+    <property column="time_start" name="timeStart" type="timestamp"/>
+    <property column="time_stop" name="timeStop" type="timestamp"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.Belligerent" column="belligerent_id" name="belligerent" not-null="true"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.territory.Battleground" column="battleground_id" name="battleground" not-null="true"/>
+  </class>
+</hibernate-mapping>

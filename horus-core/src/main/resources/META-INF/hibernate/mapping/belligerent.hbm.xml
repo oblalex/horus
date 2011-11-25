@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.Belligerent" table="belligerent">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">
+                    belligerent_seq
+                </param>
+      </generator>
+    </id>
+    <property column="game_code" name="gameCode" not-null="true" type="short" unique="true"/>
+    <property column="selectable" name="selectable" not-null="true" type="true_false"/>
+    <property column="color_hex_code" length="6" name="colorHEXCode" not-null="true" type="string" unique="true"/>
+    <many-to-one cascade="delete" class="ua.cn.stu.oop.horus.core.domain.text.TitleLink" column="title_link_id" name="titleLink" not-null="true"/>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.user.group.air.AirGroupType" table="user_group_air_type">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">user_group_air_type_seq</param>
+      </generator>
+    </id>
+    <property column="max_members_count" name="maxMembersCount" not-null="true" type="int"/>
+    <property column="min_members_count" name="minMembersCount" not-null="true" type="int"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.user.group.air.AirGroupType" column="parent_id" name="parent"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.text.LocalizedTitle" column="localized_title_id" name="localizedTitle" not-null="true" unique="true"/>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.servercommander.config.ConfigScheme" table="sc_cfg_scheme">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">sc_cfg_scheme_seq</param>
+      </generator>
+    </id>
+    <property column="title" name="title" not-null="true" unique="true" type="string"/>
+    <property column="description" name="description" type="string"/>
+    <property column="training_mode_only" name="trainingModeOnly" not-null="true" type="true_false"/>
+  </class>
+</hibernate-mapping>

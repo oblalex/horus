@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.user.UserPersonalMessage" table="user_personal_message">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">
+                    user_personal_message_seq
+                </param>
+      </generator>
+    </id>
+    <property column="subject" name="subject" not-null="true" type="string"/>
+    <property column="message" name="message" not-null="true" type="string"/>
+    <property column="dispatch_date" name="dispatchDate" not-null="true" type="timestamp"/>
+    <property column="read" name="read" not-null="true" type="true_false"/>
+    <property column="deleted_for_sender" name="deletedForSender" not-null="true" type="true_false"/>
+    <property column="deleted_for_receiver" name="deletedForReceiver" not-null="true" type="true_false"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.user.User" column="sender_id" name="sender"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.user.User" column="receiver_id" name="receiver" not-null="true"/>
+  </class>
+</hibernate-mapping>

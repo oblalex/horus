@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="ua.cn.stu.oop.horus.core.domain.loadout.AircraftLoadout" table="loadout_aircraft_loadout">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">loadout_aircraft_loadout_seq</param>
+      </generator>
+    </id>
+    <property column="index" name="index" not-null="true" type="short"/>
+    <property column="max_fuel_percent" name="maxFuelPercent" not-null="true" type="short"/>
+    <property column="min_fuel_percent" name="minFuelPercent" not-null="true" type="short"/>
+    <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.loadout.TechnologyUnitLoadout" column="loadout_id" name="loadout" not-null="true" unique="true"/>
+  </class>
+</hibernate-mapping>
