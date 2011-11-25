@@ -17,4 +17,5 @@
                                                       
     <import resource="classpath:/META-INF/spring/coreContext.xml" />
     <import resource="mail.xml" />
+    <import resource="webAspects.xml" />
 </beans>
