@@ -10,10 +10,10 @@ import org.junit.Test;
  */
 public class ImageInFileUtilTest {    
 
-    @Test
+    //@Test
     public void testCrop() throws Exception {
         File f = new File("/home/alex/proj/sf/horus/horus-web/tmp/zzz.jpg");
         ImageInFileUtil.crop(f, 220, 220, 45, 51);
-        //ImageInFileUtil.scale(f, 100, 100);
+        ImageInFileUtil.scale(f, 100, 100);
     }
 }
