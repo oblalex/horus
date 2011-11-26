@@ -1,25 +1,26 @@
-package ua.cn.stu.oop.horus.core.service.impl;
+package ua.cn.stu.oop.horus.core.service.impl.series;
 
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.cn.stu.oop.horus.core.dao.hibernateImpl.BelligerentDaoHibernateImpl;
-import ua.cn.stu.oop.horus.core.domain.Belligerent;
+import ua.cn.stu.oop.horus.core.dao.hibernateImpl.series.SeriesDaoHibernateImpl;
+import ua.cn.stu.oop.horus.core.domain.series.Series;
 import ua.cn.stu.oop.horus.core.domain.text.TitleLink;
-import ua.cn.stu.oop.horus.core.service.BelligerentService;
+import ua.cn.stu.oop.horus.core.service.impl.GenericServiceImpl;
 import ua.cn.stu.oop.horus.core.service.impl.text.TitleLinkCarrierServiceImpl;
+import ua.cn.stu.oop.horus.core.service.series.SeriesService;
 
 /**
  *
  * @author alex
  */
-@Service("belligerentService")
-public class BelligerentServiceImpl
-        extends GenericServiceImpl<Belligerent, BelligerentDaoHibernateImpl>
-        implements BelligerentService {
+@Service("seriesService")
+public class SeriesServiceImpl
+        extends GenericServiceImpl<Series, SeriesDaoHibernateImpl>
+        implements SeriesService {
 
     @Autowired
-    public BelligerentServiceImpl(BelligerentDaoHibernateImpl dao) {
+    public SeriesServiceImpl(SeriesDaoHibernateImpl dao) {
         super(dao);
     }
 
@@ -29,8 +30,7 @@ public class BelligerentServiceImpl
     }
 
     @Override
-    public Belligerent getEntityOrNullByTitleLink(TitleLink titleLink) {
+    public Series getEntityOrNullByTitleLink(TitleLink titleLink) {
         return TitleLinkCarrierServiceImpl.getEntityOrNullByTitleLinkFromDao(titleLink, dao);
     }
-    
 }

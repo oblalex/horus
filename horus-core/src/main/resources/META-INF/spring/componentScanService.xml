@@ -15,22 +15,22 @@
                            http://www.springframework.org/schema/tx
                            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
     
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.file"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.gameflow"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.loadout"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.object"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.series"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.territory"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.text"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.text.report"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.type"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.user"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.user.group"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.user.group.air"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.user.pilot"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.user.pilot.rank"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.weapon"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.servercommander"/>
-    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.Impl.servercommander.config"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.file"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.gameflow"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.loadout"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.object"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.series"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.territory"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.text"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.text.report"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.type"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.user"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.user.group"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.user.group.air"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.user.pilot"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.user.pilot.rank"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.weapon"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.servercommander"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.servercommander.config"/>
 </beans>
