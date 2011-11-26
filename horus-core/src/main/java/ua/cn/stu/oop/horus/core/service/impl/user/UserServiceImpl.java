@@ -34,11 +34,11 @@ public class UserServiceImpl
     public Set<String> getUserRoles(User user) {
         Set<String> roles = new HashSet<String>();
         
-        if (adminService.getEntitiesByUser(user).isEmpty()){
+        if (adminService.getEntitiesByUser(user).isEmpty()==false){
             roles.add(UserRoles.ADMIN);
         }        
         
-        if (pilotService.getEntitiesByUser(user).isEmpty()){
+        if (pilotService.getEntitiesByUser(user).isEmpty()==false){
             roles.add(UserRoles.PILOT);
         }
         
