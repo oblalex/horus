@@ -1,19 +1,15 @@
 package ua.cn.stu.oop.horus.web.util.pages.validator;
 
-import org.springframework.test.context.*;
-import org.springframework.test.context.junit4.*;
-import org.junit.runner.RunWith;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
+import ua.cn.stu.oop.horus.web.util.GenericSpringTest;
 
 /**
  *
  * @author alex
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/spring/webContext.xml"})
-public class LoginValidatorTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class LoginValidatorTest extends GenericSpringTest {
     
     @Autowired
     private LoginValidator validator;
