@@ -36,6 +36,7 @@ import ua.cn.stu.oop.horus.web.util.pages.*;
 import ua.cn.stu.oop.horus.web.util.pages.validator.*;
 import ua.cn.stu.oop.horus.web.util.file.FileMimeTypeChecker;
 import ua.cn.stu.oop.horus.web.util.image.ImageInFileUtil;
+import ua.cn.stu.oop.horus.web.util.time.TimeZoneUtil;
 
 @Import(library = "context:js/jquery.imgareaselect.js",
 stylesheet = "context:css/imgareaselect-default.css")
@@ -253,7 +254,7 @@ public class Registration {
         user.setEmailConfirmed(false);
         user.setPreferredLocale(lang);
         user.setRegistrationDate(new Timestamp(System.currentTimeMillis()));
-        user.setTimeZoneUTC(Short.parseShort(timeZone.replace("+", "")));
+        user.setTimeZoneUTC(TimeZoneUtil.parseTimeZone(timeZone));
 
         ByteSource bs = EncodingUtil.getRandomSaltSource();
         user.setSalt(bs.getBytes());
@@ -353,11 +354,7 @@ public class Registration {
     }
 
     public String[] getSelectModel() {
-        String[] result = new String[26];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = String.format("%+d", i - 12);
-        }
-        return result;
+        return TimeZoneUtil.getTimeZonesStrings();
     }
 
     public String getPageTitle() {
@@ -377,7 +374,7 @@ public class Registration {
 
     public String getTimeZone() {
         if (timeZone == null) {
-            timeZone = "+0";
+            timeZone = TimeZoneUtil.toString(TimeZoneUtil.TIMEZONE_DEFAULT);
         }
         return timeZone;
     }
