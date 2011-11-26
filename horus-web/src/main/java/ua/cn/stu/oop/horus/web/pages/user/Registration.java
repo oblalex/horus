@@ -1,7 +1,5 @@
 package ua.cn.stu.oop.horus.web.pages.user;
 
-import ua.cn.stu.oop.horus.web.util.pages.HttpRequestHelper;
-import ua.cn.stu.oop.horus.web.util.pages.MessagePageData;
 import java.io.*;
 import java.sql.Timestamp;
 import javax.mail.MessagingException;
@@ -29,13 +27,15 @@ import ua.cn.stu.oop.horus.core.service.file.*;
 import ua.cn.stu.oop.horus.core.service.user.UserService;
 import ua.cn.stu.oop.horus.web.components.Layout;
 import ua.cn.stu.oop.horus.web.config.ConfigContainer;
-import ua.cn.stu.oop.horus.web.util.file.FileMimeTypeChecker;
-import ua.cn.stu.oop.horus.web.util.image.ImageInFileUtil;
-import ua.cn.stu.oop.horus.web.util.mail.*;
 import ua.cn.stu.oop.horus.web.pages.Index;
 import ua.cn.stu.oop.horus.web.pages.Message;
 import ua.cn.stu.oop.horus.web.pages.store.UploadStore;
 import ua.cn.stu.oop.horus.web.util.*;
+import ua.cn.stu.oop.horus.web.util.mail.*;
+import ua.cn.stu.oop.horus.web.util.pages.*;
+import ua.cn.stu.oop.horus.web.util.pages.validator.*;
+import ua.cn.stu.oop.horus.web.util.file.FileMimeTypeChecker;
+import ua.cn.stu.oop.horus.web.util.image.ImageInFileUtil;
 
 @Import(library = "context:js/jquery.imgareaselect.js",
 stylesheet = "context:css/imgareaselect-default.css")
@@ -45,7 +45,7 @@ public class Registration {
     
     @Inject
     @Autowired
-    private MailService mailService;
+    private MailService mailService;    
     
     @Inject
     @Autowired
@@ -58,9 +58,21 @@ public class Registration {
     @Inject
     @Autowired
     private DBFileDirectoryService fileDirectoryService;
-    
+        
     @Inject
     private SecurityService securityService;
+    
+    @Inject
+    @Autowired
+    private LoginValidator loginValidator;
+    
+    @Inject
+    @Autowired
+    private PasswordValidator passwordValidator;
+    
+    @Inject
+    @Autowired
+    private EmailValidator emailValidator;
     
     @InjectPage
     private Message messagePage;
@@ -108,10 +120,7 @@ public class Registration {
     
     @Component(id = "password")
     private PasswordField passwordField;
-    
-    @Component(id = "passwordConfirm")
-    private PasswordField passwordConfirmField;
-    
+
     @Component(id = "email")
     private TextField emailField;
     
@@ -173,6 +182,7 @@ public class Registration {
         if (registrationForm.getHasErrors()) return;    
         if (isBlockSet) return;
         isBlockSet = true;
+        
         prepareUser();        
         trySendRegistrationNotificationMail();
     }
@@ -184,35 +194,24 @@ public class Registration {
     }
 
     private void validateLogin() {
-        if (login == null) {
-            registrationForm.recordError(loginField, Messages.getMessage("usr.login.undef", locale));
-        } else if (!login.matches(RegExpUtil.LOGIN_TAMPLATE)) {
-            registrationForm.recordError(loginField, Messages.getMessage("usr.login.bad.format", locale));
-        } else if (userService.isLoginUsed(login)) {
-            registrationForm.recordError(loginField, Messages.getMessage("usr.exists", locale));
-        }
+        registrationForm.recordError(
+                loginField,
+                loginValidator.validateAndGetErrorMessageOrNull(
+                    locale, login));
     }
 
     private void validatePassword() {
-        if (password == null) {
-            registrationForm.recordError(passwordField, Messages.getMessage("usr.pswd.undef", locale));
-        } else if (password.length() < 5) {
-            registrationForm.recordError(passwordField, Messages.getMessage("usr.pswd.too.short", locale));
-        } else if ((passwordConfirm == null) || !password.equals(passwordConfirm)) {
-            registrationForm.recordError(passwordConfirmField, Messages.getMessage("usr.pswd.do.not.match", locale));
-        }
+        registrationForm.recordError(
+                passwordField,
+                passwordValidator.validateAndGetErrorMessageOrNull(
+                    locale, password, passwordConfirm));
     }
 
     private void validateEmail() {
-        if (email == null) {
-            registrationForm.recordError(emailField, Messages.getMessage("usr.email.undef", locale));
-        } else if (!email.matches(RegExpUtil.EMAIL_TAMPLATE)) {
-            registrationForm.recordError(emailField, Messages.getMessage("usr.email.bad.format", locale));
-        } else if (ConfigContainer.CONFIG.GENERAL.oneEmailPerUser) {
-            if (userService.isEmailUsed(email)) {
-                registrationForm.recordError(emailField, Messages.getMessage("usr.email.used", locale));
-            }
-        }
+        registrationForm.recordError(
+                emailField,
+                emailValidator.validateAndGetErrorMessageOrNull(
+                    locale, email));        
     }    
     
     private void trySendRegistrationNotificationMail(){               
@@ -258,8 +257,7 @@ public class Registration {
 
         ByteSource bs = EncodingUtil.getRandomSaltSource();
         user.setSalt(bs.getBytes());
-        user.setHashedPassword(new Sha1Hash(password, bs).toString());
-        
+        user.setHashedPassword(new Sha1Hash(password, bs).toString());        
     }
     
     private void finishUserCreation(){        
