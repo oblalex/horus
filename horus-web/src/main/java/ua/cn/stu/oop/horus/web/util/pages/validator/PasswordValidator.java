@@ -1,6 +1,6 @@
 package ua.cn.stu.oop.horus.web.util.pages.validator;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
 import ua.cn.stu.oop.horus.web.util.Messages;
 
@@ -8,7 +8,7 @@ import ua.cn.stu.oop.horus.web.util.Messages;
  *
  * @author alex
  */
-@Repository("PasswordValidator")
+@Component
 public class PasswordValidator extends GenericValidator {
 
     public static final int PASSWORD_LENGTH_MIN = 5;
