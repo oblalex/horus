@@ -40,8 +40,6 @@ public class AppModule {
 
     public static void contributeSecurityConfiguration(Configuration<SecurityFilterChain> configuration,
             SecurityFilterChainFactory factory) {
-        configuration.add(factory.createChain("user/registration**").add(factory.anon()).build());
-        configuration.add(factory.createChain("user/login**").add(factory.anon()).build());
     }
 
     public static void contributeWebSecurityManager(Configuration<Realm> configuration, @InjectService("UserRealm") AuthorizingRealm userRealm) {

@@ -4,8 +4,8 @@ import java.io.*;
 import java.sql.Timestamp;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.io.*;
+import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.apache.shiro.crypto.hash.Sha1Hash;
 import org.apache.shiro.util.ByteSource;
 import org.apache.tapestry5.ComponentResources;
@@ -19,7 +19,6 @@ import org.apache.tapestry5.upload.services.UploadedFile;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
 import org.im4java.core.IM4JavaException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.tynamo.security.services.SecurityService;
 import ua.cn.stu.oop.horus.core.domain.file.DBFile;
 import ua.cn.stu.oop.horus.core.domain.user.User;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
@@ -27,7 +26,6 @@ import ua.cn.stu.oop.horus.core.service.file.*;
 import ua.cn.stu.oop.horus.core.service.user.UserService;
 import ua.cn.stu.oop.horus.web.components.Layout;
 import ua.cn.stu.oop.horus.web.config.ConfigContainer;
-import ua.cn.stu.oop.horus.web.pages.Index;
 import ua.cn.stu.oop.horus.web.pages.Message;
 import ua.cn.stu.oop.horus.web.pages.store.UploadStore;
 import ua.cn.stu.oop.horus.web.util.*;
@@ -38,6 +36,7 @@ import ua.cn.stu.oop.horus.web.util.file.FileMimeTypeChecker;
 import ua.cn.stu.oop.horus.web.util.image.ImageInFileUtil;
 import ua.cn.stu.oop.horus.web.util.time.TimeZoneUtil;
 
+@RequiresGuest
 @Import(library = "context:js/jquery.imgareaselect.js",
 stylesheet = "context:css/imgareaselect-default.css")
 public class Registration {
@@ -59,10 +58,7 @@ public class Registration {
     @Inject
     @Autowired
     private DBFileDirectoryService fileDirectoryService;
-        
-    @Inject
-    private SecurityService securityService;
-    
+
     @Inject
     @Autowired
     private LoginValidator loginValidator;
@@ -144,14 +140,6 @@ public class Registration {
     private File copied;
     
     private boolean isBlockSet = false;
-
-    Object onActivate() throws FileUploadException {
-        if (securityService.isGuest()) {
-            return null;
-        } else {
-            return Index.class;
-        }
-    }
 
     void onActivate(AvailableLocale lang, String timeZone) {
         this.lang = lang;

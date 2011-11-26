@@ -2,6 +2,7 @@ package ua.cn.stu.oop.horus.web.pages.user;
 
 import java.util.Locale;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.apache.shiro.subject.Subject;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.*;
@@ -21,43 +22,48 @@ import ua.cn.stu.oop.horus.web.util.Messages;
  *
  * @author alex
  */
+@RequiresGuest
 public class Login {
 
     @Inject
     @Autowired
     private UserService userService;
+    
     @Inject
     private PersistentLocale persistentLocale;
+    
     private AvailableLocale locale = Layout.getLocaleFromPersistent(persistentLocale);
+    
     @Inject
     private ComponentResources componentResources;
+    
     @Inject
     private SecurityService securityService;
+    
     @Inject
     private Request request;
+    
     @Property
     private String login;
+    
     @Property
     private String password;
+    
     @Property
     private boolean rememberMe;
+    
     @Component(id = "login")
     private TextField loginField;
+    
     @Component(id = "password")
     private PasswordField passwordField;
+    
     @Component
     private Form loginForm;
+    
     @Component(id = "formZone")
     private Zone formZone;
     private User user;
-
-    Object onActivate() {
-        if (securityService.isGuest()) {
-            return null;
-        } else {
-            return Index.class;
-        }
-    }
 
     void onValidate() {
         loginForm.clearErrors();
