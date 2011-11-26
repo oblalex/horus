@@ -1,6 +1,8 @@
 package ua.cn.stu.oop.horus.web.util.pages.validator;
 
-import org.springframework.stereotype.Repository;
+import javax.inject.Inject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
 import ua.cn.stu.oop.horus.core.service.user.UserService;
 import ua.cn.stu.oop.horus.web.util.*;
@@ -9,9 +11,11 @@ import ua.cn.stu.oop.horus.web.util.*;
  *
  * @author alex
  */
-@Repository("LoginValidator")
+@Component
 public class LoginValidator extends GenericValidator {
 
+    @Inject
+    @Autowired
     private UserService userService;
 
     /**
@@ -32,17 +36,10 @@ public class LoginValidator extends GenericValidator {
             return Messages.getMessage("usr.login.bad.format", locale);
         }
 
-        if (getUserService().isLoginUsed(login)) {
+        if (userService.isLoginUsed(login)) {
             return Messages.getMessage("usr.exists", locale);
         }
         
         return null;
-    }
-
-    private UserService getUserService() {
-        if (userService == null) {
-            userService = ApplicationContextHelper.getBeanByType(UserService.class);
-        }
-        return userService;
-    }
+    }    
 }
