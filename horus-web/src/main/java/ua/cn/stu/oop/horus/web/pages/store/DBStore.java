@@ -21,7 +21,7 @@ public class DBStore {
     private LinkSource linkSource;
 
     public String getUriFileInDB(long fid) {
-        return linkSource.createPageRenderLink(DBStore.class.getSimpleName(), false, new Object[]{fid}).toURI();
+        return linkSource.createPageRenderLink("store/"+DBStore.class.getSimpleName(), false, new Object[]{fid}).toURI();
     }
 
     public StreamResponse onActivate(final long fid) {
