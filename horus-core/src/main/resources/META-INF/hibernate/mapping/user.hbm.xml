@@ -26,7 +26,7 @@
     <property column="email" name="email" not-null="true" type="string"/>
     <property column="email_confirmed" name="emailConfirmed" not-null="true" type="true_false"/>
     <property column="registration_date" name="registrationDate" not-null="true" type="timestamp"/>
-    <many-to-one class="ua.cn.stu.oop.horus.core.domain.file.DBFile" column="avatar_file_id" name="avatar" lazy="false"/>
+    <many-to-one class="ua.cn.stu.oop.horus.core.domain.file.DBFile" column="avatar_file_id" name="avatar" lazy="false" fetch="join"/>
     <property column="time_zone_UTC" name="timeZoneUTC" not-null="true" type="short"/>
   </class>
   <sql-query name="findUserOrNullByLoginNativeSQL">
