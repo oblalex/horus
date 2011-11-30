@@ -91,10 +91,6 @@ public class Edit extends AccountPage{
     @Persist
     private UploadedFile uploadedAvatar;
     
-    //@Persist
-    //@Property
-    //private String avatarFileName;
-    
     @Persist
     private File copied;
 
@@ -311,10 +307,6 @@ public class Edit extends AccountPage{
         }
         
         return uploadStore.getUriUploadedFile(copied.getName());
-    }
-
-    public String[] getSelectModel() {
-        return TimeZoneUtil.getTimeZonesStrings();
     }
 
     @Override

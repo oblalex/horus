@@ -110,6 +110,10 @@ public abstract class AccountPage extends GenericPage{
         this.timeZone = timeZone;
     }
     
+    public String[] getSelectModel() {
+        return TimeZoneUtil.getTimeZonesStrings();
+    }
+    
     public JSONObject getParams() {
         AvailableLocale aLoc = getLocale();
         JSONObject uploadMessages = new JSONObject()

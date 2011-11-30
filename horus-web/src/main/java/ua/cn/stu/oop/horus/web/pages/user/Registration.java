@@ -299,10 +299,6 @@ public class Registration extends AccountPage{
         return uploadStore.getUriUploadedFile(copied.getName());
     }
 
-    public String[] getSelectModel() {
-        return TimeZoneUtil.getTimeZonesStrings();
-    }
-
     @Override
     public String getPageTitle() {
         return Messages.getMessage("registration", getLocale());
