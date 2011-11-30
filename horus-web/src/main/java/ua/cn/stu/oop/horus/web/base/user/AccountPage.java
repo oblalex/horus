@@ -2,8 +2,12 @@ package ua.cn.stu.oop.horus.web.base.user;
 
 import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.corelib.components.*;
+import org.apache.tapestry5.json.JSONObject;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
 import ua.cn.stu.oop.horus.web.base.GenericPage;
+import ua.cn.stu.oop.horus.web.pages.Message;
+import ua.cn.stu.oop.horus.web.util.Messages;
+import ua.cn.stu.oop.horus.web.util.pages.MessagePageData;
 import ua.cn.stu.oop.horus.web.util.time.TimeZoneUtil;
 
 /**
@@ -18,6 +22,12 @@ public abstract class AccountPage extends GenericPage{
     private String password;
     private String passwordConfirm;
     private String email;
+    
+    @InjectPage
+    private Message messagePage;
+    
+    @SessionState
+    private MessagePageData messageData;
     
     @Persist
     private AvailableLocale lang;
@@ -99,4 +109,30 @@ public abstract class AccountPage extends GenericPage{
     public void setTimeZone(String timeZone) {
         this.timeZone = timeZone;
     }
+    
+    public JSONObject getParams() {
+        AvailableLocale aLoc = getLocale();
+        JSONObject uploadMessages = new JSONObject()
+                .put("typeError", Messages.getMessage("upload.extension.error", aLoc))
+                .put("sizeError", Messages.getMessage("upload.size.error", aLoc))
+                .put("minSizeError", Messages.getMessage("upload.size.error.min", aLoc))
+                .put("emptyError", Messages.getMessage("upload.empty.error", aLoc))
+                .put("onLeave", Messages.getMessage("upload.onLeave", aLoc))
+                .put("uploadLabel", Messages.getMessage("upload", aLoc))
+                .put("dropAreaLabel", Messages.getMessage("upload.dropArea.label", aLoc))
+                .put("cancelLabel", Messages.getMessage("cancel", aLoc))
+                .put("failedLabel", Messages.getMessage("failure", aLoc));
+
+        JSONObject parameter = new JSONObject().put("messages", uploadMessages);
+
+        return parameter;
+    }
+
+    public MessagePageData getMessageData() {
+        return messageData;
+    }
+
+    public Message getMessagePage() {
+        return messagePage;
+    }    
 }

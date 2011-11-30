@@ -14,7 +14,6 @@ import org.apache.tapestry5.ajax.MultiZoneUpdate;
 import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.corelib.components.*;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.*;
 import org.apache.tapestry5.upload.services.UploadedFile;
 import org.got5.tapestry5.jquery.JQueryEventConstants;
@@ -70,13 +69,7 @@ public class Registration extends AccountPage{
     private EmailValidator emailValidator;
     
     @InjectPage
-    private Message messagePage;
-    
-    @InjectPage
     private UploadStore uploadStore;
-    
-    @SessionState
-    private MessagePageData messageData;
     
     @Inject
     private ComponentResources componentResources;
@@ -189,15 +182,19 @@ public class Registration extends AccountPage{
 
         componentResources.discardPersistentFieldChanges();
         
-        messageData.setType(MessagePageData.MessageType.SUCCESS);
-        messageData.setPageTitleTail(Messages.getMessage("registration.success", getLang()));
-        messageData.setHtmlMessage(Messages.getMessage("registration.success.msg", getLang()));        
-        messageData.setLocale(getLang());
-        messageData.setCanGoForward(false);
-        messageData.setCanGoBackward(false);
-        messagePage.setMessageData(messageData);
+        MessagePageData data = getMessageData();        
         
-        return messagePage;
+        data.setType(MessagePageData.MessageType.SUCCESS);
+        data.setPageTitleTail(Messages.getMessage("registration.success", getLang()));
+        data.setHtmlMessage(Messages.getMessage("registration.success.msg", getLang()));        
+        data.setLocale(getLang());
+        data.setCanGoForward(false);
+        data.setCanGoBackward(false);
+        
+        Message mp = getMessagePage();
+        mp.setMessageData(data);
+                
+        return mp;
     }
 
     private void prepareUser(){
@@ -314,30 +311,5 @@ public class Registration extends AccountPage{
     @Override
     public String getPageTitle() {
         return Messages.getMessage("registration", getLocale());
-    }    
-
-    public MessagePageData getMessageData() {
-        return messageData;
-    }
-
-    public void setMessageData(MessagePageData messageData) {
-        this.messageData = messageData;
-    }
-
-    public JSONObject getParams() {
-        JSONObject uploadMessages = new JSONObject()
-                .put("typeError", Messages.getMessage("upload.extension.error", getLocale()))
-                .put("sizeError", Messages.getMessage("upload.size.error", getLocale()))
-                .put("minSizeError", Messages.getMessage("upload.size.error.min", getLocale()))
-                .put("emptyError", Messages.getMessage("upload.empty.error", getLocale()))
-                .put("onLeave", Messages.getMessage("upload.onLeave", getLocale()))
-                .put("uploadLabel", Messages.getMessage("upload", getLocale()))
-                .put("dropAreaLabel", Messages.getMessage("upload.dropArea.label", getLocale()))
-                .put("cancelLabel", Messages.getMessage("cancel", getLocale()))
-                .put("failedLabel", Messages.getMessage("failure", getLocale()));
-
-        JSONObject parameter = new JSONObject().put("messages", uploadMessages);
-
-        return parameter;
-    }
+    }   
 }
