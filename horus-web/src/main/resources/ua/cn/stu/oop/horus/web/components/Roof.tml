@@ -59,10 +59,13 @@
                     <div style="left:-503px;">
                         <ul>
                             <li>
-                            <t:actionlink t:id="logOut" href="#">
-                                ${message:logout.do}
-                            </t:actionlink>
+                                <t:pagelink t:page="user/edit">${message:usr.account.edit}</t:pagelink>
                             </li>
+                            <li>
+                                <t:actionlink t:id="logOut" href="#">
+                                    ${message:logout.do}
+                                </t:actionlink>
+                            </li>                            
                         </ul>
                     </div>                     
                 </li>
