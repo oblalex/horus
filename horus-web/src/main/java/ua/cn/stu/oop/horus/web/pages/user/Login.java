@@ -14,7 +14,7 @@ import org.tynamo.security.services.SecurityService;
 import ua.cn.stu.oop.horus.core.domain.user.User;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
 import ua.cn.stu.oop.horus.core.service.user.UserService;
-import ua.cn.stu.oop.horus.web.components.Layout;
+import ua.cn.stu.oop.horus.web.base.GenericPage;
 import ua.cn.stu.oop.horus.web.pages.Index;
 import ua.cn.stu.oop.horus.web.util.Messages;
 
@@ -23,17 +23,12 @@ import ua.cn.stu.oop.horus.web.util.Messages;
  * @author alex
  */
 @RequiresGuest
-public class Login {
+public class Login extends GenericPage{
 
     @Inject
     @Autowired
     private UserService userService;
-    
-    @Inject
-    private PersistentLocale persistentLocale;
-    
-    private AvailableLocale locale = Layout.getLocaleFromPersistent(persistentLocale);
-    
+        
     @Inject
     private ComponentResources componentResources;
     
@@ -85,32 +80,34 @@ public class Login {
     }
     
     private void checkLocale(){
-        if (locale.equals(user.getPreferredLocale())==false){
-            persistentLocale.set(new Locale(user.getPreferredLocale().name()));
+        if (getLocale().equals(user.getPreferredLocale())==false){
+            getPersistentLocale().set(new Locale(user.getPreferredLocale().name()));
         }
     }
 
     private void checkLogin() {
         if (login == null) {
-            loginForm.recordError(loginField, Messages.getMessage("usr.login.undef", locale));
+            loginForm.recordError(loginField, Messages.getMessage("usr.login.undef", getLocale()));
         }
     }
 
     private void checkPassword() {
         if (password == null) {
-            loginForm.recordError(passwordField, Messages.getMessage("usr.pswd.undef", locale));
+            loginForm.recordError(passwordField, Messages.getMessage("usr.pswd.undef", getLocale()));
         }
     }
 
     private void tryLogin() {
 
+        AvailableLocale aLoc = getLocale();
+        
         user = userService.getUserOrNullByLogin(login);
 
         if (user == null) {
-            loginForm.recordError(Messages.getMessage("usr.not.found", locale));
+            loginForm.recordError(Messages.getMessage("usr.not.found", aLoc));
             return;
         } else if (user.isEmailConfirmed() == false) {
-            loginForm.recordError(Messages.getMessage("usr.account.activated.not", locale));
+            loginForm.recordError(Messages.getMessage("usr.account.activated.not", aLoc));
             return;
         }
 
@@ -126,14 +123,15 @@ public class Login {
         try {
             currentUser.login(token);
         } catch (IncorrectCredentialsException e) {
-            loginForm.recordError(passwordField, Messages.getMessage("usr.pswd.wrong", locale));
+            loginForm.recordError(passwordField, Messages.getMessage("usr.pswd.wrong", aLoc));
         } catch (LockedAccountException e) {
-            loginForm.recordError(Messages.getMessage("usr.account.locked", locale));
+            loginForm.recordError(Messages.getMessage("usr.account.locked", aLoc));
         }
     }
 
     
+    @Override
     public String getPageTitle() {
-        return Messages.getMessage("login", locale);
+        return Messages.getMessage("login", getLocale());
     }
 }

@@ -1,13 +1,8 @@
 package ua.cn.stu.oop.horus.web.components;
 
-import java.util.Locale;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.annotations.*;
-import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.services.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import ua.cn.stu.oop.horus.core.language.AvailableLocale;
-import ua.cn.stu.oop.horus.core.service.text.LocalizedTitleService;
+import ua.cn.stu.oop.horus.web.base.GenericPage;
 import ua.cn.stu.oop.horus.web.config.ConfigContainer;
 
 /**
@@ -28,30 +23,23 @@ stylesheet = {"context:css/common.css",
     "context:css/radioCheckbox.css",
     "context:css/text-input.css",
     "context:css/btn.css"})
-public class Layout {
-    
-    @Inject
-    private PersistentLocale persistentLocale;
-    
-    @Property
+public class Layout extends GenericPage {
+
     @Parameter(required = true, defaultPrefix = BindingConstants.LITERAL)
     private String pageTitle;
 
     public String getPageFullTitle() {
-        
+
         return pageTitle + " - "
-                + ConfigContainer.CONFIG.GENERAL.
-                    getProjectNameByLocale(getLocaleFromPersistent(persistentLocale));
+                + ConfigContainer.CONFIG.GENERAL.getProjectNameByLocale(getLocale());
     }
 
-    public static AvailableLocale getLocaleFromPersistent(PersistentLocale persistentLocale) {
-        AvailableLocale locale;
-        if (persistentLocale.isSet() == false) {
-            locale = AvailableLocale.getDefault();
-            persistentLocale.set(new Locale(locale.name()));
-        } else {
-            locale = AvailableLocale.valueOf(persistentLocale.get().getLanguage());
-        }
-        return locale;
+    public void setPageTitle(String pageTitle) {
+        this.pageTitle = pageTitle;
+    }
+
+    @Override
+    public String getPageTitle() {
+        return pageTitle;
     }
 }

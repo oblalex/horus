@@ -7,12 +7,11 @@ import org.apache.shiro.crypto.hash.Sha1Hash;
 import org.apache.shiro.util.ByteSource;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.services.PersistentLocale;
 import org.springframework.beans.factory.annotation.Autowired;
 import ua.cn.stu.oop.horus.core.domain.user.*;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
 import ua.cn.stu.oop.horus.core.service.user.*;
-import ua.cn.stu.oop.horus.web.components.Layout;
+import ua.cn.stu.oop.horus.web.base.GenericPage;
 import ua.cn.stu.oop.horus.web.config.ConfigContainer;
 import ua.cn.stu.oop.horus.web.pages.Message;
 import ua.cn.stu.oop.horus.web.util.*;
@@ -21,7 +20,7 @@ import ua.cn.stu.oop.horus.web.util.*;
  *
  * @author alex
  */
-public class Init {
+public class Init extends GenericPage{
     
     @Inject
     @Autowired
@@ -33,10 +32,6 @@ public class Init {
     
     @SessionState
     private MessagePageData messageData;
-    
-    @Inject
-    private PersistentLocale persistentLocale;    
-    private AvailableLocale locale = Layout.getLocaleFromPersistent(persistentLocale);        
     
     private String login;
     private String pswd;
@@ -59,7 +54,7 @@ public class Init {
     
     private void onAdminExists(){
         messageData.setType(MessagePageData.MessageType.INFO);
-        htmlMsgBuilder.append(Messages.getMessage("admin.init.already", locale));
+        htmlMsgBuilder.append(Messages.getMessage("admin.init.already", getLocale()));
     }
     
     private void onAdminNotExists(){
@@ -77,12 +72,13 @@ public class Init {
         pswd = Constants.getConstant("admin.password");
         
         ByteSource bs = EncodingUtil.getRandomSaltSource();
+        AvailableLocale aLoc = getLocale();
         
         user.setSalt(bs.getBytes());
         
         user.setLogin(login);        
         user.setHashedPassword(new Sha1Hash(pswd, bs).toString());
-        user.setPreferredLocale(locale);
+        user.setPreferredLocale(aLoc);
         user.setTimeZoneUTC(timezone);
         user.setEmail(ConfigContainer.CONFIG.MAIL.username);
         user.setEmailConfirmed(true);
@@ -90,9 +86,9 @@ public class Init {
         
         userService.saveAndGetId(user);
         
-        String langName = Messages.getMessage(locale.name(), locale);
+        String langName = Messages.getMessage(getLocale().name(), aLoc);
         
-        htmlMsgBuilder.append(Messages.getMessage("usr.created", locale));
+        htmlMsgBuilder.append(Messages.getMessage("usr.created", aLoc));
         htmlMsgBuilder.append(RawHtmlTags.BR).append(RawHtmlTags.BR);
         
         appendKeyAndValue("usr.login", login);
@@ -107,27 +103,33 @@ public class Init {
     }
     
     private void appendKeyAndValue(String key, String value){
-        htmlMsgBuilder.append(Messages.getMessage(key, locale));
+        htmlMsgBuilder.append(Messages.getMessage(key, getLocale()));
         htmlMsgBuilder.append(": ");
         htmlMsgBuilder.append(value).append(".").append(RawHtmlTags.BR);
     }
     
     private void addUserToAdmins(){
         UserAdmin admin = new UserAdmin();
+        AvailableLocale aLoc = getLocale();
         
         admin.setUser(user);
-        admin.setComment(Messages.getMessage("admin.usr.main", locale));
+        admin.setComment(Messages.getMessage("admin.usr.main", aLoc));
         
         adminService.saveAndGetId(admin);
-        htmlMsgBuilder.append(Messages.getMessage("admin.init.success", locale));
+        htmlMsgBuilder.append(Messages.getMessage("admin.init.success", aLoc));
         messageData.setType(MessagePageData.MessageType.SUCCESS);
     }
     
     private void finishMessageDataPreparations() {
-        messageData.setPageTitleTail(Messages.getMessage("admin.init", locale));
-        messageData.setLocale(locale);
+        messageData.setPageTitleTail(Messages.getMessage("admin.init", getLocale()));
+        messageData.setLocale(getLocale());
         messageData.setCanGoBackward(false);
         messageData.setCanGoForward(false);
         messageData.setHtmlMessage(htmlMsgBuilder.toString());
+    }
+
+    @Override
+    public String getPageTitle() {
+        return this.getClass().getSimpleName();
     }
 }

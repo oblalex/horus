@@ -4,12 +4,11 @@ import ua.cn.stu.oop.horus.web.util.pages.MessagePageData;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.services.PersistentLocale;
 import org.springframework.beans.factory.annotation.Autowired;
 import ua.cn.stu.oop.horus.core.domain.user.User;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
 import ua.cn.stu.oop.horus.core.service.user.UserService;
-import ua.cn.stu.oop.horus.web.components.Layout;
+import ua.cn.stu.oop.horus.web.base.GenericPage;
 import ua.cn.stu.oop.horus.web.util.mail.*;
 import ua.cn.stu.oop.horus.web.pages.Message;
 import ua.cn.stu.oop.horus.web.util.*;
@@ -18,7 +17,7 @@ import ua.cn.stu.oop.horus.web.util.*;
  *
  * @author alex
  */
-public class MailConfirm {
+public class MailConfirm extends GenericPage{
 
     @Inject
     @Autowired
@@ -29,11 +28,7 @@ public class MailConfirm {
     
     @Inject
     private HttpServletRequest request;
-    
-    @Inject
-    private PersistentLocale persistentLocale;    
-    private AvailableLocale locale= Layout.getLocaleFromPersistent(persistentLocale);
-    
+        
     private boolean activatedAlready;
     
     private User user;
@@ -62,32 +57,37 @@ public class MailConfirm {
     }
 
     private void tryGetUserByLogin() {
+        
+        AvailableLocale aLoc = getLocale();
+        
         if (login == null || login.isEmpty()) {
-            htmlMsgBuilder.append(Messages.getMessage("usr.login.undef", locale));
+            htmlMsgBuilder.append(Messages.getMessage("usr.login.undef", aLoc));
         } else {
             user = userService.getUserOrNullByLogin(login);
             if (user == null) {
-                htmlMsgBuilder.append(Messages.getMessage("usr.not.found", locale));
+                htmlMsgBuilder.append(Messages.getMessage("usr.not.found", aLoc));
             }
         }
     }
 
     private void tryConfirm() {
+        AvailableLocale aLoc = getLocale();
+        
         if (key == null || key.isEmpty()) {
-            htmlMsgBuilder.append(Messages.getMessage("key.undef", locale));
+            htmlMsgBuilder.append(Messages.getMessage("key.undef", aLoc));
         } else {
             if (user != null) {
                 activatedAlready = user.isEmailConfirmed();
                 if (activatedAlready) { 
-                    htmlMsgBuilder.append(Messages.getMessage("usr.account.activated.already.msg", locale));
+                    htmlMsgBuilder.append(Messages.getMessage("usr.account.activated.already.msg", aLoc));
                 } else {
                     String realKey = EncodingUtil.encodeStringUsingSaltBytes(user.getEmail(), user.getSalt());
                     if (realKey.equals(key)) {
                         user.setEmailConfirmed(true);
                         userService.updateEntity(user);
-                        htmlMsgBuilder.append(Messages.getMessage("usr.account.activated.msg", locale));
+                        htmlMsgBuilder.append(Messages.getMessage("usr.account.activated.msg", aLoc));
                     } else {
-                        htmlMsgBuilder.append(Messages.getMessage("usr.email.confirm.key.not.match", locale));
+                        htmlMsgBuilder.append(Messages.getMessage("usr.email.confirm.key.not.match", aLoc));
                     }
                 }
             }
@@ -95,22 +95,30 @@ public class MailConfirm {
     }
 
     private void setMessageTypeAndTitleTail() {
+        
+        AvailableLocale aLoc = getLocale();
+        
         if (user == null || user.isEmailConfirmed() == false) {
             messageData.setType(MessagePageData.MessageType.ERROR);
-            messageData.setPageTitleTail(Messages.getMessage("usr.email.confirm.failure", locale));
+            messageData.setPageTitleTail(Messages.getMessage("usr.email.confirm.failure", aLoc));
         } else if (activatedAlready) {
             messageData.setType(MessagePageData.MessageType.INFO);
-            messageData.setPageTitleTail(Messages.getMessage("usr.email.confirm", locale));
+            messageData.setPageTitleTail(Messages.getMessage("usr.email.confirm", aLoc));
         } else {
             messageData.setType(MessagePageData.MessageType.SUCCESS);
-            messageData.setPageTitleTail(Messages.getMessage("usr.email.confirm.success", locale));
+            messageData.setPageTitleTail(Messages.getMessage("usr.email.confirm.success", aLoc));
         }
     }
 
     private void finishMessageDataPreparations() {
-        messageData.setLocale(locale);
+        messageData.setLocale(getLocale());
         messageData.setCanGoBackward(false);
         messageData.setCanGoForward(false);
         messageData.setHtmlMessage(htmlMsgBuilder.toString());
+    }
+
+    @Override
+    public String getPageTitle() {
+        return this.getClass().getSimpleName();
     }
 }
