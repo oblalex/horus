@@ -15,7 +15,6 @@ import ua.cn.stu.oop.horus.core.domain.user.User;
 import ua.cn.stu.oop.horus.core.domain.user.UserRoles;
 import ua.cn.stu.oop.horus.web.pages.Message;
 import ua.cn.stu.oop.horus.web.pages.store.DBStore;
-import ua.cn.stu.oop.horus.web.pages.store.UploadStore;
 import ua.cn.stu.oop.horus.web.util.*;
 import ua.cn.stu.oop.horus.web.util.pages.*;
 import ua.cn.stu.oop.horus.web.util.pages.validator.*;
@@ -38,9 +37,6 @@ public class Edit extends AccountPage{
     @Inject
     @Autowired
     private EmailValidator emailValidator;
-    
-    @InjectPage
-    private UploadStore uploadStore;
     
     @InjectPage
     private DBStore dbStore;    
