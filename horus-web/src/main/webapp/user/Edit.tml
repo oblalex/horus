@@ -19,13 +19,13 @@
                       t:params="params">
         </j:ajaxUpload>
         <t:zone t:id="avaZone" t:update="show" t:name="avaZone">
-            <input type="hidden" name="avatarSrcHolder" value="${uploadedAvatarUri}"/>
-            <input type="hidden" name="avatarFileNameHolder" value="${avatarFileName}"/>
+            <input type="hidden" name="avatarSrcHolder" value="${avatarUri}"/>
+            <input type="hidden" name="isAvatarUploadedHolder" value="${isAvatarUploaded}"/>
             <input type="hidden" name="defaultAvatarSrcHolder" value="${context:img/user.png}"/>
             <script type="text/javascript">
                 var avaSrc = $("input[name=avatarSrcHolder]").val();
-                var avaFileName = $("input[name=avatarFileNameHolder]").val();
-                
+                var isAvatarUploaded = $("input[name=isAvatarUploadedHolder]").val();
+                                
                 if((avaSrc==null)||(avaSrc=="")){
                     $("#avatarImg").attr('src',  $("input[name=defaultAvatarSrcHolder]").val());
                     
@@ -40,18 +40,18 @@
                     $("#avatarImgPreview").attr('src', avaSrcNew);
                     
                     $('#avatarImgFullSize').attr('src', avaSrcNew);
-                    if (avaFileName!=""){
-                            $("#previewContainer").css('left', '0');
-                            $("#previewContainer").css('top', '0');
-                            $("#previewContainer").css('position', 'relative');
-                            $('#avatarCancel').css('visibility','visible');
-                            areaSelectionReload();
-                     } else {
+                    if (isAvatarUploaded=="false"){
                         $("#previewContainer").css('left', '-9999%');
                         $("#previewContainer").css('top', '-9999%');
                         $("#previewContainer").css('position', 'absolute');
                         $('#avatarCancel').css('visibility','hidden');
-                        areaSelectionRemove();
+                        areaSelectionRemove();    
+                    } else {                       
+                        $("#previewContainer").css('left', '0');
+                        $("#previewContainer").css('top', '0');
+                        $("#previewContainer").css('position', 'relative');
+                        $('#avatarCancel').css('visibility','visible');
+                        areaSelectionReload();
                      }                    
                 }                
             </script>
@@ -122,7 +122,7 @@
                         <td class="two_col_center"> 
                             <img id="avatarImgFullSize" style="left: -9999%; top: -9999%; position: absolute;"/>
 
-                            <t:if test="!uploadedAvatarUri">
+                            <t:if test="!avatarUri">
                                 <div style="float:left;
                                      overflow:hidden;
                                      left: -9999%; top: -9999%; position: absolute;
@@ -140,15 +140,15 @@
                                     }
                                 </style>
                             </t:if>
-                            <t:if test="uploadedAvatarUri">
-                                <t:if test="!avatarFileName">
+                            <t:if test="avatarUri">
+                                <t:if test="!isAvatarUploaded">
                                     <style>
                                         #avatarCancel{
                                             visibility: hidden;
                                         }
                                     </style>
                                 </t:if>
-                                <t:if test="avatarFileName">
+                                <t:if test="isAvatarUploaded">
                                     <style>
                                         #avatarCancel{
                                             visibility: visible;
@@ -167,10 +167,10 @@
                                      width:100px;
                                      height:100px;"
                                      class="imgContainer" id="previewContainer">
-                                        <img src="${uploadedAvatarUri}" id="avatarImgPreview" style="position: relative;"/>
+                                        <img src="${avatarUri}" id="avatarImgPreview" style="position: relative;"/>
                                 </div>
                                 <div class="imgContainer">
-                                    <img src="${uploadedAvatarUri}" id="avatarImg"/>
+                                    <img src="${avatarUri}" id="avatarImg"/>
                                 </div>
                             </t:if>
 

@@ -19,7 +19,7 @@
                       t:params="params">
         </j:ajaxUpload>
         <t:zone t:id="avaZone" t:update="show" t:name="avaZone">
-            <input type="hidden" name="avatarSrcHolder" value="${uploadedAvatarUri}"/>
+            <input type="hidden" name="avatarSrcHolder" value="${avatarUri}"/>
             <input type="hidden" name="defaultAvatarSrcHolder" value="${context:img/user.png}"/>
             <script type="text/javascript">
                 var avaSrc = $("input[name=avatarSrcHolder]").val();
@@ -113,7 +113,7 @@
                     <td class="two_col_center"> 
                         <img id="avatarImgFullSize" style="left: -9999%; top: -9999%; position: absolute;"/>
 
-                        <t:if test="!uploadedAvatarUri">
+                        <t:if test="!avatarUri">
                             <div style="float:left;
                                  overflow:hidden;
                                  left: -9999%; top: -9999%; position: absolute;
@@ -131,16 +131,16 @@
                                 }
                             </style>
                         </t:if>
-                        <t:if test="uploadedAvatarUri">
+                        <t:if test="avatarUri">
                             <div style="float:left;
                                  overflow:hidden;
                                  width:100px;
                                  height:100px;"
                                  class="imgContainer" id="previewContainer">
-                                <img src="${uploadedAvatarUri}" id="avatarImgPreview" style="position: relative;"/>
+                                <img src="${avatarUri}" id="avatarImgPreview" style="position: relative;"/>
                             </div>
                             <div class="imgContainer">
-                                <img src="${uploadedAvatarUri}" id="avatarImg"/>
+                                <img src="${avatarUri}" id="avatarImg"/>
                             </div>
                             <style>
                                 #avatarCancel{
