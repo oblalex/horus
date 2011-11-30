@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.apache.shiro.crypto.hash.Sha1Hash;
 import org.apache.shiro.util.ByteSource;
-import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.annotations.*;
-import org.apache.tapestry5.corelib.components.*;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import ua.cn.stu.oop.horus.core.domain.user.User;
@@ -37,27 +35,20 @@ public class Registration extends AccountPage{
     
     @Inject
     @Autowired
-    private EmailValidator emailValidator;    
+    private EmailValidator emailValidator;        
     
     @Inject
-    private ComponentResources componentResources;   
-    
-    @Inject
-    private HttpServletRequest httpRequest;
-              
-    @Component
-    private Form registrationForm;
-    
-    @Component(id = "formZone")
-    private Zone formZone;    
+    private HttpServletRequest httpRequest;                  
     
     private boolean isBlockSet = false;
         
     void onValidate(){
-        registrationForm.clearErrors();
+        Form frm = getTheForm();
+        
+        frm.clearErrors();
         validateFields();
         
-        if (registrationForm.getHasErrors()) return;    
+        if (frm.getHasErrors()) return;    
         if (isBlockSet) return;
         isBlockSet = true;
         
@@ -72,21 +63,21 @@ public class Registration extends AccountPage{
     }
 
     private void validateLogin() {
-        registrationForm.recordError(
+        getTheForm().recordError(
                 getLoginField(),
                 loginValidator.validateAndGetErrorMessageOrNull(
                     getLocale(), getLogin()));
     }
 
     private void validatePassword() {
-        registrationForm.recordError(
+        getTheForm().recordError(
                 getPasswordField(),
                 passwordValidator.validateAndGetErrorMessageOrNull(
                     getLocale(), getPassword(), getPasswordConfirm()));
     }
 
     private void validateEmail() {
-        registrationForm.recordError(
+        getTheForm().recordError(
                 getEmailField(),
                 emailValidator.validateAndGetErrorMessageOrNull(
                     getLocale(), getEmail()));        
@@ -104,13 +95,13 @@ public class Registration extends AccountPage{
     }
 
     private void onMailSendFailure() {
-        registrationForm.recordError(Messages.getMessage("registration.failure.msg", getLang()));        
+        getTheForm().recordError(Messages.getMessage("registration.failure.msg", getLang()));        
     }
     
     Object onSuccess(){
         finishUserCreation();
 
-        componentResources.discardPersistentFieldChanges();
+        getComponentResources().discardPersistentFieldChanges();
         
         MessagePageData data = getMessageData();        
         
@@ -158,11 +149,7 @@ public class Registration extends AccountPage{
     
     Object onFailure() {
         return getFormZone();
-    }
-    
-    Object getFormZone() {
-        return getRequest().isXHR() ? formZone.getBody() : null;
-    }
+    }    
         
     @Override
     public String getPageTitle() {

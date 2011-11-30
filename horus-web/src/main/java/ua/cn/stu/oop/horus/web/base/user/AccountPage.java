@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.ajax.MultiZoneUpdate;
 import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.corelib.components.*;
@@ -93,6 +94,15 @@ public abstract class AccountPage extends GenericPage{
     
     @Persist
     private File copied;
+    
+    @Inject
+    private ComponentResources componentResources;
+    
+    @Component
+    private Form theForm;
+    
+    @Component(id = "formZone")
+    private Zone formZone;
     
     protected void onActivate(AvailableLocale lang, String timeZone) {
         this.lang = lang;
@@ -323,4 +333,16 @@ public abstract class AccountPage extends GenericPage{
         
         return uploadStore.getUriUploadedFile(fAva.getName());
     }
+
+    public ComponentResources getComponentResources() {
+        return componentResources;
+    }
+
+    public Object getFormZone() {
+        return getRequest().isXHR() ? formZone.getBody() : null;
+    }
+
+    public Form getTheForm() {
+        return theForm;
+    }        
 }

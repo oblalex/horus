@@ -4,9 +4,7 @@ import ua.cn.stu.oop.horus.web.base.user.AccountPage;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.crypto.hash.Sha1Hash;
-import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.*;
-import org.apache.tapestry5.corelib.components.*;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.tynamo.security.services.SecurityService;
@@ -41,15 +39,6 @@ public class Edit extends AccountPage{
     @InjectPage
     private DBStore dbStore;    
     
-    @Inject
-    private ComponentResources componentResources;
-    
-    @Component
-    private Form editForm;
-    
-    @Component(id = "formZone")
-    private Zone formZone;
-    
     void onActivate() {
         String loginPrincipal = (String) securityService.getSubject().getPrincipal();
         User usr = getUserService().getUserOrNullByLogin(loginPrincipal);
@@ -74,7 +63,7 @@ public class Edit extends AccountPage{
     }
             
     void onValidate(){
-        editForm.clearErrors();
+        getTheForm().clearErrors();
         validateFields();               
     }
     
@@ -88,7 +77,7 @@ public class Edit extends AccountPage{
         if (getLogin().equals(getUser().getLogin())){
             return;
         }
-        editForm.recordError(
+        getTheForm().recordError(
                 getLoginField(),
                 loginValidator.validateAndGetErrorMessageOrNull(
                     getLocale(), getLogin()));
@@ -98,7 +87,7 @@ public class Edit extends AccountPage{
         if (getPassword()==null) {
             return;
         }
-        editForm.recordError(
+        getTheForm().recordError(
                 getPasswordField(),
                 passwordValidator.validateAndGetErrorMessageOrNull(
                     getLocale(), getPassword(), getPasswordConfirm()));
@@ -108,7 +97,7 @@ public class Edit extends AccountPage{
         if (getEmail().equals(getUser().getEmail())){
             return;
         }
-        editForm.recordError(
+        getTheForm().recordError(
                 getEmailField(),
                 emailValidator.validateAndGetErrorMessageOrNull(
                     getLocale(), getEmail()));
@@ -120,7 +109,7 @@ public class Edit extends AccountPage{
 
         // TODO: if user is owner and login was changed -> relogin
         
-        componentResources.discardPersistentFieldChanges();
+        getComponentResources().discardPersistentFieldChanges();
         
         MessagePageData data = getMessageData();
         
@@ -161,10 +150,6 @@ public class Edit extends AccountPage{
         return getFormZone();
     }
     
-    Object getFormZone() {
-        return getRequest().isXHR() ? formZone.getBody() : null;
-    }        
-
     @Override
     public String getPageTitle() {
         return Messages.getMessage("usr.account.edit.process", getLocale())+" - "+getUser().getLogin();

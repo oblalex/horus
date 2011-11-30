@@ -54,7 +54,7 @@
             $('div[name=avaZone]').attr('id','avaZone');
             $('a[name=avatarCancel]').attr('id','avatarCancel');
         </script>
-        <t:form t:id="registrationForm" t:name="registrationForm" t:zone="formZone">
+        <t:form t:id="theForm" t:name="theForm" t:zone="formZone">
             <t:errors/>      
             <table style="border: none; width: 100%;">
                 <tbody>
