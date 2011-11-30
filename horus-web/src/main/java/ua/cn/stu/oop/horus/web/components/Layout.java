@@ -29,10 +29,6 @@ stylesheet = {"context:css/common.css",
     "context:css/text-input.css",
     "context:css/btn.css"})
 public class Layout {
-
-    @Autowired
-    @Inject
-    private LocalizedTitleService localizedTitleService;
     
     @Inject
     private PersistentLocale persistentLocale;
