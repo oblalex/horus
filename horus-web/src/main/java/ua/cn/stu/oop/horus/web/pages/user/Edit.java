@@ -21,7 +21,6 @@ import org.tynamo.security.services.SecurityService;
 import ua.cn.stu.oop.horus.core.domain.file.DBFile;
 import ua.cn.stu.oop.horus.core.domain.user.User;
 import ua.cn.stu.oop.horus.core.domain.user.UserRoles;
-import ua.cn.stu.oop.horus.core.language.AvailableLocale;
 import ua.cn.stu.oop.horus.core.service.file.*;
 import ua.cn.stu.oop.horus.core.service.user.UserService;
 import ua.cn.stu.oop.horus.web.config.ConfigContainer;
@@ -93,11 +92,6 @@ public class Edit extends AccountPage{
     
     @Persist
     private File copied;
-
-    void onActivate(AvailableLocale lang, String timeZone) {
-        setLang(lang);
-        setTimeZone(timeZone);
-    }
     
     void onActivate() {
         String loginPrincipal = (String) securityService.getSubject().getPrincipal();

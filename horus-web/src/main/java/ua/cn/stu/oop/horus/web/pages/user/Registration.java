@@ -21,7 +21,6 @@ import org.im4java.core.IM4JavaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import ua.cn.stu.oop.horus.core.domain.file.DBFile;
 import ua.cn.stu.oop.horus.core.domain.user.User;
-import ua.cn.stu.oop.horus.core.language.AvailableLocale;
 import ua.cn.stu.oop.horus.core.service.file.*;
 import ua.cn.stu.oop.horus.core.service.user.UserService;
 import ua.cn.stu.oop.horus.web.config.ConfigContainer;
@@ -96,11 +95,6 @@ public class Registration extends AccountPage{
     private File copied;
     
     private boolean isBlockSet = false;
-
-    void onActivate(AvailableLocale lang, String timeZone) {
-        setLang(lang);
-        setTimeZone(timeZone);
-    }
     
     @OnEvent(component = "uploadAvatar", value = JQueryEventConstants.AJAX_UPLOAD)
     Object onUploadAvatar(UploadedFile uploadedFile) throws IOException {

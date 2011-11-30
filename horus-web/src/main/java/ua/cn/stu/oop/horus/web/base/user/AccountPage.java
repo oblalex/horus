@@ -1,5 +1,6 @@
 package ua.cn.stu.oop.horus.web.base.user;
 
+import java.io.File;
 import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.corelib.components.*;
 import org.apache.tapestry5.json.JSONObject;
@@ -44,6 +45,14 @@ public abstract class AccountPage extends GenericPage{
     @Component(id = "email")
     private TextField emailField;
 
+    @Persist
+    private File copied;
+    
+    protected void onActivate(AvailableLocale lang, String timeZone) {
+        this.lang = lang;
+        this.timeZone = timeZone;
+    }
+    
     public TextField getEmailField() {
         return emailField;
     }
@@ -138,5 +147,5 @@ public abstract class AccountPage extends GenericPage{
 
     public Message getMessagePage() {
         return messagePage;
-    }    
+    }
 }
