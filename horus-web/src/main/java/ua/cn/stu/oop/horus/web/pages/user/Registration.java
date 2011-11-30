@@ -91,10 +91,7 @@ public class Registration extends AccountPage{
     
     @Persist
     private UploadedFile uploadedAvatar;
-    
-    @Persist
-    private String avatarFileName;
-    
+        
     @Persist
     private File copied;
     
@@ -112,14 +109,12 @@ public class Registration extends AccountPage{
         copied = new File(ConfigContainer.CONFIG.TMP.getPathToTemporary(uploadedAvatar.getFileName()));
         uploadedAvatar.write(copied);
 
-        avatarFileName = copied.getName();
         return getAvaZone();
     }
     
     Object onActionFromAvatarCancel() {
         copied = null;
         uploadedAvatar = null;
-        avatarFileName = null;
         return getAvaZone();
     }
     
@@ -298,10 +293,10 @@ public class Registration extends AccountPage{
     }
     
     public String getUploadedAvatarUri() {
-        if (avatarFileName == null) {
+        if (copied == null) {
             return null;
         }
-        return uploadStore.getUriUploadedFile(avatarFileName);
+        return uploadStore.getUriUploadedFile(copied.getName());
     }
 
     public String[] getSelectModel() {

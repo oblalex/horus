@@ -91,9 +91,9 @@ public class Edit extends AccountPage{
     @Persist
     private UploadedFile uploadedAvatar;
     
-    @Persist
-    @Property
-    private String avatarFileName;
+    //@Persist
+    //@Property
+    //private String avatarFileName;
     
     @Persist
     private File copied;
@@ -130,14 +130,12 @@ public class Edit extends AccountPage{
         copied = new File(ConfigContainer.CONFIG.TMP.getPathToTemporary(uploadedAvatar.getFileName()));
         uploadedAvatar.write(copied);
 
-        avatarFileName = copied.getName();
         return getAvaZone();
     }
     
     Object onActionFromAvatarCancel() {
         copied = null;
         uploadedAvatar = null;
-        avatarFileName = null;
         return getAvaZone();
     }
     
@@ -307,11 +305,12 @@ public class Edit extends AccountPage{
         if ((ava!=null)&&(uploadedAvatar==null)){
             return dbStore.getUriFileInDB(ava.getId());
         }
-        
-        if (avatarFileName == null) {
+                
+        if (copied == null) {
             return null;
         }
-        return uploadStore.getUriUploadedFile(avatarFileName);
+        
+        return uploadStore.getUriUploadedFile(copied.getName());
     }
 
     public String[] getSelectModel() {
