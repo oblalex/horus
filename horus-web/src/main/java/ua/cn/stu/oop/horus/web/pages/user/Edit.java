@@ -1,5 +1,6 @@
 package ua.cn.stu.oop.horus.web.pages.user;
 
+import ua.cn.stu.oop.horus.web.base.user.AccountPage;
 import java.io.*;
 import java.sql.Timestamp;
 import org.apache.commons.io.*;
@@ -24,7 +25,6 @@ import ua.cn.stu.oop.horus.core.domain.user.UserRoles;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
 import ua.cn.stu.oop.horus.core.service.file.*;
 import ua.cn.stu.oop.horus.core.service.user.UserService;
-import ua.cn.stu.oop.horus.web.components.Layout;
 import ua.cn.stu.oop.horus.web.config.ConfigContainer;
 import ua.cn.stu.oop.horus.web.pages.Message;
 import ua.cn.stu.oop.horus.web.pages.store.DBStore;
@@ -37,9 +37,7 @@ import ua.cn.stu.oop.horus.web.util.image.ImageInFileUtil;
 import ua.cn.stu.oop.horus.web.util.time.TimeZoneUtil;
 
 @RequiresUser
-@Import(library = "context:js/jquery.imgareaselect.js",
-stylesheet = "context:css/imgareaselect-default.css")
-public class Edit {
+public class Edit extends AccountPage{
     
     private User user;
     
@@ -87,39 +85,7 @@ public class Edit {
     
     @Inject
     private Request request;
-    
-    @Inject
-    private PersistentLocale persistentLocale;
-    
-    private AvailableLocale locale = Layout.getLocaleFromPersistent(persistentLocale);
-    
-    @Property
-    private String login;
-    
-    @Property
-    private String password;
-    
-    @Property
-    private String passwordConfirm;
-    
-    @Property
-    private String email;
-    
-    @Persist
-    private AvailableLocale lang;
-    
-    @Persist
-    private String timeZone;
-    
-    @Component(id = "login")
-    private TextField loginField;
-    
-    @Component(id = "password")
-    private PasswordField passwordField;
-
-    @Component(id = "email")
-    private TextField emailField;
-    
+        
     @Component
     private Form editForm;
     
@@ -140,8 +106,8 @@ public class Edit {
     private File copied;
 
     void onActivate(AvailableLocale lang, String timeZone) {
-        this.lang = lang;
-        this.timeZone = timeZone;
+        setLang(lang);
+        setTimeZone(timeZone);
     }
     
     void onActivate() {
@@ -158,10 +124,10 @@ public class Edit {
     }
     
     private void initFields(){
-        login = user.getLogin();
-        email = user.getEmail();
-        timeZone = TimeZoneUtil.toString(user.getTimeZoneUTC());
-        lang = user.getPreferredLocale();       
+        setLogin(user.getLogin());
+        setEmail(user.getEmail());
+        setTimeZone(TimeZoneUtil.toString(user.getTimeZoneUTC()));
+        setLang(user.getPreferredLocale());
     }
     
     @OnEvent(component = "uploadAvatar", value = JQueryEventConstants.AJAX_UPLOAD)
@@ -194,33 +160,33 @@ public class Edit {
     }
 
     private void validateLogin() {
-        if (login.equals(user.getLogin())){
+        if (getLogin().equals(user.getLogin())){
             return;
         }
         editForm.recordError(
-                loginField,
+                getLoginField(),
                 loginValidator.validateAndGetErrorMessageOrNull(
-                    locale, login));
+                    getLocale(), getLogin()));
     }
 
     private void validatePassword() {
-        if (password==null) {
+        if (getPassword()==null) {
             return;
         }
         editForm.recordError(
-                passwordField,
+                getPasswordField(),
                 passwordValidator.validateAndGetErrorMessageOrNull(
-                    locale, password, passwordConfirm));
+                    getLocale(), getPassword(), getPasswordConfirm()));
     }
 
     private void validateEmail() {
-        if (email.equals(user.getEmail())){
+        if (getEmail().equals(user.getEmail())){
             return;
         }
         editForm.recordError(
-                emailField,
+                getEmailField(),
                 emailValidator.validateAndGetErrorMessageOrNull(
-                    locale, email));        
+                    getLocale(), getEmail()));
     }
     
     Object onSuccess(){
@@ -232,9 +198,9 @@ public class Edit {
         componentResources.discardPersistentFieldChanges();
         
         messageData.setType(MessagePageData.MessageType.SUCCESS);
-        messageData.setPageTitleTail(Messages.getMessage("usr.account.edit.success", lang));
-        messageData.setHtmlMessage(Messages.getMessage("usr.account.edit.success.msg", lang));
-        messageData.setLocale(lang);
+        messageData.setPageTitleTail(Messages.getMessage("usr.account.edit.success", getLang()));
+        messageData.setHtmlMessage(Messages.getMessage("usr.account.edit.success.msg", getLang()));
+        messageData.setLocale(getLang());
         messageData.setCanGoForward(false);
         messageData.setCanGoBackward(false);
         messagePage.setMessageData(messageData);
@@ -243,13 +209,13 @@ public class Edit {
     }
 
     private void prepareUser(){
-        user.setLogin(login);
-        user.setEmail(email);
-        user.setPreferredLocale(lang);
-        user.setTimeZoneUTC(TimeZoneUtil.parseTimeZone(timeZone));
+        user.setLogin(getLogin());
+        user.setEmail(getEmail());
+        user.setPreferredLocale(getLang());
+        user.setTimeZoneUTC(TimeZoneUtil.parseTimeZone(getTimeZone()));
         
-        if (password!=null){
-            user.setHashedPassword(new Sha1Hash(password, user.getSalt()).toString());
+        if (getPassword()!=null){
+            user.setHashedPassword(new Sha1Hash(getPassword(), user.getSalt()).toString());
         }
     }
     
@@ -355,31 +321,10 @@ public class Edit {
         return TimeZoneUtil.getTimeZonesStrings();
     }
 
+    @Override
     public String getPageTitle() {
-        return Messages.getMessage("usr.account.edit.process", locale)+" - "+user.getLogin();
-    }
-
-    public AvailableLocale getLang() {
-        if (lang == null) {
-            lang = locale;
-        }
-        return lang;
-    }
-
-    public void setLang(AvailableLocale lang) {
-        this.lang = lang;
-    }
-
-    public String getTimeZone() {
-        if (timeZone == null) {
-            timeZone = TimeZoneUtil.toString(TimeZoneUtil.TIMEZONE_DEFAULT);
-        }
-        return timeZone;
-    }
-
-    public void setTimeZone(String timeZone) {
-        this.timeZone = timeZone;
-    }
+        return Messages.getMessage("usr.account.edit.process", getLocale())+" - "+user.getLogin();
+    }    
 
     public MessagePageData getMessageData() {
         return messageData;
@@ -391,15 +336,15 @@ public class Edit {
 
     public JSONObject getParams() {
         JSONObject uploadMessages = new JSONObject()
-                .put("typeError", Messages.getMessage("upload.extension.error", locale))
-                .put("sizeError", Messages.getMessage("upload.size.error", locale))
-                .put("minSizeError", Messages.getMessage("upload.size.error.min", locale))
-                .put("emptyError", Messages.getMessage("upload.empty.error", locale))
-                .put("onLeave", Messages.getMessage("upload.onLeave", locale))
-                .put("uploadLabel", Messages.getMessage("upload", locale))
-                .put("dropAreaLabel", Messages.getMessage("upload.dropArea.label", locale))
-                .put("cancelLabel", Messages.getMessage("cancel", locale))
-                .put("failedLabel", Messages.getMessage("failure", locale));
+                .put("typeError", Messages.getMessage("upload.extension.error", getLocale()))
+                .put("sizeError", Messages.getMessage("upload.size.error", getLocale()))
+                .put("minSizeError", Messages.getMessage("upload.size.error.min", getLocale()))
+                .put("emptyError", Messages.getMessage("upload.empty.error", getLocale()))
+                .put("onLeave", Messages.getMessage("upload.onLeave", getLocale()))
+                .put("uploadLabel", Messages.getMessage("upload", getLocale()))
+                .put("dropAreaLabel", Messages.getMessage("upload.dropArea.label", getLocale()))
+                .put("cancelLabel", Messages.getMessage("cancel", getLocale()))
+                .put("failedLabel", Messages.getMessage("failure", getLocale()));
 
         JSONObject parameter = new JSONObject().put("messages", uploadMessages);
 

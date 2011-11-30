@@ -1,5 +1,6 @@
 package ua.cn.stu.oop.horus.web.pages.user;
 
+import ua.cn.stu.oop.horus.web.base.user.AccountPage;
 import java.io.*;
 import java.sql.Timestamp;
 import javax.mail.MessagingException;
@@ -24,7 +25,6 @@ import ua.cn.stu.oop.horus.core.domain.user.User;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
 import ua.cn.stu.oop.horus.core.service.file.*;
 import ua.cn.stu.oop.horus.core.service.user.UserService;
-import ua.cn.stu.oop.horus.web.components.Layout;
 import ua.cn.stu.oop.horus.web.config.ConfigContainer;
 import ua.cn.stu.oop.horus.web.pages.Message;
 import ua.cn.stu.oop.horus.web.pages.store.UploadStore;
@@ -37,9 +37,7 @@ import ua.cn.stu.oop.horus.web.util.image.ImageInFileUtil;
 import ua.cn.stu.oop.horus.web.util.time.TimeZoneUtil;
 
 @RequiresGuest
-@Import(library = "context:js/jquery.imgareaselect.js",
-stylesheet = "context:css/imgareaselect-default.css")
-public class Registration {
+public class Registration extends AccountPage{
 
     private User user;
     
@@ -88,39 +86,7 @@ public class Registration {
     
     @Inject
     private HttpServletRequest httpRequest;
-    
-    @Inject
-    private PersistentLocale persistentLocale;
-    
-    private AvailableLocale locale = Layout.getLocaleFromPersistent(persistentLocale);
-    
-    @Property
-    private String login;
-    
-    @Property
-    private String password;
-    
-    @Property
-    private String passwordConfirm;
-    
-    @Property
-    private String email;
-    
-    @Persist
-    private AvailableLocale lang;
-    
-    @Persist
-    private String timeZone;
-    
-    @Component(id = "login")
-    private TextField loginField;
-    
-    @Component(id = "password")
-    private PasswordField passwordField;
-
-    @Component(id = "email")
-    private TextField emailField;
-    
+              
     @Component
     private Form registrationForm;
     
@@ -142,8 +108,8 @@ public class Registration {
     private boolean isBlockSet = false;
 
     void onActivate(AvailableLocale lang, String timeZone) {
-        this.lang = lang;
-        this.timeZone = timeZone;
+        setLang(lang);
+        setTimeZone(timeZone);
     }
     
     @OnEvent(component = "uploadAvatar", value = JQueryEventConstants.AJAX_UPLOAD)
@@ -184,30 +150,30 @@ public class Registration {
 
     private void validateLogin() {
         registrationForm.recordError(
-                loginField,
+                getLoginField(),
                 loginValidator.validateAndGetErrorMessageOrNull(
-                    locale, login));
+                    getLocale(), getLogin()));
     }
 
     private void validatePassword() {
         registrationForm.recordError(
-                passwordField,
+                getPasswordField(),
                 passwordValidator.validateAndGetErrorMessageOrNull(
-                    locale, password, passwordConfirm));
+                    getLocale(), getPassword(), getPasswordConfirm()));
     }
 
     private void validateEmail() {
         registrationForm.recordError(
-                emailField,
+                getEmailField(),
                 emailValidator.validateAndGetErrorMessageOrNull(
-                    locale, email));        
+                    getLocale(), getEmail()));        
     }    
     
     private void trySendRegistrationNotificationMail(){               
         try {
             mailService.sendMail(new RegistrationNotifyMail(
                                  user,
-                                 password,
+                                 getPassword(),
                                  HttpRequestHelper.getContextRootUrl(httpRequest)));
         } catch (MessagingException ex) {
             onMailSendFailure();
@@ -215,7 +181,7 @@ public class Registration {
     }
 
     private void onMailSendFailure() {
-        registrationForm.recordError(Messages.getMessage("registration.failure.msg", lang));        
+        registrationForm.recordError(Messages.getMessage("registration.failure.msg", getLang()));        
     }
     
     Object onSuccess(){
@@ -224,9 +190,9 @@ public class Registration {
         componentResources.discardPersistentFieldChanges();
         
         messageData.setType(MessagePageData.MessageType.SUCCESS);
-        messageData.setPageTitleTail(Messages.getMessage("registration.success", lang));
-        messageData.setHtmlMessage(Messages.getMessage("registration.success.msg", lang));        
-        messageData.setLocale(lang);
+        messageData.setPageTitleTail(Messages.getMessage("registration.success", getLang()));
+        messageData.setHtmlMessage(Messages.getMessage("registration.success.msg", getLang()));        
+        messageData.setLocale(getLang());
         messageData.setCanGoForward(false);
         messageData.setCanGoBackward(false);
         messagePage.setMessageData(messageData);
@@ -237,16 +203,16 @@ public class Registration {
     private void prepareUser(){
         user = new User();
 
-        user.setLogin(login);
-        user.setEmail(email);
+        user.setLogin(getLogin());
+        user.setEmail(getEmail());
         user.setEmailConfirmed(false);
-        user.setPreferredLocale(lang);
+        user.setPreferredLocale(getLang());
         user.setRegistrationDate(new Timestamp(System.currentTimeMillis()));
-        user.setTimeZoneUTC(TimeZoneUtil.parseTimeZone(timeZone));
+        user.setTimeZoneUTC(TimeZoneUtil.parseTimeZone(getTimeZone()));
 
         ByteSource bs = EncodingUtil.getRandomSaltSource();
         user.setSalt(bs.getBytes());
-        user.setHashedPassword(new Sha1Hash(password, bs).toString());        
+        user.setHashedPassword(new Sha1Hash(getPassword(), bs).toString());        
     }
     
     private void finishUserCreation(){        
@@ -345,31 +311,10 @@ public class Registration {
         return TimeZoneUtil.getTimeZonesStrings();
     }
 
+    @Override
     public String getPageTitle() {
-        return Messages.getMessage("registration", locale);
-    }
-
-    public AvailableLocale getLang() {
-        if (lang == null) {
-            lang = locale;
-        }
-        return lang;
-    }
-
-    public void setLang(AvailableLocale lang) {
-        this.lang = lang;
-    }
-
-    public String getTimeZone() {
-        if (timeZone == null) {
-            timeZone = TimeZoneUtil.toString(TimeZoneUtil.TIMEZONE_DEFAULT);
-        }
-        return timeZone;
-    }
-
-    public void setTimeZone(String timeZone) {
-        this.timeZone = timeZone;
-    }
+        return Messages.getMessage("registration", getLocale());
+    }    
 
     public MessagePageData getMessageData() {
         return messageData;
@@ -381,15 +326,15 @@ public class Registration {
 
     public JSONObject getParams() {
         JSONObject uploadMessages = new JSONObject()
-                .put("typeError", Messages.getMessage("upload.extension.error", locale))
-                .put("sizeError", Messages.getMessage("upload.size.error", locale))
-                .put("minSizeError", Messages.getMessage("upload.size.error.min", locale))
-                .put("emptyError", Messages.getMessage("upload.empty.error", locale))
-                .put("onLeave", Messages.getMessage("upload.onLeave", locale))
-                .put("uploadLabel", Messages.getMessage("upload", locale))
-                .put("dropAreaLabel", Messages.getMessage("upload.dropArea.label", locale))
-                .put("cancelLabel", Messages.getMessage("cancel", locale))
-                .put("failedLabel", Messages.getMessage("failure", locale));
+                .put("typeError", Messages.getMessage("upload.extension.error", getLocale()))
+                .put("sizeError", Messages.getMessage("upload.size.error", getLocale()))
+                .put("minSizeError", Messages.getMessage("upload.size.error.min", getLocale()))
+                .put("emptyError", Messages.getMessage("upload.empty.error", getLocale()))
+                .put("onLeave", Messages.getMessage("upload.onLeave", getLocale()))
+                .put("uploadLabel", Messages.getMessage("upload", getLocale()))
+                .put("dropAreaLabel", Messages.getMessage("upload.dropArea.label", getLocale()))
+                .put("cancelLabel", Messages.getMessage("cancel", getLocale()))
+                .put("failedLabel", Messages.getMessage("failure", getLocale()));
 
         JSONObject parameter = new JSONObject().put("messages", uploadMessages);
 
