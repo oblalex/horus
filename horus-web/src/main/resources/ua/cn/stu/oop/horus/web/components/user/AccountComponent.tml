@@ -19,38 +19,44 @@
             <input type="hidden" name="avatarSrcHolder" value="${avatarUri}"/>
             <input type="hidden" name="isAvatarUploadedHolder" value="${isAvatarUploaded}"/>
             <input type="hidden" name="defaultAvatarSrcHolder" value="${context:img/user.png}"/>
+            
             <script type="text/javascript">
+                
+                var hidePreiew = false;
                 var avaSrc = $("input[name=avatarSrcHolder]").val();
                 var isAvatarUploaded = $("input[name=isAvatarUploadedHolder]").val();
+                
+                var previewCtnr = $("#previewContainer");
+                var avaImg = $("#avatarImg");
+                var avaCancel = $("#avatarCancel");
                                 
                 if((avaSrc==null)||(avaSrc=="")){
-                    $("#avatarImg").attr('src',  $("input[name=defaultAvatarSrcHolder]").val());
-                    
-                    $("#previewContainer").css('left', '-9999%');
-                    $("#previewContainer").css('top', '-9999%');
-                    $("#previewContainer").css('position', 'absolute');
-                    $('#avatarCancel').css('visibility','hidden');
-                    areaSelectionRemove();
+                    avaImg.attr('src',  $("input[name=defaultAvatarSrcHolder]").val());                    
+                    hidePreiew = true;
                 } else {      
                     var avaSrcNew = avaSrc+"?timestamp=" + new Date().getTime();
-                    $("#avatarImg").attr('src', avaSrcNew);
+                    avaImg.attr('src', avaSrcNew);
                     $("#avatarImgPreview").attr('src', avaSrcNew);
                     
                     $('#avatarImgFullSize').attr('src', avaSrcNew);
                     if (isAvatarUploaded=="false"){
-                        $("#previewContainer").css('left', '-9999%');
-                        $("#previewContainer").css('top', '-9999%');
-                        $("#previewContainer").css('position', 'absolute');
-                        $('#avatarCancel').css('visibility','hidden');
-                        areaSelectionRemove();    
+                        hidePreiew = true;   
                     } else {                       
-                        $("#previewContainer").css('left', '0');
-                        $("#previewContainer").css('top', '0');
-                        $("#previewContainer").css('position', 'relative');
-                        $('#avatarCancel').css('visibility','visible');
+                        previewCtnr.css('left', '0');
+                        previewCtnr.css('top', '0');
+                        previewCtnr.css('position', 'relative');
+                        avaCancel.css('visibility','visible');
                         areaSelectionReload();
                      }                    
-                }                
+                }
+
+                if (hidePreiew){
+                    previewCtnr.css('left', '-9999%');
+                    previewCtnr.css('top', '-9999%');
+                    previewCtnr.css('position', 'absolute');
+                    avaCancel.css('visibility','hidden');
+                    areaSelectionRemove(); 
+                }
             </script>
         </t:zone>
     </div>
@@ -245,8 +251,10 @@
                 var scaleX = 100 / (selection.width || 1);
                 var scaleY = 100 / (selection.height || 1);
                                         
-                var avaOrigWigth = $("#avatarImg").css('width').replace("px", "");
-                var avaOrigHeight = $("#avatarImg").css('height').replace("px", "");
+                var avaImg = $("#avatarImg");
+                                        
+                var avaOrigWigth = avaImg.css('width').replace("px", "");
+                var avaOrigHeight = avaImg.css('height').replace("px", "");
                                         
                 $('#avatarImgPreview').css({
                     width: Math.round(scaleX * avaOrigWigth) + 'px',
