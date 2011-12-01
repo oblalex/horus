@@ -111,11 +111,7 @@ public class Registration extends AccountPage{
     
     void onSubmit(){
         isBlockSet = false;
-    }
-    
-    Object onFailure() {
-        return getFormZone();
-    }    
+    }        
         
     @Override
     public String getPageTitle() {

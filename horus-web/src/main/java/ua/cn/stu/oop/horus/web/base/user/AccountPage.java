@@ -135,6 +135,10 @@ public abstract class AccountPage extends GenericPage{
         return getAvaZone();
     }
     
+    public Object onFailure() {
+        return getFormZone();
+    }
+    
     protected void setUserAvatar() throws Exception {
         
         if (uploadedAvatar == null) {

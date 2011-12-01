@@ -121,10 +121,6 @@ public class Edit extends AccountPage{
             setUserAvatar();
         } catch (Exception ex) {            
         }
-    }           
-    
-    Object onFailure() {
-        return getFormZone();
     }
     
     @Override
