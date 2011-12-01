@@ -3,6 +3,8 @@ package ua.cn.stu.oop.horus.web.base.user;
 import java.io.*;
 import java.sql.Timestamp;
 import org.apache.commons.io.*;
+import org.apache.shiro.crypto.hash.Sha1Hash;
+import org.apache.shiro.util.ByteSource;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.ajax.MultiZoneUpdate;
 import org.apache.tapestry5.annotations.*;
@@ -23,6 +25,7 @@ import ua.cn.stu.oop.horus.web.base.GenericPage;
 import ua.cn.stu.oop.horus.web.config.ConfigContainer;
 import ua.cn.stu.oop.horus.web.pages.Message;
 import ua.cn.stu.oop.horus.web.pages.store.UploadStore;
+import ua.cn.stu.oop.horus.web.util.EncodingUtil;
 import ua.cn.stu.oop.horus.web.util.Messages;
 import ua.cn.stu.oop.horus.web.util.file.FileMimeTypeChecker;
 import ua.cn.stu.oop.horus.web.util.image.ImageInFileUtil;
@@ -137,6 +140,32 @@ public abstract class AccountPage extends GenericPage{
     
     public Object onFailure() {
         return getFormZone();
+    }
+    
+    protected void prepareUser(){
+        if (user==null){
+            user = new User();
+            ByteSource bs = EncodingUtil.getRandomSaltSource();
+            user.setSalt(bs.getBytes());
+            user.setRegistrationDate(new Timestamp(System.currentTimeMillis()));
+        }
+
+        user.setLogin(login);
+        user.setEmail(email);
+        user.setPreferredLocale(lang);
+        user.setTimeZoneUTC(TimeZoneUtil.parseTimeZone(timeZone));
+        
+        if (password!=null){
+            user.setHashedPassword(new Sha1Hash(getPassword(), user.getSalt()).toString());
+        }
+    }
+    
+    protected void finishUserCreation(){        
+        getUserService().saveOrUpdateEntity(getUser());
+        try {
+            setUserAvatar();
+        } catch (Exception ex) {            
+        }
     }
     
     protected void setUserAvatar() throws Exception {

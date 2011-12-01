@@ -1,15 +1,13 @@
 package ua.cn.stu.oop.horus.web.pages.user;
 
 import ua.cn.stu.oop.horus.web.base.user.AccountPage;
-import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.apache.shiro.authz.annotation.RequiresUser;
-import org.apache.shiro.crypto.hash.Sha1Hash;
+import org.apache.shiro.authz.annotation.*;
 import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.tynamo.security.services.SecurityService;
 import ua.cn.stu.oop.horus.core.domain.file.DBFile;
-import ua.cn.stu.oop.horus.core.domain.user.User;
-import ua.cn.stu.oop.horus.core.domain.user.UserRoles;
+import ua.cn.stu.oop.horus.core.domain.user.*;
+import ua.cn.stu.oop.horus.web.pages.Index;
 import ua.cn.stu.oop.horus.web.pages.Message;
 import ua.cn.stu.oop.horus.web.pages.store.DBStore;
 import ua.cn.stu.oop.horus.web.util.*;
@@ -25,19 +23,36 @@ public class Edit extends AccountPage{
     @InjectPage
     private DBStore dbStore;    
     
+    private boolean visitorIsOwner;
+    
     void onActivate() {
-        String loginPrincipal = (String) securityService.getSubject().getPrincipal();
-        User usr = getUserService().getUserOrNullByLogin(loginPrincipal);
+        String visitorLogin = getVisitorLogin();
+        User usr = getUserService().getUserOrNullByLogin(visitorLogin);
         setUser(usr);
         initFields();
+        
+        visitorIsOwner = true;
     }
     
     @RequiresRoles(UserRoles.ADMIN)
-    void onActivate(Long userId) {
+    Object onActivate(Long userId) {        
         User usr = getUserService().getEntityOrNullById(userId);
-        setUser(usr);
-        // TODO : if user was not found
+        
+        if (usr == null) {
+            return Index.class;
+        }
+        
+        setUser(usr);        
         initFields();
+        
+        String visitorLogin = getVisitorLogin();
+        visitorIsOwner = (usr.getLogin().equals(visitorLogin));
+        
+        return null;
+    }
+    
+    private String getVisitorLogin(){
+        return (String) securityService.getSubject().getPrincipal();
     }
     
     private void initFields(){
@@ -81,18 +96,25 @@ public class Edit extends AccountPage{
     }
     
     Object onSuccess(){
+        boolean loginChanged = (getUser().getLogin().equals(getLogin())==false);
+        
         prepareUser();
         finishUserCreation();
 
-        // TODO: if user is owner and login was changed -> relogin
+        String htmlMessage = Messages.getMessage("usr.account.edit.success.msg", getLang());
+        
+        if (loginChanged && visitorIsOwner){
+            htmlMessage += " "+Messages.getMessage("usr.account.relogin.msg", getLang());
+            securityService.getSubject().logout();
+        }        
         
         getComponentResources().discardPersistentFieldChanges();
         
         MessagePageData data = getMessageData();
-        
-        data.setType(MessagePageData.MessageType.SUCCESS);
+
         data.setPageTitleTail(Messages.getMessage("usr.account.edit.success", getLang()));
-        data.setHtmlMessage(Messages.getMessage("usr.account.edit.success.msg", getLang()));
+        data.setHtmlMessage(htmlMessage);        
+        data.setType(MessagePageData.MessageType.SUCCESS);
         data.setLocale(getLang());
         data.setCanGoForward(false);
         data.setCanGoBackward(false);
@@ -101,27 +123,7 @@ public class Edit extends AccountPage{
         mp.setMessageData(data);
                 
         return mp;
-    }
-
-    private void prepareUser(){
-        User usr = getUser();
-        usr.setLogin(getLogin());
-        usr.setEmail(getEmail());
-        usr.setPreferredLocale(getLang());
-        usr.setTimeZoneUTC(TimeZoneUtil.parseTimeZone(getTimeZone()));
-        
-        if (getPassword()!=null){
-            usr.setHashedPassword(new Sha1Hash(getPassword(), usr.getSalt()).toString());
-        }
-    }
-    
-    private void finishUserCreation(){        
-        getUserService().saveOrUpdateEntity(getUser());
-        try {
-            setUserAvatar();
-        } catch (Exception ex) {            
-        }
-    }
+    }        
     
     @Override
     public String getPageTitle() {
