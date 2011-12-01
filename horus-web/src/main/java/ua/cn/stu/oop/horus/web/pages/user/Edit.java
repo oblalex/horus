@@ -6,7 +6,6 @@ import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.crypto.hash.Sha1Hash;
 import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.tynamo.security.services.SecurityService;
 import ua.cn.stu.oop.horus.core.domain.file.DBFile;
 import ua.cn.stu.oop.horus.core.domain.user.User;
@@ -15,7 +14,6 @@ import ua.cn.stu.oop.horus.web.pages.Message;
 import ua.cn.stu.oop.horus.web.pages.store.DBStore;
 import ua.cn.stu.oop.horus.web.util.*;
 import ua.cn.stu.oop.horus.web.util.pages.*;
-import ua.cn.stu.oop.horus.web.util.pages.validator.*;
 import ua.cn.stu.oop.horus.web.util.time.TimeZoneUtil;
 
 @RequiresUser
@@ -23,18 +21,6 @@ public class Edit extends AccountPage{
     
     @Inject
     private SecurityService securityService;
-    
-    @Inject
-    @Autowired
-    private LoginValidator loginValidator;
-    
-    @Inject
-    @Autowired
-    private PasswordValidator passwordValidator;
-    
-    @Inject
-    @Autowired
-    private EmailValidator emailValidator;
     
     @InjectPage
     private DBStore dbStore;    
@@ -68,39 +54,30 @@ public class Edit extends AccountPage{
     }
     
     private void validateFields(){
-        validateLogin();
-        validatePassword();
-        validateEmail();      
+        validateLoginOnDemand();
+        validatePasswordOnDemand();
+        validateEmailOnDemand();      
     }
 
-    private void validateLogin() {
+    private void validateLoginOnDemand() {
         if (getLogin().equals(getUser().getLogin())){
             return;
         }
-        getTheForm().recordError(
-                getLoginField(),
-                loginValidator.validateAndGetErrorMessageOrNull(
-                    getLocale(), getLogin()));
+        validateLogin();
     }
 
-    private void validatePassword() {
+    private void validatePasswordOnDemand() {
         if (getPassword()==null) {
             return;
         }
-        getTheForm().recordError(
-                getPasswordField(),
-                passwordValidator.validateAndGetErrorMessageOrNull(
-                    getLocale(), getPassword(), getPasswordConfirm()));
+        validatePassword();
     }
 
-    private void validateEmail() {
+    private void validateEmailOnDemand() {
         if (getEmail().equals(getUser().getEmail())){
             return;
         }
-        getTheForm().recordError(
-                getEmailField(),
-                emailValidator.validateAndGetErrorMessageOrNull(
-                    getLocale(), getEmail()));
+        validateEmail();
     }
     
     Object onSuccess(){

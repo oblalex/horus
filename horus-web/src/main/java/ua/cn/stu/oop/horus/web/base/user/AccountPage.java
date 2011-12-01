@@ -1,10 +1,8 @@
 package ua.cn.stu.oop.horus.web.base.user;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Timestamp;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.*;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.ajax.MultiZoneUpdate;
 import org.apache.tapestry5.annotations.*;
@@ -19,8 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ua.cn.stu.oop.horus.core.domain.file.DBFile;
 import ua.cn.stu.oop.horus.core.domain.user.User;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
-import ua.cn.stu.oop.horus.core.service.file.DBFileDirectoryService;
-import ua.cn.stu.oop.horus.core.service.file.DBFileService;
+import ua.cn.stu.oop.horus.core.service.file.*;
 import ua.cn.stu.oop.horus.core.service.user.UserService;
 import ua.cn.stu.oop.horus.web.base.GenericPage;
 import ua.cn.stu.oop.horus.web.config.ConfigContainer;
@@ -30,6 +27,7 @@ import ua.cn.stu.oop.horus.web.util.Messages;
 import ua.cn.stu.oop.horus.web.util.file.FileMimeTypeChecker;
 import ua.cn.stu.oop.horus.web.util.image.ImageInFileUtil;
 import ua.cn.stu.oop.horus.web.util.pages.MessagePageData;
+import ua.cn.stu.oop.horus.web.util.pages.validator.*;
 import ua.cn.stu.oop.horus.web.util.time.TimeZoneUtil;
 
 /**
@@ -103,6 +101,18 @@ public abstract class AccountPage extends GenericPage{
     
     @Component(id = "formZone")
     private Zone formZone;
+    
+    @Inject
+    @Autowired
+    private LoginValidator loginValidator;
+    
+    @Inject
+    @Autowired
+    private PasswordValidator passwordValidator;
+    
+    @Inject
+    @Autowired
+    private EmailValidator emailValidator;
     
     protected void onActivate(AvailableLocale lang, String timeZone) {
         this.lang = lang;
@@ -207,6 +217,27 @@ public abstract class AccountPage extends GenericPage{
         JSONObject parameter = new JSONObject().put("messages", uploadMessages);
 
         return parameter;
+    }
+    
+    protected void validateLogin() {
+        getTheForm().recordError(
+                loginField,
+                loginValidator.validateAndGetErrorMessageOrNull(
+                    getLocale(), login));
+    }
+
+    protected void validatePassword() {
+        getTheForm().recordError(
+                passwordField,
+                passwordValidator.validateAndGetErrorMessageOrNull(
+                    getLocale(), password, passwordConfirm));
+    }
+
+    protected void validateEmail() {
+        getTheForm().recordError(
+                emailField,
+                emailValidator.validateAndGetErrorMessageOrNull(
+                    getLocale(), email));        
     }
     
     protected Object getAvaZone() {

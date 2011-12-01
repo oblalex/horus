@@ -15,7 +15,6 @@ import ua.cn.stu.oop.horus.web.pages.Message;
 import ua.cn.stu.oop.horus.web.util.*;
 import ua.cn.stu.oop.horus.web.util.mail.*;
 import ua.cn.stu.oop.horus.web.util.pages.*;
-import ua.cn.stu.oop.horus.web.util.pages.validator.*;
 import ua.cn.stu.oop.horus.web.util.time.TimeZoneUtil;
 
 @RequiresGuest
@@ -23,19 +22,7 @@ public class Registration extends AccountPage{
     
     @Inject
     @Autowired
-    private MailService mailService;    
-
-    @Inject
-    @Autowired
-    private LoginValidator loginValidator;
-    
-    @Inject
-    @Autowired
-    private PasswordValidator passwordValidator;
-    
-    @Inject
-    @Autowired
-    private EmailValidator emailValidator;        
+    private MailService mailService;            
     
     @Inject
     private HttpServletRequest httpRequest;                  
@@ -60,28 +47,7 @@ public class Registration extends AccountPage{
         validateLogin();
         validatePassword();
         validateEmail();
-    }
-
-    private void validateLogin() {
-        getTheForm().recordError(
-                getLoginField(),
-                loginValidator.validateAndGetErrorMessageOrNull(
-                    getLocale(), getLogin()));
-    }
-
-    private void validatePassword() {
-        getTheForm().recordError(
-                getPasswordField(),
-                passwordValidator.validateAndGetErrorMessageOrNull(
-                    getLocale(), getPassword(), getPasswordConfirm()));
-    }
-
-    private void validateEmail() {
-        getTheForm().recordError(
-                getEmailField(),
-                emailValidator.validateAndGetErrorMessageOrNull(
-                    getLocale(), getEmail()));        
-    }    
+    }        
     
     private void trySendRegistrationNotificationMail(){               
         try {
