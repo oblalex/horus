@@ -1,0 +1,275 @@
+<t:container
+    xmlns:j="tapestry-library:jquery"
+    xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">   
+    
+    <style>
+        #avatarImg{
+            max-width: 350px;
+        }
+    </style>
+
+    <div style="position: absolute; left: -9999px">
+        <j:ajaxUpload t:id="uploadAvatar" 
+                      t:multiple="false" 
+                      t:allowedExtensions="[bmp, gif, jp2, jpeg, jpg, png]" 
+                      t:sizeLimit="500K" 
+                      t:params="params">
+        </j:ajaxUpload>
+        <t:zone t:id="avaZone" t:update="show" t:name="avaZone">
+            <input type="hidden" name="avatarSrcHolder" value="${avatarUri}"/>
+            <input type="hidden" name="isAvatarUploadedHolder" value="${isAvatarUploaded}"/>
+            <input type="hidden" name="defaultAvatarSrcHolder" value="${context:img/user.png}"/>
+            <script type="text/javascript">
+                var avaSrc = $("input[name=avatarSrcHolder]").val();
+                var isAvatarUploaded = $("input[name=isAvatarUploadedHolder]").val();
+                                
+                if((avaSrc==null)||(avaSrc=="")){
+                    $("#avatarImg").attr('src',  $("input[name=defaultAvatarSrcHolder]").val());
+                    
+                    $("#previewContainer").css('left', '-9999%');
+                    $("#previewContainer").css('top', '-9999%');
+                    $("#previewContainer").css('position', 'absolute');
+                    $('#avatarCancel').css('visibility','hidden');
+                    areaSelectionRemove();
+                } else {      
+                    var avaSrcNew = avaSrc+"?timestamp=" + new Date().getTime();
+                    $("#avatarImg").attr('src', avaSrcNew);
+                    $("#avatarImgPreview").attr('src', avaSrcNew);
+                    
+                    $('#avatarImgFullSize').attr('src', avaSrcNew);
+                    if (isAvatarUploaded=="false"){
+                        $("#previewContainer").css('left', '-9999%');
+                        $("#previewContainer").css('top', '-9999%');
+                        $("#previewContainer").css('position', 'absolute');
+                        $('#avatarCancel').css('visibility','hidden');
+                        areaSelectionRemove();    
+                    } else {                       
+                        $("#previewContainer").css('left', '0');
+                        $("#previewContainer").css('top', '0');
+                        $("#previewContainer").css('position', 'relative');
+                        $('#avatarCancel').css('visibility','visible');
+                        areaSelectionReload();
+                     }                    
+                }                
+            </script>
+        </t:zone>
+    </div>
+
+    <t:zone t:id="formZone" t:update="show">
+        <script type="text/javascript">
+            $('div[name=avaZone]').attr('id','avaZone');
+            $('a[name=avatarCancel]').attr('id','avatarCancel');
+        </script>
+        <t:form t:id="theForm" t:name="theForm" t:zone="formZone">
+            <t:errors/>      
+            <table style="border: none; width: 100%;">
+                <tbody>
+                    <tr>
+                        <td class="two_col_right">
+                            <label for="login">${message:usr.login} :</label>
+                        </td>
+                        <td class="two_col_center">
+                            <t:textfield t:id="login" t:name="login"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="two_col_right">
+                            <label for="password">${message:usr.pswd} :</label>
+                        </td>
+                        <td class="two_col_center">
+                            <t:passwordfield t:id="password" t:name="password"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="two_col_right">
+                            <label for="passwordConfirm">${message:usr.pswd.confirm} :</label>
+                        </td>
+                        <td class="two_col_center">
+                            <t:passwordfield t:id="passwordConfirm" t:name="passwordConfirm"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="two_col_right">
+                            <label for="email">${message:usr.email} :</label>
+                        </td>
+                        <td class="two_col_center">
+                            <t:textfield t:id="email" t:name="email"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="two_col_right">
+                            <label for="lang">${message:lang} :</label>
+                        </td>
+                        <td class="two_col_center">
+                            <t:select t:id="lang" class="round_sb" t:name="lang"></t:select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="two_col_right">
+                            <label for="timeZone">${message:timeZone} :</label>
+                        </td>
+                        <td class="two_col_center">
+                            <t:select t:id="timeZone" t:model="selectModel" class="round_sb" t:name="timeZone"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="two_col_right">
+                            ${message:avatar} :
+                        </td>
+                        <td class="two_col_center"> 
+                            <img id="avatarImgFullSize" style="left: -9999%; top: -9999%; position: absolute;"/>
+
+                            <t:if test="!avatarUri">
+                                <div style="float:left;
+                                     overflow:hidden;
+                                     left: -9999%; top: -9999%; position: absolute;
+                                     width:100px;
+                                     height:100px;"
+                                     class="imgContainer" id="previewContainer">
+                                    <img id="avatarImgPreview" style="position: relative;"/>
+                                </div>
+                                <div class="imgContainer">
+                                    <img id="avatarImg" src="${context:img/user.png}"/>
+                                </div>
+                                <style>
+                                    #avatarCancel{
+                                        visibility: hidden;
+                                    }
+                                </style>
+                            </t:if>
+                            <t:if test="avatarUri">
+                                <t:if test="!isAvatarUploaded">
+                                    <style>
+                                        #avatarCancel{
+                                            visibility: hidden;
+                                        }
+                                    </style>
+                                </t:if>
+                                <t:if test="isAvatarUploaded">
+                                    <style>
+                                        #avatarCancel{
+                                            visibility: visible;
+                                        }
+                                    </style>
+                                    <script type="text/javascript">
+                                        var avaSrcNew = $("#avatarImg").attr('src')+"?timestamp=" + new Date().getTime();
+                                        $("#avatarImg").attr('src', avaSrcNew);
+                                        $("#avatarImgPreview").attr('src', avaSrcNew);
+                                        areaSelectionReload();
+                                    </script>
+                                </t:if>
+                                <div style="float:left;
+                                     overflow:hidden;
+                                     left: -9999%; top: -9999%; position: absolute;
+                                     width:100px;
+                                     height:100px;"
+                                     class="imgContainer" id="previewContainer">
+                                        <img src="${avatarUri}" id="avatarImgPreview" style="position: relative;"/>
+                                </div>
+                                <div class="imgContainer">
+                                    <img src="${avatarUri}" id="avatarImg"/>
+                                </div>
+                            </t:if>
+
+                            <div style="clear: both; margin-bottom: 15px;"></div>
+                            <input type="button" class="horus_btn" value="${message:change}" onclick="clickUpload()" name="avatarSelect"/>                
+                            <t:actionlink href="javascript:void" t:id="avatarCancel" t:name="avatarCancel" t:zone="avaZone" class="horus_btn">${message:cancel}</t:actionlink>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center; padding-top: 5px;">
+                            <img name="regLoadingCircuit" src="${context:img/loading_circuit.gif}" style="visibility: hidden;"/><br/>
+                            <input type="submit" value="${submitTitle}" t:name="submitBtn" class="horus_btn" onclick="doSubmit()"/>
+                        </td>
+                    </tr>
+                </tbody>            
+            </table>
+            <input type="hidden" name="avatarWidth"/>
+            <input type="hidden" name="avatarWidthMax"/>
+            <input type="hidden" name="avatarSelectionX"/>
+            <input type="hidden" name="avatarSelectionY"/>
+            <input type="hidden" name="avatarSelectionWidth"/>
+            <input type="hidden" name="avatarSelectionHeight"/>
+        </t:form>
+        <script type="text/javascript">
+            addInputsStyles();
+            $("select[name=lang]").sb({ useTie: true});
+            $("select[name=timeZone]").sb({ useTie: true});           
+                            
+            jQuery('input[name=password]').pstrength({
+                'debug': true,
+                'verdicts':['${message:he.weak}',
+                    '${message:he.normal}',
+                    '${message:he.medium}',
+                    '${message:he.strong}',
+                    '${message:he.strong.very}']}); 
+                    
+            $('#avatarImgFullSize').attr('src',$('#avatarImg').attr('src'));
+        </script>
+    </t:zone>
+
+    <script type="text/javascript">
+        function doSubmit(){
+            
+            var widthMax = $('#avatarImg').css('max-width').replace("px","") | 0;
+            var myWidth = $('#avatarImgFullSize').css('width').replace("px","") | 0;
+            
+            var avatarSelectionX = $('input[name=avatarSelectionX]').val() | 0;            
+            var avatarSelectionY = $('input[name=avatarSelectionY]').val() | 0;
+            var avatarSelectionWidth = $('input[name=avatarSelectionWidth]').val() | 0;
+            var avatarSelectionHeight = $('input[name=avatarSelectionHeight]').val() | 0;                        
+                
+            $('input[name=avatarWidthMax]').val(widthMax);
+            $('input[name=avatarWidth]').val(myWidth);
+            
+            $('input[name=avatarSelectionX]').val(avatarSelectionX);
+            $('input[name=avatarSelectionY]').val(avatarSelectionY);            
+            $('input[name=avatarSelectionWidth]').val(avatarSelectionWidth);                        
+            $('input[name=avatarSelectionHeight]').val(avatarSelectionHeight);            
+            
+            $('img[name=regLoadingCircuit]').css("visibility", "visible");        
+        }
+        
+        function clickUpload(){
+            $("input[name=file]").click();
+        };    
+        
+        function areaSelectionRemove(){
+            $('#avatarImg').imgAreaSelect({
+                remove:true
+            });
+        }
+        
+        function areaSelectionReload(){
+            function preview(img, selection) {
+                var scaleX = 100 / (selection.width || 1);
+                var scaleY = 100 / (selection.height || 1);
+                                        
+                var avaOrigWigth = $("#avatarImg").css('width').replace("px", "");
+                var avaOrigHeight = $("#avatarImg").css('height').replace("px", "");
+                                        
+                $('#avatarImgPreview').css({
+                    width: Math.round(scaleX * avaOrigWigth) + 'px',
+                    height: Math.round(scaleY * avaOrigHeight) + 'px',
+                    marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+                    marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+                });
+            }
+                                    
+            areaSelectionRemove();
+                                    
+            $('#avatarImg').imgAreaSelect({
+                handles: true,
+                aspectRatio: '1:1',
+                parent: $('#avatarImg').parent(),
+                onSelectChange: preview,
+                onSelectEnd: function (img, selection) {
+                    $('input[name=avatarSelectionX]').val(selection.x1);
+                    $('input[name=avatarSelectionY]').val(selection.y1);
+                    $('input[name=avatarSelectionWidth]').val((selection.x2-selection.x1));
+                    $('input[name=avatarSelectionHeight]').val((selection.y2-selection.y1));
+                }
+            });
+        }
+    </script>
+</t:container>

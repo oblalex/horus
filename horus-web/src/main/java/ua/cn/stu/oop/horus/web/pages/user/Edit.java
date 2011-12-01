@@ -1,34 +1,33 @@
 package ua.cn.stu.oop.horus.web.pages.user;
 
-import ua.cn.stu.oop.horus.web.base.user.AccountPage;
 import org.apache.shiro.authz.annotation.*;
 import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.tynamo.security.services.SecurityService;
-import ua.cn.stu.oop.horus.core.domain.file.DBFile;
 import ua.cn.stu.oop.horus.core.domain.user.*;
+import ua.cn.stu.oop.horus.core.language.AvailableLocale;
+import ua.cn.stu.oop.horus.web.components.user.AccountComponent;
 import ua.cn.stu.oop.horus.web.pages.Index;
 import ua.cn.stu.oop.horus.web.pages.Message;
-import ua.cn.stu.oop.horus.web.pages.store.DBStore;
 import ua.cn.stu.oop.horus.web.util.*;
 import ua.cn.stu.oop.horus.web.util.pages.*;
 import ua.cn.stu.oop.horus.web.util.time.TimeZoneUtil;
 
 @RequiresUser
-public class Edit extends AccountPage{
+public class Edit{
     
     @Inject
-    private SecurityService securityService;
-    
-    @InjectPage
-    private DBStore dbStore;    
+    private SecurityService securityService;  
     
     private boolean visitorIsOwner;
     
+    @Component
+    private AccountComponent accountCmpnt;
+    
     void onActivate() {
         String visitorLogin = getVisitorLogin();
-        User usr = getUserService().getUserOrNullByLogin(visitorLogin);
-        setUser(usr);
+        User usr = accountCmpnt.getUserService().getUserOrNullByLogin(visitorLogin);
+        accountCmpnt.setUser(usr);
         initFields();
         
         visitorIsOwner = true;
@@ -36,13 +35,13 @@ public class Edit extends AccountPage{
     
     @RequiresRoles(UserRoles.ADMIN)
     Object onActivate(Long userId) {        
-        User usr = getUserService().getEntityOrNullById(userId);
+        User usr = accountCmpnt.getUserService().getEntityOrNullById(userId);
         
         if (usr == null) {
             return Index.class;
         }
         
-        setUser(usr);        
+        accountCmpnt.setUser(usr);        
         initFields();
         
         String visitorLogin = getVisitorLogin();
@@ -56,15 +55,15 @@ public class Edit extends AccountPage{
     }
     
     private void initFields(){
-        User usr = getUser();
-        setLogin(usr.getLogin());
-        setEmail(usr.getEmail());
-        setTimeZone(TimeZoneUtil.toString(usr.getTimeZoneUTC()));
-        setLang(usr.getPreferredLocale());
+        User usr = accountCmpnt.getUser();
+        accountCmpnt.setLogin(usr.getLogin());
+        accountCmpnt.setEmail(usr.getEmail());
+        accountCmpnt.setTimeZone(TimeZoneUtil.toString(usr.getTimeZoneUTC()));
+        accountCmpnt.setLang(usr.getPreferredLocale());
     }
             
     void onValidate(){
-        getTheForm().clearErrors();
+        accountCmpnt.getTheForm().clearErrors();
         validateFields();               
     }
     
@@ -75,69 +74,63 @@ public class Edit extends AccountPage{
     }
 
     private void validateLoginOnDemand() {
-        if (getLogin().equals(getUser().getLogin())){
+        if (accountCmpnt.getLogin().equals(accountCmpnt.getUser().getLogin())){
             return;
         }
-        validateLogin();
+        accountCmpnt.validateLogin();
     }
 
     private void validatePasswordOnDemand() {
-        if (getPassword()==null) {
+        if (accountCmpnt.getPassword()==null) {
             return;
         }
-        validatePassword();
+        accountCmpnt.validatePassword();
     }
 
     private void validateEmailOnDemand() {
-        if (getEmail().equals(getUser().getEmail())){
+        if (accountCmpnt.getEmail().equals(accountCmpnt.getUser().getEmail())){
             return;
         }
-        validateEmail();
+        accountCmpnt.validateEmail();
     }
     
     Object onSuccess(){
-        boolean loginChanged = (getUser().getLogin().equals(getLogin())==false);
+        boolean loginChanged = (accountCmpnt.getUser().getLogin().equals(accountCmpnt.getLogin())==false);
         
-        prepareUser();
-        finishUserCreation();
+        accountCmpnt.prepareUser();
+        accountCmpnt.finishUserCreation();
 
-        String htmlMessage = Messages.getMessage("usr.account.edit.success.msg", getLang());
+        AvailableLocale aLoc = accountCmpnt.getLang();
+        
+        String htmlMessage = Messages.getMessage("usr.account.edit.success.msg", aLoc);
         
         if (loginChanged && visitorIsOwner){
-            htmlMessage += " "+Messages.getMessage("usr.account.relogin.msg", getLang());
+            htmlMessage += " "+Messages.getMessage("usr.account.relogin.msg", aLoc);
             securityService.getSubject().logout();
         }        
         
-        getComponentResources().discardPersistentFieldChanges();
+        accountCmpnt.getComponentResources().discardPersistentFieldChanges();
         
-        MessagePageData data = getMessageData();
-
-        data.setPageTitleTail(Messages.getMessage("usr.account.edit.success", getLang()));
+        MessagePageData data = accountCmpnt.getMessageData();
+        
+        data.setPageTitleTail(Messages.getMessage("usr.account.edit.success", aLoc));
         data.setHtmlMessage(htmlMessage);        
         data.setType(MessagePageData.MessageType.SUCCESS);
-        data.setLocale(getLang());
+        data.setLocale(aLoc);
         data.setCanGoForward(false);
         data.setCanGoBackward(false);
         
-        Message mp = getMessagePage();
+        Message mp = accountCmpnt.getMessagePage();
         mp.setMessageData(data);
                 
         return mp;
     }        
     
-    @Override
     public String getPageTitle() {
-        return Messages.getMessage("usr.account.edit.process", getLocale())+" - "+getUser().getLogin();
+        return Messages.getMessage("usr.account.edit.process", accountCmpnt.getLocale())+" - "+accountCmpnt.getUser().getLogin();
     }
     
-    @Override
-    public String getAvatarUri() {
-        DBFile ava = getUser().getAvatar();
-        
-        if ((ava!=null)&&(getIsAvatarUploaded()==false)){
-            return dbStore.getUriFileInDB(ava.getId());
-        }
-              
-        return getUploadedAvatarUri();
-    }
+    public String getSubmitTitle() {
+        return Messages.getMessage("apply", accountCmpnt.getLocale());
+    } 
 }

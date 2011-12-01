@@ -1,10 +1,11 @@
-package ua.cn.stu.oop.horus.web.base.user;
+package ua.cn.stu.oop.horus.web.components.user;
 
 import java.io.*;
 import java.sql.Timestamp;
 import org.apache.commons.io.*;
 import org.apache.shiro.crypto.hash.Sha1Hash;
 import org.apache.shiro.util.ByteSource;
+import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.ajax.MultiZoneUpdate;
 import org.apache.tapestry5.annotations.*;
@@ -24,6 +25,7 @@ import ua.cn.stu.oop.horus.core.service.user.UserService;
 import ua.cn.stu.oop.horus.web.base.GenericPage;
 import ua.cn.stu.oop.horus.web.config.ConfigContainer;
 import ua.cn.stu.oop.horus.web.pages.Message;
+import ua.cn.stu.oop.horus.web.pages.store.DBStore;
 import ua.cn.stu.oop.horus.web.pages.store.UploadStore;
 import ua.cn.stu.oop.horus.web.util.EncodingUtil;
 import ua.cn.stu.oop.horus.web.util.Messages;
@@ -39,7 +41,7 @@ import ua.cn.stu.oop.horus.web.util.time.TimeZoneUtil;
  */
 @Import(library = "context:js/jquery.imgareaselect.js",
 stylesheet = "context:css/imgareaselect-default.css")
-public abstract class AccountPage extends GenericPage{
+public class AccountComponent extends GenericPage{
 
     private User user;
     
@@ -65,6 +67,9 @@ public abstract class AccountPage extends GenericPage{
     
     @InjectPage
     private Message messagePage;
+    
+    @InjectPage
+    private DBStore dbStore;
     
     @InjectPage
     private UploadStore uploadStore;
@@ -116,8 +121,11 @@ public abstract class AccountPage extends GenericPage{
     @Inject
     @Autowired
     private EmailValidator emailValidator;
+
+    @Parameter(required = true, defaultPrefix = BindingConstants.LITERAL)
+    private String submitTitle;
     
-    protected void onActivate(AvailableLocale lang, String timeZone) {
+    public void onActivate(AvailableLocale lang, String timeZone) {
         this.lang = lang;
         this.timeZone = timeZone;
     }
@@ -142,7 +150,7 @@ public abstract class AccountPage extends GenericPage{
         return getFormZone();
     }
     
-    protected void prepareUser(){
+    public void prepareUser(){
         if (user==null){
             user = new User();
             ByteSource bs = EncodingUtil.getRandomSaltSource();
@@ -160,7 +168,7 @@ public abstract class AccountPage extends GenericPage{
         }
     }
     
-    protected void finishUserCreation(){        
+    public void finishUserCreation(){        
         getUserService().saveOrUpdateEntity(getUser());
         try {
             setUserAvatar();
@@ -168,7 +176,7 @@ public abstract class AccountPage extends GenericPage{
         }
     }
     
-    protected void setUserAvatar() throws Exception {
+    public void setUserAvatar() throws Exception {
         
         if (uploadedAvatar == null) {
             return;
@@ -252,28 +260,28 @@ public abstract class AccountPage extends GenericPage{
         return parameter;
     }
     
-    protected void validateLogin() {
+    public void validateLogin() {
         getTheForm().recordError(
                 loginField,
                 loginValidator.validateAndGetErrorMessageOrNull(
                     getLocale(), login));
     }
 
-    protected void validatePassword() {
+    public void validatePassword() {
         getTheForm().recordError(
                 passwordField,
                 passwordValidator.validateAndGetErrorMessageOrNull(
                     getLocale(), password, passwordConfirm));
     }
 
-    protected void validateEmail() {
+    public void validateEmail() {
         getTheForm().recordError(
                 emailField,
                 emailValidator.validateAndGetErrorMessageOrNull(
                     getLocale(), email));        
     }
     
-    protected Object getAvaZone() {
+    public Object getAvaZone() {
         return request.isXHR() ? new MultiZoneUpdate("avaZone", avaZone.getBody()) : null;
     }
     
@@ -387,15 +395,23 @@ public abstract class AccountPage extends GenericPage{
         return (copied!=null);
     }
     
-    public abstract String getAvatarUri();
-    
-    protected String getUploadedAvatarUri() {
+    public String getUploadedAvatarUri() {
         File fAva = getCopied();
         if (fAva == null) {
             return null;
         }
         
         return uploadStore.getUriUploadedFile(fAva.getName());
+    }
+    
+    public String getAvatarUri(){
+        DBFile ava = (user!=null)?getUser().getAvatar():null;
+        
+        if ((ava!=null)&&(getIsAvatarUploaded()==false)){
+            return dbStore.getUriFileInDB(ava.getId());
+        }
+        
+        return getUploadedAvatarUri();
     }
 
     public ComponentResources getComponentResources() {
@@ -408,5 +424,14 @@ public abstract class AccountPage extends GenericPage{
 
     public Form getTheForm() {
         return theForm;
-    }        
+    }
+
+    @Override
+    public String getPageTitle() {
+        return this.getClass().getSimpleName();
+    }
+
+    public String getSubmitTitle() {
+        return submitTitle;
+    }    
 }

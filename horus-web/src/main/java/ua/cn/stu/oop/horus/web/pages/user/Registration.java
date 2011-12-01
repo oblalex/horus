@@ -1,19 +1,21 @@
 package ua.cn.stu.oop.horus.web.pages.user;
 
-import ua.cn.stu.oop.horus.web.base.user.AccountPage;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.shiro.authz.annotation.RequiresGuest;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
+import ua.cn.stu.oop.horus.core.language.AvailableLocale;
+import ua.cn.stu.oop.horus.web.components.user.AccountComponent;
 import ua.cn.stu.oop.horus.web.pages.Message;
 import ua.cn.stu.oop.horus.web.util.*;
 import ua.cn.stu.oop.horus.web.util.mail.*;
 import ua.cn.stu.oop.horus.web.util.pages.*;
 
 @RequiresGuest
-public class Registration extends AccountPage{
+public class Registration {
     
     @Inject
     @Autowired
@@ -22,10 +24,13 @@ public class Registration extends AccountPage{
     @Inject
     private HttpServletRequest httpRequest;                  
     
+    @Component
+    private AccountComponent accountCmpnt;
+    
     private boolean isBlockSet = false;
         
     void onValidate(){
-        Form frm = getTheForm();
+        Form frm = accountCmpnt.getTheForm();
         
         frm.clearErrors();
         validateFields();
@@ -34,21 +39,21 @@ public class Registration extends AccountPage{
         if (isBlockSet) return;
         isBlockSet = true;
         
-        prepareUser();        
+        accountCmpnt.prepareUser();        
         trySendRegistrationNotificationMail();
     }
     
     private void validateFields(){
-        validateLogin();
-        validatePassword();
-        validateEmail();
+        accountCmpnt.validateLogin();
+        accountCmpnt.validatePassword();
+        accountCmpnt.validateEmail();
     }        
     
     private void trySendRegistrationNotificationMail(){               
         try {
             mailService.sendMail(new RegistrationNotifyMail(
-                                 getUser(),
-                                 getPassword(),
+                                 accountCmpnt.getUser(),
+                                 accountCmpnt.getPassword(),
                                  HttpRequestHelper.getContextRootUrl(httpRequest)));
         } catch (MessagingException ex) {
             onMailSendFailure();
@@ -56,24 +61,26 @@ public class Registration extends AccountPage{
     }
 
     private void onMailSendFailure() {
-        getTheForm().recordError(Messages.getMessage("registration.failure.msg", getLang()));        
+        accountCmpnt.getTheForm().recordError(Messages.getMessage("registration.failure.msg", accountCmpnt.getLang()));        
     }
     
     Object onSuccess(){
-        finishUserCreation();
+        accountCmpnt.finishUserCreation();
 
-        getComponentResources().discardPersistentFieldChanges();
+        accountCmpnt.getComponentResources().discardPersistentFieldChanges();
         
-        MessagePageData data = getMessageData();        
+        MessagePageData data = accountCmpnt.getMessageData();        
+        
+        AvailableLocale aLoc = accountCmpnt.getLang();
         
         data.setType(MessagePageData.MessageType.SUCCESS);
-        data.setPageTitleTail(Messages.getMessage("registration.success", getLang()));
-        data.setHtmlMessage(Messages.getMessage("registration.success.msg", getLang()));        
-        data.setLocale(getLang());
+        data.setPageTitleTail(Messages.getMessage("registration.success", aLoc));
+        data.setHtmlMessage(Messages.getMessage("registration.success.msg", aLoc));        
+        data.setLocale(aLoc);
         data.setCanGoForward(false);
         data.setCanGoBackward(false);
         
-        Message mp = getMessagePage();
+        Message mp = accountCmpnt.getMessagePage();
         mp.setMessageData(data);
                 
         return mp;
@@ -83,13 +90,11 @@ public class Registration extends AccountPage{
         isBlockSet = false;
     }        
         
-    @Override
     public String getPageTitle() {
-        return Messages.getMessage("registration", getLocale());
+        return Messages.getMessage("registration", accountCmpnt.getLocale());
     }
-
-    @Override
-    public String getAvatarUri() {
-        return getUploadedAvatarUri();
-    }
+    
+    public String getSubmitTitle() {
+        return Messages.getMessage("register.me", accountCmpnt.getLocale());
+    } 
 }
