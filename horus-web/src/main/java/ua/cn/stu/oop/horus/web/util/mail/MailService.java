@@ -23,10 +23,13 @@ public class MailService {
     }
 
     private void setSenderParameters() {
-        mailSender.setUsername(ConfigContainer.CONFIG.MAIL.username);
-        mailSender.setPassword(ConfigContainer.CONFIG.MAIL.password);
-        mailSender.setHost(ConfigContainer.CONFIG.MAIL.host);
-        mailSender.setPort(ConfigContainer.CONFIG.MAIL.port);
+        try {
+            mailSender.setUsername(ConfigContainer.CONFIG.MAIL.username);
+            mailSender.setPassword(ConfigContainer.CONFIG.MAIL.password);
+            mailSender.setHost(ConfigContainer.CONFIG.MAIL.host);
+            mailSender.setPort(ConfigContainer.CONFIG.MAIL.port);
+        } catch (Exception e){
+        }
     }
 
     public void sendMail(final GenericMail mail) throws MessagingException{
