@@ -1,7 +1,7 @@
 package ua.cn.stu.oop.horus.web.config;
 
+import java.awt.Dimension;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ua.cn.stu.oop.horus.core.domain.text.*;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
 import ua.cn.stu.oop.horus.core.service.text.*;
@@ -12,18 +12,17 @@ import ua.cn.stu.oop.horus.web.util.*;
  * @author alex
  */
 public class GeneralConfig implements Resetable{
-        
-    private static final transient ApplicationContext ctx;
-    
+            
     private static transient TitleLinkService titleLinkService;    
     private static transient LocalizedTitleService localizedTitleService;    
     private static transient LocalizedDataService localizedDataService;
     
     public Long projectNameTitleLinkId;
     public boolean oneEmailPerUser;
+    public Dimension avatarDimensions = new Dimension();
 
     static {
-        ctx = new ClassPathXmlApplicationContext("classpath:/META-INF/spring/coreContext.xml");
+        ApplicationContext ctx = ApplicationContextHelper.getContext();
         titleLinkService = ctx.getBean(TitleLinkService.class);
         localizedTitleService = ctx.getBean(LocalizedTitleService.class);
         localizedDataService = ctx.getBean(LocalizedDataService.class);
@@ -32,6 +31,8 @@ public class GeneralConfig implements Resetable{
     @Override
     public void reset() {
         oneEmailPerUser = Boolean.parseBoolean(Constants.getConstant("email.one.per.user"));
+        avatarDimensions.height = Integer.parseInt(Constants.getConstant("user.avatar.height.px"));
+        avatarDimensions.width = Integer.parseInt(Constants.getConstant("user.avatar.width.px"));
         resetProjectNameTitleLinkId();
     }
     
