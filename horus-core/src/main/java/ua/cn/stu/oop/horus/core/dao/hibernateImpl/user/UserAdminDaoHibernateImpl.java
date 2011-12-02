@@ -33,4 +33,10 @@ public class UserAdminDaoHibernateImpl
         return (Boolean) requiredSingleResultByNamedQuery(
                 "noAdminExistsNativeSQL");
     }
+
+    @Override
+    public UserAdmin getAdminOrNullByUser(User user) {
+        return (UserAdmin) singleResultOrNullByNamedQuery(
+                "adminOrNullByUserHQL", user);
+    }
 }

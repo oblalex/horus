@@ -13,6 +13,11 @@
         <property column="comment" name="comment" type="string"/>
         <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.user.User" column="user_id" name="user" not-null="true" unique="true"/>
     </class>
+    <query name="adminOrNullByUserHQL">
+        
+            SELECT DISTINCT uadm FROM UserAdmin uadm WHERE uadm.user=?
+        
+    </query>
     <sql-query name="noAdminExistsNativeSQL">
         <return-scalar column="result" type="true_false" />
         <![CDATA[

@@ -31,4 +31,9 @@ public class UserAdminServiceImpl
     public boolean noAdminExists(){
         return dao.noAdminExists();
     }
+
+    @Override
+    public UserAdmin getAdminOrNullByUser(User user) {
+        return dao.getAdminOrNullByUser(user);
+    }
 }
