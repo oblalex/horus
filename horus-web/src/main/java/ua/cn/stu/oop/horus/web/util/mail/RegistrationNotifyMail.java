@@ -5,8 +5,6 @@ import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.internet.*;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ua.cn.stu.oop.horus.core.domain.text.LocalizedTitle;
 import ua.cn.stu.oop.horus.core.domain.user.User;
 import ua.cn.stu.oop.horus.core.service.text.LocalizedTitleService;
@@ -19,7 +17,6 @@ import ua.cn.stu.oop.horus.web.util.*;
  */
 public class RegistrationNotifyMail extends GenericMail {
 
-    private ApplicationContext ctx;
     public LocalizedTitleService localizedTitleService;
     
     public static final String PARAM_LOGIN  = "login";
@@ -41,8 +38,7 @@ public class RegistrationNotifyMail extends GenericMail {
         this.rawPassword = rawPassword;
         this.siteRootURL = siteRootURL;
         
-        ctx = new ClassPathXmlApplicationContext("classpath:/META-INF/spring/coreContext.xml");
-        localizedTitleService = ctx.getBean(LocalizedTitleService.class);
+        localizedTitleService = ApplicationContextHelper.getBeanByType(LocalizedTitleService.class);
         LocalizedTitle localizedTitle = 
                 localizedTitleService.
                 getTitleWithDefaultGrammarByTitleLinkIdAndLocale(
@@ -121,9 +117,7 @@ public class RegistrationNotifyMail extends GenericMail {
         
         sb.append(siteRootURL);
         sb.append(locale.name());
-        sb.append("/");
-        sb.append("mailconfirm");
-        sb.append("/?");
+        sb.append("/user/mailconfirm/?");
         sb.append(PARAM_LOGIN);
         sb.append("=");
         sb.append(user.getLogin());
