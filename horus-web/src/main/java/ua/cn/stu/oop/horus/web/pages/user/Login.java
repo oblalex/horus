@@ -107,7 +107,9 @@ public class Login extends GenericPage{
             loginForm.recordError(Messages.getMessage("usr.not.found", aLoc));
             return;
         } else if (user.isEmailConfirmed() == false) {
-            loginForm.recordError(Messages.getMessage("usr.account.activated.not", aLoc));
+            loginForm.recordError(
+                    Messages.getMessage("usr.account.activated.not", aLoc)
+                    +" "+Messages.getMessage("usr.account.activated.not.hint", aLoc));
             return;
         }
 
