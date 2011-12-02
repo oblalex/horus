@@ -214,7 +214,9 @@
                             </div>
                             <div style="clear: both; margin-bottom: 15px;"></div>
                             <input type="button" class="horus_btn" value="${message:change}" onclick="clickUpload()" name="avatarSelect"/>                
-                            <t:actionlink href="javascript:void" t:id="avatarCancel" t:name="avatarCancel" t:zone="avaZone" class="horus_btn">${message:cancel}</t:actionlink>
+                            <t:actionlink href="javascript:void" t:id="avatarCancel" t:name="avatarCancel" t:zone="avaZone" class="a_simple">
+                                <input type="button" class="horus_btn" value="${message:cancel}"/>
+                            </t:actionlink>
                         </td>
                     </tr>
                     <tr>
