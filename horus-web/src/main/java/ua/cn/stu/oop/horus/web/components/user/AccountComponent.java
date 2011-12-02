@@ -439,10 +439,10 @@ public class AccountComponent extends GenericPage{
     }    
     
     public int getUserAvatarHeightPx(){
-        return ConfigContainer.CONFIG.GENERAL.avatarDimensions.height;
+        return ConfigContainer.CONFIG.USER.avatarDimensions.height;
     }
     
     public int getUserAvatarWidthPx(){
-        return ConfigContainer.CONFIG.GENERAL.avatarDimensions.width;
+        return ConfigContainer.CONFIG.USER.avatarDimensions.width;
     }
 }

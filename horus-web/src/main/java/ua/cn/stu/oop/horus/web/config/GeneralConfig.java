@@ -1,6 +1,5 @@
 package ua.cn.stu.oop.horus.web.config;
 
-import java.awt.Dimension;
 import org.springframework.context.ApplicationContext;
 import ua.cn.stu.oop.horus.core.domain.text.*;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
@@ -17,9 +16,7 @@ public class GeneralConfig implements Resetable{
     private static transient LocalizedTitleService localizedTitleService;    
     private static transient LocalizedDataService localizedDataService;
     
-    public Long projectNameTitleLinkId;
-    public boolean oneEmailPerUser;
-    public Dimension avatarDimensions = new Dimension();
+    public Long projectNameTitleLinkId;    
 
     static {
         ApplicationContext ctx = ApplicationContextHelper.getContext();
@@ -30,9 +27,6 @@ public class GeneralConfig implements Resetable{
     
     @Override
     public void reset() {
-        oneEmailPerUser = Boolean.parseBoolean(Constants.getConstant("email.one.per.user"));
-        avatarDimensions.height = Integer.parseInt(Constants.getConstant("user.avatar.height.px"));
-        avatarDimensions.width = Integer.parseInt(Constants.getConstant("user.avatar.width.px"));
         resetProjectNameTitleLinkId();
     }
     

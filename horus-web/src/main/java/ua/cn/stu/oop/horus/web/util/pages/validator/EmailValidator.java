@@ -37,7 +37,7 @@ public class EmailValidator extends GenericValidator {
             return Messages.getMessage("usr.email.bad.format", locale);
         } 
         
-        if (ConfigContainer.CONFIG.GENERAL.oneEmailPerUser) {
+        if (ConfigContainer.CONFIG.USER.oneEmailPerUser) {
             if (userService.isEmailUsed(email)) {
                 return Messages.getMessage("usr.email.used", locale);
             }
