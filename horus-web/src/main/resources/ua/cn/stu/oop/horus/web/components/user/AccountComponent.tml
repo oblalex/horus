@@ -5,12 +5,21 @@
     <style>
         #avatarImg{
             max-width: 350px;
-        }
+        }       
     </style>
-    
+
+    <input type="hidden" name="avaHeight" value="${userAvatarHeightPx}"/>
+    <input type="hidden" name="avaWidth" value="${userAvatarWidthPx}"/>
     <img id="avatarImgFullSize" style="left: -9999%; top: -9999%; position: absolute;"/>
 
     <script type="text/javascript">
+        
+        $(document).ready(function() {
+            $('#previewContainer')
+                .css('width', $('input[name=avaWidth]').val()+'px')
+                .css('height', $('input[name=avaHeight]').val()+'px');
+        });
+        
         function doSubmit(){
             
             var widthMax = $('#avatarImg').css('max-width').replace("px","") | 0;
@@ -43,9 +52,13 @@
         }
         
         function areaSelectionReload(){
+            var previewWidth = $('input[name=avaWidth]').val();
+            var previewHeight = $('input[name=avaHeight]').val();
+            
             function preview(img, selection) {
-                var scaleX = 100 / (selection.width || 1);
-                var scaleY = 100 / (selection.height || 1);
+                
+                var scaleX = previewWidth / (selection.width || 1);
+                var scaleY = previewHeight / (selection.height || 1);
                                         
                 var avaImg = $("#avatarImg");
                                         
@@ -190,15 +203,10 @@
                             ${message:avatar} :
                         </td>
                         <td class="two_col_center"> 
-                            <div style="float:left;
-                                        overflow:hidden;
-                                        left: -9999%; top: -9999%; position: absolute;
-                                        width:100px;
-                                        height:100px;"
-                                        class="imgContainer" id="previewContainer">
+                            <div style="float:left;"
+                                 class="imgContainer" id="previewContainer">
                                 <img src=""
-                                     id="avatarImgPreview"
-                                     style="position: relative;"/>
+                                     id="avatarImgPreview"/>
                             </div>
                             <div class="imgContainer">
                                 <img src=""

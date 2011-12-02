@@ -1,6 +1,5 @@
 package ua.cn.stu.oop.horus.web.pages.user;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.apache.tapestry5.annotations.Component;
@@ -26,21 +25,11 @@ public class Registration {
     
     @Component
     private AccountComponent accountCmpnt;
-    
-    private boolean isBlockSet = false;
-        
+ 
     void onValidate(){
-        Form frm = accountCmpnt.getTheForm();
-        
+        Form frm = accountCmpnt.getTheForm();        
         frm.clearErrors();
         validateFields();
-        
-        if (frm.getHasErrors()) return;    
-        if (isBlockSet) return;
-        isBlockSet = true;
-        
-        accountCmpnt.prepareUser();        
-        trySendRegistrationNotificationMail();
     }
     
     private void validateFields(){
@@ -49,28 +38,20 @@ public class Registration {
         accountCmpnt.validateEmail();
     }        
     
-    private void trySendRegistrationNotificationMail(){               
-        try {
-            mailService.sendMail(new RegistrationNotifyMail(
-                                 accountCmpnt.getUser(),
-                                 accountCmpnt.getPassword(),
-                                 HttpRequestHelper.getContextRootUrl(httpRequest)));
-        } catch (MessagingException ex) {
-            onMailSendFailure();
-        }
-    }
-
-    private void onMailSendFailure() {
-        accountCmpnt.getTheForm().recordError(Messages.getMessage("registration.failure.msg", accountCmpnt.getLang()));        
-    }
-    
     Object onSuccess(){
+        accountCmpnt.prepareUser();
+        
+        try {
+            sendRegistrationNotificationMail();
+        } catch (Exception ex) {
+            onMailSendFailure();
+            return accountCmpnt.getFormZone();
+        }
+                
         accountCmpnt.finishUserCreation();
-
         accountCmpnt.getComponentResources().discardPersistentFieldChanges();
         
-        MessagePageData data = accountCmpnt.getMessageData();        
-        
+        MessagePageData data = accountCmpnt.getMessageData();                
         AvailableLocale aLoc = accountCmpnt.getLang();
         
         data.setType(MessagePageData.MessageType.SUCCESS);
@@ -86,10 +67,17 @@ public class Registration {
         return mp;
     }
     
-    void onSubmit(){
-        isBlockSet = false;
-    }        
-        
+    private void sendRegistrationNotificationMail() throws Exception {
+        mailService.sendMail(new RegistrationNotifyMail(
+                accountCmpnt.getUser(),
+                accountCmpnt.getPassword(),
+                HttpRequestHelper.getContextRootUrl(httpRequest)));
+    }
+
+    private void onMailSendFailure() {
+        accountCmpnt.getTheForm().recordError(Messages.getMessage("registration.failure.msg", accountCmpnt.getLang()));        
+    }
+    
     public String getPageTitle() {
         return Messages.getMessage("registration", accountCmpnt.getLocale());
     }

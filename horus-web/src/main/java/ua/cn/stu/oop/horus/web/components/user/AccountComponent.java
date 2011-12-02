@@ -239,7 +239,10 @@ public class AccountComponent extends GenericPage{
     }
 
     private void scaleAvatar() throws IOException, InterruptedException, IM4JavaException {
-        ImageInFileUtil.scale(copied, 100, 100);
+        ImageInFileUtil.scale(
+                copied,
+                getUserAvatarWidthPx(),
+                getUserAvatarHeightPx());
     }
     
     public JSONObject getParams() {
@@ -434,4 +437,12 @@ public class AccountComponent extends GenericPage{
     public String getSubmitTitle() {
         return submitTitle;
     }    
+    
+    public int getUserAvatarHeightPx(){
+        return ConfigContainer.CONFIG.GENERAL.avatarDimensions.height;
+    }
+    
+    public int getUserAvatarWidthPx(){
+        return ConfigContainer.CONFIG.GENERAL.avatarDimensions.width;
+    }
 }
