@@ -18,4 +18,5 @@
     <aop:aspectj-autoproxy/>
     
     <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.logging"/>
+    <context:component-scan base-package="ua.cn.stu.oop.horus.core.service.impl.file.aop"/>
 </beans>

@@ -192,7 +192,6 @@ public class AccountComponent extends GenericPage{
         
         avatarDBfile.setContentType(FileMimeTypeChecker.getFileMimeType(copied));
         avatarDBfile.setTitle("avatar-" + user.getLogin() + "." + FilenameUtils.getExtension(uploadedAvatar.getFileName()));
-        avatarDBfile.setLastModificationTime(new Timestamp(System.currentTimeMillis()));
         avatarDBfile.setData(FileUtils.readFileToByteArray(copied));
         avatarDBfile.setUser(user);
         avatarDBfile.setDirectory(fileDirectoryService.getUserPicturesDirectory(user));
