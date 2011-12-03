@@ -1,6 +1,7 @@
 package ua.cn.stu.oop.horus.web.pages.user;
 
 import org.apache.shiro.authz.annotation.RequiresUser;
+import org.apache.tapestry5.EventContext;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -56,8 +57,20 @@ public class View extends GenericPage {
     @Property
     private Long userId;    
     
+    Object onActivate(EventContext context) {
+        this.userId = context.get(Long.class, 0);
+        
+        if (userId==null){
+            onActivateWithoutContext();
+        } else {
+            return onActivateWithContext();
+        }
+        
+        return null;
+    }
+    
     @RequiresUser
-    void onActivate() {
+    void onActivateWithoutContext() {
         obtainVisitor();
         this.userId = visitor.getId();
         this.user=visitor;
@@ -66,8 +79,7 @@ public class View extends GenericPage {
         obtainAdmin();
     }
     
-    Object onActivate(Long userId) {
-        this.userId = userId;
+    Object onActivateWithContext() {
         
         obtainUser();
         
