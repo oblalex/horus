@@ -22,18 +22,19 @@ import ua.cn.stu.oop.horus.core.domain.user.User;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
 import ua.cn.stu.oop.horus.core.service.file.*;
 import ua.cn.stu.oop.horus.core.service.user.UserService;
+import ua.cn.stu.oop.horus.core.util.time.TimeZoneUtil;
 import ua.cn.stu.oop.horus.web.base.GenericPage;
 import ua.cn.stu.oop.horus.web.config.ConfigContainer;
 import ua.cn.stu.oop.horus.web.pages.Message;
 import ua.cn.stu.oop.horus.web.pages.store.DBStore;
 import ua.cn.stu.oop.horus.web.pages.store.UploadStore;
 import ua.cn.stu.oop.horus.web.util.EncodingUtil;
-import ua.cn.stu.oop.horus.web.util.Messages;
+import ua.cn.stu.oop.horus.web.util.WebMessages;
 import ua.cn.stu.oop.horus.web.util.file.FileMimeTypeChecker;
 import ua.cn.stu.oop.horus.web.util.image.ImageInFileUtil;
 import ua.cn.stu.oop.horus.web.util.pages.MessagePageData;
 import ua.cn.stu.oop.horus.web.util.pages.validator.*;
-import ua.cn.stu.oop.horus.web.util.time.TimeZoneUtil;
+
 
 /**
  *
@@ -250,15 +251,15 @@ public class AccountComponent extends GenericPage{
     public JSONObject getParams() {
         AvailableLocale aLoc = getLocale();
         JSONObject uploadMessages = new JSONObject()
-                .put("typeError", Messages.getMessage("upload.extension.error", aLoc))
-                .put("sizeError", Messages.getMessage("upload.size.error", aLoc))
-                .put("minSizeError", Messages.getMessage("upload.size.error.min", aLoc))
-                .put("emptyError", Messages.getMessage("upload.empty.error", aLoc))
-                .put("onLeave", Messages.getMessage("upload.onLeave", aLoc))
-                .put("uploadLabel", Messages.getMessage("upload", aLoc))
-                .put("dropAreaLabel", Messages.getMessage("upload.dropArea.label", aLoc))
-                .put("cancelLabel", Messages.getMessage("cancel", aLoc))
-                .put("failedLabel", Messages.getMessage("failure", aLoc));
+                .put("typeError", WebMessages.getMessage("upload.extension.error", aLoc))
+                .put("sizeError", WebMessages.getMessage("upload.size.error", aLoc))
+                .put("minSizeError", WebMessages.getMessage("upload.size.error.min", aLoc))
+                .put("emptyError", WebMessages.getMessage("upload.empty.error", aLoc))
+                .put("onLeave", WebMessages.getMessage("upload.onLeave", aLoc))
+                .put("uploadLabel", WebMessages.getMessage("upload", aLoc))
+                .put("dropAreaLabel", WebMessages.getMessage("upload.dropArea.label", aLoc))
+                .put("cancelLabel", WebMessages.getMessage("cancel", aLoc))
+                .put("failedLabel", WebMessages.getMessage("failure", aLoc));
 
         JSONObject parameter = new JSONObject().put("messages", uploadMessages);
 

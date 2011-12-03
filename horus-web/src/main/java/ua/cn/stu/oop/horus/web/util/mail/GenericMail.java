@@ -3,7 +3,7 @@ package ua.cn.stu.oop.horus.web.util.mail;
 import javax.mail.MessagingException;
 import javax.mail.internet.*;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
-import ua.cn.stu.oop.horus.web.util.Messages;
+import ua.cn.stu.oop.horus.web.util.WebMessages;
 
 /**
  *
@@ -17,6 +17,6 @@ abstract public class GenericMail {
     abstract public void fillMimeMessage(MimeMessage mm) throws MessagingException;
     
     protected String getAutoMessageAbout(){
-        return Messages.getMessage("dont.reply.msg", locale);
+        return WebMessages.getMessage("dont.reply.msg", locale);
     }
 }

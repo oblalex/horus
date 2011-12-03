@@ -55,8 +55,8 @@ public class Registration {
         AvailableLocale aLoc = accountCmpnt.getLang();
         
         data.setType(MessagePageData.MessageType.SUCCESS);
-        data.setPageTitleTail(Messages.getMessage("registration.success", aLoc));
-        data.setHtmlMessage(Messages.getMessage("registration.success.msg", aLoc));        
+        data.setPageTitleTail(WebMessages.getMessage("registration.success", aLoc));
+        data.setHtmlMessage(WebMessages.getMessage("registration.success.msg", aLoc));        
         data.setLocale(aLoc);
         data.setCanGoForward(false);
         data.setCanGoBackward(false);
@@ -75,14 +75,14 @@ public class Registration {
     }
 
     private void onMailSendFailure() {
-        accountCmpnt.getTheForm().recordError(Messages.getMessage("registration.failure.msg", accountCmpnt.getLang()));        
+        accountCmpnt.getTheForm().recordError(WebMessages.getMessage("registration.failure.msg", accountCmpnt.getLang()));        
     }
     
     public String getPageTitle() {
-        return Messages.getMessage("registration", accountCmpnt.getLocale());
+        return WebMessages.getMessage("registration", accountCmpnt.getLocale());
     }
     
     public String getSubmitTitle() {
-        return Messages.getMessage("register.me", accountCmpnt.getLocale());
+        return WebMessages.getMessage("register.me", accountCmpnt.getLocale());
     } 
 }

@@ -59,7 +59,7 @@ public class RegistrationNotifyMail extends GenericMail {
 
     private void fillSubject(MimeMessage mm) throws MessagingException {
         String subjectKey = "mail.newreg.subj";
-        String subject = Messages.getMessageParameterized(subjectKey, locale, projName);
+        String subject = WebMessages.getMessageParameterized(subjectKey, locale, projName);
         mm.setSubject(subject);
     }
 
@@ -83,24 +83,24 @@ public class RegistrationNotifyMail extends GenericMail {
         
         sb.append("<html><body>");
         
-        String greeting = Messages.getMessageParameterized("usr.greeting", locale, user.getLogin());
+        String greeting = WebMessages.getMessageParameterized("usr.greeting", locale, user.getLogin());
         sb.append(greeting).append(delim).append(delim);
 
-        String welcome = Messages.getMessageParameterized("mail.newreg.welcome", locale, projName);
+        String welcome = WebMessages.getMessageParameterized("mail.newreg.welcome", locale, projName);
         sb.append(welcome).append(delim);
 
-        String dontForget = Messages.getMessage("mail.newreg.dontforget", locale);
+        String dontForget = WebMessages.getMessage("mail.newreg.dontforget", locale);
         sb.append(dontForget).append(delim).append(delim);
 
-        String yourLogin = Messages.getMessage("usr.your.login", locale);
+        String yourLogin = WebMessages.getMessage("usr.your.login", locale);
         sb.append(yourLogin).append(" : ").append(user.getLogin()).append(".").append(delim);
 
-        String yourPswd = Messages.getMessage("usr.your.pswd", locale);
+        String yourPswd = WebMessages.getMessage("usr.your.pswd", locale);
         sb.append(yourPswd).append(" : ").append(rawPassword).append(".").append(delim).append(delim);
         
-        String goToLink = Messages.getMessage("go.to.link", locale);
+        String goToLink = WebMessages.getMessage("go.to.link", locale);
         String formedLink = RawHtmlTags.buildAnchor(getMailConfirmURL(), goToLink);        
-        String toActivateAccount = Messages.getMessage("to.activate.account", locale);
+        String toActivateAccount = WebMessages.getMessage("to.activate.account", locale);
         
         sb.append(toActivateAccount).append(" ").append(formedLink).append(".").append(delim).append(delim);
         

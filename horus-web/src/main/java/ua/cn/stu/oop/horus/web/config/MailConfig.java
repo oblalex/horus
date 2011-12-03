@@ -15,9 +15,9 @@ public class MailConfig implements Resetable{
 
     @Override
     public void reset() {
-        username = Constants.getConstant("email.username");
-        password = Constants.getConstant("email.password");
-        host     = Constants.getConstant("email.host");
-        port     = Integer.parseInt(Constants.getConstant("email.port"));
+        username = WebConstants.getConstant("email.username");
+        password = WebConstants.getConstant("email.password");
+        host     = WebConstants.getConstant("email.host");
+        port     = Integer.parseInt(WebConstants.getConstant("email.port"));
     }
 }

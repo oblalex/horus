@@ -2,7 +2,7 @@ package ua.cn.stu.oop.horus.web.util.pages.validator;
 
 import org.springframework.stereotype.Component;
 import ua.cn.stu.oop.horus.core.language.AvailableLocale;
-import ua.cn.stu.oop.horus.web.util.Messages;
+import ua.cn.stu.oop.horus.web.util.WebMessages;
 
 /**
  *
@@ -25,16 +25,16 @@ public class PasswordValidator extends GenericValidator {
         String passwordConfirm = (String) obj[1];
 
         if (password == null) {
-            return Messages.getMessage("usr.pswd.undef", locale);
+            return WebMessages.getMessage("usr.pswd.undef", locale);
         }
 
         if (password.length() < PASSWORD_LENGTH_MIN) {
-            return Messages.getMessage("usr.pswd.too.short", locale);
+            return WebMessages.getMessage("usr.pswd.too.short", locale);
         }
 
         if ((passwordConfirm == null)
                 || password.equals(passwordConfirm) == false) {
-            return Messages.getMessage("usr.pswd.do.not.match", locale);
+            return WebMessages.getMessage("usr.pswd.do.not.match", locale);
         }
 
         return null;

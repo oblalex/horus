@@ -30,16 +30,16 @@ public class EmailValidator extends GenericValidator {
         String email = (String) obj[0];
         
         if (email == null) {
-            return Messages.getMessage("usr.email.undef", locale);
+            return WebMessages.getMessage("usr.email.undef", locale);
         }
         
         if (email.matches(RegExpUtil.EMAIL_TAMPLATE)==false) {
-            return Messages.getMessage("usr.email.bad.format", locale);
+            return WebMessages.getMessage("usr.email.bad.format", locale);
         } 
         
         if (ConfigContainer.CONFIG.USER.oneEmailPerUser) {
             if (userService.isEmailUsed(email)) {
-                return Messages.getMessage("usr.email.used", locale);
+                return WebMessages.getMessage("usr.email.used", locale);
             }
         }
         

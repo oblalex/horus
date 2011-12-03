@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
  *
  * @author alex
  */
-public class Constants {
+public class WebConstants {
 
     private static final String BUNDLE_NAME = "constants";
     private static final ResourceBundle bundle = ResourceBundle.getBundle(BUNDLE_NAME);

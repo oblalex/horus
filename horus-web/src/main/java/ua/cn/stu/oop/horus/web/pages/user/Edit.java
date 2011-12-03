@@ -11,7 +11,7 @@ import ua.cn.stu.oop.horus.web.pages.Index;
 import ua.cn.stu.oop.horus.web.pages.Message;
 import ua.cn.stu.oop.horus.web.util.*;
 import ua.cn.stu.oop.horus.web.util.pages.*;
-import ua.cn.stu.oop.horus.web.util.time.TimeZoneUtil;
+import ua.cn.stu.oop.horus.core.util.time.TimeZoneUtil;
 
 @RequiresUser
 public class Edit{
@@ -107,10 +107,10 @@ public class Edit{
 
         MessagePageData data = accountCmpnt.getMessageData();
         
-        String htmlMessage = Messages.getMessage("usr.account.edit.success.msg", aLoc);
+        String htmlMessage = WebMessages.getMessage("usr.account.edit.success.msg", aLoc);
         
         if (loginChanged && visitorIsOwner){
-            htmlMessage += " "+Messages.getMessage("usr.account.relogin.msg", aLoc);
+            htmlMessage += " "+WebMessages.getMessage("usr.account.relogin.msg", aLoc);
             securityService.getSubject().logout();
             
             data.setCanGoForward(false);
@@ -124,7 +124,7 @@ public class Edit{
             }
         }
        
-        data.setPageTitleTail(Messages.getMessage("usr.account.edit.success", aLoc));
+        data.setPageTitleTail(WebMessages.getMessage("usr.account.edit.success", aLoc));
         data.setHtmlMessage(htmlMessage);        
         data.setType(MessagePageData.MessageType.SUCCESS);
         data.setLocale(aLoc);
@@ -137,11 +137,11 @@ public class Edit{
     }        
     
     public String getPageTitle() {
-        return Messages.getMessage("usr.account.edit.process", accountCmpnt.getLocale())+" - "+accountCmpnt.getUser().getLogin();
+        return WebMessages.getMessage("usr.account.edit.process", accountCmpnt.getLocale())+" - "+accountCmpnt.getUser().getLogin();
     }
     
     public String getSubmitTitle() {
-        return Messages.getMessage("apply", accountCmpnt.getLocale());
+        return WebMessages.getMessage("apply", accountCmpnt.getLocale());
     }
 
     public boolean getVisitorIsOwner() {

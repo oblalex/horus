@@ -29,15 +29,15 @@ public class LoginValidator extends GenericValidator {
         String login = (String) obj[0];
 
         if (login == null) {
-            return Messages.getMessage("usr.login.undef", locale);
+            return WebMessages.getMessage("usr.login.undef", locale);
         }
 
         if (login.matches(RegExpUtil.LOGIN_TAMPLATE) == false) {
-            return Messages.getMessage("usr.login.bad.format", locale);
+            return WebMessages.getMessage("usr.login.bad.format", locale);
         }
 
         if (userService.isLoginUsed(login)) {
-            return Messages.getMessage("usr.exists", locale);
+            return WebMessages.getMessage("usr.exists", locale);
         }
         
         return null;

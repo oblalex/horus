@@ -10,7 +10,7 @@ import ua.cn.stu.oop.horus.core.language.AvailableLocale;
 import ua.cn.stu.oop.horus.core.service.user.UserService;
 import ua.cn.stu.oop.horus.web.base.GenericPage;
 import ua.cn.stu.oop.horus.web.pages.Index;
-import ua.cn.stu.oop.horus.web.util.Messages;
+import ua.cn.stu.oop.horus.web.util.WebMessages;
 
 /**
  *
@@ -70,11 +70,11 @@ public class Roof extends GenericPage{
     }
 
     public String getTitleRegistration() {
-        return Messages.getMessage("registration", getLocale());
+        return WebMessages.getMessage("registration", getLocale());
     }
 
     public String getTitleLanguage() {
-        return Messages.getMessage("lang", getLocale());
+        return WebMessages.getMessage("lang", getLocale());
     }
 
     @Override

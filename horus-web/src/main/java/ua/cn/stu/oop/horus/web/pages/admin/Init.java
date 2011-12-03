@@ -54,11 +54,11 @@ public class Init extends GenericPage{
     
     private void onAdminExists(){
         messageData.setType(MessagePageData.MessageType.INFO);
-        htmlMsgBuilder.append(Messages.getMessage("admin.init.already", getLocale()));
+        htmlMsgBuilder.append(WebMessages.getMessage("admin.init.already", getLocale()));
     }
     
     private void onAdminNotExists(){
-        login = Constants.getConstant("admin.login");
+        login = WebConstants.getConstant("admin.login");
         user = userService.getUserOrNullByLogin(login);
         if (user==null){
             createNewAdminUser();
@@ -69,7 +69,7 @@ public class Init extends GenericPage{
     
     private void createNewAdminUser(){
         user = new User();
-        pswd = Constants.getConstant("admin.password");
+        pswd = WebConstants.getConstant("admin.password");
         
         ByteSource bs = EncodingUtil.getRandomSaltSource();
         AvailableLocale aLoc = getLocale();
@@ -86,9 +86,9 @@ public class Init extends GenericPage{
         
         userService.saveAndGetId(user);
         
-        String langName = Messages.getMessage(getLocale().name(), aLoc);
+        String langName = WebMessages.getMessage(getLocale().name(), aLoc);
         
-        htmlMsgBuilder.append(Messages.getMessage("usr.created", aLoc));
+        htmlMsgBuilder.append(WebMessages.getMessage("usr.created", aLoc));
         htmlMsgBuilder.append(RawHtmlTags.BR).append(RawHtmlTags.BR);
         
         appendKeyAndValue("usr.login", login);
@@ -103,7 +103,7 @@ public class Init extends GenericPage{
     }
     
     private void appendKeyAndValue(String key, String value){
-        htmlMsgBuilder.append(Messages.getMessage(key, getLocale()));
+        htmlMsgBuilder.append(WebMessages.getMessage(key, getLocale()));
         htmlMsgBuilder.append(": ");
         htmlMsgBuilder.append(value).append(".").append(RawHtmlTags.BR);
     }
@@ -113,15 +113,15 @@ public class Init extends GenericPage{
         AvailableLocale aLoc = getLocale();
         
         admin.setUser(user);
-        admin.setComment(Messages.getMessage("admin.usr.main", aLoc));
+        admin.setComment(WebMessages.getMessage("admin.usr.main", aLoc));
         
         adminService.saveAndGetId(admin);
-        htmlMsgBuilder.append(Messages.getMessage("admin.init.success", aLoc));
+        htmlMsgBuilder.append(WebMessages.getMessage("admin.init.success", aLoc));
         messageData.setType(MessagePageData.MessageType.SUCCESS);
     }
     
     private void finishMessageDataPreparations() {
-        messageData.setPageTitleTail(Messages.getMessage("admin.init", getLocale()));
+        messageData.setPageTitleTail(WebMessages.getMessage("admin.init", getLocale()));
         messageData.setLocale(getLocale());
         messageData.setCanGoBackward(false);
         messageData.setCanGoForward(false);

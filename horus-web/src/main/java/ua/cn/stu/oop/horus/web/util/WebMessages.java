@@ -10,7 +10,7 @@ import ua.cn.stu.oop.horus.core.language.AvailableLocale;
  *
  * @author alex
  */
-public class Messages {
+public class WebMessages {
 
     private static final String BUNDLE_NAME = "i18n/app";
     private static final EnumMap<AvailableLocale, ResourceBundle> bundles =

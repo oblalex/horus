@@ -61,11 +61,11 @@ public class MailConfirm extends GenericPage{
         AvailableLocale aLoc = getLocale();
         
         if (login == null || login.isEmpty()) {
-            htmlMsgBuilder.append(Messages.getMessage("usr.login.undef", aLoc));
+            htmlMsgBuilder.append(WebMessages.getMessage("usr.login.undef", aLoc));
         } else {
             user = userService.getUserOrNullByLogin(login);
             if (user == null) {
-                htmlMsgBuilder.append(Messages.getMessage("usr.not.found", aLoc));
+                htmlMsgBuilder.append(WebMessages.getMessage("usr.not.found", aLoc));
             }
         }
     }
@@ -74,20 +74,20 @@ public class MailConfirm extends GenericPage{
         AvailableLocale aLoc = getLocale();
         
         if (key == null || key.isEmpty()) {
-            htmlMsgBuilder.append(Messages.getMessage("key.undef", aLoc));
+            htmlMsgBuilder.append(WebMessages.getMessage("key.undef", aLoc));
         } else {
             if (user != null) {
                 activatedAlready = user.isEmailConfirmed();
                 if (activatedAlready) { 
-                    htmlMsgBuilder.append(Messages.getMessage("usr.account.activated.already.msg", aLoc));
+                    htmlMsgBuilder.append(WebMessages.getMessage("usr.account.activated.already.msg", aLoc));
                 } else {
                     String realKey = EncodingUtil.encodeStringUsingSaltBytes(user.getEmail(), user.getSalt());
                     if (realKey.equals(key)) {
                         user.setEmailConfirmed(true);
                         userService.updateEntity(user);
-                        htmlMsgBuilder.append(Messages.getMessage("usr.account.activated.msg", aLoc));
+                        htmlMsgBuilder.append(WebMessages.getMessage("usr.account.activated.msg", aLoc));
                     } else {
-                        htmlMsgBuilder.append(Messages.getMessage("usr.email.confirm.key.not.match", aLoc));
+                        htmlMsgBuilder.append(WebMessages.getMessage("usr.email.confirm.key.not.match", aLoc));
                     }
                 }
             }
@@ -100,13 +100,13 @@ public class MailConfirm extends GenericPage{
         
         if (user == null || user.isEmailConfirmed() == false) {
             messageData.setType(MessagePageData.MessageType.ERROR);
-            messageData.setPageTitleTail(Messages.getMessage("usr.email.confirm.failure", aLoc));
+            messageData.setPageTitleTail(WebMessages.getMessage("usr.email.confirm.failure", aLoc));
         } else if (activatedAlready) {
             messageData.setType(MessagePageData.MessageType.INFO);
-            messageData.setPageTitleTail(Messages.getMessage("usr.email.confirm", aLoc));
+            messageData.setPageTitleTail(WebMessages.getMessage("usr.email.confirm", aLoc));
         } else {
             messageData.setType(MessagePageData.MessageType.SUCCESS);
-            messageData.setPageTitleTail(Messages.getMessage("usr.email.confirm.success", aLoc));
+            messageData.setPageTitleTail(WebMessages.getMessage("usr.email.confirm.success", aLoc));
         }
     }
 

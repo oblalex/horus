@@ -67,12 +67,12 @@ public class GeneralConfig implements Resetable{
     
     private void setDefaultTitle(LocalizedTitle title, AvailableLocale locale){
         title.setLocale(locale);
-        title.setTitle(Messages.getMessage("default.project.name", locale));
+        title.setTitle(WebMessages.getMessage("default.project.name", locale));
     }
     
     private void setDefaultDescription(LocalizedData data, LocalizedTitle title){
         data.setLocalizedTitle(title);
-        data.setData(Messages.getMessage("default.project.descr", title.getLocale()));
+        data.setData(WebMessages.getMessage("default.project.descr", title.getLocale()));
     }    
     
     public String getProjectNameByLocale(AvailableLocale locale){

@@ -12,9 +12,8 @@ import ua.cn.stu.oop.horus.core.service.user.*;
 import ua.cn.stu.oop.horus.web.base.GenericPage;
 import ua.cn.stu.oop.horus.web.pages.Index;
 import ua.cn.stu.oop.horus.web.pages.store.DBStore;
-import ua.cn.stu.oop.horus.web.util.Messages;
-import ua.cn.stu.oop.horus.web.util.time.DateTimeFormater;
-import ua.cn.stu.oop.horus.web.util.time.TimeZoneUtil;
+import ua.cn.stu.oop.horus.web.util.WebMessages;
+import ua.cn.stu.oop.horus.core.util.time.*;
 
 /**
  *
@@ -138,7 +137,7 @@ public class View extends GenericPage {
     
     @Override
     public String getPageTitle() {
-        return user.getLogin()+" - "+Messages.getMessage("usr.account", getLocale());
+        return user.getLogin()+" - "+WebMessages.getMessage("usr.account", getLocale());
     }    
     
     public String getSignedTimeZone(){
@@ -146,7 +145,7 @@ public class View extends GenericPage {
     }
     
     public String getLang(){
-        return Messages.getMessage(user.getPreferredLocale().name(), getLocale());
+        return WebMessages.getMessage(user.getPreferredLocale().name(), getLocale());
     }
     
     public String getRegistrationDate(){

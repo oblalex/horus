@@ -1,7 +1,7 @@
 package ua.cn.stu.oop.horus.web.config;
 
 import java.awt.Dimension;
-import ua.cn.stu.oop.horus.web.util.Constants;
+import ua.cn.stu.oop.horus.web.util.WebConstants;
 import ua.cn.stu.oop.horus.web.util.Resetable;
 
 /**
@@ -15,12 +15,12 @@ public class UserConfig implements Resetable{
     
     @Override
     public void reset() {
-        oneEmailPerUser = Boolean.parseBoolean(Constants.getConstant("email.one.per.user"));
+        oneEmailPerUser = Boolean.parseBoolean(WebConstants.getConstant("email.one.per.user"));
         resetAvatarDimensions();
     }
     
     private void resetAvatarDimensions(){
-        avatarDimensions.height = Integer.parseInt(Constants.getConstant("user.avatar.height.px"));
-        avatarDimensions.width = Integer.parseInt(Constants.getConstant("user.avatar.width.px"));
+        avatarDimensions.height = Integer.parseInt(WebConstants.getConstant("user.avatar.height.px"));
+        avatarDimensions.width = Integer.parseInt(WebConstants.getConstant("user.avatar.width.px"));
     }
 }

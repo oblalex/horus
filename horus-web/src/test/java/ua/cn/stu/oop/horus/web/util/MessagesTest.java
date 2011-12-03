@@ -12,8 +12,8 @@ public class MessagesTest{
 
     //@Test
     public void testGetMessage() {
-        System.out.println(Messages.getMessage("index", AvailableLocale.ru));
-        System.out.println(Messages.getMessage("index", AvailableLocale.en));
-        System.out.println(Messages.getMessageParameterized("mail.newreg.subj", AvailableLocale.en, "LOL"));
+        System.out.println(WebMessages.getMessage("index", AvailableLocale.ru));
+        System.out.println(WebMessages.getMessage("index", AvailableLocale.en));
+        System.out.println(WebMessages.getMessageParameterized("mail.newreg.subj", AvailableLocale.en, "LOL"));
     }
 }

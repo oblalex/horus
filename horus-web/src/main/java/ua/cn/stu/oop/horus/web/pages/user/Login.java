@@ -16,7 +16,7 @@ import ua.cn.stu.oop.horus.core.language.AvailableLocale;
 import ua.cn.stu.oop.horus.core.service.user.UserService;
 import ua.cn.stu.oop.horus.web.base.GenericPage;
 import ua.cn.stu.oop.horus.web.pages.Index;
-import ua.cn.stu.oop.horus.web.util.Messages;
+import ua.cn.stu.oop.horus.web.util.WebMessages;
 
 /**
  *
@@ -87,13 +87,13 @@ public class Login extends GenericPage{
 
     private void checkLogin() {
         if (login == null) {
-            loginForm.recordError(loginField, Messages.getMessage("usr.login.undef", getLocale()));
+            loginForm.recordError(loginField, WebMessages.getMessage("usr.login.undef", getLocale()));
         }
     }
 
     private void checkPassword() {
         if (password == null) {
-            loginForm.recordError(passwordField, Messages.getMessage("usr.pswd.undef", getLocale()));
+            loginForm.recordError(passwordField, WebMessages.getMessage("usr.pswd.undef", getLocale()));
         }
     }
 
@@ -104,12 +104,12 @@ public class Login extends GenericPage{
         user = userService.getUserOrNullByLogin(login);
 
         if (user == null) {
-            loginForm.recordError(Messages.getMessage("usr.not.found", aLoc));
+            loginForm.recordError(WebMessages.getMessage("usr.not.found", aLoc));
             return;
         } else if (user.isEmailConfirmed() == false) {
             loginForm.recordError(
-                    Messages.getMessage("usr.account.activated.not", aLoc)
-                    +" "+Messages.getMessage("usr.account.activated.not.hint", aLoc));
+                    WebMessages.getMessage("usr.account.activated.not", aLoc)
+                    +" "+WebMessages.getMessage("usr.account.activated.not.hint", aLoc));
             return;
         }
 
@@ -125,15 +125,15 @@ public class Login extends GenericPage{
         try {
             currentUser.login(token);
         } catch (IncorrectCredentialsException e) {
-            loginForm.recordError(passwordField, Messages.getMessage("usr.pswd.wrong", aLoc));
+            loginForm.recordError(passwordField, WebMessages.getMessage("usr.pswd.wrong", aLoc));
         } catch (LockedAccountException e) {
-            loginForm.recordError(Messages.getMessage("usr.account.locked", aLoc));
+            loginForm.recordError(WebMessages.getMessage("usr.account.locked", aLoc));
         }
     }
 
     
     @Override
     public String getPageTitle() {
-        return Messages.getMessage("login", getLocale());
+        return WebMessages.getMessage("login", getLocale());
     }
 }
