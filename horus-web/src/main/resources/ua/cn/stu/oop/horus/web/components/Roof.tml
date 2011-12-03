@@ -59,6 +59,9 @@
                     <div style="left:-503px;">
                         <ul>
                             <li>
+                                <t:pagelink t:page="user/view">${message:usr.account.view}</t:pagelink>
+                            </li>
+                            <li>
                                 <t:pagelink t:page="user/edit">${message:usr.account.edit}</t:pagelink>
                             </li>
                             <li>

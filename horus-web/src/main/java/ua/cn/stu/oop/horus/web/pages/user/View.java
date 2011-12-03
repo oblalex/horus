@@ -1,5 +1,6 @@
 package ua.cn.stu.oop.horus.web.pages.user;
 
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -55,6 +56,16 @@ public class View extends GenericPage {
     
     @Property
     private Long userId;    
+    
+    @RequiresUser
+    void onActivate() {
+        obtainVisitor();
+        this.userId = visitor.getId();
+        this.user=visitor;
+        visitorCanEdit=true;
+        visitorIsOwner=true;
+        obtainAdmin();
+    }
     
     Object onActivate(Long userId) {
         this.userId = userId;

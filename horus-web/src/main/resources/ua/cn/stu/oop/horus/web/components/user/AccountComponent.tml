@@ -228,6 +228,18 @@
                     <tr>
                         <td colspan="2" style="text-align: center; padding-top: 5px;">
                             <img name="regLoadingCircuit" src="${context:img/loading_circuit.gif}" style="visibility: hidden;"/><br/>
+                            <t:if test="${isEditingMode}">
+                                <t:if test="${isOwnerEditing}">
+                                    <t:pagelink page="user/view" class="a_simple">
+                                        <input type="button" class="horus_btn" value="${message:usr.account.view}"/>
+                                    </t:pagelink>
+                                </t:if>
+                                <t:if test="${!isOwnerEditing}">
+                                    <t:pagelink page="user/view" class="a_simple" context="${user.id}">
+                                        <input type="button" class="horus_btn" value="${message:usr.account.view}"/>
+                                    </t:pagelink>
+                                </t:if>
+                            </t:if>
                             <input type="submit" value="${submitTitle}" t:name="submitBtn" class="horus_btn" onclick="doSubmit()"/>
                         </td>
                     </tr>

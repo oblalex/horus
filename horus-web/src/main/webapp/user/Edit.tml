@@ -6,6 +6,7 @@
     
     <t:user.accountcomponent
         t:id="accountCmpnt"
+        isOwnerEditing="${visitorIsOwner}"
         submitTitle="${submitTitle}" />
     
 </html>

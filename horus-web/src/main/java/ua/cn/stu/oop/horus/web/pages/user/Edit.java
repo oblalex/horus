@@ -132,5 +132,9 @@ public class Edit{
     
     public String getSubmitTitle() {
         return Messages.getMessage("apply", accountCmpnt.getLocale());
-    } 
+    }
+
+    public boolean getVisitorIsOwner() {
+        return visitorIsOwner;
+    }        
 }

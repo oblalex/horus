@@ -121,6 +121,9 @@ public class AccountComponent extends GenericPage{
     @Inject
     @Autowired
     private EmailValidator emailValidator;
+    
+    @Parameter(value="false", defaultPrefix = BindingConstants.LITERAL)
+    private boolean isOwnerEditing;
 
     @Parameter(required = true, defaultPrefix = BindingConstants.LITERAL)
     private String submitTitle;
@@ -443,5 +446,16 @@ public class AccountComponent extends GenericPage{
     
     public int getUserAvatarWidthPx(){
         return ConfigContainer.CONFIG.USER.avatarDimensions.width;
+    }
+
+    public boolean getIsOwnerEditing() {
+        return isOwnerEditing;
+    }  
+    
+    public boolean getIsEditingMode(){
+        if (user==null){
+            return false;
+        }
+        return (user.getId()!=null);
     }
 }
