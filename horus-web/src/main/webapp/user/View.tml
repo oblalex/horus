@@ -1,0 +1,100 @@
+<html   t:pageTitle="${pageTitle}"
+        t:type="layout"
+        xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+
+    <style>
+        #userWrapper{
+            margin: 5px 0;
+            padding: 10px;
+            display: inline-table;
+            width: 100%;
+        }
+
+        #leftSide{            
+            border-right: 1px solid #BBB;
+            width: 110px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #contentSide{
+            padding: 10px 10px 10px 20px;
+        }
+
+        #leftSide, #contentSide{
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        #edit{
+            outline: none;
+        }
+        
+        #edit img{
+            margin-top: 10px;
+        }
+        
+        .imgContainer{
+            margin-bottom: 15px;
+        }
+
+        .field_name{
+            font-weight: bold;
+        }
+        .field_value{
+            padding-left: 30px;
+            margin-bottom: 7px;
+        }
+    </style>
+
+    <div id="userWrapper">
+        <div id="leftSide">
+            <div class="imgContainer">
+                <t:if test="${avatarUri}">
+                    <img src="${avatarUri}" id="avatarImg"/>
+                </t:if>
+                <t:if test="${!avatarUri}">
+                    <img src="${context:img/user.png}" id="avatarImg"/>
+                </t:if>
+            </div>
+            <div style="clear: both;"></div>
+
+            <t:if test="${userAdmin}">
+                <img src="${context:img/roles/admin.png}" title="${userAdmin.comment}"/><br/>
+            </t:if>
+            
+            <t:if test="${visitorCanEdit}">                    
+                <t:if test="${visitorIsOwner}">
+                    <t:pagelink t:page="user/edit" id="edit">
+                        <img src="${context:img/controls/edit.png}" title="${message:usr.account.edit}"/>                            
+                    </t:pagelink>
+                </t:if>
+                <t:if test="${!visitorIsOwner}">
+                    <t:pagelink t:page="user/edit" context="${user.id}" id="edit">
+                        <img src="${context:img/controls/edit.png}" title="${message:usr.account.edit}"/>
+                    </t:pagelink>
+                </t:if>                        
+            </t:if>
+            
+        </div>
+        <div id="contentSide">
+            <div class="field_name">${message:usr.login}</div>
+            <div class="field_value">${user.login}</div>
+
+            <div class="field_name">${message:lang}</div>
+            <div class="field_value">${lang}</div>
+
+            <div class="field_name">${message:timezone}</div>
+            <div class="field_value">${signedTimeZone}</div>
+
+            <div class="field_name">${message:registration.date}</div>
+            <div class="field_value">${registrationDate}</div>
+
+            <t:if test="${!user.emailConfirmed}">
+                <div style="color: #900; margin: 20px 0">
+                    ${message:usr.account.activated.not}
+                </div>
+            </t:if>
+        </div>
+    </div>
+</html>
