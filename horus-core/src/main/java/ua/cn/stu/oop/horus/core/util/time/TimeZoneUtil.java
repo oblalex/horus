@@ -1,4 +1,4 @@
-package ua.cn.stu.oop.horus.web.util.time;
+package ua.cn.stu.oop.horus.core.util.time;
 
 /**
  *
