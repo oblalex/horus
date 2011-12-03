@@ -15,10 +15,14 @@
     <script type="text/javascript">
         
         $(document).ready(function() {
+            setPreviewContainerSize();
+        });
+        
+        function setPreviewContainerSize(){
             $('#previewContainer')
                 .css('width', $('input[name=avaWidth]').val()+'px')
                 .css('height', $('input[name=avaHeight]').val()+'px');
-        });
+        }
         
         function doSubmit(){
             
@@ -103,6 +107,8 @@
                     hidePreiew = true;
                 } else {      
                     var avaSrcNew = avaSrc+"?timestamp=" + new Date().getTime();
+                    setPreviewContainerSize();
+                    
                     avaImg.attr('src', avaSrcNew);
                     $("#avatarImgPreview").attr('src', avaSrcNew);
                     
