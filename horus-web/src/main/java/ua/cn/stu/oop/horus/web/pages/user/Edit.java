@@ -16,6 +16,8 @@ import ua.cn.stu.oop.horus.web.util.time.TimeZoneUtil;
 @RequiresUser
 public class Edit{
     
+    private static final int ON_SUCCESS_REDIRECT_TIMEOUT = 3;
+    
     @Inject
     private SecurityService securityService;  
     
@@ -97,27 +99,35 @@ public class Edit{
     Object onSuccess(){
         boolean loginChanged = (accountCmpnt.getUser().getLogin().equals(accountCmpnt.getLogin())==false);
         
+        AvailableLocale aLoc = accountCmpnt.getLang();
+        
         accountCmpnt.prepareUser();
         accountCmpnt.finishUserCreation();
+        accountCmpnt.getComponentResources().discardPersistentFieldChanges();
 
-        AvailableLocale aLoc = accountCmpnt.getLang();
+        MessagePageData data = accountCmpnt.getMessageData();
         
         String htmlMessage = Messages.getMessage("usr.account.edit.success.msg", aLoc);
         
         if (loginChanged && visitorIsOwner){
             htmlMessage += " "+Messages.getMessage("usr.account.relogin.msg", aLoc);
             securityService.getSubject().logout();
-        }        
-        
-        accountCmpnt.getComponentResources().discardPersistentFieldChanges();
-        
-        MessagePageData data = accountCmpnt.getMessageData();
-        
+            
+            data.setCanGoForward(false);
+        } else {
+            data.setAutoRedirectForwardTimeoutSec(ON_SUCCESS_REDIRECT_TIMEOUT);
+            data.setCanGoForward(true);
+            if (visitorIsOwner){
+                data.setNextPageURL("user/view");
+            } else {
+                data.setNextPageURL("user/view/"+accountCmpnt.getUser().getId());
+            }
+        }
+       
         data.setPageTitleTail(Messages.getMessage("usr.account.edit.success", aLoc));
         data.setHtmlMessage(htmlMessage);        
         data.setType(MessagePageData.MessageType.SUCCESS);
         data.setLocale(aLoc);
-        data.setCanGoForward(false);
         data.setCanGoBackward(false);
         
         Message mp = accountCmpnt.getMessagePage();
