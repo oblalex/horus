@@ -4,7 +4,7 @@
 
     <style>
         #userWrapper{
-            margin: 5px 0;
+            margin: 0 0 5px 0;
             padding: 10px;
             display: inline-table;
             width: 100%;
@@ -46,7 +46,7 @@
             margin-bottom: 7px;
         }
     </style>
-
+    <div class="content_hd">${message:usr.account}</div>
     <div id="userWrapper">
         <div id="leftSide">
             <div class="imgContainer">
