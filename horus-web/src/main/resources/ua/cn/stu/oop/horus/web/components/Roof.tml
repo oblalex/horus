@@ -45,7 +45,13 @@
             </li>
             <li><a href="">${message:information}</a>
                 <div style="left:-279px;">
-                    Nothing here yet
+                    <ul>
+                        <li>
+                            <t:pagelink t:page="user/admin/list">
+                                ${message:admin.list}
+                            </t:pagelink>
+                        </li>
+                    </ul>
                 </div>
             </li>
             <li><a href="">${message:search}</a>

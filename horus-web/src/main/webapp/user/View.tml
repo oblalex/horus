@@ -10,13 +10,17 @@
             width: 100%;
         }
 
-        #leftSide{            
+        #leftSide{
             border-right: 1px solid #BBB;
             width: 110px;
             text-align: center;
             padding: 10px;
         }
 
+        #leftSide a{
+            outline: none;
+        }
+        
         #contentSide{
             padding: 10px 10px 10px 20px;
         }
@@ -60,7 +64,9 @@
             <div style="clear: both;"></div>
 
             <t:if test="${userAdmin}">
-                <img src="${context:img/roles/admin.png}" title="${userAdmin.comment}"/><br/>
+                <t:pagelink t:page="user/admin/list">
+                    <img src="${context:img/roles/admin.png}" title="${userAdmin.comment}"/>
+                </t:pagelink><br/>
             </t:if>
             
             <t:if test="${visitorCanEdit}">                    
