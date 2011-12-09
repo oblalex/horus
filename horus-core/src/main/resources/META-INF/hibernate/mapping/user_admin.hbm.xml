@@ -11,7 +11,7 @@
             </generator>
         </id>
         <property column="comment" name="comment" type="string"/>
-        <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.user.User" column="user_id" name="user" not-null="true" unique="true"/>
+        <many-to-one cascade="all" class="ua.cn.stu.oop.horus.core.domain.user.User" column="user_id" name="user" not-null="true" unique="true" lazy="false"/>
     </class>
     <query name="adminOrNullByUserHQL">
         
