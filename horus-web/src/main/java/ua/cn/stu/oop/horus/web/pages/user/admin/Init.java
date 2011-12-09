@@ -1,4 +1,4 @@
-package ua.cn.stu.oop.horus.web.pages.admin;
+package ua.cn.stu.oop.horus.web.pages.user.admin;
 
 import ua.cn.stu.oop.horus.web.util.pages.RawHtmlTags;
 import ua.cn.stu.oop.horus.web.util.pages.MessagePageData;
