@@ -30,22 +30,56 @@
             padding-left: 22px;
             font-size: 14px;
             text-align: justify;
+        }        
+        .typed_msg{
+            margin: 5px;
+        }
+        .typed_msg_img_holder{
+            float: left;
+        }
+        .typed_msg_body{
+            background-color: rgba(250, 220, 0, 0.2);
+            color: #540;
+            vertical-align: top;
+            border: 1px solid #A97;
+            border-radius: 10px;
+            padding: 10px;
+            margin-left: 54px;
+            min-height: 36px;
+        }
+        .typed_msg_body a{
+            color:inherit;
+            outline: none;
         }
     </style>
     
     <div class="content_hd">${pageTitle}</div>
     
-    <t:loop source="admins" value="item">
-        <div id="admin_item">
-            <div class="admin_caption">
-                <t:pagelink page="user/view" context="item.user.id">
-                    ${item.user.login}
-                </t:pagelink>
+    <t:if test="admins.empty">        
+        <div class="typed_msg">
+            <div class="typed_msg_img_holder">
+                <img src="${context:img/msgtype/warning.png}"/>
             </div>
-            <div class="admin_comment">
-                ${item.comment}
+            <div class="typed_msg_body">
+                ${message:admin.list.empty}
+                <t:pagelink page="user/admin/init">${message:init.do}</t:pagelink>.
             </div>
-        </div>        
-    </t:loop>
+        </div>
+        <div class="clearer"></div>
+    </t:if>
+    <t:if test="!admins.empty">
+        <t:loop source="admins" value="item">
+            <div id="admin_item">
+                <div class="admin_caption">
+                    <t:pagelink page="user/view" context="item.user.id">
+                        ${item.user.login}
+                    </t:pagelink>
+                </div>
+                <div class="admin_comment">
+                    ${item.comment}
+                </div>
+            </div>        
+        </t:loop>
+    </t:if>
     
 </html>
