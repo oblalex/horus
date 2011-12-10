@@ -271,6 +271,26 @@ DIV.t-error UL LI {
     border: 1px solid #888 !important;
 }
 
+.crud_edit16{
+    background: url("../img/controls/crud/edit/16/edit16.png") no-repeat;
+}
+.crud_edit16:hover{
+    background: url("../img/controls/crud/edit/16/edit16_hover.png") no-repeat;
+}
+
+.crud_delete16{
+    background: url("../img/controls/crud/delete/16/delete16.png") no-repeat;
+}
+.crud_delete16:hover{
+    background: url("../img/controls/crud/delete/16/delete16_hover.png") no-repeat;
+}
+
+.crud_edit16, .crud_delete16{
+    float: right;
+    width: 20px;
+    height: 16px;
+}
+
 .clearer{
     clear: both;
 }

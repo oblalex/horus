@@ -30,12 +30,30 @@
             vertical-align: top;
         }
 
+        #admin_img{
+            background: url("${context:img/roles/admin.png}") no-repeat;
+            margin: auto;
+            width: 56px;
+            height: 56px;
+        }
+        
+        #admin_img:hover{
+            background: url("${context:img/roles/admin_hover.png}") no-repeat;
+        }
+        
         #edit{
             outline: none;
         }
         
-        #edit img{
-            margin-top: 10px;
+        #edit_img{
+            background: url("${context:img/controls/crud/edit/24/edit24.png}") no-repeat;
+            width: 30px;
+            height: 30px;
+            margin: 15px auto 0 auto;
+        }
+        
+        #edit_img:hover{
+            background: url("${context:img/controls/crud/edit/24/edit24_hover.png}") no-repeat;
         }
         
         .imgContainer{
@@ -65,19 +83,19 @@
 
             <t:if test="${userAdmin}">
                 <t:pagelink t:page="user/admin/list">
-                    <img src="${context:img/roles/admin.png}" title="${userAdmin.comment}"/>
-                </t:pagelink><br/>
+                    <div id="admin_img" title="${userAdmin.comment}"></div>
+                </t:pagelink>
             </t:if>
             
             <t:if test="${visitorCanEdit}">                    
                 <t:if test="${visitorIsOwner}">
                     <t:pagelink t:page="user/edit" id="edit">
-                        <img src="${context:img/controls/crud/edit24.png}" title="${message:usr.account.edit}"/>                        
+                        <div id="edit_img" title="${message:usr.account.edit}"></div>
                     </t:pagelink>
                 </t:if>
                 <t:if test="${!visitorIsOwner}">
                     <t:pagelink t:page="user/edit" context="${user.id}" id="edit">
-                        <img src="${context:img/controls/edit.png}" title="${message:usr.account.edit}"/>
+                        <div id="edit_img" title="${message:usr.account.edit}"></div>
                     </t:pagelink>
                 </t:if>                        
             </t:if>
