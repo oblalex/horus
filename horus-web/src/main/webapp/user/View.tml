@@ -72,7 +72,7 @@
             <t:if test="${visitorCanEdit}">                    
                 <t:if test="${visitorIsOwner}">
                     <t:pagelink t:page="user/edit" id="edit">
-                        <img src="${context:img/controls/edit.png}" title="${message:usr.account.edit}"/>                            
+                        <img src="${context:img/controls/crud/edit24.png}" title="${message:usr.account.edit}"/>                        
                     </t:pagelink>
                 </t:if>
                 <t:if test="${!visitorIsOwner}">
