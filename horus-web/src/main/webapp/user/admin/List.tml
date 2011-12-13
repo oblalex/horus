@@ -2,7 +2,7 @@
     t:pageTitle="${pageTitle}"
     t:type="layout"
     xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
-    
+
     <style>
         #admin_item{
             padding: 5px 30px 15px 30px;
@@ -10,16 +10,17 @@
         .admin_caption{
             font-size: 20px;
             font-weight: bold;
+            float: left;
         }
         .admin_caption a{
             padding-left: 22px;
             outline: none;
             color: inherit;
             text-decoration: none;
-            background: url('../../../img/controls/circle/circle_grey.png');            
+            background: url('${context:img/controls/circle/circle_grey.png}');
         }
         .admin_caption a:hover{
-            background: url('../../../img/controls/circle/circle_grey_hover.png');
+            background: url('${context:img/controls/circle/circle_grey_hover.png}');
         }
         .admin_caption a, .admin_caption a:hover{
             background-repeat: no-repeat;
@@ -51,10 +52,15 @@
             color:inherit;
             outline: none;
         }
+        .crud_box{
+            float: left;
+            width: 50px;
+            visibility: hidden;
+        }        
     </style>
-    
+
     <div class="content_hd">${pageTitle}</div>
-    
+
     <t:if test="admins.empty">        
         <div class="typed_msg">
             <div class="typed_msg_img_holder">
@@ -70,10 +76,19 @@
     <t:if test="!admins.empty">
         <t:loop source="admins" value="item">
             <div id="admin_item">
-                <div class="admin_caption">
-                    <t:pagelink page="user/view" context="item.user.id">
-                        ${item.user.login}
-                    </t:pagelink>
+                <div class="admin_caption_wrapper" id="${item.user.id}">
+                    <div class="admin_caption">
+                        <t:pagelink page="user/view" context="item.user.id">
+                            ${item.user.login}
+                        </t:pagelink>                    
+                    </div>
+                    <t:security.hasRole role="admin">
+                        <div class="crud_box" id="cb${item.user.id}">
+                            <div class="crud_delete16"></div>
+                            <div class="crud_edit16"></div>
+                        </div>
+                    </t:security.hasRole>
+                    <div class="clearer"></div>
                 </div>
                 <div class="admin_comment">
                     ${item.comment}
@@ -81,5 +96,12 @@
             </div>        
         </t:loop>
     </t:if>
-    
+    <script type="text/javascript">
+        $(".admin_caption_wrapper").mouseenter(function() {
+            $('#cb'+$(this).attr('id')).css('visibility','visible');
+        });
+        $(".admin_caption_wrapper").mouseleave(function() {
+            $('#cb'+$(this).attr('id')).css('visibility','hidden');
+        });
+    </script>
 </html>
