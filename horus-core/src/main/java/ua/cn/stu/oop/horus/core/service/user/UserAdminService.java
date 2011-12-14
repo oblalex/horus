@@ -13,4 +13,5 @@ public interface UserAdminService
     
     public boolean noAdminExists();
     public UserAdmin getAdminOrNullByUser(User user);
+    public UserAdmin getAdminOrNullByUserLogin(String login);
 }

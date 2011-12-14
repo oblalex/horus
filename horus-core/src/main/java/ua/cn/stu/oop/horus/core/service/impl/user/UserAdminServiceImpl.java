@@ -36,4 +36,9 @@ public class UserAdminServiceImpl
     public UserAdmin getAdminOrNullByUser(User user) {
         return dao.getAdminOrNullByUser(user);
     }
+
+    @Override
+    public UserAdmin getAdminOrNullByUserLogin(String login) {
+        return dao.getAdminOrNullByUserLogin(login);
+    }
 }

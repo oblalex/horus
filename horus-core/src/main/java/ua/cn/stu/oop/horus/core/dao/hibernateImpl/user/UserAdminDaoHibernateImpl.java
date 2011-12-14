@@ -39,4 +39,10 @@ public class UserAdminDaoHibernateImpl
         return (UserAdmin) singleResultOrNullByNamedQuery(
                 "adminOrNullByUserHQL", user);
     }
+
+    @Override
+    public UserAdmin getAdminOrNullByUserLogin(String login) {
+        return (UserAdmin) singleResultOrNullByNamedQuery(
+                "adminOrNullByUserLoginHQL", login);
+    }
 }
