@@ -47,4 +47,9 @@ public abstract class GenericServiceImpl<E extends GenericDomain, D extends Gene
     public void deleteEntity(E entity) {
         this.dao.deleteEntity(entity);
     }
+    
+    @Override
+    public void deleteEntityById(Long id) {
+        dao.deleteEntityById(id);
+    }
 }

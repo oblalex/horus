@@ -65,6 +65,12 @@ abstract public class GenericDaoHibernateImpl<E extends GenericDomain>
     public void deleteEntity(E entity) {
         getHibernateTemplate().delete(entity);
     }
+    
+    @Override
+    public void deleteEntityById(Long id) {
+        String query = CommonQueries.getDeleteById(entityClass);
+        getHibernateTemplate().bulkUpdate(query, id);
+    }
 
     protected Object singleResultOrNullByQuery(String query) {
         List result = getHibernateTemplate().find(query);

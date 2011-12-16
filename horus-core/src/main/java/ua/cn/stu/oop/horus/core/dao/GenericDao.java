@@ -18,6 +18,8 @@ public interface GenericDao<E extends GenericDomain> {
     public void updateEntity(E entity);
 
     public void saveOrUpdateEntity(E entity);
-    
+
     public void deleteEntity(E entity);
+
+    public void deleteEntityById(Long id);
 }
