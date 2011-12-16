@@ -2,7 +2,8 @@ package ua.cn.stu.oop.horus.web.pages.user.admin;
 
 import java.util.Collection;
 import javax.inject.Inject;
-import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.*;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.tynamo.security.services.SecurityService;
 import ua.cn.stu.oop.horus.core.domain.user.UserAdmin;
@@ -27,6 +28,9 @@ public class List extends GenericPage{
     private UserAdmin item;
     
     private UserAdmin visitorAdmin = null;
+    
+    @Component(id = "listZone")
+    private Zone listZone;
      
     public void beginRender() {
         String visitorLogin = getVisitorLogin();
