@@ -4,6 +4,7 @@ import java.util.Collection;
 import javax.inject.Inject;
 import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.corelib.components.Zone;
+import org.apache.tapestry5.services.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.tynamo.security.services.SecurityService;
 import ua.cn.stu.oop.horus.core.domain.user.UserAdmin;
@@ -19,6 +20,9 @@ public class List extends GenericPage{
 
     @Inject
     private SecurityService securityService;
+    
+    @Inject
+    private Request request;
     
     @Inject
     @Autowired
@@ -53,6 +57,15 @@ public class List extends GenericPage{
             return false;
         }
         return visitorAdmin.getId().equals(item.getId());
+    }
+    
+    public Object onActionFromDeleteItem(Long itemId) {
+        adminService.deleteEntityById(itemId);
+        return getListZone();
+    }
+
+    public Object getListZone() {
+        return request.isXHR() ? listZone.getBody() : null;
     }
     
     @Override
