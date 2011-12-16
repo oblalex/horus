@@ -85,9 +85,11 @@
                     <t:security.hasRole role="admin">
                         <div class="crud_box" id="cb${item.user.id}">
                             <t:if test="!itemPepresentsVisitor">
-                                <div class="crud_delete16" title="${message:edit.do}"></div>
+                                <div class="crud_delete16" title="${message:delete.do}"></div>
                             </t:if>
-                            <div class="crud_edit16" title="${message:delete.do}"></div>
+                            <t:pagelink page="user/admin/modify" context="item.id">
+                                <div class="crud_edit16" title="${message:edit.do}"></div>
+                            </t:pagelink>
                         </div>
                     </t:security.hasRole>
                     <div class="clearer"></div>
@@ -99,7 +101,7 @@
         </t:loop>
         <t:security.hasRole role="admin">
             <div style="text-align: center;">
-                <t:pagelink page="" class="a_simple">
+                <t:pagelink page="user/admin/modify" class="a_simple">
                     <input type="button" class="horus_btn" value="${message:admin.list.add}"/>
                 </t:pagelink>
             </div>

@@ -1,0 +1,11 @@
+<html  
+    t:pageTitle="${pageTitle}"
+    t:type="layout"
+    xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+    <div class="content_hd">${pageTitle}</div>
+    <div style="text-align: center;">
+        <t:pagelink page="user/admin/list" class="a_simple">
+            <input type="button" class="horus_btn" value="${message:back.to.list}"/>
+        </t:pagelink>
+    </div>
+</html>
