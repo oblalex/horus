@@ -44,5 +44,13 @@ public class GroupEnterRequestDaoHibernateImpl
         String query = GroupLinkCarrierQueries.
                 getCarriersByGroupLink(cls);
         return multipleResultByQuery(query, groupLink);
-    }    
+    }
+
+    @Override
+    public Collection<GroupEnterRequest> getAllSortedByUserLogin() {
+        Class cls = getEntityClass();
+        String query = UserCarrierQueries.
+                getAllSortedByUserLogin(cls);
+        return multipleResultByQuery(query);
+    }
 }

@@ -72,4 +72,12 @@ public class DBFileDirectoryDaoHibernateImpl
         return (DBFileDirectory) singleResultOrNullByNamedQuery(
                 "getUserPicturesDirectoryOrNullHQL", user);
     }
+
+    @Override
+    public Collection<DBFileDirectory> getAllSortedByUserLogin() {
+        Class cls = getEntityClass();
+        String query = UserCarrierQueries.
+                getAllSortedByUserLogin(cls);
+        return multipleResultByQuery(query);
+    }
 }

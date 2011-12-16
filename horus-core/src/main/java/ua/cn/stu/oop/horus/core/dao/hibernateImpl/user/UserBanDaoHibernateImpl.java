@@ -41,4 +41,12 @@ public class UserBanDaoHibernateImpl
                 "isUserBannedNowNativeSQL",
                 user.getId());
     }
+
+    @Override
+    public Collection<UserBan> getAllSortedByUserLogin() {
+        Class cls = getEntityClass();
+        String query = UserCarrierQueries.
+                getAllSortedByUserLogin(cls);
+        return multipleResultByQuery(query);
+    }
 }

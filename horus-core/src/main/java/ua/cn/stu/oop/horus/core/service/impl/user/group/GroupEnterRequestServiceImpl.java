@@ -41,4 +41,9 @@ public class GroupEnterRequestServiceImpl
     public Collection<GroupEnterRequest> getEntitiesByGroupLink(GroupLink groupLink) {
         return (Collection<GroupEnterRequest>) GroupLinkCarrierServiceImpl.getEntitiesByGroupLinkFromDao(groupLink, dao);
     }
+
+    @Override
+    public Collection<GroupEnterRequest> getAllSortedByUserLogin() {
+        return (Collection<GroupEnterRequest>) UserCarrierServiceImpl.getAllSortedByUserLogin(dao);
+    }
 }

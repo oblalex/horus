@@ -35,4 +35,9 @@ public class PilotServiceImpl
     public Collection<Pilot> getEntitiesByUser(User user) {
         return (Collection<Pilot>) UserCarrierServiceImpl.getEntitiesByUserFromDao(user, dao);
     }
+
+    @Override
+    public Collection<Pilot> getAllSortedByUserLogin() {
+        return (Collection<Pilot>) UserCarrierServiceImpl.getAllSortedByUserLogin(dao);
+    }
 }

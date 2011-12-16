@@ -45,6 +45,14 @@ public class DBFileDaoHibernateImpl
         return multipleResultByQuery(query, user);
     }
 
+    @Override
+    public Collection<DBFile> getAllSortedByUserLogin() {
+        Class cls = getEntityClass();
+        String query = UserCarrierQueries.
+                getAllSortedByUserLogin(cls);
+        return multipleResultByQuery(query);
+    }
+
 
     
 }

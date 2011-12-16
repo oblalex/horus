@@ -39,4 +39,9 @@ public class DBFileServiceImpl
     public DBFile getEntityOrNullByTitle(String title) {
         return StringTitleCarrierServiceImpl.getEntityOrNullByTitleFromDao(title, dao);
     }
+
+    @Override
+    public Collection<DBFile> getAllSortedByUserLogin() {
+        return (Collection<DBFile>) UserCarrierServiceImpl.getAllSortedByUserLogin(dao);
+    }
 }

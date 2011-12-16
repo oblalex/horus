@@ -16,4 +16,9 @@ public class UserCarrierServiceImpl {
             UserCarrierDao<? extends UserCarrier> dao) {
         return dao.getEntitiesByUser(user);
     }
+    
+    public static Collection<? extends UserCarrier> getAllSortedByUserLogin(
+            UserCarrierDao<? extends UserCarrier> dao) {
+        return dao.getAllSortedByUserLogin();
+    }
 }

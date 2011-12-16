@@ -10,4 +10,5 @@ import ua.cn.stu.oop.horus.core.domain.user.*;
 public interface UserCarrierDao<E extends UserCarrier> {
 
     public Collection<E> getEntitiesByUser(User user);
+    public Collection<E> getAllSortedByUserLogin();
 }

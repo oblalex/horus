@@ -109,5 +109,10 @@ public class DBFileDirectoryServiceImpl
         dao.saveAndGetId(resust);
         
         return resust;
-    }   
+    }
+
+    @Override
+    public Collection<DBFileDirectory> getAllSortedByUserLogin() {
+        return (Collection<DBFileDirectory>) UserCarrierServiceImpl.getAllSortedByUserLogin(dao);
+    }
 }

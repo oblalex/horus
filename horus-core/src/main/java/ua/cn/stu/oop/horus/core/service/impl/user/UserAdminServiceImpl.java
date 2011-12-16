@@ -41,4 +41,9 @@ public class UserAdminServiceImpl
     public UserAdmin getAdminOrNullByUserLogin(String login) {
         return dao.getAdminOrNullByUserLogin(login);
     }
+
+    @Override
+    public Collection<UserAdmin> getAllSortedByUserLogin() {
+        return (Collection<UserAdmin>) UserCarrierServiceImpl.getAllSortedByUserLogin(dao);
+    }
 }

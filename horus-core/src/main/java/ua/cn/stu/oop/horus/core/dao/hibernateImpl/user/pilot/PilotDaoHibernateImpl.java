@@ -36,5 +36,13 @@ public class PilotDaoHibernateImpl
         String query = UserCarrierQueries.
                 getCarriersByUser(cls);
         return multipleResultByQuery(query, user);
-    }    
+    }
+
+    @Override
+    public Collection<Pilot> getAllSortedByUserLogin() {
+        Class cls = getEntityClass();
+        String query = UserCarrierQueries.
+                getAllSortedByUserLogin(cls);
+        return multipleResultByQuery(query);
+    }
 }

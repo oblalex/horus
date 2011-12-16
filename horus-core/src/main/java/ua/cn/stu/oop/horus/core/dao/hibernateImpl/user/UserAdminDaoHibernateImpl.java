@@ -45,4 +45,12 @@ public class UserAdminDaoHibernateImpl
         return (UserAdmin) singleResultOrNullByNamedQuery(
                 "adminOrNullByUserLoginHQL", login);
     }
+
+    @Override
+    public Collection<UserAdmin> getAllSortedByUserLogin() {
+        Class cls = getEntityClass();
+        String query = UserCarrierQueries.
+                getAllSortedByUserLogin(cls);
+        return multipleResultByQuery(query);
+    }
 }

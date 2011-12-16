@@ -36,4 +36,9 @@ public class UserBanServiceImpl
     public Boolean isUserBannedNow(User user) {
         return dao.isUserBannedNow(user);
     }
+
+    @Override
+    public Collection<UserBan> getAllSortedByUserLogin() {
+        return (Collection<UserBan>) UserCarrierServiceImpl.getAllSortedByUserLogin(dao);
+    }
 }

@@ -57,7 +57,7 @@ public class List extends GenericPage{
     }
     
     public Collection<UserAdmin> getAdmins() {
-        return adminService.getAllEntites();
+        return adminService.getAllSortedByUserLogin();
     }
 
     private String getVisitorLogin(){
