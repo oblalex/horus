@@ -74,17 +74,6 @@
         <div class="clearer"></div>
     </t:if>
     <t:if test="!admins.empty">        
-        <t:jquery.dialog t:clientId="dialogConfirm" title="${message:confirmation}">
-            ${message:ask.action.confirm}<br/><br/>
-            <div style="text-align: center;">
-                <t:actionlink t:id="deleteItem" id="deleteItemLink" href="javascript:void;" context="-9999" class="a_simple">
-                    <input type="button" class="horus_btn" value="${message:delete.do}"/>
-                </t:actionlink>
-                <a href="javascript:void;" class="a_simple" onClick="dialogConfirmClose();">
-                    <input type="button" class="horus_btn" value="${message:cancel}"/>
-                </a>
-            </div>
-        </t:jquery.dialog>
         <t:zone t:id="listZone" t:update="show" t:name="listZone">
             <t:loop source="admins" value="item">
                 <div id="admin_item">
@@ -101,9 +90,9 @@
                                         <div class="crud_delete16" title="${message:delete.do}"></div>
                                     </t:jquery.dialoglink>
                                 </t:if>
-                                <t:pagelink page="user/admin/list" context="null">
+                                <t:jquery.dialogajaxlink t:dialog="dialogEdit" context="item.id" t:zone="editZone">
                                     <div class="crud_edit16" title="${message:edit.do}"></div>
-                                </t:pagelink>
+                                </t:jquery.dialogajaxlink>
                             </div>
                         </t:security.hasRole>
                         <div class="clearer"></div>
@@ -114,6 +103,37 @@
                 </div>
             </t:loop>
         </t:zone>
+        <t:jquery.dialog t:clientId="dialogConfirm" title="${message:confirmation}">
+            ${message:ask.action.confirm}<br/><br/>
+            <div style="text-align: center;">
+                <t:actionlink t:id="deleteItem" id="deleteItemLink" href="javascript:void;" context="-9999" class="a_simple">
+                    <input type="button" class="horus_btn" value="${message:delete.do}"/>
+                </t:actionlink>
+                <a href="javascript:void;" class="a_simple" onClick="dialogConfirmClose();">
+                    <input type="button" class="horus_btn" value="${message:cancel}"/>
+                </a>
+            </div>
+        </t:jquery.dialog>
+        <t:jquery.dialog t:clientId="dialogEdit" style="font-size: 14px; text-shadow: 0 0 0 transparent, 0 1px 0 #FFFFFF;" title="${message:data.editing}">
+            <t:zone t:id="editZone" id="editZone">
+                <t:form t:id="editForm">
+                    ${message:comment.about} <b>${item.user.login}</b>:<br/>
+                    <t:textarea
+                        t:value="commentVal"
+                        name="areaComment"
+                        style="width: 100%; font-family: inherit; margin: 7px 0;"/>
+                    <div style="text-align: center; margin-bottom: -18px;">
+                        <input type="submit" class="horus_btn" value="${message:apply}" style="font-size: 11px;"/>
+                        <a href="javascript:void;" class="a_simple" onClick="dialogEditClose();">
+                            <input type="button" class="horus_btn" value="${message:cancel}"/>
+                        </a>
+                    </div>
+                </t:form>
+                <script type="text/javascript">
+                    addInputsStyles();
+                </script>
+            </t:zone>
+        </t:jquery.dialog>
     </t:if>
     <script type="text/javascript">
         $(".admin_caption_wrapper").mouseenter(function() {
@@ -124,6 +144,9 @@
         });
         function dialogConfirmClose(){
             $("#dialogConfirm").dialog("close");
+        }
+        function dialogEditClose(){
+            $("#dialogEdit").dialog("close");
         }
         function setActionDeleteContext(context){
             var link = $('#deleteItemLink');
