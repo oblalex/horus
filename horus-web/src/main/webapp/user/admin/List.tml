@@ -101,7 +101,7 @@
                                         <div class="crud_delete16" title="${message:delete.do}"></div>
                                     </t:jquery.dialoglink>
                                 </t:if>
-                                <t:pagelink page="user/admin/modify" context="item.id">
+                                <t:pagelink page="user/admin/list" context="null">
                                     <div class="crud_edit16" title="${message:edit.do}"></div>
                                 </t:pagelink>
                             </div>
@@ -114,13 +114,6 @@
                 </div>
             </t:loop>
         </t:zone>
-        <t:security.hasRole role="admin">
-            <div style="text-align: center;">
-                <t:pagelink page="user/admin/modify" class="a_simple">
-                    <input type="button" class="horus_btn" value="${message:admin.list.add}"/>
-                </t:pagelink>
-            </div>
-        </t:security.hasRole>
     </t:if>
     <script type="text/javascript">
         $(".admin_caption_wrapper").mouseenter(function() {
