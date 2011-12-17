@@ -47,13 +47,30 @@
         
         #edit_img{
             background: url("${context:img/controls/crud/edit/24/edit24.png}") no-repeat;
-            width: 30px;
-            height: 30px;
-            margin: 15px auto 0 auto;
         }
         
         #edit_img:hover{
             background: url("${context:img/controls/crud/edit/24/edit24_hover.png}") no-repeat;
+        }
+        
+        #admin_add_img{
+            background: url("${context:img/roles/admin_add.png}") no-repeat;
+        }
+        
+        #admin_add_img:hover{
+            background: url("${context:img/roles/admin_add_hover.png}") no-repeat;
+        }
+        
+        #edit_img, #admin_add_img{
+            float: left;
+            width: 30px;
+            height: 30px;
+            margin: 5px auto 0 auto;
+        }
+        
+        #edit_box{
+            margin: 0 auto;
+            width: 60px;
         }
         
         .imgContainer{
@@ -89,17 +106,22 @@
                 </t:if>
             </t:zone>
             
-            <t:if test="${visitorCanEdit}">                    
-                <t:if test="${visitorIsOwner}">
-                    <t:pagelink t:page="user/edit" id="edit">
-                        <div id="edit_img" title="${message:usr.account.edit}"></div>
-                    </t:pagelink>
-                </t:if>
-                <t:if test="${!visitorIsOwner}">
-                    <t:pagelink t:page="user/edit" context="${user.id}" id="edit">
-                        <div id="edit_img" title="${message:usr.account.edit}"></div>
-                    </t:pagelink>
-                </t:if>                        
+            <t:if test="${visitorCanEdit}">
+                <div id="edit_box">
+                    <t:if test="${!userAdmin}">                    
+                        <div id="admin_add_img" title="add to admin list"></div>
+                    </t:if>
+                    <t:if test="${visitorIsOwner}">
+                        <t:pagelink t:page="user/edit" id="edit">
+                            <div id="edit_img" title="${message:usr.account.edit}"></div>
+                        </t:pagelink>
+                    </t:if>
+                    <t:if test="${!visitorIsOwner}">
+                        <t:pagelink t:page="user/edit" context="${user.id}" id="edit">
+                            <div id="edit_img" title="${message:usr.account.edit}"></div>
+                        </t:pagelink>
+                    </t:if>  
+                </div>
             </t:if>
             
         </div>
