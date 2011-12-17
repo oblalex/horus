@@ -32,7 +32,7 @@
 
         #admin_img{
             background: url("${context:img/roles/admin.png}") no-repeat;
-            margin: auto;
+            margin: 0 auto 10px auto;
             width: 56px;
             height: 56px;
         }
