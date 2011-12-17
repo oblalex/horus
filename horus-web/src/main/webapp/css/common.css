@@ -251,7 +251,10 @@ DIV.t-error UL LI {
 }
 
 .ui-widget-content {
-    border: 1px solid #AAAAAA;
+    border: #FFF solid;
+    border-width: 1px 0 0 1px;
+    border-radius: 7px;
+    padding-right: 5px;
 }
 
 .ui-dialog {
