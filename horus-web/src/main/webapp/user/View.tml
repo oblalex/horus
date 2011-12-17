@@ -20,7 +20,7 @@
         #leftSide a{
             outline: none;
         }
-        
+
         #contentSide{
             padding: 10px 10px 10px 20px;
         }
@@ -36,43 +36,43 @@
             width: 56px;
             height: 56px;
         }
-        
+
         #admin_img:hover{
             background: url("${context:img/roles/admin_hover.png}") no-repeat;
         }
-        
+
         #edit{
             outline: none;
         }
-        
+
         #edit_img{
             background: url("${context:img/controls/crud/edit/24/edit24.png}") no-repeat;
         }
-        
+
         #edit_img:hover{
             background: url("${context:img/controls/crud/edit/24/edit24_hover.png}") no-repeat;
         }
-        
+
         #admin_add_img{
             background: url("${context:img/roles/admin_add.png}") no-repeat;
         }
-        
+
         #admin_add_img:hover{
             background: url("${context:img/roles/admin_add_hover.png}") no-repeat;
         }
-        
+
         #edit_img, #admin_add_img{
             float: left;
             width: 30px;
             height: 30px;
             margin: 5px auto 0 auto;
         }
-        
+
         #edit_box{
             margin: 0 auto;
             width: 60px;
         }
-        
+
         .imgContainer{
             margin-bottom: 15px;
         }
@@ -104,11 +104,20 @@
                         <div id="admin_img" title="${userAdmin.comment}"></div>
                     </t:pagelink>
                 </t:if>
-            
+
                 <t:if test="${visitorCanEdit}">
                     <div id="edit_box">
-                        <t:if test="${!userAdmin}">                    
-                            <div id="admin_add_img" title="add to admin list"></div>
+                        <t:if test="${!userAdmin}"> 
+                            <t:jquery.dialoglink t:dialog="dialogAdminAdd">
+                                <div id="admin_add_img" title="${message:admin.list.add}"></div>
+                            </t:jquery.dialoglink>
+                        </t:if>
+                        <t:if test="${userAdmin}">
+                            <style>
+                                #edit_img{
+                                    margin-left: 15px;
+                                }
+                            </style>
                         </t:if>
                         <t:if test="${visitorIsOwner}">
                             <t:pagelink t:page="user/edit" id="edit">
@@ -122,6 +131,9 @@
                         </t:if>  
                     </div>
                 </t:if>
+                <script type="text/javascript">
+                    dialogAdminAddClose();
+                </script>
             </t:zone>            
         </div>
         <div id="contentSide">
@@ -144,4 +156,26 @@
             </t:if>
         </div>
     </div>
+    <t:jquery.dialog t:clientId="dialogAdminAdd"
+                     style="font-size: 14px; text-shadow: 0 0 0 transparent, 0 1px 0 #FFFFFF;"
+                     title="${message:admin.usr.new}">
+        <t:form t:id="adminAddForm" t:zone="underAvaZone">
+            ${message:comment.about} <b>${user.login}</b>:<br/>
+            <t:textarea
+                t:value="commentAbout"
+                name="areaComment"
+                style="width: 100%; font-family: inherit; margin: 7px 0;"/>
+            <div style="text-align: center; margin-bottom: -18px;">
+                <input type="submit" class="horus_btn" value="${message:add.do}" style="font-size: 11px;"/>
+                <a href="javascript:void;" class="a_simple" onClick="dialogAdminAddClose();">
+                    <input type="button" class="horus_btn" value="${message:cancel}"/>
+                </a>
+            </div>
+        </t:form>
+    </t:jquery.dialog>
+    <script type="text/javascript">
+        function dialogAdminAddClose(){
+            $("#dialogAdminAdd").dialog("close");
+        }
+    </script>
 </html>

@@ -3,6 +3,7 @@ package ua.cn.stu.oop.horus.web.pages.user;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.tapestry5.EventContext;
 import org.apache.tapestry5.annotations.*;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Request;
@@ -44,6 +45,7 @@ public class View extends GenericPage {
     @Inject
     private Request request;
     
+    @Persist
     @Property
     private User user;
     
@@ -57,16 +59,26 @@ public class View extends GenericPage {
     
     @Property
     private boolean visitorIsOwner;
-    
+        
     @Property
     private Long userId;   
     
-    @Component(id = "aboutAdminZone")
+    @Property
+    private String commentAbout;
+    
+    @Component(id = "underAvaZone")
     private Zone underAvaZone;
     
-    Object onActivate(EventContext context) {
-        this.userId = context.get(Long.class, 0);
+    @Component
+    private Form adminAddForm;
         
+    Object onActivate(EventContext context) {
+        
+        if (request.isXHR()){
+            return null;
+        }
+        
+        userId = context.get(Long.class, 0);
         if (userId==null){
             onActivateWithoutContext();
         } else {
@@ -94,10 +106,15 @@ public class View extends GenericPage {
             return Index.class;
         }
         
+        obtainAttributes();
+        
+        return null;
+    }
+    
+    private void obtainAttributes(){
         obtainAdmin();
         obtainVisitor();
         checkPermisions();
-        return null;
     }
     
     private void obtainUser(){
@@ -171,7 +188,17 @@ public class View extends GenericPage {
         return DateTimeFormater.formateCommonDate(user.getRegistrationDate());
     }
 
+    public Object onSubmitFromAdminAddForm() {
+        userAdmin = new UserAdmin();
+        userAdmin.setUser(user);
+        userAdmin.setComment(commentAbout);
+        userAdminService.saveOrUpdateEntity(userAdmin);
+        
+        obtainAttributes();
+        return getUnderAvaZone();
+    }
+    
     public Object getUnderAvaZone() {
         return request.isXHR() ? underAvaZone.getBody() : null;
-    }        
+    }
 }
