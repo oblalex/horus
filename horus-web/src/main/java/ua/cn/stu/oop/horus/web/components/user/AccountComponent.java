@@ -44,11 +44,19 @@ import ua.cn.stu.oop.horus.web.util.pages.validator.*;
 stylesheet = "context:css/imgareaselect-default.css")
 public class AccountComponent extends GenericPage{
 
+    @Persist
     private User user;
     
+    @Persist
     private String login;
+    
+    @Persist
     private String password;
+    
+    @Persist
     private String passwordConfirm;
+    
+    @Persist
     private String email;
     
     @Inject

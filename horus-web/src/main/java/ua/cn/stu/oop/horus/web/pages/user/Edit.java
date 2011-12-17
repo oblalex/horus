@@ -29,7 +29,12 @@ public class Edit{
     
     private Long userId;
     
-    Object onActivate(EventContext context) {        
+    Object onActivate(EventContext context) { 
+        
+        if (accountCmpnt.getRequest().isXHR()){
+            return null;
+        }
+        
         userId = context.get(Long.class, 0);      
 
         if (userId==null){
@@ -113,7 +118,14 @@ public class Edit{
     Object onSuccess(){
         boolean loginChanged = (accountCmpnt.getUser().getLogin().equals(accountCmpnt.getLogin())==false);
         
-        AvailableLocale aLoc = accountCmpnt.getLang();
+        AvailableLocale aLoc = null;
+        
+        if (visitorIsOwner){
+            aLoc = accountCmpnt.getLang();
+        } else {
+            aLoc = accountCmpnt.getLocale();
+        }
+        
         
         accountCmpnt.prepareUser();
         accountCmpnt.finishUserCreation();
