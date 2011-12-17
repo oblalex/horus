@@ -1,6 +1,7 @@
 package ua.cn.stu.oop.horus.web.pages.user;
 
 import org.apache.shiro.authz.annotation.*;
+import org.apache.tapestry5.EventContext;
 import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.tynamo.security.services.SecurityService;
@@ -26,17 +27,30 @@ public class Edit{
     @Component
     private AccountComponent accountCmpnt;
     
-    void onActivate() {
+    private Long userId;
+    
+    Object onActivate(EventContext context) {        
+        userId = context.get(Long.class, 0);      
+
+        if (userId==null){
+            onActivateWithoutContext();
+        } else {
+            return onActivateWithContext();
+        }
+        
+        return null;
+    }
+    
+    void onActivateWithoutContext() {
         String visitorLogin = getVisitorLogin();
         User usr = accountCmpnt.getUserService().getUserOrNullByLogin(visitorLogin);
         accountCmpnt.setUser(usr);
         initFields();
-        
         visitorIsOwner = true;
     }
     
     @RequiresRoles(UserRoles.ADMIN)
-    Object onActivate(Long userId) {        
+    Object onActivateWithContext() {        
         User usr = accountCmpnt.getUserService().getEntityOrNullById(userId);
         
         if (usr == null) {
