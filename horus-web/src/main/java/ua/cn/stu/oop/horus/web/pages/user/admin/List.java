@@ -32,11 +32,7 @@ public class List extends GenericPage{
     @Persist
     @Property
     private UserAdmin item;
-    
-    @Persist
-    @Property
-    private String commentVal;
-    
+
     private UserAdmin visitorAdmin = null;
 
     @Component
@@ -82,12 +78,10 @@ public class List extends GenericPage{
     
     public Object onActionFromDialogajaxlink(Long itemId) {
         item = adminService.getEntityOrNullById(itemId);
-        commentVal = item.getComment();
         return getEditZone();
     }
     
     public void onSubmitFromEditForm() {
-        item.setComment(commentVal);
         adminService.saveOrUpdateEntity(item);
     }
     
