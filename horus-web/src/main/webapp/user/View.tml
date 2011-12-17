@@ -46,6 +46,7 @@
         }
 
         #edit_img{
+            margin-left: 15px;
             background: url("${context:img/controls/crud/edit/24/edit24.png}") no-repeat;
         }
 
@@ -65,7 +66,6 @@
             float: left;
             width: 30px;
             height: 30px;
-            margin: 5px auto 0 auto;
         }
 
         #edit_box{
@@ -106,18 +106,18 @@
                 </t:if>
 
                 <t:if test="${visitorCanEdit}">
-                    <div id="edit_box">
-                        <t:if test="${!userAdmin}"> 
-                            <t:jquery.dialoglink t:dialog="dialogAdminAdd">
-                                <div id="admin_add_img" title="${message:admin.list.add}"></div>
-                            </t:jquery.dialoglink>
-                        </t:if>
-                        <t:if test="${userAdmin}">
-                            <style>
-                                #edit_img{
-                                    margin-left: 15px;
-                                }
-                            </style>
+                    <div id="edit_box">                        
+                        <t:if test="${!visitorIsOwner}">
+                            <t:if test="${!userAdmin}">
+                                <style>
+                                    #edit_img{
+                                        margin-left: 0;
+                                    }
+                                </style>
+                                <t:jquery.dialoglink t:dialog="dialogAdminAdd">
+                                    <div id="admin_add_img" title="${message:admin.list.add}"></div>
+                                </t:jquery.dialoglink>
+                            </t:if>
                         </t:if>
                         <t:if test="${visitorIsOwner}">
                             <t:pagelink t:page="user/edit" id="edit">
