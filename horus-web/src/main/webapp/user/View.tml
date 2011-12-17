@@ -98,32 +98,31 @@
             </div>
             <div style="clear: both;"></div>
 
-            <t:zone t:id="aboutAdminZone" id="aboutAdminZone">
+            <t:zone t:id="underAvaZone" id="underAvaZone">
                 <t:if test="${userAdmin}">
                     <t:pagelink t:page="user/admin/list">
                         <div id="admin_img" title="${userAdmin.comment}"></div>
                     </t:pagelink>
                 </t:if>
-            </t:zone>
             
-            <t:if test="${visitorCanEdit}">
-                <div id="edit_box">
-                    <t:if test="${!userAdmin}">                    
-                        <div id="admin_add_img" title="add to admin list"></div>
-                    </t:if>
-                    <t:if test="${visitorIsOwner}">
-                        <t:pagelink t:page="user/edit" id="edit">
-                            <div id="edit_img" title="${message:usr.account.edit}"></div>
-                        </t:pagelink>
-                    </t:if>
-                    <t:if test="${!visitorIsOwner}">
-                        <t:pagelink t:page="user/edit" context="${user.id}" id="edit">
-                            <div id="edit_img" title="${message:usr.account.edit}"></div>
-                        </t:pagelink>
-                    </t:if>  
-                </div>
-            </t:if>
-            
+                <t:if test="${visitorCanEdit}">
+                    <div id="edit_box">
+                        <t:if test="${!userAdmin}">                    
+                            <div id="admin_add_img" title="add to admin list"></div>
+                        </t:if>
+                        <t:if test="${visitorIsOwner}">
+                            <t:pagelink t:page="user/edit" id="edit">
+                                <div id="edit_img" title="${message:usr.account.edit}"></div>
+                            </t:pagelink>
+                        </t:if>
+                        <t:if test="${!visitorIsOwner}">
+                            <t:pagelink t:page="user/edit" context="${user.id}" id="edit">
+                                <div id="edit_img" title="${message:usr.account.edit}"></div>
+                            </t:pagelink>
+                        </t:if>  
+                    </div>
+                </t:if>
+            </t:zone>            
         </div>
         <div id="contentSide">
             <div class="field_name">${message:usr.login}</div>

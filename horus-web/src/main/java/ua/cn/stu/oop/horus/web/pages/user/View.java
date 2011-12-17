@@ -62,7 +62,7 @@ public class View extends GenericPage {
     private Long userId;   
     
     @Component(id = "aboutAdminZone")
-    private Zone aboutAdminZone;
+    private Zone underAvaZone;
     
     Object onActivate(EventContext context) {
         this.userId = context.get(Long.class, 0);
@@ -171,7 +171,7 @@ public class View extends GenericPage {
         return DateTimeFormater.formateCommonDate(user.getRegistrationDate());
     }
 
-    public Object getAboutAdminZone() {
-        return request.isXHR() ? aboutAdminZone.getBody() : null;
+    public Object getUnderAvaZone() {
+        return request.isXHR() ? underAvaZone.getBody() : null;
     }        
 }
