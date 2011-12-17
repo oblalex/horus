@@ -2,9 +2,10 @@ package ua.cn.stu.oop.horus.web.pages.user;
 
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.tapestry5.EventContext;
-import org.apache.tapestry5.annotations.InjectPage;
-import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.*;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.tynamo.security.services.SecurityService;
 import ua.cn.stu.oop.horus.core.domain.file.DBFile;
@@ -40,6 +41,9 @@ public class View extends GenericPage {
     @InjectPage
     private DBStore dbStore;
     
+    @Inject
+    private Request request;
+    
     @Property
     private User user;
     
@@ -55,7 +59,10 @@ public class View extends GenericPage {
     private boolean visitorIsOwner;
     
     @Property
-    private Long userId;    
+    private Long userId;   
+    
+    @Component(id = "aboutAdminZone")
+    private Zone aboutAdminZone;
     
     Object onActivate(EventContext context) {
         this.userId = context.get(Long.class, 0);
@@ -163,4 +170,8 @@ public class View extends GenericPage {
     public String getRegistrationDate(){
         return DateTimeFormater.formateCommonDate(user.getRegistrationDate());
     }
+
+    public Object getAboutAdminZone() {
+        return request.isXHR() ? aboutAdminZone.getBody() : null;
+    }        
 }

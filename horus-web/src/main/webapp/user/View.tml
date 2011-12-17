@@ -68,7 +68,7 @@
             margin-bottom: 7px;
         }
     </style>
-    <div class="content_hd">${message:usr.account}</div>
+    <div class="content_hd">${message:usr.account}</div>    
     <div id="userWrapper">
         <div id="leftSide">
             <div class="imgContainer">
@@ -81,11 +81,13 @@
             </div>
             <div style="clear: both;"></div>
 
-            <t:if test="${userAdmin}">
-                <t:pagelink t:page="user/admin/list">
-                    <div id="admin_img" title="${userAdmin.comment}"></div>
-                </t:pagelink>
-            </t:if>
+            <t:zone t:id="aboutAdminZone" id="aboutAdminZone">
+                <t:if test="${userAdmin}">
+                    <t:pagelink t:page="user/admin/list">
+                        <div id="admin_img" title="${userAdmin.comment}"></div>
+                    </t:pagelink>
+                </t:if>
+            </t:zone>
             
             <t:if test="${visitorCanEdit}">                    
                 <t:if test="${visitorIsOwner}">
