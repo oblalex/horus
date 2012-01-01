@@ -29,7 +29,7 @@ public class AppModule {
 
         configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
 
-        configuration.add(SymbolConstants.FORM_CLIENT_LOGIC_ENABLED, "false");
+        configuration.add(SymbolConstants.FORM_CLIENT_LOGIC_ENABLED, "true");
 
         configuration.add(SymbolConstants.APPLICATION_VERSION, "0.1");
 

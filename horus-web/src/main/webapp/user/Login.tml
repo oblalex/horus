@@ -41,6 +41,7 @@
         </t:form>
         <script type="text/javascript">
             addInputsStyles();
+            addCheckBoxesAndRadiosStyles();
         </script>
     </t:zone>
 </html>

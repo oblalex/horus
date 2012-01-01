@@ -3,7 +3,12 @@ var safari = (navigator.userAgent.toLowerCase().indexOf('safari') != -1) ? true 
 var gebtn = function(parEl,child) {
     return parEl.getElementsByTagName(child);
 };
-onload = function() {
+
+$(document).ready(function() {
+    addCheckBoxesAndRadiosStyles();
+});
+
+function addCheckBoxesAndRadiosStyles() {
         
     var body = gebtn(d,'body')[0];
     body.className = body.className && body.className != '' ? body.className + ' has-js' : 'has-js';

@@ -13,17 +13,18 @@
     <style>
         #config_wrapper{
             margin-bottom: 10px;
-            display: table;
-            font-size: 14px;
+            display: table;            
+            width: 100%;
         }
         #config_body{
             border: #aaa solid;
             border-width: 0 0 0 1px;
             height: 150px; 
-            padding: 10px;
+            padding: 20px;
         }
         #config_list{
             width: 150px;
+            font-size: 14px;
         }
         #config_list ul{
             list-style-type: none;
