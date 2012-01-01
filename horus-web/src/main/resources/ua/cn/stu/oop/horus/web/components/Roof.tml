@@ -64,6 +64,11 @@
                 <li><a href="">${message:usr.profile}</a>
                     <div style="left:-503px;">
                         <ul>
+                            <t:security.hasRole role="admin">
+                                <li>
+                                    <t:pagelink t:page="Control">${message:control.panel}</t:pagelink>
+                                </li>    
+                            </t:security.hasRole>
                             <li>
                                 <t:pagelink t:page="user/view">${message:usr.account.view}</t:pagelink>
                             </li>
