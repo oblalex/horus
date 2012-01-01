@@ -1,0 +1,6 @@
+<html t:pageTitle="${message:users}"
+      t:type="configLayout"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+
+    user config body
+</html>

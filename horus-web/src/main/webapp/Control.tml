@@ -45,7 +45,7 @@
                 <div
                     class="img_holder"
                     id="btn_config"
-                    onclick="window.location = 'control/Config';">
+                    onclick="window.location = 'control/config/general';">
                 </div>
                 ${message:sys.settings}
             </div>

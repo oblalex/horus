@@ -77,6 +77,14 @@ body, html { padding: 0px; margin : 0px; height: 100%; width: 100%; }
     padding: 0 15px 5px 15px;
 }
 
+.content_hd_arrow{
+    background: url(../img/controls/arrow/arrow_circled.png) no-repeat;
+    height: 15px;
+    width: 15px;
+    display: inline-block;  
+    margin: 0 3px;
+}
+
 content, .content_bd{
     z-index: -1;
     min-height: 200px;       
@@ -296,4 +304,14 @@ DIV.t-error UL LI {
 
 .clearer{
     clear: both;
+}
+
+.a_content_hd{
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+}
+
+.a_content_hd:hover{
+    text-decoration: underline;
 }

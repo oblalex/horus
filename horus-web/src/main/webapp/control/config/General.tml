@@ -1,0 +1,5 @@
+<html t:pageTitle="${message:they.general}"
+      t:type="configLayout"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+    general config body
+</html>

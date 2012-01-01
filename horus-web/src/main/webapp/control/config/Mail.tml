@@ -1,0 +1,6 @@
+<html t:pageTitle="${message:mail}"
+      t:type="configLayout"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+    
+    mail config body
+</html>

@@ -1,0 +1,6 @@
+<html t:pageTitle="${message:tmp.files}"
+      t:type="configLayout"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+    
+    temporary files config body
+</html>
