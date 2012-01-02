@@ -41,8 +41,9 @@ public class GeneralConfig implements Resetable{
     private void createAndSaveNewProjectNameAndDescr(){
         TitleLink titleLink = new TitleLink();
         projectNameTitleLinkId = titleLinkService.saveAndGetId(titleLink);
-        createAndSaveNewProjectNameAndDescrForTitleLinkAndLocale(titleLink, AvailableLocale.en);
-        createAndSaveNewProjectNameAndDescrForTitleLinkAndLocale(titleLink, AvailableLocale.ru);
+        for (AvailableLocale al : AvailableLocale.values()) {
+            createAndSaveNewProjectNameAndDescrForTitleLinkAndLocale(titleLink, al);
+        }
     }
     
     private void createAndSaveNewProjectNameAndDescrForTitleLinkAndLocale(TitleLink link, AvailableLocale locale){
@@ -67,6 +68,7 @@ public class GeneralConfig implements Resetable{
     
     private void setDefaultTitle(LocalizedTitle title, AvailableLocale locale){
         title.setLocale(locale);
+        title.setIsMainForLocale(true);
         title.setTitle(WebMessages.getMessage("default.project.name", locale));
     }
     
@@ -75,17 +77,18 @@ public class GeneralConfig implements Resetable{
         data.setData(WebMessages.getMessage("default.project.descr", title.getLocale()));
     }    
     
+    public LocalizedTitle getProjectTitleByLocale(AvailableLocale locale){
+        return localizedTitleService.
+                getMainTitleForLocaleByTitleLinkId(locale, projectNameTitleLinkId);
+    }
+    
     public String getProjectNameByLocale(AvailableLocale locale){
-        LocalizedTitle localizedTitle = 
-                localizedTitleService.
-                getTitleWithDefaultGrammarByTitleLinkIdAndLocale(projectNameTitleLinkId,locale);
+        LocalizedTitle localizedTitle = getProjectTitleByLocale(locale);
         return localizedTitle.getTitle();
     }
     
     public String getProjectDecriptionByLocale(AvailableLocale locale){
-        LocalizedTitle localizedTitle = 
-                localizedTitleService.
-                getTitleWithDefaultGrammarByTitleLinkIdAndLocale(projectNameTitleLinkId,locale);
+        LocalizedTitle localizedTitle = getProjectTitleByLocale(locale);
         LocalizedData localizedData = localizedDataService.getByLocalizedTitle(localizedTitle);
         return localizedData.getData();
     }

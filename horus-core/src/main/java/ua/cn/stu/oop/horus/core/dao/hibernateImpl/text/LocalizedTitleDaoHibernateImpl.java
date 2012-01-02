@@ -76,4 +76,13 @@ public class LocalizedTitleDaoHibernateImpl
                     id,
                     locale.name());
     }
+
+    @Override
+    public LocalizedTitle getMainTitleForLocaleByTitleLinkId(AvailableLocale locale, Long id) {
+        return (LocalizedTitle)
+                singleResultOrNullByNamedQuery(
+                    "findMainTitleForLocaleByTitleLinkIdSQL",
+                    locale,
+                    id);
+    }
 }

@@ -14,6 +14,7 @@ public class LocalizedTitle
     private TitleLink titleLink;
     private String title;
     private AvailableLocale locale;
+    private boolean isMainForLocale;
     private PartOfSpeech partOfSpeech = PartOfSpeech.getDefault();
     private GrammaticalGender grammaticalGender = GrammaticalGender.getDefault();
     private GrammaticalNumber grammaticalNumber = GrammaticalNumber.getDefault();
@@ -77,5 +78,13 @@ public class LocalizedTitle
     @Override
     public void setTitleLink(TitleLink titleLink) {
         this.titleLink = titleLink;
+    }
+
+    public boolean getIsMainForLocale() {
+        return isMainForLocale;
+    }
+
+    public void setIsMainForLocale(boolean isMainForLocale) {
+        this.isMainForLocale = isMainForLocale;
     }
 }

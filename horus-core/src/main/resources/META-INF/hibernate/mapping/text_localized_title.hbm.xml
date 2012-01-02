@@ -64,6 +64,7 @@
             <property column="title" name="title" not-null="true" type="string"/>
             <many-to-one cascade="delete" class="ua.cn.stu.oop.horus.core.domain.text.TitleLink" column="title_link_id" index="localized_title__title_link" name="titleLink" not-null="true"/>
         </properties>
+        <property column="is_main_for_locale" name="isMainForLocale" not-null="true" type="true_false"/>
     </class>
     <sql-query name="findWithGrammarByTitleLinkIdNativeSQL">
         <return alias="text_localized_title" class="ua.cn.stu.oop.horus.core.domain.text.LocalizedTitle"/>
@@ -88,4 +89,12 @@
                 (title.locale = ?)
         ]]>
     </sql-query>
+    <query name="findMainTitleForLocaleByTitleLinkIdSQL">
+        <![CDATA[
+            SELECT DISTINCT ltitle FROM LocalizedTitle ltitle
+                WHERE ltitle.locale=?
+                    AND ltitle.titleLink.id=?
+                    AND ltitle.isMainForLocale=true
+        ]]>        
+    </query>
 </hibernate-mapping>

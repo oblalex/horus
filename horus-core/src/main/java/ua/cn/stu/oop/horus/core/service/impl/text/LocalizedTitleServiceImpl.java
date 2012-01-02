@@ -52,4 +52,9 @@ public class LocalizedTitleServiceImpl
     public LocalizedTitle getTitleWithDefaultGrammarByTitleLinkIdAndLocale(Long id, AvailableLocale locale) {
         return dao.getTitleWithDefaultGrammarByTitleLinkIdAndLocale(id, locale);
     }
+
+    @Override
+    public LocalizedTitle getMainTitleForLocaleByTitleLinkId(AvailableLocale locale, Long id) {
+        return dao.getMainTitleForLocaleByTitleLinkId(locale, id);
+    }
 }
