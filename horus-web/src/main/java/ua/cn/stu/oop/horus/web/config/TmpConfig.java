@@ -11,7 +11,7 @@ import ua.cn.stu.oop.horus.web.util.file.HorusFileUtils;
  *
  * @author alex
  */
-public class TmpConfig implements Resetable {
+public class TmpConfig implements Resetable, XCloneable<TmpConfig> {
 
     private static Timer timer;
     public String directoryPath;
@@ -68,5 +68,19 @@ public class TmpConfig implements Resetable {
                 },
                 0,
                 cleanupIntervalInSeconds * 1000);
+    }
+
+    @Override
+    public TmpConfig clone() {
+        TmpConfig result = new TmpConfig();
+        cloneToObject(result);
+        return result;
+    }
+
+    @Override
+    public void cloneToObject(TmpConfig o) {
+        o.cleanupIntervalInSeconds = this.cleanupIntervalInSeconds;
+        o.directoryPath = this.directoryPath;
+        o.minimalFileTTLInSeconds = this.minimalFileTTLInSeconds;
     }
 }

@@ -1,9 +1,7 @@
 package ua.cn.stu.oop.horus.web.config;
 
 import java.awt.Dimension;
-import ua.cn.stu.oop.horus.web.util.WebConstants;
-import ua.cn.stu.oop.horus.web.util.Resetable;
-import ua.cn.stu.oop.horus.web.util.XCloneable;
+import ua.cn.stu.oop.horus.web.util.*;
 
 /**
  *
@@ -28,9 +26,7 @@ public class UserConfig implements Resetable, XCloneable<UserConfig> {
     @Override
     public UserConfig clone(){
         UserConfig result = new UserConfig();
-        result.oneEmailPerUser = this.oneEmailPerUser;
-        result.avatarDimensions.height = this.avatarDimensions.height;
-        result.avatarDimensions.width = this.avatarDimensions.width;
+        cloneToObject(result);
         return result;
     }
     

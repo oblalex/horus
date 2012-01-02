@@ -49,6 +49,7 @@
         }        
         #config_list, #config_body{
             display: table-cell;
+            vertical-align: top;
         }
     </style>
 

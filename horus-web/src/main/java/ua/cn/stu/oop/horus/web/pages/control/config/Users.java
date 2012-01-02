@@ -32,10 +32,8 @@ public class Users extends GenericConfigPage {
     }
     
     private void applyAndSaveConfig(){
-        ConfigContainer.CONFIG.USER.oneEmailPerUser=this.config.oneEmailPerUser;
-        ConfigContainer.CONFIG.USER.avatarDimensions.height=this.config.avatarDimensions.height;
-        ConfigContainer.CONFIG.USER.avatarDimensions.width=this.config.avatarDimensions.width;
-        ConfigContainer.save();        
+        this.config.cloneToObject(ConfigContainer.CONFIG.USER);        
+        ConfigContainer.save();
     }
 
     @Override

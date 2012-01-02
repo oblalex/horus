@@ -19,6 +19,7 @@
     
     <t:zone t:id="formZone" id="formZone" t:update="show">
         <t:form t:zone="formZone">            
+            <t:errors/>
             <label class="label_check" for="oneEmailPerUser">
                 <t:checkbox t:id="oneEmailPerUser" t:name="oneEmailPerUser" t:value="config.oneEmailPerUser"/>
                 ${message:oneEmailPerUser}
@@ -28,15 +29,14 @@
                 <div class="avatar_dim_wrapper">
                     <div class="avatar_dim">
                         ${message:width}:<br/>
-                        <t:textfield t:id="av_width" t:name="av_width" t:value="avatarWidth" size="5" t:validate="min=50,max=250"/>
+                        <t:textfield t:id="av_width" t:name="av_width" t:value="avatarWidth" size="5" t:validate="required,min=50,max=250"/>
                     </div>
                     <div class="avatar_dim">
                         ${message:height}:<br/>
-                        <t:textfield t:id="av_height" t:name="av_height" t:value="avatarHeight" size="5" t:validate="min=50,max=250"/>
+                        <t:textfield t:id="av_height" t:name="av_height" t:value="avatarHeight" size="5" t:validate="required,min=50,max=250"/>
                     </div>
                 </div>
-            </div>
-            <t:errors/>
+            </div>            
             <div id="btn_box">
                 <input type="submit" value="${message:save}" class="horus_btn"/>
                 <t:actionlink t:id="cancelChanges" class="a_simple" t:zone="formZone">
