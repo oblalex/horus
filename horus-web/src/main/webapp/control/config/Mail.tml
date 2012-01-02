@@ -2,5 +2,43 @@
       t:type="configLayout"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
     
-    mail config body
+    <style>
+        #btn_box{
+            text-align: center; margin-top: 20px;
+        }
+        input {
+            margin: 2px 5px 7px 0;
+        }
+    </style>
+    
+    <t:zone t:id="formZone" id="formZone" t:update="show">
+        <t:form t:id="theForm" t:zone="formZone">                        
+            <t:errors/>
+            
+            ${message:username}:<br/>
+            <t:textfield t:id="username" t:name="username" t:value="config.username" size="25" t:validate="required"/>
+            
+            <br/>${message:usr.pswd}:<br/>
+            <t:passwordfield t:id="password" t:name="password" t:value="config.password" size="25"/>
+            
+            <br/>${message:host}:<br/>
+            <t:textfield t:id="host" t:name="host" t:value="config.host" size="25" t:validate="required"/>
+            
+            <br/>${message:port}:<br/>
+            <t:textfield t:id="port" t:name="port" t:value="config.port" size="25" t:validate="required"/>
+            
+            <div id="btn_box">
+                <input type="submit" value="${message:save}" class="horus_btn"/>
+                <t:actionlink t:id="cancelChanges" class="a_simple" t:zone="formZone">
+                    <input type="button" class="horus_btn" value="${message:cancel}"/>
+                </t:actionlink>
+                <t:actionlink t:id="setByDefault" class="a_simple" t:zone="formZone">
+                    <input type="button" class="horus_btn" value="${message:default}"/>
+                </t:actionlink>
+            </div>            
+        </t:form>
+        <script type="text/javascript">                     
+            addInputsStyles();
+        </script>
+    </t:zone>
 </html>

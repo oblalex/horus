@@ -6,7 +6,7 @@ import ua.cn.stu.oop.horus.web.util.*;
  *
  * @author alex
  */
-public class MailConfig implements Resetable{
+public class MailConfig implements Resetable, XCloneable<MailConfig> {
 
     public String username;
     public String password;
@@ -19,5 +19,20 @@ public class MailConfig implements Resetable{
         password = WebConstants.getConstant("email.password");
         host     = WebConstants.getConstant("email.host");
         port     = Integer.parseInt(WebConstants.getConstant("email.port"));
+    }
+
+    @Override
+    public MailConfig clone() {
+        MailConfig result = new MailConfig();
+        cloneToObject(result);
+        return result;
+    }
+
+    @Override
+    public void cloneToObject(MailConfig o) {
+        o.host=this.host;
+        o.password=this.password;
+        o.port=this.port;
+        o.username=this.username;
     }
 }
