@@ -13,12 +13,15 @@ public class TmpConfig implements Resetable {
 
     public String directoryPath;
     public int cleanupIntervalInSeconds;
+    public int minimalFileTTLInSeconds;
 
     @Override
     public void reset() {
         directoryPath = WebConstants.getConstant("tmp.dir.path");
         cleanupIntervalInSeconds =
                 Integer.parseInt(WebConstants.getConstant("tmp.cleanup.interval.in.seconds"));
+        minimalFileTTLInSeconds =
+                Integer.parseInt(WebConstants.getConstant("tmp.min.file.ttl.in.seconds"));
         resetOrCleanupDirectory();
     }
 
