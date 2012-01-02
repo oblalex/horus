@@ -31,6 +31,7 @@ import ua.cn.stu.oop.horus.web.pages.store.UploadStore;
 import ua.cn.stu.oop.horus.web.util.EncodingUtil;
 import ua.cn.stu.oop.horus.web.util.WebMessages;
 import ua.cn.stu.oop.horus.web.util.file.FileMimeTypeChecker;
+import ua.cn.stu.oop.horus.web.util.file.HorusFileUtils;
 import ua.cn.stu.oop.horus.web.util.image.ImageInFileUtil;
 import ua.cn.stu.oop.horus.web.util.pages.MessagePageData;
 import ua.cn.stu.oop.horus.web.util.pages.validator.*;
@@ -204,7 +205,7 @@ public class AccountComponent extends GenericPage{
         
         avatarDBfile.setContentType(FileMimeTypeChecker.getFileMimeType(copied));
         avatarDBfile.setTitle("avatar-" + user.getLogin() + "." + FilenameUtils.getExtension(uploadedAvatar.getFileName()));
-        avatarDBfile.setData(FileUtils.readFileToByteArray(copied));
+        avatarDBfile.setData(HorusFileUtils.readFileToByteArray(copied));
         avatarDBfile.setUser(user);
         avatarDBfile.setDirectory(fileDirectoryService.getUserPicturesDirectory(user));
         

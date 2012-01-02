@@ -35,7 +35,8 @@
                         <t:textfield t:id="av_height" t:name="av_height" t:value="avatarHeight" size="5" t:validate="min=50,max=250"/>
                     </div>
                 </div>
-            </div>                        
+            </div>
+            <t:errors/>
             <div id="btn_box">
                 <input type="submit" value="${message:save}" class="horus_btn"/>
                 <t:actionlink t:id="cancelChanges" class="a_simple" t:zone="formZone">
@@ -44,8 +45,7 @@
                 <t:actionlink t:id="setByDefault" class="a_simple" t:zone="formZone">
                     <input type="button" class="horus_btn" value="${message:default}"/>
                 </t:actionlink>
-            </div>
-            <t:errors/>
+            </div>            
         </t:form>
         <script type="text/javascript">            
             restoreIdByName($('input[name=oneEmailPerUser]'));

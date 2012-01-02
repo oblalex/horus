@@ -2,8 +2,8 @@ package ua.cn.stu.oop.horus.web.config;
 
 import java.io.File;
 import java.io.IOException;
-import org.apache.commons.io.FileUtils;
 import ua.cn.stu.oop.horus.web.util.*;
+import ua.cn.stu.oop.horus.web.util.file.HorusFileUtils;
 
 /**
  *
@@ -36,7 +36,7 @@ public class TmpConfig implements Resetable {
 
     private void cleanUp(File f) {
         try {
-            FileUtils.cleanDirectory(f);
+            HorusFileUtils.cleanDirectory(f, minimalFileTTLInSeconds*1000);
         } catch (IOException ex) {
             onDirectoryCleanupIOException();
         }
