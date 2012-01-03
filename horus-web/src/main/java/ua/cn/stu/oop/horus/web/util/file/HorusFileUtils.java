@@ -19,13 +19,13 @@ public class HorusFileUtils extends FileUtils {
      */
     public static void cleanDirectory(File directory, long ttl) throws IOException {
         if (directory.isDirectory() == false) {
-            String message = directory + " is not a directory";
+            String message = directory.getAbsolutePath() + " is not a directory";
             throw new IllegalArgumentException(message);
         }
 
         File[] files = directory.listFiles();
         if (files == null) {  // null if security restricted
-            throw new IOException("Failed to list contents of " + directory);
+            throw new IOException("Failed to list contents of " + directory.getAbsolutePath());
         }
 
         IOException exception = null;
@@ -49,7 +49,7 @@ public class HorusFileUtils extends FileUtils {
             if (isFileLivingMoreThen(file, ttl)) {
                 if (file.delete() == false) {
                     String message =
-                            "Unable to delete file: " + file;
+                            "Unable to delete file: " + file.getAbsolutePath();
                     throw new IOException(message);
                 }
             }
@@ -72,7 +72,7 @@ public class HorusFileUtils extends FileUtils {
         if (isDirectoryEmpty(directory)) {
             if (directory.delete() == false) {
                 String message =
-                        "Unable to delete directory " + directory + ".";
+                        "Unable to delete directory " + directory.getAbsolutePath() + ".";
                 throw new IOException(message);
             }
         }
