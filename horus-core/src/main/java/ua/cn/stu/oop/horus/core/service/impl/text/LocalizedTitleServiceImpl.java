@@ -18,8 +18,6 @@ public class LocalizedTitleServiceImpl
         extends GenericServiceImpl<LocalizedTitle, LocalizedTitleDaoHibernateImpl>
         implements LocalizedTitleService {
 
-    private static final int MIN_STARTING_WITH_STRING_LENGTH = 3;
-    
     @Autowired
     public LocalizedTitleServiceImpl(LocalizedTitleDaoHibernateImpl dao) {
         super(dao);
@@ -61,15 +59,7 @@ public class LocalizedTitleServiceImpl
     }
 
     @Override
-    public Collection<String> getMainTitlesForLocaleStartingWithMinimalLengthString(AvailableLocale locale, String string) {
-        if (string.length()<MIN_STARTING_WITH_STRING_LENGTH){
-            return Collections.EMPTY_LIST;
-        }
+    public Collection<String> getMainTitlesForLocaleStartingWithString(AvailableLocale locale, String string) {
         return dao.getMainTitlesForLocaleStartingWithString(locale, string);
-    }
-
-    @Override
-    public int get_MIN_STARTING_WITH_STRING_LENGTH() {
-        return MIN_STARTING_WITH_STRING_LENGTH;
-    }    
+    }   
 }

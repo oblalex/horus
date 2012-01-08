@@ -24,7 +24,7 @@ public class LocalizedTitleServiceImplTest extends AbstractJUnit4SpringContextTe
 
     @Test
     public void testGetUserPicturesDirectory() {
-        for (String s : localizedTitleService.getMainTitlesForLocaleStartingWithMinimalLengthString(AvailableLocale.en, "My ")) {
+        for (String s : localizedTitleService.getMainTitlesForLocaleStartingWithString(AvailableLocale.en, "My ")) {
             System.out.println(s);
         }
     }    
