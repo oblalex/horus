@@ -1,0 +1,8 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+    <t:zone t:id="formZone" t:update="show">
+        <t:form t:id="theForm" t:name="theForm" t:zone="formZone">
+            <t:errors/>
+            <t:textfield t:id="ltitle" t:value="ltitle" t:minChars="3" t:mixins="jquery/Autocomplete" />
+        </t:form>
+    </t:zone>
+</t:container>
