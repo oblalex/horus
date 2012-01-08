@@ -81,8 +81,16 @@ public class LocalizedTitleDaoHibernateImpl
     public LocalizedTitle getMainTitleForLocaleByTitleLinkId(AvailableLocale locale, Long id) {
         return (LocalizedTitle)
                 singleResultOrNullByNamedQuery(
-                    "findMainTitleForLocaleByTitleLinkIdSQL",
+                    "findMainTitleForLocaleByTitleLinkIdHQL",
                     locale,
                     id);
+    }
+
+    @Override
+    public Collection<String> getMainTitlesForLocaleStartingWithString(AvailableLocale locale, String string) {
+        return multipleResultByNamedQuery(
+                    "findMainTitlesForLocaleStartingWithStringHQL",
+                    locale,
+                    string);
     }
 }

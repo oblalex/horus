@@ -17,4 +17,5 @@ public interface LocalizedTitleDao
     public Collection<LocalizedTitle> getTitlesWithDefaultGrammarByTitleLinkId(Long id);
     public LocalizedTitle getTitleWithDefaultGrammarByTitleLinkIdAndLocale(Long id, AvailableLocale locale);
     public LocalizedTitle getMainTitleForLocaleByTitleLinkId(AvailableLocale locale, Long id);
+    public Collection<String> getMainTitlesForLocaleStartingWithString(AvailableLocale locale, String string);
 }

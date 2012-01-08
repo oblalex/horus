@@ -1,6 +1,6 @@
 package ua.cn.stu.oop.horus.core.service.impl.text;
 
-import java.util.Collection;
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.cn.stu.oop.horus.core.dao.hibernateImpl.text.LocalizedTitleDaoHibernateImpl;
@@ -18,6 +18,8 @@ public class LocalizedTitleServiceImpl
         extends GenericServiceImpl<LocalizedTitle, LocalizedTitleDaoHibernateImpl>
         implements LocalizedTitleService {
 
+    private static final int MIN_STARTING_WITH_STRING_LENGTH = 3;
+    
     @Autowired
     public LocalizedTitleServiceImpl(LocalizedTitleDaoHibernateImpl dao) {
         super(dao);
@@ -57,4 +59,17 @@ public class LocalizedTitleServiceImpl
     public LocalizedTitle getMainTitleForLocaleByTitleLinkId(AvailableLocale locale, Long id) {
         return dao.getMainTitleForLocaleByTitleLinkId(locale, id);
     }
+
+    @Override
+    public Collection<String> getMainTitlesForLocaleStartingWithMinimalLengthString(AvailableLocale locale, String string) {
+        if (string.length()<MIN_STARTING_WITH_STRING_LENGTH){
+            return Collections.EMPTY_LIST;
+        }
+        return dao.getMainTitlesForLocaleStartingWithString(locale, string);
+    }
+
+    @Override
+    public int get_MIN_STARTING_WITH_STRING_LENGTH() {
+        return MIN_STARTING_WITH_STRING_LENGTH;
+    }    
 }

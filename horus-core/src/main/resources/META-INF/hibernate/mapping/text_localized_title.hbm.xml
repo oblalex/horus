@@ -89,12 +89,20 @@
                 (title.locale = ?)
         ]]>
     </sql-query>
-    <query name="findMainTitleForLocaleByTitleLinkIdSQL">
+    <query name="findMainTitleForLocaleByTitleLinkIdHQL">
         <![CDATA[
             SELECT DISTINCT ltitle FROM LocalizedTitle ltitle
                 WHERE ltitle.locale=?
                     AND ltitle.titleLink.id=?
                     AND ltitle.isMainForLocale=true
+        ]]>        
+    </query>
+    <query name="findMainTitlesForLocaleStartingWithStringHQL">
+        <![CDATA[
+            SELECT ltitle.title FROM LocalizedTitle ltitle
+                WHERE (ltitle.locale=?)
+                    AND (ltitle.title LIKE ? || '%')
+                    AND (ltitle.isMainForLocale=true)
         ]]>        
     </query>
 </hibernate-mapping>

@@ -17,4 +17,6 @@ public interface LocalizedTitleService
     public Collection<LocalizedTitle> getTitlesWithDefaultGrammarByTitleLinkId(Long id);
     public LocalizedTitle getTitleWithDefaultGrammarByTitleLinkIdAndLocale(Long id, AvailableLocale locale);
     public LocalizedTitle getMainTitleForLocaleByTitleLinkId(AvailableLocale locale, Long id);
+    public Collection<String> getMainTitlesForLocaleStartingWithMinimalLengthString(AvailableLocale locale, String string);
+    public int get_MIN_STARTING_WITH_STRING_LENGTH();
 }

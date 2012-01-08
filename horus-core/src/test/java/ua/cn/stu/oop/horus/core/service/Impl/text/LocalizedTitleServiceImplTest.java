@@ -21,37 +21,11 @@ public class LocalizedTitleServiceImplTest extends AbstractJUnit4SpringContextTe
     TitleLinkService titleLinkService;
     @Autowired
     LocalizedTitleService localizedTitleService;
-    final String blueTitle = "Синяя";
-    LocalizedTitle localizedTitleBlue;
 
     @Test
-    public void testCheckAndAddLocalizedTitleBlue() {
-//        localizedTitleBlue =
-//                (LocalizedTitle) localizedTitleService.getEntityOrNullByTitle(blueTitle);
-//        if (localizedTitleBlue == null) {
-//            addLocalizedTitleBlue();
-//        }
-    }
-
-    private void addLocalizedTitleBlue() {
-
-        TitleLink titleLink = createNewTitleLink();
-
-        localizedTitleBlue = new LocalizedTitle();
-        localizedTitleBlue.setGrammaticalCase(GrammaticalCase.NOMINATIVE);
-        localizedTitleBlue.setGrammaticalGender(GrammaticalGender.FEMALE);
-        localizedTitleBlue.setGrammaticalNumber(GrammaticalNumber.SINGULAR);
-        localizedTitleBlue.setLocale(AvailableLocale.ru);
-        localizedTitleBlue.setPartOfSpeech(PartOfSpeech.ADJECTIVE);
-        localizedTitleBlue.setTitle(blueTitle);
-        localizedTitleBlue.setTitleLink(titleLink);
-
-        localizedTitleService.saveAndGetId(localizedTitleBlue);
-    }
-
-    private TitleLink createNewTitleLink() {
-        TitleLink titleLink = new TitleLink();
-        titleLinkService.saveAndGetId(titleLink);
-        return titleLink;
-    }
+    public void testGetUserPicturesDirectory() {
+        for (String s : localizedTitleService.getMainTitlesForLocaleStartingWithMinimalLengthString(AvailableLocale.en, "My ")) {
+            System.out.println(s);
+        }
+    }    
 }
