@@ -4,7 +4,6 @@ import org.apache.shiro.realm.*;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.*;
 import org.apache.tapestry5.ioc.annotations.*;
-import org.got5.tapestry5.jquery.JQuerySymbolConstants;
 import org.tynamo.security.SecuritySymbols;
 import org.tynamo.security.services.*;
 import org.tynamo.security.services.impl.SecurityFilterChain;
@@ -37,8 +36,6 @@ public class AppModule {
         configuration.add(SymbolConstants.APPLICATION_CATALOG, "i18n/app.properties");        
         
         configuration.add(SecuritySymbols.LOGIN_URL, "user/login");
-        
-        configuration.add(JQuerySymbolConstants.SUPPRESS_PROTOTYPE, "false");
     }
 
     public static void contributeSecurityConfiguration(Configuration<SecurityFilterChain> configuration,
