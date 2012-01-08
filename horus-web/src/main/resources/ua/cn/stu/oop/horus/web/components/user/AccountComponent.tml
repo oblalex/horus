@@ -254,8 +254,8 @@
         </t:form>
         <script type="text/javascript">
             addInputsStyles();
-            $("select[name=lang]").sb({ useTie: true});
-            $("select[name=timeZone]").sb({ useTie: true});           
+            $("select[name=lang]").sb();
+            $("select[name=timeZone]").sb();
                     
             $('div[name=avaZone]').attr('id','avaZone');
             $('a[name=avatarCancel]').attr('id','avatarCancel');

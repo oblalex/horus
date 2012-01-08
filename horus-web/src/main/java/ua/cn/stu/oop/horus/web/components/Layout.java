@@ -11,7 +11,6 @@ import ua.cn.stu.oop.horus.web.config.ConfigContainer;
  */
 @Import(library = {
     "context:js/digitalspaghetti.password.js",
-    "context:js/jquery.tie.min.js",
     "context:js/jquery.sb.min.js",
     "context:js/radioCheckbox.js",
     "context:js/text-input.js",
