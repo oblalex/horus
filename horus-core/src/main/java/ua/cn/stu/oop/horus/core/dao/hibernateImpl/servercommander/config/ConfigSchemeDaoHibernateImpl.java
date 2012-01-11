@@ -32,7 +32,7 @@ public class ConfigSchemeDaoHibernateImpl
     public ConfigScheme getEntityOrNullByTitle(String title) {
         Class cls = getEntityClass();
         String query = TitleCarrierQueries.
-                getTitleCarriersByTitle(cls);
-        return (ConfigScheme) singleResultOrNullByQuery(query, title);
+                getTitleCarriersByTitle(cls, title);
+        return (ConfigScheme) singleResultOrNullByQuery(query);
     }
 }

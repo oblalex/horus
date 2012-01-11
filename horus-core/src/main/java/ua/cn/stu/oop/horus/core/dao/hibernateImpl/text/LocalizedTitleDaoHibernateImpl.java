@@ -49,8 +49,8 @@ public class LocalizedTitleDaoHibernateImpl
     public LocalizedTitle getEntityOrNullByTitle(String title) {
         Class cls = getEntityClass();
         String query = TitleCarrierQueries.
-                getTitleCarriersByTitle(cls);
-        return (LocalizedTitle) singleResultOrNullByQuery(query, title);
+                getTitleCarriersByTitle(cls, title);
+        return (LocalizedTitle) singleResultOrNullByQuery(query);
     }
 
     @Override

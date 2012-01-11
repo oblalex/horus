@@ -42,8 +42,8 @@ public class AirGroupDaoHibernateImpl
     public AirGroup getEntityOrNullByTitle(String title) {
         Class cls = getEntityClass();
         String query = TitleCarrierQueries.
-                getTitleCarriersByTitle(cls);
-        return (AirGroup) singleResultOrNullByQuery(query, title);
+                getTitleCarriersByTitle(cls, title);
+        return (AirGroup) singleResultOrNullByQuery(query);
     }
 
     @Override

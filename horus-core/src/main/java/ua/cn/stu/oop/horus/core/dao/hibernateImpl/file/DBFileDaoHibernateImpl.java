@@ -33,8 +33,8 @@ public class DBFileDaoHibernateImpl
     public DBFile getEntityOrNullByTitle(String title) {
         Class cls = getEntityClass();
         String query = TitleCarrierQueries.
-                getTitleCarriersByTitle(cls);
-        return (DBFile) singleResultOrNullByQuery(query,title);
+                getTitleCarriersByTitle(cls,title);
+        return (DBFile) singleResultOrNullByQuery(query);
     }
 
     @Override

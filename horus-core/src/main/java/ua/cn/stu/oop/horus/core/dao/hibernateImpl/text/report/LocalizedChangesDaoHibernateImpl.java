@@ -32,8 +32,8 @@ public class LocalizedChangesDaoHibernateImpl
     public LocalizedChanges getEntityOrNullByTitle(String title) {
         Class cls = getEntityClass();
         String query = TitleCarrierQueries.
-                getTitleCarriersByTitle(cls);
+                getTitleCarriersByTitle(cls, title);
         return (LocalizedChanges)
-                singleResultOrNullByQuery(query, title);
+                singleResultOrNullByQuery(query);
     }
 }
