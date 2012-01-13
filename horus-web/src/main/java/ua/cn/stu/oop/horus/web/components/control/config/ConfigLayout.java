@@ -1,4 +1,4 @@
-package ua.cn.stu.oop.horus.web.components;
+package ua.cn.stu.oop.horus.web.components.control.config;
 
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.annotations.Parameter;

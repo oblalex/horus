@@ -11,6 +11,9 @@
     </div>
 
     <style>
+        #btn_box{
+            text-align: center; margin-top: 20px;
+        }    
         #config_wrapper{
             margin-bottom: 10px;
             display: table;            

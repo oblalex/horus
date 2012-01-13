@@ -2,10 +2,7 @@
       t:type="configLayout"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
     
-    <style>
-        #btn_box{
-            text-align: center; margin-top: 20px;
-        }        
+    <style>            
         div .avatar_dim_wrapper{
             margin-left: 15px;
         }

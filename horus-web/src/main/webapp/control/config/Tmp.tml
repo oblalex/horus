@@ -3,9 +3,6 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
     
     <style>
-        #btn_box{
-            text-align: center; margin-top: 20px;
-        }
         input {
             margin: 2px 5px 7px 0;
         }
