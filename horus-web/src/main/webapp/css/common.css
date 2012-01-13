@@ -265,6 +265,10 @@ DIV.t-error UL LI {
     padding-right: 5px;
 }
 
+.ui-autocomplete{
+    font-size: 14px;
+}
+
 .ui-dialog {
     -moz-box-shadow: 3px 3px 7px #666;
     -webkit-box-shadow: 3px 3px 7px #666;
