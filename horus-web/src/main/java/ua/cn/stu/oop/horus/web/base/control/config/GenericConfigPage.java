@@ -20,8 +20,12 @@ public abstract class GenericConfigPage {
     @Component(id="formZone")
     private Zone formZone; 
     
-    protected Object getZoneOrNull(){
-        return (request.isXHR())?formZone.getBody():null;
+    protected Object getFormZoneOrNull(){
+        return (request.isXHR()) ? getFormZone().getBody() : null;
+    }
+
+    public Zone getFormZone() {
+        return formZone;
     }
     
     public abstract Object onSuccess();

@@ -1,5 +1,68 @@
 <html t:pageTitle="${message:they.general}"
       t:type="configLayout"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
-    general config body
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">    
+
+    <style>
+        #btn_box{
+            text-align: center; margin-top: 20px;
+        }
+        .field_value{
+            padding-left: 30px;
+            margin-bottom: 7px;
+        }
+        .crud_box{
+            float: left;
+            width: 30px;
+            visibility: hidden;
+        }  
+        .clProjectTitle{
+            float: left;
+        }
+    </style>
+
+    <t:MainTitleSelector
+        t:id="titleSelector"
+        id="titleSelector"/>
+
+    <t:zone t:id="formZone" id="formZone" t:update="show">
+        <t:form t:id="theForm" t:zone="formZone">                        
+            <t:errors/>
+
+            <div id="projectTitleWrapper">
+                <div class="clProjectTitle">
+                    <b>${message:project.title}:</b>
+                </div>
+                <div class="crud_box" id="cbProjectTitle">
+                    <t:jquery.dialogajaxlink
+                        t:dialog="titleSelector"
+                        t:zone="titleSelectorZone">
+                        <div class="crud_edit16" title="${message:edit.do}"></div>
+                    </t:jquery.dialogajaxlink>
+                </div>
+                <div class="clearer"></div>
+            </div>
+
+            <div class="field_value">${projectTitle}</div>
+            <b>${message:project.descr}:</b>
+            <div class="field_value">${projectDescription}</div>
+
+            <div id="btn_box">
+                <input type="submit" value="${message:save}" class="horus_btn"/>
+                <t:actionlink t:id="cancelChanges" class="a_simple" t:zone="formZone">
+                    <input type="button" class="horus_btn" value="${message:cancel}"/>
+                </t:actionlink>
+                <t:actionlink t:id="setByDefault" class="a_simple" t:zone="formZone">
+                    <input type="button" class="horus_btn" value="${message:default}"/>
+                </t:actionlink>
+            </div>            
+        </t:form>
+    </t:zone> 
+    <script type="text/javascript">
+        $("#projectTitleWrapper").mouseenter(function() {
+            $('#cbProjectTitle').css('visibility','visible');
+        });
+        $("#projectTitleWrapper").mouseleave(function() {
+            $('#cbProjectTitle').css('visibility','hidden');
+        });        
+    </script>
 </html>

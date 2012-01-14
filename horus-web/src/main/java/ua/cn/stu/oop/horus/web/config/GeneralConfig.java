@@ -10,7 +10,7 @@ import ua.cn.stu.oop.horus.web.util.*;
  *
  * @author alex
  */
-public class GeneralConfig implements Resetable{
+public class GeneralConfig  implements Resetable, XCloneable<GeneralConfig> {
             
     private static transient TitleLinkService titleLinkService;    
     private static transient LocalizedTitleService localizedTitleService;    
@@ -91,5 +91,17 @@ public class GeneralConfig implements Resetable{
         LocalizedTitle localizedTitle = getProjectTitleByLocale(locale);
         LocalizedData localizedData = localizedDataService.getByLocalizedTitle(localizedTitle);
         return localizedData.getData();
+    }
+
+    @Override
+    public GeneralConfig clone() {
+        GeneralConfig result = new GeneralConfig();
+        cloneToObject(result);
+        return result;
+    }
+
+    @Override
+    public void cloneToObject(GeneralConfig o) {
+        o.projectNameTitleLinkId = this.projectNameTitleLinkId;
     }
 }

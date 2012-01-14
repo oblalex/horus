@@ -56,13 +56,13 @@ public class Tmp  extends GenericConfigPage {
     }
     
     public Object onFailure() {
-        return getZoneOrNull();
+        return getFormZoneOrNull();
     }
     
     @Override
     public Object onSuccess() {
         applyAndSaveConfig();
-        return getZoneOrNull();
+        return getFormZoneOrNull();
     }
     
     private void applyAndSaveConfig(){
@@ -73,12 +73,12 @@ public class Tmp  extends GenericConfigPage {
     @Override
     public Object onActionFromCancelChanges() {
         cloneConfig();
-        return getZoneOrNull();
+        return getFormZoneOrNull();
     }
 
     @Override
     public Object onActionFromSetByDefault() {
         config.reset();
-        return getZoneOrNull();
+        return getFormZoneOrNull();
     }    
 }

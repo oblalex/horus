@@ -1,6 +1,11 @@
 package ua.cn.stu.oop.horus.web.components.control.data;
 
 import java.util.*;
+import ua.cn.stu.oop.horus.core.domain.text.LocalizedTitle;
+import ua.cn.stu.oop.horus.core.language.AvailableLocale;
+import ua.cn.stu.oop.horus.core.service.text.LocalizedTitleService;
+import ua.cn.stu.oop.horus.web.util.LocaleUtil;
+
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ClientElement;
 import org.apache.tapestry5.ComponentResources;
@@ -11,10 +16,6 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.PersistentLocale;
 import org.apache.tapestry5.services.Request;
 import org.springframework.beans.factory.annotation.Autowired;
-import ua.cn.stu.oop.horus.core.domain.text.LocalizedTitle;
-import ua.cn.stu.oop.horus.core.language.AvailableLocale;
-import ua.cn.stu.oop.horus.core.service.text.LocalizedTitleService;
-import ua.cn.stu.oop.horus.web.util.LocaleUtil;
 
 /**
  *
@@ -55,8 +56,6 @@ public class MainTitleSelector implements ClientElement{
     @Component
     private Zone zone;
     
-    private Zone parentZone = null;
-    
     public List<String> onProvideCompletionsFromLtitle(String string) {    
         return new ArrayList<String>(
                 localizedTitleService.getMainTitlesForLocaleStartingWithString(
@@ -80,14 +79,20 @@ public class MainTitleSelector implements ClientElement{
     }
 
     public Object onSuccess(){
-        return getParentZoneOrPage();
+        theForm.clearErrors();
+        return resources.getPage();
+    }
+    
+    public Object onActionFromUnselect() {
+        unselectTitle();
+        return resources.getPage();
     }
     
     public Object onFailure(){
         return getZoneOrNull();
     }
     
-    void onActionFromUnselect() {
+    public void unselectTitle(){
         theForm.clearErrors();
         ltitle = null;
         selectedTitle = null;
@@ -115,14 +120,6 @@ public class MainTitleSelector implements ClientElement{
     
     public String getZoneId() {
         return getClientId()+"Zone";
-    }
-
-    public void setParentZone(Zone parentZone) {
-        this.parentZone = parentZone;
-    }
-    
-    private Object getParentZoneOrPage(){
-        return (parentZone!=null)?parentZone:resources.getPage();
     }
 
     public String getLtitle() {
