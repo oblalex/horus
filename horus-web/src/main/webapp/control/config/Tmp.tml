@@ -1,5 +1,5 @@
 <html t:pageTitle="${message:tmp.files}"
-      t:type="configLayout"
+      t:type="control/config/ConfigLayout"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
     
     <style>
