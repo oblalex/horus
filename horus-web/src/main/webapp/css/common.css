@@ -38,12 +38,6 @@ body, html { padding: 0px; margin : 0px; height: 100%; width: 100%; }
     top: 0;
     left: 0;
     z-index:99999;
-    /*
-    background: -moz-linear-gradient(
-        top,        
-        #5a755a,
-        #37503a) ;
-    */
 }
 
 .header{
