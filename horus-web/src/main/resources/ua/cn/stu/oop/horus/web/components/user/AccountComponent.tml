@@ -150,7 +150,6 @@
             </script>
         </t:zone>
     </div>
-
     <t:zone t:id="formZone" t:update="show">
         <t:form t:id="theForm" t:name="theForm" t:zone="formZone">
             <t:errors/>      
