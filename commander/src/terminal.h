@@ -28,9 +28,9 @@
 struct winsize TERM_SIZE;
 
 void term_init();
-void term_reset();
 void updateWindowSizeInfo();
 void term_style(int, int, int);
+void term_style_reset();
 
 void updateWindowSizeInfo()
 {
@@ -48,15 +48,14 @@ void term_init()
 	updateWindowSizeInfo();
 }
 
-void term_reset()
-{
-	term_style(TA_NONE, TC_NONE, TC_NONE);
-}
-
 void term_style(int attr, int fg, int bg)
 {	char command[13];
 	sprintf(command, "%c[%d;%d;%dm", 0x1B, attr, fg + 30, bg + 40);
 	printf("%s", command);
 }
 
+void term_style_reset()
+{
+	term_style(TA_NONE, TC_NONE, TC_NONE);
+}
 #endif // TERMINAL_H
