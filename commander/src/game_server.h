@@ -15,7 +15,7 @@ void game_server_check_path();
 void game_server_check_path()
 {
 	PRINT_STATUS_NEW("Checking IL-2 server's executable file path");
-	
+
 	if( access( GAME_SERVER_EXE_PATH, X_OK ) != -1 ) {
 		PRINT_STATUS_DONE();
 	} else {

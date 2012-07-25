@@ -23,15 +23,13 @@ void init()
 
 void setup_termination_hooks()
 {
-	if (signal (SIGINT, termination_handler) == SIG_IGN)
-		signal (SIGINT, SIG_IGN);
-	if (signal (SIGHUP, termination_handler) == SIG_IGN)
-		signal (SIGHUP, SIG_IGN);
-	if (signal (SIGTERM, termination_handler) == SIG_IGN)
-		signal (SIGTERM, SIG_IGN);
+	signal(SIGINT,	termination_handler);
+	signal(SIGABRT,	termination_handler);
+	signal(SIGTERM,	termination_handler);
 }
 
 void termination_handler(int signum)
 {
+	printf("\n");
 	term_style_reset();
 }
