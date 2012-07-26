@@ -48,7 +48,7 @@ void game_server_config_logging(INI_CONTAINER* cfg);
 void game_server_config_logging_chat(INI_CONTAINER* cfg);
 void game_server_config_logging_console(INI_CONTAINER* cfg);
 void game_server_config_logging_file(INI_CONTAINER* cfg);
-void game_server_config_security(INI_CONTAINER* cfg);
+void game_server_config_version_checking(INI_CONTAINER* cfg);
 
 void game_server_scripts_generate_gc();
 void game_server_scripts_generate_main();
@@ -112,7 +112,7 @@ void game_server_check_settings()
 void game_server_config(INI_CONTAINER* cfg)
 {
 	game_server_config_logging(cfg);
-	game_server_config_security(cfg);
+	game_server_config_version_checking(cfg);
 }
 
 void game_server_config_logging(INI_CONTAINER* cfg)
@@ -152,9 +152,9 @@ void game_server_config_logging_file(INI_CONTAINER* cfg)
 	ini_value_set(cfg, GAME_SERVER_CFG_GAME, "eventlogHouse", "1");
 }
 
-void game_server_config_security(INI_CONTAINER* cfg)
+void game_server_config_version_checking(INI_CONTAINER* cfg)
 {
-	PRINT_STATUS_MSG("Setting client version verification");
+	PRINT_STATUS_MSG("Setting client version checking");
 	ini_value_set(cfg, GAME_SERVER_CFG_NET, "checkRuntime", "1");
 }
 
