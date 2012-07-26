@@ -25,6 +25,9 @@ const char *const GAME_SERVER_CMDF_MAIN_PATH = GAME_SERVER_PATH GAME_SERVER_CMDF
 #define GAME_SERVER_CMDF_GC "gc.cmd"
 const char *const GAME_SERVER_CMDF_GC_PATH = GAME_SERVER_PATH GAME_SERVER_CMDF_GC;
 
+const char *const GAME_SERVER_CONSOLE_PORT = "20001";
+const char *const GAME_SERVER_CONSOLE_CLIENT_ADDR = "127.0.0.1";
+
 #define GAME_SERVER_CMD_GC "GC"
 #define GAME_SERVER_CMD_TIMEOUT(DELAY, CMD) "timeout " DELAY " " CMD
 #define GAME_SERVER_CMD_RUN_FILE(FNAME) "f " FNAME
@@ -127,8 +130,14 @@ void game_server_config_logging_chat(INI_CONTAINER* cfg)
 
 void game_server_config_logging_console(INI_CONTAINER* cfg)
 {
+	PRINT_STATUS_MSG("Setting console port");
+	ini_value_set(cfg, GAME_SERVER_CFG_CONSOLE, "IP", GAME_SERVER_CONSOLE_PORT);
+
+	PRINT_STATUS_MSG("Setting console allowed client address");
+	ini_value_set(cfg, GAME_SERVER_CFG_CONSOLE, "IPS", GAME_SERVER_CONSOLE_CLIENT_ADDR);
+
 	PRINT_STATUS_MSG("Disabling console output saving to file");
-	ini_value_set(cfg,GAME_SERVER_CFG_CONSOLE, "LOG", "0");
+	ini_value_set(cfg, GAME_SERVER_CFG_CONSOLE, "LOG", "0");
 }
 
 void game_server_config_logging_file(INI_CONTAINER* cfg)
@@ -145,7 +154,7 @@ void game_server_config_logging_file(INI_CONTAINER* cfg)
 
 void game_server_config_security(INI_CONTAINER* cfg)
 {
-	PRINT_STATUS_MSG("Setting strict client version verification");
+	PRINT_STATUS_MSG("Setting client version verification");
 	ini_value_set(cfg, GAME_SERVER_CFG_NET, "checkRuntime", "1");
 }
 
