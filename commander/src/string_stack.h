@@ -15,17 +15,8 @@ typedef struct stack
 	stack_node* top;
 } STRING_STACK;
 
-void clear(STRING_STACK*);
 void push(STRING_STACK*, char*);
 char* pop(STRING_STACK*);
-
-void clear(STRING_STACK* this)
-{
-	while(this->count>0)
-	{
-		pop(this);
-	}
-}
 
 void push(STRING_STACK* this, char* str)
 {
@@ -42,7 +33,7 @@ char* pop(STRING_STACK* this)
 {	
 	if(this->count==0)
 	{
-		return -1;
+		return NULL;
 	}
 	
 	stack_node *new_top;

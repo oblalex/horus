@@ -16,9 +16,8 @@ int main (int argc, char const *argv[])
 void init()
 {
 	term_init();
-	setup_termination_hooks();
-	
-	game_server_check_path();
+	setup_termination_hooks();	
+	game_server_init();
 }
 
 void setup_termination_hooks()
@@ -32,4 +31,5 @@ void termination_handler(int signum)
 {
 	printf("\n");
 	term_style_reset();
+	PRINT_STATUSES_RESET();
 }

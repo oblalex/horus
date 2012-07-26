@@ -1,6 +1,7 @@
 #ifndef PRINT_STATUS_H
 #define PRINT_STATUS_H
 
+#include "utils.h"
 #include "globals.h"
 #include "terminal.h"
 #include "string_stack.h"
@@ -12,7 +13,7 @@
 #define STATUS_MSG_FAIL "FAIL"
 
 STRING_STACK statuses;
-char STATUS_LAST_OPER_WAS_PUSH = FALSE;
+BOOL STATUS_LAST_OPER_WAS_PUSH = FALSE;
 
 #define STATUS_INDENT(SUB) 2+(statuses.count-SUB)*3
 #define STATUS_HEAD_INDENT STATUS_INDENT(0)
@@ -42,8 +43,10 @@ void print_status_raw(char* str, int color, char* msg)
 
 void PRINT_STATUS_NEW(char* str)
 {
-	print_status_raw(str, TC_YELLOW, STATUS_MSG_BUSY);
-	push(&statuses, str);
+	char* str_new = strCopy(str);
+	print_status_raw(str_new, TC_YELLOW, STATUS_MSG_BUSY);
+	
+	push(&statuses, str_new);
 	STATUS_LAST_OPER_WAS_PUSH = TRUE;
 }
 	
@@ -60,6 +63,7 @@ void print_status_finished(int color, char* msg)
 	}	
 	printf("\n");
 	
+	free(str);
 	STATUS_LAST_OPER_WAS_PUSH = FALSE;
 }
 
@@ -85,7 +89,10 @@ void print_status_msg(int color, char* str)
 
 void PRINT_STATUSES_RESET()
 {
-	clear(&statuses);
+	while(statuses.count>0)
+	{
+		free(pop(&statuses));
+	}
 	STATUS_LAST_OPER_WAS_PUSH = FALSE;
 }
 

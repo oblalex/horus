@@ -1,8 +1,10 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-#define TRUE  1
-#define FALSE 0
+typedef enum
+{
+  FALSE, TRUE
+} BOOL;
 
 #define PATH_PARENT	".."
 #define PATH_SEP 	"/"
