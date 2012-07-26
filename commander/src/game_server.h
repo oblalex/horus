@@ -6,20 +6,22 @@
 #include "print_status.h"
 #include "ini_helper.h"
 
-#define GAME_SERVER_PATH 	PATH_PARENT PATH_SEP
+#define GAME_SERVER_PATH PATH_PARENT PATH_SEP
 
-#define GAME_SERVER_EXE 	"il2server.exe"
-#define GAME_SERVER_EXE_PATH 	GAME_SERVER_PATH GAME_SERVER_EXE
+#define GAME_SERVER_EXE "il2server.exe"
+const char *const GAME_SERVER_EXE_PATH = GAME_SERVER_PATH GAME_SERVER_EXE;
 
-#define GAME_SERVER_CFG 	"confs.ini"
-#define GAME_SERVER_CFG_PATH 	GAME_SERVER_PATH GAME_SERVER_CFG
+#define GAME_SERVER_CFG "confs.ini"
+const char *const GAME_SERVER_CFG_PATH = GAME_SERVER_PATH GAME_SERVER_CFG;
 
-#define GAME_SERVER_CFG_CHAT	"chat"
-#define GAME_SERVER_CFG_GAME	"game"
-#define GAME_SERVER_CFG_CONSOLE	"Console"
-#define GAME_SERVER_CFG_NET	"NET"
+#define GAME_SERVER_LOG "eventlog.lst"
+const char *const GAME_SERVER_LOG_PATH = GAME_SERVER_PATH GAME_SERVER_LOG;
 
-#define GAME_SERVER_LOG		"eventlog.lst"
+// configuration sections names
+const char *const GAME_SERVER_CFG_CHAT	= "chat";
+const char *const GAME_SERVER_CFG_GAME	= "game";
+const char *const GAME_SERVER_CFG_CONSOLE = "Console";
+const char *const GAME_SERVER_CFG_NET	= "NET";
 
 void game_server_init();
 void game_server_check_path();
@@ -41,7 +43,7 @@ void game_server_check_path()
 {
 	PRINT_STATUS_NEW("Checking server's executable file path");
 
-	if( access( GAME_SERVER_EXE_PATH, X_OK ) != -1 ) {
+	if (access(GAME_SERVER_EXE_PATH, X_OK) != -1) {
 		PRINT_STATUS_DONE();
 	} else {
 		PRINT_STATUS_MSG_ERR("Please, make sure in following:");
@@ -58,9 +60,9 @@ void game_server_check_settings()
 	PRINT_STATUS_NEW("Checking server's configuration");
 	
 	PRINT_STATUS_MSG("Loading configuration");
-	INI_CONTAINER* cfg = ini_start(GAME_SERVER_CFG_PATH);
+	INI_CONTAINER* cfg = ini_start((char*)GAME_SERVER_CFG_PATH);
 	
-	char* err_msg = NULL;
+	const char* err_msg = NULL;
 	
 	while(1)
 	{
@@ -116,7 +118,7 @@ void game_server_config_logging_chat(INI_CONTAINER* cfg)
 void game_server_config_logging_console(INI_CONTAINER* cfg)
 {
 	PRINT_STATUS_MSG("Disabling console output saving to file");
-	ini_value_set(cfg, GAME_SERVER_CFG_CONSOLE, "LOG", "0");
+	ini_value_set(cfg,GAME_SERVER_CFG_CONSOLE, "LOG", "0");
 }
 
 void game_server_config_logging_file(INI_CONTAINER* cfg)

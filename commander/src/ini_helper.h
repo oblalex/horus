@@ -36,7 +36,7 @@ typedef struct ini_container
 	INI_SECTION* last;
 	
 	unsigned int sections_count;
-	char* error_msg;
+	const char* error_msg;
 } INI_CONTAINER;
 
 INI_CONTAINER* ini_start(char* filepath);
@@ -64,13 +64,13 @@ void ini_append(INI_CONTAINER* this, const char *name, const char *key, const ch
 void trim_new_line(char *buffer);
 BOOL ini_has_err(INI_CONTAINER* this);
 
-#define INI_PARSING_ERR "ini parsing error"
-#define INI_OPENING_ERR "ini opening error"
+const char *const INI_PARSING_ERR = "ini parsing error";
+const char *const INI_OPENING_ERR = "ini opening error";
 
 #define INI_MALLOC_ERR "Can not allocate memory for ini-"
-#define INI_MALLOC_ERR_RECORD		INI_MALLOC_ERR "record"
-#define INI_MALLOC_ERR_SECTION		INI_MALLOC_ERR "section"
-#define INI_MALLOC_ERR_CONTAINER	INI_MALLOC_ERR "container"
+const char *const INI_MALLOC_ERR_RECORD = INI_MALLOC_ERR "record";
+const char *const INI_MALLOC_ERR_SECTION = INI_MALLOC_ERR "section";
+const char *const INI_MALLOC_ERR_CONTAINER = INI_MALLOC_ERR "container";
 
 INI_CONTAINER* ini_start(char* filepath)
 {
@@ -125,7 +125,7 @@ void ini_load(INI_CONTAINER* this)
 					if (pdest == NULL)
 					{
 						fclose(in_stream);
-						this->error_msg = INI_PARSING_ERR;
+						this->error_msg = (char*)INI_PARSING_ERR;
 						return;
 					}
 					index = pdest - buffer;
@@ -149,7 +149,7 @@ void ini_load(INI_CONTAINER* this)
 					if (pdest == NULL) 
 					{
 						fclose(in_stream);
-						this->error_msg = INI_PARSING_ERR;
+						this->error_msg = (char*)INI_PARSING_ERR;
 						return;
 					}
 					index = pdest - buffer;
@@ -364,7 +364,7 @@ void ini_save_as(INI_CONTAINER* this, char* filepath)
 	
 	this->error_msg = NULL;
 	
-	if( (stream = fopen(filepath, "w" )) == NULL )
+	if ((stream = fopen(filepath, "w")) == NULL)
 	{
 		this->error_msg = INI_OPENING_ERR;
 		return;
@@ -372,16 +372,16 @@ void ini_save_as(INI_CONTAINER* this, char* filepath)
 
 	while (section != NULL)
 	{
-		if(strlen(section->comments) != 0)
+		if (strlen(section->comments) != 0)
 		{
 			fprintf(stream,"%s\n", section->comments);		
 		}
 		fprintf(stream,"[%s]\n", section->name);
 
 		record = section->record_first;
-		while(record != NULL)
+		while (record != NULL)
 		{
-			if(strlen(record->comments) != 0)
+			if (strlen(record->comments) != 0)
 			{
 				fprintf(stream,"%s\n", record->comments);				
 			}
@@ -406,7 +406,7 @@ void ini_clear(INI_CONTAINER* this)
 	
 	INI_SECTION* section;
 	section = this->first;
-	while(section != NULL)
+	while (section != NULL)
 	{
 		this->first = section->next;
 		this->sections_count--;
@@ -425,7 +425,7 @@ void ini_section_records_clear(INI_SECTION* section)
 		return;
 
 	record = section->record_first;
-	while(record != NULL)
+	while (record != NULL)
 	{
 		section->record_first = record->next;
 		section->records_count--;
@@ -438,28 +438,28 @@ void ini_record_remove(INI_CONTAINER* this, const char* section_name, const char
 {	
 	INI_SECTION* section = ini_section_get(this, section_name);
 	
-	if(section == NULL)
+	if (section == NULL)
 		return;
 
 	INI_RECORD *r1,*r2;
 	
 	r1 = section->record_first;
 	
-	if(r1 == NULL)
+	if (r1 == NULL)
 		return;
 	
-	if(strcmp(key, r1->key) == 0)
+	if (strcmp(key, r1->key) == 0)
 	{
 		section->record_first = r1->next;
 		section->records_count--;
 		free(r1);
 	}
 	
-	while(r1 != NULL)
+	while (r1 != NULL)
 	{
-		if(r1->next != NULL)
+		if (r1->next != NULL)
 		{
-			if(strcmp(key, r1->next->key) == 0)
+			if (strcmp(key, r1->next->key) == 0)
 			{	
 				r2 = r1->next;				
 				r1->next = r1->next->next;
@@ -475,7 +475,7 @@ void ini_record_remove(INI_CONTAINER* this, const char* section_name, const char
 char* ini_value_get(INI_CONTAINER* this, const char* section_name, const char* key)
 {
 	INI_RECORD* result = ini_record_get(ini_section_get(this, section_name), key);
-	if(result != NULL)
+	if (result != NULL)
 		return result->value;
 	else
 		return NULL;
@@ -484,7 +484,7 @@ char* ini_value_get(INI_CONTAINER* this, const char* section_name, const char* k
 char* ini_value_with_comment_get(INI_CONTAINER* this, const char* section_name, const char* key, char* comment)
 {
 	INI_RECORD* result = ini_record_get(ini_section_get(this, section_name), key);
-	if(result != NULL)
+	if (result != NULL)
 	{
 		strcpy(comment, result->comments);
 		return result->value;

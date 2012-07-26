@@ -19,7 +19,7 @@ BOOL STATUS_LAST_OPER_WAS_PUSH = FALSE;
 #define STATUS_HEAD_INDENT STATUS_INDENT(0)
 #define STATUS_MSG_INDENT STATUS_INDENT(1)+1
 
-void print_status_tail(int color, char* msg)
+void print_status_tail(int color, const char* msg)
 {
 	term_style(TA_BRIGHT, color, TC_NONE);
 	printf(msg);
@@ -28,7 +28,7 @@ void print_status_tail(int color, char* msg)
 	term_style_reset();
 }
 	
-void print_status_raw(char* str, int color, char* msg)
+void print_status_raw(char* str, int color, const char* msg)
 {
 	term_style(TA_BRIGHT, TC_BLUE, TC_NONE);
 	printf("%*s ", STATUS_HEAD_INDENT, STATUS_MSG_HEAD);
@@ -50,7 +50,7 @@ void PRINT_STATUS_NEW(char* str)
 	STATUS_LAST_OPER_WAS_PUSH = TRUE;
 }
 	
-void print_status_finished(int color, char* msg)
+void print_status_finished(int color, const char* msg)
 {
 	char* str = pop(&statuses);
 	
@@ -70,7 +70,7 @@ void print_status_finished(int color, char* msg)
 #define PRINT_STATUS_DONE() print_status_finished(TC_GREEN, STATUS_MSG_DONE);
 #define PRINT_STATUS_FAIL() print_status_finished(TC_RED,   STATUS_MSG_FAIL);
 
-void print_status_msg(int color, char* str)
+void print_status_msg(int color, const char* str)
 {
 	if (STATUS_LAST_OPER_WAS_PUSH == TRUE)
 	{
