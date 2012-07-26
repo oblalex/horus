@@ -155,7 +155,7 @@ void game_server_config_logging_file(INI_CONTAINER* cfg)
 void game_server_config_security(INI_CONTAINER* cfg)
 {
 	PRINT_STATUS_MSG("Setting strict client version verification");
-	ini_value_set(cfg, GAME_SERVER_CFG_NET, "checkRuntime", "2");
+	ini_value_set(cfg, GAME_SERVER_CFG_NET, "checkRuntime", "1");
 }
 
 void game_server_scripts_generate()
