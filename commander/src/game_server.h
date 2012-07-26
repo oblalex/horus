@@ -89,8 +89,7 @@ void game_server_check_settings()
 		}		
 		if ((err_msg = cfg->error_msg) != NULL) break;
 		
-		game_server_config(cfg);		
-		if ((err_msg = cfg->error_msg) != NULL) break;
+		game_server_config(cfg);
 		
 		PRINT_STATUS_MSG("Saving configuration");
 		ini_end(cfg);		
@@ -109,20 +108,14 @@ void game_server_check_settings()
 
 void game_server_config(INI_CONTAINER* cfg)
 {
-	game_server_config_logging(cfg);	
-	if (ini_has_err(cfg) == TRUE) return;
-	
+	game_server_config_logging(cfg);
 	game_server_config_security(cfg);
 }
 
 void game_server_config_logging(INI_CONTAINER* cfg)
 {
 	game_server_config_logging_chat(cfg);
-	if (ini_has_err(cfg) == TRUE) return;
-	
-	game_server_config_logging_console(cfg);
-	if (ini_has_err(cfg) == TRUE) return;
-	
+	game_server_config_logging_console(cfg);	
 	game_server_config_logging_file(cfg);
 }
 
@@ -142,11 +135,9 @@ void game_server_config_logging_file(INI_CONTAINER* cfg)
 {
 	PRINT_STATUS_MSG("Setting logging output file");
 	ini_value_set(cfg, GAME_SERVER_CFG_GAME, "eventlog", GAME_SERVER_LOG);
-	if (ini_has_err(cfg) == TRUE) return;
 	
 	PRINT_STATUS_MSG("Enabling log resetting for every mission");
 	ini_value_set(cfg, GAME_SERVER_CFG_GAME, "eventlogkeep", "0");
-	if (ini_has_err(cfg) == TRUE) return;
 	
 	PRINT_STATUS_MSG("Enabling buildings destruction logging");
 	ini_value_set(cfg, GAME_SERVER_CFG_GAME, "eventlogHouse", "1");
