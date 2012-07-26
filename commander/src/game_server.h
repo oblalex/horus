@@ -25,6 +25,7 @@ void game_server_init();
 void game_server_check_path();
 void game_server_check_settings();
 
+void game_server_config(INI_CONTAINER* cfg);
 void game_server_config_logging(INI_CONTAINER* cfg);
 void game_server_config_logging_chat(INI_CONTAINER* cfg);
 void game_server_config_logging_console(INI_CONTAINER* cfg);
@@ -56,41 +57,53 @@ void game_server_check_settings()
 {
 	PRINT_STATUS_NEW("Checking server's configuration");
 	
-	BOOL failed = FALSE;
+	PRINT_STATUS_MSG("Loading configuration");
+	INI_CONTAINER* cfg = ini_start(GAME_SERVER_CFG_PATH);
 	
-	INI_CONTAINER* cfg;
-	cfg = ini_start(GAME_SERVER_CFG_PATH);
+	char* err_msg = NULL;
 	
-	if (cfg == NULL) {
-		failed = TRUE;
-		PRINT_STATUS_MSG_ERR(INI_MALLOC_ERR_CONTAINER);
-	} else {
-		if ((failed = ini_has_err(cfg)) == TRUE) {
-			PRINT_STATUS_MSG_ERR(cfg->error_msg);
-		}
+	while(1)
+	{
+		if (cfg == NULL) {
+			err_msg = INI_MALLOC_ERR_CONTAINER;
+			break;
+		}		
+		if ((err_msg = cfg->error_msg) != NULL) break;
 		
-		game_server_config_logging(cfg);
-		game_server_config_security(cfg);
+		game_server_config(cfg);		
+		if ((err_msg = cfg->error_msg) != NULL) break;
 		
-		ini_end(cfg);
-		
-		if ((failed = ini_has_err(cfg)) == TRUE) {
-			PRINT_STATUS_MSG_ERR(cfg->error_msg);
-		}
+		PRINT_STATUS_MSG("Saving configuration");
+		ini_end(cfg);		
+		err_msg = cfg->error_msg;
+		break;
 	}
 
-	if (failed == TRUE) {
+	if (err_msg == NULL) {
+		PRINT_STATUS_DONE();
+	} else {
+		PRINT_STATUS_MSG_ERR(err_msg);
 		PRINT_STATUS_FAIL();
 		exit(EXIT_FAILURE);
-	} else {
-		PRINT_STATUS_DONE();
 	}
+}
+
+void game_server_config(INI_CONTAINER* cfg)
+{
+	game_server_config_logging(cfg);	
+	if (ini_has_err(cfg) == TRUE) return;
+	
+	game_server_config_security(cfg);
 }
 
 void game_server_config_logging(INI_CONTAINER* cfg)
 {
 	game_server_config_logging_chat(cfg);
+	if (ini_has_err(cfg) == TRUE) return;
+	
 	game_server_config_logging_console(cfg);
+	if (ini_has_err(cfg) == TRUE) return;
+	
 	game_server_config_logging_file(cfg);
 }
 
@@ -110,9 +123,11 @@ void game_server_config_logging_file(INI_CONTAINER* cfg)
 {
 	PRINT_STATUS_MSG("Setting logging output file");
 	ini_value_set(cfg, GAME_SERVER_CFG_GAME, "eventlog", GAME_SERVER_LOG);
+	if (ini_has_err(cfg) == TRUE) return;
 	
 	PRINT_STATUS_MSG("Enabling log resetting for every mission");
 	ini_value_set(cfg, GAME_SERVER_CFG_GAME, "eventlogkeep", "0");
+	if (ini_has_err(cfg) == TRUE) return;
 	
 	PRINT_STATUS_MSG("Enabling buildings destruction logging");
 	ini_value_set(cfg, GAME_SERVER_CFG_GAME, "eventlogHouse", "1");
