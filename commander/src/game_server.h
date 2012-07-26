@@ -48,6 +48,7 @@ void game_server_config_logging(INI_CONTAINER* cfg);
 void game_server_config_logging_chat(INI_CONTAINER* cfg);
 void game_server_config_logging_console(INI_CONTAINER* cfg);
 void game_server_config_logging_file(INI_CONTAINER* cfg);
+void game_server_config_console_connection(INI_CONTAINER* cfg);
 void game_server_config_version_checking(INI_CONTAINER* cfg);
 
 void game_server_scripts_generate_gc();
@@ -112,6 +113,7 @@ void game_server_check_settings()
 void game_server_config(INI_CONTAINER* cfg)
 {
 	game_server_config_logging(cfg);
+	game_server_config_console_connection(cfg);
 	game_server_config_version_checking(cfg);
 }
 
@@ -130,12 +132,6 @@ void game_server_config_logging_chat(INI_CONTAINER* cfg)
 
 void game_server_config_logging_console(INI_CONTAINER* cfg)
 {
-	PRINT_STATUS_MSG("Setting console port");
-	ini_value_set(cfg, GAME_SERVER_CFG_CONSOLE, "IP", GAME_SERVER_CONSOLE_PORT);
-
-	PRINT_STATUS_MSG("Setting console allowed client address");
-	ini_value_set(cfg, GAME_SERVER_CFG_CONSOLE, "IPS", GAME_SERVER_CONSOLE_CLIENT_ADDR);
-
 	PRINT_STATUS_MSG("Disabling console output saving to file");
 	ini_value_set(cfg, GAME_SERVER_CFG_CONSOLE, "LOG", "0");
 }
@@ -150,6 +146,16 @@ void game_server_config_logging_file(INI_CONTAINER* cfg)
 	
 	PRINT_STATUS_MSG("Enabling buildings destruction logging");
 	ini_value_set(cfg, GAME_SERVER_CFG_GAME, "eventlogHouse", "1");
+}
+
+void game_server_config_console_connection(INI_CONTAINER* cfg)
+{
+	PRINT_STATUS_MSG("Setting console port");
+	ini_value_set(cfg, GAME_SERVER_CFG_CONSOLE, "IP", GAME_SERVER_CONSOLE_PORT);
+
+	PRINT_STATUS_MSG("Setting console allowed client address");
+	ini_value_set(cfg, GAME_SERVER_CFG_CONSOLE, "IPS", GAME_SERVER_CONSOLE_CLIENT_ADDR);
+
 }
 
 void game_server_config_version_checking(INI_CONTAINER* cfg)
