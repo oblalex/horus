@@ -2,7 +2,9 @@
 #define GAME_SERVER_H
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <unistd.h>
+
 #include "print_status.h"
 #include "ini_helper.h"
 
@@ -17,6 +19,16 @@ const char *const GAME_SERVER_CFG_PATH = GAME_SERVER_PATH GAME_SERVER_CFG;
 #define GAME_SERVER_LOG "eventlog.lst"
 const char *const GAME_SERVER_LOG_PATH = GAME_SERVER_PATH GAME_SERVER_LOG;
 
+#define GAME_SERVER_CMDF_MAIN "server.cmd"
+const char *const GAME_SERVER_CMDF_MAIN_PATH = GAME_SERVER_PATH GAME_SERVER_CMDF_MAIN;
+
+#define GAME_SERVER_CMDF_GC "gc.cmd"
+const char *const GAME_SERVER_CMDF_GC_PATH = GAME_SERVER_PATH GAME_SERVER_CMDF_GC;
+
+#define GAME_SERVER_CMD_GC "GC"
+#define GAME_SERVER_CMD_TIMEOUT(DELAY, CMD) "timeout " DELAY " " CMD
+#define GAME_SERVER_CMD_RUN_FILE(FNAME) "f " FNAME
+
 // configuration sections names
 const char *const GAME_SERVER_CFG_CHAT	= "chat";
 const char *const GAME_SERVER_CFG_GAME	= "game";
@@ -26,6 +38,7 @@ const char *const GAME_SERVER_CFG_NET	= "NET";
 void game_server_init();
 void game_server_check_path();
 void game_server_check_settings();
+void game_server_scripts_generate();
 
 void game_server_config(INI_CONTAINER* cfg);
 void game_server_config_logging(INI_CONTAINER* cfg);
@@ -34,9 +47,13 @@ void game_server_config_logging_console(INI_CONTAINER* cfg);
 void game_server_config_logging_file(INI_CONTAINER* cfg);
 void game_server_config_security(INI_CONTAINER* cfg);
 
+void game_server_scripts_generate_gc();
+void game_server_scripts_generate_main();
+
 void game_server_init(){
 	game_server_check_path();
 	game_server_check_settings();
+	game_server_scripts_generate();
 }
 
 void game_server_check_path()
@@ -139,6 +156,56 @@ void game_server_config_security(INI_CONTAINER* cfg)
 {
 	PRINT_STATUS_MSG("Setting strict client version verification");
 	ini_value_set(cfg, GAME_SERVER_CFG_NET, "checkRuntime", "2");
+}
+
+void game_server_scripts_generate()
+{
+	PRINT_STATUS_NEW("Generating server's scripts");
+
+	game_server_scripts_generate_gc();
+	game_server_scripts_generate_main();
+	
+	PRINT_STATUS_DONE();
+}
+
+void game_server_scripts_generate_gc()
+{
+	PRINT_STATUS_NEW("Generating garbage collecting script");
+
+	FILE* f_gc = fopen (GAME_SERVER_CMDF_GC_PATH, "w");  	
+  	if (f_gc == NULL)
+  	{
+  		PRINT_STATUS_MSG_ERR("Unable to create file \"" GAME_SERVER_CMDF_GC "\"");
+		PRINT_STATUS_FAIL();
+  		exit(EXIT_FAILURE);
+  	}
+  	
+  	fputs(GAME_SERVER_CMD_GC "\n", f_gc);
+  	fputs(GAME_SERVER_CMD_GC "\n", f_gc);
+  	fputs(GAME_SERVER_CMD_GC "\n", f_gc);
+  	fputs(
+  		GAME_SERVER_CMD_TIMEOUT(
+  			"3600000",
+  			GAME_SERVER_CMD_RUN_FILE(GAME_SERVER_CMDF_GC)) "\n", f_gc);
+	fclose (f_gc);
+	PRINT_STATUS_DONE();
+}
+
+void game_server_scripts_generate_main()
+{
+	PRINT_STATUS_NEW("Generating main script");
+
+	FILE *f_sys = fopen (GAME_SERVER_CMDF_MAIN_PATH, "w");  	
+  	if (f_sys == NULL)
+  	{
+  		PRINT_STATUS_MSG_ERR("Unable to create file \"" GAME_SERVER_CMDF_MAIN "\"");
+		PRINT_STATUS_FAIL();
+  		exit(EXIT_FAILURE);
+  	}
+  	
+  	fputs (GAME_SERVER_CMD_RUN_FILE(GAME_SERVER_CMDF_GC) "\n", f_sys);
+	fclose (f_sys);
+	PRINT_STATUS_DONE();
 }
 
 #endif // GAME_SERVER_H

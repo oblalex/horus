@@ -64,8 +64,8 @@ void ini_append(INI_CONTAINER* this, const char *name, const char *key, const ch
 void trim_new_line(char *buffer);
 BOOL ini_has_err(INI_CONTAINER* this);
 
-const char *const INI_PARSING_ERR = "ini parsing error";
-const char *const INI_OPENING_ERR = "ini opening error";
+const char *const INI_PARSING_ERR = "Unable to parse ini-file";
+const char *const INI_OPENING_ERR = "Unable to open ini-file";
 
 #define INI_MALLOC_ERR "Can not allocate memory for ini-"
 const char *const INI_MALLOC_ERR_RECORD = INI_MALLOC_ERR "record";
@@ -149,7 +149,7 @@ void ini_load(INI_CONTAINER* this)
 					if (pdest == NULL) 
 					{
 						fclose(in_stream);
-						this->error_msg = (char*)INI_PARSING_ERR;
+						this->error_msg = INI_PARSING_ERR;
 						return;
 					}
 					index = pdest - buffer;
