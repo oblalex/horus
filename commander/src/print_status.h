@@ -48,6 +48,7 @@ void PRINT_STATUS_NEW(char* str)
 	
 	push(&statuses, str_new);
 	STATUS_LAST_OPER_WAS_PUSH = TRUE;
+	fflush(stdout);
 }
 	
 void print_status_finished(int color, const char* msg)
@@ -65,12 +66,13 @@ void print_status_finished(int color, const char* msg)
 	
 	free(str);
 	STATUS_LAST_OPER_WAS_PUSH = FALSE;
+	fflush(stdout);
 }
 
 #define PRINT_STATUS_DONE() print_status_finished(TC_GREEN, STATUS_MSG_DONE);
 #define PRINT_STATUS_FAIL() print_status_finished(TC_RED,   STATUS_MSG_FAIL);
 
-void print_status_msg(int color, const char* str)
+void print_status_msg(int color, const char* str, BOOL do_indent)
 {
 	if (STATUS_LAST_OPER_WAS_PUSH == TRUE)
 	{
@@ -78,14 +80,23 @@ void print_status_msg(int color, const char* str)
 	}
   
 	term_style(TA_NONE, color, TC_NONE);
-	printf("%*s%s\n", STATUS_MSG_INDENT, "", str);
+	if (do_indent == TRUE)
+	{
+		printf("%*s%s\n", STATUS_MSG_INDENT, "", str);
+	} else {
+		printf("%s\n", str);
+	}
 	term_style_reset();
 	
 	STATUS_LAST_OPER_WAS_PUSH = FALSE;
+	fflush(stdout);
 }
 
-#define PRINT_STATUS_MSG(STR)     print_status_msg(TC_CYAN, STR);
-#define PRINT_STATUS_MSG_ERR(STR) print_status_msg(TC_RED,  STR);
+#define PRINT_STATUS_MSG(STR)     print_status_msg(TC_CYAN, STR, TRUE);
+#define PRINT_STATUS_MSG_ERR(STR) print_status_msg(TC_RED,  STR, TRUE);
+
+#define PRINT_STATUS_MSG_NOIND(STR)     print_status_msg(TC_CYAN, STR, FALSE);
+#define PRINT_STATUS_MSG_ERR_NOIND(STR) print_status_msg(TC_RED,  STR, FALSE);
 
 void PRINT_STATUSES_RESET()
 {
