@@ -1,7 +1,8 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
 
-#include "game_server.h"
+#include "util/print_status.h"
 
 void init();
 void setup_termination_hooks();
@@ -11,9 +12,7 @@ void foo();
 int main (int argc, char const *argv[])
 {
 	init();
-	gs_start();	
 	foo();
-	gs_stop();
 	exit(EXIT_SUCCESS);
 }
 
@@ -25,6 +24,8 @@ void init()
 
 void setup_termination_hooks()
 {
+	signal(SIGPIPE,	SIG_IGN);
+
 	signal(SIGINT,	termination_handler);
 	signal(SIGKILL,	termination_handler);
 	signal(SIGTERM,	termination_handler);
@@ -33,14 +34,20 @@ void setup_termination_hooks()
 
 void termination_handler(int signum)
 {		
-	printf("\n");
-	gs_stop();
-	term_style_reset();
-	PRINT_STATUSES_RESET();	
+	printf("\nSignal caught: #%d.\n", signum);
+
+	term_styleReset();
+	PRINT_STATUSES_RESET();
+	exit(EXIT_SUCCESS);
 }
 
 void foo()
 {
-	printf("Press <Return> to exit.\n");
-	getchar();
+	int len = 100;
+  	char line[len];
+
+	while(1){
+		fgets(line, len, stdin);
+		fprintf(stderr, line);
+	}
 }
