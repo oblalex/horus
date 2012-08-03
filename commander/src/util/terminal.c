@@ -2,6 +2,7 @@
 
 #include <unistd.h>
 #include <stdio.h>
+#include <wchar.h>
 #include <signal.h>
 
 void term_init()
@@ -24,7 +25,7 @@ void term_updateWindowSizeInfo()
 void term_style(int attr, int fg, int bg)
 {	char command[13];
 	sprintf(command, "%c[%d;%d;%dm", 0x1B, attr, fg + 30, bg + 40);
-	printf("%s", command);
+	wprintf(L"%s", command);
 }
 
 void term_styleReset()

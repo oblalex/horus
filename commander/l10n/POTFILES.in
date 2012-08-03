@@ -1,0 +1,5 @@
+src/gs_paths.c
+src/gs_cfg.c
+src/gs.c
+src/util/print_status.h
+src/util/ini.h

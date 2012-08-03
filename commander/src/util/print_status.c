@@ -1,7 +1,8 @@
 #include <stdio.h>
-
-#include "print_status.h"
+#include <stdlib.h>
+#include <wchar.h>
 #include "str.h"
+#include "print_status.h"
 
 STACK_STR statuses;
 BOOL STATUS_LAST_OPER_WAS_PUSH = FALSE;
@@ -9,28 +10,28 @@ BOOL STATUS_LAST_OPER_WAS_PUSH = FALSE;
 void print_status_tail(int color, const char* msg)
 {
 	term_style(TA_BRIGHT, color, TC_NONE);
-	printf(msg);
+	wprintf(L"%s", msg);
 	term_style(TA_BRIGHT, TC_BLUE, TC_NONE);
-	printf("]");
+	wprintf(L"]");
 	term_styleReset();
 }
 	
 void print_status_raw(char* str, int color, const char* msg)
 {
 	term_style(TA_BRIGHT, TC_BLUE, TC_NONE);
-	printf("%*s ", STATUS_HEAD_INDENT, STATUS_MSG_HEAD);
+	wprintf(L"%*s ", STATUS_HEAD_INDENT, STATUS_MSG_HEAD);
 	term_style(TA_BRIGHT, TC_NONE, TC_NONE);
 	
-	// 9 is for length of ":: " and length of status msg in brackets
-	printf("%-*s", TERM_SIZE.ws_col-9-STATUS_HEAD_INDENT_PRIME, str);
+	// 5 is for length of ":: " + length of "[]"
+	wprintf(L"%-*s", TERM_SIZE.ws_col-5-mbstowcs(NULL, msg, 0)-STATUS_HEAD_INDENT_PRIME, str);
 	term_style(TA_BRIGHT, TC_BLUE, TC_NONE);
-	printf("[");
+	wprintf(L"[");
 	print_status_tail(color, msg);	
 }
 
 void PRINT_STATUS_NEW(char* str)
 {
-	char* str_new = str_copy(str);
+	char* str_new = str_copy(str);	
 	print_status_raw(str_new, TC_YELLOW, STATUS_MSG_BUSY);
 	
 	push(&statuses, str_new);
@@ -46,13 +47,16 @@ void print_status_finished(int color, const char* msg)
 	{
 		print_status_raw(str, color, msg);		
 	} else {
-		printf("\b\b\b\b"); //erase "BUSY" msg
+		int i;
+		for (i=0; i<mbstowcs(NULL, msg, 0); i++){
+			wprintf(L"\b");	//erase STATUS_BUSY msg
+		}
 		print_status_tail(color, msg);		
 	}	
-	printf("\n");
+	wprintf(L"\n");
 	
 	free(str);
-	STATUS_LAST_OPER_WAS_PUSH = FALSE;
+	PRINT_STATUS_ORDER_RESET();
 	fflush(stdout);
 }
 
@@ -60,19 +64,19 @@ void print_status_msg(int color, const char* str, BOOL do_indent)
 {
 	if (STATUS_LAST_OPER_WAS_PUSH == TRUE)
 	{
-		printf("\n");
+		wprintf(L"\n");
 	}
   
 	term_style(TA_NONE, color, TC_NONE);
 	if (do_indent == TRUE)
 	{
-		printf("%*s%s\n", STATUS_MSG_INDENT, "", str);
+		wprintf(L"%*s%s\n", STATUS_MSG_INDENT, "", str);
 	} else {
-		printf("%s\n", str);
+		wprintf(L"%s\n", str);
 	}
 	term_styleReset();
 	
-	STATUS_LAST_OPER_WAS_PUSH = FALSE;
+	PRINT_STATUS_ORDER_RESET();
 	fflush(stdout);
 }
 
@@ -82,5 +86,8 @@ void PRINT_STATUSES_RESET()
 	{
 		free(pop(&statuses));
 	}
+}
+
+void PRINT_STATUS_ORDER_RESET(){
 	STATUS_LAST_OPER_WAS_PUSH = FALSE;
 }

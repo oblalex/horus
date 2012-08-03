@@ -5,26 +5,20 @@ AC_PREREQ([2.68])
 AC_INIT([horus-commander], [0.0.1])
 
 AC_CONFIG_AUX_DIR([config])
-AC_CONFIG_MACRO_DIR([config/macro])
+AC_CONFIG_MACRO_DIR([m4])
+AM_GNU_GETTEXT([external])
 
 AM_INIT_AUTOMAKE([horus-commander], [0.0.1])
 LT_INIT
 AC_CONFIG_SRCDIR([src/main.c])
 AC_CONFIG_HEADERS([config.h ])
 
-# Checks for programs.
 AC_PROG_CC
 
-# Checks for libraries.
 AC_PROG_LIBTOOL
 
-# Checks for header files.
-
-# Checks for typedefs, structures, and compiler characteristics.
-
-# Checks for library functions.
-
 AC_CONFIG_FILES([
+	l10n/Makefile.in
 	Makefile
 	src/Makefile
 	src/util/Makefile	

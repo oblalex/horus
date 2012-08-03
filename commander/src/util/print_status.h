@@ -3,13 +3,14 @@
 
 #include "common.h"
 #include "terminal.h"
+#include "l10n.h"
 #include "stack/stack_str.h"
 
 #define STATUS_MSG_HEAD "::"
 
-#define STATUS_MSG_BUSY "BUSY"
-#define STATUS_MSG_DONE "DONE"
-#define STATUS_MSG_FAIL "FAIL"
+#define STATUS_MSG_BUSY tr("BUSY")
+#define STATUS_MSG_DONE tr("DONE")
+#define STATUS_MSG_FAIL tr("FAIL")
 
 #define STATUS_INDENT_PRIME(SUB) (statuses.size-SUB)*3
 #define STATUS_INDENT(SUB) 2+STATUS_INDENT_PRIME(SUB)
@@ -34,6 +35,7 @@ void print_status_msg(int color, const char* str, BOOL do_indent);
 #define PRINT_STATUS_MSG_NOIND(STR)     print_status_msg(TC_CYAN, STR, FALSE);
 #define PRINT_STATUS_MSG_ERR_NOIND(STR) print_status_msg(TC_RED,  STR, FALSE);
 
+void PRINT_STATUS_ORDER_RESET();
 void PRINT_STATUSES_RESET();
 
 #endif // PRINT_STATUS_H

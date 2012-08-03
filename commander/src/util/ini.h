@@ -6,6 +6,7 @@
 #define INI_H
 
 #include "common.h"
+#include "l10n.h"
 
 typedef struct ini_record
 {
@@ -64,12 +65,11 @@ void ini_append(INI_CONTAINER* this, const char *name, const char *key, const ch
 void trim_new_line(char *buffer);
 BOOL ini_has_err(INI_CONTAINER* this);
 
-const char *const INI_PARSING_ERR = "Unable to parse ini-file";
-const char *const INI_OPENING_ERR = "Unable to open ini-file";
+#define INI_PARSING_ERR 	tr("Unable to parse ini-file")
+#define INI_OPENING_ERR 	tr("Unable to open ini-file")
 
-#define INI_MALLOC_ERR "Can not allocate memory for ini-"
-const char *const INI_MALLOC_ERR_RECORD = INI_MALLOC_ERR "record";
-const char *const INI_MALLOC_ERR_SECTION = INI_MALLOC_ERR "section";
-const char *const INI_MALLOC_ERR_CONTAINER = INI_MALLOC_ERR "container";
+#define INI_MALLOC_ERR_RECORD 		tr("Can not allocate memory for ini-record")
+#define INI_MALLOC_ERR_SECTION 		tr("Can not allocate memory for ini-section")
+#define INI_MALLOC_ERR_CONTAINER 	tr("Can not allocate memory for ini-container")
 
 #endif // INI_H

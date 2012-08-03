@@ -13,4 +13,7 @@ typedef enum
 #define PATH_PARENT	".."
 #define PATH_SEP 	"/"
 
+#define NEW_LINE	"\n"
+#define CH_NULL		"\0"
+
 #endif // COMMON_H
