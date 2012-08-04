@@ -2,6 +2,7 @@
 #define GS_H
 
 #include <stdio.h>
+
 #include "util/common.h"
 
 typedef struct
@@ -24,9 +25,14 @@ void gs_run();
 void gs_check_launched_before();
 BOOL gs_prepare();
 void gs_process_create();
+void gs_on_process_start();
 void gs_on_process_stop();
 void gs_process_wait();
+
+void gs_exit();
 void gs_process_kill();
+
+BOOL gs_is_running();
 
 #endif // GS_H
 

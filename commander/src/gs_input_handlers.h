@@ -1,0 +1,17 @@
+#ifndef GS_INPUT_HANDLERS_H
+#define GS_INPUT_HANDLERS_H
+
+#include "util/common.h"
+
+void input_handlers_init(int fd);
+void input_handlers_start();
+void* handle_gs_out();
+void* handle_shell_in();
+void handle_input(int fd, BOOL (*run_condition)(), void (*parse)(char*));
+
+void input_handlers_stop();
+
+void foo_parse(char* str);
+
+#endif // GS_INPUT_HANDLERS_H
+

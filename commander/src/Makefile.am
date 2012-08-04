@@ -9,7 +9,8 @@ horusCommander_SOURCES = main.c \
 						gs_cfg.c \
 						gs_scripts.c \
 						gs_fifo.c \
-						gs_cmd.c
+						gs_cmd.c \
+						gs_input_handlers.c
 horusCommander_LDADD = util/libutil.la
 
 SUBDIRS = util

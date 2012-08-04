@@ -9,6 +9,7 @@
 #include "gs_cfg.h"
 #include "gs_fifo.h"
 #include "gs_cmd.h"
+#include "gs_input_handlers.h"
 #include "util/print_status.h"
 #include "util/file.h"
 
@@ -44,15 +45,7 @@ void gs_termination_handler(int signum)
 {		
 	PRINT_STATUS_ORDER_RESET();
 	wprintf(L"\n%s: #%d.\n", tr("Signal caugth"), signum);
-	
-	GS.do_run = FALSE;
-	if (GS.loaded == TRUE)
-	{
-		gs_cmd_kick_all();
-		gs_cmd_exit();
-	} else {
-		gs_process_kill();
-	}
+	gs_exit();
 }
 
 void gs_run()
@@ -83,16 +76,7 @@ void gs_run()
             continue;
 		}
 		
-		gs_cmd_init(GS.in);
-        gs_wait_loaded();
-		sleep(3);
-		gs_cmd_kick_all(GS.in);
-		
-		// create threads
-		gs_process_wait();
-		// kill threads
-
-		gs_on_process_stop();
+		gs_on_process_start();
 
         if (GS.do_run == TRUE)
         {
@@ -150,10 +134,14 @@ void gs_process_create()
     PRINT_STATUS_DONE();
 }
 
-void gs_on_process_stop()
+void gs_on_process_start()
 {
-	gs_fifos_dispose(&(GS.in), &(GS.out));
-	GS.launched_before = TRUE;
+	gs_cmd_init(GS.in);
+	gs_wait_loaded();
+	input_handlers_init(GS.out);
+	input_handlers_start();
+	gs_process_wait();
+	gs_on_process_stop();
 }
 
 void gs_wait_loaded()
@@ -165,12 +153,13 @@ void gs_wait_loaded()
 	int offset = 0;
 	RL_STAT stat;
 
-    while(GS.do_run == TRUE){
+    while(GS.do_run == TRUE)
+	{
 		line_rd(GS.out, line, line_len, offset, &stat);
         if (stat.finished == FALSE)
         {
 			offset += stat.length;
-            usleep(0, 300*1000);
+            usleep(300*1000);
         } else {
 			offset = 0;
 			if (strstr(line, "1>") != NULL)
@@ -200,7 +189,30 @@ void gs_process_wait()
     GS.loaded = FALSE;
 }
 
+void gs_exit()
+{
+	GS.do_run = FALSE;
+	if (GS.loaded == TRUE)
+	{ 
+		gs_cmd_exit();
+	} else {
+		gs_process_kill();
+	}
+}
+
 void gs_process_kill()
 {
 	if (GS.pid) kill(GS.pid, SIGKILL);
+}
+
+void gs_on_process_stop()
+{
+	gs_fifos_dispose(&(GS.in), &(GS.out));
+	input_handlers_stop();
+	GS.launched_before = TRUE;
+}
+
+BOOL gs_is_running()
+{
+	return ((GS.do_run == TRUE) && (GS.loaded == TRUE)) ? TRUE : FALSE;
 }
