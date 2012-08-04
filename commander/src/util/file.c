@@ -11,7 +11,7 @@ void line_rd(int fd, char* line, int size, int offset, RL_STAT* stat)
 
 	(*stat).finished = FALSE;
 
-	for ((*stat).length = offset+1; (*stat).length < size; (*stat).length++)
+	for ((*stat).length = 0; (*stat).length < size-offset-1; (*stat).length++)
 	{
 		readcount = read(fd, &c, 1);
 		if (readcount == 1)
