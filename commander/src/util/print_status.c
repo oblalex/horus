@@ -4,8 +4,8 @@
 #include "str.h"
 #include "print_status.h"
 
-STACK_STR statuses;
-BOOL STATUS_LAST_OPER_WAS_PUSH = FALSE;
+static STACK_STR statuses;
+static BOOL STATUS_LAST_OPER_WAS_PUSH = FALSE;
 
 void print_status_tail(int color, const char* msg)
 {
