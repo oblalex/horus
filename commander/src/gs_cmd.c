@@ -8,7 +8,7 @@
 #include "util/common.h"
 #include "util/file.h"
 
-int GS_IN_FD;
+static int GS_IN_FD;
 
 void gs_cmd_init(int fd)
 {
