@@ -138,6 +138,8 @@ void gs_on_process_start()
 {
 	gs_cmd_init(GS.in);
 	gs_wait_loaded();
+	
+	PRINT_STATUS_MULTI_START();
 	input_handlers_init(GS.out);
 	input_handlers_start();
 	gs_process_wait();
@@ -209,6 +211,7 @@ void gs_on_process_stop()
 {
 	gs_fifos_dispose(&(GS.in), &(GS.out));
 	input_handlers_stop();
+	PRINT_STATUS_MULTI_STOP();
 	GS.launched_before = TRUE;
 }
 

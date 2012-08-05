@@ -36,6 +36,10 @@ void print_status_msg(int color, const char* str, BOOL do_indent);
 #define PRINT_STATUS_MSG_ERR_NOIND(STR) print_status_msg(TC_RED,  STR, FALSE);
 
 void PRINT_STATUS_ORDER_RESET();
+
+void PRINT_STATUS_MULTI_START();
+void PRINT_STATUS_MULTI_STOP();
+
 void PRINT_STATUSES_RESET();
 
 #endif // PRINT_STATUS_H
