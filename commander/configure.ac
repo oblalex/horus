@@ -13,9 +13,19 @@ LT_INIT
 AC_CONFIG_SRCDIR([src/main.c])
 AC_CONFIG_HEADERS([config.h ])
 
-AC_PROG_CC
+PKG_CHECK_MODULES(
+	[CHECK],
+	[check >= 0.9.4],
+	[have_check="yes"],
+	[
+	 	[have_check="no"],
+		AC_MSG_WARN([Check not found; cannot run unit tests!])
+	]
+)
 
+AC_PROG_CC
 AC_PROG_LIBTOOL
+AM_PROG_CC_C_O
 
 AC_CONFIG_FILES([
 	l10n/Makefile.in
@@ -23,6 +33,8 @@ AC_CONFIG_FILES([
 	src/Makefile
 	src/util/Makefile	
 	src/util/stack/Makefile
+	tests/Makefile	
+	tests/util/Makefile	
 ])
 
 AC_OUTPUT

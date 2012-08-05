@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: horus-commander 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-04 01:31+0300\n"
+"POT-Creation-Date: 2012-08-05 13:03+0300\n"
 "PO-Revision-Date: 2012-08-02 09:36+0300\n"
 "Last-Translator:  <oblovatniy@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -95,15 +95,15 @@ msgstr "Очистка списка разрешенных клиентов ко
 msgid "Setting client version checking"
 msgstr "Установление проверки совместимости версий"
 
-#: src/gs.c:46
+#: src/gs.c:47
 msgid "Signal caugth"
 msgstr "Пойман сигнал"
 
-#: src/gs.c:60
+#: src/gs.c:53
 msgid "Game server is shut down"
 msgstr ""
 
-#: src/gs.c:115
+#: src/gs.c:99
 msgid "Restarting game server in"
 msgstr ""
 
