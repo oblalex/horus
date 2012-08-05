@@ -1,6 +1,8 @@
 #ifndef PRINT_STATUS_H
 #define PRINT_STATUS_H
 
+#include <wchar.h>
+
 #include "common.h"
 #include "terminal.h"
 #include "l10n.h"
@@ -20,15 +22,15 @@
 
 #define STATUS_MSG_INDENT STATUS_INDENT(1)+1
 
-void print_status_tail(int color, const char* msg);
-void print_status_raw(char* str, int color, const char* msg);
-void PRINT_STATUS_NEW(char* str);
+void print_status_tail(int color, const wchar_t* msg);
+void print_status_raw(wchar_t* str, int color, const wchar_t* msg);
+void PRINT_STATUS_NEW(wchar_t* str);
 
-void print_status_finished(int color, const char* msg);
+void print_status_finished(int color, const wchar_t* msg);
 #define PRINT_STATUS_DONE() print_status_finished(TC_GREEN, STATUS_MSG_DONE);
 #define PRINT_STATUS_FAIL() print_status_finished(TC_RED,   STATUS_MSG_FAIL);
 
-void print_status_msg(int color, const char* str, BOOL do_indent);
+void print_status_msg(int color, wchar_t* str, BOOL do_indent);
 #define PRINT_STATUS_MSG(STR)     print_status_msg(TC_CYAN, STR, TRUE);
 #define PRINT_STATUS_MSG_ERR(STR) print_status_msg(TC_RED,  STR, TRUE);
 

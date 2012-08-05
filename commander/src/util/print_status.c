@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <wchar.h>
 #include <pthread.h>
 
 #include "str.h"
@@ -15,7 +14,7 @@ static pthread_mutex_t LOCK;
 #define MULTILOCK() if (MULTIMODE==TRUE) pthread_mutex_lock(&LOCK);
 #define MULTIUNLOCK() if (MULTIMODE==TRUE) pthread_mutex_unlock(&LOCK);
 
-void print_status_tail(int color, const char* msg)
+void print_status_tail(int color, const wchar_t* msg)
 {
 	term_style(TA_BRIGHT, color, TC_NONE);
 	wprintf(L"%s", msg);
@@ -24,7 +23,7 @@ void print_status_tail(int color, const char* msg)
 	term_styleReset();
 }
 	
-void print_status_raw(char* str, int color, const char* msg)
+void print_status_raw(wchar_t* str, int color, const wchar_t* msg)
 {
 	term_style(TA_BRIGHT, TC_BLUE, TC_NONE);
 	wprintf(L"%*s ", STATUS_HEAD_INDENT, STATUS_MSG_HEAD);
@@ -37,11 +36,11 @@ void print_status_raw(char* str, int color, const char* msg)
 	print_status_tail(color, msg);	
 }
 
-void PRINT_STATUS_NEW(char* str)
+void PRINT_STATUS_NEW(wchar_t* str)
 {	
 	MULTILOCK();
 
-	char* str_new = str_copy(str);	
+	wchar_t* str_new = (wchar_t*)str_copy(str);	
 	print_status_raw(str_new, TC_YELLOW, STATUS_MSG_BUSY);
 	
 	push(&statuses, str_new);
@@ -51,11 +50,11 @@ void PRINT_STATUS_NEW(char* str)
 	MULTIUNLOCK();
 }
 	
-void print_status_finished(int color, const char* msg)
+void print_status_finished(int color, const wchar_t* msg)
 {
 	MULTILOCK();
 
-	char* str = pop(&statuses);
+	wchar_t* str = (wchar_t*)pop(&statuses);
 	
 	if (STATUS_LAST_OPER_WAS_PUSH == FALSE)
 	{
@@ -76,7 +75,7 @@ void print_status_finished(int color, const char* msg)
 	MULTIUNLOCK();
 }
 
-void print_status_msg(int color, const char* str, BOOL do_indent)
+void print_status_msg(int color, wchar_t* str, BOOL do_indent)
 {
 	MULTILOCK();
 
