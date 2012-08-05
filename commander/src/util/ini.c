@@ -59,7 +59,7 @@ void ini_load(INI_CONTAINER* this)
 					if (pdest == NULL)
 					{
 						fclose(in_stream);
-						this->error_msg = (char*)INI_PARSING_ERR;
+						this->error_msg = INI_PARSING_ERR;
 						return;
 					}
 					index = pdest - buffer;

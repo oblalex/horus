@@ -26,6 +26,7 @@ void gs_check_launched_before();
 BOOL gs_prepare();
 void gs_process_create();
 void gs_on_process_start();
+void gs_wait_loaded();
 void gs_on_process_stop();
 void gs_process_wait();
 

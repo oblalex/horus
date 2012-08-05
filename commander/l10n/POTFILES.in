@@ -1,5 +1,8 @@
+src/gs_fifo.c
 src/gs_paths.c
-src/gs_cfg.c
 src/gs.c
-src/util/print_status.h
 src/util/ini.h
+src/util/print_status.h
+src/gs_scripts.c
+src/gs_input_handlers.c
+src/gs_cfg.c

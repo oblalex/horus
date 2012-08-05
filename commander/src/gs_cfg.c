@@ -13,7 +13,7 @@ void gs_cfg()
     PRINT_STATUS_MSG(tr("Loading configuration"));
     INI_CONTAINER* cfg = ini_start((char*)PATH_GS_CFG);
 
-    const char* err_msg = NULL;
+    char* err_msg = NULL;
 
     while(1)
     {

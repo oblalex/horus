@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <time.h>
+#include <unistd.h>
+#include <string.h>
 
 #include "gs.h"
 #include "gs_paths.h"
@@ -95,9 +97,10 @@ void gs_check_launched_before()
 		char i;
 		for(i=5; i>0; i--){
 			if (GS.do_run == FALSE) break;
-			wchar_t buf[40];
-			sprintf(buf, "%s...%d", tr("Restarting game server in"), i);
-			PRINT_STATUS_MSG_NOIND(buf);
+			int len = 40;
+			wchar_t buf[len];
+			swprintf(buf, len, L"%s...%d", tr("Restarting game server in"), i);
+			PRINT_STATUS_MSG_NOIND((char*)buf);
 			sleep(1);
 		}
 	}
@@ -112,11 +115,11 @@ BOOL gs_prepare()
 
 void gs_process_create()
 {
-    PRINT_STATUS_NEW("Creating game server process");
+    PRINT_STATUS_NEW(tr("Creating game server process"));
 
     if ((GS.pid = fork()) < 0)
     {
-        PRINT_STATUS_MSG_ERR("Failed to fork");
+        PRINT_STATUS_MSG_ERR(tr("Failed to fork"));
         PRINT_STATUS_FAIL();
         return;
     } else if (GS.pid == 0) {
@@ -148,7 +151,7 @@ void gs_on_process_start()
 
 void gs_wait_loaded()
 {
-    PRINT_STATUS_NEW("Waiting for server is loaded");
+    PRINT_STATUS_NEW(tr("Waiting for server is loaded"));
 
     int line_len = 64;
     char line[line_len];
@@ -185,7 +188,7 @@ void gs_process_wait()
     int childExitStatus;
     waitpid(GS.pid, &childExitStatus, 0);
 
-	PRINT_STATUS_MSG("Game server's process finished");
+	PRINT_STATUS_MSG(tr("Game server's process finished"));
 
 	GS.pid = (pid_t) 0;
     GS.loaded = FALSE;

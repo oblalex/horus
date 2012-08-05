@@ -37,7 +37,7 @@ typedef struct
 	INI_SECTION* last;
 	
 	unsigned int sections_count;
-	const char* error_msg;
+	char* error_msg;
 } INI_CONTAINER;
 
 INI_CONTAINER* ini_start(char* filepath);

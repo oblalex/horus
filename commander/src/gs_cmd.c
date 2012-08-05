@@ -27,8 +27,8 @@ void gs_cmd_exit()
 void gs_cmd_chat_all(char* msg)
 {
 	char cmd[128];
-	sprintf(&cmd, GS_CMD_CHAT_ALL, msg);
-	gs_cmd_send(cmd);
+	sprintf(cmd, GS_CMD_CHAT_ALL, msg);
+	gs_cmd_send((char*)&cmd);
 }
 
 void gs_cmd_kick_all()

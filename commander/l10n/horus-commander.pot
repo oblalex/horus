@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: horus-commander 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-05 13:03+0300\n"
+"POT-Creation-Date: 2012-08-05 23:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,36 +17,172 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gs_paths.c:14
+#: src/gs_fifo.c:14
+msgid "Creating FIFOs"
+msgstr ""
+
+#: src/gs_fifo.c:32
+msgid "Creating game server stdin FIFO"
+msgstr ""
+
+#: src/gs_fifo.c:38
+msgid "Creating game server stdout FIFO"
+msgstr ""
+
+#: src/gs_fifo.c:58
+msgid "Opening FIFOs"
+msgstr ""
+
+#: src/gs_fifo.c:76
+msgid "Opening game server's stdin FIFO"
+msgstr ""
+
+#: src/gs_fifo.c:82
+msgid "Opening game server's stdout FIFO"
+msgstr ""
+
+#: src/gs_fifo.c:98
+msgid "Disposing FIFOs"
+msgstr ""
+
+#: src/gs_fifo.c:108
+msgid "Disposing input FIFO"
+msgstr ""
+
+#: src/gs_fifo.c:114
+msgid "Disposing output FIFO"
+msgstr ""
+
+#: src/gs_paths.c:15
 msgid "Checking root path"
 msgstr ""
 
-#: src/gs_paths.c:19
+#: src/gs_paths.c:20
 msgid "Please, make sure in following:"
 msgstr ""
 
-#: src/gs_paths.c:20
+#: src/gs_paths.c:21
 msgid "1. This program is located in IL-2 server's subdirectory."
 msgstr ""
 
-#: src/gs_paths.c:21
+#: src/gs_paths.c:22
 msgid "2. You are located at that directory currently."
 msgstr ""
 
-#: src/gs_paths.c:24
+#: src/gs_paths.c:26
 msgid "3. IL-2 server's executable file is named as"
 msgstr ""
 
-#: src/gs_paths.c:34
+#: src/gs_paths.c:36
 msgid "Checking logs path"
 msgstr ""
 
-#: src/gs_paths.c:41
+#: src/gs_paths.c:43
 msgid "Creating missing directory"
 msgstr ""
 
-#: src/gs_paths.c:44
+#: src/gs_paths.c:46
 msgid "Failed to create"
+msgstr ""
+
+#: src/gs.c:49
+msgid "Signal caugth"
+msgstr ""
+
+#: src/gs.c:55
+msgid "Game server is shut down"
+msgstr ""
+
+#: src/gs.c:102
+msgid "Restarting game server in"
+msgstr ""
+
+#: src/gs.c:118
+msgid "Creating game server process"
+msgstr ""
+
+#: src/gs.c:122
+msgid "Failed to fork"
+msgstr ""
+
+#: src/gs.c:154
+msgid "Waiting for server is loaded"
+msgstr ""
+
+#: src/gs.c:191
+msgid "Game server's process finished"
+msgstr ""
+
+#: src/util/ini.h:68
+msgid "Unable to parse ini-file"
+msgstr ""
+
+#: src/util/ini.h:69
+msgid "Unable to open ini-file"
+msgstr ""
+
+#: src/util/ini.h:71
+msgid "Can not allocate memory for ini-record"
+msgstr ""
+
+#: src/util/ini.h:72
+msgid "Can not allocate memory for ini-section"
+msgstr ""
+
+#: src/util/ini.h:73
+msgid "Can not allocate memory for ini-container"
+msgstr ""
+
+#: src/util/print_status.h:13
+msgid "BUSY"
+msgstr ""
+
+#: src/util/print_status.h:14
+msgid "DONE"
+msgstr ""
+
+#: src/util/print_status.h:15
+msgid "FAIL"
+msgstr ""
+
+#: src/gs_scripts.c:12
+msgid "Generating server's scripts"
+msgstr ""
+
+#: src/gs_scripts.c:22
+msgid "Generating garbage collecting script"
+msgstr ""
+
+#: src/gs_scripts.c:40
+msgid "Generating main script"
+msgstr ""
+
+#: src/gs_scripts.c:57
+msgid "Unable to create file"
+msgstr ""
+
+#: src/gs_input_handlers.c:22
+msgid "Starting console and shell handling threads"
+msgstr ""
+
+#: src/gs_input_handlers.c:32
+msgid "Game server's output processing started"
+msgstr ""
+
+#: src/gs_input_handlers.c:39
+msgid "User's shell activated"
+msgstr ""
+
+#: src/gs_input_handlers.c:72
+msgid "Stopping console and shell handling threads"
+msgstr ""
+
+#: src/gs_input_handlers.c:75
+msgid "Game server's output processing finished"
+msgstr ""
+
+#: src/gs_input_handlers.c:78
+msgid "User's shell deactivated"
 msgstr ""
 
 #: src/gs_cfg.c:11
@@ -91,48 +227,4 @@ msgstr ""
 
 #: src/gs_cfg.c:90
 msgid "Setting client version checking"
-msgstr ""
-
-#: src/gs.c:47
-msgid "Signal caugth"
-msgstr ""
-
-#: src/gs.c:53
-msgid "Game server is shut down"
-msgstr ""
-
-#: src/gs.c:99
-msgid "Restarting game server in"
-msgstr ""
-
-#: src/util/print_status.h:11
-msgid "BUSY"
-msgstr ""
-
-#: src/util/print_status.h:12
-msgid "DONE"
-msgstr ""
-
-#: src/util/print_status.h:13
-msgid "FAIL"
-msgstr ""
-
-#: src/util/ini.h:68
-msgid "Unable to parse ini-file"
-msgstr ""
-
-#: src/util/ini.h:69
-msgid "Unable to open ini-file"
-msgstr ""
-
-#: src/util/ini.h:71
-msgid "Can not allocate memory for ini-record"
-msgstr ""
-
-#: src/util/ini.h:72
-msgid "Can not allocate memory for ini-section"
-msgstr ""
-
-#: src/util/ini.h:73
-msgid "Can not allocate memory for ini-container"
 msgstr ""

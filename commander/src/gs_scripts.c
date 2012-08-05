@@ -52,9 +52,10 @@ static void check_script_file_created(FILE* fd, char* fname)
 {
     if (fd == NULL)
     {
-		wchar_t msg[80];
-		swprintf(&msg, L"%s \"%s\"", tr("Unable to create file"), fname);
-        PRINT_STATUS_MSG_ERR(msg);
+		int len = 80;
+		wchar_t msg[len];
+		swprintf(msg, len, L"%s \"%s\"", tr("Unable to create file"), fname);
+        PRINT_STATUS_MSG_ERR((char*)&msg);
         PRINT_STATUS_FAIL();
         exit(EXIT_FAILURE);
     }

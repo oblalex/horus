@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <wchar.h>
 
 #include "gs_paths.h"
 #include "util/print_status.h"
@@ -20,10 +21,11 @@ void gs_check_path_root()
         PRINT_STATUS_MSG_ERR(tr("1. This program is located in IL-2 server's subdirectory."));
         PRINT_STATUS_MSG_ERR(tr("2. You are located at that directory currently."));
 
-		char msg[80];
-		sprintf (msg, "%s \"" GS_EXE_NAME "\".", tr("3. IL-2 server's executable file is named as"));
+		int len = 80;
+		wchar_t msg[len];
+		swprintf(msg, len, L"%s \"" GS_EXE_NAME "\".", tr("3. IL-2 server's executable file is named as"));
 
-        PRINT_STATUS_MSG_ERR(&msg);
+        PRINT_STATUS_MSG_ERR((char*)&msg);
         PRINT_STATUS_FAIL();
         exit(EXIT_FAILURE);
     }
@@ -42,11 +44,11 @@ void gs_check_path_logs()
         if (mkdir(path, S_IRWXU) != 0)
         {
 			char* fail_msg = tr("Failed to create"); 
-            char err_msg[strlen(path)+mbstowcs(NULL, fail_msg, 0)+3+1];
-           
-			sprintf(err_msg, "%s \"%s\"", fail_msg, path);
+			int len = strlen(path)+mbstowcs(NULL, fail_msg, 0)+3+1;
+            wchar_t err_msg[len];           
+			swprintf(err_msg, len, L"%s \"%s\"", fail_msg, path);
 
-            PRINT_STATUS_MSG_ERR(err_msg);
+            PRINT_STATUS_MSG_ERR((char*)&err_msg);
             PRINT_STATUS_FAIL();
             exit(EXIT_FAILURE);
         }

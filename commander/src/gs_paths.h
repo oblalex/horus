@@ -1,4 +1,4 @@
-#ifndef GS_	PATHS_H
+#ifndef GS_PATHS_H
 #define PATH_GSS_H
 
 #include "util/common.h"
