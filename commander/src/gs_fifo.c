@@ -6,11 +6,12 @@
 #include "gs_fifo.h"
 #include "gs_paths.h"
 #include "util/file.h"
+#include "util/l10n.h"
 #include "util/print_status.h"
 
 BOOL gs_fifos_create()
 {
-	PRINT_STATUS_NEW("Creating FIFOs");
+	PRINT_STATUS_NEW(tr("Creating FIFOs"));
 	BOOL result;
 	
 	result = gs_fifo_create_in();
@@ -28,13 +29,13 @@ BOOL gs_fifos_create()
 
 BOOL gs_fifo_create_in()
 {
-	PRINT_STATUS_NEW("Creating game server stdin FIFO");
+	PRINT_STATUS_NEW(tr("Creating game server stdin FIFO"));
 	return gs_fifo_create(PATH_GS_STDIN);
 }
 
 BOOL gs_fifo_create_out()
 {
-	PRINT_STATUS_NEW("Creating game server stdout FIFO");
+	PRINT_STATUS_NEW(tr("Creating game server stdout FIFO"));
 	return gs_fifo_create(PATH_GS_STDOUT);
 }
 
@@ -54,7 +55,7 @@ BOOL gs_fifo_create(char* path)
 
 BOOL gs_fifos_open(int* in, int* out)
 {
-	PRINT_STATUS_NEW("Opening FIFOs");
+	PRINT_STATUS_NEW(tr("Opening FIFOs"));
 	
 	gs_fifo_open_in(in);
 	
@@ -72,13 +73,13 @@ BOOL gs_fifos_open(int* in, int* out)
 
 void gs_fifo_open_in(int* stream)
 {
-	PRINT_STATUS_NEW("Opening game server's stdin FIFO");
+	PRINT_STATUS_NEW(tr("Opening game server's stdin FIFO"));
 	gs_fifo_open(stream, PATH_GS_STDIN, O_WRONLY);
 }
 
 void gs_fifo_open_out(int* stream)
 {
-	PRINT_STATUS_NEW("Opening game server's stdout FIFO");
+	PRINT_STATUS_NEW(tr("Opening game server's stdout FIFO"));
 	gs_fifo_open(stream, PATH_GS_STDOUT, O_RDONLY | O_NONBLOCK);
 }
 
@@ -94,7 +95,7 @@ void gs_fifo_open(int* stream, char* path, int access)
 
 void gs_fifos_dispose(int* in, int* out)
 {
- 	PRINT_STATUS_NEW("Disposing FIFOs");
+ 	PRINT_STATUS_NEW(tr("Disposing FIFOs"));
 
 	gs_fifo_dispose_in(in);
 	gs_fifo_dispose_out(out);
@@ -104,13 +105,13 @@ void gs_fifos_dispose(int* in, int* out)
 
 void gs_fifo_dispose_in(int* in)
 {
- 	PRINT_STATUS_MSG("Disposing input FIFO");
+ 	PRINT_STATUS_MSG(tr("Disposing input FIFO"));
 	gs_fifo_dispose(in, PATH_GS_STDIN);
 }
 
 void gs_fifo_dispose_out(int* out)
 {
-	PRINT_STATUS_MSG("Disposing output FIFO");
+	PRINT_STATUS_MSG(tr("Disposing output FIFO"));
 	gs_fifo_dispose(out, PATH_GS_STDOUT);
 }
 
