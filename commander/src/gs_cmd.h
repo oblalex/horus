@@ -13,11 +13,14 @@
 #define GS_CMD_CHAT_ALL				GS_CMD_CHAT " \"%s\" ALL"
 
 void gs_cmd_init(int fd);
+void gs_cmd_tear_down();
 
 void gs_cmd_exit();
 
 void gs_cmd_chat_all(char* msg);
 
-void gs_cmd_kick_all(fd);
+void gs_cmd_kick_all();
+
+static void gs_cmd_send(char* cmd);
 
 #endif // GS_CMD_H

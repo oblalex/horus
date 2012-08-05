@@ -211,6 +211,7 @@ void gs_on_process_stop()
 {
 	gs_fifos_dispose(&(GS.in), &(GS.out));
 	input_handlers_stop();
+	gs_cmd_tear_down();
 	PRINT_STATUS_MULTI_STOP();
 	GS.launched_before = TRUE;
 }

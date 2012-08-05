@@ -2,32 +2,33 @@
 #include <string.h>
 #include <stdio.h>
 #include <time.h>
+#include <pthread.h>
 
 #include "gs_cmd.h"
 #include "gs_cfg.h"
 
-// #include "util/common.h"
 #include "util/print_status.h"
 #include "util/file.h"
 
 static int GS_IN_FD;
+static pthread_mutex_t LOCK;
 
 void gs_cmd_init(int fd)
 {
 	GS_IN_FD = fd;
+	pthread_mutex_init(&LOCK, NULL);
 }
 
 void gs_cmd_exit()
 {
-	char* cmd = GS_CMD_EXIT;
-	line_wr(GS_IN_FD, cmd, strlen(cmd));
+	gs_cmd_send(GS_CMD_EXIT);
 }
 
 void gs_cmd_chat_all(char* msg)
 {
 	char cmd[128];
 	sprintf(&cmd, GS_CMD_CHAT_ALL, msg);
-	line_wr(GS_IN_FD, cmd, strlen(cmd));
+	gs_cmd_send(cmd);
 }
 
 void gs_cmd_kick_all()
@@ -46,7 +47,23 @@ void gs_cmd_kick_all()
 	char* cmd = GS_CMD_KICK_FIRST;
 
 	for(i=0; i<atoi(channels); i++)
-		line_wr(GS_IN_FD, cmd, strlen(cmd));
+		gs_cmd_send(cmd);
 
 	PRINT_STATUS_DONE();
+}
+
+static void gs_cmd_send(char* cmd)
+{
+	pthread_mutex_lock(&LOCK);
+
+	line_wr(GS_IN_FD, cmd, strlen(cmd));
+	line_wr(GS_IN_FD, '\0', 1);
+	usleep(10*1000);
+
+	pthread_mutex_unlock(&LOCK);
+}
+
+void gs_cmd_tear_down()
+{
+	pthread_mutex_destroy(&LOCK);
 }

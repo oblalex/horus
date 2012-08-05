@@ -1,6 +1,4 @@
 #include "file.h"
-
-#include <time.h>
 #include <unistd.h>
 
 void line_rd(int fd, char* line, int size, int offset, RL_STAT* stat)
@@ -30,6 +28,4 @@ void line_rd(int fd, char* line, int size, int offset, RL_STAT* stat)
 void line_wr(int fd, char* line, int size)
 {
 	write(fd, line, size);
-	write(fd, '\n', 1);
-	usleep(10*1000);
 }
