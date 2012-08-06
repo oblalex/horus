@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: horus-commander 0.0.1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-05 23:23+0300\n"
+"Report-Msgid-Bugs-To: https://github.com/oblalex/horus/issues\n"
+"POT-Creation-Date: 2012-08-06 12:36+0300\n"
 "PO-Revision-Date: 2012-08-02 09:36+0300\n"
 "Last-Translator:  <oblovatniy@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -230,3 +230,39 @@ msgstr "Очистка списка разрешенных клиентов ко
 #: src/gs_cfg.c:90
 msgid "Setting client version checking"
 msgstr "Установление проверки совместимости версий"
+
+#: src/main_parser.c:51
+msgid ""
+"\"IL-2 Sturmovik: Fogotten Battles\" server control and statistics "
+"collecting subsystem of \"Horus\""
+msgstr ""
+"Сбор статистики и управление сервером \"ИЛ-2 Штурмовик: Забытые Сражения\". "
+"Часть системы \"Хорус\""
+
+#: src/main_parser.c:53
+msgid "Usage"
+msgstr "Использование"
+
+#: src/main_parser.c:55
+msgid "Arguments"
+msgstr "Аргументы"
+
+#: src/main_parser.c:57
+msgid "Print this help"
+msgstr "Вывести эту справку"
+
+#: src/main_parser.c:59
+msgid "Print program version"
+msgstr "Вывести версию программы"
+
+#: src/main_parser.c:61
+msgid "Send bug reports to"
+msgstr "Сообщайте об ошибках здесь"
+
+#: src/main_parser.c:62
+msgid "More information at"
+msgstr "Получите больше информации здесь"
+
+#: src/main_parser.c:68
+msgid "Argument unknown"
+msgstr "Неизвестный аргумент"

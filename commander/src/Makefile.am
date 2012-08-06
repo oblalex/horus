@@ -4,6 +4,7 @@ bindir=$(prefix)/@PACKAGE@/
 bin_PROGRAMS = horusCommander
 
 horusCommander_SOURCES = main.c \
+						main_parser.c \
 						gs.c \
 						gs_paths.c \
 						gs_cfg.c \

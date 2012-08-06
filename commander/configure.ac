@@ -2,13 +2,18 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.68])
-AC_INIT([horus-commander], [0.0.40])
+AC_INIT(
+	[horus-commander],
+	[0.0.41],
+	https://github.com/oblalex/horus/issues,
+	,
+	https://github.com/oblalex/horus)
 
 AC_CONFIG_AUX_DIR([config])
 AC_CONFIG_MACRO_DIR([m4])
 AM_GNU_GETTEXT([external])
 
-AM_INIT_AUTOMAKE([horus-commander], [0.0.40])
+AM_INIT_AUTOMAKE
 LT_INIT
 AC_CONFIG_SRCDIR([src/main.c])
 AC_CONFIG_HEADERS([config.h ])
