@@ -8,7 +8,7 @@
 void init();
 void tearDown();
 
-int main (int argc, char const *argv[])
+int main (int argc, char const** argv)
 {
 	init();
 	if (argc>1)

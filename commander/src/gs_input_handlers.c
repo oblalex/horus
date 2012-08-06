@@ -23,6 +23,8 @@ void input_handlers_start()
     PRINT_STATUS_NEW(tr("Starting console and shell handling threads"));
 
 	pthread_create(&h_gs_out, NULL, &handle_gs_out, NULL);
+
+	shell_parser_init();
 	pthread_create(&h_shell_in, NULL, &handle_shell_in, NULL);
 		
 	PRINT_STATUS_DONE();
@@ -74,8 +76,9 @@ void input_handlers_stop()
 
 	pthread_cancel(h_gs_out);
 	PRINT_STATUS_MSG(tr("Game server's output processing finished"));
-	
+
 	pthread_cancel(h_shell_in);
+	shell_parser_teardown();
 	PRINT_STATUS_MSG(tr("User's shell deactivated"));
 
 	PRINT_STATUS_DONE();

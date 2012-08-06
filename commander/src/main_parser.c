@@ -13,7 +13,7 @@
  * than 1 argument. This means that arguments' iterator may change with
  * step more than 1.
  */
-void parseArgs(int argc, char const *argv[])
+void parseArgs(int argc, char const** argv)
 {
 	int i;
 	for (i=1; i<argc; i++)
