@@ -5,6 +5,7 @@
 
 #include "gs_input_handlers.h"
 #include "gs.h"
+#include "shell_parser.h"
 #include "util/file.h"
 #include "util/l10n.h"
 #include "util/print_status.h"
@@ -37,7 +38,7 @@ void* handle_gs_out()
 void* handle_shell_in()
 {
 	PRINT_STATUS_MSG_NOIND(tr("User's shell activated"));
-	handle_input(STDIN_FILENO, &gs_is_running, &foo_parse);
+	handle_input(STDIN_FILENO, &gs_is_running, &shell_parse_string);
 	return NULL;
 }
 

@@ -11,3 +11,9 @@ char* str_copy(const char* str)
     }
     return dup;
 }
+
+void str_null_termitate(char* str)
+{
+	int last_char_id = strlen(str)-1;
+	if (str[last_char_id]=='\n') str[last_char_id] = 0;
+}

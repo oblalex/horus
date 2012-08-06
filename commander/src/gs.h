@@ -2,6 +2,7 @@
 #define GS_H
 
 #include <stdio.h>
+#include <sys/types.h>
 
 #include "util/common.h"
 

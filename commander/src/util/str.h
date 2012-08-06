@@ -19,4 +19,6 @@
  */
 char* str_copy(const char* str);
 
+void str_null_termitate(char* str);
+
 #endif // STR_H

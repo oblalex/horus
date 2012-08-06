@@ -44,7 +44,7 @@ static BOOL recon_help(char const *arg)
 			|| (strcmp(arg, "--help") == 0)) ? TRUE : FALSE;
 }
 
-static void print_help(char const *exec_name)
+static void print_help(char* exec_name)
 {
 	print_version();
 	wprintf(L"%s.\n",

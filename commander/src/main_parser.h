@@ -15,7 +15,7 @@ static BOOL recon_version(char const *arg);
 static void print_version();
 
 static BOOL recon_help(char const *arg);
-static void print_help(char const *exec_name);
+static void print_help(char* exec_name);
 
 static void non_recon(char const *arg);
 

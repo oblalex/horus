@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: horus-commander 0.0.41\n"
 "Report-Msgid-Bugs-To: https://github.com/oblalex/horus/issues\n"
-"POT-Creation-Date: 2012-08-06 12:36+0300\n"
+"POT-Creation-Date: 2012-08-06 15:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,27 +161,27 @@ msgstr ""
 msgid "Unable to create file"
 msgstr ""
 
-#: src/gs_input_handlers.c:22
+#: src/gs_input_handlers.c:23
 msgid "Starting console and shell handling threads"
 msgstr ""
 
-#: src/gs_input_handlers.c:32
+#: src/gs_input_handlers.c:33
 msgid "Game server's output processing started"
 msgstr ""
 
-#: src/gs_input_handlers.c:39
+#: src/gs_input_handlers.c:40
 msgid "User's shell activated"
 msgstr ""
 
-#: src/gs_input_handlers.c:72
+#: src/gs_input_handlers.c:73
 msgid "Stopping console and shell handling threads"
 msgstr ""
 
-#: src/gs_input_handlers.c:75
+#: src/gs_input_handlers.c:76
 msgid "Game server's output processing finished"
 msgstr ""
 
-#: src/gs_input_handlers.c:78
+#: src/gs_input_handlers.c:79
 msgid "User's shell deactivated"
 msgstr ""
 
