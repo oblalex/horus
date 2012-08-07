@@ -13,9 +13,9 @@
 static int GS_IN_FD;
 static pthread_mutex_t LOCK;
 
-void gs_cmd_init(int fd)
+void gs_cmd_init()
 {
-	GS_IN_FD = fd;
+	GS_IN_FD = 0; // TODO: get from socket
 	pthread_mutex_init(&LOCK, NULL);
 }
 

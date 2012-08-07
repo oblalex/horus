@@ -5,6 +5,5 @@
 #define FILE_EXT_CMD ".cmd"
 #define FILE_EXT_INI ".ini"
 #define FILE_EXT_LOG ".log"
-#define FILE_EXT_FIFO ".fifo"
 
 #endif // FILE_EXT_H

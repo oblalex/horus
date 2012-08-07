@@ -11,12 +11,6 @@
 #include "util/print_status.h"
 
 static pthread_t h_gs_out, h_shell_in;
-static int GS_OUT_FD;
-
-void input_handlers_init(int fd)
-{
-	GS_OUT_FD = fd;
-}
 
 void input_handlers_start()
 {
@@ -33,6 +27,7 @@ void input_handlers_start()
 void* handle_gs_out()
 {
 	PRINT_STATUS_MSG_NOIND(tr("Game server's output processing started"));
+	int GS_OUT_FD = 0; // get from socket
 	handle_input(GS_OUT_FD, &gs_is_running, &foo_parse);
 	return NULL;
 }

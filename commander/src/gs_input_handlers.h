@@ -3,7 +3,6 @@
 
 #include "util/common.h"
 
-void input_handlers_init(int fd);
 void input_handlers_start();
 void* handle_gs_out();
 void* handle_shell_in();

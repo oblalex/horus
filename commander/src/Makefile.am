@@ -9,7 +9,7 @@ horusCommander_SOURCES = main.c \
 						gs_paths.c \
 						gs_cfg.c \
 						gs_scripts.c \
-						gs_fifo.c \
+						gs_process.c \
 						gs_cmd.c \
 						gs_input_handlers.c \
 						shell_parser.c

@@ -21,13 +21,9 @@
 #define GS_LOG_EVT			GS_LOGS_DIR GS_LOG_EVT_NAME
 #define PATH_GS_LOG_EVT		PATH_GS GS_LOG_EVT
 
-/** Game server's input fifo name */
-#define GS_STDIN_NAME		"stdin" FILE_EXT_FIFO
-#define PATH_GS_STDIN		PATH_GS GS_STDIN_NAME
-
 /** Game server's output fifo name */
-#define GS_STDOUT_NAME 		"stdout" FILE_EXT_FIFO
-#define PATH_GS_STDOUT		PATH_GS GS_STDOUT_NAME
+#define GS_STDOUT_NAME 		"stdout" FILE_EXT_LOG
+#define PATH_GS_STDOUT		PATH_GS_LOGS_DIR GS_STDOUT_NAME
 
 /** Game server's executable file name */
 #define GS_EXE_NAME_SHORT	"il2server"

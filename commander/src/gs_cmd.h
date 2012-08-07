@@ -12,7 +12,7 @@
 #define GS_CMD_CHAT					"chat"
 #define GS_CMD_CHAT_ALL				GS_CMD_CHAT " \"%s\" ALL"
 
-void gs_cmd_init(int fd);
+void gs_cmd_init();
 void gs_cmd_tear_down();
 
 void gs_cmd_exit();

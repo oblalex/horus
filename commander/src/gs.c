@@ -2,52 +2,47 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <time.h>
-#include <unistd.h>
 #include <string.h>
 
 #include "gs.h"
-#include "gs_paths.h"
 #include "gs_scripts.h"
+#include "gs_process.h"
 #include "gs_cfg.h"
-#include "gs_fifo.h"
 #include "gs_cmd.h"
 #include "gs_input_handlers.h"
 #include "util/print_status.h"
-#include "util/file.h"
 
-GS_DESCRIPTOR GS;
+static BOOL LAUNCHED_BEFORE = FALSE;
+static BOOL DO_RUN = TRUE;
+static BOOL LOADED;
 
 void gs_init()
 {
     gs_check_path_root();
-	gs_descriptor_init();
 	gs_setup_termination_hooks();
 }
 
-void gs_descriptor_init()
-{
-	GS.pid = (pid_t) 0;
-
-	GS.in = GS.out = 0;
-
-	GS.loaded = GS.launched_before = FALSE;
-	GS.do_run = TRUE;
-}
-
-void gs_setup_termination_hooks()
+static void gs_setup_termination_hooks()
 {
 	signal(SIGPIPE,	SIG_IGN);
 
 	signal(SIGINT,	gs_termination_handler);
 	signal(SIGTERM,	gs_termination_handler);
 	signal(SIGABRT,	gs_termination_handler);
+
+	signal(SIGUSR1,	gs_loadded_hadler);
 }
 
-void gs_termination_handler(int signum)
+static void gs_termination_handler(int signum)
 {		
 	PRINT_STATUS_ORDER_RESET();
 	wprintf(L"\n%s: #%d.\n", tr("Signal caugth"), signum);
 	gs_exit();
+}
+
+static void gs_loadded_hadler()
+{
+	LOADED = TRUE;
 }
 
 void gs_run()
@@ -55,32 +50,22 @@ void gs_run()
     char* gs_is_down_msg = tr("Game server is shut down");
 
     while (1) {
-		gs_check_launched_before();
-		if (GS.do_run == FALSE) break;
+		LOADED = FALSE;
 
-		if (gs_prepare() == FALSE)
-		{
-            GS.launched_before = TRUE;
-            continue;
-		}
-		
-		gs_process_create();
-		if (GS.pid <= (pid_t) 0)
+		gs_check_launched_before();
+		if (DO_RUN == FALSE) break;
+
+		gs_prepare();
+
+		if (gs_process_create() == FALSE)
         {
 			gs_on_process_stop();
             continue;
         }
 
-		if (gs_fifos_open(&(GS.in), &(GS.out)) == FALSE)
-		{
-			gs_process_kill();
-            gs_on_process_stop();
-            continue;
-		}
-		
 		gs_on_process_start();
 
-        if (GS.do_run == TRUE)
+        if (DO_RUN == TRUE)
         {
             PRINT_STATUS_MSG_ERR_NOIND(gs_is_down_msg);
         } else {
@@ -90,92 +75,62 @@ void gs_run()
     }
 }
 
-void gs_check_launched_before()
+static void gs_check_launched_before()
 {
-	if (GS.launched_before == TRUE)
+	if (LAUNCHED_BEFORE == TRUE)
 	{
 		char i;
 		for(i=5; i>0; i--){
-			if (GS.do_run == FALSE) break;
+			if (DO_RUN == FALSE) break;
 			int len = 40;
-			wchar_t buf[len];
-			swprintf(buf, len, L"%s...%d", tr("Restarting game server in"), i);
-			PRINT_STATUS_MSG_NOIND((char*)buf);
+			char buf[len];
+			sprintf(buf, "%s...%d", tr("Restarting game server in"), i);
+			PRINT_STATUS_MSG_NOIND(&buf);
 			sleep(1);
 		}
 	}
 }
 
-BOOL gs_prepare()
+static void gs_prepare()
 {
 	gs_cfg();
 	gs_scripts_generate();
-	return gs_fifos_create();
-}
-
-void gs_process_create()
-{
-    PRINT_STATUS_NEW(tr("Creating game server process"));
-
-    if ((GS.pid = fork()) < 0)
-    {
-        PRINT_STATUS_MSG_ERR(tr("Failed to fork"));
-        PRINT_STATUS_FAIL();
-        return;
-    } else if (GS.pid == 0) {
-        signal(SIGINT,	SIG_IGN);
-        signal(SIGTERM,	SIG_IGN);
-        signal(SIGABRT,	SIG_IGN);
-
-		char cmd[80];
-		sprintf(cmd, "wine %s<%s >>%s 2>%s", PATH_GS_EXE, PATH_GS_STDIN, PATH_GS_STDOUT, PATH_GS_LOG_ERR);
-
-        execl("/bin/sh", "sh", "-c", cmd, (char*) 0);
-        _exit(127);
-    }
-
-    PRINT_STATUS_DONE();
-}
-
-void gs_on_process_start()
-{
-	gs_cmd_init(GS.in);
-	gs_wait_loaded();
 	
 	PRINT_STATUS_MULTI_START();
-	input_handlers_init(GS.out);
-	input_handlers_start();
-	gs_process_wait();
+}
+
+static void gs_on_process_start()
+{
+	gs_wait_loaded();
+
+	if ((DO_RUN == TRUE) && (LOADED == TRUE))
+	{
+		gs_cmd_init();
+
+		// create socket	
+		input_handlers_start();
+		gs_process_wait();
+	}
 	gs_on_process_stop();
 }
 
-void gs_wait_loaded()
+static void gs_wait_loaded()
 {
-    PRINT_STATUS_NEW(tr("Waiting for server is loaded"));
-
-    int line_len = 64;
-    char line[line_len];
-	int offset = 0;
-	RL_STAT stat;
-
-    while(GS.do_run == TRUE)
+	PRINT_STATUS_NEW(tr("Waiting for server is loaded"));
+	
+	int tries = 30;
+	while ((LOADED == FALSE) && (DO_RUN == TRUE))
 	{
-		line_rd(GS.out, line, line_len, offset, &stat);
-        if (stat.finished == FALSE)
-        {
-			offset += stat.length;
-            usleep(300*1000);
-        } else {
-			offset = 0;
-			if (strstr(line, "1>") != NULL)
-			{
-            	GS.loaded = TRUE;
-				break;
-			}
-        }
-    }
+		sleep(1);
+		tries--;
+		if (tries == 0)
+		{
+			PRINT_STATUS_MSG_ERR(tr("Game server loading timeout"));
+			break;
+		}
+	}
 
-	if (GS.do_run == TRUE)
+	if (LOADED == TRUE)
 	{
 		PRINT_STATUS_DONE();
 	} else {
@@ -183,21 +138,10 @@ void gs_wait_loaded()
 	}
 }
 
-void gs_process_wait()
-{
-    int childExitStatus;
-    waitpid(GS.pid, &childExitStatus, 0);
-
-	PRINT_STATUS_MSG(tr("Game server's process finished"));
-
-	GS.pid = (pid_t) 0;
-    GS.loaded = FALSE;
-}
-
 void gs_exit()
 {
-	GS.do_run = FALSE;
-	if (GS.loaded == TRUE)
+	DO_RUN = FALSE;
+	if (LOADED == TRUE)
 	{ 
 		gs_cmd_exit();
 	} else {
@@ -205,21 +149,18 @@ void gs_exit()
 	}
 }
 
-void gs_process_kill()
+static void gs_on_process_stop()
 {
-	if (GS.pid) kill(GS.pid, SIGKILL);
-}
-
-void gs_on_process_stop()
-{
-	gs_fifos_dispose(&(GS.in), &(GS.out));
+	// socket close
 	input_handlers_stop();
 	gs_cmd_tear_down();
+	
 	PRINT_STATUS_MULTI_STOP();
-	GS.launched_before = TRUE;
+	
+	LAUNCHED_BEFORE = TRUE;
 }
 
 BOOL gs_is_running()
 {
-	return ((GS.do_run == TRUE) && (GS.loaded == TRUE)) ? TRUE : FALSE;
+	return ((DO_RUN == TRUE) && (LOADED == TRUE)) ? TRUE : FALSE;
 }

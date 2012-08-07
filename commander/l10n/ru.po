@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: horus-commander 0.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/oblalex/horus/issues\n"
-"POT-Creation-Date: 2012-08-06 15:14+0300\n"
+"POT-Creation-Date: 2012-08-08 00:38+0300\n"
 "PO-Revision-Date: 2012-08-02 09:36+0300\n"
 "Last-Translator:  <oblovatniy@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -18,42 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-
-#: src/gs_fifo.c:14
-msgid "Creating FIFOs"
-msgstr "Создание FIFO"
-
-#: src/gs_fifo.c:32
-msgid "Creating game server stdin FIFO"
-msgstr "Создание FIFO серверного ввода"
-
-#: src/gs_fifo.c:38
-msgid "Creating game server stdout FIFO"
-msgstr "Создание FIFO серверного вывода"
-
-#: src/gs_fifo.c:58
-msgid "Opening FIFOs"
-msgstr "Открытие FIFO"
-
-#: src/gs_fifo.c:76
-msgid "Opening game server's stdin FIFO"
-msgstr "Открытие FIFO серверного ввода"
-
-#: src/gs_fifo.c:82
-msgid "Opening game server's stdout FIFO"
-msgstr "Открытие FIFO серверного вывода"
-
-#: src/gs_fifo.c:98
-msgid "Disposing FIFOs"
-msgstr "Уничтожение FIFO"
-
-#: src/gs_fifo.c:108
-msgid "Disposing input FIFO"
-msgstr "Уничтожение FIFO серверного ввода"
-
-#: src/gs_fifo.c:114
-msgid "Disposing output FIFO"
-msgstr "Уничтожение FIFO серверного вывода"
 
 #: src/gs_paths.c:15
 msgid "Checking root path"
@@ -87,33 +51,25 @@ msgstr "Создание отсутствующей директории"
 msgid "Failed to create"
 msgstr "Не удалось создать"
 
-#: src/gs.c:49
+#: src/gs.c:39
 msgid "Signal caugth"
 msgstr "Получен сигнал"
 
-#: src/gs.c:55
+#: src/gs.c:50
 msgid "Game server is shut down"
 msgstr "Игровой сервер остановлен"
 
-#: src/gs.c:102
+#: src/gs.c:87
 msgid "Restarting game server in"
 msgstr "Перезапуск игрового сервера через"
 
-#: src/gs.c:118
-msgid "Creating game server process"
-msgstr "Создание процесса игрового сервера"
-
-#: src/gs.c:122
-msgid "Failed to fork"
-msgstr "Не удалось выполнить форк"
-
-#: src/gs.c:154
+#: src/gs.c:116
 msgid "Waiting for server is loaded"
 msgstr "Ожидание загрузки сервера"
 
-#: src/gs.c:191
-msgid "Game server's process finished"
-msgstr "Процесс игрового сервера завершен"
+#: src/gs.c:125
+msgid "Game server loading timeout"
+msgstr "Превышено время ожидания загрузки сервера"
 
 #: src/util/ini.h:68
 msgid "Unable to parse ini-file"
@@ -163,27 +119,27 @@ msgstr "Создание главного скрипта"
 msgid "Unable to create file"
 msgstr "Невозможно создать файл"
 
-#: src/gs_input_handlers.c:23
+#: src/gs_input_handlers.c:17
 msgid "Starting console and shell handling threads"
 msgstr "Запуск потоков обработки вывода сервера и пользовательского ввода"
 
-#: src/gs_input_handlers.c:33
+#: src/gs_input_handlers.c:29
 msgid "Game server's output processing started"
 msgstr "Обработка вывода сервера начата"
 
-#: src/gs_input_handlers.c:40
+#: src/gs_input_handlers.c:37
 msgid "User's shell activated"
 msgstr "Пользовательский ввод доступен"
 
-#: src/gs_input_handlers.c:73
+#: src/gs_input_handlers.c:70
 msgid "Stopping console and shell handling threads"
 msgstr "Остановка потоков обработки вывода сервера и пользовательского ввода"
 
-#: src/gs_input_handlers.c:76
+#: src/gs_input_handlers.c:73
 msgid "Game server's output processing finished"
 msgstr "Обработка вывода сервера завершена"
 
-#: src/gs_input_handlers.c:79
+#: src/gs_input_handlers.c:77
 msgid "User's shell deactivated"
 msgstr "Пользовательский ввод недоступен"
 
@@ -230,6 +186,18 @@ msgstr "Очистка списка разрешенных клиентов ко
 #: src/gs_cfg.c:90
 msgid "Setting client version checking"
 msgstr "Установление проверки совместимости версий"
+
+#: src/gs_process.c:21
+msgid "Creating game server process"
+msgstr "Создание процесса игрового сервера"
+
+#: src/gs_process.c:25
+msgid "Failed to fork"
+msgstr "Не удалось выполнить форк"
+
+#: src/gs_process.c:102
+msgid "Game server's process finished"
+msgstr "Процесс игрового сервера завершен"
 
 #: src/main_parser.c:51
 msgid ""
