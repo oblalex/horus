@@ -1,3 +1,4 @@
+src/gs_console.c
 src/gs_paths.c
 src/gs.c
 src/util/ini.h

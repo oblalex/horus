@@ -5,8 +5,8 @@
 
 #include "gs_input_handlers.h"
 #include "gs.h"
+#include "gs_console.h"
 #include "shell_parser.h"
-#include "util/file.h"
 #include "util/l10n.h"
 #include "util/print_status.h"
 
@@ -27,19 +27,18 @@ void input_handlers_start()
 void* handle_gs_out()
 {
 	PRINT_STATUS_MSG_NOIND(tr("Game server's output processing started"));
-	int GS_OUT_FD = 0; // get from socket
-	handle_input(GS_OUT_FD, &gs_is_running, &foo_parse);
+	handle_input(get_gs_console_socket(), &gs_is_running, &console_line_rd, &foo_parse);
 	return NULL;
 }
 
 void* handle_shell_in()
 {
 	PRINT_STATUS_MSG_NOIND(tr("User's shell activated"));
-	handle_input(STDIN_FILENO, &gs_is_running, &shell_parse_string);
+	handle_input(STDIN_FILENO, &gs_is_running, &line_rd, &shell_parse_string);
 	return NULL;
 }
 
-void handle_input(int fd, BOOL (*run_condition)(), void (*parse)(char*))
+void handle_input(int fd, BOOL (*run_condition)(), void (*read_fn)(int, char*, int, int, RL_STAT*), void (*parse)(char*))
 {
     int line_len = 255;
     char line[line_len];
@@ -48,7 +47,7 @@ void handle_input(int fd, BOOL (*run_condition)(), void (*parse)(char*))
 
     while((*run_condition)() == TRUE)
 	{
-		line_rd(fd, line, line_len, offset, &stat);
+		(*read_fn)(fd, line, line_len, offset, &stat);
         if (stat.finished == FALSE)
         {
 			offset += stat.length;

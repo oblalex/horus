@@ -1,4 +1,5 @@
 #include "file.h"
+
 #include <unistd.h>
 
 void line_rd(int fd, char* line, int size, int offset, RL_STAT* stat)
@@ -27,5 +28,12 @@ void line_rd(int fd, char* line, int size, int offset, RL_STAT* stat)
 
 void line_wr(int fd, char* line, int size)
 {
-	write(fd, line, size);
+	int done = 0;
+	int tx;
+	while (done<size)
+	{
+		tx = write(fd, line, size);
+		if (tx <0 ) break;
+		done += tx;
+	}
 }

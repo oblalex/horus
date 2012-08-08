@@ -13,6 +13,8 @@
 #define GS_CFG_SEC_NET		"NET"
 /**@}*/
 
+#define GS_CONSOLE_PORT		"20001"
+
 void gs_cfg();
 void gs_cfg_logging(INI_CONTAINER* cfg);
 void gs_cfg_logging_chat(INI_CONTAINER* cfg);

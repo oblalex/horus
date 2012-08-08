@@ -78,11 +78,11 @@ void gs_cfg_logging_file(INI_CONTAINER* cfg)
 
 void gs_cfg_console_connection(INI_CONTAINER* cfg)
 {
-    PRINT_STATUS_MSG(tr("Disabling server's console"));
-    ini_value_set(cfg, GS_CFG_SEC_CONSOLE, "IP", "");
+    PRINT_STATUS_MSG(tr("Enabling server's console"));
+    ini_value_set(cfg, GS_CFG_SEC_CONSOLE, "IP", GS_CONSOLE_PORT);
 
-    PRINT_STATUS_MSG(tr("Cleaning console allowed clients list"));
-    ini_value_set(cfg, GS_CFG_SEC_CONSOLE, "IPS", "");
+    PRINT_STATUS_MSG(tr("Setting console allowed clients list"));
+    ini_value_set(cfg, GS_CFG_SEC_CONSOLE, "IPS", "127.0.0.1");
 }
 
 void gs_cfg_version_checking(INI_CONTAINER* cfg)

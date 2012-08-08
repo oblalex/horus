@@ -9,12 +9,14 @@
 #include "gs_process.h"
 #include "gs_cfg.h"
 #include "gs_cmd.h"
+#include "gs_console.h"
 #include "gs_input_handlers.h"
 #include "util/print_status.h"
 
 static BOOL LAUNCHED_BEFORE = FALSE;
 static BOOL DO_RUN = TRUE;
 static BOOL LOADED;
+static BOOL CONNECTED = FALSE;
 
 void gs_init()
 {
@@ -80,7 +82,7 @@ static void gs_check_launched_before()
 	if (LAUNCHED_BEFORE == TRUE)
 	{
 		char i;
-		for(i=5; i>0; i--){
+		for(i=10; i>0; i--){
 			if (DO_RUN == FALSE) break;
 			int len = 40;
 			char buf[len];
@@ -103,13 +105,14 @@ static void gs_on_process_start()
 {
 	gs_wait_loaded();
 
-	if ((DO_RUN == TRUE) && (LOADED == TRUE))
+	if ((gs_is_running() == TRUE) && ((CONNECTED = gs_console_init()) == TRUE))
 	{
-		gs_cmd_init();
-
-		// create socket	
-		input_handlers_start();
-		gs_process_wait();
+			gs_cmd_init();
+			input_handlers_start();
+			gs_cmd_kick_all();
+			gs_process_wait();
+	} else {
+		gs_process_kill();
 	}
 	gs_on_process_stop();
 }
@@ -151,12 +154,14 @@ void gs_exit()
 
 static void gs_on_process_stop()
 {
-	// socket close
-	input_handlers_stop();
-	gs_cmd_tear_down();
+	if (CONNECTED == TRUE)
+	{
+		input_handlers_stop();
+		gs_cmd_tear_down();
+	}
+	gs_console_tear_down();
 	
 	PRINT_STATUS_MULTI_STOP();
-	
 	LAUNCHED_BEFORE = TRUE;
 }
 
