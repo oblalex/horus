@@ -21,6 +21,8 @@ char* str_copy(const char* str);
 
 void str_null_termitate(char* str);
 
+int str_copy_symbols(char* src, int src_len, int max_count, int offset, char* dst, int dst_len);
+
 void str_escape_unicode(char* src, int src_len, char* dst, int dst_len);
 
 #endif // STR_H

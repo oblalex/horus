@@ -27,14 +27,22 @@ void gs_cmd_exit()
 
 void gs_cmd_chat_all(char* msg)
 {
-	int max_len = GS_CMD_CHAT_MAX_LEN*6;
+	char emsg[GS_CMD_CHAT_MAX_LEN*6];
+	char cmd[(sizeof emsg)+10];
 
-	char emsg[max_len];
-	str_escape_unicode(msg, strlen(msg), emsg, max_len);
+	char chunk[GS_CMD_CHAT_MAX_LEN*2];
 	
-	char cmd[max_len+20];
-	sprintf(cmd, GS_CMD_CHAT_ALL, emsg);
-	gs_cmd_send((char*)&cmd);
+	int offset = 0;
+	int end = strlen(msg);
+
+	while (offset<end)
+	{
+		memset(chunk, '\0', sizeof chunk);
+		offset = str_copy_symbols(msg, end, GS_CMD_CHAT_MAX_LEN, offset, (char*)&chunk, sizeof chunk);
+		str_escape_unicode(chunk, strlen(chunk), emsg, sizeof emsg);
+		sprintf(cmd, GS_CMD_CHAT_ALL, emsg);
+		gs_cmd_send((char*)&cmd);
+	}
 }
 
 void gs_cmd_kick_all()

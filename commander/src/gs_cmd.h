@@ -11,7 +11,7 @@
 #define GS_CMD_KICK_NUM(NUM)		"kick# " #NUM NEW_LINE
 #define GS_CMD_KICK_FIRST			GS_CMD_KICK_NUM(1)
 
-#define GS_CMD_CHAT_MAX_LEN			256
+#define GS_CMD_CHAT_MAX_LEN			80
 #define GS_CMD_CHAT					"chat"
 #define GS_CMD_CHAT_ALL				GS_CMD_CHAT " \"%s\" ALL" NEW_LINE
 

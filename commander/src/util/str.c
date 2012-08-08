@@ -1,6 +1,7 @@
 #include "str.h"
 #include <string.h>
 #include <stdio.h>
+#include <wchar.h>
 
 char* str_copy(const char* str)
 {
@@ -17,6 +18,34 @@ void str_null_termitate(char* str)
 {
 	int last_char_id = strlen(str)-1;
 	if (str[last_char_id]=='\n') str[last_char_id] = 0;
+}
+
+int str_copy_symbols(char* src, int src_len, int max_count, int offset, char* dst, int dst_len)
+{
+	int s_end = src+src_len;
+	int d_end = dst+dst_len;
+
+	char* start = src;
+	src += offset;
+
+	int count = 0;
+
+	while((src < s_end) && (dst < d_end) && (count < max_count))
+	{
+		if ((unsigned char)*src < 0x80)
+		{
+			*(dst++) = *(src++);
+		} else if ((src < s_end-1) && (dst < d_end-1) && (count < max_count))
+		{
+			*(dst++) = *(src++);
+			*(dst++) = *(src++);
+		} else {
+			break;
+		}
+		count++;
+	}
+
+	return (int) (src - start);
 }
 
 void str_escape_unicode(char* src, int src_len, char* dst, int dst_len)
