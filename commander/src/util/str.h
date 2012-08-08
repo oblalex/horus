@@ -21,4 +21,6 @@ char* str_copy(const char* str);
 
 void str_null_termitate(char* str);
 
+void str_escape_unicode(char* src, int src_len, char* dst, int dst_len);
+
 #endif // STR_H

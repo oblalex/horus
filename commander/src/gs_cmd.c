@@ -9,6 +9,7 @@
 #include "gs_console.h"
 
 #include "util/print_status.h"
+#include "util/str.h"
 
 static int GS_IN_FD;
 static pthread_mutex_t LOCK;
@@ -26,8 +27,13 @@ void gs_cmd_exit()
 
 void gs_cmd_chat_all(char* msg)
 {
-	char cmd[128];
-	sprintf(cmd, GS_CMD_CHAT_ALL, msg);
+	int max_len = GS_CMD_CHAT_MAX_LEN*6;
+
+	char emsg[max_len];
+	str_escape_unicode(msg, strlen(msg), emsg, max_len);
+	
+	char cmd[max_len+20];
+	sprintf(cmd, GS_CMD_CHAT_ALL, emsg);
 	gs_cmd_send((char*)&cmd);
 }
 
