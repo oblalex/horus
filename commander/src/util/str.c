@@ -38,7 +38,7 @@ void str_escape_unicode(char* src, int src_len, char* dst, int dst_len)
 			*(dst++) = 'u';
 			sprintf(code, "%04x",					// from sequence
 					(								// AAAxxxxx BByyyyyy
-					 	((*(src) & 0x1F) << 6) +	// cut AAA by 0x1F
+					 	((*(src) & 0x1F) << 6) |	// cut AAA by 0x1F
 						((*(src+1)) & 0x3F)			// cut BB  by 0x3F
 					 )								// and get xxxxxyyyyyy
 					);
