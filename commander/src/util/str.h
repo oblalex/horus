@@ -25,4 +25,6 @@ int str_copy_symbols(char* src, int src_len, int max_count, int offset, char* ds
 
 void str_escape_unicode(char* src, int src_len, char* dst, int dst_len);
 
+char* substring(int start, int stop, char* src, char* dst, int size);
+
 #endif // STR_H

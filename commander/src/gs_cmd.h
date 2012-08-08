@@ -12,8 +12,9 @@
 #define GS_CMD_KICK_FIRST			GS_CMD_KICK_NUM(1)
 
 #define GS_CMD_CHAT_MAX_LEN			80
-#define GS_CMD_CHAT					"chat"
-#define GS_CMD_CHAT_ALL				GS_CMD_CHAT " \"%s\" ALL" NEW_LINE
+#define GS_CMD_CHAT					"chat \"%s\" %s" NEW_LINE
+#define CHAT_ADDRESSEE_ALL			"ALL"
+#define CHAT_ADDRESSEE_USERNAME		"TO %s"
 
 void gs_cmd_init();
 void gs_cmd_tear_down();
@@ -21,6 +22,8 @@ void gs_cmd_tear_down();
 void gs_cmd_exit();
 
 void gs_cmd_chat_all(char* msg);
+void gs_cmd_chat_username(char* username, char* msg);
+void gs_cmd_chat(char* msg, char* addressee);
 
 void gs_cmd_kick_all();
 

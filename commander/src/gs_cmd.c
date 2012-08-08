@@ -27,8 +27,29 @@ void gs_cmd_exit()
 
 void gs_cmd_chat_all(char* msg)
 {
+	gs_cmd_chat(msg, CHAT_ADDRESSEE_ALL);
+}
+
+void gs_cmd_chat_username(char* username, char* msg)
+{
+	// 3 is for "TO "
+	char addressee[strlen(username)+3];
+	sprintf(addressee, CHAT_ADDRESSEE_USERNAME, username);
+	gs_cmd_chat(msg, addressee);
+}
+
+void gs_cmd_chat(char* msg, char* addressee)
+{
+	PRINT_STATUS_MSG(msg);
+	PRINT_STATUS_MSG(addressee);
+	
 	char emsg[GS_CMD_CHAT_MAX_LEN*6];
-	char cmd[(sizeof emsg)+10];
+	char eaddressee[strlen(addressee)*2-1];
+
+	str_escape_unicode(addressee, strlen(addressee), eaddressee, sizeof eaddressee);	
+
+	// 9 is for "chat \"", "\" ", '\0'
+	char cmd[(sizeof emsg)+strlen(eaddressee)+9];
 
 	char chunk[GS_CMD_CHAT_MAX_LEN*2];
 	
@@ -40,14 +61,15 @@ void gs_cmd_chat_all(char* msg)
 		memset(chunk, '\0', sizeof chunk);
 		offset = str_copy_symbols(msg, end, GS_CMD_CHAT_MAX_LEN, offset, (char*)&chunk, sizeof chunk);
 		str_escape_unicode(chunk, strlen(chunk), emsg, sizeof emsg);
-		sprintf(cmd, GS_CMD_CHAT_ALL, emsg);
+		
+		sprintf(cmd, GS_CMD_CHAT, emsg, addressee);
 		gs_cmd_send((char*)&cmd);
 	}
 }
 
 void gs_cmd_kick_all()
 {	
-	char* msg = "Kicking all!";
+	char* msg = tr("Kicking all!");
 	PRINT_STATUS_NEW(msg);	
 	
 	int i;

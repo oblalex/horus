@@ -5,6 +5,8 @@ src/util/ini.h
 src/util/print_status.h
 src/gs_scripts.c
 src/gs_input_handlers.c
+src/gs_cmd.c
 src/gs_cfg.c
+src/shell_parser.c
 src/gs_process.c
 src/main_parser.c

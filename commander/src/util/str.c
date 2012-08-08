@@ -81,3 +81,15 @@ void str_escape_unicode(char* src, int src_len, char* dst, int dst_len)
 	}
 	*dst = '\0';
 }
+
+char* substring(int start, int stop, char* src, char* dst, int size)
+{
+	int count = stop - start;
+	if ( count >= --size )
+	{
+		count = size;
+	}
+	sprintf(dst, "%.*s", count, src + start);
+	return dst;
+}
+
