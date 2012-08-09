@@ -1,7 +1,7 @@
 ![Horus](https://photos-3.dropbox.com/psi/2048x1536/3EcsyJ8dizhm3qBr-Et4mccGoGnbF5JQJy0GKCUXxFY/76022516/1344610800/5d1ee35/horus_black.png)
 
 [IL-2 Sturmovik]  dedicated server controlling and statistics gathering system. 
-Includes  server commander, web apptication and missions generator.
+Includes  server commander, web application and missions generator.
 
 This project is an alternative to [IL2 Server Commander] and [FBDaemon]. 
 <br/><br/><br/><br/>
