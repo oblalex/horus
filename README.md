@@ -7,7 +7,7 @@ This project is an alternative to [IL2 Server Commander] and [FBDaemon].
 <br/><br/><br/><br/>
 More info at [home page].
 
-[IL-2 Sturmovik]:http://en.wikipedia.org/wiki/IL-2_Sturmovik_(video_game)a
+[IL-2 Sturmovik]:http://en.wikipedia.org/wiki/IL-2_Sturmovik_(video_game)
 [IL2 Server Commander]:http://wiki.sturmovik.de/index.php?title=IL2_Server_Commander_English_Version
 [FBDaemon]:http://wiki.sturmovik.de/index.php?title=FBDaemon
 [home page]:http://oblalex.github.com/horus/
