@@ -32,9 +32,12 @@ void gs_cmd_chat_all(char* msg)
 
 void gs_cmd_chat_username(char* username, char* msg)
 {
+	char eusername[strlen(username)*6-5];
+	str_escape_unicode(username, strlen(username), eusername, sizeof eusername);
+
 	// 3 is for "TO "
-	char addressee[strlen(username)+3];
-	sprintf(addressee, CHAT_ADDRESSEE_USERNAME, username);
+	char addressee[strlen(eusername)+3];
+	sprintf(addressee, CHAT_ADDRESSEE_USERNAME, eusername);
 	gs_cmd_chat(msg, addressee);
 }
 
@@ -44,12 +47,9 @@ void gs_cmd_chat(char* msg, char* addressee)
 	PRINT_STATUS_MSG(addressee);
 	
 	char emsg[GS_CMD_CHAT_MAX_LEN*6];
-	char eaddressee[strlen(addressee)*2-1];
-
-	str_escape_unicode(addressee, strlen(addressee), eaddressee, sizeof eaddressee);	
 
 	// 9 is for "chat \"", "\" ", '\0'
-	char cmd[(sizeof emsg)+strlen(eaddressee)+9];
+	char cmd[(sizeof emsg)+strlen(addressee)+9];
 
 	char chunk[GS_CMD_CHAT_MAX_LEN*2];
 	
