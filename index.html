@@ -10,33 +10,60 @@
     <script src="pages/javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if !IE 7]>
+      <style type="text/css">
+        #wrap {display:table;height:100%}
+      </style>
     <![endif]-->
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <div id="head_container">
-          <div id="head_right">
-                      <ul>
-                      <li class="download"><a class="buttons" href="https://github.com/oblalex/horus/zipball/master">Download ZIP</a></li>
-                      <li class="download"><a class="buttons" href="https://github.com/oblalex/horus/tarball/master">Download TAR</a></li>
-                      <li><a class="buttons github" href="https://github.com/oblalex/horus">View On GitHub</a></li>
-                      </ul>
-                    </div>
-        </div>
-      </header>
-      <section>
-
-      <p><a href="http://en.wikipedia.org/wiki/IL-2_Sturmovik_(video_game)">IL-2 Sturmovik</a>  dedicated server controlling and statistics gathering system.</p>
-        <p>This project is maintained by <a href="https://github.com/oblalex">oblalex</a>.</p>
-      </section>
-
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a></small></p>
-      </footer>
+    <div id="root">
+        <header>
+          <div id="head_container">
+            <div id="head_right">
+              <ul>
+                <li class="download"><a class="buttons" href="https://github.com/oblalex/horus/zipball/master">Download ZIP</a></li>
+                <li class="download"><a class="buttons" href="https://github.com/oblalex/horus/tarball/master">Download TAR</a></li>
+                <li><a class="buttons github" href="https://github.com/oblalex/horus">View On GitHub</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+        <section id="main">
+        <p>Horus is a software system which wich allows to control <a href="http://en.wikipedia.org/wiki/IL-2_Sturmovik_(video_game)">IL&#8209;2&nbsp;Sturmovik</a> dedicated servers and to gather statistics from them. It is an alternative to
+          <a href="http://wiki.sturmovik.de/index.php?title=IL2_Server_Commander_English_Version">IL&#8209;2&nbsp;Server&nbsp;Commander</a> and <a href="http://wiki.sturmovik.de/index.php?title=FBDaemon">FBDaemon</a>. </p>
+          <br/>
+          <table style="width:700px; margin: 5px auto; text-align: center;">
+            <tbody>
+            <tr>
+              <td colspan="3" style="width: 100%">
+                System consists of
+              </td>
+            </tr>
+            <tr>
+              <td><img src="pages/images/commander.png"/></td>
+              <td><img src="pages/images/webapp.png"/></td>
+              <td><img src="pages/images/generator.png"/></td>
+            </tr>
+            <tr>
+              <td>Commander</td>
+              <td>Web Application</td>
+              <td>Mission Generator</td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        <div id="footerMargin"></div>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+    <footer>
+      <p>
+        Project is maintained by <a href="https://github.com/oblalex">oblalex</a>
+        <span style="color: #444; font-size: 20px; padding: 0 20px;">|</span>
+        Hosted on <a href="http://pages.github.com/">GitHub Pages</a>
+      </p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->    
   </body>
 </html>

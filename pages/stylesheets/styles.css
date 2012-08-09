@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Arvo:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Play:400,700,400italic);
 
 /* MeyerWeb Reset */
 
@@ -22,8 +23,70 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
+html, body {height: 100%;}
 
-/* Base text styles */
+#root {
+  min-height: 100%;
+  width:960px;
+  margin: 0 auto 0 auto;
+}
+ 
+header {
+  border: none;
+  display: block;
+  padding: 0;
+  margin: 10px 0 30px 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+#main {
+  overflow:auto;
+  min-height: 70px;
+  padding: 20px;
+  border-radius: 10px;
+  font-family: 'Play', sans-serif;
+  font-size: 20px;
+  text-align: justify;
+  text-indent: 50px;
+  text-shadow: 1px 1px 1px #FFF;
+  color: #444;
+}
+
+#footerMargin{
+  padding-bottom: 90px;
+}
+
+footer:before {
+  content: "\0020";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  box-shadow: #000 0 0 15px 5px;
+  top: -10px
+}
+
+footer {
+  background: url('../images/footer-bg.png');
+  position: relative;
+  margin-top: -70px;
+  height: 70px;
+  overflow: hidden;
+  text-align: center;
+  color: #777;
+  text-shadow: 1px 1px 1px #000;
+  line-height: 60px;
+  font-family: 'Play', sans-serif;
+}
+
+/*Opera Fix*/
+body:before {
+  content:"";
+  height:100%;
+  float:left;
+  width:0;
+  margin-top:-32767px;
+}
 
 body {
   padding: 0;
@@ -34,7 +97,6 @@ body {
   margin: 0;
 	line-height: 1.8em;
 	-webkit-font-smoothing: antialiased;
-
 }
 
 #head_container {
@@ -42,24 +104,11 @@ body {
   width: 960px;
   height: 161px;
 }
+
 #head_right {
   padding-top: 40px;
   padding-right: 25px;
   float: right
-}
-
-a {
-  color:#C30000;
-  font-weight:200;
-  text-decoration:none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-a small {
-	font-size: 12px;
 }
 
 hr {
@@ -69,17 +118,12 @@ hr {
   margin:0 0 24px;
 }
 
-/* Images */
-
 img {
   position: relative;
   margin: 0 auto;
   max-width: 960px;
   border: none;
 }
-
-
-/* Code blocks */
 
 code, pre {
 	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
@@ -97,47 +141,18 @@ pre {
 	margin-bottom: 32px;
 }
 
-
-/* Tables */
-
-table {
-  width:100%;
+a {
+  color:#C30000;
+  font-weight:200;
+  text-decoration:none;
 }
 
-table {
-  border: 1px solid #ccc;
-  margin-bottom: 32px;
-  text-align: left;
- }
-
-th {
-  font-family: 'Arvo', Helvetica, Arial, sans-serif;
-	font-size: 18px;
-	font-weight: normal;
-  padding: 10px;
-  background: #232323;
-  color: #FDFEFB;
- }
-
-td {
-  padding: 10px;
-	background: #ccc;
- }
-
-
-/* Wrapper */
-.wrapper {
-  width:960px;
-  margin: 0 auto 0 auto;
+a:hover {
+  text-decoration: underline;
 }
 
-/* Header */
-
-header {
-	border: none;
-	padding: 0;
-  margin: 10px 0 30px 0;
-	-webkit-font-smoothing: antialiased;
+a small {
+  font-size: 12px;
 }
 
 h1.header, a.header, a.name, header a{
@@ -208,23 +223,4 @@ a.github {
 a.buttons:hover {
 	color: #fff;
 	text-decoration: none;
-}
-
-
-/* Section - for main page content */
-
-section {
-  width:960px;
-  padding-bottom:50px;
-}
-
-
-/* Footer */
-
-footer {
-  width:170px;
-  float:left;
-  position:fixed;
-  bottom:10px;
-	padding-left: 50px;
 }
