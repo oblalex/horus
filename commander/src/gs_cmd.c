@@ -41,11 +41,22 @@ void gs_cmd_chat_username(char* username, char* msg)
 	gs_cmd_chat(msg, addressee);
 }
 
+void gs_cmd_chat_usernum(int num, char* msg)
+{
+	char addressee[15];
+	sprintf(addressee, CHAT_ADDRESSEE_USERNUM, num);
+	gs_cmd_chat(msg, addressee);
+}
+
+void gs_cmd_chat_army(char army_num, char* msg)
+{
+	char addressee[7];
+	sprintf(addressee, CHAT_ADDRESSEE_ARMY, army_num);
+	gs_cmd_chat(msg, addressee);
+}
+
 void gs_cmd_chat(char* msg, char* addressee)
 {
-	PRINT_STATUS_MSG(msg);
-	PRINT_STATUS_MSG(addressee);
-	
 	char emsg[GS_CMD_CHAT_MAX_LEN*6];
 
 	// 9 is for "chat \"", "\" ", '\0'
