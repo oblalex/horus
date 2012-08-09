@@ -7,7 +7,7 @@ AC_INIT(
 	[0.0.50],
 	https://github.com/oblalex/horus/issues,
 	,
-	https://github.com/oblalex/horus)
+	http://oblalex.github.com/horus)
 
 AC_CONFIG_AUX_DIR([config])
 AC_CONFIG_MACRO_DIR([m4])
