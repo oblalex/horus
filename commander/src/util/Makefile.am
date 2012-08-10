@@ -1,5 +1,8 @@
 noinst_LTLIBRARIES = libutil.la
 
+noinst_HEADERS = l10n.h
+DEFS = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+
 libutil_la_SOURCES = str.c \
 					ini.c \
 					terminal.c \
@@ -8,5 +11,6 @@ libutil_la_SOURCES = str.c \
 					file.c \
 					regexxx.c
 libutil_la_LIBADD = stack/libstack.la
+libutil_la_LDFLAGS = $(LTLIBINTL)
 
 SUBDIRS = stack

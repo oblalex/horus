@@ -1,4 +1,4 @@
-#                                               -*- Autoconf -*-
+:q#                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.68])
@@ -11,7 +11,9 @@ AC_INIT(
 
 AC_CONFIG_AUX_DIR([config])
 AC_CONFIG_MACRO_DIR([m4])
+
 AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.18.1])
 
 AM_INIT_AUTOMAKE
 LT_INIT
@@ -29,17 +31,21 @@ PKG_CHECK_MODULES(
 )
 
 AC_PROG_CC
+
+localedir='${prefix}/'$PACKAGE_NAME'/l10n'
+AC_SUBST(localedir)
+
 AC_PROG_LIBTOOL
 AM_PROG_CC_C_O
 
 AC_CONFIG_FILES([
-	l10n/Makefile.in
 	Makefile
 	src/Makefile
 	src/util/Makefile	
 	src/util/stack/Makefile
 	tests/Makefile	
 	tests/util/Makefile	
+	l10n/Makefile.in
 ])
 
 AC_OUTPUT

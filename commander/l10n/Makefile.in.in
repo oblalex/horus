@@ -24,9 +24,9 @@ VPATH = @srcdir@
 
 prefix = @prefix@
 exec_prefix = @exec_prefix@
-datarootdir = $(prefix)/@PACKAGE@/data
+datarootdir = @datarootdir@
 datadir = @datadir@
-localedir = $(prefix)/@PACKAGE@/l10n/
+localedir = @localedir@
 gettextsrcdir = $(datadir)/gettext/po
 
 INSTALL = @INSTALL@

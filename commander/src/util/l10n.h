@@ -3,8 +3,6 @@
 
 #include <libintl.h>
 
-#define LOCALEDIR "l10n"
-
 #define tr(str) gettext(str)
 
 void locale_init();
