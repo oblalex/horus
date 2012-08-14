@@ -1,4 +1,4 @@
-![Horus](https://raw.github.com/oblalex/horus/gh-pages/pages/images/horus_black.png)
+![Horus](https://raw.github.com/oblalex/horus/gh-pages/img/horus_black.png)
 
 [IL-2 Sturmovik]  dedicated server controlling and statistics gathering system. 
 Includes  server commander, web application and missions generator.
