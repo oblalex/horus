@@ -1,0 +1,27 @@
+<div id="root">
+  <div id="content">
+    $CONTENT_HERE$
+  </div>
+  <div id="footerMargin"></div>
+</div>
+<footer>
+  <p id="footer_body">
+    Project is maintained by <a href="https://github.com/oblalex">oblalex</a>
+    <span class="footerVSplitter">|</span>
+    Hosted on <a href="http://pages.github.com/">GitHub Pages</a>
+    <span class="footerVSplitter">|</span>
+  </p>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var yearCreated = 2012;
+      var yearNow = new Date().getFullYear();
+      var footerMsg = "";
+      if (yearCreated==yearNow){
+        footerMsg += yearCreated;
+      } else {
+        footerMsg += yearCreated + " - " + yearNow;
+      }
+      $('#footer_body').append(footerMsg);
+    });
+  </script>
+</footer>
