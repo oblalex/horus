@@ -1,6 +1,10 @@
 html, body {height: 100%;}
 
-#forLayout{style="width:100%; min-height: 100%;" margin: 0;}
+#forLayout{width:100%;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%; /*for IE*/
+}
 
 #root {
   min-height: 100%;
