@@ -67,7 +67,7 @@ footer:before {
 }
 
 footer {
-  background: url('../images/footer-bg.png');
+  background: url('../img/footer-bg.png');
   position: relative;
   margin-top: -70px;
   height: 70px;
@@ -93,14 +93,14 @@ body {
   font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	color: #232323;
-	background:	url('../images/chruch.png');
+	background:	url('../img/chruch.png');
   margin: 0;
 	line-height: 1.8em;
 	-webkit-font-smoothing: antialiased;
 }
 
 #head_container {
-  background: url('../images/horus_black_long.png');
+  background: url('../img/horus_black_long.png');
   width: 960px;
   height: 161px;
 }
@@ -209,7 +209,7 @@ header li:hover {
 
 a.buttons {
 	-webkit-font-smoothing: antialiased;
-	background: url(../images/arrow-down.png) no-repeat;
+	background: url(../img/arrow-down.png) no-repeat;
 	font-weight: normal;
 	text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 0;
 	padding: 2px 2px 2px 22px;
@@ -217,7 +217,7 @@ a.buttons {
 }
 
 a.github {
-	background: url(../images/octocat-small.png) no-repeat 1px;
+	background: url(../img/octocat-small.png) no-repeat 1px;
 }
 
 a.buttons:hover {
