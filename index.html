@@ -1,66 +1,106 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Horus by oblalex</title>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<title>Horus by oblalex</title>
 
-    <link rel="stylesheet" href="style/styles.css">
-    <link rel="stylesheet" href="style/pygment_trac.css">
+		<link rel="stylesheet" href="style/styles.css">
+		<link rel="stylesheet" href="style/pygment_trac.css">
 
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>    
-    <script src="js/scale.fix.js"></script>
-    <script src="js/layout.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/scale.fix.js"></script>
+		<script src="js/layout.js"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if !IE 7]>
-      <style type="text/css">
-        #wrap {display:table;height:100%}
-      </style>
-    <![endif]-->
-  </head>
-  <body>
-    <div id="forLayout"></div>
-    <div id="content">
-        <header>
-          <div id="head_container">
-            <div id="head_right">
-              <ul>
-                <li class="download"><a class="buttons" href="https://github.com/oblalex/horus/zipball/master">Download ZIP</a></li>
-                <li class="download"><a class="buttons" href="https://github.com/oblalex/horus/tarball/master">Download TAR</a></li>
-                <li><a class="buttons github" href="https://github.com/oblalex/horus">View On GitHub</a></li>
-              </ul>
-            </div>
-          </div>
-        </header>
-        <section id="main">
-        <p>Horus is a software system which wich allows to control <a href="http://en.wikipedia.org/wiki/IL-2_Sturmovik_(video_game)">IL&#8209;2&nbsp;Sturmovik</a> dedicated servers and to gather statistics from them. It is an alternative to
-          <a href="http://wiki.sturmovik.de/index.php?title=IL2_Server_Commander_English_Version">IL&#8209;2&nbsp;Server&nbsp;Commander</a> and <a href="http://wiki.sturmovik.de/index.php?title=FBDaemon">FBDaemon</a>. </p>
-          <br/>
-          <table style="width:700px; margin: 5px auto; text-align: center;">
-            <tbody>
-            <tr>
-              <td colspan="3" style="width: 100%">
-                System consists of
-              </td>
-            </tr>
-            <tr>
-              <td><img src="img/sys/commander_grey.png"/></td>
-              <td><img src="img/sys/webapp_grey.png"/></td>
-              <td><img src="img/sys/generator_grey.png"/></td>
-            </tr>
-            <tr>
-              <td>Commander</td>
-              <td>Web Application</td>
-              <td>Mission Generator</td>
-            </tr>
-            </tbody>
-          </table>
-        </section>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-  </body>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<!--[if !IE 7]>
+		<style type="text/css">
+			#wrap {display:table;height:100%}
+		</style>
+		<![endif]-->
+	</head>
+	<body>
+		<div id="forLayout"></div>
+		<div id="content">
+			<header>
+			<div id="head_container">
+				<div id="head_right">
+					<ul>
+						<li class="download"><a class="buttons" href="https://github.com/oblalex/horus/zipball/master">Download ZIP</a></li>
+						<li class="download"><a class="buttons" href="https://github.com/oblalex/horus/tarball/master">Download TAR</a></li>
+						<li><a class="buttons github" href="https://github.com/oblalex/horus">View On GitHub</a></li>
+					</ul>
+				</div>
+			</div>
+			</header>
+			<section id="main">
+			<p>Horus is a software system which wich allows to control <a href="http://en.wikipedia.org/wiki/IL-2_Sturmovik_(video_game)">IL&#8209;2&nbsp;Sturmovik</a> dedicated servers and to gather statistics from them. It is an alternative to
+			<a href="http://wiki.sturmovik.de/index.php?title=IL2_Server_Commander_English_Version">IL&#8209;2&nbsp;Server&nbsp;Commander</a> and <a href="http://wiki.sturmovik.de/index.php?title=FBDaemon">FBDaemon</a>. </p>
+			<br/>
+			<table style="width:700px; margin: 5px auto; text-align: center;">
+				<tbody>
+					<tr>
+						<td colspan="3" style="width: 100%">
+							System consists of
+						</td>
+					</tr>
+					<tr>
+						<td><img src="img/sys/commander_grey.png"/></td>
+						<td><img src="img/sys/webapp_grey.png"/></td>
+						<td><img src="img/sys/generator_grey.png"/></td>
+					</tr>
+					<tr>
+						<td>Commander</td>
+						<td>Web Application</td>
+						<td>Mission Generator</td>
+					</tr>
+				</tbody>
+			</table>
+			<table style="width:300px; margin: 40px auto 5px auto; text-align: center;">
+				<tbody>
+					<tr>
+						<td colspan="2" style="width: 100%; line-height: 45px;">
+							Supported operating systems
+						</td>
+					</tr>
+					<tr>
+						<td><img src="img/os/linux.png"/></td>
+						<td><img src="img/os/windows_grey.png"/></td>
+					</tr>
+					<tr>
+						<td>Linux</td>
+						<td>
+							Windows
+							<img src="img/info.png" id="win-info"/>
+							<div class="pop-up" id="win-info-pop-up">
+								<p>Porting to Windows is future-planned</p>
+							</div>
+							<script>
+								$(function() {
+									var moveLeft = 20;
+									var moveDown = 10;
+
+									$('img#win-info').hover(function(e) {
+										$('div#win-info-pop-up').show();
+										}, function() {
+										$('div#win-info-pop-up').hide();
+									});
+
+									$('a#trigger').mousemove(function(e) {
+										$("div#win-info-pop-up").css('top', e.pageY + moveDown).css('left', e.pageX + moveLeft);
+									});
+
+								});
+							</script>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</section>
+		</div>
+		<!--[if !IE]><script>fixScale(document);</script><![endif]-->
+	</body>
 </html>
