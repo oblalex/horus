@@ -10,6 +10,7 @@
 
 		<script src="js/jquery.min.js"></script>
 		<script src="js/scale.fix.js"></script>
+		<script src="js/popup.js"></script>
 		<script src="js/layout.js"></script>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -25,7 +26,125 @@
 	<body>
 		<div id="forLayout"></div>
 		<div id="content">
-			<p>Commander</p>
+			<p>Horus-commander is a Horus subsystem which communicates with IL-2
+			Dedicated Server directly. Loading missions, responding to pilot's
+			requests, collecting their statistical data and tracking mission 
+			progress are the main purposes of the commander. It extends
+			facilities of Dedicated Server.</p>
+			<hr/>
+			<p>Features:</p>
+			<ul>
+				<li>
+					Game Server's process full maintenance: start, stop,
+					autorestart. Once you have started commander, it will 
+					start server and will try to restart it in case of
+					server shuttdown. Exiting commander will also stop
+					server.
+				</li>
+			</ul>
+			<hr/>
+			<p>
+				Shell commands:
+				<img src="img/info.png" id="shell-info"/>
+			</p>
+			<script>
+				$('#shell-info').addPopup($('#shell-info-pop-up'));
+			</script>
+			<table class="commands" cellspacing="0">
+				<col width="300"/>
+				<tr>
+					<td>chall <span style="color:#070;">&lt;message&gt;</span></td>
+					<td>send message to everybody</td>
+				</tr>
+				<tr>
+					<td>chusr <span style="color:#909;">&lt;user&gt;</span>
+						<span style="color:#070;">&lt;message&gt;</span></td>
+					<td>send message to user</td>
+				</tr>
+				<tr>
+					<td>charm
+						<span style="color:#a50;">&lt;army&gt;</span>
+						<span style="color:#070;">&lt;message&gt;</span></td>
+					<td>send message to army:
+						<ul style="margin:0;">
+							<li>"none", "n", "0" - army none;</li>
+							<li>"red",&nbsp; "r", "1" - army red;</li>
+							<li>"blue", "b", "2" - army blue.</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>exit</td>
+					<td>stop server and exit commander</td>
+				</tr>
+			</table>
+			<hr/>
+			<p>
+				Pilot requests:
+				<img src="img/info.png" id="request-info"/>
+			</p>
+			<script>
+				$('#request-info').addPopup($('#request-info-pop-up'));
+			</script>
+			<span style="color:#777; padding-left:70px;">No pilot requests are available yet.</span>
+			<hr/>
+			<p>Installation:</p>
+			<p>1. Install next packages:</p>
+			<ul style="margin:0; font-size:16px;">
+				<li>git</li>
+				<li>gcc (&gt;=4.7.0)</li>
+				<li>automake (&gt;=1.11.3)</li>
+				<li>m4 (&gt;=1.4.16)</li>
+				<li>autoconf (&gt;=2.68)</li>
+				<li>libtool (&gt;=2.4.2)</li>
+				<li>gettext + gettext-dev (&gt;=0.18.1)</li>
+			</ul>	
+			<p>2. Clone Horus repository to any directory:</p>
+			<pre class="code_snippet">git clone https://github.com/oblalex/horus.git</pre>
+			<p>3. Go to horus-commander subdirectory:</p>
+			<pre class="code_snippet">cd horus/commander</pre>
+			<p>4. Create 'configure'</p>
+			<pre class="code_snippet">autoreconf -i</pre>
+			<p>5. Create directory for buildings and go into it:</p>
+			<pre class="code_snippet">mkdir build && cd build</pre>
+			<p>6. Run 'configure':</p>
+			<pre class="code_snippet">../configure --prefix=/path/to/your/il-2/server/directory</pre>
+			<p>7. Build and install horus-commander:</p>
+			<pre class="code_snippet">make && make install-strip</pre>
+
+			<hr/>
+			<p>Launching:</p>
+			<p>1. Go to installed horus-commander directory:</p>
+			<pre class="code_snippet">cd /path/to/your/il-2/server/directory/horus-commander</pre>
+			<p>2. Start commander:</p>
+			<pre class="code_snippet">./horusCommander</pre>
+			<p>You should see such output:</p>
+			<img class="screensh" src="img/exec/starting.png"/>
+			<p>Entering shell command 'exit' will cause to this:</p>
+			<img class="screensh" src="img/exec/stopping.png"/>
+
+			<hr/>
+			<p>Changing language:</p>
+			<p>By default english language is selected. Before launching
+			commander you can set LANGUAGE variable to the
+			value you need. Remember that commander's output is in UTF-8
+			encoding. For switching to russian language run (in bash):</p>
+			<pre class="code_snippet">export LANGUAGE="ru_RU"</pre>
+			<p>To restore english output:</p>
+			<pre class="code_snippet">export LANGUAGE="en_US"</pre>
+			<hr/>
+			<p>Developer's API</p>
+			<p>Also you may be interested in
+				<a href="commander/docs/html/files.html">developer's API</a>.
+			</p>
+		</div>
+		<div class="pop-up" id="shell-info-pop-up">
+			When commander starts game server a user shell<br/>
+			can be used to control commander.
+		</div>
+		<div class="pop-up" id="request-info-pop-up">
+			Commands that pilot can send to server via chat<br/>
+			to execute some action or get some information.
 		</div>
 		<!--[if !IE]><script>fixScale(document);</script><![endif]-->
 	</body>
