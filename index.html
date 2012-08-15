@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="style/pygment_trac.css">
 
 		<script src="js/jquery.min.js"></script>
+		<script src="js/popup.js"></script>
 		<script src="js/scale.fix.js"></script>
 		<script src="js/layout.js"></script>
 
@@ -25,20 +26,14 @@
 	<body>
 		<div id="forLayout"></div>
 		<div id="content">
-			<header>
-			<div id="head_container">
-				<div id="head_right">
-					<ul>
-						<li class="download"><a class="buttons" href="https://github.com/oblalex/horus/zipball/master">Download ZIP</a></li>
-						<li class="download"><a class="buttons" href="https://github.com/oblalex/horus/tarball/master">Download TAR</a></li>
-						<li><a class="buttons github" href="https://github.com/oblalex/horus">View On GitHub</a></li>
-					</ul>
-				</div>
-			</div>
-			</header>
-			<section id="main">
-			<p>Horus is a software system which wich allows to control <a href="http://en.wikipedia.org/wiki/IL-2_Sturmovik_(video_game)">IL&#8209;2&nbsp;Sturmovik</a> dedicated servers and to gather statistics from them. It is an alternative to
+			<p>Horus<img src="img/info.png" id="horus-info"/>
+			is a software system which wich allows to control <a href="http://en.wikipedia.org/wiki/IL-2_Sturmovik_(video_game)">IL&#8209;2&nbsp;Sturmovik</a> dedicated servers and to gather statistics from them. It is an alternative to
 			<a href="http://wiki.sturmovik.de/index.php?title=IL2_Server_Commander_English_Version">IL&#8209;2&nbsp;Server&nbsp;Commander</a> and <a href="http://wiki.sturmovik.de/index.php?title=FBDaemon">FBDaemon</a>. </p>
+
+			<script>
+				$('#horus-info').addPopup($('#horus-info-pop-up'));
+			</script>
+
 			<br/>
 			<table style="width:700px; margin: 5px auto; text-align: center;">
 				<tbody>
@@ -48,14 +43,22 @@
 						</td>
 					</tr>
 					<tr>
-						<td><img src="img/sys/commander_grey.png"/></td>
+						<td><img src="img/sys/commander.png"/></td>
 						<td><img src="img/sys/webapp_grey.png"/></td>
 						<td><img src="img/sys/generator_grey.png"/></td>
 					</tr>
 					<tr>
-						<td>Commander</td>
-						<td>Web Application</td>
-						<td>Mission Generator</td>
+						<td><a href="commander.html">Commander</a></td>
+						<td>Web Application
+							<img src="img/info.png" id="webapp-info"/>
+						</td>
+						<td>Mission Generator
+							<img src="img/info.png" id="missgen-info"/>
+						</td>
+						<script>
+							$('#webapp-info').addPopup($('#dev-info-pop-up'));
+							$('#missgen-info').addPopup($('#dev-info-pop-up'));
+						</script>
 					</tr>
 				</tbody>
 			</table>
@@ -76,25 +79,8 @@
 						<td>
 							Windows
 							<img src="img/info.png" id="win-info"/>
-							<div class="pop-up" id="win-info-pop-up">
-								<p>Porting to Windows is future-planned</p>
-							</div>
 							<script>
-								$(function() {
-									var moveLeft = 20;
-									var moveDown = 10;
-
-									$('img#win-info').hover(function(e) {
-										$('div#win-info-pop-up').show();
-										}, function() {
-										$('div#win-info-pop-up').hide();
-									});
-
-									$('a#trigger').mousemove(function(e) {
-										$("div#win-info-pop-up").css('top', e.pageY + moveDown).css('left', e.pageX + moveLeft);
-									});
-
-								});
+								$('#win-info').addPopup($('#win-info-pop-up'));
 							</script>
 						</td>
 					</tr>
@@ -118,7 +104,15 @@
 					</tr>
 				</tbody>
 			</table>
-			</section>
+		</div>
+		<div class="pop-up" id="horus-info-pop-up">
+			<p>Named after the Egyptian Falcon-god, "lord of the sky", "one who is above"</p>
+		</div>
+		<div class="pop-up" id="win-info-pop-up">
+			<p>Porting to Windows is future-planned</p>
+		</div>
+		<div class="pop-up" id="dev-info-pop-up">
+			Development has not started yet
 		</div>
 		<!--[if !IE]><script>fixScale(document);</script><![endif]-->
 	</body>

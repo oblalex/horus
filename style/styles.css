@@ -13,88 +13,56 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  vertical-align: baseline;
-}
-
-header {
-  border: none;
-  display: block;
-  padding: 0;
-  margin: 10px 0 30px 0;
-  -webkit-font-smoothing: antialiased;
-}
-
-#main {
-  overflow:auto;
-  min-height: 70px;
-  padding: 20px;
-  border-radius: 10px;
-  font-family: 'Play', sans-serif;
-  font-size: 20px;
-  text-align: justify;
-  text-indent: 50px;
-  text-shadow: 1px 1px 1px #FFF;
-  color: #444;
-}
-
-#head_container {
-  background: url('../img/horus_black_long.png');
-  width: 960px;
-  height: 161px;
-}
-
-#head_right {
-  padding-top: 40px;
-  padding-right: 25px;
-  float: right
+	:margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
 }
 
 hr {
-  border:0;
-  background:#ccc;
-  height:1px;
-  margin: 40px 0;
+	border:0;
+	background:#ccc;
+	height:1px;
+	margin: 40px 0;
 }
 
 img {
-  position: relative;
-  margin: 0 auto;
-  max-width: 960px;
-  border: none;
+	position: relative;
+	margin: 0 auto;
+	max-width: 960px;
+	border: none;
 }
 
 code, pre {
 	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  color:#000;
-  font-size:14px;
+	color:#000;
+	font-size:14px;
 }
 
 pre {
 	padding: 4px 12px;
-  background: #FDFEFB;
-  border-radius:4px;
-  border:1px solid #D7D8C8;
-  overflow: auto;
-  overflow-y: hidden;
+	background: #FDFEFB;
+	border-radius:4px;
+	border:1px solid #D7D8C8;
+	overflow: auto;
+	overflow-y: hidden;
 	margin-bottom: 32px;
 }
 
 a {
-  color:#C30000;
-  font-weight:200;
-  text-decoration:none;
+	color:#C30000;
+	font-weight:200;
+	text-decoration:none;
+	outline: none;
 }
 
 a:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 a small {
-  font-size: 12px;
+	font-size: 12px;
 }
 
 h1.header, a.header, a.name, header a{
@@ -110,29 +78,29 @@ a.name {
 }
 
 header ul {
-  list-style:none;
-  padding:0;
-  margin: 7px 0;
+	list-style:none;
+	padding:0;
+	margin: 7px 0;
 }
 
 header li {
 	list-style-type: none;
-  width:132px;
-  height:15px;
+	width:132px;
+	height:15px;
 	margin-bottom: 5px;
 	line-height: 1em;
 	padding: 6px 6px 6px 7px;
 
 	background: #AF0011;
 	background: -moz-linear-gradient(top, #AF0011 0%, #820011 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
-  background: -webkit-linear-gradient(top, #AF0011 0%,#820011 100%);
-  background: -o-linear-gradient(top, #AF0011 0%,#820011 100%);
-  background: -ms-linear-gradient(top, #AF0011 0%,#820011 100%);
-  background: linear-gradient(top, #AF0011 0%,#820011 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
+	background: -webkit-linear-gradient(top, #AF0011 0%,#820011 100%);
+	background: -o-linear-gradient(top, #AF0011 0%,#820011 100%);
+	background: -ms-linear-gradient(top, #AF0011 0%,#820011 100%);
+	background: linear-gradient(top, #AF0011 0%,#820011 100%);
 
 	border-radius:4px;
-  border:1px solid #0D0D0D;
+	border:1px solid #0D0D0D;
 
 	-webkit-box-shadow: inset 0px 1px 1px 0 rgba(233,2,38, 1);
 	box-shadow: inset 0px 1px 1px 0 rgba(233,2,38, 1);
@@ -142,11 +110,11 @@ header li {
 header li:hover {
 	background: #C3001D;
 	background: -moz-linear-gradient(top, #C3001D 0%, #950119 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
-  background: -webkit-linear-gradient(top, #C3001D 0%,#950119 100%);
-  background: -o-linear-gradient(top, #C3001D 0%,#950119 100%);
-  background: -ms-linear-gradient(top, #C3001D 0%,#950119 100%);
-  background: linear-gradient(top, #C3001D 0%,#950119 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
+	background: -webkit-linear-gradient(top, #C3001D 0%,#950119 100%);
+	background: -o-linear-gradient(top, #C3001D 0%,#950119 100%);
+	background: -ms-linear-gradient(top, #C3001D 0%,#950119 100%);
+	background: linear-gradient(top, #C3001D 0%,#950119 100%);
 }
 
 a.buttons {
@@ -171,11 +139,13 @@ div.pop-up {
 	display: none;
 	position: absolute;
 	padding: 1px 7px;
-	background: #EEE;
+	width=100px;
+	background: #F5F5F5;
 	color: #444;
 	border: 1px solid #444;
 	font-size: 12px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	z-index: 999;
 }

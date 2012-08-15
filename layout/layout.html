@@ -1,27 +1,49 @@
+<nav>
+<a href="index.html">Main</a>
+<span class="footerVSplitter">|</span>
+<a href="commander.html">Commander</a>
+<span class="footerVSplitter">|</span>
+Web Application
+<span class="footerVSplitter">|</span>
+Mission Generator
+</nav>
 <div id="root">
-  <div id="forContent">
-    $CONTENT_HERE$
-  </div>
-  <div id="footerMargin"></div>
+	<header>
+	<div id="head_container">
+		<div id="head_right">
+			<ul>
+				<li class="download"><a class="buttons" href="https://github.com/oblalex/horus/zipball/master">Download ZIP</a></li>
+				<li class="download"><a class="buttons" href="https://github.com/oblalex/horus/tarball/master">Download TAR</a></li>
+				<li><a class="buttons github" href="https://github.com/oblalex/horus">View On GitHub</a></li>
+			</ul>
+		</div>
+	</div>
+	</header>
+	<section id="main">
+	<div id="forContent">
+		$CONTENT_HERE$
+	</div>
+	</section>
+	<div id="footerMargin"></div>
 </div>
 <footer>
-  <p id="footer_body">
-    Project is maintained by <a href="https://github.com/oblalex">oblalex</a>
-    <span class="footerVSplitter">|</span>
-    Hosted on <a href="http://pages.github.com/">GitHub Pages</a>
-    <span class="footerVSplitter">|</span>
-  </p>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var yearCreated = 2012;
-      var yearNow = new Date().getFullYear();
-      var footerMsg = "";
-      if (yearCreated==yearNow){
-        footerMsg += yearCreated;
-      } else {
-        footerMsg += yearCreated + " - " + yearNow;
-      }
-      $('#footer_body').append(footerMsg);
-    });
-  </script>
+<p id="footer_body">
+Project is maintained by <a href="https://github.com/oblalex">oblalex</a>
+<span class="footerVSplitter">|</span>
+Hosted on <a href="http://pages.github.com/">GitHub Pages</a>
+<span class="footerVSplitter">|</span>
+</p>
 </footer>
+<script type="text/javascript">
+	$(document).ready(function() {
+			var yearCreated = 2012;
+			var yearNow = new Date().getFullYear();
+			var footerMsg = "";
+			if (yearCreated==yearNow){
+			footerMsg += yearCreated;
+			} else {
+			footerMsg += yearCreated + " - " + yearNow;
+			}
+			$('#footer_body').append(footerMsg);
+			});
+		</script>
