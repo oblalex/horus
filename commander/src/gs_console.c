@@ -93,7 +93,7 @@ static void socket_addr_prepare(struct sockaddr_in* addr)
 
 static void get_server_ip(char* str_ip, int length)
 {
-	system("lsof -i | grep -m 1 " GS_EXE_NAME_SHORT " | awk '{print $9}' | awk -F: '{print $1}' > " TMP_IP);
+	system("resolveip -s $HOSTNAME > " TMP_IP);
 	char* path = TMP_IP;
 	
 	FILE* file = fopen(path, "r");
