@@ -5,10 +5,16 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-typedef enum
-{
-  FALSE, TRUE
-} BOOL;
+#include <config.h>
+
+#if defined(_WIN_)
+	#include <windows.h>
+#else
+	typedef enum
+	{
+		FALSE, TRUE
+	} BOOL;
+#endif 
 
 #define PATH_PARENT	".."
 #define PATH_SEP 	"/"
