@@ -38,6 +38,26 @@ AC_SUBST(localedir)
 AC_PROG_LIBTOOL
 AM_PROG_CC_C_O
 
+AH_TEMPLATE([_LIN_], Define this if you are under an Linux OS.)
+AH_TEMPLATE([_WIN_], Define this if you are under an Windows OS.)
+
+AC_CANONICAL_HOST
+
+AC_MSG_CHECKING([host operating system])
+case "$host_os" in
+    linux*)
+        AC_MSG_RESULT(Linux)
+		AC_DEFINE([_LIN_])
+    ;;
+	mingw*)
+        AC_MSG_RESULT(Windows)
+		AC_DEFINE([_WIN_])
+    ;;
+    *)
+        AC_MSG_RESULT(no)
+    ;;
+esac
+
 AC_CONFIG_FILES([
 	Makefile
 	src/Makefile
