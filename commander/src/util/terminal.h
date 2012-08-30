@@ -6,7 +6,11 @@
 #ifndef TERMINAL_H
 #define TERMINAL_H
 
-#include <sys/ioctl.h>
+#include <config.h>
+
+#if defined(_WIN_)
+	#include <windows.h>
+#endif
 
 /**
  * @defgroup TERMINAL_COLORS Terminal colors
@@ -36,24 +40,18 @@
 #define TA_HIDDEN		8
 /**@}*/
 
-/** Teminal's current size container */
-struct winsize TERM_SIZE;
+#define TERM_WIDTH_DEFAULT 80
 
-/** 
- * Initialize terminal before applying styles:
- * @li Sets term_resizeHandler() as SIGWINCH handler.
- * @li Calls term_updateWindowSizeInfo().
- * @li Calls term_style_reset().
- */
 void term_init();
+static void term_initResizeListener();
 
-/**
- * <a href="http://en.wikipedia.org/wiki/SIGWINCH">SIGWINCH</a> signal handler.
- * Calls term_updateWindowSizeInfo() when terminal size changes.
- */
+#if defined(_WIN_)
+DWORD WINAPI eventsThreadFunc(void* data);
+void term_resizeHandler(WINDOW_BUFFER_SIZE_RECORD wbsr);
+#else
 void term_resizeHandler(int signum);
+#endif
 
-/** Load current terminal size info into #TERM_SIZE.*/
 void term_updateWindowSizeInfo();
 
 /**
@@ -73,5 +71,8 @@ void term_style(int attr, int fg, int bg);
  * and #TA_NONE as attribute.
  */
 void term_styleReset();
+
+static void term_setWidth(int value);
+int term_getWidth();
 
 #endif // TERMINAL_H

@@ -30,7 +30,7 @@ void print_status_raw(char* str, int color, const char* status)
 	term_style(TA_BRIGHT, TC_NONE, TC_NONE);
 	
 	// 5 is for length of ":: " + length of "[]"
-	wprintf(L"%-*s", TERM_SIZE.ws_col-5-mbstowcs(NULL, status, 0)-STATUS_HEAD_INDENT_PRIME, str);
+	wprintf(L"%-*s", term_getWidth()-5-mbstowcs(NULL, status, 0)-STATUS_HEAD_INDENT_PRIME, str);
 	term_style(TA_BRIGHT, TC_BLUE, TC_NONE);
 	wprintf(L"[");
 	print_status_tail(color, status);	
