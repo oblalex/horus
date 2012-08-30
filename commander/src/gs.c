@@ -26,7 +26,9 @@ void gs_init()
 
 static void gs_setup_termination_hooks()
 {
+	#if defined(_WIN_)
 	signal(SIGPIPE,	SIG_IGN);
+	#endif
 
 	signal(SIGINT,	gs_termination_handler);
 	signal(SIGTERM,	gs_termination_handler);
