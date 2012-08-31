@@ -35,6 +35,7 @@ BOOL gs_console_init()
 
 		struct sockaddr_in addr;
 		socket_addr_prepare(&addr);
+		socket_make_nonblocking();
 
 		if (connect(SOCKET_FD, (struct sockaddr*)&addr, sizeof(addr)) < 0)
 		{
@@ -70,8 +71,13 @@ BOOL gs_console_init()
 
 static void socket_make_nonblocking()
 {
+#if defined(_WIN_)
+	u_long iMode=1;
+	ioctlsocket(SOCKET_FD, FIONBIO, &iMode);
+#else
 	int flags = fcntl(SOCKET_FD, F_GETFL, 0);
 	fcntl(SOCKET_FD ,F_SETFL, flags | O_NONBLOCK);
+#endif
 }
 
 static void socket_addr_prepare(struct sockaddr_in* addr)
