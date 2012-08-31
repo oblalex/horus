@@ -6,7 +6,10 @@
 #if defined(_WIN_)
 	#include <winsock2.h>
 #else
+	#include <arpa/inet.h>
 	#include <netinet/in.h>
+	#include <sys/socket.h>
+	#include <sys/types.h>
 #endif
 
 #include "util/common.h"
