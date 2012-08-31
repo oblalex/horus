@@ -4,8 +4,6 @@
 
 #if defined(_WIN_)
 	#include <windows.h>
-#else
-	#include <unistd.h>
 #endif
 
 #include <stdlib.h>
@@ -13,6 +11,7 @@
 #include <string.h>
 #include <time.h>
 #include <fcntl.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <pthread.h>
 
@@ -74,7 +73,13 @@ static void gs_wait_loaded()
 	int offset = 0;
 	RL_STAT stat;
 
-	int stream = open(PATH_GS_STDOUT, O_RDONLY | O_NONBLOCK);
+	int o_flags = O_RDONLY;
+	
+	#if !defined(_WIN_)
+		o_flags |= O_NONBLOCK;
+	#endif
+	
+	int stream = open(PATH_GS_STDOUT, o_flags);
 	while(1)
 	{
 		line_rd(stream, line, line_len, offset, &stat);
