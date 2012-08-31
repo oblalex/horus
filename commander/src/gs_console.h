@@ -1,6 +1,8 @@
 #ifndef GS_CONSOLE_H
 #define GS_CONSOLE_H
 
+#include <config.h>
+
 #if defined(_WIN_)
 	#include <winsock2.h>
 #else
