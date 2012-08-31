@@ -1,13 +1,22 @@
 #include "gs_process.h"
 
+#include <config.h>
+
+#if defined(_WIN_)
+	#include <windows.h>
+#else
+	#include <unistd.h>
+#endif
+
 #include <stdlib.h>
 #include <signal.h>
 #include <string.h>
-#include <unistd.h>
 #include <time.h>
 #include <fcntl.h>
 #include <sys/types.h>
 #include <pthread.h>
+
+#include "gs.h"
 
 #include "gs_paths.h"
 #include "util/file.h"
@@ -78,7 +87,13 @@ static void gs_wait_loaded()
 			if (strstr(line, "1>") != NULL)
 			{
 				gs_suppress_stdout();
+				
+				#if !defined(_WIN_)
 				kill(getppid(), SIGUSR1);
+				#else
+				SendMessage(gs_getSigUsrWindow(), WM_USER, 0, 0);
+				#endif
+				
 				break;
 			}
 		}

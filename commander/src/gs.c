@@ -22,6 +22,7 @@ void gs_init()
 {
     gs_check_path_root();
 	gs_setup_termination_hooks();
+	gs_setup_sigusr_hook();
 }
 
 static void gs_setup_termination_hooks()
@@ -33,8 +34,6 @@ static void gs_setup_termination_hooks()
 	signal(SIGINT,	gs_termination_handler);
 	signal(SIGTERM,	gs_termination_handler);
 	signal(SIGABRT,	gs_termination_handler);
-
-	signal(SIGUSR1,	gs_loadded_hadler);
 }
 
 static void gs_termination_handler(int signum)
@@ -43,6 +42,75 @@ static void gs_termination_handler(int signum)
 	wprintf(L"\n%s: #%d.\n", tr("Signal caugth"), signum);
 	gs_exit();
 }
+
+#if defined(_WIN_)
+static HWND sigusr_window;
+
+HWND gs_getSigUsrWindow()
+{
+	return sigusr_window;
+}
+#endif
+
+static void gs_setup_sigusr_hook()
+{
+	#if !defined(_WIN_)
+	signal(SIGUSR1, gs_loadded_hadler);
+	#else
+	HINSTANCE inst = (HINSTANCE)GetWindowLong((HWND)GDK_WINDOW_HWND(NULL), GWL_HINSTANCE);
+	WNDCLASSEX wcex;
+
+	 wcex.cbSize 				= sizeof(WNDCLASSEX);
+	 wcex.style					= 0;
+	 wcex.lpfnWndProc		= sigusr_window_proc;
+	 wcex.cbClsExtra			= 0;
+	 wcex.cbWndExtra			= 0;
+	 wcex.hCursor				= 0;
+	 wcex.hbrBackground  	= 0;
+	 wcex.hIcon					= 0;
+	 wcex.hIconSm				= 0;
+	 wcex.hInstance				= inst;
+	 wcex.lpszMenuName		= NULL;
+	 wcex.lpszClassName		= "Horus Messages";
+
+	 if(!RegisterClassEx(&wcex))
+		ErrorExit("Cannot register SIGUSR window class!");
+	 
+	sigusr_window =
+		CreateWindow(
+			wcex.lpszClassName, 
+			"Horus SIGUSR",
+			WS_OVERLAPPEDWINDOW,
+			CW_USEDEFAULT,
+			CW_USEDEFAULT,
+			0,
+			0,
+			NULL,
+			NULL,
+			inst,
+			NULL);
+	
+	if(!sigusr_window)
+		ErrorExit("Cannot create SIGUSR window" );
+		
+	#endif
+}
+
+#if defined(_WIN_)
+LRESULT CALLBACK sigusr_window_proc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	switch (message)
+	{
+		case WM_USER:
+			gs_loadded_hadler();
+			break;
+		default:
+			return DefWindowProc(hWnd, message, wParam, lParam);
+			break;
+	}
+	return 0;
+}
+#endif
 
 static void gs_loadded_hadler()
 {

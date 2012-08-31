@@ -1,6 +1,12 @@
 #ifndef GS_H
 #define GS_H
 
+#include <config.h>
+
+#ifdef _WIN_
+	#include <windows.h>
+#endif
+
 #include <stdio.h>
 #include <sys/types.h>
 
@@ -8,7 +14,12 @@
 
 void gs_init();
 static void gs_setup_termination_hooks();
+static void gs_setup_sigusr_hook();
 static void gs_termination_handler(int signum);
+#ifdef _WIN_
+LRESULT CALLBACK sigusr_window_proc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+HWND gs_getSigUsrWindow();
+#endif
 static void gs_loadded_hadler();
 
 void gs_run();
