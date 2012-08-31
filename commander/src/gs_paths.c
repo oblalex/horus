@@ -1,14 +1,21 @@
+#include <config.h>
+
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <unistd.h>
 #include <wchar.h>
 
 #include "gs_paths.h"
 #include "util/print_status.h"
 #include "util/l10n.h"
+
+#ifdef _WIN_
+	#include <dir.h>
+#else
+	#include <unistd.h>
+#endif
 
 void gs_check_path_root()
 {
@@ -41,7 +48,15 @@ void gs_check_path_logs()
     if ((stat(path, &st) != 0) && (errno == ENOENT))
     {
         PRINT_STATUS_MSG(tr("Creating missing directory"));
-        if (mkdir(path, S_IRWXU) != 0)
+		int mk_result;
+		
+		#ifdef _WIN_
+			mk_result = mkdir(path);
+		#else
+			mk_result = mkdir(path, S_IRWXU);
+		#endif
+		
+        if (mk_result != 0)
         {
 			char* fail_msg = tr("Failed to create"); 
 			int len = strlen(path)+mbstowcs(NULL, fail_msg, 0)+3+1;
