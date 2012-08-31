@@ -126,5 +126,18 @@ void gs_process_wait()
 
 void gs_process_kill()
 {
-	if (GS_PID) kill(GS_PID, SIGKILL);
+	if (GS_PID)
+	{
+		#if !defined(_WIN_)
+		kill(GS_PID, SIGKILL);
+		#else
+		HANDLE hProc;
+		if ( hProc = OpenProcess(PROCESS_TERMINATE, FALSE, GS_PID) )
+		{
+			TerminateProcess(hProc, 0);
+			CloseHandle(hProc);
+		}
+		#endif
+	}
+	
 }
