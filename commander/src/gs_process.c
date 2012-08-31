@@ -66,7 +66,11 @@ static void* gs_process_create_raw()
 
 static void gs_wait_loaded()
 {
+	#if defined(_WIN_)
+	Sleep(2000);
+	#else
 	sleep(2);
+	#endif
 
 	int line_len = 64;
 	char line[line_len];

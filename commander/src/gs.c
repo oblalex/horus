@@ -158,7 +158,12 @@ static void gs_check_launched_before()
 			char buf[len];
 			sprintf(buf, "%s...%d", tr("Restarting game server in"), i);
 			PRINT_STATUS_MSG_NOIND(&buf);
+			
+			#if defined(_WIN_)
+			Sleep(1000);
+			#else
 			sleep(1);
+			#endif
 		}
 	}
 }
@@ -194,7 +199,12 @@ static void gs_wait_loaded()
 	int tries = 30;
 	while ((LOADED == FALSE) && (DO_RUN == TRUE))
 	{
+		#if defined(_WIN_)
+		Sleep(1000);
+		#else
 		sleep(1);
+		#endif
+			
 		tries--;
 		if (tries == 0)
 		{

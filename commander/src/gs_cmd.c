@@ -87,7 +87,12 @@ void gs_cmd_kick_all()
 	for(i=0; i<3; i++)
 	{	
 		gs_cmd_chat_all(msg);
+		
+		#if defined(_WIN_)
+		Sleep(2000);
+		#else
 		sleep(2);
+		#endif
 	}
 
 	char* channels = gs_cfg_get(GS_CFG_SEC_NET, "serverChannels");

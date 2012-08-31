@@ -20,7 +20,11 @@ BOOL gs_console_init()
 {
 	PRINT_STATUS_NEW(tr("Initializing console socket"));
 
+	#if defined(_WIN_)
+	Sleep(3000);
+	#else
 	sleep(3);
+	#endif
 
 	BOOL result = TRUE;
 
