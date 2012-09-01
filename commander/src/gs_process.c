@@ -4,6 +4,7 @@
 
 #if defined(_WIN_)
 	#include <windows.h>
+	#include "util/winproc.h"
 #endif
 
 #include <stdlib.h>
@@ -28,7 +29,13 @@ BOOL gs_process_create()
 {
 	PRINT_STATUS_NEW(tr("Creating game server process"));
 
-	if ((GS_PID = fork()) < 0)
+	#if defined(_WIN_)
+	GS_PID = fork_win();
+	#else
+	GS_PID = fork();
+	#endif
+	
+	if (GS_PID < 0)
 	{
 		PRINT_STATUS_MSG_ERR(tr("Failed to fork"));
 		PRINT_STATUS_FAIL();
@@ -52,15 +59,32 @@ BOOL gs_process_create()
 static void* gs_process_create_raw()
 {
 	pid_t pid;
-	if ((pid=fork())==0)
+	
+	#if defined(_WIN_)
+	pid = fork_win();
+	#else
+	pid = fork();
+	#endif
+	
+	if (pid==0)
 	{
+		#if defined(_WIN_)
+		char* cmd = PATH_GS_EXE ">" PATH_GS_STDOUT " 2>" PATH_GS_LOG_ERR;
+		execl(cmd, (char*) 0);
+		#else
 		char* cmd = "wine " PATH_GS_EXE ">" PATH_GS_STDOUT " 2>" PATH_GS_LOG_ERR;
 		execl("/bin/sh", "sh", "-c", cmd, (char*) 0);
+		#endif
 		_exit(127);
 	}
 
+	#if defined(_WIN_)
+	waitpid_win(pid);
+	#else
 	int childExitStatus;
 	waitpid(pid, &childExitStatus, 0);
+	#endif
+	
 	return NULL;
 }
 
@@ -120,8 +144,12 @@ static void gs_suppress_stdout()
 
 void gs_process_wait()
 {
+	#if defined(_WIN_)
+	waitpid_win(GS_PID);
+	#else
 	int childExitStatus;
 	waitpid(GS_PID, &childExitStatus, 0);
+	#endif
 
 	PRINT_STATUS_MSG(tr("Game server's process finished"));
 

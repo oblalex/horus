@@ -45,12 +45,16 @@ case "$host_os" in
 	mingw*)
 		AH_TEMPLATE([_WIN_], Define this if you are under an Windows OS.)
 		AC_DEFINE([_WIN_])
+		win=true
 		AC_MSG_RESULT(yes)
     ;;
     *)
+		win=false
         AC_MSG_RESULT(no)
     ;;
 esac
+
+AM_CONDITIONAL(WIN, test x$win = xtrue)
 
 AC_CONFIG_FILES([
 	Makefile

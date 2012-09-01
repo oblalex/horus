@@ -10,6 +10,11 @@ libutil_la_SOURCES = str.c \
 					l10n.c \
 					file.c \
 					regexxx.c
+
+if WIN
+libutil_la_SOURCES += winproc.c
+endif			
+					
 libutil_la_LIBADD = stack/libstack.la
 libutil_la_LDFLAGS = $(LTLIBINTL)
 
