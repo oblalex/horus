@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
 #include <time.h>
@@ -60,21 +59,24 @@ static void gs_setup_sigusr_hook()
 	HINSTANCE inst = (HINSTANCE)GetWindowLong((HWND)NULL, GWL_HINSTANCE);
 	WNDCLASSEX wcex;
 
-	 wcex.cbSize 				= sizeof(WNDCLASSEX);
-	 wcex.style					= 0;
-	 wcex.lpfnWndProc		= sigusr_window_proc;
-	 wcex.cbClsExtra			= 0;
-	 wcex.cbWndExtra			= 0;
-	 wcex.hCursor				= 0;
-	 wcex.hbrBackground  	= 0;
-	 wcex.hIcon					= 0;
-	 wcex.hIconSm				= 0;
-	 wcex.hInstance				= inst;
-	 wcex.lpszMenuName		= NULL;
-	 wcex.lpszClassName		= "Horus Messages";
+	 wcex.cbSize 		= sizeof(WNDCLASSEX);
+	 wcex.style			= 0;
+	 wcex.lpfnWndProc	= sigusr_window_proc;
+	 wcex.cbClsExtra	= 0;
+	 wcex.cbWndExtra	= 0;
+	 wcex.hCursor		= 0;
+	 wcex.hbrBackground  = 0;
+	 wcex.hIcon			= 0;
+	 wcex.hIconSm		= 0;
+	 wcex.hInstance		= inst;
+	 wcex.lpszMenuName	= NULL;
+	 wcex.lpszClassName	= "Horus Messages";
 
 	 if(!RegisterClassEx(&wcex))
-		ErrorExit("Cannot register SIGUSR window class!");
+	 {
+		perror("Cannot register SIGUSR window class!");
+		exit(EXIT_FAILURE);
+	}
 	 
 	sigusr_window =
 		CreateWindow(
@@ -91,7 +93,10 @@ static void gs_setup_sigusr_hook()
 			NULL);
 	
 	if(!sigusr_window)
-		ErrorExit("Cannot create SIGUSR window" );
+	{
+		perror("Cannot create SIGUSR window");
+		exit(EXIT_FAILURE);
+	}
 		
 	#endif
 }

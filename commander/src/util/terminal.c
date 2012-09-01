@@ -26,14 +26,24 @@ void term_init()
 static void term_initResizeListener()
 {
     hStdin = GetStdHandle(STD_INPUT_HANDLE); 
+	
     if (hStdin == INVALID_HANDLE_VALUE)
-		ErrorExit("GetStdHandle"); 
+	{
+		perror("GetStdHandle");
+		exit(EXIT_FAILURE);
+	}
  
-	if (! GetConsoleMode(hStdin, &fdwSaveOldMode) ) 
-		ErrorExit("GetConsoleMode"); 
+	if (! GetConsoleMode(hStdin, &fdwSaveOldMode))
+	{
+		perror("GetConsoleMode");
+		exit(EXIT_FAILURE);
+	}
 
-    if (! SetConsoleMode(hStdin, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT) ) 
-        ErrorExit("SetConsoleMode"); 
+    if (! SetConsoleMode(hStdin, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT) )
+	{
+		perror("SetConsoleMode");
+		exit(EXIT_FAILURE);
+	}
 	
 	eventsThread = CreateThread(NULL, 0, eventsThreadFunc, NULL, 0, NULL);
 }
@@ -50,8 +60,11 @@ DWORD WINAPI eventsThreadFunc(void* data)
                 hStdin,
                 irInBuf,
                 buf_len,
-                &cNumRead) ) 
-            ErrorExit("ReadConsoleInput"); 
+                &cNumRead) )
+		{
+			perror("ReadConsoleInput");
+			exit(EXIT_FAILURE);
+		}
  
         for (i = 0; i < cNumRead; i++) 
         {
