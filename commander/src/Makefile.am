@@ -17,7 +17,7 @@ horusCommander_SOURCES = main.c \
 horusCommander_LDADD = util/libutil.la
 
 if WIN
-horusCommander_LDADD += -lws2_32
+horusCommander_LDADD += -lws2_32 -lpcre
 endif
 
 SUBDIRS = util
