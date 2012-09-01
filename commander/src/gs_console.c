@@ -91,17 +91,21 @@ static void socket_addr_prepare(struct sockaddr_in* addr)
 	get_server_ip((char*)str_ip, len);
 
 	(*addr).sin_family 		= AF_INET;
-	(*addr).sin_addr.s_addr 	= inet_addr(str_ip);
-	(*addr).sin_port 			= htons(atoi(GS_CONSOLE_PORT));
+	(*addr).sin_addr.s_addr = inet_addr(str_ip);
+	(*addr).sin_port 		= htons(atoi(GS_CONSOLE_PORT));
 }
 
 #define TMP_IP "tmp_ip"
 
 static void get_server_ip(char* str_ip, int length)
 {
+#if defined(_WIN_)
+	system("ipconfig | find \"IP-\">tmpip && set /p ipvar=<tmpip && echo off && (FOR %A IN (%ipvar%) DO ECHO %A > tmpip) && (FOR /F \"tokens=1\" %A IN (tmpip) DO ECHO %A> " TMP_IP ") && echo on && del tmpip");
+#else
 	system("resolveip -s $HOSTNAME > " TMP_IP);
+#endif
+
 	char* path = TMP_IP;
-	
 	FILE* file = fopen(path, "r");
 
 	if (file != NULL)
