@@ -57,7 +57,7 @@ static void gs_setup_sigusr_hook()
 	#if !defined(_WIN_)
 	signal(SIGUSR1, gs_loadded_hadler);
 	#else
-	HINSTANCE inst = (HINSTANCE)GetWindowLong((HWND)GDK_WINDOW_HWND(NULL), GWL_HINSTANCE);
+	HINSTANCE inst = (HINSTANCE)GetWindowLong((HWND)NULL, GWL_HINSTANCE);
 	WNDCLASSEX wcex;
 
 	 wcex.cbSize 				= sizeof(WNDCLASSEX);
