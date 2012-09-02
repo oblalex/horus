@@ -1,3 +1,5 @@
+#include <config.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -17,7 +19,14 @@ static pthread_mutex_t LOCK;
 void print_status_tail(int color, const char* status)
 {
 	term_style(TA_BRIGHT, color, TC_NONE);
-	wprintf(L"%s", status);
+	
+#ifdef _WIN_
+	wchar_t* f1 = L"%S";	
+#else
+	wchar_t* f1 = L"%s";	
+#endif
+	
+	wprintf(f1, status);
 	term_style(TA_BRIGHT, TC_BLUE, TC_NONE);
 	wprintf(L"]");
 	term_styleReset();
@@ -26,12 +35,26 @@ void print_status_tail(int color, const char* status)
 void print_status_raw(char* str, int color, const char* status)
 {
 	term_style(TA_BRIGHT, TC_BLUE, TC_NONE);
-	wprintf(L"%*s ", STATUS_HEAD_INDENT, STATUS_MSG_HEAD);
+	
+#ifdef _WIN_
+	wchar_t* f1 = L"%*S ";	
+#else
+	wchar_t* f1 = L"%*s ";	
+#endif
+
+	wprintf(f1, STATUS_HEAD_INDENT, STATUS_MSG_HEAD);
 	term_style(TA_BRIGHT, TC_NONE, TC_NONE);
 	
+#ifdef _WIN_
+	wchar_t* f2 = L"%-*S";	
+#else
+	wchar_t* f2 = L"%-*s";	
+#endif
+
 	// 5 is for length of ":: " + length of "[]"
-	wprintf(L"%-*s", term_getWidth()-5-mbstowcs(NULL, status, 0)-STATUS_HEAD_INDENT_PRIME, str);
+	wprintf(f2, term_getWidth()-5-mbstowcs(NULL, status, 0)-STATUS_HEAD_INDENT_PRIME, str);
 	term_style(TA_BRIGHT, TC_BLUE, TC_NONE);
+
 	wprintf(L"[");
 	print_status_tail(color, status);	
 }
@@ -60,13 +83,32 @@ void print_status_finished(int color, const char* status)
 	{
 		print_status_raw(str, color, status);
 	} else {
+		int rmLen = mbstowcs(NULL, status, 0);
+		
+	// erase STATUS_BUSY msg
+	#ifdef _WIN_
+		CONSOLE_SCREEN_BUFFER_INFO csbi;
+		GetConsoleScreenBufferInfo(GetStdHandle( STD_OUTPUT_HANDLE ), &csbi);
+
+		COORD coord;
+		coord.X = csbi.dwSize.X-rmLen-1;
+		coord.Y = csbi.dwCursorPosition.Y-1;
+
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),coord);
+	#else
 		int i;
-		for (i=0; i<mbstowcs(NULL, status, 0); i++){
-			wprintf(L"\b");	//erase STATUS_BUSY msg
+		for (i=0; i<rmLen; i++)
+		{
+			wprintf(L"\b");
 		}
+	#endif
+	
 		print_status_tail(color, status);
-	}	
+	}
+	
+#ifndef _WIN_
 	wprintf(L"\n");
+#endif
 	
 	free(str);
 	STATUS_LAST_OPER_WAS_PUSH = FALSE;
@@ -79,17 +121,33 @@ void print_status_msg(int color, char* str, BOOL do_indent)
 {
 	MULTILOCK();
 
+#ifndef _WIN_
 	if (STATUS_LAST_OPER_WAS_PUSH == TRUE)
 	{
 		wprintf(L"\n");
 	}
-  
+#endif
+
 	term_style(TA_NONE, color, TC_NONE);
 	if (do_indent == TRUE)
 	{
-		wprintf(L"%*s%s\n", STATUS_MSG_INDENT, "", str);
+	
+#ifdef _WIN_
+	wchar_t* f1 = L"%*S%S\n";	
+#else
+	wchar_t* f1 = L"%*s%s\n";	
+#endif
+
+		wprintf(f1, STATUS_MSG_INDENT, "", str);
 	} else {
-		wprintf(L"%s\n", str);
+	
+#ifdef _WIN_
+	wchar_t* f1 = L"%S\n";	
+#else
+	wchar_t* f1 = L"%s\n";	
+#endif
+
+		wprintf(f1, str);
 	}
 	term_styleReset();
 	
