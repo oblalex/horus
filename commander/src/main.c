@@ -30,7 +30,7 @@ void init()
 
 void tearDown()
 {
-	term_styleReset();
+	term_teardown();
 	PRINT_STATUSES_RESET();
 }
 

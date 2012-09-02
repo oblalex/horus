@@ -4,7 +4,8 @@
 #include <wchar.h>
 
 #if defined(_WIN_)
-	static HANDLE hStdin; 
+	static HANDLE hStdin;
+	static HANDLE hStdout;
 	static DWORD fdwSaveOldMode;
 	static HANDLE eventsThread;
 #else
@@ -20,6 +21,22 @@ void term_init()
 	term_initResizeListener();
 	term_updateWindowSizeInfo();
 	term_styleReset();
+	
+	#if defined(_WIN_)
+	hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+	#endif
+}
+
+void term_teardown()
+{
+	term_styleReset();
+#if defined(_WIN_)
+	if (eventsThread) {
+		DWORD dwExitCode;
+		TerminateThread(eventsThread, dwExitCode);
+	}
+	SetConsoleMode(hStdin, fdwSaveOldMode);
+#endif
 }
 
 #if defined(_WIN_)
@@ -118,23 +135,20 @@ void term_updateWindowSizeInfo()
 #endif
 
 void term_style(int attr, int fg, int bg)
-{	
+{
+#if defined(_WIN_)
+	if (fg == TC_NONE) fg = TC_WHITE;
+	SetConsoleTextAttribute(hStdout, attr | fg | (bg << 4));
+#else
 	char command[13];
 	sprintf(command, "%c[%d;%d;%dm", 0x1B, attr, fg + 30, bg + 40);
 	wprintf(L"%s", command);
+#endif
 }
 
 void term_styleReset()
 {
 	term_style(TA_NONE, TC_NONE, TC_NONE);
-	
-	#if defined(_WIN_)
-	if (eventsThread) {
-		DWORD dwExitCode;
-		TerminateThread(eventsThread, dwExitCode);
-	}
-	SetConsoleMode(hStdin, fdwSaveOldMode);
-	#endif
 }
 
 static void term_setWidth(int value)

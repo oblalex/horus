@@ -16,33 +16,51 @@
  * @defgroup TERMINAL_COLORS Terminal colors
  * @{
  */
-#define TC_BLACK	0
-#define TC_RED		1
-#define TC_GREEN	2
-#define TC_YELLOW	3
-#define TC_BLUE		4
-#define TC_MAGENTA	5
-#define TC_CYAN		6
-#define TC_WHITE	7
-#define TC_NONE		8
+#if defined(_WIN_)
+	#define TC_BLACK	0
+	#define TC_RED		FOREGROUND_RED
+	#define TC_GREEN	FOREGROUND_GREEN
+	#define TC_YELLOW	FOREGROUND_RED | FOREGROUND_GREEN
+	#define TC_BLUE		FOREGROUND_BLUE
+	#define TC_MAGENTA	FOREGROUND_RED | FOREGROUND_BLUE
+	#define TC_CYAN		FOREGROUND_GREEN | FOREGROUND_BLUE
+	#define TC_WHITE	FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE
+	#define TC_NONE		TC_BLACK
+#else
+	#define TC_BLACK	0
+	#define TC_RED		1
+	#define TC_GREEN	2
+	#define TC_YELLOW	3
+	#define TC_BLUE		4
+	#define TC_MAGENTA	5
+	#define TC_CYAN		6
+	#define TC_WHITE	7
+	#define TC_NONE		8
+#endif
 /**@}*/
 
 /**
  * @defgroup TERMINAL_ATTRIBUTES Terminal attributes
  * @{
  */
-#define TA_NONE			0
-#define TA_BRIGHT 		1
-#define TA_DIM			2
-#define TA_UNDERLINE 	3
-#define TA_BLINK		4
-#define TA_REVERSE		7
-#define TA_HIDDEN		8
+#if defined(_WIN_)
+	#define TA_NONE			0
+	#define TA_BRIGHT 		FOREGROUND_INTENSITY
+#else
+	#define TA_NONE			0
+	#define TA_BRIGHT 		1
+	#define TA_DIM			2
+	#define TA_UNDERLINE 	3
+	#define TA_BLINK		4
+	#define TA_REVERSE		7
+	#define TA_HIDDEN		8
+#endif
 /**@}*/
 
 #define TERM_WIDTH_DEFAULT 80
 
 void term_init();
+void term_teardown();
 static void term_initResizeListener();
 
 #if defined(_WIN_)
