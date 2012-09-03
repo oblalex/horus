@@ -17,9 +17,14 @@
 #endif 
 
 #define PATH_PARENT	".."
-#define PATH_SEP 	"/"
 
-#define DEV_NULL 	"/dev/null"
+#if defined(_WIN_)
+	#define PATH_SEP 	"\\"
+	#define DEV_NULL 	"NUL"
+#else
+	#define PATH_SEP 	"/"
+	#define DEV_NULL 	"/dev/null"
+#endif 
 
 #define NEW_LINE	"\n"
 #define CH_NULL		"\0"
