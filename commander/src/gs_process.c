@@ -70,7 +70,7 @@ static void* gs_process_create_raw()
 	{
 		#if defined(_WIN_)
 		char* cmd = PATH_GS_EXE ">" PATH_GS_STDOUT " 2>" PATH_GS_LOG_ERR;
-		execl(cmd, (char*) 0);
+		execl("%SystemRoot%\\system32\\cmd.exe", "/C", cmd, (char*) 0);
 		#else
 		char* cmd = "wine " PATH_GS_EXE ">" PATH_GS_STDOUT " 2>" PATH_GS_LOG_ERR;
 		execl("/bin/sh", "sh", "-c", cmd, (char*) 0);
@@ -124,7 +124,7 @@ static void gs_wait_loaded()
 				#if !defined(_WIN_)
 				kill(getppid(), SIGUSR1);
 				#else
-				SendMessage(gs_getSigUsrWindow(), WM_USER, 0, 0);
+				SendMessage(gs_getIpcWindow(), WM_USER, 0, 0);
 				#endif
 				
 				break;
