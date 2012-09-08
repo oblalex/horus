@@ -21,7 +21,10 @@ void gs_init()
 {
     gs_check_path_root();
 	gs_setup_termination_hooks();
-	gs_setup_ipc_hook();
+	
+#if !defined(_WIN_)
+	signal(SIGUSR1, gs_set_loadded);
+#endif
 }
 
 static void gs_setup_termination_hooks()
@@ -42,82 +45,7 @@ static void gs_termination_handler(int signum)
 	gs_exit();
 }
 
-#if defined(_WIN_)
-static HWND ipc_window;
-
-HWND gs_getIpcWindow()
-{
-	return ipc_window;
-}
-#endif
-
-static void gs_setup_ipc_hook()
-{
-	#if !defined(_WIN_)
-	signal(SIGUSR1, gs_loadded_hadler);
-	#else
-	HINSTANCE inst = (HINSTANCE)GetWindowLong((HWND)NULL, GWL_HINSTANCE);
-	WNDCLASSEX wcex;
-
-	 wcex.cbSize 		= sizeof(WNDCLASSEX);
-	 wcex.style			= 0;
-	 wcex.lpfnWndProc	= ipc_window_proc;
-	 wcex.cbClsExtra	= 0;
-	 wcex.cbWndExtra	= 0;
-	 wcex.hCursor		= 0;
-	 wcex.hbrBackground  = 0;
-	 wcex.hIcon			= 0;
-	 wcex.hIconSm		= 0;
-	 wcex.hInstance		= inst;
-	 wcex.lpszMenuName	= NULL;
-	 wcex.lpszClassName	= "Horus IPC";
-
-	 if(!RegisterClassEx(&wcex))
-	 {
-		perror("Cannot register SIGUSR window class!");
-		exit(EXIT_FAILURE);
-	}
-	 
-	ipc_window =
-		CreateWindow(
-			wcex.lpszClassName, 
-			"Horus IPC",
-			WS_OVERLAPPEDWINDOW,
-			CW_USEDEFAULT,
-			CW_USEDEFAULT,
-			0,
-			0,
-			NULL,
-			NULL,
-			inst,
-			NULL);
-	
-	if(!ipc_window)
-	{
-		perror("Cannot create IPC window");
-		exit(EXIT_FAILURE);
-	}
-		
-	#endif
-}
-
-#if defined(_WIN_)
-LRESULT CALLBACK ipc_window_proc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	switch (message)
-	{
-		case WM_USER:
-			gs_loadded_hadler();
-			break;
-		default:
-			return DefWindowProc(hWnd, message, wParam, lParam);
-			break;
-	}
-	return 0;
-}
-#endif
-
-static void gs_loadded_hadler()
+void gs_set_loadded()
 {
 	LOADED = TRUE;
 }

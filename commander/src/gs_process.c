@@ -29,11 +29,7 @@ BOOL gs_process_create()
 {
 	PRINT_STATUS_NEW(tr("Creating game server process"));
 
-	#if defined(_WIN_)
-	GS_PID = fork_win();
-	#else
 	GS_PID = fork();
-	#endif
 	
 	if (GS_PID < 0)
 	{
@@ -58,32 +54,17 @@ BOOL gs_process_create()
 
 static void* gs_process_create_raw()
 {
-	pid_t pid;
-	
-	#if defined(_WIN_)
-	pid = fork_win();
-	#else
-	pid = fork();
-	#endif
+	pid_t pid = fork();
 	
 	if (pid==0)
 	{
-		#if defined(_WIN_)
-		char* cmd = PATH_GS_EXE ">" PATH_GS_STDOUT " 2>" PATH_GS_LOG_ERR;
-		execl("%SystemRoot%\\system32\\cmd.exe", "/C", cmd, (char*) 0);
-		#else
 		char* cmd = "wine " PATH_GS_EXE ">" PATH_GS_STDOUT " 2>" PATH_GS_LOG_ERR;
 		execl("/bin/sh", "sh", "-c", cmd, (char*) 0);
-		#endif
 		_exit(127);
 	}
 
-	#if defined(_WIN_)
-	waitpid_win(pid);
-	#else
 	int childExitStatus;
 	waitpid(pid, &childExitStatus, 0);
-	#endif
 	
 	return NULL;
 }
@@ -120,12 +101,7 @@ static void gs_wait_loaded()
 			if (strstr(line, "1>") != NULL)
 			{
 				gs_suppress_stdout();
-				
-				#if !defined(_WIN_)
 				kill(getppid(), SIGUSR1);
-				#else
-				SendMessage(gs_getIpcWindow(), WM_USER, 0, 0);
-				#endif
 				
 				break;
 			}
@@ -144,12 +120,8 @@ static void gs_suppress_stdout()
 
 void gs_process_wait()
 {
-	#if defined(_WIN_)
-	waitpid_win(GS_PID);
-	#else
 	int childExitStatus;
 	waitpid(GS_PID, &childExitStatus, 0);
-	#endif
 
 	PRINT_STATUS_MSG(tr("Game server's process finished"));
 
@@ -160,16 +132,7 @@ void gs_process_kill()
 {
 	if (GS_PID)
 	{
-		#if !defined(_WIN_)
 		kill(GS_PID, SIGKILL);
-		#else
-		HANDLE hProc;
-		if ( hProc = OpenProcess(PROCESS_TERMINATE, FALSE, GS_PID) )
-		{
-			TerminateProcess(hProc, 0);
-			CloseHandle(hProc);
-		}
-		#endif
 	}
 	
 }
