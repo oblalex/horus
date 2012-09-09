@@ -23,6 +23,71 @@
 #include "util/l10n.h"
 #include "util/print_status.h"
 
+#if defined(_WIN_)
+
+static PROCESS_INFORMATION GS_PINF;
+static HANDLE GS_HANDLE_OUT;
+static HANDLE GS_HANDLE_ERR;
+
+BOOL gs_process_create()
+{
+	PRINT_STATUS_NEW(tr("Creating game server process"));
+
+	/*
+	GS_HANDLE_ERR = GetStdHandle(STD_ERROR_HANDLE);
+	
+	SECURITY_ATTRIBUTES sec;
+	sec.bInheritHandle = TRUE;
+	
+	GS_HANDLE_OUT = CreateFile(
+		PATH_GS_STDOUT,
+		GENERIC_READ | GENERIC_WRITE,
+		FILE_SHARE_READ,
+		&sec,
+		CREATE_ALWAYS,
+		FILE_ATTRIBUTE_NORMAL,
+		NULL);
+
+	if(GS_HANDLE_OUT == INVALID_HANDLE_VALUE)
+	{
+		printf("%d\n", GetLastError());
+	}
+	*/
+		
+	STARTUPINFO si;
+	ZeroMemory(&si, sizeof(si));
+    si.cb = sizeof(si);
+	//si.hStdError = GS_HANDLE_ERR;
+	//si.hStdOutput = GS_HANDLE_OUT;
+	//si.dwFlags |= STARTF_USESTDHANDLES;
+	
+	ZeroMemory(&GS_PINF, sizeof(GS_PINF));
+	
+	char* cmd = "cmd /c " PATH_GS_EXE ">" PATH_GS_STDOUT " 2>" PATH_GS_LOG_ERR;
+	
+	 if( CreateProcess(
+		NULL,
+        cmd,
+        NULL,
+        NULL,
+        FALSE,
+        0,
+        NULL,
+        NULL,
+        &si,
+        &GS_PINF) == 0)
+    {
+        PRINT_STATUS_FAIL();
+		return FALSE;
+    }
+	
+	gs_wait_loaded();
+	
+	PRINT_STATUS_DONE();
+	return TRUE;
+}
+#else
+
 static pid_t GS_PID = (pid_t) 0;
 
 BOOL gs_process_create()
@@ -68,6 +133,7 @@ static void* gs_process_create_raw()
 	
 	return NULL;
 }
+#endif
 
 static void gs_wait_loaded()
 {
@@ -101,8 +167,13 @@ static void gs_wait_loaded()
 			if (strstr(line, "1>") != NULL)
 			{
 				gs_suppress_stdout();
-				kill(getppid(), SIGUSR1);
 				
+			#if defined(_WIN_)
+				gs_set_loadded();
+			#else
+				kill(getppid(), SIGUSR1);
+			#endif
+			
 				break;
 			}
 		}
@@ -113,26 +184,36 @@ static void gs_wait_loaded()
 
 static void gs_suppress_stdout()
 {
+#if defined(_WIN_)
+	// todo:
+#else
 	int newOut = open(DEV_NULL, O_WRONLY);
 	dup2(newOut, STDOUT_FILENO);
 	close(newOut);
+#endif
 }
 
 void gs_process_wait()
 {
+#if defined(_WIN_)
+    WaitForSingleObject(GS_PINF.hProcess, INFINITE);
+    CloseHandle(GS_PINF.hProcess);
+    CloseHandle(GS_PINF.hThread);
+#else
 	int childExitStatus;
 	waitpid(GS_PID, &childExitStatus, 0);
-
-	PRINT_STATUS_MSG(tr("Game server's process finished"));
-
 	GS_PID = (pid_t) 0;
+#endif
+	PRINT_STATUS_MSG(tr("Game server's process finished"));
 }
 
 void gs_process_kill()
 {
-	if (GS_PID)
-	{
-		kill(GS_PID, SIGKILL);
-	}
-	
+#if defined(_WIN_)
+	DWORD dwExitCode = 0;
+	GetExitCodeProcess(GS_PINF.hProcess, &dwExitCode);
+	TerminateProcess(GS_PINF.hProcess, dwExitCode);
+#else
+	kill(GS_PID, SIGKILL);
+#endif
 }
