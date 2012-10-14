@@ -63,7 +63,7 @@ BOOL gs_process_create()
 	
 	ZeroMemory(&GS_PINF, sizeof(GS_PINF));
 	
-	char* cmd = "cmd /c " PATH_GS_EXE ">" PATH_GS_STDOUT " 2>" PATH_GS_LOG_ERR;
+    char* cmd = "cmd /c " PATH_GS_EXE "< NUL >" PATH_GS_STDOUT " 2>" PATH_GS_LOG_ERR;
 	
 	 if( CreateProcess(
 		NULL,
