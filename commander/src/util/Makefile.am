@@ -12,7 +12,7 @@ libutil_la_SOURCES = str.c \
 					regexxx.c
 
 if WIN
-libutil_la_SOURCES += winproc.c
+libutil_la_SOURCES += winproc.c winsock_helper.c
 endif			
 					
 libutil_la_LIBADD = stack/libstack.la

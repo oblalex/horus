@@ -4,7 +4,6 @@
 
 void line_rd(int fd, char* line, int size, int offset, RL_STAT* stat)
 {
-	int line_len;
 	int readcount;
 	char c;
 

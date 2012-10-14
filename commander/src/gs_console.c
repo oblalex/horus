@@ -9,8 +9,13 @@
 #include "gs_cfg.h"
 #include "gs_paths.h"
 #include "util/print_status.h"
-#include "util/file.h"
 #include "util/l10n.h"
+
+#if defined(_WIN_)
+    #include "util/winsock_helper.h"
+#else
+    #include "util/file.h"
+#endif
 
 #if defined(_WIN_)
 	static SOCKET SOCKET_FD = INVALID_SOCKET;
@@ -173,7 +178,7 @@ void gs_console_tear_down()
 
 	PRINT_STATUS_NEW(tr("Closing console socket"));
 
-#if defined(_WIN_)
+#if !defined(_WIN_)
 	closesocket(SOCKET_FD);
 	WSACleanup();
 #else
@@ -191,26 +196,36 @@ int get_gs_console_socket()
 }
 
 void console_line_rd(int fd, char* line, int size, int offset, RL_STAT* stat)
-{	
-	wprintf(L"wait read...\n");
-	if (wait_rx(fd) < 0) return;
-	wprintf(L"read...\n");
-	line_rd(fd, line, size, offset, stat); 
+{
+#if !defined(_WIN_)
+    if (wait_rx(fd) < 0) return;
+#endif
+
+#if defined(_WIN_)
+    sock_line_rd(fd, line, size, offset, stat);
+#else
+    line_rd(fd, line, size, offset, stat);
+#endif
 }
 
 void console_line_wr(int fd, char* line, int size)
 {	
-	wprintf(L"wait write...\n");
-	wait_tx(fd);
-	wprintf(L"write...\n");
-	line_wr(fd, line, size); 
+#if !defined(_WIN_)
+    wait_tx(fd);
+#endif
+
+#if defined(_WIN_)
+    sock_line_wr(fd, line, size);
+#else
+    line_wr(fd, line, size);
+#endif
 }
 
 static int wait_rx(int sock)
 {
 	FD_ZERO(&read_flags);
 	FD_SET(sock, &read_flags);
-	int result = select(sock+1, &read_flags, NULL, NULL, NULL );
+    int result = select(sock+1, &read_flags, NULL, NULL, NULL );
 	if ( result <= 0 ) return result;
 	if ( FD_ISSET(sock, &read_flags) ) return 1;
 	return 0;
@@ -220,7 +235,7 @@ static int wait_tx(int sock)
 {
 	FD_ZERO(&write_flags);
 	FD_SET(sock, &write_flags);
-	int result = select(sock+1, NULL, &write_flags, NULL, NULL );
+    int result = select(sock+1, NULL, &write_flags, NULL, NULL );
 	if ( result <= 0 ) return result;
 	if ( FD_ISSET(sock, &write_flags) ) return 1;
 	return 0;
