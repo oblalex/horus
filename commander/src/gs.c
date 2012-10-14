@@ -92,11 +92,11 @@ static void gs_check_launched_before()
 			sprintf(buf, "%s...%d", tr("Restarting game server in"), i);
 			PRINT_STATUS_MSG_NOIND(&buf);
 			
-			#if defined(_WIN_)
+        #if defined(_WIN_)
 			Sleep(1000);
-			#else
+        #else
 			sleep(1);
-			#endif
+        #endif
 		}
 	}
 }

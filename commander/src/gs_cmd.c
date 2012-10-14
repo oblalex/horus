@@ -88,11 +88,11 @@ void gs_cmd_kick_all()
 	{	
 		gs_cmd_chat_all(msg);
 		
-		#if defined(_WIN_)
+    #if defined(_WIN_)
 		Sleep(2000);
-		#else
+    #else
 		sleep(2);
-		#endif
+    #endif
 	}
 
 	char* channels = gs_cfg_get(GS_CFG_SEC_NET, "serverChannels");
@@ -109,7 +109,12 @@ static void gs_cmd_send(char* cmd)
 	pthread_mutex_lock(&LOCK);
 
 	console_line_wr(GS_IN_FD, cmd, strlen(cmd));
-	usleep(10*1000);
+
+    #if defined(_WIN_)
+        Sleep(10);
+    #else
+        usleep(10*1000);
+    #endif
 
 	pthread_mutex_unlock(&LOCK);
 }
