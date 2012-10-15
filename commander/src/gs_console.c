@@ -139,7 +139,7 @@ static void socket_addr_prepare(struct sockaddr_in* addr)
     #ifdef _WIN_
         wchar_t* f1 = L"%S: %S\n";
     #else
-        wchar_t* f1 = L"%s: s\n";
+        wchar_t* f1 = L"%s: %s\n";
     #endif
     wprintf(f1, tr("Server's supposed IP"), str_ip);
 
