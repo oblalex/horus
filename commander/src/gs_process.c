@@ -26,51 +26,50 @@
 #if defined(_WIN_)
 
 static PROCESS_INFORMATION GS_PINF;
-static HANDLE GS_HANDLE_OUT;
-static HANDLE GS_HANDLE_ERR;
+static HANDLE g_hChildStd_OUT_Rd = NULL;
+static HANDLE g_hChildStd_OUT_Wr = NULL;
 
 BOOL gs_process_create()
 {
 	PRINT_STATUS_NEW(tr("Creating game server process"));
 
-	/*
-	GS_HANDLE_ERR = GetStdHandle(STD_ERROR_HANDLE);
-	
-	SECURITY_ATTRIBUTES sec;
-	sec.bInheritHandle = TRUE;
-	
-	GS_HANDLE_OUT = CreateFile(
-		PATH_GS_STDOUT,
-		GENERIC_READ | GENERIC_WRITE,
-		FILE_SHARE_READ,
-		&sec,
-		CREATE_ALWAYS,
-		FILE_ATTRIBUTE_NORMAL,
-		NULL);
+    SECURITY_ATTRIBUTES sec;
+    sec.nLength = sizeof(SECURITY_ATTRIBUTES);
+    sec.bInheritHandle = TRUE;
+    sec.lpSecurityDescriptor = NULL;
 
-	if(GS_HANDLE_OUT == INVALID_HANDLE_VALUE)
-	{
-		printf("%d\n", GetLastError());
-	}
-	*/
-		
+    if ( ! CreatePipe(&g_hChildStd_OUT_Rd, &g_hChildStd_OUT_Wr, &sec, 0) )
+    {
+        PRINT_STATUS_MSG_ERR(tr("StdoutRd CreatePipe"));
+        PRINT_STATUS_FAIL();
+        return FALSE;
+    }
+
+    if ( ! SetHandleInformation(g_hChildStd_OUT_Rd, HANDLE_FLAG_INHERIT, 0) )
+    {
+        PRINT_STATUS_MSG_ERR(tr("Stdout SetHandleInformation"));
+        PRINT_STATUS_FAIL();
+        return FALSE;
+    }
+
 	STARTUPINFO si;
 	ZeroMemory(&si, sizeof(si));
     si.cb = sizeof(si);
-	//si.hStdError = GS_HANDLE_ERR;
-	//si.hStdOutput = GS_HANDLE_OUT;
-	//si.dwFlags |= STARTF_USESTDHANDLES;
+    si.hStdError = NULL;
+    si.hStdOutput = g_hChildStd_OUT_Wr;
+    si.hStdInput = NULL;
+    si.dwFlags |= STARTF_USESTDHANDLES;
 	
 	ZeroMemory(&GS_PINF, sizeof(GS_PINF));
 	
-    char* cmd = "cmd /c " PATH_GS_EXE "< NUL >" PATH_GS_STDOUT " 2>" PATH_GS_LOG_ERR;
+    char* cmd = "cmd /c " PATH_GS_EXE;
 	
 	 if( CreateProcess(
 		NULL,
         cmd,
         NULL,
         NULL,
-        FALSE,
+        TRUE,
         0,
         NULL,
         NULL,
@@ -137,31 +136,40 @@ static void* gs_process_create_raw()
 
 static void gs_wait_loaded()
 {
-	#if defined(_WIN_)
+#if defined(_WIN_)
 	Sleep(2000);
-	#else
+#else
 	sleep(2);
-	#endif
+#endif
 
 	int line_len = 64;
 	char line[line_len];
 	int offset = 0;
 	RL_STAT stat;
 
-	int o_flags = O_RDONLY;
+#if !defined(_WIN_)
+    int o_flags = O_RDONLY | O_NONBLOCK;
+    int stream = open(PATH_GS_STDOUT, o_flags);
+#endif
 	
-	#if !defined(_WIN_)
-		o_flags |= O_NONBLOCK;
-	#endif
-	
-	int stream = open(PATH_GS_STDOUT, o_flags);
 	while(1)
 	{
-		line_rd(stream, line, line_len, offset, &stat);
+    #if defined(_WIN_)
+        hnd_line_rd(g_hChildStd_OUT_Rd, line, line_len, offset, &stat);
+    #else
+        line_rd(stream, line, line_len, offset, &stat);
+    #endif
+
 		if (stat.finished == FALSE)
 		{
 			offset += stat.length;
-			usleep(500*1000);
+
+        #if defined(_WIN_)
+            Sleep(500);
+        #else
+            usleep(500*1000);
+        #endif
+
 		} else {
 			offset = 0;
 			if (strstr(line, "1>") != NULL)
@@ -178,14 +186,18 @@ static void gs_wait_loaded()
 			}
 		}
 	}
-	close(stream);
-	unlink(PATH_GS_STDOUT);
+
+#if !defined(_WIN_)
+    close(stream);
+    unlink(PATH_GS_STDOUT);
+#endif
 }
 
 static void gs_suppress_stdout()
 {
 #if defined(_WIN_)
-	// todo:
+    CloseHandle(g_hChildStd_OUT_Rd);
+    CloseHandle(g_hChildStd_OUT_Wr);
 #else
 	int newOut = open(DEV_NULL, O_WRONLY);
 	dup2(newOut, STDOUT_FILENO);

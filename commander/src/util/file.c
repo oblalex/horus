@@ -2,6 +2,32 @@
 
 #include <unistd.h>
 
+#if defined(_WIN_)
+void hnd_line_rd(HANDLE hFile, char* line, int size, int offset, RL_STAT* stat)
+{
+    int readcount;
+    BOOL success = FALSE;
+    char c;
+
+    (*stat).finished = FALSE;
+
+    for ((*stat).length = 0; (*stat).length < size-offset-1; (*stat).length++)
+    {
+        success = ReadFile(hFile, &c, 1, &readcount, NULL);
+
+        if( (success == FALSE) || (readcount == 0) ) return;
+
+        *line = c;
+        line++;
+        if (c == '\n')
+            break;
+    }
+
+    (*stat).finished = TRUE;
+    *line=0;
+}
+#endif
+
 void line_rd(int fd, char* line, int size, int offset, RL_STAT* stat)
 {
 	int readcount;
