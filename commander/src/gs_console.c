@@ -14,6 +14,8 @@
 #if defined(_WIN_)
     #include "util/winsock_helper.h"
 #else
+	#include <errno.h>
+	#include <string.h>
     #include "util/file.h"
 #endif
 
@@ -68,7 +70,7 @@ BOOL gs_console_init()
 		if ((WSAConnect(SOCKET_FD, (struct sockaddr*)&addr, sizeof(addr), NULL, NULL, NULL, NULL) == SOCKET_ERROR)
 			&& (WSAGetLastError() != WSAEWOULDBLOCK))
 	#else
-		if (connect(SOCKET_FD, (struct sockaddr*)&addr, sizeof(addr)) < 0)
+		if ((connect(SOCKET_FD, (struct sockaddr*)&addr, sizeof(addr)) < 0) && (errno != EINPROGRESS))
 	#endif
 		{
 			PRINT_STATUS_MSG_ERR(tr("Connection failed"));
