@@ -21,20 +21,30 @@ void print_status_tail(int color, const char* status)
 	term_style(TA_BRIGHT, color, TC_NONE);
 	
 #ifdef _WIN_
-	wchar_t* f1 = L"%S";	
+    wchar_t* f1 = L"%S";
+    int brackets_color = TC_MAGENTA;
 #else
-	wchar_t* f1 = L"%s";	
+    wchar_t* f1 = L"%s";
+    int brackets_color = TC_BLUE;
 #endif
 	
 	wprintf(f1, status);
-	term_style(TA_BRIGHT, TC_BLUE, TC_NONE);
+
+    term_style(TA_BRIGHT, brackets_color, TC_NONE);
 	wprintf(L"]");
 	term_styleReset();
 }
 	
 void print_status_raw(char* str, int color, const char* status)
 {
-	term_style(TA_BRIGHT, TC_BLUE, TC_NONE);
+
+#ifdef _WIN_
+    int brackets_color = TC_MAGENTA;
+#else
+    int brackets_color = TC_BLUE;
+#endif
+
+    term_style(TA_BRIGHT, brackets_color, TC_NONE);
 	
 #ifdef _WIN_
 	wchar_t* f1 = L"%*S ";	
@@ -53,7 +63,7 @@ void print_status_raw(char* str, int color, const char* status)
 
 	// 5 is for length of ":: " + length of "[]"
 	wprintf(f2, term_getWidth()-5-mbstowcs(NULL, status, 0)-STATUS_HEAD_INDENT_PRIME, str);
-	term_style(TA_BRIGHT, TC_BLUE, TC_NONE);
+    term_style(TA_BRIGHT, brackets_color, TC_NONE);
 
 	wprintf(L"[");
 	print_status_tail(color, status);	
