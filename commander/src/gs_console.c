@@ -186,7 +186,7 @@ void gs_console_tear_down()
 
 	PRINT_STATUS_NEW(tr("Closing console socket"));
 
-#if !defined(_WIN_)
+#if defined(_WIN_)
 	closesocket(SOCKET_FD);
 	WSACleanup();
 #else
