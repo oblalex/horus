@@ -135,6 +135,14 @@ static void socket_addr_prepare(struct sockaddr_in* addr)
 	char str_ip[len];
 	get_server_ip((char*)str_ip, len);
 
+    PRINT_STATUS_ORDER_RESET();
+    #ifdef _WIN_
+        wchar_t* f1 = L"%S: %S\n";
+    #else
+        wchar_t* f1 = L"%s: s\n";
+    #endif
+    wprintf(f1, tr("Server's supposed IP"), str_ip);
+
 	(*addr).sin_family 		= AF_INET;
 	(*addr).sin_addr.s_addr = inet_addr(str_ip);
 	
@@ -155,7 +163,7 @@ static void socket_addr_prepare(struct sockaddr_in* addr)
 static void get_server_ip(char* str_ip, int length)
 {
 #if defined(_WIN_)
-	system("ipconfig | find \"IP-\">tmpip && set /p ipvar=<tmpip && echo off && (FOR %A IN (%ipvar%) DO ECHO %A > tmpip) && (FOR /F \"tokens=1\" %A IN (tmpip) DO ECHO %A > " TMP_IP ") && echo on && del tmpip");
+    system("echo off && setlocal && (FOR /f \"delims=: tokens=1-2\" %C IN ('ipconfig /all ^| find \"IP-\"') DO ECHO %D>tmpip) && (FOR /F \"tokens=1\" %A IN (tmpip) DO ECHO %A>"TMP_IP") && endlocal && echo on && del tmpip");
 #else
 	system("resolveip -s $HOSTNAME > " TMP_IP);
 #endif
