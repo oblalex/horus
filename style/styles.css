@@ -55,6 +55,7 @@ a {
 	font-weight:200;
 	text-decoration:none;
 	outline: none;
+	cursor: pointer;
 }
 
 a:hover {
@@ -173,9 +174,9 @@ table.commands tr:hover {
 .code_snippet
 {
 	text-shadow: 1px 1px 1px #111;
-	background: rgba(0,0,0,0.75);
+	background: rgba(0,0,0,0.65);
 	border-radius: 7px;
-	border: 1px solid #222;
+	border: 1px solid #444;
 	box-shadow: #777 2px 2px 8px 1px;
 	color: #3d3;
 	padding: 10px;
@@ -187,4 +188,26 @@ table.commands tr:hover {
 	margin: 0 auto;
 	display: block;
 	box-shadow: #555 2px 2px 7px 2px;
+}
+
+h3 {
+	font-family: "Play-Bold";
+	font-size: 22px;
+}
+
+h3 a:hover {
+	text-decoration: none;
+	cursor: default;
+}
+
+#gotop {
+	margin-right: 7px;
+	cursor: pointer;	
+}
+
+.gotop_bg {
+	background: url(../img/arrow-up.png) no-repeat;
+	width: 20px;
+	height: 18px;
+	display: inline-block;
 }

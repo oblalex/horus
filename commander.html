@@ -26,13 +26,26 @@
 	<body>
 		<div id="forLayout"></div>
 		<div id="content">
+			<h3><a id="contents">Contents</a></h3>
+			<ul>
+				<li><a href="#about">About</a></li>
+				<li><a href="#features">Features</a></li>
+				<li><a href="#shell_cmd">Shell commands</a></li>
+				<li><a href="#pilot_req">Pilot requests</a></li>
+				<li><a href="#installation">Installation</a></li>
+				<li><a href="#launching">Launching</a></li>
+				<li><a href="#changing_lang">Changing language</a></li>
+				<li><a href="#developer_api">Developer's API</a></li>
+			</ul>
+			<hr/>
+			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="about">About</a></h3>
 			<p>Horus-commander is a Horus subsystem which communicates with IL-2
 			Dedicated Server directly. Loading missions, responding to pilot's
 			requests, collecting their statistical data and tracking mission 
 			progress are the main purposes of the commander. It extends
 			facilities of Dedicated Server.</p>
 			<hr/>
-			<p>Features:</p>
+			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="features">Features</a></h3>
 			<ul>
 				<li>
 					Game Server's process full maintenance: start, stop,
@@ -43,7 +56,7 @@
 				</li>
 				<li>
 					Suppressed server's output: no messy messages, no console logging,
-					events logging turned on only for current mission. So, you do no have
+					events logging turned on only for current mission. So, you do not have
 					to worry about your disk space.
 				</li>
 				<li>
@@ -52,10 +65,10 @@
 				</li>
 			</ul>
 			<hr/>
-			<p>
-				Shell commands:
+			<h3>
+				<a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="shell_cmd">Shell commands</a>
 				<img src="img/info.png" id="shell-info"/>
-			</p>
+			</h3>
 			<script>
 				$('#shell-info').addPopup($('#shell-info-pop-up'));
 			</script>
@@ -88,16 +101,16 @@
 				</tr>
 			</table>
 			<hr/>
-			<p>
-				Pilot requests:
+			<h3>
+				<a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="pilot_req">Pilot requests</a>
 				<img src="img/info.png" id="request-info"/>
-			</p>
+			</h3>
 			<script>
 				$('#request-info').addPopup($('#request-info-pop-up'));
 			</script>
 			<span style="color:#777; padding-left:70px;">No pilot requests are available yet.</span>
 			<hr/>
-			<p>Installation:</p>
+			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="installation">Installation</a></h3>
 			<p>1. Install next packages:</p>
 			<ul style="margin:0; font-size:16px;">
 				<li>git</li>
@@ -113,7 +126,7 @@
 			<p>3. Go to horus-commander subdirectory:</p>
 			<pre class="code_snippet">cd horus/commander</pre>
 			<p>4. Create 'configure'</p>
-			<pre class="code_snippet">autoreconf -i</pre>
+			<pre class="code_snippet">autoreconf -if</pre>
 			<p>5. Create directory for buildings and go into it:</p>
 			<pre class="code_snippet">mkdir build && cd build</pre>
 			<p>6. Run 'configure':</p>
@@ -122,7 +135,7 @@
 			<pre class="code_snippet">make && make install-strip</pre>
 
 			<hr/>
-			<p>Launching:</p>
+			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="launching">Launching</a></h3>
 			<p>1. Go to installed horus-commander directory:</p>
 			<pre class="code_snippet">cd /path/to/your/il-2/server/directory/horus-commander</pre>
 			<p>2. Start commander:</p>
@@ -133,7 +146,7 @@
 			<img class="screensh" src="img/exec/stopping.png"/>
 
 			<hr/>
-			<p>Changing language:</p>
+			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="changing_lang">Changing language</a></h3>
 			<p>By default english language is selected. Before launching
 			commander you can set LANGUAGE variable to the
 			value you need. Remember that commander's output is in UTF-8
@@ -142,8 +155,8 @@
 			<p>To restore english output:</p>
 			<pre class="code_snippet">export LANGUAGE="en_US"</pre>
 			<hr/>
-			<p>Developer's API</p>
-			<p>Also you may be interested in
+			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="developer_api">Developer's API</a></h3>
+			<p>You may be also interested in
 				<a href="commander/docs/html/files.html">developer's API</a>.
 			</p>
 		</div>

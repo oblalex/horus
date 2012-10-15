@@ -1,5 +1,5 @@
 @font-face {
-	font-family: 'Play';
+	font-family: 'Play-Bold';
 	font-style: normal;
 	font-weight: 700;
 	src: local('Play-Bold'), url(../font/play_700.woff) format('woff');
@@ -70,6 +70,7 @@ header {
 	text-indent: 50px;
 	text-shadow: 1px 1px 1px #FFF;
 	color: #444;
+	line-height: 25px;
 }
 
 #head_container {
