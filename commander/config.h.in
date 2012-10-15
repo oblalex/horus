@@ -85,3 +85,6 @@
 
 /* Version number of package */
 #undef VERSION
+
+/* Define this if you are under an Windows OS. */
+#undef _WIN_
