@@ -165,7 +165,7 @@ static void get_server_ip(char* str_ip, int length)
 #if defined(_WIN_)
     system("echo off && setlocal && (FOR /f \"delims=: tokens=1-2\" %C IN ('ipconfig /all ^| find \"IP-\"') DO ECHO %D>tmpip) && (FOR /F \"tokens=1\" %A IN (tmpip) DO ECHO %A>"TMP_IP") && endlocal && echo on && del tmpip");
 #else
-	system("/bin/sh -c 'resolveip -s $HOSTNAME' > " TMP_IP);
+	system("ip -4 -o addr show dev eth0 | awk '{ gsub(/\\/[0-9]+$/, \"\", $4); print $4 }' > " TMP_IP);
 #endif
 
 	char* path = TMP_IP;
