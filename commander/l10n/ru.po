@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: horus-commander 0.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/oblalex/horus/issues\n"
-"POT-Creation-Date: 2012-08-10 13:42+0300\n"
+"POT-Creation-Date: 2012-10-16 18:35+0300\n"
 "PO-Revision-Date: 2012-08-02 09:36+0300\n"
 "Last-Translator:  <oblovatniy@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -19,67 +19,88 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: src/gs_console.c:25
+#: src/gs_console.c:31
 msgid "Initializing console socket"
 msgstr "Инициализация сокета консоли"
 
-#: src/gs_console.c:46
+#: src/gs_console.c:58
+msgid "Socket not created"
+msgstr "Сокет не был создан"
+
+#: src/gs_console.c:74
 msgid "Connection failed"
 msgstr "Не удалось соединиться"
 
-#: src/gs_console.c:114
+#: src/gs_console.c:96
+#, fuzzy
+msgid "Select failed"
+msgstr "Не удалось соединиться"
+
+#: src/gs_console.c:122
+msgid "Cannot make non-blocking"
+msgstr "Невозможно сделать сокет неблокирующим"
+
+#: src/gs_console.c:144
+msgid "Server's supposed IP"
+msgstr "Предполагаемый IP сервера"
+
+#: src/gs_console.c:154
+msgid "WSAHtons call failed"
+msgstr "Вызов WSAHtons не удался"
+
+#: src/gs_console.c:187
 msgid "Closing console socket"
 msgstr "Закрытие сокета консоли"
 
-#: src/gs_paths.c:15
+#: src/gs_paths.c:22
 msgid "Checking root path"
 msgstr "Проверка корневого пути"
 
-#: src/gs_paths.c:20
+#: src/gs_paths.c:27
 msgid "Please, make sure in following:"
 msgstr "Пожалуйста, убедитесь в следующем:"
 
-#: src/gs_paths.c:21
+#: src/gs_paths.c:28
 msgid "1. This program is located in IL-2 server's subdirectory."
 msgstr "1. Данная программма размещена в поддиректории сервера ИЛ-2."
 
-#: src/gs_paths.c:22
+#: src/gs_paths.c:29
 msgid "2. You are located at that directory currently."
 msgstr "2. Вы находитесь в этой поддиректории в данный момент."
 
-#: src/gs_paths.c:26
+#: src/gs_paths.c:32
 msgid "3. IL-2 server's executable file is named as"
 msgstr "3. Испольняемый файл сервера ИЛ-2 называется"
 
-#: src/gs_paths.c:36
+#: src/gs_paths.c:42
 msgid "Checking logs path"
 msgstr "Проверка пути к журналам"
 
-#: src/gs_paths.c:43
+#: src/gs_paths.c:56
 msgid "Creating missing directory"
 msgstr "Создание отсутствующей директории"
 
-#: src/gs_paths.c:46
+#: src/gs_paths.c:68
 msgid "Failed to create"
 msgstr "Не удалось создать"
 
-#: src/gs.c:41
+#: src/gs.c:44
 msgid "Signal caugth"
 msgstr "Получен сигнал"
 
-#: src/gs.c:52
+#: src/gs.c:55
 msgid "Game server is shut down"
 msgstr "Игровой сервер остановлен"
 
-#: src/gs.c:89
+#: src/gs.c:92
 msgid "Restarting game server in"
 msgstr "Перезапуск игрового сервера через"
 
-#: src/gs.c:122
+#: src/gs.c:130
 msgid "Waiting for server is loaded"
 msgstr "Ожидание загрузки сервера"
 
-#: src/gs.c:131
+#: src/gs.c:144
 msgid "Game server loading timeout"
 msgstr "Превышено время ожидания загрузки сервера"
 
@@ -207,15 +228,23 @@ msgstr "Установление проверки совместимости в�
 msgid "Unknown command."
 msgstr "Неизвестная комманда."
 
-#: src/gs_process.c:21
+#: src/gs_process.c:34 src/gs_process.c:94
 msgid "Creating game server process"
 msgstr "Создание процесса игрового сервера"
 
-#: src/gs_process.c:25
+#: src/gs_process.c:43
+msgid "StdoutRd CreatePipe"
+msgstr "Не удалось вызвать CreatePipe для StdoutRd"
+
+#: src/gs_process.c:50
+msgid "Stdout SetHandleInformation"
+msgstr "Не удалось вызвать SetHandleInformation для Stdout"
+
+#: src/gs_process.c:100
 msgid "Failed to fork"
 msgstr "Не удалось выполнить форк"
 
-#: src/gs_process.c:102
+#: src/gs_process.c:219
 msgid "Game server's process finished"
 msgstr "Процесс игрового сервера завершен"
 

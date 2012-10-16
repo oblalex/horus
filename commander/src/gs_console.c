@@ -140,10 +140,13 @@ static void socket_addr_prepare(struct sockaddr_in* addr)
     PRINT_STATUS_ORDER_RESET();
     #ifdef _WIN_
         wchar_t* f1 = L"%S: %S\n";
+        char buf[40];
+        CharToOem(tr("Server's supposed IP"), buf);
+        wprintf(f1, buf, str_ip);
     #else
         wchar_t* f1 = L"%s: %s\n";
+        wprintf(f1, tr("Server's supposed IP"), str_ip);
     #endif
-    wprintf(f1, tr("Server's supposed IP"), str_ip);
 
 	(*addr).sin_family 		= AF_INET;
 	(*addr).sin_addr.s_addr = inet_addr(str_ip);

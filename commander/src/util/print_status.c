@@ -23,12 +23,15 @@ void print_status_tail(int color, const char* status)
 #ifdef _WIN_
     wchar_t* f1 = L"%S";
     int brackets_color = TC_MAGENTA;
+
+    char buf[255];
+    CharToOem(status, buf);
+    wprintf(f1, buf);
 #else
     wchar_t* f1 = L"%s";
     int brackets_color = TC_BLUE;
+    wprintf(f1, status);
 #endif
-	
-	wprintf(f1, status);
 
     term_style(TA_BRIGHT, brackets_color, TC_NONE);
 	wprintf(L"]");
@@ -62,11 +65,17 @@ void print_status_raw(char* str, int color, const char* status)
 #endif
 
 	// 5 is for length of ":: " + length of "[]"
-	wprintf(f2, term_getWidth()-5-mbstowcs(NULL, status, 0)-STATUS_HEAD_INDENT_PRIME, str);
+#ifdef _WIN_
+    char buf[255];
+    CharToOem(str, buf);
+    wprintf(f2, term_getWidth()-5-mbstowcs(NULL, status, 0)-STATUS_HEAD_INDENT_PRIME, buf);
+#else
+    wprintf(f2, term_getWidth()-5-mbstowcs(NULL, status, 0)-STATUS_HEAD_INDENT_PRIME, str);
+#endif
     term_style(TA_BRIGHT, brackets_color, TC_NONE);
 
-	wprintf(L"[");
-	print_status_tail(color, status);	
+    wprintf(L"[");
+    print_status_tail(color, status);
 }
 
 void PRINT_STATUS_NEW(char* str)
@@ -131,7 +140,10 @@ void print_status_msg(int color, char* str, BOOL do_indent)
 {
 	MULTILOCK();
 
-#ifndef _WIN_
+#ifdef _WIN_
+    char buf[255];
+    CharToOem(str, buf);
+#else
 	if (STATUS_LAST_OPER_WAS_PUSH == TRUE)
 	{
 		wprintf(L"\n");
@@ -142,22 +154,22 @@ void print_status_msg(int color, char* str, BOOL do_indent)
 	if (do_indent == TRUE)
 	{
 	
-#ifdef _WIN_
-	wchar_t* f1 = L"%*S%S\n";	
-#else
-	wchar_t* f1 = L"%*s%s\n";	
-#endif
-
-		wprintf(f1, STATUS_MSG_INDENT, "", str);
+    #ifdef _WIN_
+        wchar_t* f1 = L"%*S%S\n";
+        wprintf(f1, STATUS_MSG_INDENT, "", buf);
+    #else
+        wchar_t* f1 = L"%*s%s\n";
+        wprintf(f1, STATUS_MSG_INDENT, "", str);
+    #endif
 	} else {
 	
-#ifdef _WIN_
-	wchar_t* f1 = L"%S\n";	
-#else
-	wchar_t* f1 = L"%s\n";	
-#endif
-
-		wprintf(f1, str);
+    #ifdef _WIN_
+        wchar_t* f1 = L"%S\n";
+        wprintf(f1, buf);
+    #else
+        wchar_t* f1 = L"%s\n";
+        wprintf(f1, str);
+    #endif
 	}
 	term_styleReset();
 	

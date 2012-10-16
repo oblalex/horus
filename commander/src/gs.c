@@ -41,7 +41,13 @@ static void gs_setup_termination_hooks()
 static void gs_termination_handler(int signum)
 {		
 	PRINT_STATUS_ORDER_RESET();
-	wprintf(L"\n%s: #%d.\n", tr("Signal caugth"), signum);
+#ifdef _WIN_
+    char buf[40];
+    CharToOem(tr("Signal caugth"), buf);
+    wprintf(L"\n%S: #%d.\n", buf, signum);
+#else
+    wprintf(L"\n%s: #%d.\n", tr("Signal caugth"), signum);
+#endif
 	gs_exit();
 }
 
@@ -87,8 +93,7 @@ static void gs_check_launched_before()
 		char i;
 		for(i=10; i>0; i--){
 			if (DO_RUN == FALSE) break;
-			int len = 40;
-			char buf[len];
+            char buf[40];
 			sprintf(buf, "%s...%d", tr("Restarting game server in"), i);
 			PRINT_STATUS_MSG_NOIND(&buf);
 			
