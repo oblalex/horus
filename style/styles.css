@@ -151,9 +151,18 @@ div.pop-up {
 	z-index: 999;
 }
 
-ul
+ul, ol
 {
 	list-style-position:inside;
+}
+
+ul {
+	list-style-type:disc;
+}
+
+ul ul
+{
+	margin-left: 30px;
 }
 
 table.commands {
@@ -179,8 +188,9 @@ table.commands tr:hover {
 	border: 1px solid #444;
 	box-shadow: #777 2px 2px 8px 1px;
 	color: #3d3;
-	padding: 10px;
+	padding: 10px 10px 10px 50px;
 	overflow: auto;
+	text-indent: 0px;
 }
 
 .screensh

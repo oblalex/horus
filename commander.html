@@ -32,7 +32,12 @@
 				<li><a href="#features">Features</a></li>
 				<li><a href="#shell_cmd">Shell commands</a></li>
 				<li><a href="#pilot_req">Pilot requests</a></li>
-				<li><a href="#installation">Installation</a></li>
+				<li><a href="#installation">Installation</a>
+					<ul>
+						<li><a href="#install_lin">Linux</a></li>
+						<li><a href="#install_win">Windows</a></li>
+					</ul>
+				</li>
 				<li><a href="#launching">Launching</a></li>
 				<li><a href="#changing_lang">Changing language</a></li>
 				<li><a href="#developer_api">Developer's API</a></li>
@@ -111,17 +116,26 @@
 			<span style="color:#777; padding-left:70px;">No pilot requests are available yet.</span>
 			<hr/>
 			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="installation">Installation</a></h3>
+			<ul>
+				<li><a href="#install_lin">Linux</a></li>
+				<li><a href="#install_win">Windows</a></li>
+			</ul>
+			<h3><a id="gotop" href="#installation"><div class="gotop_bg" title="Go top"></div></a><a id="install_lin">Linux</a></h3>
 			<p>1. Install next packages:</p>
 			<ul style="margin:0; font-size:16px;">
-				<li>git</li>
+				<li>git (not necessarily)</li>
 				<li>gcc (&gt;=4.7.0)</li>
 				<li>automake (&gt;=1.11.3)</li>
 				<li>m4 (&gt;=1.4.16)</li>
 				<li>autoconf (&gt;=2.68)</li>
 				<li>libtool (&gt;=2.4.2)</li>
 				<li>gettext + gettext-dev (&gt;=0.18.1)</li>
+				<li>wine</li>
 			</ul>	
-			<p>2. Clone Horus repository to any directory:</p>
+			<p>2. Download
+				<a href="https://github.com/oblalex/horus/zipball/master">ZIP</a> or
+				<a href="https://github.com/oblalex/horus/tarball/master">TAR</a> archive and unpack it
+				or clone Horus repository to any directory:</p>
 			<pre class="code_snippet">git clone https://github.com/oblalex/horus.git</pre>
 			<p>3. Go to horus-commander subdirectory:</p>
 			<pre class="code_snippet">cd horus/commander</pre>
@@ -134,6 +148,53 @@
 			<p>7. Build and install horus-commander:</p>
 			<pre class="code_snippet">make && make install-strip</pre>
 
+			<h3><a id="gotop" href="#installation"><div class="gotop_bg" title="Go top"></div></a><a id="install_win">Windows</a></h3>
+			<ul>
+				<li>Download precompiled <a href="./bin/horus-commander.zip">binaries</a> for 32-bit Windows
+					and unpack it to server's directory
+				</li>
+				<li>or build from sources:</li>
+			</ul>
+			<p>1. Install <a href="http://sourceforge.net/projects/mingw/files/Installer/mingw-get-inst/">MinGW</a>:
+				select latest version and download binary executable (e.g., <a href="http://sourceforge.net/projects/mingw/files/Installer/mingw-get-inst/mingw-get-inst-20120426/mingw-get-inst-20120426.exe/download">mingw-get-inst-20120426</a>):</p>
+				<img class="screensh" src="img/install/wingw_1.png"/></br>
+				<img class="screensh" src="img/install/wingw_2.png"/>
+			<p>2. Install
+				<a href="http://gnuwin32.sourceforge.net/packages/pcre.htm">PCRE</a>
+				library to MinGW environment:
+				<ol style="margin-left: 50px;">
+					<li>Get <a href="http://gnuwin32.sourceforge.net/downlinks/pcre-lib-zip.php">Developer files</a>.</li>
+					<li>Copy files from "include" to "C:\MinGW\include" directory.</li>
+					<li>Copy files from "lib" to "C:\MinGW\lib" directory.</li>
+				</ol>
+			</p>
+			<p>3. Download
+				<a href="https://github.com/oblalex/horus/zipball/master">ZIP</a> or
+				<a href="https://github.com/oblalex/horus/tarball/master">TAR</a> archive
+				and unpack it to any directory.</p>
+			<p>4. Run MinGW shell (find it in the applications menu).</p>
+			<p>5. Navigate to directory with Horus Commander sources:</p>
+			<pre class="code_snippet">cd /drive_letter/path/to/horus/sources
+cd commander</pre>
+			<p>6. Make sure "configure.ac" has right format:</p>
+			<pre class="code_snippet">dos2unix configure.ac</pre>
+			<p>7. Configure, build and install in similar to Linux way:</p>
+			<pre class="code_snippet">autoreconf -if
+mkdir build && cd build
+../configure --prefix=/path/to/your/il-2/server/directory
+make && make install-strip</pre>
+			<p>8. Copy next libraries from "C:\MinGW\bin" and <a href="http://gnuwin32.sourceforge.net/downlinks/pcre-bin-zip.php">PCRE binaries</a> to your builded "horus-commander" directory: <img src="img/info.png" id="lib-distro-info"/>
+				<ul style="margin-left: 50px;">
+					<li>libgcc_s_dw2-1.dll</li>
+					<li>libiconv-2.dll</li>
+					<li>libintl-8.dll</li>
+					<li>pcre3.dll</li>
+					<li>pthreadGC2.dll</li>
+				</ul>
+			</p>
+			<script>
+				$('#lib-distro-info').addPopup($('#lib-distro-info-pop-up'));
+			</script>
 			<hr/>
 			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="launching">Launching</a></h3>
 			<p>1. Go to installed horus-commander directory:</p>
@@ -167,6 +228,9 @@
 		<div class="pop-up" id="request-info-pop-up">
 			Commands that pilot can send to server via chat<br/>
 			to execute some action or get some information.
+		</div>
+		<div class="pop-up" id="lib-distro-info-pop-up">
+			Auto distribution of libraries is future-planned.
 		</div>
 		<!--[if !IE]><script>fixScale(document);</script><![endif]-->
 	</body>
