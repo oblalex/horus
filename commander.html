@@ -44,7 +44,12 @@
 						<li><a href="#launch_win">Windows</a></li>
 					</ul>
 				</li>
-				<li><a href="#changing_lang">Changing language</a></li>
+				<li><a href="#changing_lang">Changing language</a>
+					<ul>
+						<li><a href="#lang_lin">Linux</a></li>
+						<li><a href="#lang_win">Windows</a></li>
+					</ul>
+				</li>
 				<li><a href="#developer_api">Developer's API</a></li>
 			</ul>
 			<hr/>
@@ -219,11 +224,17 @@ make && make install-strip</pre>
 			<img class="screensh" src="img/exec/stopping.png"/><br/>
 			<h3><a id="gotop" href="#launching"><div class="gotop_bg" title="Go top"></div></a><a id="launch_win">Windows</a></h3>
 			<p>Launching on Windows is quite similar to described above. Go to installed horus-commander directory and
-				launch "horus-commander.exe". You should see such output:</p>
+				launch "horusCommander.exe". You should see such output:</p>
 			<img class="screensh" src="img/exec/starting_win.png"/>
 
 			<hr/>
 			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="changing_lang">Changing language</a></h3>
+			<ul>
+				<li><a href="#lang_lin">Linux</a></li>
+				<li><a href="#lang_win">Windows</a></li>
+			</ul>
+			
+			<h3><a id="gotop" href="#changing_lang"><div class="gotop_bg" title="Go top"></div></a><a id="lang_lin">Linux</a></h3>
 			<p>By default english language is selected. Before launching
 			commander you can set LANGUAGE variable to the
 			value you need. Remember that commander's output is in UTF-8
@@ -231,6 +242,13 @@ make && make install-strip</pre>
 			<pre class="code_snippet">export LANGUAGE="ru_RU"</pre>
 			<p>To restore english output:</p>
 			<pre class="code_snippet">export LANGUAGE="en_US"</pre>
+			
+			<h3><a id="gotop" href="#changing_lang"><div class="gotop_bg" title="Go top"></div></a><a id="lang_win">Windows</a></h3>
+			<p>Like in linux english language is selected by default. For switching to russian language run (in console):</p>
+			<pre class="code_snippet">set LANG=ru_RU</pre>
+			<p>Then launch commander from the same console. To restore english output:</p>
+			<pre class="code_snippet">set LANG=en_US</pre>
+
 			<hr/>
 			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="developer_api">Developer's API</a></h3>
 			<p>You may be also interested in
