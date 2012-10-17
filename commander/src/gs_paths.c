@@ -52,7 +52,6 @@ void gs_check_path_logs()
 	if ((stat(path, &st) != 0) && (errno == ENOENT))
 #endif	
     {
-		perror("ololo");
         PRINT_STATUS_MSG(tr("Creating missing directory"));
 		int mk_result;
 		
@@ -74,4 +73,18 @@ void gs_check_path_logs()
     }
 
     PRINT_STATUS_DONE();
+}
+
+BOOL gs_check_path_missions()
+{
+    PRINT_STATUS_NEW(tr("Checking missions list path"));
+    const char* const path = PATH_GS_MISSIONS;
+    if (access(path, X_OK) != -1) {
+        PRINT_STATUS_DONE();
+        return TRUE;
+    } else {
+        PRINT_STATUS_MSG_ERR(tr("Missions list was not found. Please, read the manual about missions managing."));
+        PRINT_STATUS_FAIL();
+        return FALSE;
+    }
 }

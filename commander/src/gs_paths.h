@@ -5,7 +5,7 @@
 #include "util/file_ext.h"
 
 /** Path to game server directory */
-#define PATH_GS 			PATH_PARENT PATH_SEP
+#define PATH_GS 			PATH_PARENT
 
 /** Game server's logs subdirectory */
 #define GS_LOGS_DIR 		"logs" PATH_SEP
@@ -42,8 +42,13 @@
 #define GS_CMDF_GC_NAME 	"gc" FILE_EXT_CMD
 #define PATH_GS_CMDF_GC 	PATH_GS GS_CMDF_GC_NAME
 
+/** Garbage collecting server's command file name */
+#define GS_MISSIONS_NAME    "missions" FILE_EXT_XML
+#define PATH_GS_MISSIONS    PATH_CURRENT GS_MISSIONS_NAME
+
 void gs_check_path_root();
 void gs_check_path_logs();
+BOOL gs_check_path_missions();
 
 #endif // PATH_GSS_H
 

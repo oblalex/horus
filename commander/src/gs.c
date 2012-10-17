@@ -10,6 +10,7 @@
 #include "gs_cmd.h"
 #include "gs_console.h"
 #include "gs_input_handlers.h"
+#include "gs_mission_manager.h"
 #include "util/print_status.h"
 
 static BOOL LAUNCHED_BEFORE = FALSE;
@@ -123,6 +124,7 @@ static void gs_on_process_start()
 			gs_cmd_init();
 			input_handlers_start();
 			gs_cmd_kick_all();
+            gs_mission_start();
 			gs_process_wait();
 	} else {
 		gs_process_kill();
@@ -174,6 +176,7 @@ static void gs_on_process_stop()
 {
 	if (CONNECTED == TRUE)
 	{
+        gs_mission_fullstop();
 		input_handlers_stop();
 		gs_cmd_tear_down();
 	}

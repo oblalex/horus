@@ -16,8 +16,6 @@
 	} BOOL;
 #endif 
 
-#define PATH_PARENT	".."
-
 #if defined(_WIN_)
 	#define PATH_SEP 	"\\"
 	#define DEV_NULL 	"NUL"
@@ -26,7 +24,10 @@
 	#define DEV_NULL 	"/dev/null"
 #endif 
 
-#define NEW_LINE	"\n"
-#define CH_NULL		"\0"
+#define PATH_CURRENT    "." PATH_SEP
+#define PATH_PARENT     ".." PATH_SEP
+
+#define NEW_LINE        "\n"
+#define CH_NULL         "\0"
 
 #endif // COMMON_H
