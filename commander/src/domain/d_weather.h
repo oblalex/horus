@@ -1,33 +1,33 @@
 #ifndef D_WEATHER_H
 #define D_WEATHER_H
 
-enum D_GUST
+typedef enum
 {
-    NONE,
-    WEAK,
-    AVERAGE,
-    STRONG
-};
+    GUST_NONE,
+    GUST_WEAK,
+    GUST_AVERAGE,
+    GUST_STRONG
+} D_GUST;
 
-enum D_TURBULENCE
+typedef enum
 {
-    NONE,
-    WEAK,
-    AVERAGE,
-    STRONG,
-    VERY_STRONG
-};
+    TURB_NONE,
+    TURB_WEAK,
+    TURB_AVERAGE,
+    TURB_STRONG,
+    TURB_VERY_STRONG
+} D_TURBULENCE;
 
-enum D_WEATHER
+typedef enum
 {
-    CLOUDLESS,
-    CLEAR,
-    HAZE,
-    SLIGHT_FOG,
-    FOG,
-    PRECIPITATION,
-    THUNDER
-};
+    WEATH_CLOUDLESS,
+    WEATH_CLEAR,
+    WEATH_HAZE,
+    WEATH_SLIGHT_FOG,
+    WEATH_FOG,
+    WEATH_PRECIPITATION,
+    WEATH_THUNDER
+} D_WEATHER;
 
 typedef struct
 {
