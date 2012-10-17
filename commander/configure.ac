@@ -59,7 +59,8 @@ AM_CONDITIONAL(WIN, test x$win = xtrue)
 AC_CONFIG_FILES([
 	Makefile
 	src/Makefile
-	src/util/Makefile	
+	src/util/Makefile
+	src/mxml/Makefile
 	src/util/stack/Makefile
 	tests/Makefile	
 	tests/util/Makefile	

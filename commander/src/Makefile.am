@@ -14,11 +14,12 @@ horusCommander_SOURCES = main.c \
 						gs_cmd.c \
 						gs_input_handlers.c \
 						shell_parser.c
-horusCommander_LDADD = util/libutil.la
+						
+horusCommander_LDADD = util/libutil.la mxml/libmxml.la
 
 if WIN
 horusCommander_LDADD += -lws2_32 -lpcre
 endif
 
-SUBDIRS = util
+SUBDIRS = util mxml
 
