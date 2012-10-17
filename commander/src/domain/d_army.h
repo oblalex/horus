@@ -1,8 +1,8 @@
-#ifndef GS_ARMIES_H
-#define GS_ARMIES_H
+#ifndef D_ARMY_H
+#define D_ARMY_H
 
 #define ARMY_NONE	'0'
 #define ARMY_RED	'1'
 #define ARMY_BLUE	'2'
 
-#endif // GS_ARMIES_H
+#endif // D_ARMY_H

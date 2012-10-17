@@ -5,7 +5,7 @@
 
 #include "gs.h"
 #include "gs_cmd.h"
-#include "gs_armies.h"
+#include "domain/d_army.h"
 #include "util/print_status.h"
 #include "util/str.h"
 #include "util/l10n.h"
