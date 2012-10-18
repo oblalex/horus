@@ -3,6 +3,19 @@
 
 #include "d_weather.h"
 
+#define MSSN_KEY_CLOUD_TYPE         ("CloudType")
+#define MSSN_KEY_CLOUD_HEIGTH       ("CloudHeight")
+
+#define MSSN_KEY_TIME               ("TIME")
+#define MSSN_KEY_YEAR               ("Year")
+#define MSSN_KEY_MONTH              ("Month")
+#define MSSN_KEY_DAY                ("Day")
+
+#define MSSN_KEY_WIND_DIRECTION     ("WindDirection")
+#define MSSN_KEY_WIND_SPEED         ("WindSpeed")
+#define MSSN_KEY_GUST               ("Gust")
+#define MSSN_KEY_TURBULENCE         ("Turbulence")
+
 typedef struct D_MISSION_LITE
 {
     /** Missions name used for comfortable identification */
@@ -16,15 +29,6 @@ typedef struct D_MISSION_LITE
 
     /** Mission's weather data */
     D_WEATHER_REPORT weather;
-
-    /** Mission that will be played after red team wons current mission */
-    struct D_MISSION_LITE* nextRed;
-
-    /** Mission that will be played after blue team wons current mission */
-    struct D_MISSION_LITE* nextBlue;
-
-    /** Mission that will be played after no team wons current mission or nextRead and nextBlue are unset */
-    struct D_MISSION_LITE* next;
 } D_MISSION_LITE;
 
 #endif // D_MISSION_H

@@ -42,13 +42,18 @@
 #define GS_CMDF_GC_NAME 	"gc" FILE_EXT_CMD
 #define PATH_GS_CMDF_GC 	PATH_GS GS_CMDF_GC_NAME
 
-/** Garbage collecting server's command file name */
-#define GS_MISSIONS_NAME    "missions" FILE_EXT_XML
-#define PATH_GS_MISSIONS    PATH_CURRENT GS_MISSIONS_NAME
+/** Missions list file name */
+#define GS_MISSION_LIST_NAME    "missions" FILE_EXT_XML
+#define PATH_GS_MISSION_LIST    PATH_CURRENT GS_MISSION_LIST_NAME
+
+/** Game server's missions subdirectory */
+#define GS_MISSIONS_DIR 		"Missions" PATH_SEP
+#define PATH_GS_MISSIONS_DIR    PATH_GS GS_MISSIONS_DIR
 
 void gs_check_path_root();
 void gs_check_path_logs();
-BOOL gs_check_path_missions();
+BOOL gs_check_path_mission_list();
+BOOL gs_check_path_mission(char* path);
 
 #endif // PATH_GSS_H
 

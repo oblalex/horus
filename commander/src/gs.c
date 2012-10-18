@@ -22,6 +22,7 @@ void gs_init()
 {
     gs_check_path_root();
 	gs_setup_termination_hooks();
+    gs_mission_manager_init();
 	
 #if !defined(_WIN_)
 	signal(SIGUSR1, gs_set_loadded);
@@ -30,6 +31,8 @@ void gs_init()
 
 static void gs_setup_termination_hooks()
 {
+    PRINT_STATUS_NEW(tr("Setting up signal hooks"));
+
 	#if !defined(_WIN_)
 	signal(SIGPIPE,	SIG_IGN);
 	#endif
@@ -37,6 +40,8 @@ static void gs_setup_termination_hooks()
 	signal(SIGINT,	gs_termination_handler);
 	signal(SIGTERM,	gs_termination_handler);
 	signal(SIGABRT,	gs_termination_handler);
+
+    PRINT_STATUS_DONE();
 }
 
 static void gs_termination_handler(int signum)
@@ -176,7 +181,7 @@ static void gs_on_process_stop()
 {
 	if (CONNECTED == TRUE)
 	{
-        gs_mission_fullstop();
+        gs_mission_manager_tearDown();
 		input_handlers_stop();
 		gs_cmd_tear_down();
 	}

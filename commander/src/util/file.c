@@ -44,11 +44,11 @@ void line_rd(int fd, char* line, int size, int offset, RL_STAT* stat)
 			line++;
 			if (c == '\n')
 				break;
-		} else return;
+        } else return;
 	}
 
 	(*stat).finished = TRUE;
-	*line=0;
+    *line=0;
 }
 
 void line_wr(int fd, char* line, int size)

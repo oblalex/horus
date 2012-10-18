@@ -1,6 +1,8 @@
 #ifndef D_WEATHER_H
 #define D_WEATHER_H
 
+#include "../util/timestamp_t.h"
+
 typedef enum
 {
     GUST_NONE,
@@ -41,10 +43,10 @@ typedef struct
     short windSpeedMS;
 
     /** In-game publication timestamp */
-    unsigned long int publGameTS;
+    TIMESTAMP_T publGameTS;
 
     /** Real publication timestamp */
-    unsigned long int publRealTS;
+    TIMESTAMP_T publRealTS;
 
     D_GUST gust;
     D_TURBULENCE turbulence;

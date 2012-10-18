@@ -143,7 +143,6 @@ mxmlAdd(mxml_node_t *parent,		/* I - Parent node */
 	 /*
 	  * Insert as last node under parent...
 	  */
-
 	  node->parent = parent;
 	  node->prev   = parent->last_child;
 

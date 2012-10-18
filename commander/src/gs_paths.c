@@ -75,16 +75,29 @@ void gs_check_path_logs()
     PRINT_STATUS_DONE();
 }
 
-BOOL gs_check_path_missions()
+BOOL gs_check_path_mission_list()
 {
     PRINT_STATUS_NEW(tr("Checking missions list path"));
-    const char* const path = PATH_GS_MISSIONS;
+    const char* const path = PATH_GS_MISSION_LIST;
     if (access(path, X_OK) != -1) {
         PRINT_STATUS_DONE();
         return TRUE;
     } else {
         PRINT_STATUS_MSG_ERR(tr("Missions list was not found. Please, read the manual about missions managing."));
         PRINT_STATUS_FAIL();
+        return FALSE;
+    }
+}
+
+BOOL gs_check_path_mission(char* path)
+{
+    char fullPath[255];
+    sprintf(fullPath, "%s%s", PATH_GS_MISSIONS_DIR, path);
+    if (access(fullPath, X_OK) != -1) {
+        return TRUE;
+    } else {
+        PRINT_STATUS_MSG_ERR(tr("Mission's path is wrong:"));
+        PRINT_STATUS_MSG_ERR(path);
         return FALSE;
     }
 }

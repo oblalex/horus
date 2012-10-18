@@ -32,9 +32,11 @@ void print_status_finished(int color, const char* status);
 
 void print_status_msg(int color, char* str, BOOL do_indent);
 #define PRINT_STATUS_MSG(STR)     print_status_msg(TC_CYAN, STR, TRUE);
+#define PRINT_STATUS_MSG_WRN(STR) print_status_msg(TC_YELLOW,  STR, TRUE);
 #define PRINT_STATUS_MSG_ERR(STR) print_status_msg(TC_RED,  STR, TRUE);
 
 #define PRINT_STATUS_MSG_NOIND(STR)     print_status_msg(TC_CYAN, STR, FALSE);
+#define PRINT_STATUS_MSG_WRN_NOIND(STR) print_status_msg(TC_YELLOW,  STR, FALSE);
 #define PRINT_STATUS_MSG_ERR_NOIND(STR) print_status_msg(TC_RED,  STR, FALSE);
 
 void PRINT_STATUS_ORDER_RESET();
