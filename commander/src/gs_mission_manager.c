@@ -10,8 +10,8 @@
 #include "util/common.h"
 #include "util/print_status.h"
 #include "util/l10n.h"
-#include "mxml/mxml.h"
 #include "util/file.h"
+#include "mxml/mxml.h"
 
 #include <stdlib.h>
 #include <fcntl.h>
@@ -32,9 +32,9 @@
 
 #define SECONDS_LEFT_BEFORE_END (10)
 
-static D_MISSION_LITE_ELEM* first = NULL;
-static D_MISSION_LITE_ELEM* last = NULL;
-static D_MISSION_LITE_ELEM* current = NULL;
+static D_MISSION_LITE_ELEM* FIRST = NULL;
+static D_MISSION_LITE_ELEM* LAST = NULL;
+static D_MISSION_LITE_ELEM* CURRENT = NULL;
 
 static int MSSN_COUNT = 0;
 static int SECS_LEFT = 0;
@@ -43,7 +43,13 @@ static BOOL RUNNING = FALSE;
 static BOOL LOADED = FALSE;
 static BOOL DO_WORK = FALSE;
 
-static pthread_t h_timer;
+static MSG_QUEUE MSG_Q;
+static pthread_cond_t  MSG_CND = PTHREAD_COND_INITIALIZER;
+static pthread_mutex_t MSG_MTX = PTHREAD_MUTEX_INITIALIZER;
+
+
+static pthread_t H_TIMER;
+static pthread_t H_MSG_DISPATCHER;
 
 void mssn_status_reset()
 {
@@ -198,25 +204,25 @@ void mssn_list_load()
             attrVal = mxmlElementGetAttr(node, XML_ATTR_IS_CURRENT);
             if ((attrVal != NULL) && (strcmp(attrVal, IS_CURRENT_TRUE_VAL) == 0))
             {
-                if (current != NULL)
+                if (CURRENT != NULL)
                 {
                     sprintf(msg, "%s \"%s\" -> \"%s\"",
                             tr("Only one mission can be current. Changing"),
-                            current->data.name,
+                            CURRENT->data.name,
                             elem->data.name);
                     PRINT_STATUS_MSG_WRN(msg);
                 }
-                current = elem;
+                CURRENT = elem;
             }
 
             // Add to list
-            if (first == NULL)
+            if (FIRST == NULL)
             {
-                first = elem;
-                last = first;
+                FIRST = elem;
+                LAST = FIRST;
             } else {
-                last->next = elem;
-                last = elem;
+                LAST->next = elem;
+                LAST = elem;
             }
 
             MSSN_COUNT++;
@@ -234,13 +240,13 @@ void mssn_list_load()
         }
     }
 
-    if (current == NULL)
-        mssn_set_current(first);
+    if (CURRENT == NULL)
+        mssn_set_current(FIRST);
 
     mssn_list_resolve_conflicts();
 
-    if (current == NULL)
-        mssn_set_current(first);
+    if (CURRENT == NULL)
+        mssn_set_current(FIRST);
 
     mxmlDelete(tree);
 
@@ -266,11 +272,11 @@ void mssn_list_print()
 
     D_MISSION_LITE_ELEM* curr;
     int i = 1;
-    for (curr = first;
+    for (curr = FIRST;
          curr != NULL;
          i++, curr = curr->next)
     {
-        char ch = (curr == current)?'*':' ';
+        char ch = (curr == CURRENT)?'*':' ';
 
         redName  = (curr->mNextRed  != NULL) ? curr->mNextRed->data.name   : noneName;
         blueName = (curr->mNextBlue != NULL) ? curr->mNextBlue->data.name  : noneName;
@@ -290,7 +296,7 @@ void mssn_list_print()
 D_MISSION_LITE_ELEM* get_mssn_elem_by_name(char* name)
 {
     D_MISSION_LITE_ELEM* result = NULL;
-    D_MISSION_LITE_ELEM* elem = first;
+    D_MISSION_LITE_ELEM* elem = FIRST;
 
     while (elem != NULL)
     {
@@ -388,13 +394,13 @@ void mssn_load_weather_report(D_MISSION_LITE* mission)
 
 void mssn_list_resolve_conflicts()
 {
-    if (first == NULL) return;
+    if (FIRST == NULL) return;
 
-    first->refsCount++;
+    FIRST->refsCount++;
 
     if (MSSN_COUNT==1) return;
 
-    D_MISSION_LITE_ELEM* curr = first;
+    D_MISSION_LITE_ELEM* curr = FIRST;
 
     D_MISSION_LITE_ELEM* red;
     D_MISSION_LITE_ELEM* blue;
@@ -451,7 +457,7 @@ void mssn_list_resolve_conflicts()
     {
         unreferencedFound = FALSE;
 
-        for (curr = first;
+        for (curr = FIRST;
              curr != NULL;
              prev = curr, curr = curr->next)
         {
@@ -474,17 +480,17 @@ void mssn_list_resolve_conflicts()
                     curr->mNext->refsCount--;
 
                 if (prev == NULL) {
-                    first = curr->next;
+                    FIRST = curr->next;
 
-                    if (curr == last)
-                        last = first;
+                    if (curr == LAST)
+                        LAST = FIRST;
                 } else {
                     prev->next = curr->next;
-                    if (curr == last)
-                        last = prev;
+                    if (curr == LAST)
+                        LAST = prev;
                 }
 
-                if (curr == current) current = first;
+                if (curr == CURRENT) CURRENT = FIRST;
 
                 free(curr);
                 curr = prev;
@@ -496,7 +502,7 @@ void mssn_list_resolve_conflicts()
         if (unreferencedFound == FALSE) break;
     }
 
-    for (curr = first;
+    for (curr = FIRST;
          curr != NULL;
          prev = curr, curr = curr->next)
     {
@@ -583,11 +589,11 @@ void mssn_list_save()
 
 void mssn_list_clear()
 {
-    if (first == NULL) return;
+    if (FIRST == NULL) return;
 
     PRINT_STATUS_NEW(tr("Clearing missions list"));
 
-    D_MISSION_LITE_ELEM* curr = first;
+    D_MISSION_LITE_ELEM* curr = FIRST;
     D_MISSION_LITE_ELEM* prev = NULL;
 
     while (curr != NULL)
@@ -597,9 +603,9 @@ void mssn_list_clear()
         free(curr);
     }
 
-    first = NULL;
-    last = NULL;
-    current = NULL;
+    FIRST = NULL;
+    LAST = NULL;
+    CURRENT = NULL;
 
     PRINT_STATUS_DONE();
 }
@@ -617,7 +623,7 @@ void mssn_list_reload()
 
 void mssn_set_current(D_MISSION_LITE_ELEM* value)
 {
-    current = value;
+    CURRENT = value;
     mssn_list_save();
 }
 
@@ -634,9 +640,9 @@ void gs_mssn_load()
     wchar_t* msgLoaded = tr("Mission loaded.");
     char msg2[100];
 
-    if (current != NULL)
+    if (CURRENT != NULL)
     {
-        sprintf(msg2, "%s '%s'...", msg1, current->data.name);
+        sprintf(msg2, "%s '%s'...", msg1, CURRENT->data.name);
 
         PRINT_STATUS_NEW(msg2);
         gs_cmd_chat_all(msg2);
@@ -652,7 +658,7 @@ void gs_mssn_load()
     }
 
     LOADED = FALSE;
-    gs_cmd_mssn_load(current->data.path);
+    gs_cmd_mssn_load(CURRENT->data.path);
 
     int tries = 45;
     while ((LOADED == FALSE) && (DO_WORK == TRUE))
@@ -747,7 +753,7 @@ void gs_mssn_run()
 
     if (LOADED != NULL)
     {
-        sprintf(msg2, "%s '%s'...", msg1, current->data.name);
+        sprintf(msg2, "%s '%s'...", msg1, CURRENT->data.name);
 
         PRINT_STATUS_NEW(msg2);
         gs_cmd_chat_all(msg2);
@@ -787,9 +793,9 @@ void gs_mssn_run()
         PRINT_STATUS_DONE();
         gs_cmd_chat_all(msgLaunched);
 
-        SECS_LEFT = current->data.sDuration;
+        SECS_LEFT = CURRENT->data.sDuration;
 
-        pthread_create(&h_timer, NULL, &mssn_timer_watcher, NULL);
+        pthread_create(&H_TIMER, NULL, &mssn_timer_watcher, NULL);
 
         // TODO: run event parser
 
@@ -813,8 +819,9 @@ void gs_mssn_end()
     gs_cmd_chat_all(msg1);
 
     void *res;
-    gs_mssn_seconds_left_set(SECONDS_LEFT_BEFORE_END);
-    pthread_join(h_timer, &res);
+    if (SECS_LEFT > SECONDS_LEFT_BEFORE_END)
+        gs_mssn_seconds_left_set(SECONDS_LEFT_BEFORE_END);
+    pthread_join(H_TIMER, &res);
 
     gs_cmd_mssn_end();
     gs_cmd_mssn_status();
@@ -966,6 +973,7 @@ void gs_mssn_manager_init()
 
     DO_WORK = TRUE;
     mssn_list_load();
+    pthread_create(&H_MSG_DISPATCHER, NULL, &mssn_msg_dispatcher, NULL);
 
     PRINT_STATUS_DONE();
 }
@@ -977,6 +985,7 @@ void gs_mssn_manager_tearDown()
     PRINT_STATUS_NEW(tr("Releasing mission manager"));
 
     DO_WORK = FALSE;
+    pthread_cond_signal(&MSG_CND);
     gs_mssn_stop();
     mssn_list_clear();
 
@@ -1031,7 +1040,10 @@ void* mssn_timer_watcher()
 
     gs_cmd_chat_all(tr("Mission ended."));
 
-    // todo: result? next?
+    if (DO_WORK == TRUE)
+    {
+        // todo: result? next?
+    }
 
     return NULL;
 }
@@ -1064,4 +1076,127 @@ void gs_mssn_seconds_left_set(int value)
     if (value < 0) return;
     SECS_LEFT = value;
     SECS_LEFT_CHANGED = TRUE;
+}
+
+void* mssn_msg_dispatcher()
+{
+    msg_queue_clear(&MSG_Q, &msg_delete);
+
+    MSG_T* msg;
+
+    while(DO_WORK == TRUE)
+    {
+        msg = msg_queue_get(&MSG_Q);
+        if (msg == NULL)
+        {
+            pthread_mutex_lock(&MSG_MTX);
+            pthread_cond_wait(&MSG_CND, &MSG_MTX);
+            pthread_mutex_unlock(&MSG_MTX);
+        } else {
+            switch (msg->type)
+            {
+                case MSSN_REQ_LOAD:     gs_mssn_load();     break;
+                case MSSN_REQ_UNLOAD:   gs_mssn_unload();   break;
+
+                case MSSN_REQ_RUN:      gs_mssn_run();      break;
+                case MSSN_REQ_END:      gs_mssn_end();      break;
+                case MSSN_REQ_RERUN:    gs_mssn_rerun();    break;
+
+                case MSSN_REQ_NEXT:     gs_mssn_next();     break;
+                case MSSN_REQ_PREV:     gs_mssn_prev();     break;
+
+                case MSSN_REQ_START:    gs_mssn_start();    break;
+                case MSSN_REQ_STOP:     gs_mssn_stop();     break;
+                case MSSN_REQ_RESTART:  gs_mssn_restart();  break;
+
+                default:
+                    break;
+            }
+            msg_delete(msg);
+        }
+    }
+
+    msg_queue_clear(&MSG_Q, &msg_delete);
+}
+
+void msg_enqueue(MSG_T* msg)
+{
+    msg_queue_put(&MSG_Q, msg);
+    pthread_cond_signal(&MSG_CND);
+}
+
+void msg_delete(MSG_T* msg)
+{
+    // TODO:
+    free(msg);
+}
+
+void gs_mssn_load_req()
+{
+    MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
+    msg->type = MSSN_REQ_LOAD;
+    msg_enqueue(msg);
+}
+
+void gs_mssn_unload_req()
+{
+    MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
+    msg->type = MSSN_REQ_UNLOAD;
+    msg_enqueue(msg);
+}
+
+void gs_mssn_run_req()
+{
+    MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
+    msg->type = MSSN_REQ_RUN;
+    msg_enqueue(msg);
+}
+
+void gs_mssn_end_req()
+{
+    MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
+    msg->type = MSSN_REQ_END;
+    msg_enqueue(msg);
+}
+
+void gs_mssn_rerun_req()
+{
+    MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
+    msg->type = MSSN_REQ_RERUN;
+    msg_enqueue(msg);
+}
+
+void gs_mssn_next_req()
+{
+    MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
+    msg->type = MSSN_REQ_NEXT;
+    msg_enqueue(msg);
+}
+
+void gs_mssn_prev_req()
+{
+    MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
+    msg->type = MSSN_REQ_PREV;
+    msg_enqueue(msg);
+}
+
+void gs_mssn_start_req()
+{
+    MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
+    msg->type = MSSN_REQ_START;
+    msg_enqueue(msg);
+}
+
+void gs_mssn_stop_req()
+{
+    MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
+    msg->type = MSSN_REQ_STOP;
+    msg_enqueue(msg);
+}
+
+void gs_mssn_restart_req()
+{
+    MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
+    msg->type = MSSN_REQ_RESTART;
+    msg_enqueue(msg);
 }

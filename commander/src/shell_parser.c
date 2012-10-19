@@ -111,55 +111,55 @@ BOOL chat_army_match(char* str)
 BOOL mssn_load_match(char* str)
 {
     if (strcmp(str, SH_MSSN_LOAD) != 0) return FALSE;
-    gs_mssn_load();
+    gs_mssn_load_req();
     return TRUE;
 }
 
 BOOL mssn_unload_match(char* str)
 {
     if (strcmp(str, SH_MSSN_UNLOAD) != 0) return FALSE;
-    gs_mssn_unload();
+    gs_mssn_unload_req();
     return TRUE;
 }
 
 BOOL mssn_run_match(char* str)
 {
     if (strcmp(str, SH_MSSN_RUN) != 0) return FALSE;
-    gs_mssn_run();
+    gs_mssn_run_req();
     return TRUE;
 }
 
 BOOL mssn_rerun_match(char* str)
 {
     if (strcmp(str, SH_MSSN_RERUN) != 0) return FALSE;
-    gs_mssn_rerun();
+    gs_mssn_rerun_req();
     return TRUE;
 }
 
 BOOL mssn_end_match(char* str)
 {
     if (strcmp(str, SH_MSSN_END) != 0) return FALSE;
-    gs_mssn_end();
+    gs_mssn_end_req();
     return TRUE;
 }
 
 BOOL mssn_start_match(char* str)
 {
     if (strcmp(str, SH_MSSN_START) != 0) return FALSE;
-    gs_mssn_start();
+    gs_mssn_start_req();
     return TRUE;
 }
 
 BOOL mssn_restart_match(char* str)
 {
     if (strcmp(str, SH_MSSN_RESTART) != 0) return FALSE;
-    gs_mssn_restart();
+    gs_mssn_restart_req();
     return TRUE;
 }
 
 BOOL mssn_stop_match(char* str)
 {
     if (strcmp(str, SH_MSSN_STOP) != 0) return FALSE;
-    gs_mssn_stop();
+    gs_mssn_stop_req();
     return TRUE;
 }

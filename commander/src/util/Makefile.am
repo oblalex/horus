@@ -10,7 +10,8 @@ libutil_la_SOURCES = str.c \
 					l10n.c \
 					file.c \
           regexxx.c \
-          timestamp_t.c
+          timestamp_t.c \
+          msg_queue.c
 
 if WIN
 libutil_la_SOURCES += winproc.c winsock_helper.c

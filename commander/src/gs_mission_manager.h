@@ -3,6 +3,21 @@
 
 #include "domain/d_mission.h"
 #include "util/common.h"
+#include "util/msg_queue.h"
+
+#define MSSN_REQ_LOAD       (0)
+#define MSSN_REQ_UNLOAD     (1)
+
+#define MSSN_REQ_RUN        (2)
+#define MSSN_REQ_END        (3)
+#define MSSN_REQ_RERUN      (4)
+
+#define MSSN_REQ_NEXT       (5)
+#define MSSN_REQ_PREV       (6)
+
+#define MSSN_REQ_START      (7)
+#define MSSN_REQ_STOP       (8)
+#define MSSN_REQ_RESTART    (9)
 
 #define DEFAULT_MISSION_DURATION (3600)
 
@@ -37,8 +52,14 @@ static void mssn_list_clear();
 static void mssn_list_reload();
 static void mssn_list_print();
 
+static void msg_delete(MSG_T* msg);
+static void msg_enqueue(MSG_T* msg);
+
 static void* mssn_timer_watcher();
+static void* mssn_msg_dispatcher();
 static BOOL check_notificator_seconds(int* value, int range, int newValue);
+
+// Manager direct calls
 
 void gs_mssn_load();
 void gs_mssn_unload();
@@ -53,6 +74,24 @@ void gs_mssn_prev();
 void gs_mssn_start();
 void gs_mssn_stop();
 void gs_mssn_restart();
+
+// Manager requests
+
+void gs_mssn_load_req();
+void gs_mssn_unload_req();
+
+void gs_mssn_run_req();
+void gs_mssn_end_req();
+void gs_mssn_rerun_req();
+
+void gs_mssn_next_req();
+void gs_mssn_prev_req();
+
+void gs_mssn_start_req();
+void gs_mssn_stop_req();
+void gs_mssn_restart_req();
+
+// Manager notifications
 
 void gs_mssn_manager_notify_loaded();
 void gs_mssn_manager_notify_not_loaded();
