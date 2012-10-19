@@ -13,11 +13,14 @@
 
 static int GS_IN_FD;
 static pthread_mutex_t LOCK;
+static int channels;
 
 void gs_cmd_init()
 {
 	GS_IN_FD = get_gs_console_socket();
 	pthread_mutex_init(&LOCK, NULL);
+
+    channels = atoi(gs_cfg_get(GS_CFG_SEC_NET, "serverChannels"));
 }
 
 void gs_cmd_exit()
@@ -82,7 +85,7 @@ void gs_cmd_kick_all()
 {	
 	char* msg = tr("Kicking all!");
 	PRINT_STATUS_NEW(msg);	
-	
+
 	int i;
 	for(i=0; i<3; i++)
 	{	
@@ -95,13 +98,39 @@ void gs_cmd_kick_all()
     #endif
 	}
 
-	char* channels = gs_cfg_get(GS_CFG_SEC_NET, "serverChannels");
-	char* cmd = GS_CMD_KICK_FIRST;
+    char* cmd = GS_CMD_KICK_FIRST;
 
-	for(i=0; i<atoi(channels); i++)
+    for(i=0; i<channels; i++)
 		gs_cmd_send(cmd);
 
 	PRINT_STATUS_DONE();
+}
+
+void gs_cmd_mssn_status()
+{
+    gs_cmd_send(GS_CMD_MSSN_STAT);
+}
+
+void gs_cmd_mssn_load(char* path)
+{
+    char cmd[255];
+    sprintf(cmd, GS_CMD_MSSN_LOAD, path);
+    gs_cmd_send(cmd);
+}
+
+void gs_cmd_mssn_run()
+{
+    gs_cmd_send(GS_CMD_MSSN_RUN);
+}
+
+void gs_cmd_mssn_end()
+{
+    gs_cmd_send(GS_CMD_MSSN_END);
+}
+
+void gs_cmd_mssn_unload()
+{
+    gs_cmd_send(GS_CMD_MSSN_UNLOAD);
 }
 
 static void gs_cmd_send(char* cmd)

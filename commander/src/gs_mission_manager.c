@@ -6,6 +6,7 @@
 
 #include "gs_mission_manager.h"
 #include "gs_paths.h"
+#include "gs_cmd.h"
 #include "util/common.h"
 #include "util/print_status.h"
 #include "util/l10n.h"
@@ -35,16 +36,17 @@ static D_MISSION_LITE_ELEM* current = NULL;
 
 static int mssnCount = 0;
 static int secondsLeft = 0;
-static BOOL running = FALSE;
-static BOOL loaded = FALSE;
+static BOOL RUNNING = FALSE;
+static BOOL LOADED = FALSE;
+static BOOL DO_WORK = FALSE;
 
 void mssn_status_reset()
 {
     PRINT_STATUS_NEW(tr("Resetting mission status"));
 
     secondsLeft = 0;
-    running = FALSE;
-    loaded = FALSE;
+    RUNNING = FALSE;
+    LOADED = FALSE;
 
     PRINT_STATUS_DONE();
 }
@@ -252,6 +254,11 @@ void mssn_list_print()
 
     char* msg[180];
 
+    char* redName;
+    char* blueName;
+    char* nextName;
+    char* noneName = "none";
+
     D_MISSION_LITE_ELEM* curr;
     int i = 1;
     for (curr = first;
@@ -260,13 +267,17 @@ void mssn_list_print()
     {
         char ch = (curr == current)?'*':' ';
 
+        redName  = (curr->mNextRed  != NULL) ? curr->mNextRed->data.name   : noneName;
+        blueName = (curr->mNextBlue != NULL) ? curr->mNextBlue->data.name  : noneName;
+        nextName = (curr->mNext     != NULL) ? curr->mNext->data.name      : noneName;
+
         sprintf(msg, "%2d %c %-10s -> (r: %-10s | b: %-10s | n: %-10s)",
                 i,
                 ch,
                 curr->data.name,
-                curr->data.name,
-                curr->data.name,
-                curr->data.name);
+                redName,
+                blueName,
+                nextName);
         PRINT_STATUS_MSG(msg);
     }
 }
@@ -605,59 +616,159 @@ void mssn_set_current(D_MISSION_LITE_ELEM* value)
     mssn_list_save();
 }
 
-void gs_mission_load()
+void gs_mssn_load()
 {
-    if (loaded == TRUE)
+    if (LOADED == TRUE)
     {
-        PRINT_STATUS_MSG(tr("Mission is already loaded"));
+        PRINT_STATUS_MSG_WRN(tr("Mission is already loaded"));
         return;
     }
 
-    PRINT_STATUS_NEW(tr("Loading mission"));
+    wchar_t* msg1 = tr("Loading mission");
+    wchar_t* msgFailed = tr("Mission loading failed.");
+    wchar_t* msgLoaded = tr("Mission loaded.");
 
-    if (current == NULL) {
+    if (current != NULL) {
+        char msg2[100];
+
+        sprintf(msg2, "%s '%s'...", msg1, current->data.name);
+
+        PRINT_STATUS_NEW(msg2);
+        gs_cmd_chat_all(msg2);
+    } else {
+        PRINT_STATUS_NEW(msg1);
         PRINT_STATUS_MSG_ERR(tr("Current mission is not selected"));
         PRINT_STATUS_FAIL();
+
+        gs_cmd_chat_all(msg1);
+        gs_cmd_chat_all(msgFailed);
         return;
     }
 
-    // TODO:
+    LOADED = FALSE;
+    gs_cmd_mssn_load(current->data.path);
 
-    loaded = TRUE;
-    PRINT_STATUS_DONE();
+    int tries = 45;
+    while ((LOADED == FALSE) && (DO_WORK == TRUE))
+    {
+        #if defined(_WIN_)
+        Sleep(1000);
+        #else
+        sleep(1);
+        #endif
+
+        tries--;
+        if (tries == 0)
+        {
+            PRINT_STATUS_MSG_ERR(tr("Mission loading timeout"));
+            break;
+        }
+    }
+
+    if (LOADED == TRUE)
+    {
+        PRINT_STATUS_DONE();
+        gs_cmd_chat_all(msgLoaded);
+    } else {
+        PRINT_STATUS_FAIL();
+        gs_cmd_chat_all(msgFailed);
+    }
 }
 
-void gs_mission_unload()
+void gs_mssn_unload()
 {
     // TODO:
 }
 
-void gs_mission_run()
+void gs_mssn_run()
 {
-    // TODO:
+    if (RUNNING == TRUE)
+    {
+        PRINT_STATUS_MSG_WRN(tr("Mission is already running"));
+        return;
+    }
+
+    wchar_t* msg1 = tr("Launching mission");
+    wchar_t* msgFailed = tr("Mission launching failed.");
+    wchar_t* msgLaunched = tr("Mission launched.");
+
+    PRINT_STATUS_NEW(msg1);
+
+    if (LOADED != NULL)
+    {
+        char msg2[100];
+
+        sprintf(msg2, "%s '%s'...", msg1, current->data.name);
+
+        PRINT_STATUS_NEW(msg2);
+        gs_cmd_chat_all(msg2);
+    } else {
+        PRINT_STATUS_NEW(msg1);
+        PRINT_STATUS_MSG_ERR(tr("Mission is not loaded"));
+        PRINT_STATUS_FAIL();
+
+        gs_cmd_chat_all(msg1);
+        gs_cmd_chat_all(msgFailed);
+        return;
+    }
+
+    RUNNING = FALSE;
+    gs_cmd_mssn_run();
+
+    int tries = 15;
+    while ((RUNNING == FALSE) && (DO_WORK == TRUE))
+    {
+        #if defined(_WIN_)
+        Sleep(1000);
+        #else
+        sleep(1);
+        #endif
+
+        tries--;
+        if (tries == 0)
+        {
+            PRINT_STATUS_MSG_ERR(tr("Mission launching timeout"));
+            break;
+        }
+    }
+
+    if (RUNNING == TRUE)
+    {
+        PRINT_STATUS_DONE();
+
+        // TODO: run timer
+        // TODO: run event parser
+
+        gs_cmd_chat_all(msgLaunched);
+    } else {
+        PRINT_STATUS_FAIL();
+        gs_cmd_chat_all(msgFailed);
+    }
 }
 
-void gs_mission_end()
+void gs_mssn_end()
 {
     // TODO:
+    // TODO: stop timer
+    // TODO: stop event parser
 }
 
-void gs_mission_rerun()
+void gs_mssn_rerun()
 {
     PRINT_STATUS_NEW(tr("Re-running mission"));
 
-    gs_mission_end();
+    gs_mssn_end();
 
     if (current != NULL)
     {
         mssn_status_reset();
-        gs_mission_run();
+        gs_mssn_run();
     } else {
         PRINT_STATUS_FAIL();
         return;
     }
 
-    if (running == TRUE)
+    if (RUNNING == TRUE)
     {
         PRINT_STATUS_DONE();
     } else {
@@ -665,76 +776,95 @@ void gs_mission_rerun()
     }
 }
 
-void gs_mission_next()
+void gs_mssn_next()
 {
     // TODO:
 }
 
-void gs_mission_prev()
+void gs_mssn_prev()
 {
     // TODO:
 }
 
-void gs_mission_start()
+void gs_mssn_start()
 {
     PRINT_STATUS_NEW(tr("Starting mission"));
 
-    gs_mission_load();
+    gs_mssn_load();
 
-    if (loaded == TRUE)
+    if (LOADED == TRUE)
     {
-        gs_mission_run();
+        gs_mssn_run();
     } else {
         PRINT_STATUS_FAIL();
         return;
     }
 
-    if (running == TRUE)
+    if (RUNNING == TRUE)
     {
-        // TODO: run timer
         PRINT_STATUS_DONE();
     } else {
         PRINT_STATUS_FAIL();
     }
 }
 
-void gs_mission_stop()
+void gs_mssn_stop()
 {
     // TODO: msg
-    gs_mission_end();
-    gs_mission_unload();
+    gs_mssn_end();
+    gs_mssn_unload();
     // TODO: msg
 }
 
-void gs_mission_restart()
+void gs_mssn_restart()
 {
     // TODO: msg
-    gs_mission_stop();
+    gs_mssn_stop();
     mssn_status_reset();
-    gs_mission_start();
+    gs_mssn_start();
     // TODO: msg
 }
 
-void gs_mission_manager_init()
+void gs_mssn_manager_notify_loaded()
+{
+    LOADED = TRUE;
+    RUNNING = FALSE;
+}
+
+void gs_mssn_manager_notify_not_loaded()
+{
+    LOADED = FALSE;
+    RUNNING = FALSE;
+}
+
+void gs_mssn_manager_notify_running()
+{
+    LOADED = TRUE;
+    RUNNING = TRUE;
+}
+
+void gs_mssn_manager_init()
 {
     PRINT_STATUS_NEW(tr("Initializing mission manager"));
 
+    DO_WORK = TRUE;
     mssn_list_load();
 
     PRINT_STATUS_DONE();
 }
 
-void gs_mission_manager_tearDown()
+void gs_mssn_manager_tearDown()
 {
     PRINT_STATUS_NEW(tr("Releasing mission manager"));
 
-    gs_mission_stop();
+    DO_WORK = FALSE;
+    gs_mssn_stop();
     mssn_list_clear();
 
     PRINT_STATUS_DONE();
 }
 
-int gs_mission_seconds_left()
+int gs_mssn_seconds_left()
 {
     return secondsLeft;
 }

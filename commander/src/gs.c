@@ -22,7 +22,7 @@ void gs_init()
 {
     gs_check_path_root();
 	gs_setup_termination_hooks();
-    gs_mission_manager_init();
+    gs_mssn_manager_init();
 	
 #if !defined(_WIN_)
 	signal(SIGUSR1, gs_set_loadded);
@@ -128,8 +128,8 @@ static void gs_on_process_start()
 	{
 			gs_cmd_init();
 			input_handlers_start();
-			gs_cmd_kick_all();
-            gs_mission_start();
+            gs_cmd_kick_all();
+            gs_mssn_start();
 			gs_process_wait();
 	} else {
 		gs_process_kill();
@@ -181,7 +181,7 @@ static void gs_on_process_stop()
 {
 	if (CONNECTED == TRUE)
 	{
-        gs_mission_manager_tearDown();
+        gs_mssn_manager_tearDown();
 		input_handlers_stop();
 		gs_cmd_tear_down();
 	}

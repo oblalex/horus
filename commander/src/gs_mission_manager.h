@@ -36,23 +36,27 @@ static void mssn_list_clear();
 static void mssn_list_reload();
 static void mssn_list_print();
 
-void gs_mission_load();
-void gs_mission_unload();
+void gs_mssn_load();
+void gs_mssn_unload();
 
-void gs_mission_run();
-void gs_mission_end();
-void gs_mission_rerun();
+void gs_mssn_run();
+void gs_mssn_end();
+void gs_mssn_rerun();
 
-void gs_mission_next();
-void gs_mission_prev();
+void gs_mssn_next();
+void gs_mssn_prev();
 
-void gs_mission_start();
-void gs_mission_stop();
-void gs_mission_restart();
+void gs_mssn_start();
+void gs_mssn_stop();
+void gs_mssn_restart();
 
-void gs_mission_manager_init();
-void gs_mission_manager_tearDown();
+void gs_mssn_manager_notify_loaded();
+void gs_mssn_manager_notify_not_loaded();
+void gs_mssn_manager_notify_running();
 
-int gs_mission_seconds_left();
+void gs_mssn_manager_init();
+void gs_mssn_manager_tearDown();
+
+int gs_mssn_seconds_left();
 
 #endif // GS_MISSION_MANAGER_H

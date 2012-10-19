@@ -14,6 +14,7 @@ horusCommander_SOURCES = main.c \
 						gs_cmd.c \
 						gs_input_handlers.c \
             shell_parser.c \
+            console_parser.c \
             gs_mission_manager.c
 						
 horusCommander_LDADD = util/libutil.la mxml/libmxml.la
