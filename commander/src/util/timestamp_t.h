@@ -13,4 +13,6 @@ typedef struct
     unsigned int    millisecond;
 } TIMESTAMP_T;
 
+void secondsToTimeString(int seconds, char* str);
+
 #endif // TIMESTAMP_T_H

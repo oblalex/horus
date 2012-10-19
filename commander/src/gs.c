@@ -168,9 +168,10 @@ static void gs_wait_loaded()
 
 void gs_exit()
 {
-	DO_RUN = FALSE;
+    DO_RUN = FALSE;
 	if (LOADED == TRUE)
-	{ 
+    {
+        gs_mssn_manager_tearDown();
 		gs_cmd_exit();
 	} else {
 		gs_process_kill();

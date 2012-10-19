@@ -9,7 +9,8 @@ libutil_la_SOURCES = str.c \
 					print_status.c \
 					l10n.c \
 					file.c \
-					regexxx.c
+          regexxx.c \
+          timestamp_t.c
 
 if WIN
 libutil_la_SOURCES += winproc.c winsock_helper.c

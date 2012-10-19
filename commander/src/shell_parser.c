@@ -5,6 +5,7 @@
 
 #include "gs.h"
 #include "gs_cmd.h"
+#include "gs_mission_manager.h"
 #include "domain/d_army.h"
 #include "util/print_status.h"
 #include "util/str.h"
@@ -32,21 +33,33 @@ void shell_parser_teardown()
 void shell_parse_string(char* str)
 {	
 	str_null_termitate(str);
-	if (chat_user_match(str) == TRUE) return;
-	if (chat_all_match(str) == TRUE) return;
-	if (chat_army_match(str) == TRUE) return;
-	if (exit_match(str) == TRUE) return;
+
+    if (chat_user_match(str)    == TRUE) return;
+    if (chat_all_match(str)     == TRUE) return;
+    if (chat_army_match(str)    == TRUE) return;
+
+    if (mssn_load_match(str)    == TRUE) return;
+    if (mssn_unload_match(str)  == TRUE) return;
+    if (mssn_run_match(str)     == TRUE) return;
+    if (mssn_rerun_match(str)   == TRUE) return;
+    if (mssn_end_match(str)     == TRUE) return;
+    if (mssn_start_match(str)   == TRUE) return;
+    if (mssn_restart_match(str) == TRUE) return;
+    if (mssn_stop_match(str)    == TRUE) return;
+
+    if (exit_match(str)         == TRUE) return;
+
 	PRINT_STATUS_MSG_ERR(tr("Unknown command."));
 }
 
-static BOOL exit_match(char* str)
+BOOL exit_match(char* str)
 {
 	if (strcmp(str, SH_EXIT) != 0) return FALSE;
 	gs_exit();
 	return TRUE;
 }
 
-static BOOL chat_all_match(char* str)
+BOOL chat_all_match(char* str)
 {
 	const int n_matches = 2;
 	regmatch_t m[n_matches];
@@ -56,7 +69,7 @@ static BOOL chat_all_match(char* str)
 	return TRUE;
 }
 
-static BOOL chat_user_match(char* str)
+BOOL chat_user_match(char* str)
 {
 	const int n_matches = 3;
 	regmatch_t m[n_matches];
@@ -69,7 +82,7 @@ static BOOL chat_user_match(char* str)
 	return TRUE;
 }
 
-static BOOL chat_army_match(char* str)
+BOOL chat_army_match(char* str)
 {
 	const int n_matches = 3;
 	regmatch_t m[n_matches];
@@ -93,4 +106,60 @@ static BOOL chat_army_match(char* str)
 	}
 
 	return TRUE;
+}
+
+BOOL mssn_load_match(char* str)
+{
+    if (strcmp(str, SH_MSSN_LOAD) != 0) return FALSE;
+    gs_mssn_load();
+    return TRUE;
+}
+
+BOOL mssn_unload_match(char* str)
+{
+    if (strcmp(str, SH_MSSN_UNLOAD) != 0) return FALSE;
+    gs_mssn_unload();
+    return TRUE;
+}
+
+BOOL mssn_run_match(char* str)
+{
+    if (strcmp(str, SH_MSSN_RUN) != 0) return FALSE;
+    gs_mssn_run();
+    return TRUE;
+}
+
+BOOL mssn_rerun_match(char* str)
+{
+    if (strcmp(str, SH_MSSN_RERUN) != 0) return FALSE;
+    gs_mssn_rerun();
+    return TRUE;
+}
+
+BOOL mssn_end_match(char* str)
+{
+    if (strcmp(str, SH_MSSN_END) != 0) return FALSE;
+    gs_mssn_end();
+    return TRUE;
+}
+
+BOOL mssn_start_match(char* str)
+{
+    if (strcmp(str, SH_MSSN_START) != 0) return FALSE;
+    gs_mssn_start();
+    return TRUE;
+}
+
+BOOL mssn_restart_match(char* str)
+{
+    if (strcmp(str, SH_MSSN_RESTART) != 0) return FALSE;
+    gs_mssn_restart();
+    return TRUE;
+}
+
+BOOL mssn_stop_match(char* str)
+{
+    if (strcmp(str, SH_MSSN_STOP) != 0) return FALSE;
+    gs_mssn_stop();
+    return TRUE;
 }

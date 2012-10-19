@@ -2,6 +2,7 @@
 #define GS_MISSION_
 
 #include "domain/d_mission.h"
+#include "util/common.h"
 
 #define DEFAULT_MISSION_DURATION (3600)
 
@@ -36,6 +37,9 @@ static void mssn_list_clear();
 static void mssn_list_reload();
 static void mssn_list_print();
 
+static void* mssn_timer_watcher();
+static BOOL check_notificator_seconds(int* value, int range, int newValue);
+
 void gs_mssn_load();
 void gs_mssn_unload();
 
@@ -57,6 +61,8 @@ void gs_mssn_manager_notify_running();
 void gs_mssn_manager_init();
 void gs_mssn_manager_tearDown();
 
+void gs_mssn_time_str(char* str);
 int gs_mssn_seconds_left();
+void gs_mssn_seconds_left_set(int value);
 
 #endif // GS_MISSION_MANAGER_H
