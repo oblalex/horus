@@ -29,6 +29,7 @@ void* handle_gs_out()
 {
 	PRINT_STATUS_MSG_NOIND(tr("Game server's output processing started"));
     handle_input(get_gs_console_socket(), &gs_is_running, &console_line_rd, &console_parse_string);
+    PRINT_STATUS_MSG(tr("Game server's output processing finished"));
 	return NULL;
 }
 
@@ -36,6 +37,7 @@ void* handle_shell_in()
 {
 	PRINT_STATUS_MSG_NOIND(tr("User's shell activated"));
     handle_input(STDIN_FILENO, &gs_is_running, &line_rd, &shell_parse_string);
+    PRINT_STATUS_MSG(tr("User's shell deactivated"));
 	return NULL;
 }
 
@@ -64,12 +66,10 @@ void input_handlers_stop()
 {
     PRINT_STATUS_NEW(tr("Stopping console and shell handling threads"));
 
-	pthread_cancel(h_gs_out);
-	PRINT_STATUS_MSG(tr("Game server's output processing finished"));
-
-	pthread_cancel(h_shell_in);
+    void* res;
+    pthread_join(h_gs_out, &res);
+    pthread_join(h_shell_in, &res);
 	shell_parser_teardown();
-	PRINT_STATUS_MSG(tr("User's shell deactivated"));
 
 	PRINT_STATUS_DONE();
 }

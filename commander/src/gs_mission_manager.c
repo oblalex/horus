@@ -7,6 +7,8 @@
 #include "gs_mission_manager.h"
 #include "gs_paths.h"
 #include "gs_cmd.h"
+#include "gs_input_handlers.h"
+#include "event_parser.h"
 #include "util/common.h"
 #include "util/print_status.h"
 #include "util/l10n.h"
@@ -49,6 +51,7 @@ static pthread_mutex_t MSG_MTX = PTHREAD_MUTEX_INITIALIZER;
 
 
 static pthread_t H_TIMER;
+static pthread_t H_EVENT_PARSER;
 static pthread_t H_MSG_DISPATCHER;
 
 void mssn_status_reset()
@@ -796,8 +799,7 @@ void gs_mssn_run()
         SECS_LEFT = CURRENT->data.sDuration;
 
         pthread_create(&H_TIMER, NULL, &mssn_timer_watcher, NULL);
-
-        // TODO: run event parser
+        pthread_create(&H_EVENT_PARSER, NULL, &handle_events_in, NULL);
 
     } else {
         PRINT_STATUS_FAIL();
@@ -849,7 +851,7 @@ void gs_mssn_end()
         RUNNING = FALSE;
         PRINT_STATUS_DONE();
 
-        // TODO: stop event parser
+        pthread_join(H_EVENT_PARSER, &res);
 
     } else {
         PRINT_STATUS_FAIL();
@@ -1078,6 +1080,11 @@ void gs_mssn_seconds_left_set(int value)
     SECS_LEFT_CHANGED = TRUE;
 }
 
+BOOL gs_mssn_running()
+{
+    return RUNNING;
+}
+
 void* mssn_msg_dispatcher()
 {
     msg_queue_clear(&MSG_Q, &msg_delete);
@@ -1127,7 +1134,6 @@ void msg_enqueue(MSG_T* msg)
 
 void msg_delete(MSG_T* msg)
 {
-    // TODO:
     free(msg);
 }
 
@@ -1199,4 +1205,22 @@ void gs_mssn_restart_req()
     MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
     msg->type = MSSN_REQ_RESTART;
     msg_enqueue(msg);
+}
+
+void* handle_events_in()
+{
+    PRINT_STATUS_MSG_NOIND(tr("Events parsing started"));
+
+    int o_flags = O_RDONLY;
+
+#if !defined(_WIN_)
+    o_flags |= O_NONBLOCK;
+#endif
+
+    int events_fd = open(PATH_GS_LOG_EVT, o_flags);
+    handle_input(events_fd, &gs_mssn_running, &line_rd, &event_parse_string);
+    close(events_fd);
+
+    PRINT_STATUS_MSG_NOIND(tr("Events parsing stopped"));
+    return NULL;
 }

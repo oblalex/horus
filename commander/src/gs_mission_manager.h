@@ -59,6 +59,8 @@ static void* mssn_timer_watcher();
 static void* mssn_msg_dispatcher();
 static BOOL check_notificator_seconds(int* value, int range, int newValue);
 
+static void* handle_events_in();
+
 // Manager direct calls
 
 void gs_mssn_load();
@@ -103,5 +105,6 @@ void gs_mssn_manager_tearDown();
 void gs_mssn_time_str(char* str);
 int gs_mssn_seconds_left();
 void gs_mssn_seconds_left_set(int value);
+BOOL gs_mssn_running();
 
 #endif // GS_MISSION_MANAGER_H
