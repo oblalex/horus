@@ -586,8 +586,45 @@ void mssn_list_resolve_branch(char* name, void** nextRed, void** nextBlue, void*
 
 void mssn_list_save()
 {
-    // TODO:
+    PRINT_STATUS_NEW(tr("Saving missions list"));
+
     mxmlSetWrapMargin(0);
+
+    mxml_node_t* tree;
+    mxml_node_t* root;
+    mxml_node_t* node;
+
+    tree = mxmlNewXML("1.0");
+    root = mxmlNewElement(tree, XML_ROOT);
+
+    D_MISSION_LITE_ELEM* elem;
+
+    for (elem = FIRST; elem != NULL; elem = elem->next)
+    {
+        node = mxmlNewElement(root, XML_ELEM);
+
+        mxmlElementSetAttr(node, XML_ATTR_NAME, elem->data.name);
+        mxmlElementSetAttr(node, XML_ATTR_PATH, elem->data.path);
+        mxmlElementSetAttrf(node, XML_ATTR_DURATION, "%d", elem->data.sDuration);
+
+        if (elem == CURRENT)
+            mxmlElementSetAttr(node, XML_ATTR_IS_CURRENT, IS_CURRENT_TRUE_VAL);
+
+        if (elem->mNext != NULL)
+            mxmlElementSetAttr(node, XML_ATTR_NEXT, elem->mNext->data.name);
+        if (elem->mNextRed != NULL)
+            mxmlElementSetAttr(node, XML_ATTR_NEXT_RED, elem->mNextRed->data.name);
+        if (elem->mNextBlue != NULL)
+            mxmlElementSetAttr(node, XML_ATTR_NEXT_BLUE, elem->mNextBlue->data.name);
+    }
+
+    FILE *fp;
+    fp = fopen(PATH_GS_MISSION_LIST, "w");
+
+    mxmlSaveFile(tree, fp, MXML_NO_CALLBACK);
+    fclose(fp);
+
+    PRINT_STATUS_DONE();
 }
 
 void mssn_list_clear()
