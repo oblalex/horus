@@ -49,6 +49,7 @@ static void mssn_list_resolve_conflicts();
 static void mssn_list_resolve_branch(char* name, void** nextRed, void** nextBlue, void** next);
 static void mssn_list_save();
 static void mssn_list_clear();
+static void mssn_list_history_clear();
 static void mssn_list_reload();
 static void mssn_list_print();
 

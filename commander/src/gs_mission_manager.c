@@ -13,6 +13,7 @@
 #include "util/print_status.h"
 #include "util/l10n.h"
 #include "util/file.h"
+#include "util/circular_buffer.h"
 #include "mxml/mxml.h"
 
 #include <stdlib.h>
@@ -33,7 +34,9 @@
 #define IS_CURRENT_TRUE_VAL ("1")
 
 #define SECONDS_LEFT_BEFORE_END (10)
+#define HISTORY_SIZE (16)
 
+static CBUFFER HISTORY;
 static D_MISSION_LITE_ELEM* FIRST = NULL;
 static D_MISSION_LITE_ELEM* LAST = NULL;
 static D_MISSION_LITE_ELEM* CURRENT = NULL;
@@ -48,7 +51,6 @@ static BOOL DO_WORK = FALSE;
 static MSG_QUEUE MSG_Q;
 static pthread_cond_t  MSG_CND = PTHREAD_COND_INITIALIZER;
 static pthread_mutex_t MSG_MTX = PTHREAD_MUTEX_INITIALIZER;
-
 
 static pthread_t H_TIMER;
 static pthread_t H_EVENT_PARSER;
@@ -640,6 +642,9 @@ void mssn_list_clear()
     {
         prev = curr;
         curr = curr->next;
+
+        free(curr->data.name);
+        free(curr->data.path);
         free(curr);
     }
 
@@ -1011,6 +1016,9 @@ void gs_mssn_manager_init()
     PRINT_STATUS_NEW(tr("Initializing mission manager"));
 
     DO_WORK = TRUE;
+
+    cbuff_init(&HISTORY, HISTORY_SIZE, sizeof(D_MISSION_LITE_ELEM));
+
     mssn_list_load();
     pthread_create(&H_MSG_DISPATCHER, NULL, &mssn_msg_dispatcher, NULL);
 
@@ -1027,8 +1035,20 @@ void gs_mssn_manager_tearDown()
     pthread_cond_signal(&MSG_CND);
     gs_mssn_stop();
     mssn_list_clear();
+    mssn_list_history_clear();
 
     PRINT_STATUS_DONE();
+}
+
+void mssn_list_history_clear()
+{
+    D_MISSION_LITE_ELEM* item;
+
+    while(1)
+    {
+        item = cbuff_retrieve(&HISTORY);
+        if (item == NULL) break;
+    }
 }
 
 void* mssn_timer_watcher()
