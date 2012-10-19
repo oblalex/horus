@@ -17,6 +17,8 @@
 #define SH_MSSN_START   "mstart"
 #define SH_MSSN_RESTART "mrestart"
 #define SH_MSSN_STOP    "mstop"
+#define SH_MSSN_NEXT    "mnext"
+#define SH_MSSN_PREV    "mprev"
 
 void shell_parser_init();
 void shell_parser_teardown();
@@ -37,5 +39,7 @@ static BOOL mssn_end_match(char* str);
 static BOOL mssn_start_match(char* str);
 static BOOL mssn_restart_match(char* str);
 static BOOL mssn_stop_match(char* str);
+static BOOL mssn_next_match(char* str);
+static BOOL mssn_prev_match(char* str);
 
 #endif // SHELL_PARSER_H

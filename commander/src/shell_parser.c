@@ -46,6 +46,8 @@ void shell_parse_string(char* str)
     if (mssn_start_match(str)   == TRUE) return;
     if (mssn_restart_match(str) == TRUE) return;
     if (mssn_stop_match(str)    == TRUE) return;
+    if (mssn_next_match(str)    == TRUE) return;
+    if (mssn_prev_match(str)    == TRUE) return;
 
     if (exit_match(str)         == TRUE) return;
 
@@ -161,5 +163,19 @@ BOOL mssn_stop_match(char* str)
 {
     if (strcmp(str, SH_MSSN_STOP) != 0) return FALSE;
     gs_mssn_stop_req();
+    return TRUE;
+}
+
+static BOOL mssn_next_match(char* str)
+{
+    if (strcmp(str, SH_MSSN_NEXT) != 0) return FALSE;
+    gs_mssn_next_req();
+    return TRUE;
+}
+
+static BOOL mssn_prev_match(char* str)
+{
+    if (strcmp(str, SH_MSSN_PREV) != 0) return FALSE;
+    gs_mssn_prev_req();
     return TRUE;
 }

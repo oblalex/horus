@@ -46,6 +46,7 @@ static int SECS_LEFT = 0;
 static BOOL SECS_LEFT_CHANGED = FALSE;
 static BOOL RUNNING = FALSE;
 static BOOL LOADED = FALSE;
+static BOOL INTERRUPTED = FALSE;
 static BOOL DO_WORK = FALSE;
 
 static MSG_QUEUE MSG_Q;
@@ -643,9 +644,9 @@ void mssn_list_clear()
         prev = curr;
         curr = curr->next;
 
-        free(curr->data.name);
-        free(curr->data.path);
-        free(curr);
+        free(prev->data.name);
+        free(prev->data.path);
+        free(prev);
     }
 
     FIRST = NULL;
@@ -839,6 +840,7 @@ void gs_mssn_run()
         gs_cmd_chat_all(msgLaunched);
 
         SECS_LEFT = CURRENT->data.sDuration;
+        INTERRUPTED = FALSE;
 
         pthread_create(&H_TIMER, NULL, &mssn_timer_watcher, NULL);
         pthread_create(&H_EVENT_PARSER, NULL, &handle_events_in, NULL);
@@ -864,7 +866,10 @@ void gs_mssn_end()
 
     void *res;
     if (SECS_LEFT > SECONDS_LEFT_BEFORE_END)
+    {
+        INTERRUPTED = TRUE;
         gs_mssn_seconds_left_set(SECONDS_LEFT_BEFORE_END);
+    }
     pthread_join(H_TIMER, &res);
 
     gs_cmd_mssn_end();
@@ -918,12 +923,84 @@ void gs_mssn_rerun()
 
 void gs_mssn_next()
 {
-    // TODO:
+    PRINT_STATUS_NEW(tr("Going to next mission"));
+
+    if (CURRENT == NULL)
+    {
+        PRINT_STATUS_MSG_ERR(tr("Current mission is not selected"));
+        PRINT_STATUS_FAIL();
+        return;
+    }
+
+    cbuff_push(&HISTORY, (void*) CURRENT);
+
+    if (RUNNING == TRUE)
+    {
+        gs_mssn_stop();
+        CURRENT = CURRENT->next;
+        gs_mssn_start();
+
+        if (RUNNING == FALSE)
+        {
+            PRINT_STATUS_FAIL();
+            return;
+        }
+    } else if (LOADED == TRUE) {
+        gs_mssn_unload();
+        CURRENT = CURRENT->next;
+        gs_mssn_load();
+
+        if (LOADED == FALSE)
+        {
+            PRINT_STATUS_FAIL();
+            return;
+        }
+    } else {
+        CURRENT = CURRENT->next;
+    }
+    mssn_list_save();
+    PRINT_STATUS_DONE();
 }
 
 void gs_mssn_prev()
 {
-    // TODO:
+    PRINT_STATUS_NEW(tr("Going to previous mission"));
+
+    D_MISSION_LITE_ELEM* PREV = (D_MISSION_LITE_ELEM*) cbuff_retrieve(&HISTORY);
+
+    if (PREV == NULL)
+    {
+        PRINT_STATUS_MSG_ERR(tr("Previous mission is not selected"));
+        PRINT_STATUS_FAIL();
+        return;
+    }
+
+    if (RUNNING == TRUE)
+    {
+        gs_mssn_stop();
+        CURRENT = PREV;
+        gs_mssn_start();
+
+        if (RUNNING == FALSE)
+        {
+            PRINT_STATUS_FAIL();
+            return;
+        }
+    } else if (LOADED == TRUE) {
+        gs_mssn_unload();
+        CURRENT = PREV;
+        gs_mssn_load();
+
+        if (LOADED == FALSE)
+        {
+            PRINT_STATUS_FAIL();
+            return;
+        }
+    } else {
+        CURRENT = PREV;
+    }
+    mssn_list_save();
+    PRINT_STATUS_DONE();
 }
 
 void gs_mssn_start()
@@ -1099,10 +1176,13 @@ void* mssn_timer_watcher()
 
     gs_cmd_chat_all(tr("Mission ended."));
 
-    if (DO_WORK == TRUE)
+    if (INTERRUPTED == TRUE)
     {
-        // todo: result? next?
-    }
+        wchar_t* msg = tr("Mission was interrupted.");
+        gs_cmd_chat_all(msg);
+        PRINT_STATUS_MSG_NOIND(msg);
+    } else if (DO_WORK == TRUE)
+        gs_mssn_next_req();
 
     return NULL;
 }
