@@ -22,6 +22,7 @@
 #define MSSN_REQ_TIME_LEFT_PRINT    (10)
 #define MSSN_REQ_TIME_LEFT_SET      (11)
 
+#define HISTORY_SIZE (16)
 #define DEFAULT_MISSION_DURATION (3600)
 
 typedef struct D_MISSION_LITE_ELEM
