@@ -30,7 +30,13 @@
 			<ul>
 				<li><a href="#about">About</a></li>
 				<li><a href="#features">Features</a></li>
-				<li><a href="#shell_cmd">Shell commands</a></li>
+				<li><a href="#shell_cmd">Shell commands</a>
+					<ul>
+						<li><a href="#shell_chat">Chatting</a></li>
+						<li><a href="#shell_mssn">Mission management</a></li>
+						<li><a href="#shell_other">Others</a></li>
+					</ul>
+				</li>
 				<li><a href="#pilot_req">Pilot requests</a></li>
 				<li><a href="#installation">Installation</a>
 					<ul>
@@ -58,7 +64,7 @@
 			Dedicated Server directly. Loading missions, responding to pilot's
 			requests, collecting their statistical data and tracking mission 
 			progress are the main purposes of the commander. It extends
-			facilities of Dedicated Server.</p>
+			facilities of the Dedicated Server.</p>
 			<hr/>
 			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="features">Features</a></h3>
 			<ul>
@@ -75,6 +81,9 @@
 					to worry about your disk space.
 				</li>
 				<li>
+					Flexible missions management.
+				</li>
+				<li>
 					C-language native code for Linux and Windows: run commander without emulations,
 					take maximum performance.
 				</li>
@@ -87,35 +96,100 @@
 			<script>
 				$('#shell-info').addPopup($('#shell-info-pop-up'));
 			</script>
-			<table class="commands" cellspacing="0">
-				<col width="300"/>
-				<tr>
-					<td>chall <span style="color:#070;">&lt;message&gt;</span></td>
-					<td>send message to everybody</td>
-				</tr>
-				<tr>
-					<td>chusr <span style="color:#909;">&lt;user&gt;</span>
-						<span style="color:#070;">&lt;message&gt;</span></td>
-					<td>send message to user</td>
-				</tr>
-				<tr>
-					<td>charm
-						<span style="color:#a50;">&lt;army&gt;</span>
-						<span style="color:#070;">&lt;message&gt;</span></td>
-					<td>send message to army:
-						<ul style="margin:0;">
-							<li>"none", "n", "0" - army none;</li>
-							<li>"red",&nbsp; "r", "1" - army red;</li>
-							<li>"blue", "b", "2" - army blue.</li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<td>exit</td>
-					<td>stop server and exit commander</td>
-				</tr>
-			</table>
+			<ul class="cmd_list">
+				<li><a id="shell_chat">Chatting:</a><br/><br/>
+					<table class="commands" cellspacing="0">
+						<col width="300"/>
+						<tr>
+							<td>chall <span style="color:#070;">&lt;message&gt;</span></td>
+							<td>send message to everybody</td>
+						</tr>
+						<tr>
+							<td>chusr <span style="color:#909;">&lt;user&gt;</span>
+								<span style="color:#070;">&lt;message&gt;</span></td>
+							<td>send message to user</td>
+						</tr>
+						<tr>
+							<td>charm
+								<span style="color:#a50;">&lt;army&gt;</span>
+								<span style="color:#070;">&lt;message&gt;</span></td>
+							<td>send message to army:
+								<ul style="margin:0;">
+									<li>"none", "n", "0" - army none;</li>
+									<li>"red",&nbsp; "r", "1" - army red;</li>
+									<li>"blue", "b", "2" - army blue.</li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</li><br/>
+				<li><a id="shell_mssn">Mission management:</a><br/><br/>
+					<table class="commands" cellspacing="0">
+						<col width="300"/>
+						<tr>
+							<td>mload</td>
+							<td>load current mission</td>
+						</tr>
+						<tr>
+							<td>muload</td>
+							<td>unload current mission</td>
+						</tr>
+						<tr>
+							<td>mrun</td>
+							<td>run loaded mission</td>
+						</tr>
+						<tr>
+							<td>mend</td>
+							<td>end loaded mission</td>
+						</tr>
+						<tr>
+							<td>mrerun</td>
+							<td>end and run mission again without file reloading</td>
+						</tr>
+						<tr>
+							<td>mstart</td>
+							<td>load and run current mission</td>
+						</tr>
+						<tr>
+							<td>mstop</td>
+							<td>end and unload current mission</td>
+						</tr>
+						<tr>
+							<td>mrestart</td>
+							<td>stop and start mission again with file reloading</td>
+						</tr>
+						<tr>
+							<td>mnext</td>
+							<td>interrupt and stop current mission. Select next and start it</td>
+						</tr>
+						<tr>
+							<td>mprev</td>
+							<td>
+								interrupt and stop current mission. Select previous and start it.
+								Missions history can contain up to 16 missions.</td>
+						</tr>
+						<tr>
+							<td>mtl</td>
+							<td>print mission time left</td>
+						</tr>
+						<tr>
+							<td>mtl set <span style="color:#070;">&lt;time&gt;</span></td>
+							<td>set mission time left in H:M:S format</td>
+						</tr>
+					</table>
+				</li><br/>
+				<li><a id="shell_other">Other:</a><br/><br/>
+					<table class="commands" cellspacing="0">
+						<col width="300"/>
+						<tr>
+							<td>exit</td>
+							<td>stop server and exit commander</td>
+						</tr>
+					</table>
+				</li>
+			</ul>
 			<hr/>
+
 			<h3>
 				<a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="pilot_req">Pilot requests</a>
 				<img src="img/info.png" id="request-info"/>

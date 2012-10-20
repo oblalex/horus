@@ -221,3 +221,8 @@ h3 a:hover {
 	height: 18px;
 	display: inline-block;
 }
+
+.cmd_list li a {
+	text-decoration: none;
+	cursor: default;
+}
