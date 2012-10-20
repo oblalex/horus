@@ -1,3 +1,5 @@
+#include <config.h>
+
 #include <wchar.h>
 #include <string.h>
 #include <stdio.h>
@@ -60,7 +62,9 @@ void gs_cmd_chat_army(char army_num, char* msg)
 
 void gs_cmd_chat(char* msg, char* addressee)
 {
-	char emsg[GS_CMD_CHAT_MAX_LEN*6];
+#ifndef _WIN_
+    char emsg[GS_CMD_CHAT_MAX_LEN*6];
+#endif
 
 	// 9 is for "chat \"", "\" ", '\0'
 	char cmd[(sizeof emsg)+strlen(addressee)+9];
@@ -74,9 +78,15 @@ void gs_cmd_chat(char* msg, char* addressee)
 	{
 		memset(chunk, '\0', sizeof chunk);
 		offset = str_copy_symbols(msg, end, GS_CMD_CHAT_MAX_LEN, offset, (char*)&chunk, sizeof chunk);
-		str_escape_unicode(chunk, strlen(chunk), emsg, sizeof emsg);
-		
+
+    #ifdef _WIN_
+        sprintf(cmd, GS_CMD_CHAT, chunk, addressee);
+    #else
+        str_escape_unicode(chunk, strlen(chunk), emsg, sizeof emsg);
 		sprintf(cmd, GS_CMD_CHAT, emsg, addressee);
+    #endif
+
+
 		gs_cmd_send((char*)&cmd);
 	}
 }
