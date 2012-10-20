@@ -1,3 +1,5 @@
+#include <config.h>
+
 #include "shell_parser.h"
 
 #include <string.h>
@@ -36,33 +38,43 @@ void shell_parser_teardown()
 }
 
 void shell_parse_string(char* str)
-{	
+{
 	str_null_termitate(str);
 
-    if (chat_user_match(str)    == TRUE) return;
-    if (chat_all_match(str)     == TRUE) return;
-    if (chat_army_match(str)    == TRUE) return;
+    char* fstr;
+
+#ifdef _WIN_
+    char ustr[strlen(str)*6-5];
+    str_escape_unicode(str, strlen(str), ustr, sizeof ustr);
+    fstr = (char*)ustr;
+#else
+    fstr = str;
+#endif
+
+    if (chat_user_match(fstr)    == TRUE) return;
+    if (chat_all_match(fstr)     == TRUE) return;
+    if (chat_army_match(fstr)    == TRUE) return;
 
 
-    if (mssn_load_match(str)    == TRUE) return;
-    if (mssn_unload_match(str)  == TRUE) return;
+    if (mssn_load_match(fstr)    == TRUE) return;
+    if (mssn_unload_match(fstr)  == TRUE) return;
 
-    if (mssn_run_match(str)     == TRUE) return;
-    if (mssn_rerun_match(str)   == TRUE) return;
-    if (mssn_end_match(str)     == TRUE) return;
+    if (mssn_run_match(fstr)     == TRUE) return;
+    if (mssn_rerun_match(fstr)   == TRUE) return;
+    if (mssn_end_match(fstr)     == TRUE) return;
 
-    if (mssn_start_match(str)   == TRUE) return;
-    if (mssn_restart_match(str) == TRUE) return;
-    if (mssn_stop_match(str)    == TRUE) return;
+    if (mssn_start_match(fstr)   == TRUE) return;
+    if (mssn_restart_match(fstr) == TRUE) return;
+    if (mssn_stop_match(fstr)    == TRUE) return;
 
-    if (mssn_next_match(str)    == TRUE) return;
-    if (mssn_prev_match(str)    == TRUE) return;
+    if (mssn_next_match(fstr)    == TRUE) return;
+    if (mssn_prev_match(fstr)    == TRUE) return;
 
-    if (mssn_time_left_match(str)       == TRUE) return;
-    if (mssn_time_left_set_match(str)   == TRUE) return;
+    if (mssn_time_left_match(fstr)       == TRUE) return;
+    if (mssn_time_left_set_match(fstr)   == TRUE) return;
 
 
-    if (exit_match(str)         == TRUE) return;
+    if (exit_match(fstr)         == TRUE) return;
 
 	PRINT_STATUS_MSG_ERR(tr("Unknown command."));
 }

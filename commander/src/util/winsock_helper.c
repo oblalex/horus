@@ -3,7 +3,7 @@
 void sock_line_rd(SOCKET sock, char* line, int size, int offset, RL_STAT* stat)
 {
     int readcount;
-    char c;
+    unsigned char c;
 
     (*stat).finished = FALSE;
 

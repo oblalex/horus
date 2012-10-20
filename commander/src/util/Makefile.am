@@ -15,7 +15,7 @@ libutil_la_SOURCES = str.c \
           circular_buffer.c
 
 if WIN
-libutil_la_SOURCES += winproc.c winsock_helper.c
+libutil_la_SOURCES += winproc.c winsock_helper.c winstdin_helper.c
 endif			
 					
 libutil_la_LIBADD = stack/libstack.la

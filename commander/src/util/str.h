@@ -27,4 +27,6 @@ void str_escape_unicode(char* src, int src_len, char* dst, int dst_len);
 
 char* substring(int start, int stop, char* src, char* dst, int size);
 
+unsigned short int cp1251_to_utf8(unsigned char in);
+
 #endif // STR_H

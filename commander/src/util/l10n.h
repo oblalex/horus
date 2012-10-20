@@ -6,5 +6,6 @@
 #define tr(str) gettext(str)
 
 void locale_init();
+void locale_tearDown();
 
 #endif // L10N_H

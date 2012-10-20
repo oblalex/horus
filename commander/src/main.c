@@ -32,5 +32,6 @@ void tearDown()
 {
 	term_teardown();
 	PRINT_STATUSES_RESET();
+    locale_tearDown();
 }
 

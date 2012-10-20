@@ -1,3 +1,9 @@
+#include <config.h>
+
+#ifdef _WIN_
+    #include "util/winstdin_helper.h"
+#endif
+
 #include <stdlib.h>
 #include <pthread.h>
 #include <time.h>
@@ -36,14 +42,20 @@ void* handle_gs_out()
 void* handle_shell_in()
 {
 	PRINT_STATUS_MSG_NOIND(tr("User's shell activated"));
+
+#ifdef _WIN_
+    handle_input(STDIN_FILENO, &gs_is_running, &stdin_line_rd, &shell_parse_string);
+#else
     handle_input(STDIN_FILENO, &gs_is_running, &line_rd, &shell_parse_string);
+#endif
+
     PRINT_STATUS_MSG(tr("User's shell deactivated"));
 	return NULL;
 }
 
 void handle_input(int fd, BOOL (*run_condition)(), void (*read_fn)(int, char*, int, int, RL_STAT*), void (*parse)(char*))
 {
-    int line_len = 255;
+    int line_len = 1024;
     char line[line_len];
 	int offset = 0;
 	RL_STAT stat;
