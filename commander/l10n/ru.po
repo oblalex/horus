@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: horus-commander 0.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/oblalex/horus/issues\n"
-"POT-Creation-Date: 2012-10-16 18:35+0300\n"
+"POT-Creation-Date: 2012-10-20 13:27+0300\n"
 "PO-Revision-Date: 2012-08-02 09:36+0300\n"
 "Last-Translator:  <oblovatniy@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -19,38 +19,250 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: src/gs_console.c:31
-msgid "Initializing console socket"
-msgstr "Инициализация сокета консоли"
+#: src/gs_mission_manager.c:62
+msgid "Resetting mission status"
+msgstr "Сброс статуса миссии"
 
-#: src/gs_console.c:58
-msgid "Socket not created"
-msgstr "Сокет не был создан"
+#: src/gs_mission_manager.c:73
+msgid "Loading missions list"
+msgstr "Загрузка списка миссий"
 
-#: src/gs_console.c:74
-msgid "Connection failed"
-msgstr "Не удалось соединиться"
+#: src/gs_mission_manager.c:90
+msgid "XML document is invalid"
+msgstr "Некоректный XML документ"
 
-#: src/gs_console.c:96
-#, fuzzy
-msgid "Select failed"
-msgstr "Не удалось соединиться"
+#: src/gs_mission_manager.c:126
+msgid "name is not set. Skipping"
+msgstr "отсутствует название. Пропускаем"
 
-#: src/gs_console.c:122
-msgid "Cannot make non-blocking"
-msgstr "Невозможно сделать сокет неблокирующим"
+#: src/gs_mission_manager.c:133
+msgid "Name already exists in list. Skipping"
+msgstr "Имя уже сужествует в списке. Пропускаем"
 
-#: src/gs_console.c:144
-msgid "Server's supposed IP"
-msgstr "Предполагаемый IP сервера"
+#: src/gs_mission_manager.c:146
+msgid "path is not set. Skipping"
+msgstr "не указан путь. Пропускаем"
 
-#: src/gs_console.c:154
-msgid "WSAHtons call failed"
-msgstr "Вызов WSAHtons не удался"
+#: src/gs_mission_manager.c:168
+msgid "duration is not set. Using default value"
+msgstr "длительность не указана. Используем значение по умолчанию"
 
-#: src/gs_console.c:187
-msgid "Closing console socket"
-msgstr "Закрытие сокета консоли"
+#: src/gs_mission_manager.c:216
+msgid "Only one mission can be current. Changing"
+msgstr "Только одна миссия может быть текущей. Замена"
+
+#: src/gs_mission_manager.c:261
+msgid "Missions list is empty"
+msgstr "Список миссий пуст"
+
+#: src/gs_mission_manager.c:270
+msgid "Missions:"
+msgstr "Миссиии:"
+
+#: src/gs_mission_manager.c:477
+msgid "has no references. Deleting"
+msgstr "не имеет ссылок на себя. Удаляем"
+
+#: src/gs_mission_manager.c:521
+msgid "has no next missions. This may cause playing mission list only once"
+msgstr ""
+"не имеет следующих миссий. Это может вызвать проигрывание списка миссий "
+"только один раз"
+
+#: src/gs_mission_manager.c:537
+msgid "setting next BLUE map equal to next NONE map"
+msgstr "установка следующей СИНЕЙ карты равной следующей НИЧЬЕЙ карте"
+
+#: src/gs_mission_manager.c:545
+msgid "setting next RED map equal to next NONE map"
+msgstr "установка следующей КРАСНОЙ карты равной следующей НИЧЬЕЙ карте"
+
+#: src/gs_mission_manager.c:553
+msgid "setting next RED and BLUE maps equal to next NONE map"
+msgstr ""
+"установка следующих КРАСНОЙ и СИНЕЙ карт равными следующей НИЧЬЕЙ карте"
+
+#: src/gs_mission_manager.c:564
+msgid "setting next BLUE and NONE maps equal to next RED map"
+msgstr ""
+"установка следующих СИНЕЙ и НИЧЬЕЙ карт равными следующей КРАСНОЙ карте"
+
+#: src/gs_mission_manager.c:573
+msgid "setting next RED and NONE maps equal to next BLUE map"
+msgstr ""
+"установка следующих КРАСНОЙ и НИЧЬЕЙ карт равными следующей СИНЕЙ карте"
+
+#: src/gs_mission_manager.c:582
+msgid "setting next NONE map equal to next RED map"
+msgstr "установка следующей НИЧЬЕЙ карты равной следующей КРАСНОЙ карте"
+
+#: src/gs_mission_manager.c:592
+msgid "Saving missions list"
+msgstr "Сохранение списка миссий"
+
+#: src/gs_mission_manager.c:637
+msgid "Clearing missions list"
+msgstr "Очистка списка миссий"
+
+#: src/gs_mission_manager.c:661
+msgid "Reloading missions list"
+msgstr "Перезагрузка списка миссий"
+
+#: src/gs_mission_manager.c:680
+msgid "Mission is already loaded"
+msgstr "Миссия уже загружена"
+
+#: src/gs_mission_manager.c:684
+msgid "Loading mission"
+msgstr "Загрузка миссии"
+
+#: src/gs_mission_manager.c:685
+msgid "Mission loading failed."
+msgstr "Загрузка миссии не удалась."
+
+#: src/gs_mission_manager.c:686
+msgid "Mission loaded."
+msgstr "Миссия загружена."
+
+#: src/gs_mission_manager.c:698 src/gs_mission_manager.c:930
+msgid "Current mission is not selected"
+msgstr "Текущая миссия не выбрана"
+
+#: src/gs_mission_manager.c:721
+msgid "Mission loading timeout"
+msgstr "Превышено время ожидания загрузки миссии"
+
+#: src/gs_mission_manager.c:740 src/gs_mission_manager.c:809
+msgid "Mission is not loaded"
+msgstr "Миссия не загружена"
+
+#: src/gs_mission_manager.c:746
+msgid "Mission is still running"
+msgstr "Миссия все ещё запущена"
+
+#: src/gs_mission_manager.c:750
+msgid "Unloading mission..."
+msgstr "Выгрузка миссии..."
+
+#: src/gs_mission_manager.c:770
+msgid "Mission unloading timeout"
+msgstr "Превышено время ожидания выгрузки миссии"
+
+#: src/gs_mission_manager.c:780
+msgid "Mission unloaded."
+msgstr "Миссиия выгружена."
+
+#: src/gs_mission_manager.c:783
+msgid "Mission unloading failed."
+msgstr "Выгрузить миссию не удалось."
+
+#: src/gs_mission_manager.c:791 src/gs_mission_manager.c:1010
+msgid "Mission is already running"
+msgstr "Миссия все ещё запущена"
+
+#: src/gs_mission_manager.c:795
+msgid "Launching mission"
+msgstr "Запуск миссии..."
+
+#: src/gs_mission_manager.c:796
+msgid "Mission launching failed."
+msgstr "Запуск миссии не удался."
+
+#: src/gs_mission_manager.c:797
+msgid "Mission launched."
+msgstr "Миссия запущена."
+
+#: src/gs_mission_manager.c:832
+msgid "Mission launching timeout"
+msgstr "Превышено время ожидания запуска миссии"
+
+#: src/gs_mission_manager.c:858 src/gs_mission_manager.c:1239
+msgid "Mission is not running"
+msgstr "Миссия не запущена"
+
+#: src/gs_mission_manager.c:862
+msgid "Ending mission..."
+msgstr "Завершение миссии..."
+
+#: src/gs_mission_manager.c:890
+msgid "Mission ending timeout"
+msgstr "Превышено время ожидания завершения миссии"
+
+#: src/gs_mission_manager.c:905
+msgid "Mission ending failed."
+msgstr "Завершить мисиию не удалось."
+
+#: src/gs_mission_manager.c:911
+msgid "Re-running mission"
+msgstr "Быстрый перезапуск миссии"
+
+#: src/gs_mission_manager.c:926
+msgid "Going to next mission"
+msgstr "Переход к следующей миссии"
+
+#: src/gs_mission_manager.c:967
+msgid "Going to previous mission"
+msgstr "Переход к предыдущей миссии"
+
+#: src/gs_mission_manager.c:973
+msgid "Previous mission is not selected"
+msgstr "Предыдущая миссиия не выбрана"
+
+#: src/gs_mission_manager.c:1014
+msgid "Starting mission"
+msgstr "Старт миссии"
+
+#: src/gs_mission_manager.c:1036
+msgid "Stopping mission"
+msgstr "Остановка миссии"
+
+#: src/gs_mission_manager.c:1058
+msgid "Re-starting mission"
+msgstr "Полный перезапуск миссии"
+
+#: src/gs_mission_manager.c:1093
+msgid "Initializing mission manager"
+msgstr "Инициализация менеджера миссий"
+
+#: src/gs_mission_manager.c:1109
+msgid "Releasing mission manager"
+msgstr "Завершение работы менеджера миссий"
+
+#: src/gs_mission_manager.c:1177
+msgid "Mission ended."
+msgstr "Миссия завершена."
+
+#: src/gs_mission_manager.c:1181
+msgid "Mission was interrupted."
+msgstr "Миссия была прервана."
+
+#: src/gs_mission_manager.c:1202
+msgid "Mission time left"
+msgstr "Оставшееся время миссии"
+
+#: src/gs_mission_manager.c:1420
+msgid "Events parsing started"
+msgstr "Обработка событий карты начата"
+
+#: src/gs_mission_manager.c:1432
+msgid "Events parsing stopped"
+msgstr "Обработка событий карты завершена"
+
+#: src/gs_scripts.c:12
+msgid "Generating server's scripts"
+msgstr "Создание скриптов для сервера"
+
+#: src/gs_scripts.c:22
+msgid "Generating garbage collecting script"
+msgstr "Создание скрипта сборки мусора"
+
+#: src/gs_scripts.c:40
+msgid "Generating main script"
+msgstr "Создание главного скрипта"
+
+#: src/gs_scripts.c:57
+msgid "Unable to create file"
+msgstr "Невозможно создать файл"
 
 #: src/gs_paths.c:22
 msgid "Checking root path"
@@ -76,157 +288,28 @@ msgstr "3. Испольняемый файл сервера ИЛ-2 называ�
 msgid "Checking logs path"
 msgstr "Проверка пути к журналам"
 
-#: src/gs_paths.c:56
+#: src/gs_paths.c:55
 msgid "Creating missing directory"
 msgstr "Создание отсутствующей директории"
 
-#: src/gs_paths.c:68
+#: src/gs_paths.c:67
 msgid "Failed to create"
 msgstr "Не удалось создать"
 
-#: src/gs.c:44
-msgid "Signal caugth"
-msgstr "Получен сигнал"
+#: src/gs_paths.c:80
+msgid "Checking missions list path"
+msgstr "Проверка пути списка миссиий"
 
-#: src/gs.c:55
-msgid "Game server is shut down"
-msgstr "Игровой сервер остановлен"
+#: src/gs_paths.c:86
+msgid ""
+"Missions list was not found. Please, read the manual about missions managing."
+msgstr ""
+"Список миссий не найден. Пожалуйста, обратитесь к руководству по управлению "
+"миссиями"
 
-#: src/gs.c:92
-msgid "Restarting game server in"
-msgstr "Перезапуск игрового сервера через"
-
-#: src/gs.c:130
-msgid "Waiting for server is loaded"
-msgstr "Ожидание загрузки сервера"
-
-#: src/gs.c:144
-msgid "Game server loading timeout"
-msgstr "Превышено время ожидания загрузки сервера"
-
-#: src/util/ini.h:68
-msgid "Unable to parse ini-file"
-msgstr "Невозможна обработка ini-файла"
-
-#: src/util/ini.h:69
-msgid "Unable to open ini-file"
-msgstr "Невозможно открытие ini-файла"
-
-#: src/util/ini.h:71
-msgid "Can not allocate memory for ini-record"
-msgstr "Недостаточно памяти для ini-записи"
-
-#: src/util/ini.h:72
-msgid "Can not allocate memory for ini-section"
-msgstr "Недостаточно памяти для ini-секции"
-
-#: src/util/ini.h:73
-msgid "Can not allocate memory for ini-container"
-msgstr "Недостаточно памяти для ini-контейнера"
-
-#: src/util/print_status.h:13
-msgid "BUSY"
-msgstr "ЗАНЯТ"
-
-#: src/util/print_status.h:14
-msgid "DONE"
-msgstr "ГОТОВ"
-
-#: src/util/print_status.h:15
-msgid "FAIL"
-msgstr "ОШИБК"
-
-#: src/gs_scripts.c:12
-msgid "Generating server's scripts"
-msgstr "Создание скриптов для сервера"
-
-#: src/gs_scripts.c:22
-msgid "Generating garbage collecting script"
-msgstr "Создание скрипта сборки мусора"
-
-#: src/gs_scripts.c:40
-msgid "Generating main script"
-msgstr "Создание главного скрипта"
-
-#: src/gs_scripts.c:57
-msgid "Unable to create file"
-msgstr "Невозможно создать файл"
-
-#: src/gs_input_handlers.c:17
-msgid "Starting console and shell handling threads"
-msgstr "Запуск потоков обработки вывода сервера и пользовательского ввода"
-
-#: src/gs_input_handlers.c:29
-msgid "Game server's output processing started"
-msgstr "Обработка вывода сервера начата"
-
-#: src/gs_input_handlers.c:36
-msgid "User's shell activated"
-msgstr "Пользовательский ввод доступен"
-
-#: src/gs_input_handlers.c:69
-msgid "Stopping console and shell handling threads"
-msgstr "Остановка потоков обработки вывода сервера и пользовательского ввода"
-
-#: src/gs_input_handlers.c:72
-msgid "Game server's output processing finished"
-msgstr "Обработка вывода сервера завершена"
-
-#: src/gs_input_handlers.c:76
-msgid "User's shell deactivated"
-msgstr "Пользовательский ввод недоступен"
-
-#: src/gs_cmd.c:83
-msgid "Kicking all!"
-msgstr "Удаление всех пользователей!"
-
-#: src/gs_cfg.c:11
-msgid "Checking server's configuration"
-msgstr "Проверка конфигурации сервера"
-
-#: src/gs_cfg.c:13
-msgid "Loading configuration"
-msgstr "Загрузка конфигурации"
-
-#: src/gs_cfg.c:31
-msgid "Saving configuration"
-msgstr "Сохранение конфигурации"
-
-#: src/gs_cfg.c:57
-msgid "Suppressing logging to chat"
-msgstr "Подавление вывода журнала в чат"
-
-#: src/gs_cfg.c:63
-msgid "Disabling saving console output to file"
-msgstr "Отключение сохранения вывода консоли в файл"
-
-#: src/gs_cfg.c:69
-msgid "Setting logging output file"
-msgstr "Установка выходного файла журнала"
-
-#: src/gs_cfg.c:72
-msgid "Enabling log resetting for every mission"
-msgstr "Включение сброса журнала перед каждой миссией"
-
-#: src/gs_cfg.c:75
-msgid "Enabling buildings destruction logging"
-msgstr "Включение журналирования разрушений зданий"
-
-#: src/gs_cfg.c:81
-msgid "Enabling server's console"
-msgstr "Bключение консоли сервера"
-
-#: src/gs_cfg.c:84
-msgid "Setting console allowed clients list"
-msgstr "Установление списка разрешенных клиентов консоли"
-
-#: src/gs_cfg.c:90
-msgid "Setting client version checking"
-msgstr "Установление проверки совместимости версий"
-
-#: src/shell_parser.c:39
-msgid "Unknown command."
-msgstr "Неизвестная комманда."
+#: src/gs_paths.c:99
+msgid "Mission's path is wrong:"
+msgstr "Неверный путь к миссии:"
 
 #: src/gs_process.c:34 src/gs_process.c:94
 msgid "Creating game server process"
@@ -283,3 +366,159 @@ msgstr "Получите больше информации здесь"
 #: src/main_parser.c:68
 msgid "Argument unknown"
 msgstr "Неизвестный аргумент"
+
+#: src/shell_parser.c:67
+msgid "Unknown command."
+msgstr "Неизвестная комманда."
+
+#: src/gs_input_handlers.c:18
+msgid "Starting console and shell handling threads"
+msgstr "Запуск потоков обработки вывода сервера и пользовательского ввода"
+
+#: src/gs_input_handlers.c:30
+msgid "Game server's output processing started"
+msgstr "Обработка вывода сервера начата"
+
+#: src/gs_input_handlers.c:32
+msgid "Game server's output processing finished"
+msgstr "Обработка вывода сервера завершена"
+
+#: src/gs_input_handlers.c:38
+msgid "User's shell activated"
+msgstr "Пользовательский ввод доступен"
+
+#: src/gs_input_handlers.c:40
+msgid "User's shell deactivated"
+msgstr "Пользовательский ввод недоступен"
+
+#: src/gs_input_handlers.c:67
+msgid "Stopping console and shell handling threads"
+msgstr "Остановка потоков обработки вывода сервера и пользовательского ввода"
+
+#: src/gs.c:34
+msgid "Setting up signal hooks"
+msgstr "Установка обработчиков сигналов"
+
+#: src/gs.c:52 src/gs.c:55
+msgid "Signal caugth"
+msgstr "Получен сигнал"
+
+#: src/gs.c:67
+msgid "Game server is shut down"
+msgstr "Игровой сервер остановлен"
+
+#: src/gs.c:103
+msgid "Restarting game server in"
+msgstr "Перезапуск игрового сервера через"
+
+#: src/gs.c:142
+msgid "Waiting for server is loaded"
+msgstr "Ожидание загрузки сервера"
+
+#: src/gs.c:156
+msgid "Game server loading timeout"
+msgstr "Превышено время ожидания загрузки сервера"
+
+#: src/gs_console.c:33
+msgid "Initializing console socket"
+msgstr "Инициализация сокета консоли"
+
+#: src/gs_console.c:60
+msgid "Socket not created"
+msgstr "Сокет не был создан"
+
+#: src/gs_console.c:76
+msgid "Connection failed"
+msgstr "Не удалось соединиться"
+
+#: src/gs_console.c:98
+msgid "Select failed"
+msgstr "Не удалось выполнить select"
+
+#: src/gs_console.c:124
+msgid "Cannot make non-blocking"
+msgstr "Невозможно сделать сокет неблокирующим"
+
+#: src/gs_console.c:144 src/gs_console.c:148
+msgid "Server's supposed IP"
+msgstr "Предполагаемый IP сервера"
+
+#: src/gs_console.c:159
+msgid "WSAHtons call failed"
+msgstr "Вызов WSAHtons не удался"
+
+#: src/gs_console.c:192
+msgid "Closing console socket"
+msgstr "Закрытие сокета консоли"
+
+#: src/gs_cmd.c:86
+msgid "Kicking all!"
+msgstr "Удаление всех пользователей!"
+
+#: src/gs_cfg.c:11
+msgid "Checking server's configuration"
+msgstr "Проверка конфигурации сервера"
+
+#: src/gs_cfg.c:13
+msgid "Loading configuration"
+msgstr "Загрузка конфигурации"
+
+#: src/gs_cfg.c:31
+msgid "Saving configuration"
+msgstr "Сохранение конфигурации"
+
+#: src/gs_cfg.c:57
+msgid "Suppressing logging to chat"
+msgstr "Подавление вывода журнала в чат"
+
+#: src/gs_cfg.c:63
+msgid "Disabling saving console output to file"
+msgstr "Отключение сохранения вывода консоли в файл"
+
+#: src/gs_cfg.c:69
+msgid "Setting logging output file"
+msgstr "Установка выходного файла журнала"
+
+#: src/gs_cfg.c:72
+msgid "Enabling log resetting for every mission"
+msgstr "Включение сброса журнала перед каждой миссией"
+
+#: src/gs_cfg.c:75
+msgid "Enabling buildings destruction logging"
+msgstr "Включение журналирования разрушений зданий"
+
+#: src/gs_cfg.c:81
+msgid "Enabling server's console"
+msgstr "Bключение консоли сервера"
+
+#: src/gs_cfg.c:84
+msgid "Setting console allowed clients list"
+msgstr "Установление списка разрешенных клиентов консоли"
+
+#: src/gs_cfg.c:90
+msgid "Setting client version checking"
+msgstr "Установление проверки совместимости версий"
+
+#~ msgid "Unable to parse ini-file"
+#~ msgstr "Невозможна обработка ini-файла"
+
+#~ msgid "Unable to open ini-file"
+#~ msgstr "Невозможно открытие ini-файла"
+
+#~ msgid "Can not allocate memory for ini-record"
+#~ msgstr "Недостаточно памяти для ini-записи"
+
+#~ msgid "Can not allocate memory for ini-section"
+#~ msgstr "Недостаточно памяти для ini-секции"
+
+#~ msgid "Can not allocate memory for ini-container"
+#~ msgstr "Недостаточно памяти для ini-контейнера"
+
+#~ msgid "BUSY"
+#~ msgstr "ЗАНЯТ"
+
+#~ msgid "DONE"
+#~ msgstr "ГОТОВ"
+
+#~ msgid "FAIL"
+#~ msgstr "ОШИБК"
