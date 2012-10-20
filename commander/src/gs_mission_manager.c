@@ -937,7 +937,7 @@ void gs_mssn_next()
     if (RUNNING == TRUE)
     {
         gs_mssn_stop();
-        CURRENT = CURRENT->next;
+        CURRENT = CURRENT->mNext;
         gs_mssn_start();
 
         if (RUNNING == FALSE)
@@ -947,7 +947,7 @@ void gs_mssn_next()
         }
     } else if (LOADED == TRUE) {
         gs_mssn_unload();
-        CURRENT = CURRENT->next;
+        CURRENT = CURRENT->mNext;
         gs_mssn_load();
 
         if (LOADED == FALSE)
@@ -956,7 +956,7 @@ void gs_mssn_next()
             return;
         }
     } else {
-        CURRENT = CURRENT->next;
+        CURRENT = CURRENT->mNext;
     }
     mssn_list_save();
     PRINT_STATUS_DONE();
