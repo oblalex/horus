@@ -62,12 +62,14 @@ void gs_cmd_chat_army(char army_num, char* msg)
 
 void gs_cmd_chat(char* msg, char* addressee)
 {
-#ifndef _WIN_
+#ifdef _WIN_
+    char cmd[(sizeof msg)+strlen(addressee)+9];
+#else
     char emsg[GS_CMD_CHAT_MAX_LEN*6];
-#endif
 
 	// 9 is for "chat \"", "\" ", '\0'
 	char cmd[(sizeof emsg)+strlen(addressee)+9];
+#endif
 
 	char chunk[GS_CMD_CHAT_MAX_LEN*2];
 	
