@@ -33,7 +33,7 @@
 				<li><a href="#shell_cmd">Shell commands</a>
 					<ul>
 						<li><a href="#shell_chat">Chatting</a></li>
-						<li><a href="#shell_mssn">Mission management</a></li>
+						<li><a href="#shell_mssn">Missions management</a></li>
 						<li><a href="#shell_other">Others</a></li>
 					</ul>
 				</li>
@@ -50,6 +50,7 @@
 						<li><a href="#launch_win">Windows</a></li>
 					</ul>
 				</li>
+				<li><a href="#mssn_management">Missions management</a></li>
 				<li><a href="#changing_lang">Changing language</a>
 					<ul>
 						<li><a href="#lang_lin">Linux</a></li>
@@ -123,7 +124,7 @@
 						</tr>
 					</table>
 				</li><br/>
-				<li><a id="shell_mssn">Mission management:</a><br/><br/>
+				<li><a id="shell_mssn">Missions management:</a><br/><br/>
 					<table class="commands" cellspacing="0">
 						<col width="300"/>
 						<tr>
@@ -302,6 +303,141 @@ make && make install-strip</pre>
 				launch "horusCommander.exe". You should see such output:</p>
 			<img class="screensh" src="img/exec/starting_win.png"/>
 
+
+			<hr/>
+			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="mssn_management">Missions management</a></h3>
+			<p>To activate missions management you must have "missions.xml" file in the root directory of horus
+				commander <img src="img/info.png" id="mssn-list-editor-info"/>. An example of this file you can see below.</p>
+
+			<script>
+				$('#mssn-list-editor-info').addPopup($('#mssn-list-editor-info-pop-up'));
+			</script>
+
+			<pre class="code_snippet">&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;missions>
+    &lt;mission
+        name="Test-mission-1"
+        path="Net/dogfight/test/1.mis"
+        duration="7200"
+        isCurrent="1"
+        next="Test-mission-2"
+        nextRed="Test-mission-2"
+        nextBlue="Test-mission-2" />
+    &lt;mission
+        name="Test-mission-3"
+        path="Net/dogfight/test/2.mis"
+        duration="3000"
+        next="Test-mission-1"
+        nextRed="Test-mission-1"
+        nextBlue="Test-mission-1" />
+    &lt;mission
+        name="Test-mission-2"
+        path="Net/dogfight/test/3.mis"
+        duration="3600"
+        next="Test-mission-3"
+        nextRed="Test-mission-3"
+        nextBlue="Test-mission-3" />
+&lt;/missions></pre>
+
+			<p>As you can see, this file describes 3 missions linked in a circle. It's graphical
+				representation is shown below (T-M is for Test-Mission). The order of definitions does not matter.</p>
+
+			<center><img src="img/mssn/circle-1.png"/></center>
+
+			<p>Let's see what each attribute stands for:</p>
+
+			<table class="commands" cellspacing="0">
+				<col width="100"/>
+				<tr>
+					<td>name</td>
+					<td>
+						mission's name used to reffer to it. Mandatory and must be unique, otherwise mission will
+						be excluded from the list
+					</td>
+				</tr>
+				<tr>
+					<td>path</td>
+					<td>
+						path to the mission with root in server's "Missions" directory.
+						Mandatory and must be correct, otherwise mission will be excluded from the list
+					</td>
+				</tr>
+				<tr>
+					<td>duration</td>
+					<td>
+						mission's duration in seconds. &lt;<a href="commander/docs/html/gs__mission__manager_8h.html#a270e8f38a1dc190fabd7a7c66dd08d57">DEFAULT_MISSION_DURATION</a>&gt; will be used if
+						this attribute is not set
+					</td>
+				</tr>
+				<tr>
+					<td>isCurrent</td>
+					<td>
+						tells that this mission is current. It will be loaded and played. Only one
+						mission can be set as current, otherwise the last current mission will be selected
+					</td>
+				</tr>
+				<tr>
+					<td>next</td>
+					<td>
+						(black arrow) tells which mission will be played next if mission is interrupted,
+						or "nextRed" and "nextBlue" not defined, or no team has wone current mission
+					</td>
+				</tr>
+				<tr>
+					<td>nextRed</td>
+					<td>
+						(red arrow) tells which mission will be played next if red team has wone current mission.
+						"next" value will be used if "nextRed" not specified
+					</td>
+				</tr>
+				<tr>
+					<td>nextBlue</td>
+					<td>
+						(blue arrow) tells which mission will be played next if blue team has wone current mission.
+						"next" value will be used if "nextBlue" not specified
+					</td>
+				</tr>
+			</table>
+
+			<p>
+				Targets support is now available yet, so "nextRed" and "nextBlue" has no sense now. This will be surely
+				changed in future. Specifying only "next" attribute is norman and such list description is quite valide:
+			</p>
+
+			<pre class="code_snippet">&lt;?xml version="1.0" encoding="utf-8"?>
+&lt;missions>
+    &lt;mission
+        name="Test-mission-1"
+        path="Net/dogfight/test/1.mis"
+        isCurrent="1"
+        next="Test-mission-2" />
+    &lt;mission
+        name="Test-mission-2"
+        path="Net/dogfight/test/3.mis"
+        next="Test-mission-3" />
+    &lt;mission
+        name="Test-mission-3"
+        path="Net/dogfight/test/2.mis"
+        next="Test-mission-1" />
+&lt;/missions></pre>
+
+			<p>And it's representation:</p>
+
+			<center><img src="img/mssn/circle-2.png"/></center>
+
+			<p>Try to avoid such situations:</p>
+
+			<center><img src="img/mssn/line-1.png"/></center>
+
+			<p>Such list is not good because it will be played only once. Also avoid such lists:</p>
+
+			<center><img src="img/mssn/no-refs-1.png"/></center>
+
+			<p>Missions 4, 5 and 6 will be excluded from the list because they have no refences to themselves.
+				Even mission 5 will be deleted after mission 4. And at last, this list can be said to be pretty good:</p>
+
+			<center><img src="img/mssn/circle-3.png"/></center>
+
 			<hr/>
 			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="changing_lang">Changing language</a></h3>
 			<ul>
@@ -340,6 +476,10 @@ make && make install-strip</pre>
 		</div>
 		<div class="pop-up" id="lib-distro-info-pop-up">
 			Auto distribution of libraries is future-planned.
+		</div>
+		<div class="pop-up" id="mssn-list-editor-info-pop-up">
+			Creating an application with graphical UI for<br/>
+			editing missions list is future-planned.
 		</div>
 		<!--[if !IE]><script>fixScale(document);</script><![endif]-->
 	</body>
