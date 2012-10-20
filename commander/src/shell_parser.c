@@ -1,6 +1,7 @@
 #include "shell_parser.h"
 
 #include <string.h>
+#include <stdlib.h>
 #include <regex.h>
 
 #include "gs.h"
@@ -16,11 +17,14 @@ static regex_t RE_chat_all;
 static regex_t RE_chat_user;
 static regex_t RE_chat_army;
 
+static regex_t RE_mssn_time_left_set;
+
 void shell_parser_init()
 {
 	compile_regex(&RE_chat_all, SH_CHAT_ALL);
 	compile_regex(&RE_chat_user, SH_CHAT_USER);
 	compile_regex(&RE_chat_army, SH_CHAT_ARMY);
+    compile_regex(&RE_mssn_time_left_set, SH_MSSN_TIME_LEFT_SET);
 }
 
 void shell_parser_teardown()
@@ -28,6 +32,7 @@ void shell_parser_teardown()
 	regfree(&RE_chat_all);
 	regfree(&RE_chat_user);
 	regfree(&RE_chat_army);
+    regfree(&RE_mssn_time_left_set);
 }
 
 void shell_parse_string(char* str)
@@ -38,16 +43,24 @@ void shell_parse_string(char* str)
     if (chat_all_match(str)     == TRUE) return;
     if (chat_army_match(str)    == TRUE) return;
 
+
     if (mssn_load_match(str)    == TRUE) return;
     if (mssn_unload_match(str)  == TRUE) return;
+
     if (mssn_run_match(str)     == TRUE) return;
     if (mssn_rerun_match(str)   == TRUE) return;
     if (mssn_end_match(str)     == TRUE) return;
+
     if (mssn_start_match(str)   == TRUE) return;
     if (mssn_restart_match(str) == TRUE) return;
     if (mssn_stop_match(str)    == TRUE) return;
+
     if (mssn_next_match(str)    == TRUE) return;
     if (mssn_prev_match(str)    == TRUE) return;
+
+    if (mssn_time_left_match(str)       == TRUE) return;
+    if (mssn_time_left_set_match(str)   == TRUE) return;
+
 
     if (exit_match(str)         == TRUE) return;
 
@@ -177,5 +190,32 @@ static BOOL mssn_prev_match(char* str)
 {
     if (strcmp(str, SH_MSSN_PREV) != 0) return FALSE;
     gs_mssn_prev_req();
+    return TRUE;
+}
+
+static BOOL mssn_time_left_match(char* str)
+{
+    if (strcmp(str, SH_MSSN_TIME_LEFT) != 0) return FALSE;
+    gs_mssn_time_print_req();
+    return TRUE;
+}
+
+static BOOL mssn_time_left_set_match(char* str)
+{
+    const int n_matches = 4;
+    regmatch_t m[n_matches];
+
+    if (regexec(&RE_mssn_time_left_set, str, n_matches, m, 0)) return FALSE;
+
+    char h_str[m[1].rm_eo-m[1].rm_so+1];
+    substring(m[1].rm_so, m[1].rm_eo, str, h_str, sizeof h_str);
+
+    char m_str[m[2].rm_eo-m[2].rm_so+1];
+    substring(m[2].rm_so, m[2].rm_eo, str, m_str, sizeof m_str);
+
+    char s_str[m[3].rm_eo-m[3].rm_so+1];
+    substring(m[3].rm_so, m[3].rm_eo, str, s_str, sizeof s_str);
+
+    gs_mssn_time_left_set_req(atoi(h_str), atoi(m_str), atoi(s_str));
     return TRUE;
 }

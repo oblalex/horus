@@ -19,6 +19,9 @@
 #define MSSN_REQ_STOP       (8)
 #define MSSN_REQ_RESTART    (9)
 
+#define MSSN_REQ_TIME_LEFT_PRINT    (10)
+#define MSSN_REQ_TIME_LEFT_SET      (11)
+
 #define DEFAULT_MISSION_DURATION (3600)
 
 typedef struct D_MISSION_LITE_ELEM
@@ -94,6 +97,9 @@ void gs_mssn_start_req();
 void gs_mssn_stop_req();
 void gs_mssn_restart_req();
 
+void gs_mssn_time_print_req();
+void gs_mssn_time_left_set_req(int h, int m, int s);
+
 // Manager notifications
 
 void gs_mssn_manager_notify_loaded();
@@ -103,9 +109,11 @@ void gs_mssn_manager_notify_running();
 void gs_mssn_manager_init();
 void gs_mssn_manager_tearDown();
 
+void gs_mssn_time_print();
 void gs_mssn_time_str(char* str);
 int gs_mssn_seconds_left();
 void gs_mssn_seconds_left_set(int value);
+void gs_mssn_time_left_set(int h, int m, int s);
 BOOL gs_mssn_running();
 
 #endif // GS_MISSION_MANAGER_H

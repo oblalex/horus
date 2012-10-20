@@ -1213,8 +1213,33 @@ int gs_mssn_seconds_left()
 void gs_mssn_seconds_left_set(int value)
 {
     if (value < 0) return;
-    SECS_LEFT = value;
+
+    if (value > SECONDS_LEFT_BEFORE_END)
+    {
+        SECS_LEFT = value;
+    } else
+    {
+        SECS_LEFT = SECONDS_LEFT_BEFORE_END;
+    }
+
     SECS_LEFT_CHANGED = TRUE;
+}
+
+void gs_mssn_time_print()
+{
+    char timeStr[80];
+    gs_mssn_time_str(&timeStr);
+    PRINT_STATUS_MSG_NOIND(&timeStr);
+}
+
+void gs_mssn_time_left_set(int h, int m, int s)
+{
+    if (RUNNING == FALSE)
+    {
+        PRINT_STATUS_MSG_ERR_NOIND(tr("Mission is not running"));
+        return;
+    }
+    gs_mssn_seconds_left_set((h*3600) + (m*60) + s);
 }
 
 BOOL gs_mssn_running()
@@ -1253,6 +1278,18 @@ void* mssn_msg_dispatcher()
                 case MSSN_REQ_STOP:     gs_mssn_stop();     break;
                 case MSSN_REQ_RESTART:  gs_mssn_restart();  break;
 
+                case MSSN_REQ_TIME_LEFT_PRINT:
+                {
+                    gs_mssn_time_print();
+                    break;
+                }
+                case MSSN_REQ_TIME_LEFT_SET:
+                {
+                    TIMESTAMP_T* time = (TIMESTAMP_T*)(msg->data);
+                    gs_mssn_time_left_set(time->hour, time->minute, time->second);
+                    break;
+                }
+
                 default:
                     break;
             }
@@ -1271,6 +1308,18 @@ void msg_enqueue(MSG_T* msg)
 
 void msg_delete(MSG_T* msg)
 {
+    switch (msg->type)
+    {
+        case MSSN_REQ_TIME_LEFT_SET:
+        {
+            TIMESTAMP_T* time = (TIMESTAMP_T*)(msg->data);
+            free(time);
+            break;
+        }
+        default:
+            break;
+    }
+
     free(msg);
 }
 
@@ -1341,6 +1390,28 @@ void gs_mssn_restart_req()
 {
     MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
     msg->type = MSSN_REQ_RESTART;
+    msg_enqueue(msg);
+}
+
+void gs_mssn_time_print_req()
+{
+    MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
+    msg->type = MSSN_REQ_TIME_LEFT_PRINT;
+    msg_enqueue(msg);
+}
+
+void gs_mssn_time_left_set_req(int h, int m, int s)
+{
+    MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
+    TIMESTAMP_T* time = (TIMESTAMP_T*) malloc(sizeof(TIMESTAMP_T));
+
+    time->hour = h;
+    time->minute = m;
+    time->second = s;
+
+    msg->type = MSSN_REQ_TIME_LEFT_SET;
+    msg->data = (void*)time;
+
     msg_enqueue(msg);
 }
 
