@@ -1,2 +1,2 @@
 noinst_LTLIBRARIES = libstack.la
-libstack_la_SOURCES = stack_str.c
+libstack_la_SOURCES = stack_str.c circular_stack.c
