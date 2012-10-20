@@ -37,3 +37,5 @@ src/util/print_status.c
 src/util/winsock_helper.c
 src/util/terminal.c
 src/util/circular_buffer.c
+src/util/print_status.h
+src/util/ini.h

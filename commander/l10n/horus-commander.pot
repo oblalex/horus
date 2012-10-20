@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: horus-commander 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/oblalex/horus/issues\n"
-"POT-Creation-Date: 2012-10-20 13:27+0300\n"
+"POT-Creation-Date: 2012-10-20 14:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -486,4 +486,36 @@ msgstr ""
 
 #: src/gs_cfg.c:90
 msgid "Setting client version checking"
+msgstr ""
+
+#: src/util/print_status.h:13
+msgid "BUSY"
+msgstr ""
+
+#: src/util/print_status.h:14
+msgid "DONE"
+msgstr ""
+
+#: src/util/print_status.h:15
+msgid "FAIL"
+msgstr ""
+
+#: src/util/ini.h:68
+msgid "Unable to parse ini-file"
+msgstr ""
+
+#: src/util/ini.h:69
+msgid "Unable to open ini-file"
+msgstr ""
+
+#: src/util/ini.h:71
+msgid "Can not allocate memory for ini-record"
+msgstr ""
+
+#: src/util/ini.h:72
+msgid "Can not allocate memory for ini-section"
+msgstr ""
+
+#: src/util/ini.h:73
+msgid "Can not allocate memory for ini-container"
 msgstr ""
