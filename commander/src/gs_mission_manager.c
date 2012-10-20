@@ -13,7 +13,7 @@
 #include "util/print_status.h"
 #include "util/l10n.h"
 #include "util/file.h"
-#include "util/circular_buffer.h"
+#include "util/stack/circular_stack.h"
 #include "mxml/mxml.h"
 
 #include <stdlib.h>
@@ -36,7 +36,7 @@
 #define SECONDS_LEFT_BEFORE_END (10)
 #define HISTORY_SIZE (16)
 
-static CBUFFER HISTORY;
+static CSTACK HISTORY;
 static D_MISSION_LITE_ELEM* FIRST = NULL;
 static D_MISSION_LITE_ELEM* LAST = NULL;
 static D_MISSION_LITE_ELEM* CURRENT = NULL;
@@ -932,7 +932,7 @@ void gs_mssn_next()
         return;
     }
 
-    cbuff_push(&HISTORY, (void*) CURRENT);
+    cstack_push(&HISTORY, (void*) CURRENT);
 
     if (RUNNING == TRUE)
     {
@@ -966,7 +966,7 @@ void gs_mssn_prev()
 {
     PRINT_STATUS_NEW(tr("Going to previous mission"));
 
-    D_MISSION_LITE_ELEM* PREV = (D_MISSION_LITE_ELEM*) cbuff_retrieve(&HISTORY);
+    D_MISSION_LITE_ELEM* PREV = (D_MISSION_LITE_ELEM*) cstack_retrieve(&HISTORY);
 
     if (PREV == NULL)
     {
@@ -1094,7 +1094,7 @@ void gs_mssn_manager_init()
 
     DO_WORK = TRUE;
 
-    cbuff_init(&HISTORY, HISTORY_SIZE, sizeof(D_MISSION_LITE_ELEM));
+    cstack_init(&HISTORY, HISTORY_SIZE, sizeof(D_MISSION_LITE_ELEM));
 
     mssn_list_load();
     pthread_create(&H_MSG_DISPATCHER, NULL, &mssn_msg_dispatcher, NULL);
@@ -1123,7 +1123,7 @@ void mssn_list_history_clear()
 
     while(1)
     {
-        item = cbuff_retrieve(&HISTORY);
+        item = cstack_retrieve(&HISTORY);
         if (item == NULL) break;
     }
 }
