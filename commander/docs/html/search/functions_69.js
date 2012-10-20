@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['index_5fcompare',['index_compare',['../mxml-index_8c.html#a53a61c97ed4e1c1072357ee7b0fcd1ec',1,'mxml-index.c']]],
+  ['index_5ffind',['index_find',['../mxml-index_8c.html#ad8f9f33929aebd148153491b1e84f548',1,'mxml-index.c']]],
+  ['index_5fsort',['index_sort',['../mxml-index_8c.html#af999e83f8b0a27bb781ac0d631378995',1,'mxml-index.c']]],
   ['ini_5fappend',['ini_append',['../ini_8c.html#a1b1d68672f7eb7c0d864f76ca11a0033',1,'ini_append(INI_CONTAINER *this, const char *name, const char *key, const char *value, const char *comment):&#160;ini.c'],['../ini_8h.html#a1b1d68672f7eb7c0d864f76ca11a0033',1,'ini_append(INI_CONTAINER *this, const char *name, const char *key, const char *value, const char *comment):&#160;ini.c']]],
   ['ini_5fclear',['ini_clear',['../ini_8c.html#ac08d60e9f7d0a535a4bec83cc82f66c8',1,'ini_clear(INI_CONTAINER *this):&#160;ini.c'],['../ini_8h.html#ac08d60e9f7d0a535a4bec83cc82f66c8',1,'ini_clear(INI_CONTAINER *this):&#160;ini.c']]],
   ['ini_5fend',['ini_end',['../ini_8c.html#aba06175db26cd092e1cf40666b66d7d9',1,'ini_end(INI_CONTAINER *this):&#160;ini.c'],['../ini_8h.html#aba06175db26cd092e1cf40666b66d7d9',1,'ini_end(INI_CONTAINER *this):&#160;ini.c']]],

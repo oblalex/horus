@@ -18,5 +18,10 @@ var searchData=
   ['threadsettlsarrayaddress',['ThreadSetTlsArrayAddress',['../winproc_8c.html#a262a6059685b7796408cac915a460494a7b280b50285149a96b1e257f6f966f76',1,'winproc.c']]],
   ['threadtimes',['ThreadTimes',['../winproc_8c.html#a262a6059685b7796408cac915a460494a261cdb7a46efcce991d638a54d0fbaa6',1,'winproc.c']]],
   ['threadzerotlscell',['ThreadZeroTlsCell',['../winproc_8c.html#a262a6059685b7796408cac915a460494af58eaa0adf16c803d78beda39544ed88',1,'winproc.c']]],
-  ['true',['TRUE',['../common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18ddaa82764c3079aea4e60c80e45befbb839',1,'common.h']]]
+  ['true',['TRUE',['../common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18ddaa82764c3079aea4e60c80e45befbb839',1,'common.h']]],
+  ['turb_5faverage',['TURB_AVERAGE',['../d__weather_8h.html#ac97080165bf4e90e564bbe5d0b5bf692a63a0d9580ac5917a0d8c27e6eb8d1cca',1,'d_weather.h']]],
+  ['turb_5fnone',['TURB_NONE',['../d__weather_8h.html#ac97080165bf4e90e564bbe5d0b5bf692ac34869bd8d802e2306c2b1dba300c094',1,'d_weather.h']]],
+  ['turb_5fstrong',['TURB_STRONG',['../d__weather_8h.html#ac97080165bf4e90e564bbe5d0b5bf692a6fe6ed87515592a0d09e4e5a0a22d6b1',1,'d_weather.h']]],
+  ['turb_5fvery_5fstrong',['TURB_VERY_STRONG',['../d__weather_8h.html#ac97080165bf4e90e564bbe5d0b5bf692ad8ab3e345a423d70cfed8d523fddc14f',1,'d_weather.h']]],
+  ['turb_5fweak',['TURB_WEAK',['../d__weather_8h.html#ac97080165bf4e90e564bbe5d0b5bf692ab455ac9677510982fde0fa8ef3f1c6cb',1,'d_weather.h']]]
 ];

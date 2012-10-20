@@ -2,7 +2,6 @@ var searchData=
 [
   ['gs_2ec',['gs.c',['../gs_8c.html',1,'']]],
   ['gs_2eh',['gs.h',['../gs_8h.html',1,'']]],
-  ['gs_5farmies_2eh',['gs_armies.h',['../gs__armies_8h.html',1,'']]],
   ['gs_5fcfg_2ec',['gs_cfg.c',['../gs__cfg_8c.html',1,'']]],
   ['gs_5fcfg_2eh',['gs_cfg.h',['../gs__cfg_8h.html',1,'']]],
   ['gs_5fcmd_2ec',['gs_cmd.c',['../gs__cmd_8c.html',1,'']]],
@@ -11,6 +10,8 @@ var searchData=
   ['gs_5fconsole_2eh',['gs_console.h',['../gs__console_8h.html',1,'']]],
   ['gs_5finput_5fhandlers_2ec',['gs_input_handlers.c',['../gs__input__handlers_8c.html',1,'']]],
   ['gs_5finput_5fhandlers_2eh',['gs_input_handlers.h',['../gs__input__handlers_8h.html',1,'']]],
+  ['gs_5fmission_5fmanager_2ec',['gs_mission_manager.c',['../gs__mission__manager_8c.html',1,'']]],
+  ['gs_5fmission_5fmanager_2eh',['gs_mission_manager.h',['../gs__mission__manager_8h.html',1,'']]],
   ['gs_5fpaths_2ec',['gs_paths.c',['../gs__paths_8c.html',1,'']]],
   ['gs_5fpaths_2eh',['gs_paths.h',['../gs__paths_8h.html',1,'']]],
   ['gs_5fprocess_2ec',['gs_process.c',['../gs__process_8c.html',1,'']]],

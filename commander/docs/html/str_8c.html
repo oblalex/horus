@@ -84,7 +84,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">str.c File Reference</div>  </div>
 </div><!--header-->
@@ -106,8 +107,31 @@ Functions</h2></td></tr>
 <tr class="separator:a33e988854916975d1d60e7bd80ae4997"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a3d285bc9c8bd163738b2b594bc4cae"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="str_8c.html#a3a3d285bc9c8bd163738b2b594bc4cae">substring</a> (int start, int stop, char *src, char *dst, int size)</td></tr>
 <tr class="separator:a3a3d285bc9c8bd163738b2b594bc4cae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c6463e57074857253b623e0934e8f0e"><td class="memItemLeft" align="right" valign="top">unsigned short int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="str_8c.html#a2c6463e57074857253b623e0934e8f0e">cp1251_to_utf8</a> (unsigned char in)</td></tr>
+<tr class="separator:a2c6463e57074857253b623e0934e8f0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a3add59060064b2b27ced5b7243631eaa"><td class="memItemLeft" align="right" valign="top">static unsigned short int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="str_8c.html#a3add59060064b2b27ced5b7243631eaa">cp1251_to_utf8_table</a> [128]</td></tr>
+<tr class="separator:a3add59060064b2b27ced5b7243631eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a2c6463e57074857253b623e0934e8f0e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short int cp1251_to_utf8 </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a22650e7e1e02ff40bdaf90ec139bb82a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -281,10 +305,40 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a3add59060064b2b27ced5b7243631eaa"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short int cp1251_to_utf8_table[128]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    0x0402,0x0403,0x201A,0x0453,0x201E,0x2026,0x2020,0x2021,0x20AC,0x2030,0x0409,0x2039,0x040A,0x040C,0x040B,0x040F,</div>
+<div class="line">    0x0452,0x2018,0x2019,0x201C,0x201D,0x2022,0x2013,0x2014,0x0,0x2122,0x0459,0x203A,0x045A,0x045C,0x045B,0x045F,</div>
+<div class="line">    0x00A0,0x040E,0x045E,0x0408,0x00A4,0x0490,0x00A6,0x00A7,0x0401,0x00A9,0x0404,0x00AB,0x00AC,0x00AD,0x00AE,0x0407,</div>
+<div class="line">    0x00B0,0x00B1,0x0406,0x0456,0x0491,0x00B5,0x00B6,0x00B7,0x0451,0x2116,0x0454,0x00BB,0x0458,0x0405,0x0455,0x0457,</div>
+<div class="line">    0x0410,0x0411,0x0412,0x0413,0x0414,0x0415,0x0416,0x0417,0x0418,0x0419,0x041A,0x041B,0x041C,0x041D,0x041E,0x041F,</div>
+<div class="line">    0x0420,0x0421,0x0422,0x0423,0x0424,0x0425,0x0426,0x0427,0x0428,0x0429,0x042A,0x042B,0x042C,0x042D,0x042E,0x042F,</div>
+<div class="line">    0x0430,0x0431,0x0432,0x0433,0x0434,0x0435,0x0436,0x0437,0x0438,0x0439,0x043A,0x043B,0x043C,0x043D,0x043E,0x043F,</div>
+<div class="line">    0x0440,0x0441,0x0442,0x0443,0x0444,0x0445,0x0446,0x0447,0x0448,0x0449,0x044A,0x044B,0x044C,0x044D,0x044E,0x044F}</div>
+</div><!-- fragment -->
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 16 2012 12:42:10 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 21 2012 00:09:08 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

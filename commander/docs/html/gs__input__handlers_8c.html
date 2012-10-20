@@ -90,7 +90,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">gs_input_handlers.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br/>
+<div class="textblock"><code>#include &lt;config.h&gt;</code><br/>
+<code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;pthread.h&gt;</code><br/>
 <code>#include &lt;time.h&gt;</code><br/>
 <code>#include &lt;unistd.h&gt;</code><br/>
@@ -98,6 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &quot;<a class="el" href="gs_8h_source.html">gs.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__console_8h_source.html">gs_console.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="shell__parser_8h_source.html">shell_parser.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="console__parser_8h_source.html">console_parser.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="l10n_8h_source.html">util/l10n.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="print__status_8h_source.html">util/print_status.h</a>&quot;</code><br/>
 </div><table class="memberdecls">
@@ -111,8 +113,6 @@ Functions</h2></td></tr>
 <tr class="separator:a53a9ca188f6e0d7c250155be582fc6bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2fe551a5401b7aee2ebadf674e4ca59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__input__handlers_8c.html#ad2fe551a5401b7aee2ebadf674e4ca59">handle_input</a> (int fd, <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>(*run_condition)(), void(*read_fn)(int, char *, int, int, <a class="el" href="structRL__STAT.html">RL_STAT</a> *), void(*parse)(char *))</td></tr>
 <tr class="separator:ad2fe551a5401b7aee2ebadf674e4ca59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae4f081e3747035cf5229cfeb163853f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__input__handlers_8c.html#aae4f081e3747035cf5229cfeb163853f">foo_parse</a> (char *str)</td></tr>
-<tr class="separator:aae4f081e3747035cf5229cfeb163853f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad705d3d665df0bf75891267ac9c0313b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__input__handlers_8c.html#ad705d3d665df0bf75891267ac9c0313b">input_handlers_stop</a> ()</td></tr>
 <tr class="separator:ad705d3d665df0bf75891267ac9c0313b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -124,22 +124,6 @@ Variables</h2></td></tr>
 <tr class="separator:ae5ca1db3455bac71c817cba7df58e563"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="aae4f081e3747035cf5229cfeb163853f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void foo_parse </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>str</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a65729c1787cc6806540851c37434aa0f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -282,7 +266,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 16 2012 12:42:10 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 21 2012 00:09:08 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

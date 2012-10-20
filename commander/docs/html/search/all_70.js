@@ -1,6 +1,9 @@
 var searchData=
 [
+  ['parent',['parent',['../structmxml__node__s.html#a218c98087e19d4d2b1690e458e31d8bf',1,'mxml_node_s']]],
   ['parseargs',['parseArgs',['../main__parser_8c.html#a4c2b7e6886daa6cc8e60c6f8ae9af768',1,'parseArgs(int argc, char const **argv):&#160;main_parser.c'],['../main__parser_8h.html#aeafca5bf8bb4e4c19ffc07258cdd8916',1,'parseArgs(int argc, char const *argv[]):&#160;main_parser.h']]],
+  ['path',['path',['../structD__MISSION__LITE.html#aa334ef7a60945c2246b98622e62e92dd',1,'D_MISSION_LITE']]],
+  ['path_5fcurrent',['PATH_CURRENT',['../common_8h.html#a76b1a9c957146f52777e626ed95455b5',1,'common.h']]],
   ['path_5fgs',['PATH_GS',['../gs__paths_8h.html#aeaedb58351ffc97233637931b7c97d00',1,'gs_paths.h']]],
   ['path_5fgs_5fcfg',['PATH_GS_CFG',['../gs__paths_8h.html#acb07f16ead0326c6679a3a90ad361866',1,'gs_paths.h']]],
   ['path_5fgs_5fcmdf_5fgc',['PATH_GS_CMDF_GC',['../gs__paths_8h.html#a23182946a4e5c3d403479b3f2dcd3e5b',1,'gs_paths.h']]],
@@ -9,6 +12,8 @@ var searchData=
   ['path_5fgs_5flog_5ferr',['PATH_GS_LOG_ERR',['../gs__paths_8h.html#a47bf4d5075e1d4bbb6e34ee12ca82f30',1,'gs_paths.h']]],
   ['path_5fgs_5flog_5fevt',['PATH_GS_LOG_EVT',['../gs__paths_8h.html#ab7215a182bcf110caa51ffee91f39f39',1,'gs_paths.h']]],
   ['path_5fgs_5flogs_5fdir',['PATH_GS_LOGS_DIR',['../gs__paths_8h.html#ab9bccce78a3f216c18a1d1cfa508287e',1,'gs_paths.h']]],
+  ['path_5fgs_5fmission_5flist',['PATH_GS_MISSION_LIST',['../gs__paths_8h.html#ac552e9c6e9a632c7b3859566ec9fe107',1,'gs_paths.h']]],
+  ['path_5fgs_5fmissions_5fdir',['PATH_GS_MISSIONS_DIR',['../gs__paths_8h.html#a79016f50caba37aee21486057745e024',1,'gs_paths.h']]],
   ['path_5fgs_5fstdout',['PATH_GS_STDOUT',['../gs__paths_8h.html#a3e7f2048dad288fd71d4d8ef8d855286',1,'gs_paths.h']]],
   ['path_5fgss_5fh',['PATH_GSS_H',['../gs__paths_8h.html#abdb55f3d8b2245fa1548c65672e1ae50',1,'gs_paths.h']]],
   ['path_5fparent',['PATH_PARENT',['../common_8h.html#aae93425533301a459aa1f04aa6dbcc55',1,'common.h']]],
@@ -17,6 +22,7 @@ var searchData=
   ['pkaffinity',['PKAFFINITY',['../winproc_8c.html#a1de79c474c1533ce0323893641d14a41',1,'winproc.c']]],
   ['pobject_5fattributes',['POBJECT_ATTRIBUTES',['../winproc_8c.html#a71661810c12306be9e2317dc1402093f',1,'winproc.c']]],
   ['pop',['pop',['../stack__str_8c.html#a75e00066d98d2097b5dabb8ef0daed5d',1,'pop(STACK_STR *this):&#160;stack_str.c'],['../stack__str_8h.html#a75e00066d98d2097b5dabb8ef0daed5d',1,'pop(STACK_STR *this):&#160;stack_str.c']]],
+  ['prev',['prev',['../structmxml__node__s.html#a194b175777a2b7cc83646ee3cd81934d',1,'mxml_node_s']]],
   ['print_5fhelp',['print_help',['../main__parser_8c.html#af2a7e79a02ea22d995e640b4731708a7',1,'print_help(char *exec_name):&#160;main_parser.c'],['../main__parser_8h.html#af2a7e79a02ea22d995e640b4731708a7',1,'print_help(char *exec_name):&#160;main_parser.h']]],
   ['print_5fstatus_2ec',['print_status.c',['../print__status_8c.html',1,'']]],
   ['print_5fstatus_2eh',['print_status.h',['../print__status_8h.html',1,'']]],
@@ -27,6 +33,8 @@ var searchData=
   ['print_5fstatus_5fmsg_5ferr',['PRINT_STATUS_MSG_ERR',['../print__status_8h.html#a42d2eea7bf745f6f3b09ede250037c6a',1,'print_status.h']]],
   ['print_5fstatus_5fmsg_5ferr_5fnoind',['PRINT_STATUS_MSG_ERR_NOIND',['../print__status_8h.html#a88cd1a6e4622ebb83bfeff05d9632df5',1,'print_status.h']]],
   ['print_5fstatus_5fmsg_5fnoind',['PRINT_STATUS_MSG_NOIND',['../print__status_8h.html#a70fed04f51823bf820982192bf2bfad9',1,'print_status.h']]],
+  ['print_5fstatus_5fmsg_5fwrn',['PRINT_STATUS_MSG_WRN',['../print__status_8h.html#a475e5f18cfd65e4d40586dc595eba39a',1,'print_status.h']]],
+  ['print_5fstatus_5fmsg_5fwrn_5fnoind',['PRINT_STATUS_MSG_WRN_NOIND',['../print__status_8h.html#abff62795ce95ba369a97d1be63425443',1,'print_status.h']]],
   ['print_5fstatus_5fmulti_5fstart',['PRINT_STATUS_MULTI_START',['../print__status_8c.html#aec6d0b0dc23d0e7cdc2392b518b3f32a',1,'PRINT_STATUS_MULTI_START():&#160;print_status.c'],['../print__status_8h.html#aec6d0b0dc23d0e7cdc2392b518b3f32a',1,'PRINT_STATUS_MULTI_START():&#160;print_status.c']]],
   ['print_5fstatus_5fmulti_5fstop',['PRINT_STATUS_MULTI_STOP',['../print__status_8c.html#a3bb9d67b07c9eedb64669eda86534256',1,'PRINT_STATUS_MULTI_STOP():&#160;print_status.c'],['../print__status_8h.html#a3bb9d67b07c9eedb64669eda86534256',1,'PRINT_STATUS_MULTI_STOP():&#160;print_status.c']]],
   ['print_5fstatus_5fnew',['PRINT_STATUS_NEW',['../print__status_8c.html#a18717b11f755155190bfd921bea472df',1,'PRINT_STATUS_NEW(char *str):&#160;print_status.c'],['../print__status_8h.html#a18717b11f755155190bfd921bea472df',1,'PRINT_STATUS_NEW(char *str):&#160;print_status.c']]],
@@ -40,6 +48,8 @@ var searchData=
   ['psystem_5fhandle_5finformation',['PSYSTEM_HANDLE_INFORMATION',['../winproc_8c.html#a46c055490f251bc0e60c31958d2bdf7a',1,'winproc.c']]],
   ['pthread_5fbasic_5finformation',['PTHREAD_BASIC_INFORMATION',['../winproc_8c.html#ab15c8c89c5788f1a427e8d6c7fa70c2e',1,'winproc.c']]],
   ['pthread_5finformation_5fclass',['PTHREAD_INFORMATION_CLASS',['../winproc_8c.html#a3bfadfe3cd0e73e029f10fdccc5aacc0',1,'winproc.c']]],
+  ['publgamets',['publGameTS',['../structD__WEATHER__REPORT.html#ab44aa9993ad065f5d573b9d4148061f5',1,'D_WEATHER_REPORT']]],
+  ['publrealts',['publRealTS',['../structD__WEATHER__REPORT.html#a92d6647b919501425064f64770a5bcbd',1,'D_WEATHER_REPORT']]],
   ['puser_5fstack',['PUSER_STACK',['../winproc_8c.html#ad140b1874424d1e3a790eb930693c297',1,'winproc.c']]],
   ['push',['push',['../stack__str_8c.html#a2d043f1f7a10df669a3ecaaca01fdc21',1,'push(STACK_STR *this, char *str):&#160;stack_str.c'],['../stack__str_8h.html#a2d043f1f7a10df669a3ecaaca01fdc21',1,'push(STACK_STR *this, char *str):&#160;stack_str.c']]]
 ];

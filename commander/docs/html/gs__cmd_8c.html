@@ -90,7 +90,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">gs_cmd.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;wchar.h&gt;</code><br/>
+<div class="textblock"><code>#include &lt;config.h&gt;</code><br/>
+<code>#include &lt;wchar.h&gt;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
 <code>#include &lt;stdio.h&gt;</code><br/>
 <code>#include &lt;time.h&gt;</code><br/>
@@ -119,6 +120,16 @@ Functions</h2></td></tr>
 <tr class="separator:aa67a15bec9d56b62b4449ab859be24ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5f825df54c605f25ed860a2a6f00a96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#aa5f825df54c605f25ed860a2a6f00a96">gs_cmd_kick_all</a> ()</td></tr>
 <tr class="separator:aa5f825df54c605f25ed860a2a6f00a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dd024edb22be4f162c9844ede315f78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a7dd024edb22be4f162c9844ede315f78">gs_cmd_mssn_status</a> ()</td></tr>
+<tr class="separator:a7dd024edb22be4f162c9844ede315f78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e868351f7ed90b21e2ef6bc4285e757"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a0e868351f7ed90b21e2ef6bc4285e757">gs_cmd_mssn_load</a> (char *path)</td></tr>
+<tr class="separator:a0e868351f7ed90b21e2ef6bc4285e757"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a931aaefb95a4ea5339301cbc22414905"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a931aaefb95a4ea5339301cbc22414905">gs_cmd_mssn_run</a> ()</td></tr>
+<tr class="separator:a931aaefb95a4ea5339301cbc22414905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07094ace1fe3779889f3e92a88dfaaf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a07094ace1fe3779889f3e92a88dfaaf8">gs_cmd_mssn_end</a> ()</td></tr>
+<tr class="separator:a07094ace1fe3779889f3e92a88dfaaf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57a9d3a9f54dd860e3c9ebf22bc81d0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a57a9d3a9f54dd860e3c9ebf22bc81d0c">gs_cmd_mssn_unload</a> ()</td></tr>
+<tr class="separator:a57a9d3a9f54dd860e3c9ebf22bc81d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bbd75d564bac5f6ef14e212caf612ce"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a1bbd75d564bac5f6ef14e212caf612ce">gs_cmd_send</a> (char *cmd)</td></tr>
 <tr class="separator:a1bbd75d564bac5f6ef14e212caf612ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a670701f11e6f94fc8aedeb5cf8035fbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a670701f11e6f94fc8aedeb5cf8035fbd">gs_cmd_tear_down</a> ()</td></tr>
@@ -130,6 +141,8 @@ Variables</h2></td></tr>
 <tr class="separator:a058786726124091e6fe161617173b83a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac49cd26ebb90fdb9730da15c401997be"><td class="memItemLeft" align="right" valign="top">static pthread_mutex_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#ac49cd26ebb90fdb9730da15c401997be">LOCK</a></td></tr>
 <tr class="separator:ac49cd26ebb90fdb9730da15c401997be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a178795099d0608972755dfef8d8367e3"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a178795099d0608972755dfef8d8367e3">channels</a></td></tr>
+<tr class="separator:a178795099d0608972755dfef8d8367e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="aa67a15bec9d56b62b4449ab859be24ba"></a>
@@ -297,6 +310,82 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a07094ace1fe3779889f3e92a88dfaaf8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gs_cmd_mssn_end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0e868351f7ed90b21e2ef6bc4285e757"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gs_cmd_mssn_load </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a931aaefb95a4ea5339301cbc22414905"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gs_cmd_mssn_run </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7dd024edb22be4f162c9844ede315f78"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gs_cmd_mssn_status </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a57a9d3a9f54dd860e3c9ebf22bc81d0c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gs_cmd_mssn_unload </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a1bbd75d564bac5f6ef14e212caf612ce"></a>
 <div class="memitem">
 <div class="memproto">
@@ -337,6 +426,26 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a178795099d0608972755dfef8d8367e3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int channels</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a058786726124091e6fe161617173b83a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -380,7 +489,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 16 2012 12:42:10 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 21 2012 00:09:08 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

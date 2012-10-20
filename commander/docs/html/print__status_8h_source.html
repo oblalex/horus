@@ -121,23 +121,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> <a class="code" href="print__status_8c.html#a287ee193605d4024749797611d16c8c6">print_status_msg</a>(<span class="keywordtype">int</span> color, <span class="keywordtype">char</span>* str, <a class="code" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> do_indent);</div>
 <div class="line"><a name="l00034"></a><span class="lineno"><a class="code" href="print__status_8h.html#ad5125aa5beb01f9ea512525787244764">   34</a></span>&#160;<span class="preprocessor">#define PRINT_STATUS_MSG(STR)     print_status_msg(TC_CYAN, STR, TRUE);</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="print__status_8h.html#a42d2eea7bf745f6f3b09ede250037c6a">   35</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define PRINT_STATUS_MSG_ERR(STR) print_status_msg(TC_RED,  STR, TRUE);</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="print__status_8h.html#a70fed04f51823bf820982192bf2bfad9">   37</a></span>&#160;<span class="preprocessor">#define PRINT_STATUS_MSG_NOIND(STR)     print_status_msg(TC_CYAN, STR, FALSE);</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="print__status_8h.html#a88cd1a6e4622ebb83bfeff05d9632df5">   38</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define PRINT_STATUS_MSG_ERR_NOIND(STR) print_status_msg(TC_RED,  STR, FALSE);</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> <a class="code" href="print__status_8c.html#a10cef8940647c43ce59c3ee0f197ff9a">PRINT_STATUS_ORDER_RESET</a>();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="print__status_8c.html#aec6d0b0dc23d0e7cdc2392b518b3f32a">PRINT_STATUS_MULTI_START</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="print__status_8c.html#a3bb9d67b07c9eedb64669eda86534256">PRINT_STATUS_MULTI_STOP</a>();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">void</span> <a class="code" href="print__status_8c.html#a7cb7e5fbfec9429cede147cf405106c2">PRINT_STATUSES_RESET</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="print__status_8h.html#a475e5f18cfd65e4d40586dc595eba39a">   35</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define PRINT_STATUS_MSG_WRN(STR) print_status_msg(TC_YELLOW,  STR, TRUE);</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="code" href="print__status_8h.html#a42d2eea7bf745f6f3b09ede250037c6a">   36</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define PRINT_STATUS_MSG_ERR(STR) print_status_msg(TC_RED,  STR, TRUE);</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="print__status_8h.html#a70fed04f51823bf820982192bf2bfad9">   38</a></span>&#160;<span class="preprocessor">#define PRINT_STATUS_MSG_NOIND(STR)     print_status_msg(TC_CYAN, STR, FALSE);</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="print__status_8h.html#abff62795ce95ba369a97d1be63425443">   39</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define PRINT_STATUS_MSG_WRN_NOIND(STR) print_status_msg(TC_YELLOW,  STR, FALSE);</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="print__status_8h.html#a88cd1a6e4622ebb83bfeff05d9632df5">   40</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define PRINT_STATUS_MSG_ERR_NOIND(STR) print_status_msg(TC_RED,  STR, FALSE);</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="print__status_8c.html#a10cef8940647c43ce59c3ee0f197ff9a">PRINT_STATUS_ORDER_RESET</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span> <a class="code" href="print__status_8c.html#aec6d0b0dc23d0e7cdc2392b518b3f32a">PRINT_STATUS_MULTI_START</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">void</span> <a class="code" href="print__status_8c.html#a3bb9d67b07c9eedb64669eda86534256">PRINT_STATUS_MULTI_STOP</a>();</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#endif // PRINT_STATUS_H</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span> <a class="code" href="print__status_8c.html#a7cb7e5fbfec9429cede147cf405106c2">PRINT_STATUSES_RESET</a>();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif // PRINT_STATUS_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 16 2012 12:42:10 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 21 2012 00:09:08 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>
