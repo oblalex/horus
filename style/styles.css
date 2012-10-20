@@ -226,3 +226,8 @@ h3 a:hover {
 	text-decoration: none;
 	cursor: default;
 }
+
+.cmd_list li table a:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}

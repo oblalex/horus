@@ -13,6 +13,6 @@ var searchData=
   ['haveloadedfunctionsforfork',['haveLoadedFunctionsForFork',['../winproc_8c.html#a024df55c93acb6356e5f07938c0d9a8d',1,'winproc.c']]],
   ['head',['head',['../structMSG__QUEUE.html#a7289229faa3696ebdc3d859243603acb',1,'MSG_QUEUE']]],
   ['history',['HISTORY',['../gs__mission__manager_8c.html#a38ccb1fcbf1ae556721fe91cec85435e',1,'gs_mission_manager.c']]],
-  ['history_5fsize',['HISTORY_SIZE',['../gs__mission__manager_8c.html#a43034bdd0ae7c6267b05ff35ae97cddf',1,'gs_mission_manager.c']]],
+  ['history_5fsize',['HISTORY_SIZE',['../gs__mission__manager_8h.html#a43034bdd0ae7c6267b05ff35ae97cddf',1,'gs_mission_manager.h']]],
   ['hour',['hour',['../structTIMESTAMP__T.html#a48b98c35bf1267dc7104726fd94c1986',1,'TIMESTAMP_T']]]
 ];
