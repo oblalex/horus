@@ -12,7 +12,10 @@ MainWindow::MainWindow(QWidget *parent) :
     createMainBar();
     createNavBar();
     createToolBar();
+    createStatusBar();
     createCentralWidget();
+
+    onListNonLoaded();
 
     setWindowTitle(tr("Horus MLE"));
 }
@@ -70,6 +73,7 @@ void MainWindow::createNavActions()
     selectAction = new QAction(tr("&Select"), this);
     //connect(selectAction, SIGNAL(triggered()), this, SLOT(showNormal()));
     selectAction->setIcon(QIcon((":/img/select.png")));
+
     ui->navBar->addAction(selectAction);
 
     paneAction = new QAction(tr("&Pane"), this);
@@ -132,9 +136,72 @@ void MainWindow::createToolActions()
     ui->toolBar->addAction(delAction);
 }
 
+void MainWindow::createStatusBar()
+{
+    statLabel = new QLabel(this);
+    statLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    statLabel->setMargin(2);
+    ui->statusBar->addWidget(statLabel);
+}
+
 void MainWindow::createCentralWidget()
 {
     MLV = new MapListView(this);
     setCentralWidget(MLV);
     MLV->setFocus();
+}
+
+bool MainWindow::isListEmpty()
+{
+    return true;
+}
+
+void MainWindow::onListLoaded()
+{
+    clearAction->setEnabled(true);
+    saveAction->setEnabled(true);
+    editAction->setEnabled(true);
+    delAction->setEnabled(true);
+
+    statLabel->clear();
+
+    if (isListEmpty()==false)
+        onListNonEmpty();
+}
+
+void MainWindow::onListNonLoaded()
+{
+    statLabel->setText(tr("Mission list is not loaded"));
+
+    clearAction->setEnabled(false);
+    saveAction->setEnabled(false);
+    editAction->setEnabled(false);
+    delAction->setEnabled(false);
+
+    onListEmpty();
+}
+
+void MainWindow::onListEmpty()
+{
+    if (statLabel->text().isEmpty())
+        statLabel->setText(tr("Mission list is empty"));
+
+    selectAction->setEnabled(false);
+    paneAction->setEnabled(false);
+    zoomInAction->setEnabled(false);
+    zoomOutAction->setEnabled(false);
+    zoomSelectionAction->setEnabled(false);
+    zoomSpin->setEnabled(false);
+}
+
+void MainWindow::onListNonEmpty()
+{
+    statLabel->clear();
+
+    selectAction->setEnabled(true);
+    paneAction->setEnabled(true);
+    zoomInAction->setEnabled(true);
+    zoomOutAction->setEnabled(true);
+    zoomSelectionAction->setEnabled(true);
+    zoomSpin->setEnabled(true);
 }

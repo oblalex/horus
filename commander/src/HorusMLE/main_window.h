@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QSpinBox>
+#include <QLabel>
 #include "map_list_view.h"
 
 namespace Ui {
@@ -25,7 +26,16 @@ private:
     void createZoomSpin();
     void createToolBar();
     void createToolActions();
+    void createStatusBar();
     void createCentralWidget();
+
+    bool isListEmpty();
+
+    void onListLoaded();
+    void onListNonLoaded();
+
+    void onListEmpty();
+    void onListNonEmpty();
 
     Ui::MainWindow *ui;
 
@@ -42,10 +52,13 @@ private:
     QAction *loadAction;
     QAction *clearAction;
     QAction *saveAction;
+
     QAction *quitAction;
 
     QSpinBox* zoomSpin;
     MapListView* MLV;
+
+    QLabel* statLabel;
 };
 
 #endif // MAIN_WINDOW_H
