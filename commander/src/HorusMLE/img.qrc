@@ -9,5 +9,8 @@
         <file>img/save.png</file>
         <file>img/quit.png</file>
         <file>img/main.png</file>
+        <file>img/delete.png</file>
+        <file>img/new.png</file>
+        <file>img/edit.png</file>
     </qresource>
 </RCC>

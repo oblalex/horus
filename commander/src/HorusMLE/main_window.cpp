@@ -9,11 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     createMenu();
-    createToolbar();
+    createNavBar();
+    createToolBar();
     createCentralWidget();
 
     setWindowTitle(tr("Horus MLE"));
-    ui->mainToolBar->setIconSize(QSize(18, 18));
 }
 
 MainWindow::~MainWindow()
@@ -44,38 +44,40 @@ void MainWindow::createMenu()
     mainMenu->addAction(quitAction);
 }
 
-void MainWindow::createToolbar()
+void MainWindow::createNavBar()
 {
-    createActions();
+    ui->navBar->setIconSize(QSize(18, 18));
+
+    createNavActions();
     createZoomSpin();
 }
 
-void MainWindow::createActions()
+void MainWindow::createNavActions()
 {
     selectAction = new QAction(tr("&Select"), this);
     //connect(selectAction, SIGNAL(triggered()), this, SLOT(showNormal()));
     selectAction->setIcon(QIcon((":/img/select.png")));
-    ui->mainToolBar->addAction(selectAction);
+    ui->navBar->addAction(selectAction);
 
     paneAction = new QAction(tr("&Pane"), this);
     //connect(paneAction, SIGNAL(triggered()), this, SLOT(showNormal()));
     paneAction->setIcon(QIcon((":/img/pane.png")));
-    ui->mainToolBar->addAction(paneAction);
+    ui->navBar->addAction(paneAction);
 
     zoomInAction = new QAction(tr("Zoom In"), this);
     //connect(zoomInAction, SIGNAL(triggered()), this, SLOT(showNormal()));
     zoomInAction->setIcon(QIcon((":/img/zoom_in.png")));
-    ui->mainToolBar->addAction(zoomInAction);
+    ui->navBar->addAction(zoomInAction);
 
     zoomOutAction = new QAction(tr("Zoom Out"), this);
     //connect(zoomOutAction, SIGNAL(triggered()), this, SLOT(showNormal()));
     zoomOutAction->setIcon(QIcon((":/img/zoom_out.png")));
-    ui->mainToolBar->addAction(zoomOutAction);
+    ui->navBar->addAction(zoomOutAction);
 
     zoomSelectionAction = new QAction(tr("&Zoom Selection"), this);
     //connect(zoomSelectionAction, SIGNAL(triggered()), this, SLOT(showNormal()));
     zoomSelectionAction->setIcon(QIcon((":/img/zoom_selection.png")));
-    ui->mainToolBar->addAction(zoomSelectionAction);
+    ui->navBar->addAction(zoomSelectionAction);
 }
 
 void MainWindow::createZoomSpin()
@@ -89,13 +91,37 @@ void MainWindow::createZoomSpin()
     zoomSpin->setSingleStep(10);
     zoomSpin->setValue(100);
     zoomSpin->setSuffix(" %");
-    ui->mainToolBar->addWidget(zoomSpin);
+    ui->navBar->addWidget(zoomSpin);
+}
+
+void MainWindow::createToolBar()
+{
+    ui->toolBar->setIconSize(QSize(18, 18));
+
+    createToolActions();
+}
+
+void MainWindow::createToolActions()
+{
+    newAction = new QAction(tr("&New"), this);
+    //connect(newAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    newAction->setIcon(QIcon((":/img/new.png")));
+    ui->toolBar->addAction(newAction);
+
+    editAction = new QAction(tr("&Edit"), this);
+    //connect(editAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    editAction->setIcon(QIcon((":/img/edit.png")));
+    ui->toolBar->addAction(editAction);
+
+    delAction = new QAction(tr("&Delete"), this);
+    //connect(delAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    delAction->setIcon(QIcon((":/img/delete.png")));
+    ui->toolBar->addAction(delAction);
 }
 
 void MainWindow::createCentralWidget()
 {
-    QSplitter* vSplit;
-    vSplit = new QSplitter(this);
-    setCentralWidget(vSplit);
-    vSplit->setFocus();
+    MLV = new MapListView(this);
+    setCentralWidget(MLV);
+    MLV->setFocus();
 }
