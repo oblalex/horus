@@ -48,7 +48,7 @@ void MainWindow::createMenu()
     mainMenu->addSeparator();
 
     quitAction = new QAction(tr("&Quit"), this);
-    //connect(quitAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    connect(quitAction, SIGNAL(triggered()), this, SLOT(onQuitAction()));
     quitAction->setIcon(QIcon((":/img/quit.png")));
     mainMenu->addAction(quitAction);
 }
@@ -204,4 +204,9 @@ void MainWindow::onListNonEmpty()
     zoomOutAction->setEnabled(true);
     zoomSelectionAction->setEnabled(true);
     zoomSpin->setEnabled(true);
+}
+
+void MainWindow::onQuitAction()
+{
+    qApp->quit();
 }

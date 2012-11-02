@@ -18,6 +18,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     
+private slots:
+    void onQuitAction();
+
 private:
     void createMenu();
     void createMainBar();
