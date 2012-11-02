@@ -5,6 +5,7 @@
 #include <QSpinBox>
 #include <QLabel>
 #include "map_list_view.h"
+#include "list_file_helper.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +21,7 @@ public:
     
 private slots:
     void onQuitAction();
+    void onLoadAction();
 
 private:
     void createMenu();
@@ -62,6 +64,8 @@ private:
     MapListView* MLV;
 
     QLabel* statLabel;
+
+    ListFileHelper* lfHelper;
 };
 
 #endif // MAIN_WINDOW_H

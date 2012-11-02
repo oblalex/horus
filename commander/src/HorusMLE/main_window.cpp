@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setWindowTitle(tr("Horus MLE"));
+
     createMenu();
     createMainBar();
     createNavBar();
@@ -15,9 +17,8 @@ MainWindow::MainWindow(QWidget *parent) :
     createStatusBar();
     createCentralWidget();
 
-    onListNonLoaded();
-
-    setWindowTitle(tr("Horus MLE"));
+    lfHelper = new ListFileHelper(MLV);
+    loadAction->trigger();
 }
 
 MainWindow::~MainWindow()
@@ -31,7 +32,7 @@ void MainWindow::createMenu()
     ui->menuBar->addMenu(mainMenu);
 
     loadAction = new QAction(tr("&Load"), this);
-    //connect(loadAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    connect(loadAction, SIGNAL(triggered()), this, SLOT(onLoadAction()));
     loadAction->setIcon(QIcon((":/img/load.png")));
     mainMenu->addAction(loadAction);
 
@@ -158,25 +159,20 @@ bool MainWindow::isListEmpty()
 
 void MainWindow::onListLoaded()
 {
-    clearAction->setEnabled(true);
     saveAction->setEnabled(true);
-    editAction->setEnabled(true);
-    delAction->setEnabled(true);
 
     statLabel->clear();
 
-    if (isListEmpty()==false)
+    if (isListEmpty())
+        onListEmpty();
+    else
         onListNonEmpty();
 }
 
 void MainWindow::onListNonLoaded()
 {
     statLabel->setText(tr("Mission list is not loaded"));
-
-    clearAction->setEnabled(false);
     saveAction->setEnabled(false);
-    editAction->setEnabled(false);
-    delAction->setEnabled(false);
 
     onListEmpty();
 }
@@ -186,17 +182,24 @@ void MainWindow::onListEmpty()
     if (statLabel->text().isEmpty())
         statLabel->setText(tr("Mission list is empty"));
 
+    clearAction->setEnabled(false);
+
     selectAction->setEnabled(false);
     paneAction->setEnabled(false);
     zoomInAction->setEnabled(false);
     zoomOutAction->setEnabled(false);
     zoomSelectionAction->setEnabled(false);
     zoomSpin->setEnabled(false);
+
+    editAction->setEnabled(false);
+    delAction->setEnabled(false);
 }
 
 void MainWindow::onListNonEmpty()
 {
     statLabel->clear();
+
+    clearAction->setEnabled(true);
 
     selectAction->setEnabled(true);
     paneAction->setEnabled(true);
@@ -204,9 +207,21 @@ void MainWindow::onListNonEmpty()
     zoomOutAction->setEnabled(true);
     zoomSelectionAction->setEnabled(true);
     zoomSpin->setEnabled(true);
+
+    editAction->setEnabled(true);
+    delAction->setEnabled(true);
 }
 
 void MainWindow::onQuitAction()
 {
     qApp->quit();
+}
+
+void MainWindow::onLoadAction()
+{
+    lfHelper->loadToView();
+    if (lfHelper->isLoaded())
+        onListLoaded();
+    else
+        onListNonLoaded();
 }
