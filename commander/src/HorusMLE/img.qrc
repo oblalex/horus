@@ -12,5 +12,6 @@
         <file>img/delete.png</file>
         <file>img/new.png</file>
         <file>img/edit.png</file>
+        <file>img/clear.png</file>
     </qresource>
 </RCC>

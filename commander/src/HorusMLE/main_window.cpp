@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     createMenu();
+    createMainBar();
     createNavBar();
     createToolBar();
     createCentralWidget();
@@ -31,6 +32,11 @@ void MainWindow::createMenu()
     loadAction->setIcon(QIcon((":/img/load.png")));
     mainMenu->addAction(loadAction);
 
+    clearAction = new QAction(tr("&Clear"), this);
+    //connect(clearAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    clearAction->setIcon(QIcon((":/img/clear.png")));
+    mainMenu->addAction(clearAction);
+
     saveAction = new QAction(tr("&Save"), this);
     //connect(saveAction, SIGNAL(triggered()), this, SLOT(showNormal()));
     saveAction->setIcon(QIcon((":/img/save.png")));
@@ -42,6 +48,13 @@ void MainWindow::createMenu()
     //connect(quitAction, SIGNAL(triggered()), this, SLOT(showNormal()));
     quitAction->setIcon(QIcon((":/img/quit.png")));
     mainMenu->addAction(quitAction);
+}
+
+void MainWindow::createMainBar()
+{
+    ui->mainBar->addAction(loadAction);
+    ui->mainBar->addAction(clearAction);
+    ui->mainBar->addAction(saveAction);
 }
 
 void MainWindow::createNavBar()

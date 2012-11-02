@@ -19,6 +19,7 @@ public:
     
 private:
     void createMenu();
+    void createMainBar();
     void createNavBar();
     void createNavActions();
     void createZoomSpin();
@@ -39,6 +40,7 @@ private:
     QAction *delAction;
 
     QAction *loadAction;
+    QAction *clearAction;
     QAction *saveAction;
     QAction *quitAction;
 
