@@ -5,6 +5,8 @@
 #include <QDomElement>
 #include <QTextStream>
 #include <QList>
+#include <typeinfo>
+#include "edge.h"
 
 #include <iostream>
 using namespace std;
@@ -74,7 +76,7 @@ void ListFileHelper::loadToView()
     }
 
     n = root.firstChild();
-    resolveReferences(&n);
+    resolveReferences(n);
 
     loaded = true;
 }
@@ -104,11 +106,12 @@ void ListFileHelper::addFromElement(QDomElement *e)
 
     MissionElem* me = new MissionElem(view);
 
-    me->data.name = (char*) malloc(name.size());
-    memcpy(me->data.name, name.constData(), name.size());
+    me->data.name = (char*) malloc(name.size()+1);
+    memset(me->data.name, 0, name.size()+1);
+    memcpy(me->data.name, name.toStdString().c_str(), name.size());
 
     me->data.path = (char*) malloc(path.size());
-    memcpy(me->data.path, path.constData(), path.size());
+    memcpy(me->data.path, path.toStdString().c_str(), path.size());
 
     me->isCurrent = e->attribute(XML_ATTR_IS_CURRENT, IS_CURRENT_FALSE_VAL) == IS_CURRENT_TRUE_VAL;
     me->data.sDuration = e->attribute(XML_ATTR_DURATION, DEFAULT_MISSION_DURATION).toInt();
@@ -130,28 +133,64 @@ void ListFileHelper::resolveReferences(QDomNode& first)
     MissionElem* me;
     QString name;
     QString attr;
+    bool found;
+    QDomNode n;
+    QDomElement e;
+
     foreach (QGraphicsItem* item, items)
     {
-        me = qgraphicsitem_cast<MissionElem *>(item);
-        name = me->data.name;
+        try
+        {
+            me = qgraphicsitem_cast<MissionElem *>(item);
+        } catch (bad_cast& bc) {
+            Q_UNUSED(bc)
+            continue;
+        }
 
-        bool found = false;
-        QDomNode n;
-        for(n = first; n != NULL; n = n.nextSibling())
+        name = QString(me->data.name);
+
+        found = false;
+        n = first;
+        while(n.isNull()==false)
         {
-            QDomElement e = n.toElement();
-            if (e==NULL)
-                continue;
-            attr = e.attribute(XML_ATTR_NAME, "");
-            if (attr==name)
+            e = n.toElement();
+            if(e.isNull()==false)
             {
-                found = true;
-                break;
+                attr = e.attribute(XML_ATTR_NAME, "");
+                if (attr==name)
+                {
+                    found = true;
+                    break;
+                }
             }
+            n = n.nextSibling();
         }
-        if (found)
-        {
-            // TODO:
-        }
+        if (found == false)
+            continue;
+
+        QString nameNone = e.attribute(XML_ATTR_NEXT, "");
+        QString nameRed  = e.attribute(XML_ATTR_NEXT_RED, "");
+        QString nameBlue = e.attribute(XML_ATTR_NEXT_BLUE, "");
+
+        me->nextNone = (nameNone.isEmpty())?NULL:view->missionByName(nameNone);
+        me->nextRed = (nameRed==nameNone)
+                ?me->nextNone
+               :(nameRed.isEmpty())
+                 ?NULL
+                :view->missionByName(nameRed);
+        me->nextBlue = (nameBlue==nameNone)
+                ?me->nextNone
+               :(nameBlue==nameRed)
+                 ?me->nextRed
+                :(nameBlue.isEmpty())
+                  ?NULL
+                 :view->missionByName(nameBlue);
+
+        if (me->nextNone)
+            view->scene->addItem(new Edge(me, me->nextNone, EDGE_NONE));
+        if (me->nextRed)
+            view->scene->addItem(new Edge(me, me->nextRed, EDGE_RED));
+        if (me->nextBlue)
+            view->scene->addItem(new Edge(me, me->nextBlue, EDGE_BLUE));
     }
 }

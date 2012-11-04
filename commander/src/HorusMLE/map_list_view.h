@@ -2,6 +2,9 @@
 #define MAP_LIST_VIEW_H
 
 #include <QtGui/QGraphicsView>
+#include "mission_elem.h"
+
+class MissionElem;
 
 class MapListView : public QGraphicsView
 {
@@ -9,6 +12,8 @@ class MapListView : public QGraphicsView
 
 public:
     MapListView(QWidget *parent = 0);
+
+    MissionElem* missionByName(QString name);
 
     QGraphicsScene *scene;
 

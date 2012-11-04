@@ -154,7 +154,7 @@ void MainWindow::createCentralWidget()
 
 bool MainWindow::isListEmpty()
 {
-    return true;
+    return MLV->scene->items().count()==0;
 }
 
 void MainWindow::onListLoaded()

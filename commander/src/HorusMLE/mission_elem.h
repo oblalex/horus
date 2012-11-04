@@ -8,8 +8,11 @@
 #include "edge.h"
 #include "d_mission.h"
 
+#define ME_RADIUS (25)
+
 class Edge;
 class MissionElem;
+class MapListView;
 
 class MissionElem: public QGraphicsItem
 {
@@ -24,8 +27,10 @@ public:
     MissionElem* nextRed;
     MissionElem* nextBlue;
 
-    QList<Edge*> edges;
+    void addEdge(Edge *edge);
+    QList<Edge *> edges() const;
     int refsCount;
+
     MapListView* MLV;
 
     enum { Type = UserType + 1 };
@@ -40,6 +45,9 @@ protected:
 
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+
+private:
+    QList<Edge*> edgeList;
 };
 
 #endif // MISSION_ELEM_H

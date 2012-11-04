@@ -17,23 +17,34 @@ MissionElem::MissionElem(MapListView* MLV)
     setZValue(-1);
 }
 
+void MissionElem::addEdge(Edge *edge)
+{
+    edgeList << edge;
+    edge->adjust();
+}
+
+QList<Edge *> MissionElem::edges() const
+{
+    return edgeList;
+}
+
 QRectF MissionElem::boundingRect() const
 {
     qreal adjust = 5;
-    return QRectF( -20 - adjust, -20 - adjust,
-                  45 + adjust, 45 + adjust);
+    return QRectF(-ME_RADIUS - adjust, -ME_RADIUS - adjust,
+                  ME_RADIUS*2 + adjust, ME_RADIUS*2 + adjust);
 }
 
 QPainterPath MissionElem::shape() const
 {
     QPainterPath path;
-    path.addEllipse(-20, -20, 40, 40);
+    path.addEllipse(-ME_RADIUS, -ME_RADIUS, ME_RADIUS*2, ME_RADIUS*2);
     return path;
 }
 
 void MissionElem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    QRadialGradient gradient(-5, -5, 23);
+    QRadialGradient gradient(-ME_RADIUS/5, -ME_RADIUS/5, ME_RADIUS-(ME_RADIUS/10));
 
     if (isCurrent)
     {
@@ -46,7 +57,7 @@ void MissionElem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 
     painter->setBrush(gradient);
     painter->setPen(QPen(QColor(45, 45, 45), 2));
-    painter->drawEllipse(-20, -20, 40, 40);
+    painter->drawEllipse(-ME_RADIUS, -ME_RADIUS, ME_RADIUS*2, ME_RADIUS*2);
 }
 
 QVariant MissionElem::itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value)
