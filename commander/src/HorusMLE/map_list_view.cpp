@@ -7,11 +7,9 @@ using namespace std;
 MapListView::MapListView(QWidget *parent)
     : QGraphicsView(parent)
 {
-    QRect rect = parent->contentsRect();
-
     scene = new QGraphicsScene(this);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
-    scene->setSceneRect(0, 0, rect.width(), rect.height());
+    scene->setSceneRect(scene->itemsBoundingRect());
     setScene(scene);
     setCacheMode(CacheBackground);
     setViewportUpdateMode(BoundingRectViewportUpdate);
@@ -23,7 +21,7 @@ MapListView::MapListView(QWidget *parent)
 
 MissionElem *MapListView::missionByName(QString name)
 {
-    MissionElem* me;
+    MissionElem* me = NULL;
     bool found = false;
     foreach (QGraphicsItem* item, scene->items())
     {
@@ -55,10 +53,6 @@ void MapListView::keyPressEvent(QKeyEvent *event)
 {
 }
 
-void MapListView::timerEvent(QTimerEvent *event)
-{
-}
-
 void MapListView::wheelEvent(QWheelEvent *event)
 {
 }
@@ -66,9 +60,7 @@ void MapListView::wheelEvent(QWheelEvent *event)
 void MapListView::drawBackground(QPainter *painter, const QRectF &rect)
 {
     Q_UNUSED(rect);
-    QRectF sceneRect = this->sceneRect();
-    painter->setBrush(Qt::NoBrush);
-    painter->drawRect(sceneRect);
+    Q_UNUSED(painter);
 }
 
 void MapListView::scaleView(qreal scaleFactor)

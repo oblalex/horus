@@ -60,8 +60,6 @@ void ListFileHelper::loadToView()
     if(root.tagName() != XML_ROOT)
         return;
 
-
-
     QDomNode n;
     n = root.firstChild();
     while(n.isNull()==false)
@@ -192,5 +190,6 @@ void ListFileHelper::resolveReferences(QDomNode& first)
             view->scene->addItem(new Edge(me, me->nextRed, EDGE_RED));
         if (me->nextBlue)
             view->scene->addItem(new Edge(me, me->nextBlue, EDGE_BLUE));
+        me->update();
     }
 }

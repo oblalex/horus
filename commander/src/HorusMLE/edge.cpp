@@ -31,12 +31,19 @@ void Edge::adjust()
     prepareGeometryChange();
 
     if (length > qreal(20.)) {
-        QPointF edgeOffset((line.dx() * ME_RADIUS) / length, (line.dy() * ME_RADIUS) / length);
-        srcPoint = line.p1() + edgeOffset;
-        dstPoint = line.p2() - edgeOffset;
+        QPointF edgeOffsetSrc((line.dx() * src->getRadius()) / length, (line.dy() * src->getRadius()) / length);
+        QPointF edgeOffsetDst((line.dx() * dst->getRadius()) / length, (line.dy() * dst->getRadius()) / length);
+
+        srcPoint = line.p1() + edgeOffsetSrc;
+        dstPoint = line.p2() - edgeOffsetDst;
     } else {
         srcPoint = dstPoint = line.p1();
     }
+}
+
+MissionElem *Edge::getDst()
+{
+    return dst;
 }
 
 QRectF Edge::boundingRect() const
@@ -88,7 +95,12 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 
     painter->setPen(QPen(lineColor, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 
-    if (etype == EDGE_NONE)
+    int dstCount = 0;
+    if (src->nextNone==this->dst) dstCount++;
+    if (src->nextRed==this->dst) dstCount++;
+    if (src->nextBlue==this->dst) dstCount++;
+
+    if (((etype == EDGE_NONE) && (dstCount == 3)) || (dstCount == 1))
     {
         painter->drawLine(line);
 
@@ -104,13 +116,21 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
         painter->setBrush(fillColor);
         painter->drawPolygon(QPolygonF() << line.p2() << dstArrowP1 << dstArrowP2);
     } else {
-        int diff = 100/line.length()*35;
+        int k1;
+        k1 = (dstCount==2)?20:35;
+        int diff = 100/line.length()*k1;
         QLineF diffLine(srcPoint, dstPoint);
 
-        if (etype == EDGE_BLUE)
-            diffLine.setAngle(diffLine.angle()+diff);
-        else
-            diffLine.setAngle(diffLine.angle()-diff);
+        QList<Edge*> parallels;
+        foreach (Edge* parallel, src->edges())
+            if ((parallel->src==src) && (parallel->dst==dst))
+                parallels << parallel;
+
+        if (((dstCount==3) && (etype != EDGE_BLUE))
+         || ((dstCount==2) && (parallels.at(0)!=this)))
+                diff *= -1;
+
+        diffLine.setAngle(diffLine.angle()+diff);
 
         qreal rads = diff*(Pi/180);
         qreal newLen = diffLine.length()+(diffLine.length()*(1-cos(rads)));
@@ -120,24 +140,30 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
                        (diffLine.p1().y()+diffLine.p2().y()) /2);
 
         QLineF dstLine(dst->pos(), dstPoint);
-        if (etype == EDGE_BLUE)
-            dstLine.setAngle(dstLine.angle()-20);
-        else
-            dstLine.setAngle(dstLine.angle()+20);
+
+        int angleDst = (dstCount==3)
+                        ? 18 + (dst->edges().count()/3)
+                        : 9;
+
+        if (((dstCount==3) && (etype == EDGE_BLUE))
+         || ((dstCount==2) && (parallels.at(0)==this)))
+                angleDst *= -1;
+
+        dstLine.setAngle(dstLine.angle()+angleDst);
 
         QPainterPath ePath;
         ePath.moveTo(srcPoint);
         ePath.quadTo(cPoint, dstLine.p2());
         painter->drawPath(ePath);
 
-        double angle = ::acos(dstLine.dx() / dstLine.length());
+        double angleArrow = ::acos(dstLine.dx() / dstLine.length());
         if (dstLine.dy() >= 0)
-            angle = TwoPi - angle;
+            angleArrow = TwoPi - angleArrow;
 
-        QPointF dstArrowP1 = dstLine.p2() - QPointF(sin(angle - Pi / 3) * arrowSize,
-                                                 cos(angle - Pi / 3) * arrowSize);
-        QPointF dstArrowP2 = dstLine.p2() - QPointF(sin(angle - Pi + Pi / 3) * arrowSize,
-                                                  cos(angle - Pi + Pi / 3) * arrowSize);
+        QPointF dstArrowP1 = dstLine.p2() - QPointF(sin(angleArrow - Pi / 3) * arrowSize,
+                                                 cos(angleArrow - Pi / 3) * arrowSize);
+        QPointF dstArrowP2 = dstLine.p2() - QPointF(sin(angleArrow - Pi + Pi / 3) * arrowSize,
+                                                  cos(angleArrow - Pi + Pi / 3) * arrowSize);
 
         painter->setBrush(fillColor);
         painter->drawPolygon(QPolygonF() << dstLine.p2() << dstArrowP1 << dstArrowP2);

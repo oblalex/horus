@@ -8,7 +8,7 @@
 #include "edge.h"
 #include "d_mission.h"
 
-#define ME_RADIUS (25)
+#define  DEFAULT_RADIUS (25)
 
 class Edge;
 class MissionElem;
@@ -40,6 +40,7 @@ public:
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
+    int getRadius();
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant &value);
 
@@ -48,6 +49,7 @@ protected:
 
 private:
     QList<Edge*> edgeList;
+    int radius;
 };
 
 #endif // MISSION_ELEM_H
