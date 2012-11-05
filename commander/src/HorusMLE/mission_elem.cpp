@@ -81,12 +81,11 @@ void MissionElem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     QRect textRect = getTextRect(text);
 
     painter->setBrush(Qt::white);
-    painter->setPen(QPen(QColor(70, 70, 70), 2));
+    painter->setPen(Qt::NoPen);
     painter->drawRect(textRect);
-
-    painter->drawText(textRect,
-                      Qt::AlignHCenter | Qt::AlignVCenter,
-                      text);
+    painter->setPen(Qt::black);
+    painter->drawText(QRect(textRect.left(), textRect.top(), textRect.width(), textRect.height()),
+                      Qt::AlignCenter, text);
 }
 
 int MissionElem::getRadius()
