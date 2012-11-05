@@ -39,8 +39,11 @@ QList<Edge *> MissionElem::edges() const
 QRectF MissionElem::boundingRect() const
 {
     qreal adjust = 5;
+    QString text = QString(data.name);
+    QRect textRec = getTextRect(text);
+
     return QRectF(-radius - adjust, -radius - adjust,
-                  radius*2 + adjust, radius*2 + adjust);
+                  radius*2 + adjust, radius*2 + adjust).united(textRec);
 }
 
 QPainterPath MissionElem::shape() const
@@ -73,6 +76,17 @@ void MissionElem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     painter->setBrush(gradient);
     painter->setPen(QPen(QColor(45, 45, 45), 2));
     painter->drawEllipse(-radius, -radius, radius*2, radius*2);
+
+    QString text = QString(data.name);
+    QRect textRect = getTextRect(text);
+
+    painter->setBrush(Qt::white);
+    painter->setPen(QPen(QColor(70, 70, 70), 2));
+    painter->drawRect(textRect);
+
+    painter->drawText(textRect,
+                      Qt::AlignHCenter | Qt::AlignVCenter,
+                      text);
 }
 
 int MissionElem::getRadius()
@@ -87,6 +101,7 @@ QVariant MissionElem::itemChange(QGraphicsItem::GraphicsItemChange change, const
         case ItemPositionHasChanged:
             foreach (Edge *edge, edgeList)
                 edge->adjust();
+            update();
             MLV->scene->update();
             break;
         default:
@@ -106,4 +121,14 @@ void MissionElem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     update();
     QGraphicsItem::mouseReleaseEvent(event);
+}
+
+QRect MissionElem::getTextRect(QString text) const
+{
+    QFont font;
+    font.setFamily(font.defaultFamily());
+    font.setPointSize(8);
+    QFontMetrics fm(font);
+    int w = fm.width(text)+15;
+    return QRect(-w/2, radius+3, w, fm.height()+2);
 }

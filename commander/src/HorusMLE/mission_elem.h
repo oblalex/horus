@@ -48,6 +48,7 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
 private:
+    QRect getTextRect(QString text) const;
     QList<Edge*> edgeList;
     int radius;
 };

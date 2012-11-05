@@ -18,6 +18,7 @@ Edge::Edge(MissionElem *src, MissionElem *dst, int etype)
     this->src->addEdge(this);
     this->dst->addEdge(this);
     adjust();
+    setZValue(-2);
 }
 
 void Edge::adjust()
