@@ -150,7 +150,8 @@ void ListFileHelper::addFromElement(QDomElement *e)
     memset(me->data.name, 0, name.size()+1);
     memcpy(me->data.name, name.toStdString().c_str(), name.size());
 
-    me->data.path = (char*) malloc(path.size());
+    me->data.path = (char*) malloc(path.size()+1);
+    memset(me->data.path, 0, path.size()+1);
     memcpy(me->data.path, path.toStdString().c_str(), path.size());
 
     me->isCurrent = e->attribute(XML_ATTR_IS_CURRENT, IS_CURRENT_FALSE_VAL) == IS_CURRENT_TRUE_VAL;

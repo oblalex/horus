@@ -93,6 +93,15 @@ int MissionElem::getRadius()
     return radius;
 }
 
+void MissionElem::updateToolTip()
+{
+    QString toolTip;
+    toolTip.append(QObject::tr("Name: ")).append(data.name).append(".\n");
+    toolTip.append(QObject::tr("Path: ")).append(data.path).append(".\n");
+    toolTip.append(QObject::tr("Duration: ")).append(QString::number(data.sDuration)).append(" "+QObject::tr("s")+".");
+    setToolTip(toolTip);
+}
+
 QVariant MissionElem::itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value)
 {
     switch (change)

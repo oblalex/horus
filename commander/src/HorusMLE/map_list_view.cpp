@@ -32,6 +32,7 @@ MissionElem *MapListView::missionByName(QString name)
 void MapListView::addMission(MissionElem *me)
 {
     missions << me;
+    me->updateToolTip();
     scene->addItem(me);
 }
 
