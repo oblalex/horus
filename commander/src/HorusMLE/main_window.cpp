@@ -42,7 +42,7 @@ void MainWindow::createMenu()
     mainMenu->addAction(clearAction);
 
     saveAction = new QAction(tr("&Save"), this);
-    //connect(saveAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    connect(saveAction, SIGNAL(triggered()), this, SLOT(onSaveAction()));
     saveAction->setIcon(QIcon((":/img/save.png")));
     mainMenu->addAction(saveAction);
 
@@ -197,7 +197,7 @@ void MainWindow::onListEmpty()
 
 void MainWindow::onListNonEmpty()
 {
-    statLabel->clear();
+    redrawMissionsCount();
 
     clearAction->setEnabled(true);
 
@@ -212,6 +212,11 @@ void MainWindow::onListNonEmpty()
     delAction->setEnabled(true);
 }
 
+void MainWindow::redrawMissionsCount()
+{
+    statLabel->setText(tr("Missions: ")+QString::number(MLV->missionsCount()));
+}
+
 void MainWindow::onQuitAction()
 {
     qApp->quit();
@@ -224,4 +229,9 @@ void MainWindow::onLoadAction()
         onListLoaded();
     else
         onListNonLoaded();
+}
+
+void MainWindow::onSaveAction()
+{
+    lfHelper->saveFromView();
 }

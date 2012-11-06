@@ -2,6 +2,7 @@
 #define MAP_LIST_VIEW_H
 
 #include <QtGui/QGraphicsView>
+#include <QList>
 #include "mission_elem.h"
 
 class MissionElem;
@@ -14,9 +15,11 @@ public:
     MapListView(QWidget *parent = 0);
 
     MissionElem* missionByName(QString name);
+    void addMission(MissionElem* me);
+    QList<MissionElem*> getMissions();
+    int missionsCount();
 
     QGraphicsScene *scene;
-
 public slots:
     void zoomIn();
     void zoomOut();
@@ -27,6 +30,9 @@ protected:
     void drawBackground(QPainter *painter, const QRectF &rect);
 
     void scaleView(qreal scaleFactor);
+
+private:
+    QList<MissionElem*> missions;
 };
 
 #endif // MAP_LIST_VIEW_H

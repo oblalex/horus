@@ -21,24 +21,28 @@ MapListView::MapListView(QWidget *parent)
 
 MissionElem *MapListView::missionByName(QString name)
 {
-    MissionElem* me = NULL;
-    bool found = false;
-    foreach (QGraphicsItem* item, scene->items())
+    foreach (MissionElem* me, missions)
     {
-        try
-        {
-            me = qgraphicsitem_cast<MissionElem *>(item);
             if (me->data.name == name)
-            {
-                found = true;
-                break;
-            }
-        } catch (bad_cast& bc) {
-            Q_UNUSED(bc)
-            // Nothing to do. This is not MissionElem*
-        }
+            return me;
     }
-    return (found)?me:NULL;
+    return NULL;
+}
+
+void MapListView::addMission(MissionElem *me)
+{
+    missions << me;
+    scene->addItem(me);
+}
+
+QList<MissionElem *> MapListView::getMissions()
+{
+    return QList<MissionElem *>(missions);
+}
+
+int MapListView::missionsCount()
+{
+    return missions.count();
 }
 
 void MapListView::zoomIn()

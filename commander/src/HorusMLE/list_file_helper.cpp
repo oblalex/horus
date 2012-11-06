@@ -82,6 +82,48 @@ void ListFileHelper::loadToView()
 void ListFileHelper::saveFromView()
 {
     saved = false;
+
+    QFile file(listPath);
+
+    if(file.open(QIODevice::WriteOnly) == false)
+        return;
+
+    doc.clear();
+
+    QDomProcessingInstruction pi = doc.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\"");
+    doc.insertBefore(pi, QDomNode());
+
+    QDomElement root = doc.createElement(XML_ROOT);
+    doc.appendChild(root);
+
+    foreach (MissionElem* me, view->getMissions())
+    {
+        QDomElement xml_elem = doc.createElement(XML_ELEM);
+
+        xml_elem.setAttribute(XML_ATTR_NAME, me->data.name);
+        xml_elem.setAttribute(XML_ATTR_PATH, me->data.path);
+        xml_elem.setAttribute(XML_ATTR_DURATION, QString::number(me->data.sDuration));
+        xml_elem.setAttribute(XML_ATTR_POSX, QString::number(me->pos().x()));
+        xml_elem.setAttribute(XML_ATTR_POSY, QString::number(me->pos().y()));
+
+        if (me->nextNone)
+            xml_elem.setAttribute(XML_ATTR_NEXT, me->nextNone->data.name);
+        if (me->nextRed)
+            xml_elem.setAttribute(XML_ATTR_NEXT_RED, me->nextRed->data.name);
+        if (me->nextBlue)
+            xml_elem.setAttribute(XML_ATTR_NEXT_BLUE, me->nextBlue->data.name);
+
+        if (me->isCurrent)
+            xml_elem.setAttribute(XML_ATTR_IS_CURRENT, IS_CURRENT_TRUE_VAL);
+
+        root.appendChild(xml_elem);
+    }
+
+    QTextStream ts(&file);
+    ts << doc.toString();
+    file.close();
+
+    saved = true;
 }
 
 bool ListFileHelper::isLoaded()
@@ -121,30 +163,20 @@ void ListFileHelper::addFromElement(QDomElement *e)
     pos = e->attribute(XML_ATTR_POSY, "0");
     int y = pos.toInt();
 
-    view->scene->addItem(me);
+    view->addMission(me);
     me->setPos(x, y);
 }
 
 void ListFileHelper::resolveReferences(QDomNode& first)
 {
-    QList<QGraphicsItem *> items = view->scene->items();
-    MissionElem* me;
     QString name;
     QString attr;
     bool found;
     QDomNode n;
     QDomElement e;
 
-    foreach (QGraphicsItem* item, items)
+    foreach (MissionElem* me, view->getMissions())
     {
-        try
-        {
-            me = qgraphicsitem_cast<MissionElem *>(item);
-        } catch (bad_cast& bc) {
-            Q_UNUSED(bc)
-            continue;
-        }
-
         name = QString(me->data.name);
 
         found = false;

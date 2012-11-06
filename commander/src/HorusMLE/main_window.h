@@ -22,6 +22,7 @@ public:
 private slots:
     void onQuitAction();
     void onLoadAction();
+    void onSaveAction();
 
 private:
     void createMenu();
@@ -41,6 +42,8 @@ private:
 
     void onListEmpty();
     void onListNonEmpty();
+
+    void redrawMissionsCount();
 
     Ui::MainWindow *ui;
 
