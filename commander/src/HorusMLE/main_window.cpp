@@ -37,7 +37,7 @@ void MainWindow::createMenu()
     mainMenu->addAction(loadAction);
 
     clearAction = new QAction(tr("&Clear"), this);
-    //connect(clearAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    connect(clearAction, SIGNAL(triggered()), this, SLOT(onClearAction()));
     clearAction->setIcon(QIcon((":/img/clear.png")));
     mainMenu->addAction(clearAction);
 
@@ -229,6 +229,25 @@ void MainWindow::onLoadAction()
         onListLoaded();
     else
         onListNonLoaded();
+}
+
+void MainWindow::onClearAction()
+{
+    foreach (QGraphicsItem* item, MLV->items())
+    {
+        MissionElem* me = qgraphicsitem_cast<MissionElem*>(item);
+        if (me)
+        {
+            free(me->data.name);
+            free(me->data.path);
+        }
+        MLV->scene->removeItem(item);
+        delete item;
+    }
+
+    MLV->missionsClear();
+    MLV->scene->update();
+    redrawMissionsCount();
 }
 
 void MainWindow::onSaveAction()

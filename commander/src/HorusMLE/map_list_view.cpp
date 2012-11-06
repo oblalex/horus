@@ -45,6 +45,11 @@ int MapListView::missionsCount()
     return missions.count();
 }
 
+void MapListView::missionsClear()
+{
+    missions.clear();
+}
+
 void MapListView::zoomIn()
 {
 }

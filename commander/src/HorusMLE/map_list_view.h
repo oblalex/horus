@@ -18,6 +18,7 @@ public:
     void addMission(MissionElem* me);
     QList<MissionElem*> getMissions();
     int missionsCount();
+    void missionsClear();
 
     QGraphicsScene *scene;
 public slots:

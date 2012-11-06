@@ -22,6 +22,7 @@ public:
 private slots:
     void onQuitAction();
     void onLoadAction();
+    void onClearAction();
     void onSaveAction();
 
 private:
