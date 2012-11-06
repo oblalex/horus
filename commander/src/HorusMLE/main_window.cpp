@@ -1,5 +1,6 @@
 #include "main_window.h"
 #include "ui_main_window.h"
+#include "mission_dialog.h"
 #include <QSplitter>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -127,7 +128,7 @@ void MainWindow::createToolActions()
     ui->toolBar->addAction(newAction);
 
     editAction = new QAction(tr("&Edit"), this);
-    //connect(editAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    connect(editAction, SIGNAL(triggered()), this, SLOT(onEditAction()));
     editAction->setIcon(QIcon((":/img/edit.png")));
     ui->toolBar->addAction(editAction);
 
@@ -233,16 +234,14 @@ void MainWindow::onLoadAction()
 
 void MainWindow::onClearAction()
 {
-    foreach (QGraphicsItem* item, MLV->items())
+    foreach (MissionElem* me, MLV->getMissions())
     {
-        MissionElem* me = qgraphicsitem_cast<MissionElem*>(item);
-        if (me)
-        {
-            free(me->data.name);
-            free(me->data.path);
-        }
-        MLV->scene->removeItem(item);
-        delete item;
+        free(me->data.name);
+        free(me->data.path);
+
+        me->rmEdges();
+        MLV->scene->removeItem(me);
+        delete me;
     }
 
     MLV->missionsClear();
@@ -253,4 +252,14 @@ void MainWindow::onClearAction()
 void MainWindow::onSaveAction()
 {
     lfHelper->saveFromView();
+}
+
+void MainWindow::onEditAction()
+{
+    MissionElem* me = MLV->getActive();
+    if (me==NULL) return;
+
+    MissionDialog dlg(MLV, true);
+    if (dlg.exec()==QDialog::Accepted)
+        me->update();
 }

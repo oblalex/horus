@@ -17,7 +17,8 @@ SOURCES += main.cpp\
     map_list_view.cpp \
     list_file_helper.cpp \
     mission_elem.cpp \
-    edge.cpp
+    edge.cpp \
+    mission_dialog.cpp
 
 HEADERS  += main_window.h \
     map_list_view.h \
@@ -25,11 +26,13 @@ HEADERS  += main_window.h \
     ../domain/d_weather.h \
     ../domain/d_mission.h \
     mission_elem.h \
-    edge.h
+    edge.h \
+    mission_dialog.h
 
 INCLUDEPATH += ../domain
 
-FORMS    += main_window.ui
+FORMS    += main_window.ui \
+    mission_dialog.ui
 
 RESOURCES += \
     img.qrc

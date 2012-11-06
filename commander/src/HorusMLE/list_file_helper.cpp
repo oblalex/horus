@@ -27,8 +27,6 @@ using namespace std;
 #define IS_CURRENT_TRUE_VAL ("1")
 #define IS_CURRENT_FALSE_VAL ("0")
 
-#define DEFAULT_MISSION_DURATION ("3600")
-
 static QString listPath = "missions.xml";
 static QDomDocument doc("missions");
 

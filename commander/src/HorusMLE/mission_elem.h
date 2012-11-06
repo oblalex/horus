@@ -8,7 +8,8 @@
 #include "edge.h"
 #include "d_mission.h"
 
-#define  DEFAULT_RADIUS (25)
+#define DEFAULT_RADIUS (25)
+#define DEFAULT_MISSION_DURATION ("3600")
 
 class Edge;
 class MissionElem;
@@ -28,6 +29,9 @@ public:
     MissionElem* nextBlue;
 
     void addEdge(Edge *edge);
+    void rmEdge(Edge *edge);
+    void rmDstEdges();
+    void rmEdges();
     QList<Edge *> edges() const;
     int refsCount;
 

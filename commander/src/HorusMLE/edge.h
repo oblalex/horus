@@ -13,6 +13,7 @@ class Edge : public QGraphicsItem
 public:
 
     Edge(MissionElem* src, MissionElem* dst, int etype);
+    ~Edge();
 
     void adjust();
 

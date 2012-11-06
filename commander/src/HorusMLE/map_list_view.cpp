@@ -5,7 +5,8 @@
 using namespace std;
 
 MapListView::MapListView(QWidget *parent)
-    : QGraphicsView(parent)
+    : QGraphicsView(parent),
+      active(NULL)
 {
     scene = new QGraphicsScene(this);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -49,6 +50,22 @@ int MapListView::missionsCount()
 void MapListView::missionsClear()
 {
     missions.clear();
+    unsetActive();
+}
+
+void MapListView::setActive(MissionElem *me)
+{
+    active = me;
+}
+
+MissionElem *MapListView::getActive()
+{
+    return active;
+}
+
+void MapListView::unsetActive()
+{
+    active = NULL;
 }
 
 void MapListView::zoomIn()

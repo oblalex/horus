@@ -31,6 +31,17 @@ void MissionElem::addEdge(Edge *edge)
         e->adjust();
 }
 
+void MissionElem::rmEdge(Edge *edge)
+{
+    edgeList.removeOne(edge);
+
+    if (edge->getDst()==this)
+        refsCount--;
+
+    foreach (Edge *e, edgeList)
+        e->adjust();
+}
+
 QList<Edge *> MissionElem::edges() const
 {
     return edgeList;
@@ -102,6 +113,25 @@ void MissionElem::updateToolTip()
     setToolTip(toolTip);
 }
 
+void MissionElem::rmDstEdges()
+{
+    foreach (Edge* e, edgeList)
+    {
+        if (this==e->getDst()) continue;
+        MLV->scene->removeItem(e);
+        delete e;
+    }
+}
+
+void MissionElem::rmEdges()
+{
+    foreach (Edge* e, edgeList)
+    {
+        MLV->scene->removeItem(e);
+        delete e;
+    }
+}
+
 QVariant MissionElem::itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value)
 {
     switch (change)
@@ -121,6 +151,7 @@ QVariant MissionElem::itemChange(QGraphicsItem::GraphicsItemChange change, const
 
 void MissionElem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
+    MLV->setActive(this);
     update();
     QGraphicsItem::mousePressEvent(event);
 }

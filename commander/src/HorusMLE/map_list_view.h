@@ -21,6 +21,11 @@ public:
     void missionsClear();
 
     QGraphicsScene *scene;
+
+    void setActive(MissionElem* me);
+    MissionElem* getActive();
+    void unsetActive();
+
 public slots:
     void zoomIn();
     void zoomOut();
@@ -34,6 +39,7 @@ protected:
 
 private:
     QList<MissionElem*> missions;
+    MissionElem* active;
 };
 
 #endif // MAP_LIST_VIEW_H

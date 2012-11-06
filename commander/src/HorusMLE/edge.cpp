@@ -21,6 +21,12 @@ Edge::Edge(MissionElem *src, MissionElem *dst, int etype)
     setZValue(-2);
 }
 
+Edge::~Edge()
+{
+    src->rmEdge(this);
+    dst->rmEdge(this);
+}
+
 void Edge::adjust()
 {
     if (!src || !dst)

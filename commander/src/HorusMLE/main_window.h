@@ -25,6 +25,8 @@ private slots:
     void onClearAction();
     void onSaveAction();
 
+    void onEditAction();
+
 private:
     void createMenu();
     void createMainBar();
