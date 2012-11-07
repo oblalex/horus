@@ -104,7 +104,7 @@ QRectF MissionElem::boundingRect() const
     QString text = QString(data.name);
     QRect textRec = getTextRect(text);
 
-    return QRectF(-radius - adjust, -radius - adjust,
+    return QRectF(-radius-adjust, -radius-adjust,
                   radius*2 + adjust, radius*2 + adjust).united(textRec);
 }
 

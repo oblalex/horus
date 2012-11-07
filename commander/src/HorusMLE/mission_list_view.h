@@ -2,6 +2,7 @@
 #define MAP_LIST_VIEW_H
 
 #include <QtGui/QGraphicsView>
+#include <QWheelEvent>
 #include <QList>
 #include "mission_elem.h"
 
@@ -20,7 +21,6 @@ public:
     int missionsCount();
     void missionsClear();
 
-
     QGraphicsScene *scene;
 
     void setActive(MissionElem* me);
@@ -35,16 +35,20 @@ public slots:
     void zoomOut();
 
 protected:
-    void keyPressEvent(QKeyEvent *event);
     void wheelEvent(QWheelEvent *event);
     void drawBackground(QPainter *painter, const QRectF &rect);
-
-    void scaleView(qreal scaleFactor);
+    void scaleView(qreal factor);
 
 private:
+
     QList<MissionElem*> missions;
     MissionElem* active;
     MissionElem* current;
+
+    QPointF currentCenterPoint;
+    QPoint lastPanPoint;
+
+    qreal scaleFactor;
 };
 
 #endif // MAP_LIST_VIEW_H

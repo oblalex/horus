@@ -7,7 +7,8 @@ using namespace std;
 MissionListView::MissionListView(QWidget *parent)
     : QGraphicsView(parent),
       active(NULL),
-      current(NULL)
+      current(NULL),
+      scaleFactor(1)
 {
     scene = new QGraphicsScene(this);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -17,8 +18,8 @@ MissionListView::MissionListView(QWidget *parent)
     setViewportUpdateMode(BoundingRectViewportUpdate);
     setRenderHint(QPainter::Antialiasing);
     setTransformationAnchor(AnchorUnderMouse);
-    scale(qreal(1), qreal(1));
-    setMinimumSize(50, 50);
+    scale(scaleFactor, scaleFactor);
+    setMinimumSize(100, 100);
 }
 
 MissionElem *MissionListView::missionByName(QString name)
@@ -78,44 +79,46 @@ MissionElem *MissionListView::getCurrent()
 
 void MissionListView::checkCurrent(MissionElem *me)
 {
-    if (me->isCurrent){
+    if (me->isCurrent) {
         if ((current!=NULL) && (me!=current))
         {
             current->isCurrent = false;
             current->update();
         }
         current = me;
-    } else
-    {
+    } else {
         if (me==current)
-        {
             current = NULL;
-        }
     }
 }
 
 void MissionListView::zoomIn()
 {
+    scaleView(1.1);
 }
 
 void MissionListView::zoomOut()
 {
+    scaleView(1/1.1);
 }
 
-void MissionListView::keyPressEvent(QKeyEvent *event)
+void MissionListView::scaleView(qreal factor)
 {
+    scale(factor, factor);
 }
 
 void MissionListView::wheelEvent(QWheelEvent *event)
 {
+    if(event->delta() > 0)
+    {
+        zoomIn();
+    } else {
+        zoomOut();
+    }
 }
 
 void MissionListView::drawBackground(QPainter *painter, const QRectF &rect)
 {
     Q_UNUSED(rect);
     Q_UNUSED(painter);
-}
-
-void MissionListView::scaleView(qreal scaleFactor)
-{
 }

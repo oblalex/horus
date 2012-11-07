@@ -32,8 +32,6 @@ private:
     void createMenu();
     void createMainBar();
     void createNavBar();
-    void createNavActions();
-    void createZoomSpin();
     void createToolBar();
     void createToolActions();
     void createStatusBar();
@@ -64,7 +62,6 @@ private:
 
     QAction *quitAction;
 
-    QSpinBox* zoomSpin;
     MissionListView* MLV;
 
     QLabel* statLabel;

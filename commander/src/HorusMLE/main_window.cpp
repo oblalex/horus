@@ -64,37 +64,13 @@ void MainWindow::createMainBar()
 
 void MainWindow::createNavBar()
 {
-    ui->navBar->setIconSize(QSize(18, 18));
-
-    createNavActions();
-    createZoomSpin();
-}
-
-void MainWindow::createNavActions()
-{
     zoomInAction = new QAction(tr("Zoom In"), this);
-    //connect(zoomInAction, SIGNAL(triggered()), this, SLOT(showNormal()));
     zoomInAction->setIcon(QIcon((":/img/zoom_in.png")));
     ui->navBar->addAction(zoomInAction);
 
     zoomOutAction = new QAction(tr("Zoom Out"), this);
-    //connect(zoomOutAction, SIGNAL(triggered()), this, SLOT(showNormal()));
     zoomOutAction->setIcon(QIcon((":/img/zoom_out.png")));
     ui->navBar->addAction(zoomOutAction);
-}
-
-void MainWindow::createZoomSpin()
-{
-    zoomSpin = new QSpinBox(this);
-    QRect rect = zoomSpin->geometry();
-    rect.setWidth(70);
-    zoomSpin->setGeometry(rect);
-    zoomSpin->setMaximum(1000);
-    zoomSpin->setMinimum(10);
-    zoomSpin->setSingleStep(10);
-    zoomSpin->setValue(100);
-    zoomSpin->setSuffix(" %");
-    ui->navBar->addWidget(zoomSpin);
 }
 
 void MainWindow::createToolBar()
@@ -133,6 +109,8 @@ void MainWindow::createStatusBar()
 void MainWindow::createCentralWidget()
 {
     MLV = new MissionListView(this);
+    connect(zoomInAction, SIGNAL(triggered()), MLV, SLOT(zoomIn()));
+    connect(zoomOutAction, SIGNAL(triggered()), MLV, SLOT(zoomOut()));
     setCentralWidget(MLV);
     MLV->setFocus();
 }
@@ -171,7 +149,6 @@ void MainWindow::onListEmpty()
 
     zoomInAction->setEnabled(false);
     zoomOutAction->setEnabled(false);
-    zoomSpin->setEnabled(false);
 
     editAction->setEnabled(false);
     delAction->setEnabled(false);
@@ -185,7 +162,6 @@ void MainWindow::onListNonEmpty()
 
     zoomInAction->setEnabled(true);
     zoomOutAction->setEnabled(true);
-    zoomSpin->setEnabled(true);
 
     editAction->setEnabled(true);
     delAction->setEnabled(true);
