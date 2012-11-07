@@ -32,6 +32,7 @@ MissionDialog::MissionDialog(MissionListView* MLV, bool edit, QWidget *parent) :
 
     if (edit)
     {
+        setWindowTitle(tr("Editing mission"));
         ui->nameLe->setText(missElem->data.name);
         ui->pathLe->setText(missElem->data.path);
         ui->durationSpin->setValue(missElem->data.sDuration);
@@ -41,6 +42,7 @@ MissionDialog::MissionDialog(MissionListView* MLV, bool edit, QWidget *parent) :
         ui->nextRedCmb->setCurrentIndex(lst.indexOf(missElem->nextRed));
         ui->nextBlueCmb->setCurrentIndex(lst.indexOf(missElem->nextBlue));
     } else {
+        setWindowTitle(tr("Adding new mission"));
         ui->durationSpin->setValue(QString(DEFAULT_MISSION_DURATION).toInt());
 
         ui->nextNoneCmb->setCurrentIndex(0);
