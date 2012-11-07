@@ -8,6 +8,7 @@ MissionListView::MissionListView(QWidget *parent)
     : QGraphicsView(parent),
       active(NULL),
       current(NULL),
+      highlighted(NULL),
       scaleFactor(1)
 {
     scene = new QGraphicsScene(this);
@@ -64,13 +65,18 @@ int MissionListView::missionsCount()
 void MissionListView::missionsClear()
 {
     missions.clear();
-    unsetActive();
+    setActive(NULL);
     current = NULL;
+    highlighted = NULL;
 }
 
 void MissionListView::setActive(MissionElem *me)
 {
+    MissionElem *old = active;
     active = me;
+
+    if ((old!=NULL) && (old != me))
+        old->update();
 }
 
 MissionElem *MissionListView::getActive()
@@ -78,9 +84,20 @@ MissionElem *MissionListView::getActive()
     return active;
 }
 
-void MissionListView::unsetActive()
+void MissionListView::setHighlighted(MissionElem *me)
 {
-    active = NULL;
+    highlighted = me;
+}
+
+void MissionListView::setUnhighlighted(MissionElem *me)
+{
+    if (highlighted==me)
+        highlighted = NULL;
+}
+
+MissionElem *MissionListView::getHighlighted()
+{
+    return highlighted;
 }
 
 MissionElem *MissionListView::getCurrent()
@@ -111,6 +128,15 @@ void MissionListView::zoomIn()
 void MissionListView::zoomOut()
 {
     scaleView(1/1.1);
+}
+
+void MissionListView::mousePressEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event)
+
+    if (highlighted==NULL)
+        setActive(NULL);
+    QGraphicsView::mousePressEvent(event);
 }
 
 void MissionListView::scaleView(qreal factor)

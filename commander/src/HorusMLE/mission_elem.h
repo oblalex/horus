@@ -65,7 +65,6 @@ private:
     void updateRadius();
     QRect getTextRect(QString text) const;
     QList<Edge*> edgeList;
-    bool highlighted;
     int radius;
 };
 

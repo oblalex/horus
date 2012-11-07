@@ -26,7 +26,10 @@ public:
 
     void setActive(MissionElem* me);
     MissionElem* getActive();
-    void unsetActive();
+
+    void setHighlighted(MissionElem* me);
+    void setUnhighlighted(MissionElem* me);
+    MissionElem* getHighlighted();
 
     MissionElem* getCurrent();
     void checkCurrent(MissionElem* me);
@@ -36,6 +39,7 @@ public slots:
     void zoomOut();
 
 protected:
+    void mousePressEvent(QMouseEvent *event);
     void wheelEvent(QWheelEvent *event);
     void drawBackground(QPainter *painter, const QRectF &rect);
     void scaleView(qreal factor);
@@ -45,6 +49,7 @@ private:
     QList<MissionElem*> missions;
     MissionElem* active;
     MissionElem* current;
+    MissionElem* highlighted;
 
     QPointF currentCenterPoint;
     QPoint lastPanPoint;

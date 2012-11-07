@@ -14,7 +14,6 @@ MissionElem::MissionElem(MissionListView* MLV)
       nextBlue(NULL),
       refsCount(0),
       MLV(MLV),
-      highlighted(false),
       radius(DEFAULT_RADIUS)
 {
     data.name = NULL;
@@ -107,7 +106,7 @@ QRectF MissionElem::boundingRect() const
     QRect textRec = getTextRect(text);
 
     return QRectF(-radius-adjust, -radius-adjust,
-                  radius*2 + adjust, radius*2 + adjust).united(textRec);
+                  radius*2 + adjust+2, radius*2 + adjust+2).united(textRec);
 }
 
 QPainterPath MissionElem::shape() const
@@ -124,7 +123,7 @@ void MissionElem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 
     QRadialGradient gradient(-radius/5, -radius/5, radius-(radius/10));
 
-    int light = (highlighted)?150:120;
+    int light = (this==MLV->getHighlighted())?150:120;
 
     if (isCurrent)
     {
@@ -139,8 +138,11 @@ void MissionElem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
         gradient.setColorAt(1, QColor(173, 110, 64).light(light));
     }
 
+    int border = 2;
+    if (this==MLV->getActive()) border = border << 1;
+
     painter->setBrush(gradient);
-    painter->setPen(QPen(QColor(45, 45, 45), 2));
+    painter->setPen(QPen(QColor(30, 30, 30).light(light), border));
     painter->drawEllipse(-radius, -radius, radius*2, radius*2);
 
     QString text = QString(data.name);
@@ -156,13 +158,13 @@ void MissionElem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 
 void MissionElem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
-    highlighted = true;
+    MLV->setHighlighted(this);
     update();
 }
 
 void MissionElem::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
-    highlighted = false;
+    MLV->setUnhighlighted(this);
     update();
 }
 
