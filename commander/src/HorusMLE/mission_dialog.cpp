@@ -14,6 +14,7 @@ MissionDialog::MissionDialog(MissionListView* MLV, bool edit, QWidget *parent) :
     ui->pathLb->setText(tr("Path:"));
     ui->pathBtn->setText(tr("Browse..."));
     ui->durationLb->setText(tr("Duration (s):"));
+    ui->isCurrentChB->setText(tr("Is current"));
     ui->nextNoneLb->setText(tr("Next none:"));
     ui->nextRedLb->setText(tr("Next red:"));
     ui->nextBlueLb->setText(tr("Next blue:"));
@@ -34,6 +35,7 @@ MissionDialog::MissionDialog(MissionListView* MLV, bool edit, QWidget *parent) :
         ui->nameLe->setText(missElem->data.name);
         ui->pathLe->setText(missElem->data.path);
         ui->durationSpin->setValue(missElem->data.sDuration);
+        ui->isCurrentChB->setChecked(missElem->isCurrent);
 
         ui->nextNoneCmb->setCurrentIndex(lst.indexOf(missElem->nextNone));
         ui->nextRedCmb->setCurrentIndex(lst.indexOf(missElem->nextRed));
@@ -112,6 +114,9 @@ void MissionDialog::on_buttonBox_accepted()
     me->nextNone = MLV->missionByName(ui->nextNoneCmb->currentText());
     me->nextRed = MLV->missionByName(ui->nextRedCmb->currentText());
     me->nextBlue = MLV->missionByName(ui->nextBlueCmb->currentText());
+
+    me->isCurrent = ui->isCurrentChB->isChecked();
+    MLV->checkCurrent(me);
 
     if (me->nextNone)
     {

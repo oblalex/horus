@@ -6,7 +6,8 @@ using namespace std;
 
 MissionListView::MissionListView(QWidget *parent)
     : QGraphicsView(parent),
-      active(NULL)
+      active(NULL),
+      current(NULL)
 {
     scene = new QGraphicsScene(this);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -35,6 +36,7 @@ void MissionListView::addMission(MissionElem *me)
     missions << me;
     me->updateToolTip();
     scene->addItem(me);
+    checkCurrent(me);
 }
 
 QList<MissionElem *> MissionListView::getMissions()
@@ -66,6 +68,29 @@ MissionElem *MissionListView::getActive()
 void MissionListView::unsetActive()
 {
     active = NULL;
+}
+
+MissionElem *MissionListView::getCurrent()
+{
+    return current;
+}
+
+void MissionListView::checkCurrent(MissionElem *me)
+{
+    if (me->isCurrent){
+        if ((current!=NULL) && (me!=current))
+        {
+            current->isCurrent = false;
+            current->update();
+        }
+        current = me;
+    } else
+    {
+        if (me==current)
+        {
+            current = NULL;
+        }
+    }
 }
 
 void MissionListView::zoomIn()

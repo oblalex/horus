@@ -20,11 +20,15 @@ public:
     int missionsCount();
     void missionsClear();
 
+
     QGraphicsScene *scene;
 
     void setActive(MissionElem* me);
     MissionElem* getActive();
     void unsetActive();
+
+    MissionElem* getCurrent();
+    void checkCurrent(MissionElem* me);
 
 public slots:
     void zoomIn();
@@ -40,6 +44,7 @@ protected:
 private:
     QList<MissionElem*> missions;
     MissionElem* active;
+    MissionElem* current;
 };
 
 #endif // MAP_LIST_VIEW_H
