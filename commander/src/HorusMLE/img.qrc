@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>img/zoom_selection.png</file>
         <file>img/pane.png</file>
-        <file>img/select.png</file>
         <file>img/zoom_in.png</file>
         <file>img/zoom_out.png</file>
         <file>img/load.png</file>

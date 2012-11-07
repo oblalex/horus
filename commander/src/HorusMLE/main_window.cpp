@@ -72,12 +72,6 @@ void MainWindow::createNavBar()
 
 void MainWindow::createNavActions()
 {
-    selectAction = new QAction(tr("&Select"), this);
-    //connect(selectAction, SIGNAL(triggered()), this, SLOT(showNormal()));
-    selectAction->setIcon(QIcon((":/img/select.png")));
-
-    ui->navBar->addAction(selectAction);
-
     paneAction = new QAction(tr("&Pane"), this);
     //connect(paneAction, SIGNAL(triggered()), this, SLOT(showNormal()));
     paneAction->setIcon(QIcon((":/img/pane.png")));
@@ -185,7 +179,6 @@ void MainWindow::onListEmpty()
 
     clearAction->setEnabled(false);
 
-    selectAction->setEnabled(false);
     paneAction->setEnabled(false);
     zoomInAction->setEnabled(false);
     zoomOutAction->setEnabled(false);
@@ -202,7 +195,6 @@ void MainWindow::onListNonEmpty()
 
     clearAction->setEnabled(true);
 
-    selectAction->setEnabled(true);
     paneAction->setEnabled(true);
     zoomInAction->setEnabled(true);
     zoomOutAction->setEnabled(true);
