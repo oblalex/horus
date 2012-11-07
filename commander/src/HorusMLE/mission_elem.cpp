@@ -22,7 +22,7 @@ MissionElem::MissionElem(MapListView* MLV)
 void MissionElem::addEdge(Edge *edge)
 {
     edgeList << edge;
-    radius = DEFAULT_RADIUS+(edges().count()*1.5f);
+    updateRadius();
 
     if (edge->getDst()==this)
         refsCount++;
@@ -34,12 +34,15 @@ void MissionElem::addEdge(Edge *edge)
 void MissionElem::rmEdge(Edge *edge)
 {
     edgeList.removeOne(edge);
-
-    if (edge->getDst()==this)
-        refsCount--;
+    updateRadius();
 
     foreach (Edge *e, edgeList)
         e->adjust();
+}
+
+void MissionElem::updateRadius()
+{
+    radius = DEFAULT_RADIUS+(edges().count()*1.5f);
 }
 
 QList<Edge *> MissionElem::edges() const
