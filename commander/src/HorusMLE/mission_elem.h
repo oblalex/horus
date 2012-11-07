@@ -29,6 +29,9 @@ public:
     MissionElem* nextRed;
     MissionElem* nextBlue;
 
+    void setName(QString *value);
+    void setPath(QString *value);
+
     void addEdge(Edge *edge);
     void rmEdge(Edge *edge);
     void rmDstEdges();
@@ -48,7 +51,6 @@ public:
 
     int getRadius();
     void updateToolTip();
-    void clearDynamicStrings();
 
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant &value);
@@ -57,6 +59,7 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
 private:
+    void clearDynamicStrings();
     void updateRadius();
     QRect getTextRect(QString text) const;
     QList<Edge*> edgeList;

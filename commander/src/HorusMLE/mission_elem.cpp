@@ -31,6 +31,42 @@ MissionElem::~MissionElem()
     rmEdges();
 }
 
+void MissionElem::clearDynamicStrings()
+{
+    setName(NULL);
+    setPath(NULL);
+}
+
+void MissionElem::setName(QString* value)
+{
+    if (data.name != NULL)
+    {
+        free(data.name);
+        data.name = NULL;
+    }
+
+    if (value==NULL) return;
+
+    data.name = (char*) malloc(value->size()+1);
+    memset(data.name, 0, value->size()+1);
+    memcpy(data.name, value->toAscii().data(), value->size());
+}
+
+void MissionElem::setPath(QString *value)
+{
+    if (data.path != NULL)
+    {
+        free(data.path);
+        data.path = NULL;
+    }
+
+    if (value==NULL) return;
+
+    data.path = (char*) malloc(value->size()+1);
+    memset(data.path, 0, value->size()+1);
+    memcpy(data.path, value->toAscii().data(), value->size());
+}
+
 void MissionElem::addEdge(Edge *edge)
 {
     edgeList << edge;
@@ -126,20 +162,6 @@ void MissionElem::updateToolTip()
     toolTip.append(QObject::tr("Path: ")).append(data.path).append(".\n");
     toolTip.append(QObject::tr("Duration: ")).append(QString::number(data.sDuration)).append(" "+QObject::tr("s")+".");
     setToolTip(toolTip);
-}
-
-void MissionElem::clearDynamicStrings()
-{
-    if (data.name != NULL)
-    {
-        free(data.name);
-        data.name = NULL;
-    }
-    if (data.path != NULL)
-    {
-        free(data.path);
-        data.path = NULL;
-    }
 }
 
 void MissionElem::rmDstEdges()

@@ -86,17 +86,13 @@ void MissionDialog::on_buttonBox_accepted()
     if (name.isEmpty() || path.isEmpty()) return;
 
     MissionElem* me = MLV->getActive();
-    me->clearDynamicStrings();
 
-    me->data.name = (char*) malloc(name.size()+1);
-    memset(me->data.name, 0, name.size()+1);
-    memcpy(me->data.name, name.toStdString().c_str(), name.size());
-
-    me->data.path = (char*) malloc(path.size()+1);
-    memset(me->data.path, 0, path.size()+1);
-    memcpy(me->data.path, path.toStdString().c_str(), path.size());
+    me->setName(&name);
+    me->setPath(&path);
 
     me->data.sDuration = ui->durationSpin->value();
+    me->isCurrent = ui->isCurrentChB->isChecked();
+    MLV->checkCurrent(me);
 
     MissionElem* none = me->nextNone;
     MissionElem* red = me->nextRed;
@@ -111,9 +107,6 @@ void MissionDialog::on_buttonBox_accepted()
     me->nextNone = MLV->missionByName(ui->nextNoneCmb->currentText());
     me->nextRed = MLV->missionByName(ui->nextRedCmb->currentText());
     me->nextBlue = MLV->missionByName(ui->nextBlueCmb->currentText());
-
-    me->isCurrent = ui->isCurrentChB->isChecked();
-    MLV->checkCurrent(me);
 
     me->updateDstEdges();
 
