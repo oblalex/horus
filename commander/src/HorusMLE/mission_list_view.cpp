@@ -53,6 +53,7 @@ void MissionListView::missionsClear()
 {
     missions.clear();
     unsetActive();
+    current = NULL;
 }
 
 void MissionListView::setActive(MissionElem *me)

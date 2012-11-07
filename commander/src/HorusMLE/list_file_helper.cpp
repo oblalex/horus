@@ -215,12 +215,6 @@ void ListFileHelper::resolveReferences(QDomNode& first)
                   ?NULL
                  :view->missionByName(nameBlue);
 
-        if (me->nextNone)
-            view->scene->addItem(new Edge(me, me->nextNone, EDGE_NONE));
-        if (me->nextRed)
-            view->scene->addItem(new Edge(me, me->nextRed, EDGE_RED));
-        if (me->nextBlue)
-            view->scene->addItem(new Edge(me, me->nextBlue, EDGE_BLUE));
-        me->update();
+        me->updateDstEdges();
     }
 }

@@ -9,14 +9,26 @@
 using namespace std;
 
 MissionElem::MissionElem(MissionListView* MLV)
-    : refsCount(0),
+    : nextNone(NULL),
+      nextRed(NULL),
+      nextBlue(NULL),
+      refsCount(0),
       MLV(MLV),
       radius(DEFAULT_RADIUS)
 {
+    data.name = NULL;
+    data.path = NULL;
+
     setFlag(ItemIsMovable);
     setFlag(ItemSendsGeometryChanges);
     setCacheMode(DeviceCoordinateCache);
     setZValue(-1);
+}
+
+MissionElem::~MissionElem()
+{
+    clearDynamicStrings();
+    rmEdges();
 }
 
 void MissionElem::addEdge(Edge *edge)
@@ -116,6 +128,20 @@ void MissionElem::updateToolTip()
     setToolTip(toolTip);
 }
 
+void MissionElem::clearDynamicStrings()
+{
+    if (data.name != NULL)
+    {
+        free(data.name);
+        data.name = NULL;
+    }
+    if (data.path != NULL)
+    {
+        free(data.path);
+        data.path = NULL;
+    }
+}
+
 void MissionElem::rmDstEdges()
 {
     foreach (Edge* e, edgeList)
@@ -124,6 +150,19 @@ void MissionElem::rmDstEdges()
         MLV->scene->removeItem(e);
         delete e;
     }
+}
+
+void MissionElem::updateDstEdges()
+{
+    rmDstEdges();
+
+    if (nextNone)
+        MLV->scene->addItem(new Edge(this, nextNone, EDGE_NONE));
+    if (nextRed)
+        MLV->scene->addItem(new Edge(this, nextRed, EDGE_RED));
+    if (nextBlue)
+        MLV->scene->addItem(new Edge(this, nextBlue, EDGE_BLUE));
+    update();
 }
 
 void MissionElem::rmEdges()

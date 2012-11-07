@@ -123,7 +123,7 @@ void MainWindow::createToolBar()
 void MainWindow::createToolActions()
 {
     newAction = new QAction(tr("&New"), this);
-    //connect(newAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    connect(newAction, SIGNAL(triggered()), this, SLOT(onNewAction()));
     newAction->setIcon(QIcon((":/img/new.png")));
     ui->toolBar->addAction(newAction);
 
@@ -236,10 +236,6 @@ void MainWindow::onClearAction()
 {
     foreach (MissionElem* me, MLV->getMissions())
     {
-        free(me->data.name);
-        free(me->data.path);
-
-        me->rmEdges();
         MLV->scene->removeItem(me);
         delete me;
     }
@@ -252,6 +248,23 @@ void MainWindow::onClearAction()
 void MainWindow::onSaveAction()
 {
     lfHelper->saveFromView();
+}
+
+void MainWindow::onNewAction()
+{
+    MissionElem* active = MLV->getActive();
+    MissionElem* me = new MissionElem(MLV);
+    MLV->setActive(me);
+
+    MissionDialog dlg(MLV);
+    if (dlg.exec()==QDialog::Accepted)
+    {
+        me->setPos(0, 0);
+        MLV->addMission(me);
+    } else {
+        MLV->setActive(active);
+        delete me;
+    }
 }
 
 void MainWindow::onEditAction()

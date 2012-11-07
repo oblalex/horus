@@ -25,6 +25,7 @@ private slots:
     void onClearAction();
     void onSaveAction();
 
+    void onNewAction();
     void onEditAction();
 
 private:

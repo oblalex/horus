@@ -19,6 +19,7 @@ class MissionElem: public QGraphicsItem
 {
 public:
     MissionElem(MissionListView* MLV);
+    ~MissionElem();
 
     D_MISSION_LITE data;
 
@@ -31,6 +32,7 @@ public:
     void addEdge(Edge *edge);
     void rmEdge(Edge *edge);
     void rmDstEdges();
+    void updateDstEdges();
     void rmEdges();
     QList<Edge *> edges() const;
     int refsCount;
@@ -46,6 +48,7 @@ public:
 
     int getRadius();
     void updateToolTip();
+    void clearDynamicStrings();
 
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant &value);
