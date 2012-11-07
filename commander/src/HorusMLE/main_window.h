@@ -65,7 +65,7 @@ private:
 
     MissionListView* MLV;
 
-    QLabel* statLabel;
+    QLabel* missionsLb;
 
     ListFileHelper* lfHelper;
 };

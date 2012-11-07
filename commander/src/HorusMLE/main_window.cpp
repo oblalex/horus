@@ -101,10 +101,10 @@ void MainWindow::createToolActions()
 
 void MainWindow::createStatusBar()
 {
-    statLabel = new QLabel(this);
-    statLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    statLabel->setMargin(2);
-    ui->statusBar->addWidget(statLabel);
+    missionsLb = new QLabel(this);
+    missionsLb->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    missionsLb->setMargin(2);
+    ui->statusBar->addWidget(missionsLb);
 }
 
 void MainWindow::createCentralWidget()
@@ -125,7 +125,7 @@ void MainWindow::onListLoaded()
 {
     saveAction->setEnabled(true);
 
-    statLabel->clear();
+    missionsLb->clear();
 
     if (isListEmpty())
         onListEmpty();
@@ -135,7 +135,7 @@ void MainWindow::onListLoaded()
 
 void MainWindow::onListNonLoaded()
 {
-    statLabel->setText(tr("Mission list is not loaded"));
+    missionsLb->setText(tr("Mission list is not loaded"));
     saveAction->setEnabled(false);
 
     onListEmpty();
@@ -143,8 +143,8 @@ void MainWindow::onListNonLoaded()
 
 void MainWindow::onListEmpty()
 {
-    if (statLabel->text().isEmpty())
-        statLabel->setText(tr("Mission list is empty"));
+    if (missionsLb->text().isEmpty())
+        missionsLb->setText(tr("Mission list is empty"));
 
     clearAction->setEnabled(false);
 
@@ -170,7 +170,7 @@ void MainWindow::onListNonEmpty()
 
 void MainWindow::redrawMissionsCount()
 {
-    statLabel->setText(tr("Missions: ")+QString::number(MLV->missionsCount()));
+    missionsLb->setText(tr("Missions: ")+QString::number(MLV->missionsCount()));
 }
 
 void MainWindow::onQuitAction()
@@ -216,6 +216,7 @@ void MainWindow::onNewAction()
     {
         me->setPos(0, 0);
         MLV->addMission(me);
+        redrawMissionsCount();
     } else {
         MLV->setActive(active);
         delete me;
@@ -246,6 +247,7 @@ void MainWindow::onDelAction()
     {
         case 0:
             MLV->rmMission(me);
+            redrawMissionsCount();
             break;
         default:
             break;
