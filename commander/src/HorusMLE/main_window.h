@@ -51,7 +51,6 @@ private:
 
     Ui::MainWindow *ui;
 
-    QAction *paneAction;
     QAction *zoomInAction;
     QAction *zoomOutAction;
     QAction *zoomSelectionAction;
