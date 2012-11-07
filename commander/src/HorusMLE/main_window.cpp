@@ -81,11 +81,6 @@ void MainWindow::createNavActions()
     //connect(zoomOutAction, SIGNAL(triggered()), this, SLOT(showNormal()));
     zoomOutAction->setIcon(QIcon((":/img/zoom_out.png")));
     ui->navBar->addAction(zoomOutAction);
-
-    zoomSelectionAction = new QAction(tr("&Zoom Selection"), this);
-    //connect(zoomSelectionAction, SIGNAL(triggered()), this, SLOT(showNormal()));
-    zoomSelectionAction->setIcon(QIcon((":/img/zoom_selection.png")));
-    ui->navBar->addAction(zoomSelectionAction);
 }
 
 void MainWindow::createZoomSpin()
@@ -176,7 +171,6 @@ void MainWindow::onListEmpty()
 
     zoomInAction->setEnabled(false);
     zoomOutAction->setEnabled(false);
-    zoomSelectionAction->setEnabled(false);
     zoomSpin->setEnabled(false);
 
     editAction->setEnabled(false);
@@ -191,7 +185,6 @@ void MainWindow::onListNonEmpty()
 
     zoomInAction->setEnabled(true);
     zoomOutAction->setEnabled(true);
-    zoomSelectionAction->setEnabled(true);
     zoomSpin->setEnabled(true);
 
     editAction->setEnabled(true);

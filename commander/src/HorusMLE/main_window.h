@@ -53,7 +53,6 @@ private:
 
     QAction *zoomInAction;
     QAction *zoomOutAction;
-    QAction *zoomSelectionAction;
 
     QAction *newAction;
     QAction *editAction;
