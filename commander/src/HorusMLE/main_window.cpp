@@ -21,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     lfHelper = new ListFileHelper(MLV);
     loadAction->trigger();
+
+    onMissionDeselected();
 }
 
 MainWindow::~MainWindow()
@@ -105,13 +107,22 @@ void MainWindow::createStatusBar()
     missionsLb->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     missionsLb->setMargin(2);
     ui->statusBar->addWidget(missionsLb);
+
+    missionLb = new QLabel(this);
+    missionLb->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    missionLb->setMargin(2);
+    ui->statusBar->addWidget(missionLb);
 }
 
 void MainWindow::createCentralWidget()
 {
     MLV = new MissionListView(this);
+
     connect(zoomInAction, SIGNAL(triggered()), MLV, SLOT(zoomIn()));
     connect(zoomOutAction, SIGNAL(triggered()), MLV, SLOT(zoomOut()));
+    connect(MLV, SIGNAL(missionSelected()), this, SLOT(onMissionSelected()));
+    connect(MLV, SIGNAL(missionDeselected()), this, SLOT(onMissionDeselected()));
+
     setCentralWidget(MLV);
     MLV->setFocus();
 }
@@ -135,7 +146,7 @@ void MainWindow::onListLoaded()
 
 void MainWindow::onListNonLoaded()
 {
-    missionsLb->setText(tr("Mission list is not loaded"));
+    missionsLb->setText(tr("Mission list is not loaded."));
     saveAction->setEnabled(false);
 
     onListEmpty();
@@ -144,9 +155,10 @@ void MainWindow::onListNonLoaded()
 void MainWindow::onListEmpty()
 {
     if (missionsLb->text().isEmpty())
-        missionsLb->setText(tr("Mission list is empty"));
+        missionsLb->setText(tr("Mission list is empty."));
 
     clearAction->setEnabled(false);
+    saveAction->setEnabled(false);
 
     zoomInAction->setEnabled(false);
     zoomOutAction->setEnabled(false);
@@ -160,17 +172,15 @@ void MainWindow::onListNonEmpty()
     redrawMissionsCount();
 
     clearAction->setEnabled(true);
+    saveAction->setEnabled(true);
 
     zoomInAction->setEnabled(true);
     zoomOutAction->setEnabled(true);
-
-    editAction->setEnabled(true);
-    delAction->setEnabled(true);
 }
 
 void MainWindow::redrawMissionsCount()
 {
-    missionsLb->setText(tr("Missions: ")+QString::number(MLV->missionsCount()));
+    missionsLb->setText(tr("Missions: ")+QString::number(MLV->missionsCount())+".");
 }
 
 void MainWindow::onQuitAction()
@@ -189,15 +199,10 @@ void MainWindow::onLoadAction()
 
 void MainWindow::onClearAction()
 {
-    foreach (MissionElem* me, MLV->getMissions())
-    {
-        MLV->scene->removeItem(me);
-        delete me;
-    }
-
     MLV->missionsClear();
     MLV->scene->update();
     redrawMissionsCount();
+    onListEmpty();
 }
 
 void MainWindow::onSaveAction()
@@ -217,6 +222,8 @@ void MainWindow::onNewAction()
         me->setPos(0, 0);
         MLV->addMission(me);
         redrawMissionsCount();
+        onListNonEmpty();
+        onMissionSelected();
     } else {
         MLV->setActive(active);
         delete me;
@@ -248,8 +255,23 @@ void MainWindow::onDelAction()
         case 0:
             MLV->rmMission(me);
             redrawMissionsCount();
+            onMissionDeselected();
             break;
         default:
             break;
     }
+}
+
+void MainWindow::onMissionSelected()
+{
+    editAction->setEnabled(true);
+    delAction->setEnabled(true);
+    missionLb->setText("\""+QString(MLV->getActive()->data.name) +"\" "+tr("is selected")+".");
+}
+
+void MainWindow::onMissionDeselected()
+{
+    editAction->setEnabled(false);
+    delAction->setEnabled(false);
+    missionLb->setText(tr("Nothing is selected."));
 }

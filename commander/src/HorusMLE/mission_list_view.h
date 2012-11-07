@@ -12,6 +12,10 @@ class MissionListView : public QGraphicsView
 {
     Q_OBJECT
 
+signals:
+    void missionSelected();
+    void missionDeselected();
+
 public:
     MissionListView(QWidget *parent = 0);
 

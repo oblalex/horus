@@ -64,10 +64,18 @@ int MissionListView::missionsCount()
 
 void MissionListView::missionsClear()
 {
-    missions.clear();
     setActive(NULL);
     current = NULL;
     highlighted = NULL;
+
+    foreach (MissionElem* me, missions)
+    {
+        scene->removeItem(me);
+        delete me;
+    }
+
+    missions.clear();
+    emit missionDeselected();
 }
 
 void MissionListView::setActive(MissionElem *me)
@@ -77,6 +85,11 @@ void MissionListView::setActive(MissionElem *me)
 
     if ((old!=NULL) && (old != me))
         old->update();
+
+    if (me==NULL)
+        emit missionDeselected();
+    else
+        emit missionSelected();
 }
 
 MissionElem *MissionListView::getActive()

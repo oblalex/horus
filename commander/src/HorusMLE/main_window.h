@@ -29,6 +29,10 @@ private slots:
     void onEditAction();
     void onDelAction();
 
+    void onMissionSelected();
+    void onMissionDeselected();
+
+
 private:
     void createMenu();
     void createMainBar();
@@ -66,6 +70,7 @@ private:
     MissionListView* MLV;
 
     QLabel* missionsLb;
+    QLabel* missionLb;
 
     ListFileHelper* lfHelper;
 };
