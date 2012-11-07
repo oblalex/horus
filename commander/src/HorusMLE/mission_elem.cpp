@@ -85,6 +85,9 @@ void MissionElem::rmEdge(Edge *edge)
     edgeList.removeOne(edge);
     updateRadius();
 
+    if (edge->getDst()==this)
+        refsCount--;
+
     foreach (Edge *e, edgeList)
         e->adjust();
 }
