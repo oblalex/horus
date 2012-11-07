@@ -3,7 +3,7 @@
 #include "d_mission.h"
 #include <QFileDialog>
 
-MissionDialog::MissionDialog(MapListView* MLV, bool edit, QWidget *parent) :
+MissionDialog::MissionDialog(MissionListView* MLV, bool edit, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MissionDialog),
     MLV(MLV)

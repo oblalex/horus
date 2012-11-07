@@ -1,10 +1,10 @@
-#include "map_list_view.h"
+#include "mission_list_view.h"
 #include <typeinfo>
 
 #include <iostream>
 using namespace std;
 
-MapListView::MapListView(QWidget *parent)
+MissionListView::MissionListView(QWidget *parent)
     : QGraphicsView(parent),
       active(NULL)
 {
@@ -20,7 +20,7 @@ MapListView::MapListView(QWidget *parent)
     setMinimumSize(50, 50);
 }
 
-MissionElem *MapListView::missionByName(QString name)
+MissionElem *MissionListView::missionByName(QString name)
 {
     foreach (MissionElem* me, missions)
     {
@@ -30,66 +30,66 @@ MissionElem *MapListView::missionByName(QString name)
     return NULL;
 }
 
-void MapListView::addMission(MissionElem *me)
+void MissionListView::addMission(MissionElem *me)
 {
     missions << me;
     me->updateToolTip();
     scene->addItem(me);
 }
 
-QList<MissionElem *> MapListView::getMissions()
+QList<MissionElem *> MissionListView::getMissions()
 {
     return QList<MissionElem *>(missions);
 }
 
-int MapListView::missionsCount()
+int MissionListView::missionsCount()
 {
     return missions.count();
 }
 
-void MapListView::missionsClear()
+void MissionListView::missionsClear()
 {
     missions.clear();
     unsetActive();
 }
 
-void MapListView::setActive(MissionElem *me)
+void MissionListView::setActive(MissionElem *me)
 {
     active = me;
 }
 
-MissionElem *MapListView::getActive()
+MissionElem *MissionListView::getActive()
 {
     return active;
 }
 
-void MapListView::unsetActive()
+void MissionListView::unsetActive()
 {
     active = NULL;
 }
 
-void MapListView::zoomIn()
+void MissionListView::zoomIn()
 {
 }
 
-void MapListView::zoomOut()
+void MissionListView::zoomOut()
 {
 }
 
-void MapListView::keyPressEvent(QKeyEvent *event)
+void MissionListView::keyPressEvent(QKeyEvent *event)
 {
 }
 
-void MapListView::wheelEvent(QWheelEvent *event)
+void MissionListView::wheelEvent(QWheelEvent *event)
 {
 }
 
-void MapListView::drawBackground(QPainter *painter, const QRectF &rect)
+void MissionListView::drawBackground(QPainter *painter, const QRectF &rect)
 {
     Q_UNUSED(rect);
     Q_UNUSED(painter);
 }
 
-void MapListView::scaleView(qreal scaleFactor)
+void MissionListView::scaleView(qreal scaleFactor)
 {
 }

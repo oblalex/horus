@@ -4,7 +4,7 @@
 #include <QGraphicsItem>
 #include <QList>
 
-#include "map_list_view.h"
+#include "mission_list_view.h"
 #include "edge.h"
 #include "d_mission.h"
 
@@ -13,12 +13,12 @@
 
 class Edge;
 class MissionElem;
-class MapListView;
+class MissionListView;
 
 class MissionElem: public QGraphicsItem
 {
 public:
-    MissionElem(MapListView* MLV);
+    MissionElem(MissionListView* MLV);
 
     D_MISSION_LITE data;
 
@@ -35,7 +35,7 @@ public:
     QList<Edge *> edges() const;
     int refsCount;
 
-    MapListView* MLV;
+    MissionListView* MLV;
 
     enum { Type = UserType + 1 };
     int type() const { return Type; }

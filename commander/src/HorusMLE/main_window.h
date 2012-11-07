@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QSpinBox>
 #include <QLabel>
-#include "map_list_view.h"
+#include "mission_list_view.h"
 #include "list_file_helper.h"
 
 namespace Ui {
@@ -67,7 +67,7 @@ private:
     QAction *quitAction;
 
     QSpinBox* zoomSpin;
-    MapListView* MLV;
+    MissionListView* MLV;
 
     QLabel* statLabel;
 

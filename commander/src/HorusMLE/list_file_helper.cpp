@@ -30,7 +30,7 @@ using namespace std;
 static QString listPath = "missions.xml";
 static QDomDocument doc("missions");
 
-ListFileHelper::ListFileHelper(MapListView *view)
+ListFileHelper::ListFileHelper(MissionListView *view)
     : view(view)
 {
 }

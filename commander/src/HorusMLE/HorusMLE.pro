@@ -14,20 +14,20 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         main_window.cpp \
-    map_list_view.cpp \
     list_file_helper.cpp \
     mission_elem.cpp \
     edge.cpp \
-    mission_dialog.cpp
+    mission_dialog.cpp \
+    mission_list_view.cpp
 
 HEADERS  += main_window.h \
-    map_list_view.h \
     list_file_helper.h \
     ../domain/d_weather.h \
     ../domain/d_mission.h \
     mission_elem.h \
     edge.h \
-    mission_dialog.h
+    mission_dialog.h \
+    mission_list_view.h
 
 INCLUDEPATH += ../domain
 

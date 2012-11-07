@@ -8,7 +8,7 @@
 #include <iostream>
 using namespace std;
 
-MissionElem::MissionElem(MapListView* MLV)
+MissionElem::MissionElem(MissionListView* MLV)
     : refsCount(0),
       MLV(MLV),
       radius(DEFAULT_RADIUS)

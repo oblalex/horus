@@ -7,12 +7,12 @@
 
 class MissionElem;
 
-class MapListView : public QGraphicsView
+class MissionListView : public QGraphicsView
 {
     Q_OBJECT
 
 public:
-    MapListView(QWidget *parent = 0);
+    MissionListView(QWidget *parent = 0);
 
     MissionElem* missionByName(QString name);
     void addMission(MissionElem* me);

@@ -148,7 +148,7 @@ void MainWindow::createStatusBar()
 
 void MainWindow::createCentralWidget()
 {
-    MLV = new MapListView(this);
+    MLV = new MissionListView(this);
     setCentralWidget(MLV);
     MLV->setFocus();
 }

@@ -1,14 +1,14 @@
 #ifndef LIST_FILE_HELPER_H
 #define LIST_FILE_HELPER_H
 
-#include "map_list_view.h"
+#include "mission_list_view.h"
 #include <QDomNode>
 #include "mission_elem.h"
 
 class ListFileHelper
 {
 public:
-    ListFileHelper(MapListView* view);
+    ListFileHelper(MissionListView* view);
 
     void loadToView();
     void saveFromView();
@@ -20,7 +20,7 @@ private:
     void addFromElement(QDomElement *e);
     void resolveReferences(QDomNode &first);
 
-    MapListView* view;
+    MissionListView* view;
 
     bool loaded;
     bool saved;

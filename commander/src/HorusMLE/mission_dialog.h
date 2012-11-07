@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <QList>
-#include "map_list_view.h"
+#include "mission_list_view.h"
 
 namespace Ui {
 class MissionDialog;
@@ -14,7 +14,7 @@ class MissionDialog : public QDialog
     Q_OBJECT
     
 public:
-    explicit MissionDialog(MapListView* MLV, bool edit = false, QWidget *parent = 0);
+    explicit MissionDialog(MissionListView* MLV, bool edit = false, QWidget *parent = 0);
     ~MissionDialog();
     
 private slots:
@@ -23,7 +23,7 @@ private slots:
 
 private:
     Ui::MissionDialog *ui;
-    MapListView* MLV;
+    MissionListView* MLV;
 };
 
 #endif // MISSION_DIALOG_H
