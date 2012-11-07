@@ -42,6 +42,9 @@ void MissionListView::addMission(MissionElem *me)
 
 void MissionListView::rmMission(MissionElem *me)
 {
+    if (me==current) current = NULL;
+    active = NULL;
+
     missions.removeOne(me);
     scene->removeItem(me);
     delete me;
