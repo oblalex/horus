@@ -21,6 +21,10 @@ MissionDialog::MissionDialog(MissionListView* MLV, bool edit, QWidget *parent) :
 
     QList<MissionElem*> lst = MLV->getMissions();
 
+    ui->nextNoneCmb->addItem("");
+    ui->nextRedCmb->addItem("");
+    ui->nextBlueCmb->addItem("");
+
     foreach (MissionElem* me, lst)
     {
         ui->nextNoneCmb->addItem(me->data.name);
