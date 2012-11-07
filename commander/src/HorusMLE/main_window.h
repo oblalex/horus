@@ -27,6 +27,7 @@ private slots:
 
     void onNewAction();
     void onEditAction();
+    void onDelAction();
 
 private:
     void createMenu();

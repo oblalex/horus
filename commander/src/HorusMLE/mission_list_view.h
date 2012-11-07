@@ -17,6 +17,7 @@ public:
 
     MissionElem* missionByName(QString name);
     void addMission(MissionElem* me);
+    void rmMission(MissionElem* me);
     QList<MissionElem*> getMissions();
     int missionsCount();
     void missionsClear();

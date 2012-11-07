@@ -40,6 +40,14 @@ void MissionListView::addMission(MissionElem *me)
     checkCurrent(me);
 }
 
+void MissionListView::rmMission(MissionElem *me)
+{
+    missions.removeOne(me);
+    scene->removeItem(me);
+    delete me;
+    scene->update();
+}
+
 QList<MissionElem *> MissionListView::getMissions()
 {
     return QList<MissionElem *>(missions);

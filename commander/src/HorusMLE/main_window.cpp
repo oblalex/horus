@@ -2,6 +2,7 @@
 #include "ui_main_window.h"
 #include "mission_dialog.h"
 #include <QSplitter>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -93,7 +94,7 @@ void MainWindow::createToolActions()
     ui->toolBar->addAction(editAction);
 
     delAction = new QAction(tr("&Delete"), this);
-    //connect(delAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    connect(delAction, SIGNAL(triggered()), this, SLOT(onDelAction()));
     delAction->setIcon(QIcon((":/img/delete.png")));
     ui->toolBar->addAction(delAction);
 }
@@ -229,4 +230,24 @@ void MainWindow::onEditAction()
     MissionDialog dlg(MLV, true);
     if (dlg.exec()==QDialog::Accepted)
         me->update();
+}
+
+void MainWindow::onDelAction()
+{
+    MissionElem* me = MLV->getActive();
+    if (me==NULL) return;
+
+    switch(QMessageBox::question(
+               this,
+               tr("Deleting mission"),
+               tr("Are you sure about deleting") + " \"" + QString(me->data.name) + "\" ?",
+               tr("Yes"), tr("No"),
+               0, 1))
+    {
+        case 0:
+            MLV->rmMission(me);
+            break;
+        default:
+            break;
+    }
 }
