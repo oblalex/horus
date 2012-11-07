@@ -14,6 +14,7 @@ MissionElem::MissionElem(MissionListView* MLV)
       nextBlue(NULL),
       refsCount(0),
       MLV(MLV),
+      highlighted(false),
       radius(DEFAULT_RADIUS)
 {
     data.name = NULL;
@@ -23,6 +24,7 @@ MissionElem::MissionElem(MissionListView* MLV)
     setFlag(ItemSendsGeometryChanges);
     setCacheMode(DeviceCoordinateCache);
     setZValue(-1);
+    setAcceptHoverEvents(true);
 }
 
 MissionElem::~MissionElem()
@@ -122,17 +124,19 @@ void MissionElem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 
     QRadialGradient gradient(-radius/5, -radius/5, radius-(radius/10));
 
+    int light = (highlighted)?150:120;
+
     if (isCurrent)
     {
-        gradient.setColorAt(0, QColor(98, 246, 55).light(120));
-        gradient.setColorAt(1, QColor(70, 137, 35).light(120));
+        gradient.setColorAt(0, QColor(98, 246, 55).light(light));
+        gradient.setColorAt(1, QColor(70, 137, 35).light(light));
     } else if (refsCount==0)
     {
-        gradient.setColorAt(0, QColor(240, 80, 80).light(120));
-        gradient.setColorAt(1, QColor(173, 30, 30).light(120));
+        gradient.setColorAt(0, QColor(240, 80, 80).light(light));
+        gradient.setColorAt(1, QColor(173, 30, 30).light(light));
     } else {
-        gradient.setColorAt(0, QColor(212, 235, 34).light(120));
-        gradient.setColorAt(1, QColor(173, 110, 64).light(120));
+        gradient.setColorAt(0, QColor(212, 235, 34).light(light));
+        gradient.setColorAt(1, QColor(173, 110, 64).light(light));
     }
 
     painter->setBrush(gradient);
@@ -148,6 +152,18 @@ void MissionElem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     painter->setPen(Qt::black);
     painter->drawText(QRect(textRect.left(), textRect.top(), textRect.width(), textRect.height()),
                       Qt::AlignCenter, text);
+}
+
+void MissionElem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
+{
+    highlighted = true;
+    update();
+}
+
+void MissionElem::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+{
+    highlighted = false;
+    update();
 }
 
 int MissionElem::getRadius()
@@ -217,12 +233,14 @@ void MissionElem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     MLV->setActive(this);
     update();
+    setCursor(Qt::ClosedHandCursor);
     QGraphicsItem::mousePressEvent(event);
 }
 
 void MissionElem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     update();
+    setCursor(Qt::ArrowCursor);
     QGraphicsItem::mouseReleaseEvent(event);
 }
 

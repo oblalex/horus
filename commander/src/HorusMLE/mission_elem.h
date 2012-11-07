@@ -48,6 +48,8 @@ public:
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
 
     int getRadius();
     void updateToolTip();
@@ -63,6 +65,7 @@ private:
     void updateRadius();
     QRect getTextRect(QString text) const;
     QList<Edge*> edgeList;
+    bool highlighted;
     int radius;
 };
 
