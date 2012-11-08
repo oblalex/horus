@@ -38,6 +38,9 @@ public:
     MissionElem* getCurrent();
     void checkCurrent(MissionElem* me);
 
+    void setChanged(bool value);
+    bool isChanged();
+
 public slots:
     void zoomIn();
     void zoomOut();
@@ -59,6 +62,8 @@ private:
     QPoint lastPanPoint;
 
     qreal scaleFactor;
+
+    bool changed;
 };
 
 #endif // MAP_LIST_VIEW_H

@@ -239,6 +239,7 @@ void MissionElem::mousePressEvent(QGraphicsSceneMouseEvent *event)
     MLV->setActive(this);
     update();
     setCursor(Qt::ClosedHandCursor);
+    lastPos = pos();
     QGraphicsItem::mousePressEvent(event);
 }
 
@@ -246,6 +247,10 @@ void MissionElem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     update();
     setCursor(Qt::ArrowCursor);
+    QPointF currPos = pos();
+    if ((currPos.x()!=lastPos.x())&&(currPos.y()!=lastPos.y()))
+        MLV->setChanged(true);
+
     QGraphicsItem::mouseReleaseEvent(event);
 }
 

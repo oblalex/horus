@@ -5,6 +5,9 @@
 #include <QSplitter>
 #include <QMessageBox>
 
+#include <iostream>
+using namespace std;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -24,6 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
     loadAction->trigger();
 
     onMissionDeselected();
+
+    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(onAboutToQuit()));
 }
 
 MainWindow::~MainWindow()
@@ -227,8 +232,11 @@ void MainWindow::onLoadAction()
 
 void MainWindow::onClearAction()
 {
+    if (MLV->missionsCount()==0) return;
+
     MLV->missionsClear();
     MLV->scene->update();
+    MLV->setChanged(true);
     redrawMissionsCount();
     onListEmpty();
 }
@@ -236,6 +244,7 @@ void MainWindow::onClearAction()
 void MainWindow::onSaveAction()
 {
     lfHelper->saveFromView();
+    MLV->setChanged(false);
 }
 
 void MainWindow::onNewAction()
@@ -249,6 +258,7 @@ void MainWindow::onNewAction()
     {
         me->setPos(0, 0);
         MLV->addMission(me);
+        MLV->setChanged(true);
         redrawMissionsCount();
         onListNonEmpty();
         onMissionSelected();
@@ -265,7 +275,10 @@ void MainWindow::onEditAction()
 
     MissionDialog dlg(MLV, true);
     if (dlg.exec()==QDialog::Accepted)
+    {
         me->update();
+        MLV->setChanged(true);
+    }
 }
 
 void MainWindow::onDelAction()
@@ -284,6 +297,7 @@ void MainWindow::onDelAction()
             MLV->rmMission(me);
             redrawMissionsCount();
             onMissionDeselected();
+            MLV->setChanged(true);
             if (MLV->missionsCount()==0)
                 onListEmpty();
             break;
@@ -304,4 +318,30 @@ void MainWindow::onMissionDeselected()
     editAction->setEnabled(false);
     delAction->setEnabled(false);
     missionLb->setText(tr("Nothing is selected."));
+}
+
+void MainWindow::onAboutToQuit()
+{
+    if (MLV->isChanged())
+    {
+        switch(QMessageBox::question(
+                   this,
+                   tr("Saving changes"),
+                   tr("Would you like to save changes?"),
+                   tr("Yes"), tr("No"),
+                   0, 1))
+        {
+            case 0:
+                onSaveAction();
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    Q_UNUSED(event)
+    onAboutToQuit();
 }

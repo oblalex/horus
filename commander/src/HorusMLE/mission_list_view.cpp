@@ -9,7 +9,8 @@ MissionListView::MissionListView(QWidget *parent)
       active(NULL),
       current(NULL),
       highlighted(NULL),
-      scaleFactor(1)
+      scaleFactor(1),
+      changed(false)
 {
     scene = new QGraphicsScene(this);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -131,6 +132,16 @@ void MissionListView::checkCurrent(MissionElem *me)
         if (me==current)
             current = NULL;
     }
+}
+
+void MissionListView::setChanged(bool value)
+{
+    changed = value;
+}
+
+bool MissionListView::isChanged()
+{
+    return changed;
 }
 
 void MissionListView::zoomIn()

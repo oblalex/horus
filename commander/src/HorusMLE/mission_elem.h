@@ -66,6 +66,7 @@ private:
     QRect getTextRect(QString text) const;
     QList<Edge*> edgeList;
     int radius;
+    QPointF lastPos;
 };
 
 #endif // MISSION_ELEM_H

@@ -33,6 +33,10 @@ private slots:
     void onMissionSelected();
     void onMissionDeselected();
 
+    void onAboutToQuit();
+
+protected:
+    void closeEvent(QCloseEvent *event);
 
 private:
     void createMenu();
