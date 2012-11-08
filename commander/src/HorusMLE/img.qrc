@@ -10,5 +10,6 @@
         <file>img/new.png</file>
         <file>img/edit.png</file>
         <file>img/clear.png</file>
+        <file>img/info.png</file>
     </qresource>
 </RCC>

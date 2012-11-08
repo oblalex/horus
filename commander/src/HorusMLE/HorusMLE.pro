@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     mission_elem.cpp \
     edge.cpp \
     mission_dialog.cpp \
-    mission_list_view.cpp
+    mission_list_view.cpp \
+    about_dialog.cpp
 
 HEADERS  += main_window.h \
     list_file_helper.h \
@@ -27,12 +28,14 @@ HEADERS  += main_window.h \
     mission_elem.h \
     edge.h \
     mission_dialog.h \
-    mission_list_view.h
+    mission_list_view.h \
+    about_dialog.h
 
 INCLUDEPATH += ../domain
 
 FORMS    += main_window.ui \
-    mission_dialog.ui
+    mission_dialog.ui \
+    about_dialog.ui
 
 RESOURCES += \
     img.qrc

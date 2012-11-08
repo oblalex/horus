@@ -21,6 +21,7 @@ public:
     
 private slots:
     void onQuitAction();
+    void onAboutAction();
     void onLoadAction();
     void onClearAction();
     void onSaveAction();
@@ -66,6 +67,7 @@ private:
     QAction *saveAction;
 
     QAction *quitAction;
+    QAction *aboutAction;
 
     MissionListView* MLV;
 

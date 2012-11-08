@@ -1,6 +1,7 @@
 #include "main_window.h"
 #include "ui_main_window.h"
 #include "mission_dialog.h"
+#include "about_dialog.h"
 #include <QSplitter>
 #include <QMessageBox>
 
@@ -56,6 +57,14 @@ void MainWindow::createMenu()
     connect(quitAction, SIGNAL(triggered()), this, SLOT(onQuitAction()));
     quitAction->setIcon(QIcon((":/img/quit.png")));
     mainMenu->addAction(quitAction);
+
+    QMenu* helpMenu = new QMenu(tr("&Help"), this);
+    ui->menuBar->addMenu(helpMenu);
+
+    aboutAction = new QAction(tr("&About"), this);
+    connect(aboutAction, SIGNAL(triggered()), this, SLOT(onAboutAction()));
+    aboutAction->setIcon(QIcon((":/img/info.png")));
+    helpMenu->addAction(aboutAction);
 }
 
 void MainWindow::createMainBar()
@@ -186,6 +195,12 @@ void MainWindow::redrawMissionsCount()
 void MainWindow::onQuitAction()
 {
     qApp->quit();
+}
+
+void MainWindow::onAboutAction()
+{
+    AboutDialog dlg;
+    dlg.exec();
 }
 
 void MainWindow::onLoadAction()
