@@ -181,7 +181,6 @@ void MainWindow::onListEmpty()
         missionsLb->setText(tr("Mission list is empty."));
 
     clearAction->setEnabled(false);
-    saveAction->setEnabled(false);
 
     zoomInAction->setEnabled(false);
     zoomOutAction->setEnabled(false);
@@ -285,6 +284,8 @@ void MainWindow::onDelAction()
             MLV->rmMission(me);
             redrawMissionsCount();
             onMissionDeselected();
+            if (MLV->missionsCount()==0)
+                onListEmpty();
             break;
         default:
             break;
