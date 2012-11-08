@@ -21,6 +21,7 @@ public:
     int type() const { return Type; }
 
     MissionElem* getDst();
+    MissionElem* getSrc();
 
 protected:
     QRectF boundingRect() const;

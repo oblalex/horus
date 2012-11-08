@@ -16,7 +16,8 @@ Edge::Edge(MissionElem *src, MissionElem *dst, int etype)
 {
     setAcceptedMouseButtons(0);
     this->src->addEdge(this);
-    this->dst->addEdge(this);
+    if (src != dst)
+        this->dst->addEdge(this);
     adjust();
     setZValue(-2);
 }
@@ -24,7 +25,8 @@ Edge::Edge(MissionElem *src, MissionElem *dst, int etype)
 Edge::~Edge()
 {
     src->rmEdge(this);
-    dst->rmEdge(this);
+    if (src != dst)
+        dst->rmEdge(this);
 }
 
 void Edge::adjust()
@@ -51,6 +53,11 @@ void Edge::adjust()
 MissionElem *Edge::getDst()
 {
     return dst;
+}
+
+MissionElem *Edge::getSrc()
+{
+    return src;
 }
 
 QRectF Edge::boundingRect() const

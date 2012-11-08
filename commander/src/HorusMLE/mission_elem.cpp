@@ -189,7 +189,7 @@ void MissionElem::rmDstEdges()
 {
     foreach (Edge* e, edgeList)
     {
-        if (this==e->getDst()) continue;
+        if ((this==e->getDst()) && (this!=e->getSrc())) continue;
         MLV->scene->removeItem(e);
         delete e;
     }
