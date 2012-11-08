@@ -39,16 +39,19 @@ void MainWindow::createMenu()
     loadAction = new QAction(tr("&Load"), this);
     connect(loadAction, SIGNAL(triggered()), this, SLOT(onLoadAction()));
     loadAction->setIcon(QIcon((":/img/load.png")));
+    loadAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_L));
     mainMenu->addAction(loadAction);
 
     clearAction = new QAction(tr("&Clear"), this);
     connect(clearAction, SIGNAL(triggered()), this, SLOT(onClearAction()));
     clearAction->setIcon(QIcon((":/img/clear.png")));
+    clearAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_C));
     mainMenu->addAction(clearAction);
 
     saveAction = new QAction(tr("&Save"), this);
     connect(saveAction, SIGNAL(triggered()), this, SLOT(onSaveAction()));
     saveAction->setIcon(QIcon((":/img/save.png")));
+    saveAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
     mainMenu->addAction(saveAction);
 
     mainMenu->addSeparator();
@@ -56,6 +59,7 @@ void MainWindow::createMenu()
     quitAction = new QAction(tr("&Quit"), this);
     connect(quitAction, SIGNAL(triggered()), this, SLOT(onQuitAction()));
     quitAction->setIcon(QIcon((":/img/quit.png")));
+    quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_X));
     mainMenu->addAction(quitAction);
 
     QMenu* helpMenu = new QMenu(tr("&Help"), this);
@@ -64,6 +68,7 @@ void MainWindow::createMenu()
     aboutAction = new QAction(tr("&About"), this);
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(onAboutAction()));
     aboutAction->setIcon(QIcon((":/img/info.png")));
+    aboutAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_A));
     helpMenu->addAction(aboutAction);
 }
 
@@ -76,12 +81,18 @@ void MainWindow::createMainBar()
 
 void MainWindow::createNavBar()
 {
+    QList<QKeySequence> zoomInKeys;
+    zoomInKeys << QKeySequence(Qt::CTRL + Qt::Key_Plus);
+    zoomInKeys << QKeySequence(Qt::CTRL + Qt::Key_Equal);
+
     zoomInAction = new QAction(tr("Zoom In"), this);
     zoomInAction->setIcon(QIcon((":/img/zoom_in.png")));
+    zoomInAction->setShortcuts(zoomInKeys);
     ui->navBar->addAction(zoomInAction);
 
     zoomOutAction = new QAction(tr("Zoom Out"), this);
     zoomOutAction->setIcon(QIcon((":/img/zoom_out.png")));
+    zoomOutAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Minus));
     ui->navBar->addAction(zoomOutAction);
 }
 
@@ -97,16 +108,19 @@ void MainWindow::createToolActions()
     newAction = new QAction(tr("&New"), this);
     connect(newAction, SIGNAL(triggered()), this, SLOT(onNewAction()));
     newAction->setIcon(QIcon((":/img/new.png")));
+    newAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
     ui->toolBar->addAction(newAction);
 
     editAction = new QAction(tr("&Edit"), this);
     connect(editAction, SIGNAL(triggered()), this, SLOT(onEditAction()));
     editAction->setIcon(QIcon((":/img/edit.png")));
+    editAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_E));
     ui->toolBar->addAction(editAction);
 
     delAction = new QAction(tr("&Delete"), this);
     connect(delAction, SIGNAL(triggered()), this, SLOT(onDelAction()));
     delAction->setIcon(QIcon((":/img/delete.png")));
+    delAction->setShortcut(QKeySequence(Qt::Key_Delete));
     ui->toolBar->addAction(delAction);
 }
 
