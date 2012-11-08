@@ -19,17 +19,17 @@ MissionDialog::MissionDialog(MissionListView* MLV, bool edit, QWidget *parent) :
     ui->nextRedLb->setText(tr("Next red:"));
     ui->nextBlueLb->setText(tr("Next blue:"));
 
-    QList<MissionElem*> lst = MLV->getMissions();
+    QList<QString> lst;
+    lst << "";
 
-    ui->nextNoneCmb->addItem("");
-    ui->nextRedCmb->addItem("");
-    ui->nextBlueCmb->addItem("");
+    foreach (MissionElem* me, MLV->getMissions())
+        lst << QString(me->data.name);
 
-    foreach (MissionElem* me, lst)
+    foreach (QString name, lst)
     {
-        ui->nextNoneCmb->addItem(me->data.name);
-        ui->nextRedCmb->addItem(me->data.name);
-        ui->nextBlueCmb->addItem(me->data.name);
+        ui->nextNoneCmb->addItem(name);
+        ui->nextRedCmb->addItem(name);
+        ui->nextBlueCmb->addItem(name);
     }
 
     MissionElem* missElem = MLV->getActive();
@@ -42,9 +42,13 @@ MissionDialog::MissionDialog(MissionListView* MLV, bool edit, QWidget *parent) :
         ui->durationSpin->setValue(missElem->data.sDuration);
         ui->isCurrentChB->setChecked(missElem->isCurrent);
 
-        ui->nextNoneCmb->setCurrentIndex(lst.indexOf(missElem->nextNone));
-        ui->nextRedCmb->setCurrentIndex(lst.indexOf(missElem->nextRed));
-        ui->nextBlueCmb->setCurrentIndex(lst.indexOf(missElem->nextBlue));
+        if (missElem->nextNone)
+            ui->nextNoneCmb->setCurrentIndex(lst.indexOf(missElem->nextNone->data.name));
+        if (missElem->nextRed)
+            ui->nextRedCmb->setCurrentIndex(lst.indexOf(missElem->nextRed->data.name));
+        if (missElem->nextBlue)
+            ui->nextBlueCmb->setCurrentIndex(lst.indexOf(missElem->nextBlue->data.name));
+
     } else {
         setWindowTitle(tr("Adding new mission"));
         ui->durationSpin->setValue(QString(DEFAULT_MISSION_DURATION).toInt());
