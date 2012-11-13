@@ -23,7 +23,8 @@ public:
 
     D_MISSION_LITE data;
 
-    bool isCurrent;
+    bool isCurrent();
+    void setCurrent(bool value);
 
     MissionElem* nextNone;
     MissionElem* nextRed;
@@ -38,7 +39,8 @@ public:
     void updateDstEdges();
     void rmEdges();
     QList<Edge *> edges() const;
-    int refsCount;
+    void refsCountInc();
+    void refsCountDec();
 
     MissionListView* MLV;
 
@@ -53,6 +55,8 @@ public:
 
     int getRadius();
     void updateToolTip();
+    void updateRadius();
+    void updateEdges();
 
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant &value);
@@ -62,11 +66,12 @@ protected:
 
 private:
     void clearDynamicStrings();
-    void updateRadius();
     QRect getTextRect(QString text) const;
     QList<Edge*> edgeList;
     int radius;
     QPointF lastPos;
+    int refsCount;
+    bool current;
 };
 
 #endif // MISSION_ELEM_H

@@ -12,9 +12,9 @@ MissionElem::MissionElem(MissionListView* MLV)
     : nextNone(NULL),
       nextRed(NULL),
       nextBlue(NULL),
-      refsCount(0),
       MLV(MLV),
-      radius(DEFAULT_RADIUS)
+      radius(DEFAULT_RADIUS),
+      refsCount(0)
 {
     data.name = NULL;
     data.path = NULL;
@@ -30,6 +30,24 @@ MissionElem::~MissionElem()
 {
     clearDynamicStrings();
     rmEdges();
+}
+
+bool MissionElem::isCurrent()
+{
+    return current;
+}
+
+void MissionElem::setCurrent(bool value)
+{
+    if (current != value)
+    {
+        if (value)
+            refsCountInc();
+        else
+            refsCountDec();
+    }
+
+    current = value;
 }
 
 void MissionElem::clearDynamicStrings()
@@ -71,30 +89,71 @@ void MissionElem::setPath(QString *value)
 void MissionElem::addEdge(Edge *edge)
 {
     edgeList << edge;
-    updateRadius();
 
-    if (edge->getDst()==this)
-        refsCount++;
-
-    foreach (Edge *e, edgeList)
-        e->adjust();
+    if ((edge->getDst()==this)
+    && ((((edge->getSrc()->refsCount>0) || (edge->getSrc()->isCurrent())) && (edge->getSrc()!=this))
+        || ((edge->getSrc()==this) && (edge->getSrc()->isCurrent()))))
+            refsCountInc();
 }
 
 void MissionElem::rmEdge(Edge *edge)
 {
     edgeList.removeOne(edge);
+
+    if ((edge->getDst()==this) && (refsCount>0))
+        refsCountDec();
+}
+
+void MissionElem::refsCountInc()
+{
+    int oldRefsCount = refsCount;
+    refsCount++;
+
+    bool refsBecameNonZero = ((oldRefsCount == 0) && (refsCount != 0));
+
     updateRadius();
 
-    if (edge->getDst()==this)
-        refsCount--;
+    foreach (Edge *e, edgeList)
+    {
+        if ((e->getSrc()==this) && (e->getDst()!=this) && refsBecameNonZero)
+        {
+            e->getDst()->refsCountInc();
+            e->getDst()->update();
+        }
+        e->adjust();
+    }
+}
+
+void MissionElem::refsCountDec()
+{
+    if (refsCount==0) return;
+
+    refsCount--;
+
+    bool refsBecameZero = refsCount == 0;
+
+    updateRadius();
 
     foreach (Edge *e, edgeList)
+    {
+        if ((e->getSrc()==this) && (e->getDst()!=this) && refsBecameZero)
+        {
+            e->getDst()->refsCountDec();
+            e->getDst()->update();
+        }
         e->adjust();
+    }
 }
 
 void MissionElem::updateRadius()
 {
     radius = DEFAULT_RADIUS+(edges().count()*1.5f);
+}
+
+void MissionElem::updateEdges()
+{
+    foreach (Edge *e, edgeList)
+        e->adjust();
 }
 
 QList<Edge *> MissionElem::edges() const
@@ -128,12 +187,11 @@ void MissionElem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 
     int light = (this==MLV->getHighlighted())?150:120;
 
-    if (isCurrent)
+    if (isCurrent())
     {
         gradient.setColorAt(0, QColor(98, 246, 55).light(light));
         gradient.setColorAt(1, QColor(70, 137, 35).light(light));
-    } else if (refsCount==0)
-    {
+    } else if (refsCount==0) {
         gradient.setColorAt(0, QColor(240, 80, 80).light(light));
         gradient.setColorAt(1, QColor(173, 30, 30).light(light));
     } else {

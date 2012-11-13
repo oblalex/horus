@@ -37,7 +37,8 @@ Settings::Settings(bool create)
 void Settings::load()
 {
     loadWGeom();
-    lang = settings->value(GENERAL_LANG_KEY, LANG_EN).toString();
+    lang = settings->value(GENERAL_LANG_KEY, "").toString();
+    if (lang.isEmpty()) lang = LANG_EN;
     loaded = true;
 }
 

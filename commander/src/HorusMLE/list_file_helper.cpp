@@ -111,7 +111,7 @@ void ListFileHelper::saveFromView()
         if (me->nextBlue)
             xml_elem.setAttribute(XML_ATTR_NEXT_BLUE, me->nextBlue->data.name);
 
-        if (me->isCurrent)
+        if (me->isCurrent())
             xml_elem.setAttribute(XML_ATTR_IS_CURRENT, IS_CURRENT_TRUE_VAL);
 
         root.appendChild(xml_elem);
@@ -147,7 +147,7 @@ void ListFileHelper::addFromElement(QDomElement *e)
     me->setName(&name);
     me->setPath(&path);
 
-    me->isCurrent = e->attribute(XML_ATTR_IS_CURRENT, IS_CURRENT_FALSE_VAL) == IS_CURRENT_TRUE_VAL;
+    me->setCurrent(e->attribute(XML_ATTR_IS_CURRENT, IS_CURRENT_FALSE_VAL) == IS_CURRENT_TRUE_VAL);
     me->data.sDuration = e->attribute(XML_ATTR_DURATION, DEFAULT_MISSION_DURATION).toInt();
 
     QString pos;
@@ -211,5 +211,11 @@ void ListFileHelper::resolveReferences(QDomNode& first)
                  :view->missionByName(nameBlue);
 
         me->updateDstEdges();
+    }
+
+    foreach (MissionElem* elem, view->getMissions())
+    {
+        elem->updateRadius();
+        elem->updateEdges();
     }
 }

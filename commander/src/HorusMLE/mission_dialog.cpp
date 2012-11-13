@@ -40,7 +40,7 @@ MissionDialog::MissionDialog(MissionListView* MLV, bool edit, QWidget *parent) :
         ui->nameLe->setText(missElem->data.name);
         ui->pathLe->setText(missElem->data.path);
         ui->durationSpin->setValue(missElem->data.sDuration);
-        ui->isCurrentChB->setChecked(missElem->isCurrent);
+        ui->isCurrentChB->setChecked(missElem->isCurrent());
 
         if (missElem->nextNone)
             ui->nextNoneCmb->setCurrentIndex(lst.indexOf(missElem->nextNone->data.name));
@@ -101,7 +101,7 @@ void MissionDialog::on_buttonBox_accepted()
     me->setPath(&path);
 
     me->data.sDuration = ui->durationSpin->value();
-    me->isCurrent = ui->isCurrentChB->isChecked();
+    me->setCurrent(ui->isCurrentChB->isChecked());
     MLV->checkCurrent(me);
 
     MissionElem* none = me->nextNone;

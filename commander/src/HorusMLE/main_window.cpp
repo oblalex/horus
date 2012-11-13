@@ -416,5 +416,6 @@ void MainWindow::onAboutToQuit()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event)
+    disconnect(qApp, SIGNAL(aboutToQuit()), this, SLOT(onAboutToQuit()));
     onAboutToQuit();
 }

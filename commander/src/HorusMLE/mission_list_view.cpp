@@ -121,10 +121,10 @@ MissionElem *MissionListView::getCurrent()
 
 void MissionListView::checkCurrent(MissionElem *me)
 {
-    if (me->isCurrent) {
+    if (me->isCurrent()) {
         if ((current!=NULL) && (me!=current))
         {
-            current->isCurrent = false;
+            current->setCurrent(false);
             current->update();
         }
         current = me;
