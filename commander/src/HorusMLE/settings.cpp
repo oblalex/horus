@@ -10,7 +10,11 @@
 #define WND_W_KEY   WND_GRP_NAME "/w"
 #define WND_H_KEY   WND_GRP_NAME "/h"
 
-Settings::Settings()
+#define GENERAL_GRP_NAME "GNRL"
+
+#define GENERAL_LANG_KEY GENERAL_GRP_NAME "/lang"
+
+Settings::Settings(bool create)
 {
     loaded = false;
     QString fPath = SETTINGS_PATH;
@@ -20,7 +24,7 @@ Settings::Settings()
 
     if (existed==false)
     {
-        if (f.open(QIODevice::WriteOnly))
+        if (create && f.open(QIODevice::WriteOnly))
             f.close();
         else
             return;
@@ -33,6 +37,7 @@ Settings::Settings()
 void Settings::load()
 {
     loadWGeom();
+    lang = settings->value(GENERAL_LANG_KEY, LANG_EN).toString();
     loaded = true;
 }
 
@@ -53,6 +58,8 @@ void Settings::loadWGeom()
 void Settings::save()
 {
     saveWGeom();
+    settings->setValue(GENERAL_LANG_KEY, lang);
+    settings->sync();
 }
 
 void Settings::saveWGeom()

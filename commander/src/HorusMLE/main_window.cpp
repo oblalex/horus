@@ -6,6 +6,8 @@
 #include <QSplitter>
 #include <QMessageBox>
 #include <QDesktopWidget>
+#include <QTranslator>
+#include <QLibraryInfo>
 
 #include <iostream>
 using namespace std;
@@ -16,17 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    if (settings.isLoaded())
-    {
-        setGeometry(settings.winGeom);
-    } else {
-        setGeometry(QStyle::alignedRect(
-            Qt::LeftToRight,
-            Qt::AlignCenter,
-            size(),
-            QApplication::desktop()->availableGeometry()));
-    }
-
+    setWGeometry();
     setWindowTitle(tr("Horus MLE"));
 
     createMenu();
@@ -47,6 +39,20 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::setWGeometry()
+{
+    if (settings.isLoaded())
+    {
+        setGeometry(settings.winGeom);
+    } else {
+        setGeometry(QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            size(),
+            QApplication::desktop()->availableGeometry()));
+    }
 }
 
 void MainWindow::createMenu()
@@ -80,6 +86,8 @@ void MainWindow::createMenu()
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_X));
     mainMenu->addAction(quitAction);
 
+    createLangMenu();
+
     QMenu* helpMenu = new QMenu(tr("&Help"), this);
     ui->menuBar->addMenu(helpMenu);
 
@@ -88,6 +96,56 @@ void MainWindow::createMenu()
     aboutAction->setIcon(QIcon((":/img/info.png")));
     aboutAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_A));
     helpMenu->addAction(aboutAction);
+}
+
+void MainWindow::createLangMenu()
+{
+    QMenu* toolsMenu = new QMenu(tr("&Tools"), this);
+    ui->menuBar->addMenu(toolsMenu);
+
+    QMenu* langMenu = new QMenu(tr("&Language"), this);
+    toolsMenu->addMenu(langMenu);
+
+    QActionGroup* group = new QActionGroup(this);
+
+    langEnAction = new QAction(tr("English"), this);
+    connect(langEnAction, SIGNAL(triggered()), this, SLOT(onLangEnAction()));
+    langEnAction->setCheckable(true);
+    langEnAction->setActionGroup(group);
+    langEnAction->setIcon(QIcon((":/img/langEn.png")));
+    langMenu->addAction(langEnAction);
+
+    langRuAction = new QAction(tr("Russian"), this);
+    connect(langRuAction, SIGNAL(triggered()), this, SLOT(onLangRuAction()));
+    langRuAction->setCheckable(true);
+    langRuAction->setActionGroup(group);
+    langRuAction->setIcon(QIcon((":/img/langRu.png")));
+    langMenu->addAction(langRuAction);
+
+
+    if (settings.lang == LANG_RU)
+        langRuAction->setChecked(true);
+    else
+        langEnAction->setChecked(true);
+}
+
+void MainWindow::onLangEnAction()
+{
+    settings.lang = LANG_EN;
+    tellRestartApp();
+}
+
+void MainWindow::onLangRuAction()
+{
+    settings.lang = LANG_RU;
+    tellRestartApp();
+}
+
+void MainWindow::tellRestartApp()
+{
+    QMessageBox::information(this,
+        tr("Changes made"),
+        tr("The changes will take effect when you restart the application."));
 }
 
 void MainWindow::createMainBar()

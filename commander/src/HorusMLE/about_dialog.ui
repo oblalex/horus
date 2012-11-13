@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>347</width>
+    <width>374</width>
     <height>155</height>
    </rect>
   </property>
@@ -84,6 +84,9 @@
     <widget class="QLabel" name="reportLb">
      <property name="text">
       <string>report</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

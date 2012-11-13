@@ -11,5 +11,7 @@
         <file>img/edit.png</file>
         <file>img/clear.png</file>
         <file>img/info.png</file>
+        <file>img/langEn.png</file>
+        <file>img/langRu.png</file>
     </qresource>
 </RCC>

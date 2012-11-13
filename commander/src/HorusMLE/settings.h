@@ -8,14 +8,18 @@
 #define SETTINGS_DIR "./"
 #define SETTINGS_PATH SETTINGS_DIR SETTINGS_FILENAME
 
+#define LANG_RU "ru"
+#define LANG_EN "en"
+
 class Settings
 {
 public:
-    Settings();
+    Settings(bool create = true);
     void save();
     bool isLoaded();
 
     QRect winGeom;
+    QString lang;
 private:
     void load();
 

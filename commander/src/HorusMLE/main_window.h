@@ -34,13 +34,18 @@ private slots:
     void onMissionSelected();
     void onMissionDeselected();
 
+    void onLangEnAction();
+    void onLangRuAction();
+
     void onAboutToQuit();
 
 protected:
     void closeEvent(QCloseEvent *event);
 
 private:
+    void setWGeometry();
     void createMenu();
+    void createLangMenu();
     void createMainBar();
     void createNavBar();
     void createToolBar();
@@ -58,6 +63,8 @@ private:
 
     void redrawMissionsCount();
 
+    void tellRestartApp();
+
     Ui::MainWindow *ui;
 
     QAction *zoomInAction;
@@ -70,6 +77,9 @@ private:
     QAction *loadAction;
     QAction *clearAction;
     QAction *saveAction;
+
+    QAction *langEnAction;
+    QAction *langRuAction;
 
     QAction *quitAction;
     QAction *aboutAction;

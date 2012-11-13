@@ -46,3 +46,5 @@ win32 {
   RESOURCES += \
     qapp.rc
 }
+
+TRANSLATIONS = l10n/horusMLE_ru.ts
