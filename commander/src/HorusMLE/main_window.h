@@ -6,6 +6,7 @@
 #include <QLabel>
 #include "mission_list_view.h"
 #include "list_file_helper.h"
+#include "settings.h"
 
 namespace Ui {
 class MainWindow;
@@ -79,6 +80,7 @@ private:
     QLabel* missionLb;
 
     ListFileHelper* lfHelper;
+    Settings settings;
 };
 
 #endif // MAIN_WINDOW_H

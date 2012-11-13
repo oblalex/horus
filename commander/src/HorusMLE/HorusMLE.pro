@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     edge.cpp \
     mission_dialog.cpp \
     mission_list_view.cpp \
-    about_dialog.cpp
+    about_dialog.cpp \
+    settings.cpp
 
 HEADERS  += main_window.h \
     list_file_helper.h \
@@ -29,7 +30,8 @@ HEADERS  += main_window.h \
     edge.h \
     mission_dialog.h \
     mission_list_view.h \
-    about_dialog.h
+    about_dialog.h \
+    settings.h
 
 INCLUDEPATH += ../domain
 

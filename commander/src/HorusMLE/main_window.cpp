@@ -2,8 +2,10 @@
 #include "ui_main_window.h"
 #include "mission_dialog.h"
 #include "about_dialog.h"
+
 #include <QSplitter>
 #include <QMessageBox>
+#include <QDesktopWidget>
 
 #include <iostream>
 using namespace std;
@@ -13,6 +15,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    if (settings.isLoaded())
+    {
+        setGeometry(settings.winGeom);
+    } else {
+        setGeometry(QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            size(),
+            QApplication::desktop()->availableGeometry()));
+    }
 
     setWindowTitle(tr("Horus MLE"));
 
@@ -338,6 +351,8 @@ void MainWindow::onAboutToQuit()
                 break;
         }
     }
+    settings.winGeom = geometry();
+    settings.save();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
