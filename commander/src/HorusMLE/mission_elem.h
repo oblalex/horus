@@ -41,6 +41,7 @@ public:
     QList<Edge *> edges() const;
     void refsCountInc();
     void refsCountDec();
+    int getRefsCount();
 
     MissionListView* MLV;
 

@@ -89,6 +89,7 @@ void MissionElem::setPath(QString *value)
 void MissionElem::addEdge(Edge *edge)
 {
     edgeList << edge;
+    updateRadius();
 
     if ((edge->getDst()==this)
     && ((((edge->getSrc()->refsCount>0) || (edge->getSrc()->isCurrent())) && (edge->getSrc()!=this))
@@ -99,12 +100,14 @@ void MissionElem::addEdge(Edge *edge)
 void MissionElem::rmEdge(Edge *edge)
 {
     edgeList.removeOne(edge);
+    updateRadius();
 
     MissionElem* dst = edge->getDst();
 
-    if (dst==this)
-        refsCountDec();
-    else {
+    if (dst==this) {
+        if (edge->getSrc()->getRefsCount()>0)
+            refsCountDec();
+    } else {
         if (dst==this->nextNone)  nextNone = NULL;
         if (dst==this->nextRed)   nextRed  = NULL;
         if (dst==this->nextBlue)  nextBlue = NULL;
@@ -150,6 +153,11 @@ void MissionElem::refsCountDec()
         }
         e->adjust();
     }
+}
+
+int MissionElem::getRefsCount()
+{
+    return refsCount;
 }
 
 void MissionElem::updateRadius()
