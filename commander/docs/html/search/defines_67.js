@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['general_5fgrp_5fname',['GENERAL_GRP_NAME',['../settings_8cpp.html#a42c7545a778479f9fa11d49cd7e6cb13',1,'settings.cpp']]],
+  ['general_5flang_5fkey',['GENERAL_LANG_KEY',['../settings_8cpp.html#adfbd80cdf56d64b276f5d1f2c3d68287',1,'settings.cpp']]],
   ['gs_5fcfg_5fname',['GS_CFG_NAME',['../gs__paths_8h.html#a335e75214b638177fe931f0ca8da0aed',1,'gs_paths.h']]],
   ['gs_5fcmd_5fchat',['GS_CMD_CHAT',['../gs__cmd_8h.html#aea147d19902df41d3c484934212475be',1,'gs_cmd.h']]],
   ['gs_5fcmd_5fchat_5fmax_5flen',['GS_CMD_CHAT_MAX_LEN',['../gs__cmd_8h.html#a936b850ff94338d6865ac22a7114f85a',1,'gs_cmd.h']]],

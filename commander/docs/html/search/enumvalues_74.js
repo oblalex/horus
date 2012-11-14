@@ -23,5 +23,6 @@ var searchData=
   ['turb_5fnone',['TURB_NONE',['../d__weather_8h.html#ac97080165bf4e90e564bbe5d0b5bf692ac34869bd8d802e2306c2b1dba300c094',1,'d_weather.h']]],
   ['turb_5fstrong',['TURB_STRONG',['../d__weather_8h.html#ac97080165bf4e90e564bbe5d0b5bf692a6fe6ed87515592a0d09e4e5a0a22d6b1',1,'d_weather.h']]],
   ['turb_5fvery_5fstrong',['TURB_VERY_STRONG',['../d__weather_8h.html#ac97080165bf4e90e564bbe5d0b5bf692ad8ab3e345a423d70cfed8d523fddc14f',1,'d_weather.h']]],
-  ['turb_5fweak',['TURB_WEAK',['../d__weather_8h.html#ac97080165bf4e90e564bbe5d0b5bf692ab455ac9677510982fde0fa8ef3f1c6cb',1,'d_weather.h']]]
+  ['turb_5fweak',['TURB_WEAK',['../d__weather_8h.html#ac97080165bf4e90e564bbe5d0b5bf692ab455ac9677510982fde0fa8ef3f1c6cb',1,'d_weather.h']]],
+  ['type',['Type',['../classEdge.html#a1076c24a9c10f5e019ee362060200329a59a3ef5ffd963601ffda52bb7bf42b3c',1,'Edge::Type()'],['../classMissionElem.html#adec66baecd6a428b5c5ebe0acafb3585aae317d9a631fcc7eb1fd6a508ceaae26',1,'MissionElem::Type()']]]
 ];

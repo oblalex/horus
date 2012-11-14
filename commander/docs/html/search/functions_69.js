@@ -23,5 +23,11 @@ var searchData=
   ['ini_5fvalue_5fwith_5fcomment_5fset',['ini_value_with_comment_set',['../ini_8c.html#af0c72b37d959e0c1e9b74508560a2a02',1,'ini_value_with_comment_set(INI_CONTAINER *this, const char *section_name, const char *key, const char *value, const char *comment):&#160;ini.c'],['../ini_8h.html#af0c72b37d959e0c1e9b74508560a2a02',1,'ini_value_with_comment_set(INI_CONTAINER *this, const char *section_name, const char *key, const char *value, const char *comment):&#160;ini.c']]],
   ['init',['init',['../main_8c.html#a02fd73d861ef2e4aabb38c0c9ff82947',1,'main.c']]],
   ['input_5fhandlers_5fstart',['input_handlers_start',['../gs__input__handlers_8c.html#af30df97e25e1a46fc912c06568d6a195',1,'input_handlers_start():&#160;gs_input_handlers.c'],['../gs__input__handlers_8h.html#af30df97e25e1a46fc912c06568d6a195',1,'input_handlers_start():&#160;gs_input_handlers.c']]],
-  ['input_5fhandlers_5fstop',['input_handlers_stop',['../gs__input__handlers_8c.html#ad705d3d665df0bf75891267ac9c0313b',1,'input_handlers_stop():&#160;gs_input_handlers.c'],['../gs__input__handlers_8h.html#ad705d3d665df0bf75891267ac9c0313b',1,'input_handlers_stop():&#160;gs_input_handlers.c']]]
+  ['input_5fhandlers_5fstop',['input_handlers_stop',['../gs__input__handlers_8c.html#ad705d3d665df0bf75891267ac9c0313b',1,'input_handlers_stop():&#160;gs_input_handlers.c'],['../gs__input__handlers_8h.html#ad705d3d665df0bf75891267ac9c0313b',1,'input_handlers_stop():&#160;gs_input_handlers.c']]],
+  ['ischanged',['isChanged',['../classMissionListView.html#a142f0e97eadeebeaa967266a87a67f7a',1,'MissionListView']]],
+  ['iscurrent',['isCurrent',['../classMissionElem.html#a13264cfc60d75629d0d3c2cc42cf12dc',1,'MissionElem']]],
+  ['islistempty',['isListEmpty',['../classMainWindow.html#afab72e2ce8d48642ba6c7282344629bc',1,'MainWindow']]],
+  ['isloaded',['isLoaded',['../classListFileHelper.html#a991be64dceadd781993f12fa7e263263',1,'ListFileHelper::isLoaded()'],['../classSettings.html#a99df006df4189fc6940c3f8f0e31220b',1,'Settings::isLoaded()']]],
+  ['issaved',['isSaved',['../classListFileHelper.html#a6da0bd2e609d13b7d03755a80a1fdcf9',1,'ListFileHelper']]],
+  ['itemchange',['itemChange',['../classMissionElem.html#acd373b1d54f61cca90a31400563c70d3',1,'MissionElem']]]
 ];

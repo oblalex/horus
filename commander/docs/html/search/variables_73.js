@@ -1,5 +1,9 @@
 var searchData=
 [
+  ['saveaction',['saveAction',['../classMainWindow.html#a0ca0fd7bf38a67d5a0a985357566f396',1,'MainWindow']]],
+  ['saved',['saved',['../classListFileHelper.html#a23fd518ef4de47f74ac147d9e04c161e',1,'ListFileHelper']]],
+  ['scalefactor',['scaleFactor',['../classMissionListView.html#a5a2f31f2ecea1804b6bc52bba44c097e',1,'MissionListView']]],
+  ['scene',['scene',['../classMissionListView.html#afa2592f8a9b4c611c2e740b072d57a58',1,'MissionListView']]],
   ['sduration',['sDuration',['../structD__MISSION__LITE.html#a19832b3a098628d532b856fd4b36e653',1,'D_MISSION_LITE']]],
   ['second',['second',['../structTIMESTAMP__T.html#a9b9e8f99d6379899173c6e7b54e99835',1,'TIMESTAMP_T']]],
   ['secs_5fleft',['SECS_LEFT',['../gs__mission__manager_8c.html#a53ebe9585de6e827103e66edfe177fde',1,'gs_mission_manager.c']]],
@@ -7,8 +11,11 @@ var searchData=
   ['sections_5fcount',['sections_count',['../structINI__CONTAINER.html#aa6a7511f04399a584ddefb81c7c82cbe',1,'INI_CONTAINER']]],
   ['securitydescriptor',['SecurityDescriptor',['../struct__OBJECT__ATTRIBUTES.html#adfce0bf43dbfa60476b4d786c7d78610',1,'_OBJECT_ATTRIBUTES']]],
   ['securityqualityofservice',['SecurityQualityOfService',['../struct__OBJECT__ATTRIBUTES.html#a9fe901e278495c5490b3288d26636482',1,'_OBJECT_ATTRIBUTES']]],
+  ['settings',['settings',['../classMainWindow.html#a562b679480d01ca3ec6e630e827c865d',1,'MainWindow::settings()'],['../classSettings.html#a2a7aa936f8f72189eda1acf5ab0f98c5',1,'Settings::settings()']]],
   ['size',['size',['../structSTACK__STR.html#aad4c272065e02840b0a087f578d7d5ea',1,'STACK_STR']]],
   ['socket_5ffd',['SOCKET_FD',['../gs__console_8c.html#af3ec319ee4c7fd23e369069a6a5a7595',1,'gs_console.c']]],
+  ['src',['src',['../classEdge.html#afdd04ca3f430ce5cb96bc4fa9e6261cd',1,'Edge']]],
+  ['srcpoint',['srcPoint',['../classEdge.html#aa4406488b9d2389a43614c1d3444d4b7',1,'Edge']]],
   ['start',['start',['../structCBUFFER.html#a12dade455c5d78863497b47ed309ae97',1,'CBUFFER::start()'],['../structCSTACK.html#a54cf4ca6bf65e09815042ab976c163ee',1,'CSTACK::start()']]],
   ['status_5flast_5foper_5fwas_5fpush',['STATUS_LAST_OPER_WAS_PUSH',['../print__status_8c.html#aa33e2a27d81321c6705c3444781e8278',1,'print_status.c']]],
   ['statuses',['statuses',['../print__status_8c.html#a1cd82b8d8efbc558a64bfa681906d228',1,'print_status.c']]],

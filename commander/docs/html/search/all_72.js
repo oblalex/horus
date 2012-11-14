@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['radius',['radius',['../classMissionElem.html#a4a60f7c894839dd592ea46f994bf19b3',1,'MissionElem']]],
   ['re_5fchat_5fall',['RE_chat_all',['../shell__parser_8c.html#ad05dce79280e183ae81a6d961ee9ca76',1,'shell_parser.c']]],
   ['re_5fchat_5farmy',['RE_chat_army',['../shell__parser_8c.html#a70863e04a6c2daa0f9b76f2c97ef19d1',1,'shell_parser.c']]],
   ['re_5fchat_5fuser',['RE_chat_user',['../shell__parser_8c.html#a9e80562eb9f23867211c20e764c329e8',1,'shell_parser.c']]],
@@ -11,12 +12,20 @@ var searchData=
   ['record_5ffirst',['record_first',['../structini__section.html#a715815e5f46e43c115ab7fffbc96811b',1,'ini_section']]],
   ['record_5flast',['record_last',['../structini__section.html#a88907c9f1eb5863308092cadd7f7b515',1,'ini_section']]],
   ['records_5fcount',['records_count',['../structini__section.html#af1ed3d60d4ae2f774d102e41d80dbc54',1,'ini_section']]],
+  ['redrawmissionscount',['redrawMissionsCount',['../classMainWindow.html#af219cf2d28cff2e9a12afee9f902810c',1,'MainWindow']]],
   ['ref_5fcount',['ref_count',['../structmxml__node__s.html#a4b9be1f141f5b547615da988e29c7383',1,'mxml_node_s']]],
-  ['refscount',['refsCount',['../structD__MISSION__LITE__ELEM.html#aa1f90fdb7d22f73268e496fee7f74d1f',1,'D_MISSION_LITE_ELEM']]],
+  ['refscount',['refsCount',['../structD__MISSION__LITE__ELEM.html#aa1f90fdb7d22f73268e496fee7f74d1f',1,'D_MISSION_LITE_ELEM::refsCount()'],['../classMissionElem.html#a46057a596ebaea07d81c12894bed97a3',1,'MissionElem::refsCount()']]],
+  ['refscountdec',['refsCountDec',['../classMissionElem.html#a88b5a0886249ffd5f3fde9877937bb51',1,'MissionElem']]],
+  ['refscountinc',['refsCountInc',['../classMissionElem.html#a3a971acb1beb8e86d333153de45c4aae',1,'MissionElem']]],
   ['regexxx_2ec',['regexxx.c',['../regexxx_8c.html',1,'']]],
   ['regexxx_2eh',['regexxx.h',['../regexxx_8h.html',1,'']]],
   ['remove_5fdirectory',['remove_directory',['../mxmldoc_8c.html#a5a5c69bec142c36443ba7f2b5d99952a',1,'mxmldoc.c']]],
+  ['resolvereferences',['resolveReferences',['../classListFileHelper.html#a5742916f4733b3cea31802cdcb24bfa8',1,'ListFileHelper']]],
   ['rl_5fstat',['RL_STAT',['../structRL__STAT.html',1,'']]],
+  ['rmdstedges',['rmDstEdges',['../classMissionElem.html#a90e230cf55089b0167925797da6cd48b',1,'MissionElem']]],
+  ['rmedge',['rmEdge',['../classMissionElem.html#a7d485918b12f0d6106e568f342a5e228',1,'MissionElem']]],
+  ['rmedges',['rmEdges',['../classMissionElem.html#a1c10d1dd4bf1218f3084b10d48bdd0c0',1,'MissionElem']]],
+  ['rmmission',['rmMission',['../classMissionListView.html#a4f22439bdc64edbe9863678c05a336f0',1,'MissionListView']]],
   ['rootdirectory',['RootDirectory',['../struct__OBJECT__ATTRIBUTES.html#a81a3a1fa5c45cc06208aeb85e98af656',1,'_OBJECT_ATTRIBUTES']]],
   ['running',['RUNNING',['../gs__mission__manager_8c.html#a106fc7ac41c9feac6ffb5fc009cd47ee',1,'gs_mission_manager.c']]]
 ];

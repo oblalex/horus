@@ -1,5 +1,9 @@
 var searchData=
 [
+  ['zoomin',['zoomIn',['../classMissionListView.html#abbd65d2b68acdf8cbdf8c8e77b0d03d1',1,'MissionListView']]],
+  ['zoominaction',['zoomInAction',['../classMainWindow.html#a7c9deabf70bfed448aa4c42562f55f00',1,'MainWindow']]],
+  ['zoomout',['zoomOut',['../classMissionListView.html#a3fb540acf6e0ea76d64442d6c5b6ff03',1,'MissionListView']]],
+  ['zoomoutaction',['zoomOutAction',['../classMainWindow.html#adefdfad562335c832d6dec7fee20138a',1,'MainWindow']]],
   ['zwclose',['ZwClose',['../winproc_8c.html#a16e96eea2202574d8fb26cdcd2eea1de',1,'winproc.c']]],
   ['zwclose_5ft',['ZwClose_t',['../winproc_8c.html#a3538f1dba550d2f831973185fe983f0f',1,'winproc.c']]],
   ['zwcreateprocess',['ZwCreateProcess',['../winproc_8c.html#aea6e72542415c31089fa6926b67eed71',1,'winproc.c']]],

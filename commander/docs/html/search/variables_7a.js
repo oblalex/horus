@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['zoominaction',['zoomInAction',['../classMainWindow.html#a7c9deabf70bfed448aa4c42562f55f00',1,'MainWindow']]],
+  ['zoomoutaction',['zoomOutAction',['../classMainWindow.html#adefdfad562335c832d6dec7fee20138a',1,'MainWindow']]],
   ['zwclose',['ZwClose',['../winproc_8c.html#a16e96eea2202574d8fb26cdcd2eea1de',1,'winproc.c']]],
   ['zwcreateprocess',['ZwCreateProcess',['../winproc_8c.html#aea6e72542415c31089fa6926b67eed71',1,'winproc.c']]],
   ['zwcreatethread',['ZwCreateThread',['../winproc_8c.html#a138f4448cb30a30ca17f83f44c47ad97',1,'winproc.c']]],

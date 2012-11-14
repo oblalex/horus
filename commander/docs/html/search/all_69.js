@@ -36,5 +36,12 @@ var searchData=
   ['input_5fhandlers_5fstop',['input_handlers_stop',['../gs__input__handlers_8c.html#ad705d3d665df0bf75891267ac9c0313b',1,'input_handlers_stop():&#160;gs_input_handlers.c'],['../gs__input__handlers_8h.html#ad705d3d665df0bf75891267ac9c0313b',1,'input_handlers_stop():&#160;gs_input_handlers.c']]],
   ['integer',['integer',['../unionmxml__value__u.html#a91782f6e5dec1f64a63a10989be7ed19',1,'mxml_value_u']]],
   ['interrupted',['INTERRUPTED',['../gs__mission__manager_8c.html#ae513976152bf7bf39c18d5c2a862cc26',1,'gs_mission_manager.c']]],
-  ['is_5fcurrent_5ftrue_5fval',['IS_CURRENT_TRUE_VAL',['../gs__mission__manager_8c.html#a043a1e4b262c859112d98206a61b9e8e',1,'gs_mission_manager.c']]]
+  ['is_5fcurrent_5ffalse_5fval',['IS_CURRENT_FALSE_VAL',['../list__file__helper_8cpp.html#ad9544b950037e430e8a65ee551d6053d',1,'list_file_helper.cpp']]],
+  ['is_5fcurrent_5ftrue_5fval',['IS_CURRENT_TRUE_VAL',['../gs__mission__manager_8c.html#a043a1e4b262c859112d98206a61b9e8e',1,'IS_CURRENT_TRUE_VAL():&#160;gs_mission_manager.c'],['../list__file__helper_8cpp.html#a043a1e4b262c859112d98206a61b9e8e',1,'IS_CURRENT_TRUE_VAL():&#160;list_file_helper.cpp']]],
+  ['ischanged',['isChanged',['../classMissionListView.html#a142f0e97eadeebeaa967266a87a67f7a',1,'MissionListView']]],
+  ['iscurrent',['isCurrent',['../classMissionElem.html#a13264cfc60d75629d0d3c2cc42cf12dc',1,'MissionElem']]],
+  ['islistempty',['isListEmpty',['../classMainWindow.html#afab72e2ce8d48642ba6c7282344629bc',1,'MainWindow']]],
+  ['isloaded',['isLoaded',['../classListFileHelper.html#a991be64dceadd781993f12fa7e263263',1,'ListFileHelper::isLoaded()'],['../classSettings.html#a99df006df4189fc6940c3f8f0e31220b',1,'Settings::isLoaded()']]],
+  ['issaved',['isSaved',['../classListFileHelper.html#a6da0bd2e609d13b7d03755a80a1fdcf9',1,'ListFileHelper']]],
+  ['itemchange',['itemChange',['../classMissionElem.html#acd373b1d54f61cca90a31400563c70d3',1,'MissionElem']]]
 ];

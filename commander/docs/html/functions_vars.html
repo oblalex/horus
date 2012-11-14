@@ -37,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -61,13 +62,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li class="current"><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
   <div id="navrow3" class="tabs2">
     <ul class="tablist">
       <li><a href="functions.html"><span>All</span></a></li>
+      <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li class="current"><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
     </ul>
   </div>
   <div id="navrow4" class="tabs3">
@@ -87,6 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_n"><span>n</span></a></li>
       <li><a href="#index_o"><span>o</span></a></li>
       <li><a href="#index_p"><span>p</span></a></li>
+      <li><a href="#index_q"><span>q</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
       <li><a href="#index_t"><span>t</span></a></li>
@@ -94,6 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_v"><span>v</span></a></li>
       <li><a href="#index_w"><span>w</span></a></li>
       <li><a href="#index_y"><span>y</span></a></li>
+      <li><a href="#index_z"><span>z</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -102,7 +108,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Groups</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Groups</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -115,15 +121,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 &#160;
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
+<li>aboutAction
+: <a class="el" href="classMainWindow.html#a4bc4ae131d91d1eece03c36fd0c2d3fa">MainWindow</a>
+</li>
 <li>active
-: <a class="el" href="structCBUFFER.html#ae8dc1635d193ae29062f9e8ad2b2e4dd">CBUFFER</a>
+: <a class="el" href="classMissionListView.html#a3780374f53eede6a3ec1887b91633a41">MissionListView</a>
 , <a class="el" href="structCSTACK.html#ad16021e506cd69c86c1c824544d5830f">CSTACK</a>
+, <a class="el" href="structCBUFFER.html#ae8dc1635d193ae29062f9e8ad2b2e4dd">CBUFFER</a>
 </li>
 <li>AffinityMask
 : <a class="el" href="struct__THREAD__BASIC__INFORMATION.html#addfec876033171640efe5f0953c6e1be">_THREAD_BASIC_INFORMATION</a>
 </li>
 <li>alloc_nodes
 : <a class="el" href="structmxml__index__s.html#aab92aac39d8a5f1c535e08c56f9912fe">mxml_index_s</a>
+</li>
+<li>arrowSize
+: <a class="el" href="classEdge.html#adba9df664f162c6707c422acf0aec99b">Edge</a>
 </li>
 <li>attr
 : <a class="el" href="structmxml__index__s.html#a18779ac6f7d1cd07275acb47b1044a30">mxml_index_s</a>
@@ -154,8 +167,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="structCBUFFER.html#a373247a97a356a6f2616d75723c93b19">CBUFFER</a>
 , <a class="el" href="structCSTACK.html#ac2caa00f9d1d8bd665d57a87ce7a7083">CSTACK</a>
 </li>
+<li>changed
+: <a class="el" href="classMissionListView.html#a21580e8410f9d452da63e4ab47618c7b">MissionListView</a>
+</li>
 <li>child
 : <a class="el" href="structmxml__node__s.html#a7df04b4117dc4f472ad567ec6d64e2aa">mxml_node_s</a>
+</li>
+<li>clearAction
+: <a class="el" href="classMainWindow.html#a8265fe31d9ff9abebfd022d919dfe305">MainWindow</a>
 </li>
 <li>ClientId
 : <a class="el" href="struct__THREAD__BASIC__INFORMATION.html#a010d3213d0fa21e09117e1932d671e59">_THREAD_BASIC_INFORMATION</a>
@@ -171,7 +190,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="structmxml__index__s.html#a5c9c98f0ddf6cd8dbf8fee935900ec1d">mxml_index_s</a>
 </li>
 <li>current
-: <a class="el" href="struct__mxml__fdbuf__s.html#ab71ec13bbdc7e4784190a87e0d44f302">_mxml_fdbuf_s</a>
+: <a class="el" href="classMissionElem.html#aa1413880e7bd0ff7f7d26a908dcb118e">MissionElem</a>
+, <a class="el" href="struct__mxml__fdbuf__s.html#ab71ec13bbdc7e4784190a87e0d44f302">_mxml_fdbuf_s</a>
+, <a class="el" href="classMissionListView.html#a87f4006f42aa1be6801fe372f2bfa53a">MissionListView</a>
+</li>
+<li>currentCenterPoint
+: <a class="el" href="classMissionListView.html#a1d5b26fd161ae920500251b77add4aad">MissionListView</a>
 </li>
 <li>custom
 : <a class="el" href="unionmxml__value__u.html#a2c7d4503b06f46f1a83552cf64466112">mxml_value_u</a>
@@ -188,20 +212,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
 <li>data
 : <a class="el" href="structD__MISSION__LITE__ELEM.html#a3f9ca18951bf1342237c3c6c56827e12">D_MISSION_LITE_ELEM</a>
-, <a class="el" href="structmxml__custom__s.html#a8b0b8d31f90f3b8fbed3ec2cfb122c5d">mxml_custom_s</a>
-, <a class="el" href="structstack__str__node.html#ab2d6ee3efda336c794f8d2b10414c6d9">stack_str_node</a>
+, <a class="el" href="classMissionElem.html#af99e8e04b25356313fe401db1da067fa">MissionElem</a>
 , <a class="el" href="structMSG__T.html#a3722f3c4fcabd7858a6af0701a110c65">MSG_T</a>
+, <a class="el" href="structstack__str__node.html#ab2d6ee3efda336c794f8d2b10414c6d9">stack_str_node</a>
+, <a class="el" href="structmxml__custom__s.html#a8b0b8d31f90f3b8fbed3ec2cfb122c5d">mxml_custom_s</a>
 </li>
 <li>day
 : <a class="el" href="structTIMESTAMP__T.html#a50f9b97ab15cfa4b4048fa631e3b0e05">TIMESTAMP_T</a>
 </li>
+<li>delAction
+: <a class="el" href="classMainWindow.html#ad019c19c6dd37b4a27ba0cd943f925d4">MainWindow</a>
+</li>
 <li>destroy
 : <a class="el" href="structmxml__custom__s.html#a81bb4054152567b36cde745f3612562f">mxml_custom_s</a>
+</li>
+<li>dst
+: <a class="el" href="classEdge.html#a12d727f9e2363eaeea751c07d1eeef3e">Edge</a>
+</li>
+<li>dstPoint
+: <a class="el" href="classEdge.html#a93838111731ae5e4c560d700cd3f4d25">Edge</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>edgeList
+: <a class="el" href="classMissionElem.html#a5ecb4c0fc0eccd172440846639d3d60f">MissionElem</a>
+</li>
+<li>editAction
+: <a class="el" href="classMainWindow.html#a7053e01c429d5de53d43b3c4843e18b8">MainWindow</a>
+</li>
 <li>element
 : <a class="el" href="unionmxml__value__u.html#a08bebaa41875cfa814715f93aff69a10">mxml_value_u</a>
 </li>
@@ -217,6 +257,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>error_msg
 : <a class="el" href="structINI__CONTAINER.html#a87a3cc8ccdc98d381f240ac0420d79f2">INI_CONTAINER</a>
+</li>
+<li>etype
+: <a class="el" href="classEdge.html#ac24980aef9145df145e3da08e9cddb1c">Edge</a>
 </li>
 <li>ExitStatus
 : <a class="el" href="struct__THREAD__BASIC__INFORMATION.html#a5ef156ce899bb6e306df9f0d38ca80d8">_THREAD_BASIC_INFORMATION</a>
@@ -275,6 +318,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>head
 : <a class="el" href="structMSG__QUEUE.html#a7289229faa3696ebdc3d859243603acb">MSG_QUEUE</a>
 </li>
+<li>highlighted
+: <a class="el" href="classMissionListView.html#a2db2c88263fd9cebbd8122c498f3e7c5">MissionListView</a>
+</li>
 <li>hour
 : <a class="el" href="structTIMESTAMP__T.html#a48b98c35bf1267dc7104726fd94c1986">TIMESTAMP_T</a>
 </li>
@@ -296,17 +342,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
+<li>lang
+: <a class="el" href="classSettings.html#a33d9123e9e56547df3caef3048b42875">Settings</a>
+</li>
+<li>langEnAction
+: <a class="el" href="classMainWindow.html#a2f4b98e0e765e351d62bdc2d72c48344">MainWindow</a>
+</li>
+<li>langRuAction
+: <a class="el" href="classMainWindow.html#ad6de4ed32346b55bb2611a40f37f33da">MainWindow</a>
+</li>
 <li>last
 : <a class="el" href="structINI__CONTAINER.html#a6851fd4c5b792dab2945172726da602e">INI_CONTAINER</a>
 </li>
 <li>last_child
 : <a class="el" href="structmxml__node__s.html#accb5f3c6b8ce4b095105856e0b748a7c">mxml_node_s</a>
 </li>
+<li>lastPanPoint
+: <a class="el" href="classMissionListView.html#a009d467c3e8cfac04d4a8ededdc0d323">MissionListView</a>
+</li>
+<li>lastPos
+: <a class="el" href="classMissionElem.html#a5f2abb4618e25259763f27ea4922b137">MissionElem</a>
+</li>
 <li>Length
 : <a class="el" href="struct__OBJECT__ATTRIBUTES.html#aef711aa35ccec0e59ce380d836d436d1">_OBJECT_ATTRIBUTES</a>
 </li>
 <li>length
 : <a class="el" href="structRL__STAT.html#a4f42e3964cc270b4a50895bdc61b4029">RL_STAT</a>
+</li>
+<li>lfHelper
+: <a class="el" href="classMainWindow.html#a90d383e7510ef44f22c7ef51f6a030b4">MainWindow</a>
+</li>
+<li>loadAction
+: <a class="el" href="classMainWindow.html#a724cdf19c51bd692d55c747c0237daf9">MainWindow</a>
+</li>
+<li>loaded
+: <a class="el" href="classSettings.html#a67d962afb6b3610d6cb2b8051940440a">Settings</a>
+, <a class="el" href="classListFileHelper.html#a877393709193efb9eb52b937c5ad1c5a">ListFileHelper</a>
 </li>
 </ul>
 
@@ -317,6 +388,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>minute
 : <a class="el" href="structTIMESTAMP__T.html#a47584d19179ebe5d3c504792bd1bbb96">TIMESTAMP_T</a>
+</li>
+<li>missionLb
+: <a class="el" href="classMainWindow.html#a01f5cd9ad38108664153288a660cbd6f">MainWindow</a>
+</li>
+<li>missions
+: <a class="el" href="classMissionListView.html#ab851439e7b709acc5340205157deff03">MissionListView</a>
+</li>
+<li>missionsLb
+: <a class="el" href="classMainWindow.html#adaf6eecd87ab706a7ba8504d808ba3b1">MainWindow</a>
+</li>
+<li>MLV
+: <a class="el" href="classMissionElem.html#a0796b97b223d222e0b98b54e297b5b4f">MissionElem</a>
+, <a class="el" href="classMainWindow.html#a12016dc00ec498ce10e60ae0388d8103">MainWindow</a>
+, <a class="el" href="classMissionDialog.html#a7a25211f570a7697e41c7a1408acc1e4">MissionDialog</a>
 </li>
 <li>mNext
 : <a class="el" href="structD__MISSION__LITE__ELEM.html#aec5b367384709b0bc824b87923205301">D_MISSION_LITE_ELEM</a>
@@ -343,13 +428,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="structini__section.html#a93b8c9513389bad63dd22495138063f9">ini_section</a>
 , <a class="el" href="structmxml__element__s.html#a91f6136c9a0415c544d468bef48d3cf5">mxml_element_s</a>
 </li>
+<li>newAction
+: <a class="el" href="classMainWindow.html#a5bcdb8d44feeff7d1bcb21f66a164255">MainWindow</a>
+</li>
 <li>next
-: <a class="el" href="structini__section.html#a9af6015b484c96c91a377a9a96bf03df">ini_section</a>
-, <a class="el" href="structstack__str__node.html#a91cf772d63c66b545acce9c3d1265516">stack_str_node</a>
+: <a class="el" href="structini__record.html#a3ce2c3af29a4404cf2aceca4003d86c3">ini_record</a>
+, <a class="el" href="structini__section.html#a9af6015b484c96c91a377a9a96bf03df">ini_section</a>
 , <a class="el" href="structMSG__QUEUE__ELEM.html#a06dfc7030adc66d17be1dcb8c619a717">MSG_QUEUE_ELEM</a>
+, <a class="el" href="structstack__str__node.html#a91cf772d63c66b545acce9c3d1265516">stack_str_node</a>
 , <a class="el" href="structD__MISSION__LITE__ELEM.html#a99a302060f0d2a96cf10580bac7c3eb4">D_MISSION_LITE_ELEM</a>
-, <a class="el" href="structini__record.html#a3ce2c3af29a4404cf2aceca4003d86c3">ini_record</a>
 , <a class="el" href="structmxml__node__s.html#a64db89f05df06e1e0c5ba577041d9fe5">mxml_node_s</a>
+</li>
+<li>nextBlue
+: <a class="el" href="classMissionElem.html#a0c85820c053ff9f07f3c5a2ec01b58fa">MissionElem</a>
+</li>
+<li>nextNone
+: <a class="el" href="classMissionElem.html#a1f18494feb7b14e1051b59e5a5e5e15d">MissionElem</a>
+</li>
+<li>nextRed
+: <a class="el" href="classMissionElem.html#a79b3243f6835b16819a3d26ca4750691">MissionElem</a>
 </li>
 <li>nodes
 : <a class="el" href="structmxml__index__s.html#a051a60e9c749fad6aac322b7f9f2fa03">mxml_index_s</a>
@@ -407,7 +504,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 
 
+<h3><a class="anchor" id="index_q"></a>- q -</h3><ul>
+<li>quitAction
+: <a class="el" href="classMainWindow.html#a94aced1241f4e701fb6dd079f90c8094">MainWindow</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>radius
+: <a class="el" href="classMissionElem.html#a4a60f7c894839dd592ea46f994bf19b3">MissionElem</a>
+</li>
 <li>real
 : <a class="el" href="unionmxml__value__u.html#a41b852eeb08cf2532ac24756bcf10235">mxml_value_u</a>
 </li>
@@ -424,7 +531,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="structmxml__node__s.html#a4b9be1f141f5b547615da988e29c7383">mxml_node_s</a>
 </li>
 <li>refsCount
-: <a class="el" href="structD__MISSION__LITE__ELEM.html#aa1f90fdb7d22f73268e496fee7f74d1f">D_MISSION_LITE_ELEM</a>
+: <a class="el" href="classMissionElem.html#a46057a596ebaea07d81c12894bed97a3">MissionElem</a>
+, <a class="el" href="structD__MISSION__LITE__ELEM.html#aa1f90fdb7d22f73268e496fee7f74d1f">D_MISSION_LITE_ELEM</a>
 </li>
 <li>RootDirectory
 : <a class="el" href="struct__OBJECT__ATTRIBUTES.html#a81a3a1fa5c45cc06208aeb85e98af656">_OBJECT_ATTRIBUTES</a>
@@ -433,6 +541,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>saveAction
+: <a class="el" href="classMainWindow.html#a0ca0fd7bf38a67d5a0a985357566f396">MainWindow</a>
+</li>
+<li>saved
+: <a class="el" href="classListFileHelper.html#a23fd518ef4de47f74ac147d9e04c161e">ListFileHelper</a>
+</li>
+<li>scaleFactor
+: <a class="el" href="classMissionListView.html#a5a2f31f2ecea1804b6bc52bba44c097e">MissionListView</a>
+</li>
+<li>scene
+: <a class="el" href="classMissionListView.html#afa2592f8a9b4c611c2e740b072d57a58">MissionListView</a>
+</li>
 <li>sDuration
 : <a class="el" href="structD__MISSION__LITE.html#a19832b3a098628d532b856fd4b36e653">D_MISSION_LITE</a>
 </li>
@@ -448,8 +568,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>SecurityQualityOfService
 : <a class="el" href="struct__OBJECT__ATTRIBUTES.html#a9fe901e278495c5490b3288d26636482">_OBJECT_ATTRIBUTES</a>
 </li>
+<li>settings
+: <a class="el" href="classSettings.html#a2a7aa936f8f72189eda1acf5ab0f98c5">Settings</a>
+, <a class="el" href="classMainWindow.html#a562b679480d01ca3ec6e630e827c865d">MainWindow</a>
+</li>
 <li>size
 : <a class="el" href="structSTACK__STR.html#aad4c272065e02840b0a087f578d7d5ea">STACK_STR</a>
+</li>
+<li>src
+: <a class="el" href="classEdge.html#afdd04ca3f430ce5cb96bc4fa9e6261cd">Edge</a>
+</li>
+<li>srcPoint
+: <a class="el" href="classEdge.html#aa4406488b9d2389a43614c1d3444d4b7">Edge</a>
 </li>
 <li>start
 : <a class="el" href="structCSTACK.html#a54cf4ca6bf65e09815042ab976c163ee">CSTACK</a>
@@ -485,6 +615,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
+<li>ui
+: <a class="el" href="classAboutDialog.html#a36203efe478483744d1f3c53a0f69256">AboutDialog</a>
+, <a class="el" href="classMainWindow.html#a35466a70ed47252a0191168126a352a5">MainWindow</a>
+, <a class="el" href="classMissionDialog.html#a2550d6c1b594951ae58a29e38133b8b8">MissionDialog</a>
+</li>
 <li>UniqueProcess
 : <a class="el" href="struct__CLIENT__ID.html#abb0a773960bff0abda53454fd7921a07">_CLIENT_ID</a>
 </li>
@@ -500,8 +635,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_v"></a>- v -</h3><ul>
 <li>value
 : <a class="el" href="structmxml__attr__s.html#a9375d9403171d7ccc52a54bff4455592">mxml_attr_s</a>
-, <a class="el" href="structini__record.html#aa189aa88183c5ed77c44d72c6df4d33e">ini_record</a>
 , <a class="el" href="structmxml__node__s.html#ae6f6874ccd2327f5e82facf57635bcc4">mxml_node_s</a>
+, <a class="el" href="structini__record.html#aa189aa88183c5ed77c44d72c6df4d33e">ini_record</a>
+</li>
+<li>view
+: <a class="el" href="classListFileHelper.html#a6cad1174aadc6f8692ae3b0c4efd1485">ListFileHelper</a>
 </li>
 </ul>
 
@@ -520,6 +658,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>windSpeedMS
 : <a class="el" href="structD__WEATHER__REPORT.html#af63ee2335185fc98874535ec95fe76c2">D_WEATHER_REPORT</a>
 </li>
+<li>winGeom
+: <a class="el" href="classSettings.html#addb2dcfebdecaefe9d3f80ac7dae0a4b">Settings</a>
+</li>
 <li>wrap
 : <a class="el" href="struct__mxml__global__s.html#a7d7f3bfbefbf806b409072792cda4287">_mxml_global_s</a>
 </li>
@@ -531,10 +672,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="structTIMESTAMP__T.html#a212cdd810b5294064e765afedc7fe3cd">TIMESTAMP_T</a>
 </li>
 </ul>
+
+
+<h3><a class="anchor" id="index_z"></a>- z -</h3><ul>
+<li>zoomInAction
+: <a class="el" href="classMainWindow.html#a7c9deabf70bfed448aa4c42562f55f00">MainWindow</a>
+</li>
+<li>zoomOutAction
+: <a class="el" href="classMainWindow.html#adefdfad562335c832d6dec7fee20138a">MainWindow</a>
+</li>
+</ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 21 2012 00:17:41 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 14 2012 17:24:26 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

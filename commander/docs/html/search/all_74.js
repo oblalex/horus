@@ -19,6 +19,7 @@ var searchData=
   ['tc_5fyellow',['TC_YELLOW',['../group__TERMINAL__COLORS.html#ga6ba19a75d69c560a0a87d3c88db77bf3',1,'terminal.h']]],
   ['teardown',['tearDown',['../main_8c.html#ab804e0f66def63262c1d6b4e3d2a2bd7',1,'main.c']]],
   ['tebbaseaddress',['TebBaseAddress',['../struct__THREAD__BASIC__INFORMATION.html#ac16de6379ebcb91729d12edc669e383f',1,'_THREAD_BASIC_INFORMATION']]],
+  ['tellrestartapp',['tellRestartApp',['../classMainWindow.html#aba160b7a871a0cd81f9b0b7dd8252792',1,'MainWindow']]],
   ['term_5fgetwidth',['term_getWidth',['../terminal_8c.html#a8da317cee53abe18b4574d7314ed2726',1,'term_getWidth():&#160;terminal.c'],['../terminal_8h.html#a8da317cee53abe18b4574d7314ed2726',1,'term_getWidth():&#160;terminal.c']]],
   ['term_5finit',['term_init',['../terminal_8c.html#ac743d5797dd0f5f8634b72786c6bbfe0',1,'term_init():&#160;terminal.c'],['../terminal_8h.html#ac743d5797dd0f5f8634b72786c6bbfe0',1,'term_init():&#160;terminal.c']]],
   ['term_5finitresizelistener',['term_initResizeListener',['../terminal_8c.html#afd9d3146cd59894ac5a2e3f5f023e278',1,'term_initResizeListener():&#160;terminal.c'],['../terminal_8h.html#afd9d3146cd59894ac5a2e3f5f023e278',1,'term_initResizeListener():&#160;terminal.h']]],
@@ -69,5 +70,6 @@ var searchData=
   ['turb_5fvery_5fstrong',['TURB_VERY_STRONG',['../d__weather_8h.html#ac97080165bf4e90e564bbe5d0b5bf692ad8ab3e345a423d70cfed8d523fddc14f',1,'d_weather.h']]],
   ['turb_5fweak',['TURB_WEAK',['../d__weather_8h.html#ac97080165bf4e90e564bbe5d0b5bf692ab455ac9677510982fde0fa8ef3f1c6cb',1,'d_weather.h']]],
   ['turbulence',['turbulence',['../structD__WEATHER__REPORT.html#aa2b3bec2a1240ee82e754f6382d89a60',1,'D_WEATHER_REPORT']]],
-  ['type',['type',['../structmxml__node__s.html#a0a6cf678663b15303ebcbf76198d648b',1,'mxml_node_s::type()'],['../structMSG__T.html#a75187bf26450152915a0c6a8a0376e82',1,'MSG_T::type()']]]
+  ['twopi',['TwoPi',['../edge_8cpp.html#a24fed8edac81c72da2523fcb365f449a',1,'edge.cpp']]],
+  ['type',['Type',['../classEdge.html#a1076c24a9c10f5e019ee362060200329a59a3ef5ffd963601ffda52bb7bf42b3c',1,'Edge::Type()'],['../classMissionElem.html#adec66baecd6a428b5c5ebe0acafb3585aae317d9a631fcc7eb1fd6a508ceaae26',1,'MissionElem::Type()'],['../structmxml__node__s.html#a0a6cf678663b15303ebcbf76198d648b',1,'mxml_node_s::type()'],['../structMSG__T.html#a75187bf26450152915a0c6a8a0376e82',1,'MSG_T::type()'],['../classEdge.html#a8ad60980ad4024691e462442f64eb7d2',1,'Edge::type()'],['../classMissionElem.html#ac7977969aa39ea871f11b4ef0a3144a1',1,'MissionElem::type()']]]
 ];
