@@ -65,6 +65,7 @@ AC_CONFIG_FILES([
 	tests/Makefile	
 	tests/util/Makefile	
 	l10n/Makefile.in
+	src/HorusMLE/Makefile
 ])
 
 AC_OUTPUT

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: horus-commander 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/oblalex/horus/issues\n"
-"POT-Creation-Date: 2012-10-20 14:47+0300\n"
+"POT-Creation-Date: 2012-11-14 13:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,227 +17,227 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gs_mission_manager.c:62
+#: src/gs_mission_manager.c:61
 msgid "Resetting mission status"
 msgstr ""
 
-#: src/gs_mission_manager.c:73
+#: src/gs_mission_manager.c:72
 msgid "Loading missions list"
 msgstr ""
 
-#: src/gs_mission_manager.c:90
+#: src/gs_mission_manager.c:89
 msgid "XML document is invalid"
 msgstr ""
 
-#: src/gs_mission_manager.c:126
+#: src/gs_mission_manager.c:125
 msgid "name is not set. Skipping"
 msgstr ""
 
-#: src/gs_mission_manager.c:133
+#: src/gs_mission_manager.c:132
 msgid "Name already exists in list. Skipping"
 msgstr ""
 
-#: src/gs_mission_manager.c:146
+#: src/gs_mission_manager.c:145
 msgid "path is not set. Skipping"
 msgstr ""
 
-#: src/gs_mission_manager.c:168
+#: src/gs_mission_manager.c:167
 msgid "duration is not set. Using default value"
 msgstr ""
 
-#: src/gs_mission_manager.c:216
+#: src/gs_mission_manager.c:215
 msgid "Only one mission can be current. Changing"
 msgstr ""
 
-#: src/gs_mission_manager.c:261
+#: src/gs_mission_manager.c:260
 msgid "Missions list is empty"
 msgstr ""
 
-#: src/gs_mission_manager.c:270
+#: src/gs_mission_manager.c:269
 msgid "Missions:"
 msgstr ""
 
-#: src/gs_mission_manager.c:477
+#: src/gs_mission_manager.c:476
 msgid "has no references. Deleting"
 msgstr ""
 
-#: src/gs_mission_manager.c:521
+#: src/gs_mission_manager.c:520
 msgid "has no next missions. This may cause playing mission list only once"
 msgstr ""
 
-#: src/gs_mission_manager.c:537
+#: src/gs_mission_manager.c:536
 msgid "setting next BLUE map equal to next NONE map"
 msgstr ""
 
-#: src/gs_mission_manager.c:545
+#: src/gs_mission_manager.c:544
 msgid "setting next RED map equal to next NONE map"
 msgstr ""
 
-#: src/gs_mission_manager.c:553
+#: src/gs_mission_manager.c:552
 msgid "setting next RED and BLUE maps equal to next NONE map"
 msgstr ""
 
-#: src/gs_mission_manager.c:564
+#: src/gs_mission_manager.c:563
 msgid "setting next BLUE and NONE maps equal to next RED map"
 msgstr ""
 
-#: src/gs_mission_manager.c:573
+#: src/gs_mission_manager.c:572
 msgid "setting next RED and NONE maps equal to next BLUE map"
 msgstr ""
 
-#: src/gs_mission_manager.c:582
+#: src/gs_mission_manager.c:581
 msgid "setting next NONE map equal to next RED map"
 msgstr ""
 
-#: src/gs_mission_manager.c:592
+#: src/gs_mission_manager.c:591
 msgid "Saving missions list"
 msgstr ""
 
-#: src/gs_mission_manager.c:637
+#: src/gs_mission_manager.c:636
 msgid "Clearing missions list"
 msgstr ""
 
-#: src/gs_mission_manager.c:661
+#: src/gs_mission_manager.c:660
 msgid "Reloading missions list"
 msgstr ""
 
-#: src/gs_mission_manager.c:680
+#: src/gs_mission_manager.c:679
 msgid "Mission is already loaded"
 msgstr ""
 
-#: src/gs_mission_manager.c:684
+#: src/gs_mission_manager.c:683
 msgid "Loading mission"
 msgstr ""
 
-#: src/gs_mission_manager.c:685
+#: src/gs_mission_manager.c:684
 msgid "Mission loading failed."
 msgstr ""
 
-#: src/gs_mission_manager.c:686
+#: src/gs_mission_manager.c:685
 msgid "Mission loaded."
 msgstr ""
 
-#: src/gs_mission_manager.c:698 src/gs_mission_manager.c:930
+#: src/gs_mission_manager.c:697 src/gs_mission_manager.c:929
 msgid "Current mission is not selected"
 msgstr ""
 
-#: src/gs_mission_manager.c:721
+#: src/gs_mission_manager.c:720
 msgid "Mission loading timeout"
 msgstr ""
 
-#: src/gs_mission_manager.c:740 src/gs_mission_manager.c:809
+#: src/gs_mission_manager.c:739 src/gs_mission_manager.c:808
 msgid "Mission is not loaded"
 msgstr ""
 
-#: src/gs_mission_manager.c:746
+#: src/gs_mission_manager.c:745
 msgid "Mission is still running"
 msgstr ""
 
-#: src/gs_mission_manager.c:750
+#: src/gs_mission_manager.c:749
 msgid "Unloading mission..."
 msgstr ""
 
-#: src/gs_mission_manager.c:770
+#: src/gs_mission_manager.c:769
 msgid "Mission unloading timeout"
 msgstr ""
 
-#: src/gs_mission_manager.c:780
+#: src/gs_mission_manager.c:779
 msgid "Mission unloaded."
 msgstr ""
 
-#: src/gs_mission_manager.c:783
+#: src/gs_mission_manager.c:782
 msgid "Mission unloading failed."
 msgstr ""
 
-#: src/gs_mission_manager.c:791 src/gs_mission_manager.c:1010
+#: src/gs_mission_manager.c:790 src/gs_mission_manager.c:1009
 msgid "Mission is already running"
 msgstr ""
 
-#: src/gs_mission_manager.c:795
+#: src/gs_mission_manager.c:794
 msgid "Launching mission"
 msgstr ""
 
-#: src/gs_mission_manager.c:796
+#: src/gs_mission_manager.c:795
 msgid "Mission launching failed."
 msgstr ""
 
-#: src/gs_mission_manager.c:797
+#: src/gs_mission_manager.c:796
 msgid "Mission launched."
 msgstr ""
 
-#: src/gs_mission_manager.c:832
+#: src/gs_mission_manager.c:831
 msgid "Mission launching timeout"
 msgstr ""
 
-#: src/gs_mission_manager.c:858 src/gs_mission_manager.c:1239
+#: src/gs_mission_manager.c:857 src/gs_mission_manager.c:1238
 msgid "Mission is not running"
 msgstr ""
 
-#: src/gs_mission_manager.c:862
+#: src/gs_mission_manager.c:861
 msgid "Ending mission..."
 msgstr ""
 
-#: src/gs_mission_manager.c:890
+#: src/gs_mission_manager.c:889
 msgid "Mission ending timeout"
 msgstr ""
 
-#: src/gs_mission_manager.c:905
+#: src/gs_mission_manager.c:904
 msgid "Mission ending failed."
 msgstr ""
 
-#: src/gs_mission_manager.c:911
+#: src/gs_mission_manager.c:910
 msgid "Re-running mission"
 msgstr ""
 
-#: src/gs_mission_manager.c:926
+#: src/gs_mission_manager.c:925
 msgid "Going to next mission"
 msgstr ""
 
-#: src/gs_mission_manager.c:967
+#: src/gs_mission_manager.c:966
 msgid "Going to previous mission"
 msgstr ""
 
-#: src/gs_mission_manager.c:973
+#: src/gs_mission_manager.c:972
 msgid "Previous mission is not selected"
 msgstr ""
 
-#: src/gs_mission_manager.c:1014
+#: src/gs_mission_manager.c:1013
 msgid "Starting mission"
 msgstr ""
 
-#: src/gs_mission_manager.c:1036
+#: src/gs_mission_manager.c:1035
 msgid "Stopping mission"
 msgstr ""
 
-#: src/gs_mission_manager.c:1058
+#: src/gs_mission_manager.c:1057
 msgid "Re-starting mission"
 msgstr ""
 
-#: src/gs_mission_manager.c:1093
+#: src/gs_mission_manager.c:1092
 msgid "Initializing mission manager"
 msgstr ""
 
-#: src/gs_mission_manager.c:1109
+#: src/gs_mission_manager.c:1108
 msgid "Releasing mission manager"
 msgstr ""
 
-#: src/gs_mission_manager.c:1177
+#: src/gs_mission_manager.c:1176
 msgid "Mission ended."
 msgstr ""
 
-#: src/gs_mission_manager.c:1181
+#: src/gs_mission_manager.c:1180
 msgid "Mission was interrupted."
 msgstr ""
 
-#: src/gs_mission_manager.c:1202
+#: src/gs_mission_manager.c:1201
 msgid "Mission time left"
 msgstr ""
 
-#: src/gs_mission_manager.c:1420
+#: src/gs_mission_manager.c:1419
 msgid "Events parsing started"
 msgstr ""
 
-#: src/gs_mission_manager.c:1432
+#: src/gs_mission_manager.c:1431
 msgid "Events parsing stopped"
 msgstr ""
 
@@ -356,31 +356,31 @@ msgstr ""
 msgid "Argument unknown"
 msgstr ""
 
-#: src/shell_parser.c:67
+#: src/shell_parser.c:79
 msgid "Unknown command."
 msgstr ""
 
-#: src/gs_input_handlers.c:18
+#: src/gs_input_handlers.c:24
 msgid "Starting console and shell handling threads"
 msgstr ""
 
-#: src/gs_input_handlers.c:30
+#: src/gs_input_handlers.c:36
 msgid "Game server's output processing started"
 msgstr ""
 
-#: src/gs_input_handlers.c:32
+#: src/gs_input_handlers.c:38
 msgid "Game server's output processing finished"
 msgstr ""
 
-#: src/gs_input_handlers.c:38
+#: src/gs_input_handlers.c:44
 msgid "User's shell activated"
 msgstr ""
 
-#: src/gs_input_handlers.c:40
+#: src/gs_input_handlers.c:52
 msgid "User's shell deactivated"
 msgstr ""
 
-#: src/gs_input_handlers.c:67
+#: src/gs_input_handlers.c:79
 msgid "Stopping console and shell handling threads"
 msgstr ""
 
@@ -440,7 +440,7 @@ msgstr ""
 msgid "Closing console socket"
 msgstr ""
 
-#: src/gs_cmd.c:86
+#: src/gs_cmd.c:98
 msgid "Kicking all!"
 msgstr ""
 

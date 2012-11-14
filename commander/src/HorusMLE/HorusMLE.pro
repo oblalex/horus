@@ -42,9 +42,11 @@ FORMS    += main_window.ui \
 RESOURCES += \
     img.qrc
 
+CONFIG += release
+
 win32 {
-  RESOURCES += \
-    qapp.rc
+    RC_FILE = qapp.rc
+    release: DESTDIR = ./
 }
 
 TRANSLATIONS = l10n/horusMLE_ru.ts
