@@ -13,6 +13,7 @@ var searchData=
   ['gethighlighted',['getHighlighted',['../classMissionListView.html#a90a444472993c9181297794ab1415d4e',1,'MissionListView']]],
   ['getmissions',['getMissions',['../classMissionListView.html#ac32bda60fe59bafb5b9f33d1488aa803',1,'MissionListView']]],
   ['getradius',['getRadius',['../classMissionElem.html#a0629a21fff3ac14b353df202a777839e',1,'MissionElem']]],
+  ['getrefscount',['getRefsCount',['../classMissionElem.html#a59a2971a9bb483984867a7972ddbf566',1,'MissionElem']]],
   ['getsrc',['getSrc',['../classEdge.html#ae7a1ec77202fa770e4f622cfce206f39',1,'Edge']]],
   ['gettextrect',['getTextRect',['../classMissionElem.html#af9663ce72da52c6aa6d4251e05c989e0',1,'MissionElem']]],
   ['grantedaccess',['GrantedAccess',['../struct__SYSTEM__HANDLE__INFORMATION.html#a37c48baee76491e250c10c1f14700554',1,'_SYSTEM_HANDLE_INFORMATION']]],
