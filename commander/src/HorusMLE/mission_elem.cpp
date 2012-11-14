@@ -100,8 +100,15 @@ void MissionElem::rmEdge(Edge *edge)
 {
     edgeList.removeOne(edge);
 
-    if ((edge->getDst()==this) && (refsCount>0))
+    MissionElem* dst = edge->getDst();
+
+    if (dst==this)
         refsCountDec();
+    else {
+        if (dst==this->nextNone)  nextNone = NULL;
+        if (dst==this->nextRed)   nextRed  = NULL;
+        if (dst==this->nextBlue)  nextBlue = NULL;
+    }
 }
 
 void MissionElem::refsCountInc()
@@ -248,7 +255,7 @@ void MissionElem::rmDstEdges()
     foreach (Edge* e, edgeList)
     {
         if ((this==e->getDst()) && (this!=e->getSrc())) continue;
-        MLV->scene->removeItem(e);
+        rmEdge(e);
         delete e;
     }
 }

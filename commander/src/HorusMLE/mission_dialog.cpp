@@ -108,7 +108,7 @@ void MissionDialog::on_buttonBox_accepted()
     MissionElem* red = me->nextRed;
     MissionElem* blue = me->nextBlue;
 
-    me->rmDstEdges();
+    me->updateDstEdges();
 
     if (none) none->update();
     if (red) red->update();
@@ -119,6 +119,10 @@ void MissionDialog::on_buttonBox_accepted()
     me->nextBlue = MLV->missionByName(ui->nextBlueCmb->currentText());
 
     me->updateDstEdges();
+
+    if (none) none->update();
+    if (red) red->update();
+    if (blue) blue->update();
 
     accept();
 }
