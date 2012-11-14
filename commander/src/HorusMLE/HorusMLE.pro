@@ -11,7 +11,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = horusMLE
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
         main_window.cpp \
     list_file_helper.cpp \

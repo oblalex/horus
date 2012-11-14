@@ -71,7 +71,7 @@ void MissionDialog::on_pathBtn_clicked()
     QString startDir;
     startDir = (QDir(misPath).exists())
                ? ((ui->pathLe->text().isEmpty())
-                    ? QDir::currentPath()
+                    ? misPath
                     : misPath+ui->pathLe->text())
                : QDir::currentPath();
 
