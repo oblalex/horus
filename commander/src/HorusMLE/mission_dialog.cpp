@@ -120,6 +120,7 @@ void MissionDialog::on_buttonBox_accepted()
     me->updateDstEdges();
     me->updateEdges();
     me->update();
+    me->updateToolTip();
 
     accept();
 }
