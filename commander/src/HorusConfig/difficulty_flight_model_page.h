@@ -15,8 +15,8 @@ class DifficultyFlightModelPage : public QWidget, public DifficultySubpage
 public:
     explicit DifficultyFlightModelPage(QWidget *parent = 0);
     ~DifficultyFlightModelPage();
-    int getDifficultyCode();
-    void setDifficultyCode(int value);
+    qint64 getDifficultyCode();
+    void setDifficultyCode(qint64 value);
     
 private:
     Ui::DifficultyFlightModelPage *ui;

@@ -20,9 +20,9 @@ DifficultyWeaponsPage::~DifficultyWeaponsPage()
     delete ui;
 }
 
-int DifficultyWeaponsPage::getDifficultyCode()
+qint64 DifficultyWeaponsPage::getDifficultyCode()
 {
-    int code = 0;
+    qint64 code = 0;
     if (ui->RealisticGunnery->isChecked())              code += _RealisticGunnery;
     if (ui->LimitedAmmo->isChecked())                   code += _LimitedAmmo;
     if (ui->LimitedFuel->isChecked())                   code += _LimitedFuel;
@@ -34,7 +34,7 @@ int DifficultyWeaponsPage::getDifficultyCode()
     return code;
 }
 
-void DifficultyWeaponsPage::setDifficultyCode(int value)
+void DifficultyWeaponsPage::setDifficultyCode(qint64 value)
 {
     ui->RealisticGunnery->setChecked            (value & _RealisticGunnery);
     ui->LimitedAmmo->setChecked                 (value & _LimitedAmmo);

@@ -16,8 +16,8 @@ public:
     explicit DifficultyWeaponsPage(QWidget *parent = 0);
     ~DifficultyWeaponsPage();
 
-    int getDifficultyCode();
-    void setDifficultyCode(int value);
+    qint64 getDifficultyCode();
+    void setDifficultyCode(qint64 value);
     
 private:
     Ui::DifficultyWeaponsPage *ui;
