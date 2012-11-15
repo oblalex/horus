@@ -14,19 +14,30 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         main_window.cpp \
-    config_module.cpp
+    config_module.cpp \
+    general_page.cpp \
+    named_page.cpp \
+    settings.cpp
 
 HEADERS  += main_window.h \
-    config_module.h
+    config_module.h \
+    general_page.h \
+    named_page.h \
+    settings.h \
+    ../gs_cfg_sections.h
 
-FORMS    += main_window.ui
+FORMS    += main_window.ui \
+    general_page.ui
 
 RESOURCES += \
     img.qrc
 
 CONFIG += release
+INCLUDEPATH += ../
 
 win32 {
     RC_FILE = qapp.rc
     release: DESTDIR = ./
 }
+
+TRANSLATIONS = l10n/horusConfig_ru.ts

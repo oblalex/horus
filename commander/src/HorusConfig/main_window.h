@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QAbstractButton>
+#include <QListWidgetItem>
 
 #include "config_module.h"
 
@@ -22,13 +23,18 @@ public:
     void load();
     void loadDefaults();
 
+    void closeEvent(QCloseEvent *event);
 private slots:
     void onButtonClicked(QAbstractButton *button);
+
+    void on_list_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
 
 private:
     Ui::MainWindow *ui;
     void setWGeometry();
     void setSplitterPos();
+    void addPages();
+    void saveWGeometry();
 };
 
 #endif // MAIN_WINDOW_H

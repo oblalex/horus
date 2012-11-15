@@ -45,7 +45,7 @@
     <item>
      <widget class="QDialogButtonBox" name="buttons">
       <property name="standardButtons">
-       <set>QDialogButtonBox::Close|QDialogButtonBox::Ok|QDialogButtonBox::RestoreDefaults</set>
+       <set>QDialogButtonBox::Close|QDialogButtonBox::RestoreDefaults|QDialogButtonBox::Save</set>
       </property>
       <property name="centerButtons">
        <bool>false</bool>
