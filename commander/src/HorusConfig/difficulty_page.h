@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QList>
+#include <QListWidgetItem>
 #include "difficulty_subpage.h"
 
 #include "named_page.h"
@@ -25,6 +26,9 @@ public:
     void save();
     void load();
     void loadDefaults();
+
+private slots:
+    void on_list_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
 
 private:
     Ui::DifficultyPage *ui;

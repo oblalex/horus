@@ -1,8 +1,10 @@
 #include "difficulty_page.h"
 #include "ui_difficulty_page.h"
-#include "difficulty_flight_model_page.h"
 #include "settings.h"
 #include "gs_cfg_sections.h"
+
+#include "difficulty_flight_model_page.h"
+#include "difficulty_weapons_page.h"
 
 static QString KEY_DIFFICULTY = QString(GS_CFG_GRP_NET).append("/difficulty");
 
@@ -39,6 +41,14 @@ void DifficultyPage::addPages()
     ui->stack->addWidget(fm);
     subpages << fm;
 
+    DifficultyWeaponsPage* wpn = new DifficultyWeaponsPage;
+    new QListWidgetItem(
+                tr("Weapons"),
+                ui->list,
+                QListWidgetItem::UserType);
+    ui->stack->addWidget(wpn);
+    subpages << wpn;
+
     ui->stack->setCurrentIndex(0);
     ui->list->setCurrentRow(0);
 }
@@ -72,5 +82,16 @@ void DifficultyPage::load()
 
 void DifficultyPage::loadDefaults()
 {
+    foreach (DifficultySubpage* sp, subpages)
+        sp->setDifficultyCode(0);
+
     loadChildrenDefaults();
+}
+
+void DifficultyPage::on_list_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
+{
+    if (!current)
+        current = previous;
+
+    ui->stack->setCurrentIndex(ui->list->row(current));
 }
