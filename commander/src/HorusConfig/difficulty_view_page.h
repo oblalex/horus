@@ -16,8 +16,8 @@ public:
     explicit DifficultyViewPage(QWidget *parent = 0);
     ~DifficultyViewPage();
 
-    qint64 getDifficultyCode();
-    void setDifficultyCode(qint64 value);
+    quint64 getDifficultyCode();
+    void setDifficultyCode(quint64 value);
 
 private slots:
     void on_NoOutSideViews_toggled(bool checked);

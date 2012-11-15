@@ -23,10 +23,9 @@ DifficultyViewPage::~DifficultyViewPage()
     delete ui;
 }
 
-qint64 DifficultyViewPage::getDifficultyCode()
+quint64 DifficultyViewPage::getDifficultyCode()
 {
-    qint64 code = 0;
-
+    quint64 code = 0;
     if (ui->NoOutSideViews->isChecked())    code += _NoOutSideViews;
     if (ui->NoSpeedBar->isChecked())        code += _NoSpeedBar;
     if (ui->NoPadlock->isChecked())         code += _NoPadlock;
@@ -42,19 +41,19 @@ qint64 DifficultyViewPage::getDifficultyCode()
     return code;
 }
 
-void DifficultyViewPage::setDifficultyCode(qint64 value)
+void DifficultyViewPage::setDifficultyCode(quint64 value)
 {
-    ui->NoOutSideViews->setChecked  (value & _NoOutSideViews);
     ui->NoSpeedBar->setChecked      (value & _NoSpeedBar);
     ui->NoPadlock->setChecked       (value & _NoPadlock);
-
     ui->CockpitAlwaysOn->setChecked (value & _CockpitAlwaysOn);
+
     ui->NoSelfView->setChecked      (value & _NoSelfView);
     ui->NoFoeView->setChecked       (value & _NoFoeView);
-
     ui->NoFriendlyView->setChecked  (value & _NoFriendlyView);
+
     ui->NoPlanesView->setChecked    (value & _NoPlanesView);
     ui->NoACarrierView->setChecked  (value & _NoACarrierView);
+    ui->NoOutSideViews->setChecked  (value & _NoOutSideViews);
 }
 
 void DifficultyViewPage::on_NoOutSideViews_toggled(bool checked)

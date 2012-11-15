@@ -7,8 +7,8 @@ class DifficultySubpage
 {
 public:
     DifficultySubpage();
-    virtual qint64 getDifficultyCode() = 0;
-    virtual void setDifficultyCode(qint64 value) = 0;
+    virtual quint64 getDifficultyCode() = 0;
+    virtual void setDifficultyCode(quint64 value) = 0;
 };
 
 #endif // DIFFICULTY_SUBPAGE_H

@@ -6,6 +6,7 @@
 #include "difficulty_flight_model_page.h"
 #include "difficulty_weapons_page.h"
 #include "difficulty_view_page.h"
+#include "difficulty_map_icons_page.h"
 
 static QString KEY_DIFFICULTY = QString(GS_CFG_GRP_NET).append("/difficulty");
 
@@ -58,8 +59,22 @@ void DifficultyPage::addPages()
     ui->stack->addWidget(vw);
     subpages << vw;
 
+    DifficultyMapIconsPage* mi = new DifficultyMapIconsPage;
+    new QListWidgetItem(
+                tr("Map & icons"),
+                ui->list,
+                QListWidgetItem::UserType);
+    ui->stack->addWidget(mi);
+    subpages << mi;
+
     ui->stack->setCurrentIndex(0);
     ui->list->setCurrentRow(0);
+}
+
+void DifficultyPage::loadCode(quint64 code)
+{
+    foreach (DifficultySubpage* sp, subpages)
+        sp->setDifficultyCode(code);
 }
 
 QString DifficultyPage::pageName()
@@ -69,31 +84,25 @@ QString DifficultyPage::pageName()
 
 void DifficultyPage::save()
 {
-    int diff = 0;
+    quint64 code = 0;
 
     foreach (DifficultySubpage* sp, subpages)
-        diff += sp->getDifficultyCode();
+        code += sp->getDifficultyCode();
 
-    Settings::setServerValue(KEY_DIFFICULTY, diff);
-
+    Settings::setServerValue(KEY_DIFFICULTY, code);
     saveChildren();
 }
 
 void DifficultyPage::load()
 {
-    int diff = Settings::serverValue(KEY_DIFFICULTY, "0").toInt();
-
-    foreach (DifficultySubpage* sp, subpages)
-        sp->setDifficultyCode(diff);
-
+    quint64 code = Settings::serverValue(KEY_DIFFICULTY, "0").toUInt();
+    loadCode(code);
     loadChildren();
 }
 
 void DifficultyPage::loadDefaults()
 {
-    foreach (DifficultySubpage* sp, subpages)
-        sp->setDifficultyCode(0);
-
+    loadCode(0);
     loadChildrenDefaults();
 }
 

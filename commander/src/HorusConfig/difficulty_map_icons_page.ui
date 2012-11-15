@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DifficultyWeaponsPage</class>
- <widget class="QWidget" name="DifficultyWeaponsPage">
+ <class>DifficultyMapIconsPage</class>
+ <widget class="QWidget" name="DifficultyMapIconsPage">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -15,44 +15,37 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QCheckBox" name="RealisticGunnery">
+    <widget class="QCheckBox" name="NoMapIcons">
      <property name="text">
-      <string>Realistic gunnery</string>
+      <string>No map icons</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="LimitedAmmo">
+    <widget class="QCheckBox" name="NoPlayerIcon">
      <property name="text">
-      <string>Limited ammo</string>
+      <string>No player icon</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="LimitedFuel">
+    <widget class="QCheckBox" name="NoFogOfWarIcons">
      <property name="text">
-      <string>Limited fuel</string>
+      <string>No fog of war icons</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="BombFuzes">
+    <widget class="QCheckBox" name="NoMinimapPath">
      <property name="text">
-      <string>Bomb fuzes</string>
+      <string>No minimap path</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="RealisticTorpedoing">
+    <widget class="QCheckBox" name="NoIcons">
      <property name="text">
-      <string>Realistic torpedoing</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="RealisticMissilesVariation">
-     <property name="text">
-      <string>Realistic missiles variation</string>
+      <string>No icons</string>
      </property>
     </widget>
    </item>

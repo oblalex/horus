@@ -23,9 +23,9 @@ DifficultyFlightModelPage::~DifficultyFlightModelPage()
     delete ui;
 }
 
-qint64 DifficultyFlightModelPage::getDifficultyCode()
+quint64 DifficultyFlightModelPage::getDifficultyCode()
 {
-    qint64 code = 0;
+    quint64 code = 0;
     if (ui->SeparateEStart->isChecked())     code += _SeparateEStart;
     if (ui->ComplexEManagement->isChecked()) code += _ComplexEManagement;
     if (ui->EngineOverheat->isChecked())     code += _EngineOverheat;
@@ -41,7 +41,7 @@ qint64 DifficultyFlightModelPage::getDifficultyCode()
     return code;
 }
 
-void DifficultyFlightModelPage::setDifficultyCode(qint64 value)
+void DifficultyFlightModelPage::setDifficultyCode(quint64 value)
 {
     ui->SeparateEStart->setChecked      (value & _SeparateEStart);
     ui->ComplexEManagement->setChecked  (value & _ComplexEManagement);
