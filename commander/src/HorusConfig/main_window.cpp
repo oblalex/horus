@@ -1,6 +1,7 @@
 #include "main_window.h"
 #include "ui_main_window.h"
 #include "general_page.h"
+#include "difficulty_page.h"
 #include "settings.h"
 
 #include <QDesktopWidget>
@@ -60,6 +61,15 @@ void MainWindow::addPages()
                 QListWidgetItem::UserType);
     ui->stack->addWidget(general);
     addChild(general);
+
+    DifficultyPage* difficulty = new DifficultyPage;
+    new QListWidgetItem(
+                QIcon(":/img/difficulty.png"),
+                difficulty->pageName(),
+                ui->list,
+                QListWidgetItem::UserType);
+    ui->stack->addWidget(difficulty);
+    addChild(difficulty);
 
     ui->stack->setCurrentIndex(0);
     ui->list->setCurrentRow(0);

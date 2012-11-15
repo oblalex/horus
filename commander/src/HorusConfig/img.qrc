@@ -4,5 +4,6 @@
         <file>img/general.png</file>
         <file>img/langRu.png</file>
         <file>img/langEn.png</file>
+        <file>img/difficulty.png</file>
     </qresource>
 </RCC>

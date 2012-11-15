@@ -17,17 +17,25 @@ SOURCES += main.cpp\
     config_module.cpp \
     general_page.cpp \
     named_page.cpp \
-    settings.cpp
+    settings.cpp \
+    difficulty_page.cpp \
+    difficulty_flight_model_page.cpp \
+    difficulty_subpage.cpp
 
 HEADERS  += main_window.h \
     config_module.h \
     general_page.h \
     named_page.h \
     settings.h \
-    ../gs_cfg_sections.h
+    ../gs_cfg_sections.h \
+    difficulty_page.h \
+    difficulty_flight_model_page.h \
+    difficulty_subpage.h
 
 FORMS    += main_window.ui \
-    general_page.ui
+    general_page.ui \
+    difficulty_page.ui \
+    difficulty_flight_model_page.ui
 
 RESOURCES += \
     img.qrc
