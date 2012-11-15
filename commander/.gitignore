@@ -3,6 +3,7 @@
 Makefile.in
 *~
 *.swp
+*.pro.user
 bak
 # http://www.gnu.org/software/autoconf
 /build
