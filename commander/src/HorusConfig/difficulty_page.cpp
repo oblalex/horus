@@ -122,3 +122,18 @@ void DifficultyPage::on_list_currentItemChanged(QListWidgetItem *current, QListW
 
     ui->stack->setCurrentIndex(ui->list->row(current));
 }
+
+void DifficultyPage::on_easyBtn_clicked()
+{
+    loadCode(1090682880);
+}
+
+void DifficultyPage::on_normalBtn_clicked()
+{
+    loadCode(6704004351);
+}
+
+void DifficultyPage::on_realBtn_clicked()
+{
+    loadCode(549755813887);
+}

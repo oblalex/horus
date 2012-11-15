@@ -30,6 +30,12 @@ public:
 private slots:
     void on_list_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
 
+    void on_easyBtn_clicked();
+
+    void on_normalBtn_clicked();
+
+    void on_realBtn_clicked();
+
 private:
     Ui::DifficultyPage *ui;
     QList<DifficultySubpage*> subpages;
