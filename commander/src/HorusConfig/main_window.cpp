@@ -3,6 +3,9 @@
 
 #include <QDesktopWidget>
 
+#include <iostream>
+using namespace std;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -10,6 +13,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWGeometry();
     setSplitterPos();
+
+    load();
+
+    connect(ui->buttons, SIGNAL(clicked(QAbstractButton*)), this, SLOT(onButtonClicked(QAbstractButton*)));
 }
 
 void MainWindow::setWGeometry()
@@ -33,4 +40,36 @@ void MainWindow::setSplitterPos()
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::save()
+{
+    saveChildren();
+}
+
+void MainWindow::load()
+{
+    loadChildren();
+}
+
+void MainWindow::loadDefaults()
+{
+    loadChildrenDefaults();
+}
+
+void MainWindow::onButtonClicked(QAbstractButton *button)
+{
+    switch (ui->buttons->buttonRole(button))
+    {
+        case QDialogButtonBox::ResetRole:
+            loadDefaults();
+            break;
+        case QDialogButtonBox::RejectRole:
+            close();
+            break;
+        case QDialogButtonBox::AcceptRole:
+            save();
+            break;
+        default:;
+    }
 }

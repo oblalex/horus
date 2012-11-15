@@ -13,9 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        main_window.cpp
+        main_window.cpp \
+    config_module.cpp
 
-HEADERS  += main_window.h
+HEADERS  += main_window.h \
+    config_module.h
 
 FORMS    += main_window.ui
 
