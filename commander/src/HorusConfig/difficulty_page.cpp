@@ -7,6 +7,7 @@
 #include "difficulty_weapons_page.h"
 #include "difficulty_view_page.h"
 #include "difficulty_map_icons_page.h"
+#include "difficulty_var_page.h"
 
 static QString KEY_DIFFICULTY = QString(GS_CFG_GRP_NET).append("/difficulty");
 
@@ -66,6 +67,14 @@ void DifficultyPage::addPages()
                 QListWidgetItem::UserType);
     ui->stack->addWidget(mi);
     subpages << mi;
+
+    DifficultyVarPage* var = new DifficultyVarPage;
+    new QListWidgetItem(
+                tr("Various"),
+                ui->list,
+                QListWidgetItem::UserType);
+    ui->stack->addWidget(var);
+    subpages << var;
 
     ui->stack->setCurrentIndex(0);
     ui->list->setCurrentRow(0);
