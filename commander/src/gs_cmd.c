@@ -8,6 +8,7 @@
 
 #include "gs_cmd.h"
 #include "gs_cfg.h"
+
 #include "gs_console.h"
 
 #include "util/print_status.h"
@@ -22,7 +23,7 @@ void gs_cmd_init()
 	GS_IN_FD = get_gs_console_socket();
 	pthread_mutex_init(&LOCK, NULL);
 
-    channels = atoi(gs_cfg_get(GS_CFG_SEC_NET, "serverChannels"));
+    channels = atoi(gs_cfg_get(GS_CFG_GRP_NET, "serverChannels"));
 }
 
 void gs_cmd_exit()

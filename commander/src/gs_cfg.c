@@ -55,40 +55,40 @@ void gs_cfg_logging(INI_CONTAINER* cfg)
 void gs_cfg_logging_chat(INI_CONTAINER* cfg)
 {
     PRINT_STATUS_MSG(tr("Suppressing logging to chat"));
-    ini_value_set(cfg, GS_CFG_SEC_CHAT, "autoLogDetail", "0");
+    ini_value_set(cfg, GS_CFG_GRP_CHAT, "autoLogDetail", "0");
 }
 
 void gs_cfg_logging_console(INI_CONTAINER* cfg)
 {
     PRINT_STATUS_MSG(tr("Disabling saving console output to file"));
-    ini_value_set(cfg, GS_CFG_SEC_CONSOLE, "LOG", "0");
+    ini_value_set(cfg, GS_CFG_GRP_CONSOLE, "LOG", "0");
 }
 
 void gs_cfg_logging_file(INI_CONTAINER* cfg)
 {
     PRINT_STATUS_MSG(tr("Setting logging output file"));
-    ini_value_set(cfg, GS_CFG_SEC_GAME, "eventlog", GS_LOG_EVT);
+    ini_value_set(cfg, GS_CFG_GRP_GAME, "eventlog", GS_LOG_EVT);
 
     PRINT_STATUS_MSG(tr("Enabling log resetting for every mission"));
-    ini_value_set(cfg, GS_CFG_SEC_GAME, "eventlogkeep", "0");
+    ini_value_set(cfg, GS_CFG_GRP_GAME, "eventlogkeep", "0");
 
     PRINT_STATUS_MSG(tr("Enabling buildings destruction logging"));
-    ini_value_set(cfg, GS_CFG_SEC_GAME, "eventlogHouse", "1");
+    ini_value_set(cfg, GS_CFG_GRP_GAME, "eventlogHouse", "1");
 }
 
 void gs_cfg_console_connection(INI_CONTAINER* cfg)
 {
     PRINT_STATUS_MSG(tr("Enabling server's console"));
-    ini_value_set(cfg, GS_CFG_SEC_CONSOLE, "IP", GS_CONSOLE_PORT);
+    ini_value_set(cfg, GS_CFG_GRP_CONSOLE, "IP", GS_CONSOLE_PORT);
 
     PRINT_STATUS_MSG(tr("Setting console allowed clients list"));
-    ini_value_set(cfg, GS_CFG_SEC_CONSOLE, "IPS", "127.0.0.1");
+    ini_value_set(cfg, GS_CFG_GRP_CONSOLE, "IPS", "127.0.0.1");
 }
 
 void gs_cfg_version_checking(INI_CONTAINER* cfg)
 {
     PRINT_STATUS_MSG(tr("Setting client version checking"));
-    ini_value_set(cfg, GS_CFG_SEC_NET, "checkRuntime", "1");
+    ini_value_set(cfg, GS_CFG_GRP_NET, "checkRuntime", "1");
 }
 
 char* gs_cfg_get(const char* sec_name, const char* key)
