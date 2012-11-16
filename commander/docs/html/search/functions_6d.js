@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['main',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;main.cpp'],['../main_8c.html#a790aa8b99fa3d90918361b8936af0b14',1,'main(int argc, char const **argv):&#160;main.c'],['../mxmldoc_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;mxmldoc.c']]],
-  ['mainwindow',['MainWindow',['../classMainWindow.html#a8b244be8b7b7db1b08de2a2acb9409db',1,'MainWindow']]],
+  ['main',['main',['../HorusConfig_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;main.cpp'],['../HorusMLE_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;main.cpp'],['../main_8c.html#a790aa8b99fa3d90918361b8936af0b14',1,'main(int argc, char const **argv):&#160;main.c'],['../mxmldoc_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;mxmldoc.c']]],
+  ['mainwindow',['MainWindow',['../classMainWindow.html#a8b244be8b7b7db1b08de2a2acb9409db',1,'MainWindow::MainWindow(QWidget *parent=0)'],['../classMainWindow.html#a8b244be8b7b7db1b08de2a2acb9409db',1,'MainWindow::MainWindow(QWidget *parent=0)']]],
   ['mission_5fmatch',['mission_match',['../console__parser_8c.html#a048b7f5be165ebcfae36b848805e4122',1,'mission_match(char *str):&#160;console_parser.c'],['../console__parser_8h.html#a06ab0431ae751cbe6e77c65fac019b7d',1,'mission_match(char *str):&#160;console_parser.c']]],
   ['missionbyname',['missionByName',['../classMissionListView.html#af4d280c56177ba70e35c649bf894c6b6',1,'MissionListView']]],
   ['missiondeselected',['missionDeselected',['../classMissionListView.html#a2f1967bbdf2b09b2ba75b52c1bc54a6e',1,'MissionListView']]],

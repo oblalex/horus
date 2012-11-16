@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['generalpage',['GeneralPage',['../classGeneralPage.html#a5d2abb902fc12f274375e955bf6c99e5',1,'GeneralPage']]],
   ['get_5fcomment_5finfo',['get_comment_info',['../mxmldoc_8c.html#a1e20510159e4ed015c25f524d0619260',1,'mxmldoc.c']]],
   ['get_5fgs_5fconsole_5fsocket',['get_gs_console_socket',['../gs__console_8c.html#a475f2aa3dc2372cadf0263579e6c959a',1,'get_gs_console_socket():&#160;gs_console.c'],['../gs__console_8h.html#a475f2aa3dc2372cadf0263579e6c959a',1,'get_gs_console_socket():&#160;gs_console.c']]],
   ['get_5fmssn_5felem_5fby_5fname',['get_mssn_elem_by_name',['../gs__mission__manager_8c.html#aef21ee13b0dd8b59d137d13692182e49',1,'get_mssn_elem_by_name(char *name):&#160;gs_mission_manager.c'],['../gs__mission__manager_8h.html#ad532a9df1d4e90cca54bd2adba89fe45',1,'get_mssn_elem_by_name(char *name):&#160;gs_mission_manager.c']]],
@@ -7,8 +8,10 @@ var searchData=
   ['get_5ftext',['get_text',['../mxmldoc_8c.html#af35c685085e21afb41e58f67d3c1ad62',1,'mxmldoc.c']]],
   ['getactive',['getActive',['../classMissionListView.html#a1bee72dc8be77b7a89f22ff4f73ff95b',1,'MissionListView']]],
   ['getcurrent',['getCurrent',['../classMissionListView.html#a822dc866f77d5669485e90ef9aa37e27',1,'MissionListView']]],
+  ['getdifficultycode',['getDifficultyCode',['../classDifficultyFlightModelPage.html#a8c3e5004debcbfa0dabbbe81d045fbb2',1,'DifficultyFlightModelPage::getDifficultyCode()'],['../classDifficultyMapIconsPage.html#aada81789d0cc489c13a561599aa81b6c',1,'DifficultyMapIconsPage::getDifficultyCode()'],['../classDifficultySubpage.html#a852c05402d7023cfc071a4a14a54b318',1,'DifficultySubpage::getDifficultyCode()'],['../classDifficultyVarPage.html#aaeda671a26aaf985b3af7d8ea73ef06b',1,'DifficultyVarPage::getDifficultyCode()'],['../classDifficultyViewPage.html#a9720fa69e3b0566c01570ba238eee6d0',1,'DifficultyViewPage::getDifficultyCode()'],['../classDifficultyWeaponsPage.html#a40e290ac4904129305ec8cc51a700371',1,'DifficultyWeaponsPage::getDifficultyCode()']]],
   ['getdst',['getDst',['../classEdge.html#a51a41923f412b5891af9d91a21349741',1,'Edge']]],
   ['gethighlighted',['getHighlighted',['../classMissionListView.html#a90a444472993c9181297794ab1415d4e',1,'MissionListView']]],
+  ['getlangcode',['getLangCode',['../classSettings.html#a96bae51c1b7a01b8290446283989696e',1,'Settings']]],
   ['getmissions',['getMissions',['../classMissionListView.html#ac32bda60fe59bafb5b9f33d1488aa803',1,'MissionListView']]],
   ['getradius',['getRadius',['../classMissionElem.html#a0629a21fff3ac14b353df202a777839e',1,'MissionElem']]],
   ['getrefscount',['getRefsCount',['../classMissionElem.html#a59a2971a9bb483984867a7972ddbf566',1,'MissionElem']]],

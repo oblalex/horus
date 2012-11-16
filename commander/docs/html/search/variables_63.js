@@ -4,6 +4,7 @@ var searchData=
   ['changed',['changed',['../classMissionListView.html#a21580e8410f9d452da63e4ab47618c7b',1,'MissionListView']]],
   ['channels',['channels',['../gs__cmd_8c.html#a178795099d0608972755dfef8d8367e3',1,'gs_cmd.c']]],
   ['child',['child',['../structmxml__node__s.html#a7df04b4117dc4f472ad567ec6d64e2aa',1,'mxml_node_s']]],
+  ['children',['children',['../classConfigModule.html#a030785c81d0c37ef74c3ede6d000501f',1,'ConfigModule']]],
   ['clearaction',['clearAction',['../classMainWindow.html#a8265fe31d9ff9abebfd022d919dfe305',1,'MainWindow']]],
   ['clientid',['ClientId',['../struct__THREAD__BASIC__INFORMATION.html#a010d3213d0fa21e09117e1932d671e59',1,'_THREAD_BASIC_INFORMATION']]],
   ['cloudsheightm',['cloudsHeightM',['../structD__WEATHER__REPORT.html#a873da642f218603f766513ffabf06e89',1,'D_WEATHER_REPORT']]],

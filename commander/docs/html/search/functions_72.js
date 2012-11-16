@@ -7,6 +7,7 @@ var searchData=
   ['refscountinc',['refsCountInc',['../classMissionElem.html#a3a971acb1beb8e86d333153de45c4aae',1,'MissionElem']]],
   ['remove_5fdirectory',['remove_directory',['../mxmldoc_8c.html#a5a5c69bec142c36443ba7f2b5d99952a',1,'mxmldoc.c']]],
   ['resolvereferences',['resolveReferences',['../classListFileHelper.html#a5742916f4733b3cea31802cdcb24bfa8',1,'ListFileHelper']]],
+  ['rmchild',['rmChild',['../classConfigModule.html#a4796cc14da9af5fe48b1d4b47ec7f04d',1,'ConfigModule']]],
   ['rmdstedges',['rmDstEdges',['../classMissionElem.html#a90e230cf55089b0167925797da6cd48b',1,'MissionElem']]],
   ['rmedge',['rmEdge',['../classMissionElem.html#a7d485918b12f0d6106e568f342a5e228',1,'MissionElem']]],
   ['rmedges',['rmEdges',['../classMissionElem.html#a1c10d1dd4bf1218f3084b10d48bdd0c0',1,'MissionElem']]],

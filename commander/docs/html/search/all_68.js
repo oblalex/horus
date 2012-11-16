@@ -15,6 +15,7 @@ var searchData=
   ['highlighted',['highlighted',['../classMissionListView.html#a2db2c88263fd9cebbd8122c498f3e7c5',1,'MissionListView']]],
   ['history',['HISTORY',['../gs__mission__manager_8c.html#a38ccb1fcbf1ae556721fe91cec85435e',1,'gs_mission_manager.c']]],
   ['history_5fsize',['HISTORY_SIZE',['../gs__mission__manager_8h.html#a43034bdd0ae7c6267b05ff35ae97cddf',1,'gs_mission_manager.h']]],
+  ['horusvalue',['horusValue',['../classSettings.html#aa7a4a70e74ec210f3b8ba2cfbd621d96',1,'Settings']]],
   ['hour',['hour',['../structTIMESTAMP__T.html#a48b98c35bf1267dc7104726fd94c1986',1,'TIMESTAMP_T']]],
   ['hoverenterevent',['hoverEnterEvent',['../classMissionElem.html#abdac0f94fabfc0e886591f3d0fda804e',1,'MissionElem']]],
   ['hoverleaveevent',['hoverLeaveEvent',['../classMissionElem.html#a886c5246b3fef63e122baf1a995fbb1a',1,'MissionElem']]]

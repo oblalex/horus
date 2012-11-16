@@ -1,9 +1,9 @@
 var searchData=
 [
   ['seconds_5fleft_5fbefore_5fend',['SECONDS_LEFT_BEFORE_END',['../gs__mission__manager_8c.html#aa925ebb78dcd87718d196dcac6053664',1,'gs_mission_manager.c']]],
-  ['settings_5fdir',['SETTINGS_DIR',['../settings_8h.html#a77e3d343ed41ec40e8a848cc1fef3aab',1,'settings.h']]],
-  ['settings_5ffilename',['SETTINGS_FILENAME',['../settings_8h.html#a69d5afed805aa94b1e45efff505a3d07',1,'settings.h']]],
-  ['settings_5fpath',['SETTINGS_PATH',['../settings_8h.html#ad83d4350a228df3283d86eb05d84813a',1,'settings.h']]],
+  ['settings_5fdir',['SETTINGS_DIR',['../HorusMLE_2settings_8h.html#a77e3d343ed41ec40e8a848cc1fef3aab',1,'settings.h']]],
+  ['settings_5ffilename',['SETTINGS_FILENAME',['../HorusMLE_2settings_8h.html#a69d5afed805aa94b1e45efff505a3d07',1,'settings.h']]],
+  ['settings_5fpath',['SETTINGS_PATH',['../HorusMLE_2settings_8h.html#ad83d4350a228df3283d86eb05d84813a',1,'settings.h']]],
   ['sh_5fchat_5fall',['SH_CHAT_ALL',['../shell__parser_8h.html#acd663d55db5fcf1440185d65cf892e7c',1,'shell_parser.h']]],
   ['sh_5fchat_5farmy',['SH_CHAT_ARMY',['../shell__parser_8h.html#aa383403770a80c890df02a8a04f00eb9',1,'shell_parser.h']]],
   ['sh_5fchat_5fuser',['SH_CHAT_USER',['../shell__parser_8h.html#a255677f6a92c324f5523f7844f0a8a47',1,'shell_parser.h']]],

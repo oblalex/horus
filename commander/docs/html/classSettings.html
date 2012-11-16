@@ -84,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Data Fields</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a>  </div>
@@ -92,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="settings_8h_source.html">settings.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="HorusConfig_2settings_8h_source.html">settings.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -102,6 +103,23 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a75ab693f2b4228de016603638771eb94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99df006df4189fc6940c3f8f0e31220b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a99df006df4189fc6940c3f8f0e31220b">isLoaded</a> ()</td></tr>
 <tr class="separator:a99df006df4189fc6940c3f8f0e31220b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ad47a8d3f696dcb0d38c1dc5088008885"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#ad47a8d3f696dcb0d38c1dc5088008885">init</a> ()</td></tr>
+<tr class="separator:ad47a8d3f696dcb0d38c1dc5088008885"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75ab693f2b4228de016603638771eb94"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a75ab693f2b4228de016603638771eb94">save</a> ()</td></tr>
+<tr class="separator:a75ab693f2b4228de016603638771eb94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96bae51c1b7a01b8290446283989696e"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a96bae51c1b7a01b8290446283989696e">getLangCode</a> ()</td></tr>
+<tr class="separator:a96bae51c1b7a01b8290446283989696e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7a4a70e74ec210f3b8ba2cfbd621d96"><td class="memItemLeft" align="right" valign="top">static const QVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#aa7a4a70e74ec210f3b8ba2cfbd621d96">horusValue</a> (const QString &amp;key, const QVariant &amp;defaultValue=QVariant())</td></tr>
+<tr class="separator:aa7a4a70e74ec210f3b8ba2cfbd621d96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2154c3e91a281f4f75b40b0c5076846c"><td class="memItemLeft" align="right" valign="top">static const QVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a2154c3e91a281f4f75b40b0c5076846c">serverValue</a> (const QString &amp;key, const QVariant &amp;defaultValue=QVariant())</td></tr>
+<tr class="separator:a2154c3e91a281f4f75b40b0c5076846c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41d7a67c780813e174e2ec372028e861"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a41d7a67c780813e174e2ec372028e861">setHorusValue</a> (const QString &amp;key, const QVariant value)</td></tr>
+<tr class="separator:a41d7a67c780813e174e2ec372028e861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b2f5446234f611e80038493cd25d8d6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a4b2f5446234f611e80038493cd25d8d6">setServerValue</a> (const QString &amp;key, const QVariant value)</td></tr>
+<tr class="separator:a4b2f5446234f611e80038493cd25d8d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -144,6 +162,86 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a96bae51c1b7a01b8290446283989696e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString Settings::getLangCode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa7a4a70e74ec210f3b8ba2cfbd621d96"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVariant Settings::horusValue </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QVariant &amp;&#160;</td>
+          <td class="paramname"><em>defaultValue</em> = <code>QVariant()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad47a8d3f696dcb0d38c1dc5088008885"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Settings::init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a99df006df4189fc6940c3f8f0e31220b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -208,6 +306,29 @@ Private Attributes</h2></td></tr>
 <a class="anchor" id="a75ab693f2b4228de016603638771eb94"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Settings::save </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a75ab693f2b4228de016603638771eb94"></a>
+<div class="memitem">
+<div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Settings::save </td>
@@ -237,6 +358,108 @@ Private Attributes</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2154c3e91a281f4f75b40b0c5076846c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVariant Settings::serverValue </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QVariant &amp;&#160;</td>
+          <td class="paramname"><em>defaultValue</em> = <code>QVariant()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a41d7a67c780813e174e2ec372028e861"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Settings::setHorusValue </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QVariant&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4b2f5446234f611e80038493cd25d8d6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Settings::setServerValue </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QVariant&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -309,13 +532,15 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/HorusMLE/<a class="el" href="settings_8h_source.html">settings.h</a></li>
-<li>src/HorusMLE/<a class="el" href="settings_8cpp.html">settings.cpp</a></li>
+<li>src/HorusConfig/<a class="el" href="HorusConfig_2settings_8h_source.html">settings.h</a></li>
+<li>src/HorusMLE/<a class="el" href="HorusMLE_2settings_8h_source.html">settings.h</a></li>
+<li>src/HorusConfig/<a class="el" href="HorusConfig_2settings_8cpp.html">settings.cpp</a></li>
+<li>src/HorusMLE/<a class="el" href="HorusMLE_2settings_8cpp.html">settings.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 15 2012 00:05:53 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 16 2012 13:09:41 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

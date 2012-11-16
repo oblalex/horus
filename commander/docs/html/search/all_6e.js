@@ -1,6 +1,12 @@
 var searchData=
 [
   ['name',['name',['../structD__MISSION__LITE.html#ac50710062fb47eb9f840eb7a95efa953',1,'D_MISSION_LITE::name()'],['../structmxml__attr__s.html#add7d1556e38c2349d9791fbc2b6474ca',1,'mxml_attr_s::name()'],['../structmxml__element__s.html#a91f6136c9a0415c544d468bef48d3cf5',1,'mxml_element_s::name()'],['../structini__section.html#a93b8c9513389bad63dd22495138063f9',1,'ini_section::name()']]],
+  ['named_5fpage_2ecpp',['named_page.cpp',['../named__page_8cpp.html',1,'']]],
+  ['named_5fpage_2eh',['named_page.h',['../named__page_8h.html',1,'']]],
+  ['namedpage',['NamedPage',['../classNamedPage.html',1,'NamedPage'],['../classNamedPage.html#ad517ce307ffcf2f8e97fc965c17cc898',1,'NamedPage::NamedPage()']]],
+  ['net_5fpage_2ecpp',['net_page.cpp',['../net__page_8cpp.html',1,'']]],
+  ['net_5fpage_2eh',['net_page.h',['../net__page_8h.html',1,'']]],
+  ['netpage',['NetPage',['../classNetPage.html',1,'NetPage'],['../classNetPage.html#a669193decd67a2fbbb01f8fec6f4a7b4',1,'NetPage::NetPage()']]],
   ['new_5fdocumentation',['new_documentation',['../mxmldoc_8c.html#aabdf58c908ab10d27e17f1552c75b262',1,'mxmldoc.c']]],
   ['new_5fline',['NEW_LINE',['../common_8h.html#a7b99dc1e1c86b4897498c2d436ead1b5',1,'common.h']]],
   ['newaction',['newAction',['../classMainWindow.html#a5bcdb8d44feeff7d1bcb21f66a164255',1,'MainWindow']]],

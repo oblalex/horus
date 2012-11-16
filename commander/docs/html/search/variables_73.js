@@ -12,6 +12,8 @@ var searchData=
   ['securitydescriptor',['SecurityDescriptor',['../struct__OBJECT__ATTRIBUTES.html#adfce0bf43dbfa60476b4d786c7d78610',1,'_OBJECT_ATTRIBUTES']]],
   ['securityqualityofservice',['SecurityQualityOfService',['../struct__OBJECT__ATTRIBUTES.html#a9fe901e278495c5490b3288d26636482',1,'_OBJECT_ATTRIBUTES']]],
   ['settings',['settings',['../classMainWindow.html#a562b679480d01ca3ec6e630e827c865d',1,'MainWindow::settings()'],['../classSettings.html#a2a7aa936f8f72189eda1acf5ab0f98c5',1,'Settings::settings()']]],
+  ['settingshorus',['settingsHorus',['../HorusConfig_2settings_8cpp.html#a0dccd0566c21cc281da2fa09f7b60fda',1,'settings.cpp']]],
+  ['settingsserver',['settingsServer',['../HorusConfig_2settings_8cpp.html#a594b301cf6f4a2917afc326f76bd0218',1,'settings.cpp']]],
   ['size',['size',['../structSTACK__STR.html#aad4c272065e02840b0a087f578d7d5ea',1,'STACK_STR']]],
   ['socket_5ffd',['SOCKET_FD',['../gs__console_8c.html#af3ec319ee4c7fd23e369069a6a5a7595',1,'gs_console.c']]],
   ['src',['src',['../classEdge.html#afdd04ca3f430ce5cb96bc4fa9e6261cd',1,'Edge']]],
@@ -19,5 +21,6 @@ var searchData=
   ['start',['start',['../structCBUFFER.html#a12dade455c5d78863497b47ed309ae97',1,'CBUFFER::start()'],['../structCSTACK.html#a54cf4ca6bf65e09815042ab976c163ee',1,'CSTACK::start()']]],
   ['status_5flast_5foper_5fwas_5fpush',['STATUS_LAST_OPER_WAS_PUSH',['../print__status_8c.html#aa33e2a27d81321c6705c3444781e8278',1,'print_status.c']]],
   ['statuses',['statuses',['../print__status_8c.html#a1cd82b8d8efbc558a64bfa681906d228',1,'print_status.c']]],
-  ['string',['string',['../structmxml__text__s.html#a24ef51e8e9ade0ca6056a3ad7ad3f0bf',1,'mxml_text_s']]]
+  ['string',['string',['../structmxml__text__s.html#a24ef51e8e9ade0ca6056a3ad7ad3f0bf',1,'mxml_text_s']]],
+  ['subpages',['subpages',['../classDifficultyPage.html#abbdc7feba76d744f7adf2cc6593d8e1b',1,'DifficultyPage']]]
 ];

@@ -1,8 +1,10 @@
 var searchData=
 [
+  ['pagename',['pageName',['../classDifficultyPage.html#a0e7cfd91a04094a6ea59476c109e7c20',1,'DifficultyPage::pageName()'],['../classGeneralPage.html#af23488eb31575a0df584a51a2e8ab30e',1,'GeneralPage::pageName()'],['../classNamedPage.html#a7be7e22836e088e6525a96c7a3f7ad3b',1,'NamedPage::pageName()'],['../classNetPage.html#a491e5430f565424a662519b8a16eeaf8',1,'NetPage::pageName()']]],
   ['paint',['paint',['../classEdge.html#a6fb73701d0e4739f569e1ea0eb4c36fa',1,'Edge::paint()'],['../classMissionElem.html#a33ef27b8a0d84afe288f93768897961d',1,'MissionElem::paint()']]],
   ['parseargs',['parseArgs',['../main__parser_8c.html#a4c2b7e6886daa6cc8e60c6f8ae9af768',1,'parseArgs(int argc, char const **argv):&#160;main_parser.c'],['../main__parser_8h.html#aeafca5bf8bb4e4c19ffc07258cdd8916',1,'parseArgs(int argc, char const *argv[]):&#160;main_parser.h']]],
   ['pop',['pop',['../stack__str_8c.html#a75e00066d98d2097b5dabb8ef0daed5d',1,'pop(STACK_STR *this):&#160;stack_str.c'],['../stack__str_8h.html#a75e00066d98d2097b5dabb8ef0daed5d',1,'pop(STACK_STR *this):&#160;stack_str.c']]],
+  ['populatelangs',['populateLangs',['../classGeneralPage.html#a1269863848866c112ee0e58d662d3144',1,'GeneralPage']]],
   ['print_5fhelp',['print_help',['../main__parser_8c.html#af2a7e79a02ea22d995e640b4731708a7',1,'print_help(char *exec_name):&#160;main_parser.c'],['../main__parser_8h.html#af2a7e79a02ea22d995e640b4731708a7',1,'print_help(char *exec_name):&#160;main_parser.h']]],
   ['print_5fstatus_5ffinished',['print_status_finished',['../print__status_8c.html#af6d5c7623540caea714c462c3b7230d4',1,'print_status_finished(int color, const char *status):&#160;print_status.c'],['../print__status_8h.html#af6d5c7623540caea714c462c3b7230d4',1,'print_status_finished(int color, const char *status):&#160;print_status.c']]],
   ['print_5fstatus_5fmsg',['print_status_msg',['../print__status_8c.html#a287ee193605d4024749797611d16c8c6',1,'print_status_msg(int color, char *str, BOOL do_indent):&#160;print_status.c'],['../print__status_8h.html#a287ee193605d4024749797611d16c8c6',1,'print_status_msg(int color, char *str, BOOL do_indent):&#160;print_status.c']]],
