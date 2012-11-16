@@ -4,6 +4,7 @@ $(document).ready(function() {
 	$('#forLayout').load("layout/layout.html", function() {
 		var forContent = $('#content');
 		$('#forContent').html(forContent.html());
-		forContent.remove();		
+		forContent.remove();
+		onReady();
 	});
 });

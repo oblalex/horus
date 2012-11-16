@@ -67,10 +67,13 @@ header {
 	font-family: 'Play', sans-serif;
 	font-size: 20px;
 	text-align: justify;
-	text-indent: 50px;
 	text-shadow: 1px 1px 1px #FFF;
 	color: #444;
-	line-height: 25px;
+	line-height: 24px;
+}
+
+#main p, #main h3, #main ul, #main ol {
+	text-indent: 50px;
 }
 
 #head_container {

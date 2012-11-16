@@ -9,9 +9,29 @@
 		<link rel="stylesheet" href="style/pygment_trac.css">
 
 		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
 		<script src="js/scale.fix.js"></script>
 		<script src="js/popup.js"></script>
 		<script src="js/layout.js"></script>
+
+		<script>
+			function onReady() {
+				$("#cfg_diff").carouFredSel({
+					circular: false,
+					infinite: false,
+					auto 	: false,
+					prev	: {	
+						button	: "#cfg_diff_prev",
+						key		: "left"
+					},
+					next	: { 
+						button	: "#cfg_diff_next",
+						key		: "right"
+					},
+					pagination	: "#cfg_diff_pag"
+				});
+			};
+		</script>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		<!--[if lt IE 9]>
@@ -44,6 +64,7 @@
 						<li><a href="#install_win">Windows</a></li>
 					</ul>
 				</li>
+				<li><a href="#configure">Configuring</a></li>
 				<li><a href="#mssn_management">Missions management</a></li>
 				<li><a href="#launching">Launching</a>
 					<ul>
@@ -294,7 +315,98 @@ make && make install-strip</pre>
 				$('#lib-distro-info').addPopup($('#lib-distro-info-pop-up'));
 			</script>
 
-<hr/>
+			<hr/>
+			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="configure">Configuring</a></h3>
+			<p>Configuring can be easily done by using "Horus Config" tool.
+			</p>
+
+			<p>
+				On "General" tab you can set server's name and description. They will be shown to user after connection to your server.
+				Also they will be shown to user if he select server from local servers list or from
+				<a href="http://xfire.com/">Xfire</a> servers list if you have added it there.
+			</p>
+			<center><img src="img/cfg/general.png" /></center>
+
+			<p>
+				On "Difficulty" tab you can obviously set server's difficulty. Subtabs are identical to in-game tabs.
+				You are definitely familiar with them. "Easy", "normal" and "real" predefined settings are available too.
+				See slides below.
+			</p>
+
+			<div class="image_carousel" style="width: 600px;">
+				<div id="cfg_diff">
+					<img src="img/cfg/diff1.png"/>
+					<img src="img/cfg/diff2.png"/>
+					<img src="img/cfg/diff3.png"/>
+					<img src="img/cfg/diff4.png"/>
+					<img src="img/cfg/diff5.png"/>
+				</div>
+				<div class="clearfix"></div>
+				<a class="prev" id="cfg_diff_prev" href="#"><span>prev</span></a>
+				<a class="next" id="cfg_diff_next" href="#"><span>next</span></a>
+				<div class="pagination" id="cfg_diff_pag"></div>
+			</div>
+
+			<p>
+				Network settings can be set on the corresponding tab.
+			</p>
+			<center><img src="img/cfg/net.png" /></center>
+
+			<p>
+				Meaning of the parameters:
+			</p>
+			<table class="commands" cellspacing="0">
+				<col width="300"/>
+				<tr>
+					<td>Skin download</td>
+					<td>Show user's custom skins to others</td>
+				</tr>
+				<tr>
+					<td>Check client time speed</td>
+					<td>Speedhack protection on the client side</td>
+				</tr>
+				<tr>
+					<td>Check server time speed</td>
+					<td>Speedhack protection on the server side</td>
+				</tr>
+				<tr>
+					<td>Check time speed differense</td>
+					<td>Allowed hours difference between server and client</td>
+				</tr>
+				<tr>
+					<td>Check time speed interval</td>
+					<td>Hours difference control interval</td>
+				</tr>
+				<tr>
+					<td>Far max lag time</td>
+					<td>Maximum time delay (in seconds) between packets
+received from a particular client. Interval greater than this value is considered to be a "cheat".</td>
+				</tr>
+				<tr>
+					<td>Near max lag time</td>
+					<td>Maximum time delay, when the plane is attacked or when it poses a threat to enemy aircraft.
+						Delay which is greater than this value is considered to be a "cheat".</td>
+				</tr>
+				<tr>
+					<td>Cheater warning delay</td>
+					<td>Time interval between warnings about cheating.</td>
+				</tr>
+				<tr>
+					<td>Cheater warning number</td>
+					<td>Number of warnings which will be showed to user before kicking him from server.</td>
+				</tr>
+				<tr>
+					<td>Server channels</td>
+					<td>Maximum number of connections at the same time</td>
+				</tr>
+				<tr>
+					<td>Local port</td>
+					<td>The port number which the server will use to listen connections.
+						This value will be used by users to connect to server.</td>
+				</tr>
+			</table>
+
+			<hr/>
 			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="mssn_management">Missions management</a></h3>
 			<p>To activate missions management you must have "missions.xml" file in the root directory of horus
 				commander. You do not need to create it manually. Use Missions List Editor (MLE) instead.

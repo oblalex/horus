@@ -169,15 +169,17 @@ table.commands {
 	width: 800px;
 	margin: 0 auto;
 	font-size: 14px;
+	border-collapse:collapse;
 }
 
 table.commands td {
 	padding:1px 5px;
 	font-family: monospace;
+	border: 1px solid #CCC;
 }
 
-table.commands tr:hover {
-	background-color: rgba(0,0,0,0.1);
+table.commands tr:nth-child(odd) {
+	background-color: rgba(160, 160, 160, 0.1);
 }
 
 .code_snippet
@@ -230,4 +232,59 @@ h3 a:hover {
 .cmd_list li table a:hover {
 	text-decoration: underline;
 	cursor: pointer;
+}
+
+/* Carousel */
+.image_carousel {
+	padding: 15px 0 15px 20px;
+	margin: 0 auto;
+	position: relative;
+}
+.image_carousel img {
+	display: block;
+	float: left;
+}
+a.prev, a.next {
+	background: url(../img/miscellaneous_sprite.png) no-repeat transparent;
+	width: 45px;
+	height: 50px;
+	display: block;
+	position: absolute;
+	top: 85px;
+}
+a.prev {			left: -22px;
+					background-position: 0 0; }
+a.prev:hover {		background-position: 0 -50px; }
+a.prev.disabled {	background-position: 0 -100px !important;  }
+a.next {			right: -22px;
+					background-position: -50px 0; }
+a.next:hover {		background-position: -50px -50px; }
+a.next.disabled {	background-position: -50px -100px !important;  }
+a.prev.disabled, a.next.disabled {
+	cursor: default;
+}
+
+a.prev span, a.next span {
+	display: none;
+}
+.pagination {
+	text-align: center;
+}
+.pagination a {
+	background: url(../img/miscellaneous_sprite.png) 0 -300px no-repeat transparent;
+	width: 15px;
+	height: 15px;
+	margin: 0 5px 0 0;
+	display: inline-block;
+}
+.pagination a.selected {
+	background-position: -25px -300px;
+	cursor: default;
+}
+.pagination a span {
+	display: none;
+}
+.clearfix {
+	float: none;
+	clear: both;
 }
