@@ -24,5 +24,5 @@ if WIN
 horusCommander_LDADD += -lws2_32 -lpcre
 endif
 
-SUBDIRS = util mxml HorusMLE
+SUBDIRS = util mxml HorusMLE HorusConfig
 

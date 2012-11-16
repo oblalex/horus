@@ -341,6 +341,79 @@
     </message>
 </context>
 <context>
+    <name>NetPage</name>
+    <message>
+        <location filename="../net_page.ui" line="14"/>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../net_page.ui" line="27"/>
+        <source>Net</source>
+        <translation>Сеть</translation>
+    </message>
+    <message>
+        <location filename="../net_page.ui" line="43"/>
+        <source>Skin download</source>
+        <translation>Разрешить пользовательские скины</translation>
+    </message>
+    <message>
+        <location filename="../net_page.ui" line="50"/>
+        <source>Check client time speed</source>
+        <translation>Защита от спидхака со стороны клиента</translation>
+    </message>
+    <message>
+        <location filename="../net_page.ui" line="57"/>
+        <source>Check server time speed</source>
+        <translation>Защита от спидхака со стороны сервера</translation>
+    </message>
+    <message>
+        <location filename="../net_page.ui" line="69"/>
+        <source>Check time speed differense:</source>
+        <translation>Допуст. расхожд. часов сервера и клиента:</translation>
+    </message>
+    <message>
+        <location filename="../net_page.ui" line="86"/>
+        <source>Check time speed interval:</source>
+        <translation>Интервал контроля расхождения часов:</translation>
+    </message>
+    <message>
+        <location filename="../net_page.ui" line="100"/>
+        <source>Server channels:</source>
+        <translation>Максимум подключений:</translation>
+    </message>
+    <message>
+        <location filename="../net_page.ui" line="128"/>
+        <source>32</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../net_page.ui" line="140"/>
+        <source>Local port:</source>
+        <translation>Локальный порт:</translation>
+    </message>
+    <message>
+        <location filename="../net_page.ui" line="160"/>
+        <source>Cheater warning delay:</source>
+        <translation>Интервал предупрежд. о нарушениях:</translation>
+    </message>
+    <message>
+        <location filename="../net_page.ui" line="167"/>
+        <source>Cheater warning number:</source>
+        <translation>Кол-во предупрежд. о нарушениях:</translation>
+    </message>
+    <message>
+        <location filename="../net_page.ui" line="174"/>
+        <source>Far max lag time:</source>
+        <translation>Макс. время задержки пакетов:</translation>
+    </message>
+    <message>
+        <location filename="../net_page.ui" line="181"/>
+        <source>Near max lag time:</source>
+        <translation>Макс. время задержки пакетов в бою:</translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <location filename="../settings.cpp" line="23"/>
