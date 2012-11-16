@@ -1,7 +1,7 @@
 #include "difficulty_page.h"
 #include "ui_difficulty_page.h"
 #include "settings.h"
-#include "gs_cfg_sections.h"
+#include "gs_cfg_grp.h"
 
 #include "difficulty_flight_model_page.h"
 #include "difficulty_weapons_page.h"
@@ -111,7 +111,7 @@ void DifficultyPage::load()
 
 void DifficultyPage::loadDefaults()
 {
-    loadCode(0);
+    on_realBtn_clicked();
     loadChildrenDefaults();
 }
 

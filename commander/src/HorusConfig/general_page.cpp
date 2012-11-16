@@ -1,6 +1,6 @@
 #include "general_page.h"
 #include "ui_general_page.h"
-#include "gs_cfg_sections.h"
+#include "gs_cfg_grp.h"
 #include "settings.h"
 
 #include <QVariant>
