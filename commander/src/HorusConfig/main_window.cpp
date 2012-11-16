@@ -1,8 +1,10 @@
 #include "main_window.h"
 #include "ui_main_window.h"
+#include "settings.h"
+
 #include "general_page.h"
 #include "difficulty_page.h"
-#include "settings.h"
+#include "net_page.h"
 
 #include <QDesktopWidget>
 
@@ -70,6 +72,15 @@ void MainWindow::addPages()
                 QListWidgetItem::UserType);
     ui->stack->addWidget(difficulty);
     addChild(difficulty);
+
+    NetPage* net = new NetPage;
+    new QListWidgetItem(
+                QIcon(":/img/net.png"),
+                net->pageName(),
+                ui->list,
+                QListWidgetItem::UserType);
+    ui->stack->addWidget(net);
+    addChild(net);
 
     ui->stack->setCurrentIndex(0);
     ui->list->setCurrentRow(0);

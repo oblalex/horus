@@ -24,21 +24,23 @@ SOURCES += main.cpp\
     difficulty_weapons_page.cpp \
     difficulty_view_page.cpp \
     difficulty_map_icons_page.cpp \
-    difficulty_var_page.cpp
+    difficulty_var_page.cpp \
+    net_page.cpp
 
 HEADERS  += main_window.h \
     config_module.h \
     general_page.h \
     named_page.h \
     settings.h \
-    ../gs_cfg_sections.h \
     difficulty_page.h \
     difficulty_flight_model_page.h \
     difficulty_subpage.h \
     difficulty_weapons_page.h \
     difficulty_view_page.h \
     difficulty_map_icons_page.h \
-    difficulty_var_page.h
+    difficulty_var_page.h \
+    net_page.h \
+    ../gs_cfg_grp.h
 
 FORMS    += main_window.ui \
     general_page.ui \
@@ -47,7 +49,8 @@ FORMS    += main_window.ui \
     difficulty_weapons_page.ui \
     difficulty_view_page.ui \
     difficulty_map_icons_page.ui \
-    difficulty_var_page.ui
+    difficulty_var_page.ui \
+    net_page.ui
 
 RESOURCES += \
     img.qrc

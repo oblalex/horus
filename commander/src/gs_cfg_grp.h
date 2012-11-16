@@ -1,6 +1,7 @@
 #ifndef SERVER_CONFIG_SECTIONS_H
 #define SERVER_CONFIG_SECTIONS_H
 
-#define GS_CFG_GRP_NET ("NET")
+#define GS_CFG_GRP_NET      ("NET")
+#define GS_CFG_GRP_MAX_LAG  ("MaxLag")
 
 #endif // SERVER_CONFIG_SECTIONS_H
