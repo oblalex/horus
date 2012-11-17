@@ -30,6 +30,34 @@
 					},
 					pagination	: "#cfg_diff_pag"
 				});
+				$("#commander_lang").carouFredSel({
+					circular: false,
+					infinite: false,
+					auto 	: false,
+					prev	: {	
+						button	: "#commander_lang_prev",
+						key		: "left"
+					},
+					next	: { 
+						button	: "#commander_lang_next",
+						key		: "right"
+					},
+					pagination	: "#commander_lang_pag"
+				});
+				$("#config_lang").carouFredSel({
+					circular: false,
+					infinite: false,
+					auto 	: false,
+					prev	: {	
+						button	: "#config_lang_prev",
+						key		: "left"
+					},
+					next	: { 
+						button	: "#config_lang_next",
+						key		: "right"
+					},
+					pagination	: "#config_lang_pag"
+				});
 			};
 		</script>
 
@@ -72,12 +100,7 @@
 						<li><a href="#launch_win">Windows</a></li>
 					</ul>
 				</li>
-				<li><a href="#changing_lang">Changing language</a>
-					<ul>
-						<li><a href="#lang_lin">Linux</a></li>
-						<li><a href="#lang_win">Windows</a></li>
-					</ul>
-				</li>
+				<li><a href="#changing_lang">Changing language</a></li>
 				<li><a href="#developer_api">Developer's API</a></li>
 			</ul>
 			<hr/>
@@ -333,7 +356,7 @@ make && make install-strip</pre>
 				See slides below.
 			</p>
 
-			<div class="image_carousel" style="width: 600px;">
+			<div class="image_carousel" style="width: 600px; margin-top:-20px">
 				<div id="cfg_diff">
 					<img src="img/cfg/diff1.png"/>
 					<img src="img/cfg/diff2.png"/>
@@ -570,25 +593,39 @@ received from a particular client. Interval greater than this value is considere
 
 			<hr/>
 			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="changing_lang">Changing language</a></h3>
-			<ul>
-				<li><a href="#lang_lin">Linux</a></li>
-				<li><a href="#lang_win">Windows</a></li>
-			</ul>
-			
-			<h3><a id="gotop" href="#changing_lang"><div class="gotop_bg" title="Go top"></div></a><a id="lang_lin">Linux</a></h3>
-			<p>By default english language is selected. Before launching
-			commander you can set LANGUAGE variable to the
-			value you need. Remember that commander's output is in UTF-8
-			encoding. For switching to russian language run (in bash):</p>
-			<pre class="code_snippet">export LANGUAGE="ru_RU"</pre>
-			<p>To restore english output:</p>
-			<pre class="code_snippet">export LANGUAGE="en_US"</pre>
-			
-			<h3><a id="gotop" href="#changing_lang"><div class="gotop_bg" title="Go top"></div></a><a id="lang_win">Windows</a></h3>
-			<p>Like in linux english language is selected by default. For switching to russian language run (in console):</p>
-			<pre class="code_snippet">set LANG=ru_RU</pre>
-			<p>Then launch commander from the same console. To restore english output:</p>
-			<pre class="code_snippet">set LANG=en_US</pre>
+			<p>
+				Use <a href="#configure">Horus Config</a> to change language. Just select it in "Language" box and press "Save".
+				Selected language will be used after restarting commander or/and configurator.
+			</p>
+			<p>
+				Commander languages exmaples:
+			</p>
+
+			<div class="image_carousel" style="width: 835px;">
+				<div id="commander_lang">
+					<img src="img/lang/commander_en.png"/>
+					<img src="img/lang/commander_ru.png"/>
+				</div>
+				<div class="clearfix"></div>
+				<a class="prev" id="commander_lang_prev" href="#"><span>prev</span></a>
+				<a class="next" id="commander_lang_next" href="#"><span>next</span></a>
+				<div class="pagination" id="commander_lang_pag"></div>
+			</div>
+
+			<p>
+				Configurator languages exmaples:
+			</p>
+
+			<div class="image_carousel" style="width: 600px; margin-top:-20px">
+				<div id="config_lang">
+					<img src="img/cfg/general.png"/>
+					<img src="img/cfg/general_ru.png"/>
+				</div>
+				<div class="clearfix"></div>
+				<a class="prev" id="config_lang_prev" href="#"><span>prev</span></a>
+				<a class="next" id="config_lang_next" href="#"><span>next</span></a>
+				<div class="pagination" id="config_lang_pag"></div>
+			</div>
 
 			<hr/>
 			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="developer_api">Developer's API</a></h3>
