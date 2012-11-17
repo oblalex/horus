@@ -1,6 +1,7 @@
 var searchData=
 [
   ['capacity',['capacity',['../structCBUFFER.html#a373247a97a356a6f2616d75723c93b19',1,'CBUFFER::capacity()'],['../structCSTACK.html#ac2caa00f9d1d8bd665d57a87ce7a7083',1,'CSTACK::capacity()']]],
+  ['cfg',['cfg',['../gs__cfg_8c.html#a21939fa75b760421cae91bcf61c954c8',1,'gs_cfg.c']]],
   ['changed',['changed',['../classMissionListView.html#a21580e8410f9d452da63e4ab47618c7b',1,'MissionListView']]],
   ['channels',['channels',['../gs__cmd_8c.html#a178795099d0608972755dfef8d8367e3',1,'gs_cmd.c']]],
   ['child',['child',['../structmxml__node__s.html#a7df04b4117dc4f472ad567ec6d64e2aa',1,'mxml_node_s']]],

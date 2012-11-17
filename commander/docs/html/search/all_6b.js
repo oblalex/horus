@@ -12,7 +12,6 @@ var searchData=
   ['key_5fcheck_5ftime_5fspeed_5fdiff',['KEY_CHECK_TIME_SPEED_DIFF',['../net__page_8cpp.html#a79cf3b2f981941ae99082d084348ef4e',1,'net_page.cpp']]],
   ['key_5fcheck_5ftime_5fspeed_5fintv',['KEY_CHECK_TIME_SPEED_INTV',['../net__page_8cpp.html#ae047cb3f74238cee32f8168cfd83ffc1',1,'net_page.cpp']]],
   ['key_5fdifficulty',['KEY_DIFFICULTY',['../difficulty__page_8cpp.html#ad4e2c98bd8d4bc46578fac30bd10bbe3',1,'difficulty_page.cpp']]],
-  ['key_5flang',['KEY_LANG',['../HorusConfig_2settings_8h.html#acfe995646a5318d76b205e4ea5871e40',1,'settings.h']]],
   ['key_5flocal_5fport',['KEY_LOCAL_PORT',['../net__page_8cpp.html#a18f53fe57751e4d95c7c7eb5771eba20',1,'net_page.cpp']]],
   ['key_5fpos_5fh',['KEY_POS_H',['../HorusConfig_2main__window_8cpp.html#ab0cdf26eaa7a5fcc878add73e2e2da6d',1,'main_window.cpp']]],
   ['key_5fpos_5fw',['KEY_POS_W',['../HorusConfig_2main__window_8cpp.html#a0e5e3d4e93dac1f9bda35ab51ba32653',1,'main_window.cpp']]],

@@ -93,32 +93,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QVariant&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="code" href="HorusConfig_2settings_8h.html#a82ec85d25029f40cde1a849150d0b00e">    6</a></span>&#160;<span class="preprocessor">#define LANG_EN &quot;en&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="code" href="HorusConfig_2settings_8h.html#a23124a1d9bbd288e582ac5089e49c267">    7</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define LANG_RU &quot;ru&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="code" href="HorusConfig_2settings_8h.html#ad168691818d9696120ac47c91b6c2242">    9</a></span>&#160;<span class="preprocessor">#define GRP_GENERAL &quot;GNRL&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="code" href="HorusConfig_2settings_8h.html#acfe995646a5318d76b205e4ea5871e40">   10</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define KEY_LANG GRP_GENERAL &quot;/lang&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="code" href="classSettings.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSettings.html">Settings</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classSettings.html#ad47a8d3f696dcb0d38c1dc5088008885">init</a>();</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classSettings.html#a75ab693f2b4228de016603638771eb94">save</a>();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">static</span> QString <a class="code" href="classSettings.html#a96bae51c1b7a01b8290446283989696e">getLangCode</a>();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> QVariant <a class="code" href="classSettings.html#aa7a4a70e74ec210f3b8ba2cfbd621d96">horusValue</a>(<span class="keyword">const</span> QString &amp;key, <span class="keyword">const</span> QVariant &amp;defaultValue = QVariant());</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> QVariant <a class="code" href="classSettings.html#a2154c3e91a281f4f75b40b0c5076846c">serverValue</a>(<span class="keyword">const</span> QString &amp;key, <span class="keyword">const</span> QVariant &amp;defaultValue = QVariant());</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classSettings.html#a41d7a67c780813e174e2ec372028e861">setHorusValue</a>(<span class="keyword">const</span> QString &amp;key, <span class="keyword">const</span> QVariant value);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classSettings.html#a4b2f5446234f611e80038493cd25d8d6">setServerValue</a>(<span class="keyword">const</span> QString &amp;key, <span class="keyword">const</span> QVariant value);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif // SETTINGS_H</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="code" href="classSettings.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSettings.html">Settings</a></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classSettings.html#ad47a8d3f696dcb0d38c1dc5088008885">init</a>();</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classSettings.html#a75ab693f2b4228de016603638771eb94">save</a>();</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">static</span> QString <a class="code" href="classSettings.html#a96bae51c1b7a01b8290446283989696e">getLangCode</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> QVariant <a class="code" href="classSettings.html#aa7a4a70e74ec210f3b8ba2cfbd621d96">horusValue</a>(<span class="keyword">const</span> QString &amp;key, <span class="keyword">const</span> QVariant &amp;defaultValue = QVariant());</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> QVariant <a class="code" href="classSettings.html#a2154c3e91a281f4f75b40b0c5076846c">serverValue</a>(<span class="keyword">const</span> QString &amp;key, <span class="keyword">const</span> QVariant &amp;defaultValue = QVariant());</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classSettings.html#a41d7a67c780813e174e2ec372028e861">setHorusValue</a>(<span class="keyword">const</span> QString &amp;key, <span class="keyword">const</span> QVariant value);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classSettings.html#a4b2f5446234f611e80038493cd25d8d6">setServerValue</a>(<span class="keyword">const</span> QString &amp;key, <span class="keyword">const</span> QVariant value);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;};</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif // SETTINGS_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 16 2012 13:09:41 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 17 2012 15:00:38 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

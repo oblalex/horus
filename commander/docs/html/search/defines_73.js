@@ -39,5 +39,10 @@ var searchData=
   ['status_5fmsg_5fhead',['STATUS_MSG_HEAD',['../print__status_8h.html#a18a25c8fec1126e3637d9e74e00d93b3',1,'print_status.h']]],
   ['status_5fmsg_5findent',['STATUS_MSG_INDENT',['../print__status_8h.html#ad8c834163d46d13dcfadc0db66ec454c',1,'print_status.h']]],
   ['status_5fsuccess',['STATUS_SUCCESS',['../winproc_8c.html#ae56fdb340b23940f7a64ed2e37c1774a',1,'winproc.c']]],
-  ['strdup',['strdup',['../mconfig_8h.html#a9254b089d435892385cf14d0ab4a7a2d',1,'mconfig.h']]]
+  ['strdup',['strdup',['../mconfig_8h.html#a9254b089d435892385cf14d0ab4a7a2d',1,'mconfig.h']]],
+  ['sys_5fcfg_5fkey_5flang',['SYS_CFG_KEY_LANG',['../sys__cfg__key_8h.html#a97808d146e443540b9a1bfd7a89ba5e4',1,'sys_cfg_key.h']]],
+  ['sys_5fcfg_5fkey_5flang_5fno_5fgrp',['SYS_CFG_KEY_LANG_NO_GRP',['../sys__cfg__key_8h.html#a28fcd33b092c5efc2a95297a8cd3480a',1,'sys_cfg_key.h']]],
+  ['sys_5fcfg_5flang_5fen',['SYS_CFG_LANG_EN',['../sys__cfg__key_8h.html#a770d9655530cf656bdae16963042d610',1,'sys_cfg_key.h']]],
+  ['sys_5fcfg_5flang_5fru',['SYS_CFG_LANG_RU',['../sys__cfg__key_8h.html#a1adb15dee8520aee8da135a900abbf9d',1,'sys_cfg_key.h']]],
+  ['sys_5fcfg_5fname',['SYS_CFG_NAME',['../gs__paths_8h.html#addf1c3425c48575632931bff81147975',1,'gs_paths.h']]]
 ];

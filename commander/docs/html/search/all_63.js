@@ -5,6 +5,7 @@ var searchData=
   ['cbuff_5fpush',['cbuff_push',['../circular__buffer_8c.html#a95b56fe2a815dc0e7d76c06024433f98',1,'cbuff_push(CBUFFER *this, void *item):&#160;circular_buffer.c'],['../circular__buffer_8h.html#a95b56fe2a815dc0e7d76c06024433f98',1,'cbuff_push(CBUFFER *this, void *item):&#160;circular_buffer.c']]],
   ['cbuff_5fretrieve',['cbuff_retrieve',['../circular__buffer_8c.html#ad901cc3c0a3671cc8ea7582062f23339',1,'cbuff_retrieve(CBUFFER *this):&#160;circular_buffer.c'],['../circular__buffer_8h.html#ad901cc3c0a3671cc8ea7582062f23339',1,'cbuff_retrieve(CBUFFER *this):&#160;circular_buffer.c']]],
   ['cbuffer',['CBUFFER',['../structCBUFFER.html',1,'CBUFFER'],['../circular__buffer_8h.html#aebdc5e633992d96a73bb66ebf7da6f3e',1,'CBUFFER():&#160;circular_buffer.h']]],
+  ['cfg',['cfg',['../gs__cfg_8c.html#a21939fa75b760421cae91bcf61c954c8',1,'gs_cfg.c']]],
   ['ch_5fnull',['CH_NULL',['../common_8h.html#a701c48cf6229304fb5e3263501a244f9',1,'common.h']]],
   ['changed',['changed',['../classMissionListView.html#a21580e8410f9d452da63e4ab47618c7b',1,'MissionListView']]],
   ['channels',['channels',['../gs__cmd_8c.html#a178795099d0608972755dfef8d8367e3',1,'gs_cmd.c']]],

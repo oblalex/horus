@@ -15,6 +15,7 @@ var searchData=
   ['path_5fgss_5fh',['PATH_GSS_H',['../gs__paths_8h.html#abdb55f3d8b2245fa1548c65672e1ae50',1,'gs_paths.h']]],
   ['path_5fparent',['PATH_PARENT',['../common_8h.html#aae93425533301a459aa1f04aa6dbcc55',1,'common.h']]],
   ['path_5fsep',['PATH_SEP',['../common_8h.html#a837df2c29aacf37cb96c2b65acb312a6',1,'common.h']]],
+  ['path_5fsys_5fcfg',['PATH_SYS_CFG',['../gs__paths_8h.html#aa738355695c6e16c549462e8f2d3b272',1,'gs_paths.h']]],
   ['print_5fstatus_5fdone',['PRINT_STATUS_DONE',['../print__status_8h.html#abe2ed1f669a6f97bb744c7d9881d7111',1,'print_status.h']]],
   ['print_5fstatus_5ffail',['PRINT_STATUS_FAIL',['../print__status_8h.html#a577291b0bb3b700dbce6136646af7923',1,'print_status.h']]],
   ['print_5fstatus_5fmsg',['PRINT_STATUS_MSG',['../print__status_8h.html#ad5125aa5beb01f9ea512525787244764',1,'print_status.h']]],

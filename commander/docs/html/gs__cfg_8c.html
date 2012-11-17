@@ -85,7 +85,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">gs_cfg.c File Reference</div>  </div>
 </div><!--header-->
@@ -93,27 +94,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="gs__cfg_8h_source.html">gs_cfg.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__paths_8h_source.html">gs_paths.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="print__status_8h_source.html">util/print_status.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="ini_8h_source.html">util/ini.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="l10n_8h_source.html">util/l10n.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="print__status_8h_source.html">util/print_status.h</a>&quot;</code><br/>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a471e75fbdba233c0dde49a3200ba59bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a471e75fbdba233c0dde49a3200ba59bb">gs_cfg</a> ()</td></tr>
 <tr class="separator:a471e75fbdba233c0dde49a3200ba59bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7045a5e7cb3ee432b8ea50ec1935a036"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a7045a5e7cb3ee432b8ea50ec1935a036">gs_cfg_logging</a> (<a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a> *cfg)</td></tr>
-<tr class="separator:a7045a5e7cb3ee432b8ea50ec1935a036"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13c3b653e8b72aa0d180595e20ac9f40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a13c3b653e8b72aa0d180595e20ac9f40">gs_cfg_logging_chat</a> (<a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a> *cfg)</td></tr>
-<tr class="separator:a13c3b653e8b72aa0d180595e20ac9f40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d6f368bdbc9d5d0defa604c82d51adf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a9d6f368bdbc9d5d0defa604c82d51adf">gs_cfg_logging_console</a> (<a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a> *cfg)</td></tr>
-<tr class="separator:a9d6f368bdbc9d5d0defa604c82d51adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28f1458e443b9d80efb38b457d5d936d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a28f1458e443b9d80efb38b457d5d936d">gs_cfg_logging_file</a> (<a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a> *cfg)</td></tr>
-<tr class="separator:a28f1458e443b9d80efb38b457d5d936d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3165cb6824d554bf8a60523570f4f950"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a3165cb6824d554bf8a60523570f4f950">gs_cfg_console_connection</a> (<a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a> *cfg)</td></tr>
-<tr class="separator:a3165cb6824d554bf8a60523570f4f950"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4182ff5291ffdb0d3bc4dac47c08427"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#ab4182ff5291ffdb0d3bc4dac47c08427">gs_cfg_version_checking</a> (<a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a> *cfg)</td></tr>
-<tr class="separator:ab4182ff5291ffdb0d3bc4dac47c08427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35a6cde554459ed9b31f296d2967ff06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a35a6cde554459ed9b31f296d2967ff06">gs_cfg_logging</a> ()</td></tr>
+<tr class="separator:a35a6cde554459ed9b31f296d2967ff06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadabfa335abfbfec34fb4c821cd575db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#aadabfa335abfbfec34fb4c821cd575db">gs_cfg_logging_chat</a> ()</td></tr>
+<tr class="separator:aadabfa335abfbfec34fb4c821cd575db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea60a3bec4577905204961b490eb34a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#aea60a3bec4577905204961b490eb34a1">gs_cfg_logging_console</a> ()</td></tr>
+<tr class="separator:aea60a3bec4577905204961b490eb34a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8412513ed9a90d9a19c892687fc69fd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a8412513ed9a90d9a19c892687fc69fd1">gs_cfg_logging_file</a> ()</td></tr>
+<tr class="separator:a8412513ed9a90d9a19c892687fc69fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7419bb8aabed7994293853d25605c41d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a7419bb8aabed7994293853d25605c41d">gs_cfg_console_connection</a> ()</td></tr>
+<tr class="separator:a7419bb8aabed7994293853d25605c41d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeaebb2c71ea6b6d7a9fa633ce04fd09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#aeeaebb2c71ea6b6d7a9fa633ce04fd09">gs_cfg_version_checking</a> ()</td></tr>
+<tr class="separator:aeeaebb2c71ea6b6d7a9fa633ce04fd09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c3ef0da2d886e45ce0dcb2d113df51c"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a7c3ef0da2d886e45ce0dcb2d113df51c">gs_cfg_get</a> (const char *sec_name, const char *key)</td></tr>
 <tr class="separator:a7c3ef0da2d886e45ce0dcb2d113df51c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a21939fa75b760421cae91bcf61c954c8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a21939fa75b760421cae91bcf61c954c8">cfg</a></td></tr>
+<tr class="separator:a21939fa75b760421cae91bcf61c954c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a471e75fbdba233c0dde49a3200ba59bb"></a>
@@ -131,15 +138,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3165cb6824d554bf8a60523570f4f950"></a>
+<a class="anchor" id="a7419bb8aabed7994293853d25605c41d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void gs_cfg_console_connection </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a> *&#160;</td>
-          <td class="paramname"><em>cfg</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -173,15 +179,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7045a5e7cb3ee432b8ea50ec1935a036"></a>
+<a class="anchor" id="a35a6cde554459ed9b31f296d2967ff06"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void gs_cfg_logging </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a> *&#160;</td>
-          <td class="paramname"><em>cfg</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -189,15 +194,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a13c3b653e8b72aa0d180595e20ac9f40"></a>
+<a class="anchor" id="aadabfa335abfbfec34fb4c821cd575db"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void gs_cfg_logging_chat </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a> *&#160;</td>
-          <td class="paramname"><em>cfg</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -205,15 +209,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9d6f368bdbc9d5d0defa604c82d51adf"></a>
+<a class="anchor" id="aea60a3bec4577905204961b490eb34a1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void gs_cfg_logging_console </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a> *&#160;</td>
-          <td class="paramname"><em>cfg</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -221,15 +224,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a28f1458e443b9d80efb38b457d5d936d"></a>
+<a class="anchor" id="a8412513ed9a90d9a19c892687fc69fd1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void gs_cfg_logging_file </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a> *&#160;</td>
-          <td class="paramname"><em>cfg</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -237,18 +239,38 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab4182ff5291ffdb0d3bc4dac47c08427"></a>
+<a class="anchor" id="aeeaebb2c71ea6b6d7a9fa633ce04fd09"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void gs_cfg_version_checking </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a> *&#160;</td>
-          <td class="paramname"><em>cfg</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a21939fa75b760421cae91bcf61c954c8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a>* cfg</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -256,7 +278,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 16 2012 13:09:41 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 17 2012 15:00:38 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

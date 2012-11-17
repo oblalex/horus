@@ -13,5 +13,6 @@ var searchData=
   ['listpath',['listPath',['../list__file__helper_8cpp.html#ad1334c557d1f8716757630bdae275867',1,'list_file_helper.cpp']]],
   ['loadaction',['loadAction',['../classMainWindow.html#a724cdf19c51bd692d55c747c0237daf9',1,'MainWindow']]],
   ['loaded',['loaded',['../classListFileHelper.html#a877393709193efb9eb52b937c5ad1c5a',1,'ListFileHelper::loaded()'],['../classSettings.html#a67d962afb6b3610d6cb2b8051940440a',1,'Settings::loaded()'],['../gs_8c.html#a3df9779577c103024cff216aaba07b4f',1,'LOADED():&#160;gs.c'],['../gs__mission__manager_8c.html#a3df9779577c103024cff216aaba07b4f',1,'LOADED():&#160;gs_mission_manager.c']]],
+  ['locales',['locales',['../l10n_8c.html#ae9f06fea7643ac542a3587410165942e',1,'l10n.c']]],
   ['lock',['LOCK',['../gs__cmd_8c.html#ac49cd26ebb90fdb9730da15c401997be',1,'LOCK():&#160;gs_cmd.c'],['../print__status_8c.html#ac49cd26ebb90fdb9730da15c401997be',1,'LOCK():&#160;print_status.c']]]
 ];

@@ -20,6 +20,7 @@ var searchData=
   ['path_5fgss_5fh',['PATH_GSS_H',['../gs__paths_8h.html#abdb55f3d8b2245fa1548c65672e1ae50',1,'gs_paths.h']]],
   ['path_5fparent',['PATH_PARENT',['../common_8h.html#aae93425533301a459aa1f04aa6dbcc55',1,'common.h']]],
   ['path_5fsep',['PATH_SEP',['../common_8h.html#a837df2c29aacf37cb96c2b65acb312a6',1,'common.h']]],
+  ['path_5fsys_5fcfg',['PATH_SYS_CFG',['../gs__paths_8h.html#aa738355695c6e16c549462e8f2d3b272',1,'gs_paths.h']]],
   ['pclient_5fid',['PCLIENT_ID',['../winproc_8c.html#af4a8336b9d73c09d52442844aea25b75',1,'winproc.c']]],
   ['pi',['Pi',['../edge_8cpp.html#ad37e1b7740e725cb44517fce48e5e3ab',1,'edge.cpp']]],
   ['pkaffinity',['PKAFFINITY',['../winproc_8c.html#a1de79c474c1533ce0323893641d14a41',1,'winproc.c']]],
