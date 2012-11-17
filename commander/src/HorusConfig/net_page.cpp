@@ -1,7 +1,7 @@
 #include "net_page.h"
 #include "ui_net_page.h"
 #include "settings.h"
-#include "gs_cfg_grp.h"
+#include "gs_cfg_key.h"
 
 static QString KEY_SKIN                     = QString(GS_CFG_GRP_NET).append("/SkinDownload");
 static QString KEY_CHECK_CLIENT_TIME_SPEED  = QString(GS_CFG_GRP_NET).append("/checkClientTimeSpeed");
@@ -9,7 +9,7 @@ static QString KEY_CHECK_SERVER_TIME_SPEED  = QString(GS_CFG_GRP_NET).append("/c
 static QString KEY_CHECK_TIME_SPEED_DIFF    = QString(GS_CFG_GRP_NET).append("/checkTimeSpeedDifferense");
 static QString KEY_CHECK_TIME_SPEED_INTV    = QString(GS_CFG_GRP_NET).append("/checkTimeSpeedInterval");
 static QString KEY_LOCAL_PORT               = QString(GS_CFG_GRP_NET).append("/localPort");
-static QString KEY_CHANNELS                 = QString(GS_CFG_GRP_NET).append("/serverChannels");
+static QString KEY_CHANNELS                 = QString(GS_CFG_KEY_SERVER_CHANNELS);
 
 static QString KEY_CHEAT_WARN_DELAY         = QString(GS_CFG_GRP_MAX_LAG).append("/cheaterWarningDelay");
 static QString KEY_CHEAT_WARN_NUM           = QString(GS_CFG_GRP_MAX_LAG).append("/cheaterWarningNum");

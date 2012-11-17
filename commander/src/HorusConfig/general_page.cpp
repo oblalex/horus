@@ -1,6 +1,7 @@
 #include "general_page.h"
 #include "ui_general_page.h"
 #include "gs_cfg_grp.h"
+#include "sys_cfg_key.h"
 #include "settings.h"
 
 #include <QVariant>
@@ -25,8 +26,8 @@ GeneralPage::~GeneralPage()
 
 void GeneralPage::populateLangs()
 {
-    ui->langBox->addItem(QIcon(":/img/langEn.png"), tr("English"), LANG_EN);
-    ui->langBox->addItem(QIcon(":/img/langRu.png"), tr("Russian"), LANG_RU);
+    ui->langBox->addItem(QIcon(":/img/langEn.png"), tr("English"), SYS_CFG_LANG_EN);
+    ui->langBox->addItem(QIcon(":/img/langRu.png"), tr("Russian"), SYS_CFG_LANG_RU);
 }
 
 void GeneralPage::selectLangInBox(QString lang)
@@ -46,7 +47,8 @@ void GeneralPage::save()
 {
     Settings::setServerValue(KEY_SNAME, ui->sNameLn->text());
     Settings::setServerValue(KEY_SDSCR, ui->sDescriptionLn->text());
-    Settings::setHorusValue(QString(KEY_LANG), ui->langBox->itemData(ui->langBox->currentIndex()).toString());
+    Settings::setHorusValue(QString(SYS_CFG_KEY_LANG),
+                            ui->langBox->itemData(ui->langBox->currentIndex()).toString());
 
     saveChildren();
 }
@@ -55,7 +57,7 @@ void GeneralPage::load()
 {
     ui->sNameLn->setText(Settings::serverValue(KEY_SNAME, "").toString());
     ui->sDescriptionLn->setText(Settings::serverValue(KEY_SDSCR, "").toString());
-    selectLangInBox(Settings::horusValue(QString(KEY_LANG), LANG_EN).toString());
+    selectLangInBox(Settings::horusValue(QString(SYS_CFG_KEY_LANG), SYS_CFG_LANG_EN).toString());
 
     loadChildren();
 }
@@ -64,7 +66,7 @@ void GeneralPage::loadDefaults()
 {
     ui->sNameLn->setText(tr("My server"));
     ui->sDescriptionLn->setText(tr("No description"));
-    selectLangInBox(LANG_EN);
+    selectLangInBox(SYS_CFG_LANG_EN);
 
     loadChildrenDefaults();
 }

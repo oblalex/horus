@@ -8,6 +8,7 @@ horusCommander_SOURCES = main.c \
 						gs.c \
 						gs_paths.c \
 						gs_cfg.c \
+						sys_cfg.c \
 						gs_scripts.c \
 						gs_process.c \
 						gs_console.c \

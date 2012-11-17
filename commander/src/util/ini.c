@@ -79,11 +79,12 @@ void ini_load(INI_CONTAINER* this)
 					strcat(comments, buffer);
 					break;
 				default :
+                    if (strlen(buffer) == 0) continue;
 					pdest = strrchr(buffer, '=');
 					if (pdest == NULL) 
 					{
 						fclose(in_stream);
-						this->error_msg = INI_PARSING_ERR;
+                        this->error_msg = INI_PARSING_ERR;
 						return;
 					}
 					index = pdest - buffer;
@@ -94,7 +95,7 @@ void ini_load(INI_CONTAINER* this)
 					if (strcmp(current_section, "") == 0)
 					{
 						fclose(in_stream);
-						this->error_msg = INI_PARSING_ERR;
+                        this->error_msg = INI_PARSING_ERR;
 						return;
 					}
 					else

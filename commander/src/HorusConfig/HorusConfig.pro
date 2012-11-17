@@ -40,7 +40,10 @@ HEADERS  += main_window.h \
     difficulty_map_icons_page.h \
     difficulty_var_page.h \
     net_page.h \
-    ../gs_cfg_grp.h
+    ../gs_cfg_grp.h \
+    ../sys_cfg_grp.h \
+    ../sys_cfg_key.h \
+    ../gs_cfg_key.h
 
 FORMS    += main_window.ui \
     general_page.ui \

@@ -4,6 +4,7 @@
 #include "util/l10n.h"
 #include "main_parser.h"
 #include "gs.h"
+#include "sys_cfg.h"
 
 void init();
 void tearDown();
@@ -24,7 +25,7 @@ int main (int argc, char const** argv)
 
 void init()
 {
-	locale_init();
+    locale_init(sys_cfg_get(SYS_CFG_GRP_GENERAL, SYS_CFG_KEY_LANG_NO_GRP));
 	term_init();
 }
 

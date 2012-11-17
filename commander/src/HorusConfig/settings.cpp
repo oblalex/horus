@@ -1,4 +1,5 @@
 #include "settings.h"
+#include "sys_cfg_key.h"
 
 #include <QSettings>
 #include <QFile>
@@ -55,7 +56,7 @@ void Settings::save()
 
 QString Settings::getLangCode()
 {
-    return horusValue(QString(KEY_LANG), LANG_EN).toString();
+    return horusValue(QString(SYS_CFG_KEY_LANG), SYS_CFG_LANG_EN).toString();
 }
 
 const QVariant Settings::horusValue(const QString &key, const QVariant &defaultValue)

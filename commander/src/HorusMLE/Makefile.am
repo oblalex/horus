@@ -14,3 +14,6 @@ install-data-hook: dist-hook install-data-my
 install-data-my:	
 	mkdir -p "$(prefix)/@PACKAGE@/l10n"; \
 	cp -r "l10n" "$(prefix)/@PACKAGE@/"
+
+clean-local:
+	make clean -f QMakefile

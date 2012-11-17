@@ -34,6 +34,10 @@
 #define GS_CFG_NAME 		"confs" FILE_EXT_INI
 #define PATH_GS_CFG 		PATH_GS GS_CFG_NAME
 
+/** Commanders's configuration file name */
+#define SYS_CFG_NAME 		"config" FILE_EXT_INI
+#define PATH_SYS_CFG 		PATH_CURRENT SYS_CFG_NAME
+
 /** Main server's command file name */
 #define GS_CMDF_MAIN_NAME 	"server" FILE_EXT_CMD
 #define PATH_GS_CMDF_MAIN 	PATH_GS GS_CMDF_MAIN_NAME

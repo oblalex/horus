@@ -23,7 +23,7 @@ void gs_cmd_init()
 	GS_IN_FD = get_gs_console_socket();
 	pthread_mutex_init(&LOCK, NULL);
 
-    channels = atoi(gs_cfg_get(GS_CFG_GRP_NET, "serverChannels"));
+    channels = atoi(gs_cfg_get(GS_CFG_GRP_NET, GS_CFG_KEY_SERVER_CHANNELS_NO_GRP));
 }
 
 void gs_cmd_exit()
@@ -88,7 +88,6 @@ void gs_cmd_chat(char* msg, char* addressee)
         str_escape_unicode(chunk, strlen(chunk), emsg, sizeof emsg);
 		sprintf(cmd, GS_CMD_CHAT, emsg, addressee);
     #endif
-
 
 		gs_cmd_send((char*)&cmd);
 	}

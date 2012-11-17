@@ -3,12 +3,6 @@
 
 #include <QVariant>
 
-#define LANG_EN "en"
-#define LANG_RU "ru"
-
-#define GRP_GENERAL "GNRL"
-#define KEY_LANG GRP_GENERAL "/lang"
-
 class Settings
 {
 public:
