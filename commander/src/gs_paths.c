@@ -89,7 +89,7 @@ BOOL gs_check_path_mission_list()
     }
 }
 
-BOOL gs_check_path_mission(char* path)
+BOOL gs_check_path_mission(char* name, char* path)
 {
     char fullPath[255];
     sprintf(fullPath, "%s%s", PATH_GS_MISSIONS_DIR, path);
@@ -97,7 +97,10 @@ BOOL gs_check_path_mission(char* path)
         return TRUE;
     } else {
         PRINT_STATUS_MSG_ERR(tr("Mission's path is wrong:"));
-        PRINT_STATUS_MSG_ERR(path);
+
+        char msg[255];
+        sprintf(msg, "\"%s\" : \"%s\"", name, path);
+        PRINT_STATUS_MSG_ERR(msg);
         return FALSE;
     }
 }

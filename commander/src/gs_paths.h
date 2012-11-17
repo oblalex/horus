@@ -57,7 +57,7 @@
 void gs_check_path_root();
 void gs_check_path_logs();
 BOOL gs_check_path_mission_list();
-BOOL gs_check_path_mission(char* path);
+BOOL gs_check_path_mission(char *name, char* path);
 
 #endif // PATH_GSS_H
 

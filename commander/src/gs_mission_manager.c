@@ -108,7 +108,6 @@ void mssn_list_load()
         node=mxmlWalkNext (node, NULL, MXML_DESCEND))
     {
         if (node->type != MXML_ELEMENT) continue;
-
         if (strcmp(mxmlGetElement(node), XML_ELEM) == 0)
         {
             i++;
@@ -147,7 +146,7 @@ void mssn_list_load()
 
                 free(elem);
                 continue;
-            } else if (gs_check_path_mission(attrVal) == FALSE)
+            } else if (gs_check_path_mission(elem->data.name, attrVal) == FALSE)
             {
                 free(elem);
                 continue;
@@ -232,16 +231,9 @@ void mssn_list_load()
 
             MSSN_COUNT++;
 
-            if ((nodeNextRed == NULL)
-            &&  (nodeNextBlue == NULL)
-            &&  (nodeNext == NULL))
-            {
-                break;
-            } else {
-                elem->mNext     = (D_MISSION_LITE_ELEM*) nodeNext;
-                elem->mNextRed  = (D_MISSION_LITE_ELEM*) nodeNextRed;
-                elem->mNextBlue = (D_MISSION_LITE_ELEM*) nodeNextBlue;
-            }
+            elem->mNext = (nodeNext == NULL) ? NULL : (D_MISSION_LITE_ELEM*) nodeNext;
+            elem->mNextRed = (nodeNextRed == NULL) ? NULL : (D_MISSION_LITE_ELEM*) nodeNextRed;
+            elem->mNextBlue = (nodeNextBlue == NULL) ? NULL : (D_MISSION_LITE_ELEM*) nodeNextBlue;
         }
     }
 
@@ -403,8 +395,6 @@ void mssn_list_resolve_conflicts()
 
     FIRST->refsCount++;
 
-    if (MSSN_COUNT==1) return;
-
     D_MISSION_LITE_ELEM* curr = FIRST;
 
     D_MISSION_LITE_ELEM* red;
@@ -452,6 +442,8 @@ void mssn_list_resolve_conflicts()
 
         curr = curr->next;
     }
+
+    if (MSSN_COUNT==1) return;
 
     char msg[100];
     D_MISSION_LITE_ELEM* prev = NULL;
