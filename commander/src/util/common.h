@@ -8,13 +8,13 @@
 #include <config.h>
 
 #if defined(_WIN_)
-	#include <windows.h>
+    #include <windows.h>
 #else
-	typedef enum
-	{
-		FALSE, TRUE
-	} BOOL;
-#endif 
+    typedef enum
+    {
+        FALSE, TRUE
+    } BOOL;
+#endif
 
 #if defined(_WIN_)
 	#define PATH_SEP 	"\\"

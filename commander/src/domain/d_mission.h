@@ -1,6 +1,8 @@
 #ifndef D_MISSION_H
 #define D_MISSION_H
 
+#include "../util/types.h"
+
 #include "d_weather.h"
 
 #define MSSN_KEY_CLOUD_TYPE         ("CloudType")
@@ -25,7 +27,7 @@ typedef struct D_MISSION
     char*   path;
 
     /** Mission's duration in seconds */
-    int     sDuration;
+    uint4   sDuration;
 
     /** Mission's weather data */
     D_WEATHER_REPORT weather;

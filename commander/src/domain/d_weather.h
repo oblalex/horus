@@ -1,7 +1,7 @@
 #ifndef D_WEATHER_H
 #define D_WEATHER_H
 
-#include "../util/timestamp_t.h"
+#include "../util/types.h"
 
 typedef enum
 {
@@ -34,13 +34,13 @@ typedef enum
 typedef struct
 {
     /** Clouds height in meters */
-    int cloudsHeightM;
+    uint2 cloudsHeightM;
 
     /** Wind direction in degrees */
-    int windDirectionDeg;
+    uint2 windDirectionDeg;
 
     /** Wind speed in meters per second */
-    short windSpeedMS;
+    uint2 windSpeedMS;
 
     /** In-game publication timestamp */
     TIMESTAMP_T publGameTS;
