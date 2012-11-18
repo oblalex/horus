@@ -16,7 +16,7 @@
 #define MSSN_KEY_GUST               ("Gust")
 #define MSSN_KEY_TURBULENCE         ("Turbulence")
 
-typedef struct D_MISSION_LITE
+typedef struct D_MISSION
 {
     /** Missions name used for comfortable identification */
     char*   name;
@@ -29,6 +29,6 @@ typedef struct D_MISSION_LITE
 
     /** Mission's weather data */
     D_WEATHER_REPORT weather;
-} D_MISSION_LITE;
+} D_MISSION;
 
 #endif // D_MISSION_H

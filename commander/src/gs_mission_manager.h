@@ -25,30 +25,30 @@
 #define HISTORY_SIZE (16)
 #define DEFAULT_MISSION_DURATION (3600)
 
-typedef struct D_MISSION_LITE_ELEM
+typedef struct D_MISSION_ELEM
 {
-    D_MISSION_LITE data;
+    D_MISSION data;
 
     /** Next linked-list element */
-    struct D_MISSION_LITE_ELEM* next;
+    struct D_MISSION_ELEM* next;
 
     /** Mission that will be played after red team wons current mission */
-    struct D_MISSION_LITE_ELEM* mNextRed;
+    struct D_MISSION_ELEM* mNextRed;
 
     /** Mission that will be played after blue team wons current mission */
-    struct D_MISSION_LITE_ELEM* mNextBlue;
+    struct D_MISSION_ELEM* mNextBlue;
 
     /** Mission that will be played after no team wons current mission or nextRead and nextBlue are unset */
-    struct D_MISSION_LITE_ELEM* mNext;
+    struct D_MISSION_ELEM* mNext;
 
     int refsCount;
-} D_MISSION_LITE_ELEM;
+} D_MISSION_ELEM;
 
-static void mssn_set_current(D_MISSION_LITE_ELEM* value);
+static void mssn_set_current(D_MISSION_ELEM* value);
 static void mssn_status_reset();
 static void mssn_list_load();
-static void mssn_load_weather_report(D_MISSION_LITE* mission);
-static D_MISSION_LITE_ELEM* get_mssn_elem_by_name(char* name);
+static void mssn_load_weather_report(D_MISSION* mission);
+static D_MISSION_ELEM* get_mssn_elem_by_name(char* name);
 static void mssn_list_resolve_conflicts();
 static void mssn_list_resolve_branch(char* name, void** nextRed, void** nextBlue, void** next);
 static void mssn_list_save();

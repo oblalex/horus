@@ -37,9 +37,9 @@
 #define SECONDS_LEFT_BEFORE_END (10)
 
 static CSTACK HISTORY;
-static D_MISSION_LITE_ELEM* FIRST = NULL;
-static D_MISSION_LITE_ELEM* LAST = NULL;
-static D_MISSION_LITE_ELEM* CURRENT = NULL;
+static D_MISSION_ELEM* FIRST = NULL;
+static D_MISSION_ELEM* LAST = NULL;
+static D_MISSION_ELEM* CURRENT = NULL;
 
 static int MSSN_COUNT = 0;
 static int SECS_LEFT = 0;
@@ -99,7 +99,7 @@ void mssn_list_load()
     mxml_node_t* nodeNextBlue;
     mxml_node_t* nodeNext;
 
-    D_MISSION_LITE_ELEM* elem;
+    D_MISSION_ELEM* elem;
     char msg[100];
 
     int i = 0;
@@ -113,7 +113,7 @@ void mssn_list_load()
         {
             i++;
 
-            elem = (D_MISSION_LITE_ELEM*)malloc(sizeof(D_MISSION_LITE_ELEM));
+            elem = (D_MISSION_ELEM*)malloc(sizeof(D_MISSION_ELEM));
             elem->next = NULL;
             elem->refsCount = 0;
 
@@ -239,9 +239,9 @@ void mssn_list_load()
 
             MSSN_COUNT++;
 
-            elem->mNext = (nodeNext == NULL) ? NULL : (D_MISSION_LITE_ELEM*) nodeNext;
-            elem->mNextRed = (nodeNextRed == NULL) ? NULL : (D_MISSION_LITE_ELEM*) nodeNextRed;
-            elem->mNextBlue = (nodeNextBlue == NULL) ? NULL : (D_MISSION_LITE_ELEM*) nodeNextBlue;
+            elem->mNext = (nodeNext == NULL) ? NULL : (D_MISSION_ELEM*) nodeNext;
+            elem->mNextRed = (nodeNextRed == NULL) ? NULL : (D_MISSION_ELEM*) nodeNextRed;
+            elem->mNextBlue = (nodeNextBlue == NULL) ? NULL : (D_MISSION_ELEM*) nodeNextBlue;
         }
     }
 
@@ -275,7 +275,7 @@ void mssn_list_print()
     char* nextName;
     char* noneName = "none";
 
-    D_MISSION_LITE_ELEM* curr;
+    D_MISSION_ELEM* curr;
     int i = 1;
     for (curr = FIRST;
          curr != NULL;
@@ -298,10 +298,10 @@ void mssn_list_print()
     }
 }
 
-D_MISSION_LITE_ELEM* get_mssn_elem_by_name(char* name)
+D_MISSION_ELEM* get_mssn_elem_by_name(char* name)
 {
-    D_MISSION_LITE_ELEM* result = NULL;
-    D_MISSION_LITE_ELEM* elem = FIRST;
+    D_MISSION_ELEM* result = NULL;
+    D_MISSION_ELEM* elem = FIRST;
 
     while (elem != NULL)
     {
@@ -316,7 +316,7 @@ D_MISSION_LITE_ELEM* get_mssn_elem_by_name(char* name)
     return result;
 }
 
-void mssn_load_weather_report(D_MISSION_LITE* mission)
+void mssn_load_weather_report(D_MISSION* mission)
 {
     mission->weather.publGameTS.second      = 0;
     mission->weather.publGameTS.millisecond = 0;
@@ -401,11 +401,11 @@ void mssn_list_resolve_conflicts()
 {
     if (FIRST == NULL) return;
 
-    D_MISSION_LITE_ELEM* curr = FIRST;
+    D_MISSION_ELEM* curr = FIRST;
 
-    D_MISSION_LITE_ELEM* red;
-    D_MISSION_LITE_ELEM* blue;
-    D_MISSION_LITE_ELEM* none;
+    D_MISSION_ELEM* red;
+    D_MISSION_ELEM* blue;
+    D_MISSION_ELEM* none;
 
     mxml_node_t* node;
     const char *name;
@@ -452,7 +452,7 @@ void mssn_list_resolve_conflicts()
     if (MSSN_COUNT==1) return;
 
     char msg[100];
-    D_MISSION_LITE_ELEM* prev = NULL;
+    D_MISSION_ELEM* prev = NULL;
 
     BOOL unreferencedFound;
 
@@ -597,7 +597,7 @@ void mssn_list_save()
     tree = mxmlNewXML("1.0");
     root = mxmlNewElement(tree, XML_ROOT);
 
-    D_MISSION_LITE_ELEM* elem;
+    D_MISSION_ELEM* elem;
 
     for (elem = FIRST; elem != NULL; elem = elem->next)
     {
@@ -633,8 +633,8 @@ void mssn_list_clear()
 
     PRINT_STATUS_NEW(tr("Clearing missions list"));
 
-    D_MISSION_LITE_ELEM* curr = FIRST;
-    D_MISSION_LITE_ELEM* prev = NULL;
+    D_MISSION_ELEM* curr = FIRST;
+    D_MISSION_ELEM* prev = NULL;
 
     while (curr != NULL)
     {
@@ -664,7 +664,7 @@ void mssn_list_reload()
     PRINT_STATUS_DONE();
 }
 
-void mssn_set_current(D_MISSION_LITE_ELEM* value)
+void mssn_set_current(D_MISSION_ELEM* value)
 {
     CURRENT = value;
     mssn_list_save();
@@ -963,7 +963,7 @@ void gs_mssn_prev()
 {
     PRINT_STATUS_NEW(tr("Going to previous mission"));
 
-    D_MISSION_LITE_ELEM* PREV = (D_MISSION_LITE_ELEM*) cstack_retrieve(&HISTORY);
+    D_MISSION_ELEM* PREV = (D_MISSION_ELEM*) cstack_retrieve(&HISTORY);
 
     if (PREV == NULL)
     {
@@ -1091,7 +1091,7 @@ void gs_mssn_manager_init()
 
     DO_WORK = TRUE;
 
-    cstack_init(&HISTORY, HISTORY_SIZE, sizeof(D_MISSION_LITE_ELEM));
+    cstack_init(&HISTORY, HISTORY_SIZE, sizeof(D_MISSION_ELEM));
 
     mssn_list_load();
     pthread_create(&H_MSG_DISPATCHER, NULL, &mssn_msg_dispatcher, NULL);
@@ -1116,7 +1116,7 @@ void gs_mssn_manager_tearDown()
 
 void mssn_list_history_clear()
 {
-    D_MISSION_LITE_ELEM* item;
+    D_MISSION_ELEM* item;
 
     while(1)
     {

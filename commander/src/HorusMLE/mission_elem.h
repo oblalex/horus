@@ -21,7 +21,7 @@ public:
     MissionElem(MissionListView* MLV);
     ~MissionElem();
 
-    D_MISSION_LITE data;
+    D_MISSION data;
 
     bool isCurrent();
     void setCurrent(bool value);
