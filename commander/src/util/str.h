@@ -6,6 +6,8 @@
 #ifndef STR_H
 #define STR_H
 
+#include <config.h>
+
 /** 
  * Create a copy of string.
  *
@@ -28,5 +30,9 @@ void str_escape_unicode(char* src, int src_len, char* dst, int dst_len);
 char* substring(int start, int stop, char* src, char* dst, int size);
 
 unsigned short int cp1251_to_utf8(unsigned char in);
+
+#ifdef _WIN_
+int utf8_to_cp1251(char *src, char *dst);
+#endif
 
 #endif // STR_H

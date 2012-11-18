@@ -98,18 +98,18 @@ void ListFileHelper::saveFromView()
     {
         QDomElement xml_elem = doc.createElement(XML_ELEM);
 
-        xml_elem.setAttribute(XML_ATTR_NAME, me->data.name);
-        xml_elem.setAttribute(XML_ATTR_PATH, me->data.path);
+        xml_elem.setAttribute(XML_ATTR_NAME, QString::fromUtf8(me->data.name));
+        xml_elem.setAttribute(XML_ATTR_PATH, QString::fromUtf8(me->data.path));
         xml_elem.setAttribute(XML_ATTR_DURATION, QString::number(me->data.sDuration));
         xml_elem.setAttribute(XML_ATTR_POSX, QString::number(me->pos().x()));
         xml_elem.setAttribute(XML_ATTR_POSY, QString::number(me->pos().y()));
 
         if (me->nextNone)
-            xml_elem.setAttribute(XML_ATTR_NEXT, me->nextNone->data.name);
+            xml_elem.setAttribute(XML_ATTR_NEXT, QString::fromUtf8(me->nextNone->data.name));
         if (me->nextRed)
-            xml_elem.setAttribute(XML_ATTR_NEXT_RED, me->nextRed->data.name);
+            xml_elem.setAttribute(XML_ATTR_NEXT_RED, QString::fromUtf8(me->nextRed->data.name));
         if (me->nextBlue)
-            xml_elem.setAttribute(XML_ATTR_NEXT_BLUE, me->nextBlue->data.name);
+            xml_elem.setAttribute(XML_ATTR_NEXT_BLUE, QString::fromUtf8(me->nextBlue->data.name));
 
         if (me->isCurrent())
             xml_elem.setAttribute(XML_ATTR_IS_CURRENT, IS_CURRENT_TRUE_VAL);
@@ -118,6 +118,7 @@ void ListFileHelper::saveFromView()
     }
 
     QTextStream ts(&file);
+    ts.setCodec("UTF-8");
     ts << doc.toString();
     file.close();
 
@@ -171,7 +172,7 @@ void ListFileHelper::resolveReferences(QDomNode& first)
 
     foreach (MissionElem* me, view->getMissions())
     {
-        name = QString(me->data.name);
+        name = QString::fromUtf8(me->data.name);
 
         found = false;
         n = first;

@@ -2,6 +2,7 @@
 
 #if defined(_WIN_)
     #include <windows.h>
+    #include "util/str.h"
 #endif
 
 #include "gs_mission_manager.h"
@@ -118,7 +119,6 @@ void mssn_list_load()
 
             // Set name
             attrVal = mxmlElementGetAttr(node, XML_ATTR_NAME);
-
             if (attrVal == NULL)
             {
                 sprintf(msg, "#%d : %s ", i, tr("name is not set. Skipping"));
@@ -134,8 +134,16 @@ void mssn_list_load()
                 free(elem);
                 continue;
             }
+
+#ifdef _WIN_
+            char reEncoded[255];
+            utf8_to_cp1251(attrVal, reEncoded);
+            elem->data.name = (char*) malloc(sizeof(char)*strlen(reEncoded));
+            strcpy(elem->data.name, reEncoded);
+#else
             elem->data.name = (char*) malloc(sizeof(char)*strlen(attrVal));
             strcpy(elem->data.name, attrVal);
+#endif
 
             // Set path
             attrVal = mxmlElementGetAttr(node, XML_ATTR_PATH);
@@ -260,7 +268,7 @@ void mssn_list_print()
 {
     PRINT_STATUS_MSG(tr("Missions:"));
 
-    char* msg[180];
+    char* msg[255];
 
     char* redName;
     char* blueName;
@@ -393,8 +401,6 @@ void mssn_list_resolve_conflicts()
 {
     if (FIRST == NULL) return;
 
-    FIRST->refsCount++;
-
     D_MISSION_LITE_ELEM* curr = FIRST;
 
     D_MISSION_LITE_ELEM* red;
@@ -459,7 +465,7 @@ void mssn_list_resolve_conflicts()
              prev = curr, curr = curr->next)
         {
 
-            if (curr->refsCount == 0)
+            if ((curr->refsCount == 0) && (curr != CURRENT))
             {
                 unreferencedFound = TRUE;
 

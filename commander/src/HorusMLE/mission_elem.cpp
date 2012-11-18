@@ -66,9 +66,11 @@ void MissionElem::setName(QString* value)
 
     if (value==NULL) return;
 
-    data.name = (char*) malloc(value->size()+1);
-    memset(data.name, 0, value->size()+1);
-    memcpy(data.name, value->toAscii().data(), value->size());
+    int ln = strlen(value->toUtf8().data());
+
+    data.name = (char*) malloc(ln+1);
+    memset(data.name, 0, ln+1);
+    memcpy(data.name, value->toUtf8().data(), ln);
 }
 
 void MissionElem::setPath(QString *value)
@@ -81,9 +83,11 @@ void MissionElem::setPath(QString *value)
 
     if (value==NULL) return;
 
-    data.path = (char*) malloc(value->size()+1);
-    memset(data.path, 0, value->size()+1);
-    memcpy(data.path, value->toAscii().data(), value->size());
+    int ln = strlen(value->toUtf8().data());
+
+    data.path = (char*) malloc(ln+1);
+    memset(data.path, 0, ln+1);
+    memcpy(data.path, value->toUtf8().data(), ln);
 }
 
 void MissionElem::addEdge(Edge *edge)
@@ -179,7 +183,7 @@ QList<Edge *> MissionElem::edges() const
 QRectF MissionElem::boundingRect() const
 {
     qreal adjust = 5;
-    QString text = QString(data.name);
+    QString text = QString::fromUtf8(data.name);
     QRect textRec = getTextRect(text);
 
     return QRectF(-radius-adjust, -radius-adjust,
@@ -221,7 +225,7 @@ void MissionElem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     painter->setPen(QPen(QColor(30, 30, 30).light(light), border));
     painter->drawEllipse(-radius, -radius, radius*2, radius*2);
 
-    QString text = QString(data.name);
+    QString text = QString::fromUtf8(data.name);
     QRect textRect = getTextRect(text);
 
     painter->setBrush(Qt::white);
@@ -252,8 +256,8 @@ int MissionElem::getRadius()
 void MissionElem::updateToolTip()
 {
     QString toolTip;
-    toolTip.append(QObject::tr("Name: ")).append(data.name).append(".\n");
-    toolTip.append(QObject::tr("Path: ")).append(data.path).append(".\n");
+    toolTip.append(QObject::tr("Name: ")).append(QString::fromUtf8(data.name)).append(".\n");
+    toolTip.append(QObject::tr("Path: ")).append(QString::fromUtf8(data.path)).append(".\n");
     toolTip.append(QObject::tr("Duration: ")).append(QString::number(data.sDuration)).append(" "+QObject::tr("s")+".");
     setToolTip(toolTip);
 }

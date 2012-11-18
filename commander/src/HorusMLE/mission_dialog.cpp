@@ -3,6 +3,9 @@
 #include "d_mission.h"
 #include <QFileDialog>
 
+#include "iostream"
+using namespace std;
+
 MissionDialog::MissionDialog(MissionListView* MLV, bool edit, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MissionDialog),
@@ -23,7 +26,7 @@ MissionDialog::MissionDialog(MissionListView* MLV, bool edit, QWidget *parent) :
     lst << "";
 
     foreach (MissionElem* me, MLV->getMissions())
-        lst << QString(me->data.name);
+        lst << QString::fromUtf8(me->data.name);
 
     foreach (QString name, lst)
     {
@@ -37,17 +40,17 @@ MissionDialog::MissionDialog(MissionListView* MLV, bool edit, QWidget *parent) :
     if (edit)
     {
         setWindowTitle(tr("Editing mission"));
-        ui->nameLe->setText(missElem->data.name);
-        ui->pathLe->setText(missElem->data.path);
+        ui->nameLe->setText(QString::fromUtf8(missElem->data.name));
+        ui->pathLe->setText(QString::fromUtf8(missElem->data.path));
         ui->durationSpin->setValue(missElem->data.sDuration);
         ui->isCurrentChB->setChecked(missElem->isCurrent());
 
         if (missElem->nextNone)
-            ui->nextNoneCmb->setCurrentIndex(lst.indexOf(missElem->nextNone->data.name));
+            ui->nextNoneCmb->setCurrentIndex(lst.indexOf(QString::fromUtf8(missElem->nextNone->data.name)));
         if (missElem->nextRed)
-            ui->nextRedCmb->setCurrentIndex(lst.indexOf(missElem->nextRed->data.name));
+            ui->nextRedCmb->setCurrentIndex(lst.indexOf(QString::fromUtf8(missElem->nextRed->data.name)));
         if (missElem->nextBlue)
-            ui->nextBlueCmb->setCurrentIndex(lst.indexOf(missElem->nextBlue->data.name));
+            ui->nextBlueCmb->setCurrentIndex(lst.indexOf(QString::fromUtf8(missElem->nextBlue->data.name)));
 
     } else {
         setWindowTitle(tr("Adding new mission"));

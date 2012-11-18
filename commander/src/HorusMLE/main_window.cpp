@@ -360,7 +360,7 @@ void MainWindow::onDelAction()
     switch(QMessageBox::question(
                this,
                tr("Deleting mission"),
-               tr("Are you sure about deleting") + " \"" + QString(me->data.name) + "\" ?",
+               tr("Are you sure about deleting") + " \"" + QString::fromUtf8(me->data.name) + "\" ?",
                tr("Yes"), tr("No"),
                0, 1))
     {
@@ -381,7 +381,7 @@ void MainWindow::onMissionSelected()
 {
     editAction->setEnabled(true);
     delAction->setEnabled(true);
-    missionLb->setText("\""+QString(MLV->getActive()->data.name) +"\" "+tr("is selected")+".");
+    missionLb->setText("\""+QString::fromUtf8(MLV->getActive()->data.name) +"\" "+tr("is selected")+".");
 }
 
 void MainWindow::onMissionDeselected()

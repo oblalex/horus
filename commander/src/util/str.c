@@ -3,6 +3,10 @@
 #include <stdio.h>
 #include <wchar.h>
 
+#if defined(_WIN_)
+    #include <windows.h>
+#endif
+
 char* str_copy(const char* str)
 {
     int n = strlen(str) + 1;
@@ -120,3 +124,65 @@ unsigned short int cp1251_to_utf8(unsigned char in)
 
     return out;
 }
+
+#ifdef _WIN_
+int utf8_to_cp1251(char *src, char *dst)
+{
+    int result_u, result_c;
+
+    result_u = MultiByteToWideChar(CP_UTF8,
+                                   0,
+                                   src,
+                                   -1,
+                                   0,
+                                   0);
+
+    if (!result_u)
+        return 0;
+
+    wchar_t *ures = (wchar_t*)malloc(sizeof(wchar_t)*result_u);
+
+    if(!MultiByteToWideChar(CP_UTF8,
+                            0,
+                            src,
+                            -1,
+                            ures,
+                            result_u))
+    {
+        free(ures);
+        return 0;
+    }
+
+    result_c = WideCharToMultiByte(
+                1251,
+                0,
+                ures,
+                -1,
+                0,
+                0,
+                0, 0);
+
+    if(!result_c)
+        return 0;
+
+    char *cres = (char*)malloc(sizeof(char)*result_c);
+
+    if(!WideCharToMultiByte(
+                1251,
+                0,
+                ures,
+                -1,
+                cres,
+                result_c,
+                0, 0))
+    {
+        free(cres);
+        return 0;
+    }
+
+    free(ures);
+    memcpy(dst, cres, result_c);
+    free(cres);
+    return result_c;
+}
+#endif

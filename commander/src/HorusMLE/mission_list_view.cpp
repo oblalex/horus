@@ -26,9 +26,10 @@ MissionListView::MissionListView(QWidget *parent)
 
 MissionElem *MissionListView::missionByName(QString name)
 {
+    char* data = name.toUtf8().data();
     foreach (MissionElem* me, missions)
     {
-            if (me->data.name == name)
+            if (strcmp(data, me->data.name)==0)
             return me;
     }
     return NULL;
