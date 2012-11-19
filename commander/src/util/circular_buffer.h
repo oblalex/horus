@@ -10,8 +10,8 @@ typedef struct CBUFFER
     int capacity;
 } CBUFFER;
 
-void cbuff_init(CBUFFER* this, int capacity, int itemSize);
-void cbuff_push(CBUFFER* this, void* item);
-void* cbuff_retrieve(CBUFFER* this);
+void cbuff_init(CBUFFER* _this, int capacity, int itemSize);
+void cbuff_push(CBUFFER* _this, void* item);
+void* cbuff_retrieve(CBUFFER* _this);
 
 #endif // CIRCULAR_BUFFER_H

@@ -19,11 +19,11 @@ horusCommander_SOURCES = main.c \
             gs_mission_manager.c \
             event_parser.c
 						
-horusCommander_LDADD = util/libutil.la mxml/libmxml.la
+horusCommander_LDADD = util/libutil.la mxml/libmxml.la domain/libdomain.la
 
 if WIN
 horusCommander_LDADD += -lws2_32 -lpcre
 endif
 
-SUBDIRS = util mxml HorusMLE HorusConfig
+SUBDIRS = util mxml domain HorusMLE HorusConfig
 

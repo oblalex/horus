@@ -5,29 +5,28 @@
 #include "util/common.h"
 #include "util/msg_queue.h"
 
-#define MSSN_REQ_LOAD       (0)
-#define MSSN_REQ_UNLOAD     (1)
+#define MSSN_REQ_LOAD       0
+#define MSSN_REQ_UNLOAD     1
 
-#define MSSN_REQ_RUN        (2)
-#define MSSN_REQ_END        (3)
-#define MSSN_REQ_RERUN      (4)
+#define MSSN_REQ_RUN        2
+#define MSSN_REQ_END        3
+#define MSSN_REQ_RERUN      4
 
-#define MSSN_REQ_NEXT       (5)
-#define MSSN_REQ_PREV       (6)
+#define MSSN_REQ_NEXT       5
+#define MSSN_REQ_PREV       6
 
-#define MSSN_REQ_START      (7)
-#define MSSN_REQ_STOP       (8)
-#define MSSN_REQ_RESTART    (9)
+#define MSSN_REQ_START      7
+#define MSSN_REQ_STOP       8
+#define MSSN_REQ_RESTART    9
 
-#define MSSN_REQ_TIME_LEFT_PRINT    (10)
-#define MSSN_REQ_TIME_LEFT_SET      (11)
+#define MSSN_REQ_TIME_LEFT_PRINT    10
+#define MSSN_REQ_TIME_LEFT_SET      11
 
-#define HISTORY_SIZE (16)
-#define DEFAULT_MISSION_DURATION (3600)
+#define HISTORY_SIZE        16
 
 typedef struct D_MISSION_ELEM
 {
-    D_MISSION data;
+    D_MISSION* data;
 
     /** Next linked-list element */
     struct D_MISSION_ELEM* next;

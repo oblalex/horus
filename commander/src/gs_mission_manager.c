@@ -38,8 +38,12 @@
 
 static void mssn_set_current(D_MISSION_ELEM* value);
 static void mssn_list_load();
+
+static void mssn_init(D_MISSION_ELEM** _this);
+static void mssn_free(D_MISSION_ELEM** _this);
 static void mssn_load_weather_report(D_MISSION* mission);
 static D_MISSION_ELEM* get_mssn_elem_by_name(char* name);
+
 static void mssn_list_resolve_conflicts();
 static void mssn_list_resolve_branch(char* name, void** nextRed, void** nextBlue, void** next);
 static void mssn_list_save();
@@ -109,7 +113,7 @@ void mssn_list_load()
     mxml_node_t* nodeNextBlue;
     mxml_node_t* nodeNext;
 
-    D_MISSION_ELEM* elem;
+    D_MISSION_ELEM* elem = NULL;
     char msg[100];
 
     int i = 0;
@@ -123,9 +127,8 @@ void mssn_list_load()
         {
             i++;
 
-            elem = (D_MISSION_ELEM*)malloc(sizeof(D_MISSION_ELEM));
-            elem->next = NULL;
-            elem->refsCount = 0;
+            elem = NULL;
+            mssn_init(&elem);
 
             // Set name
             attrVal = mxmlElementGetAttr(node, XML_ATTR_NAME);
@@ -134,57 +137,54 @@ void mssn_list_load()
                 sprintf(msg, "#%d : %s ", i, tr("name is not set. Skipping"));
                 PRINT_STATUS_MSG_ERR(msg);
 
-                free(elem);
+                mssn_free(&elem);
                 continue;
             } else if (get_mssn_elem_by_name((char*)attrVal) != NULL)
             {
                 sprintf(msg, "\"%s\" : %s", attrVal, tr("Name already exists in list. Skipping"));
                 PRINT_STATUS_MSG_ERR(msg);
 
-                free(elem);
+                mssn_free(&elem);
                 continue;
             }
 
 #ifdef _WIN_
             char reEncoded[255];
-            utf8_to_cp1251(attrVal, reEncoded);
-            elem->data.name = (char*) malloc(sizeof(char)*strlen(reEncoded));
-            strcpy(elem->data.name, reEncoded);
+            utf8_to_cp1251((char*)attrVal, (char*)reEncoded);
+            d_mission_name_set(elem->data, (char*)reEncoded);
 #else
-            elem->data.name = (char*) malloc(sizeof(char)*strlen(attrVal));
-            strcpy(elem->data.name, attrVal);
+            d_mission_name_set(elem->data, (char*)attrVal);
 #endif
 
             // Set path
             attrVal = mxmlElementGetAttr(node, XML_ATTR_PATH);
             if (attrVal == NULL)
             {
-                sprintf(msg, "\"%s\" : %s", elem->data.name, tr("path is not set. Skipping"));
+                sprintf(msg, "\"%s\" : %s", elem->data->name, tr("path is not set. Skipping"));
                 PRINT_STATUS_MSG_ERR(msg);
 
-                free(elem);
+                mssn_free(&elem);
                 continue;
-            } else if (gs_check_path_mission(elem->data.name, (char*)attrVal) == FALSE)
+            } else if (gs_check_path_mission(elem->data->name, (char*)attrVal) == FALSE)
             {
-                free(elem);
+                mssn_free(&elem);
                 continue;
             }
-            elem->data.path = (char*) malloc(sizeof(char)*strlen(attrVal));
-            strcpy(elem->data.path, attrVal);
+            d_mission_path_set(elem->data, (char*)attrVal);
 
             // Set duration
-            elem->data.sDuration = 0;
+            elem->data->sDuration = 0;
             attrVal = mxmlElementGetAttr(node, XML_ATTR_DURATION);
 
             if (attrVal != NULL)
-                elem->data.sDuration = atoi (attrVal);
+                elem->data->sDuration = atoi(attrVal);
 
-            if (elem->data.sDuration == 0)
+            if (elem->data->sDuration == 0)
             {
-                sprintf(msg, "\"%s\" : %s", elem->data.name, tr("duration is not set. Using default value"));
+                sprintf(msg, "\"%s\" : %s", elem->data->name, tr("duration is not set. Using default value"));
                 PRINT_STATUS_MSG_WRN(msg);
 
-                elem->data.sDuration = DEFAULT_MISSION_DURATION;
+                elem->data->sDuration = MSSN_DEFAULT_DURATION;
             }
 
             // Find next red
@@ -214,13 +214,13 @@ void mssn_list_load()
                                         attrVal,
                                         MXML_DESCEND);
 
-            mssn_list_resolve_branch(elem->data.name,
+            mssn_list_resolve_branch(elem->data->name,
                                      ((void**)&nodeNextRed),
                                      ((void**)&nodeNextBlue),
                                      ((void**)&nodeNext));
 
             // Load weather report
-            mssn_load_weather_report(&(elem->data));
+            mssn_load_weather_report(elem->data);
 
             // Check current
             attrVal = mxmlElementGetAttr(node, XML_ATTR_IS_CURRENT);
@@ -230,8 +230,8 @@ void mssn_list_load()
                 {
                     sprintf(msg, "%s \"%s\" -> \"%s\"",
                             tr("Only one mission can be current. Changing"),
-                            CURRENT->data.name,
-                            elem->data.name);
+                            CURRENT->data->name,
+                            elem->data->name);
                     PRINT_STATUS_MSG_WRN(msg);
                 }
                 CURRENT = elem;
@@ -249,8 +249,8 @@ void mssn_list_load()
 
             MSSN_COUNT++;
 
-            elem->mNext = (nodeNext == NULL) ? NULL : (D_MISSION_ELEM*) nodeNext;
-            elem->mNextRed = (nodeNextRed == NULL) ? NULL : (D_MISSION_ELEM*) nodeNextRed;
+            elem->mNext     = (nodeNext     == NULL) ? NULL : (D_MISSION_ELEM*) nodeNext;
+            elem->mNextRed  = (nodeNextRed  == NULL) ? NULL : (D_MISSION_ELEM*) nodeNextRed;
             elem->mNextBlue = (nodeNextBlue == NULL) ? NULL : (D_MISSION_ELEM*) nodeNextBlue;
         }
     }
@@ -293,19 +293,43 @@ void mssn_list_print()
     {
         char ch = (curr == CURRENT)?'*':' ';
 
-        redName  = (curr->mNextRed  != NULL) ? curr->mNextRed->data.name   : noneName;
-        blueName = (curr->mNextBlue != NULL) ? curr->mNextBlue->data.name  : noneName;
-        nextName = (curr->mNext     != NULL) ? curr->mNext->data.name      : noneName;
+        redName  = (curr->mNextRed  != NULL) ? curr->mNextRed->data->name   : noneName;
+        blueName = (curr->mNextBlue != NULL) ? curr->mNextBlue->data->name  : noneName;
+        nextName = (curr->mNext     != NULL) ? curr->mNext->data->name      : noneName;
 
         sprintf(msg, "%2d %c %-10s -> (r: %-10s | b: %-10s | n: %-10s)",
                 i,
                 ch,
-                curr->data.name,
+                curr->data->name,
                 redName,
                 blueName,
                 nextName);
         PRINT_STATUS_MSG(msg);
     }
+}
+
+void mssn_init(D_MISSION_ELEM** _this)
+{
+    if ((*_this) == NULL)
+        (*_this) = (struct D_MISSION_ELEM*) malloc(sizeof (struct D_MISSION_ELEM));
+
+    (*_this)->data      = NULL;
+    (*_this)->next      = NULL;
+    (*_this)->mNext     = NULL;
+    (*_this)->mNextRed  = NULL;
+    (*_this)->mNextBlue = NULL;
+    (*_this)->refsCount = 0;
+
+    d_mission_init(&((*_this)->data));
+}
+
+void mssn_free(D_MISSION_ELEM** _this)
+{
+    if ((*_this) == NULL) return;
+
+    d_mission_free(&((*_this)->data));
+    free(*_this);
+    *_this = NULL;
 }
 
 D_MISSION_ELEM* get_mssn_elem_by_name(char* name)
@@ -315,7 +339,7 @@ D_MISSION_ELEM* get_mssn_elem_by_name(char* name)
 
     while (elem != NULL)
     {
-        if (strcmp(elem->data.name, name) == 0)
+        if (strcmp(elem->data-> name, name) == 0)
         {
             result = elem;
             break;
@@ -328,10 +352,6 @@ D_MISSION_ELEM* get_mssn_elem_by_name(char* name)
 
 void mssn_load_weather_report(D_MISSION* mission)
 {
-    mission->weather.publGameTS.second      = 0;
-    mission->weather.publGameTS.millisecond = 0;
-
-
     unsigned int paramsLeft = (1 << 10)-1;
 
     int line_len = 64;
@@ -361,45 +381,83 @@ void mssn_load_weather_report(D_MISSION* mission)
             offset = 0;
             if ((strstr(line, MSSN_KEY_TIME) != NULL)                   && (paramsLeft & 0x01))
             {
+#ifdef _WIN_
+                uint2 h, m;
+                sscanf(line, "%*s %hu.%hu", &h, &m);
+
+                mission->weather->publGameTS.hour   = (uint1)(h & 0xFF);
+                mission->weather->publGameTS.minute = (uint1)(m & 0xFF);
+#else
                 sscanf(line, "%*s %hhu.%hhu",
-                             &(mission->weather.publGameTS.hour),
-                             &(mission->weather.publGameTS.minute));
+                             &(mission->weather->publGameTS.hour),
+                             &(mission->weather->publGameTS.minute));
+#endif
                 paramsLeft &= ~(0x01);
             } else if ((strstr(line, MSSN_KEY_CLOUD_TYPE) != NULL)      && (paramsLeft & (0x01 << 1)))
             {
-                sscanf(line, "%*s %hhu", (uint1*)&(mission->weather.weather));
+#ifdef _WIN_
+                uint2 w;
+                sscanf(line, "%*s %hu", &w);
+                mission->weather->weather = (D_WEATHER)(w & 0xFF);
+#else
+                sscanf(line, "%*s %hhu", (uint1*)&(mission->weather->weather));
+#endif
                 paramsLeft &= ~(0x01 << 1);
             } else if ((strstr(line, MSSN_KEY_CLOUD_HEIGTH) != NULL)    && (paramsLeft & (0x01 << 2)))
             {
-                sscanf(line, "%*s %hu", &(mission->weather.cloudsHeightM));
+                sscanf(line, "%*s %hu", &(mission->weather->cloudsHeightM));
                 paramsLeft &= ~(0x01 << 2);
             } else if ((strstr(line, MSSN_KEY_YEAR) != NULL)            && (paramsLeft & (0x01 << 3)))
             {
-                sscanf(line, "%*s %hu", &(mission->weather.publGameTS.year));
+                sscanf(line, "%*s %hu", &(mission->weather->publGameTS.year));
                 paramsLeft &= ~(0x01 << 3);
             } else if ((strstr(line, MSSN_KEY_MONTH) != NULL)           && (paramsLeft & (0x01 << 4)))
             {
-                sscanf(line, "%*s %hhu", &(mission->weather.publGameTS.month));
+#ifdef _WIN_
+                uint2 m;
+                sscanf(line, "%*s %hu", &m);
+                mission->weather->publGameTS.month = (uint1)(m & 0xFF);
+#else
+                sscanf(line, "%*s %hhu", &(mission->weather->publGameTS.month));
+#endif
                 paramsLeft &= ~(0x01 << 4);
             } else if ((strstr(line, MSSN_KEY_DAY) != NULL)             && (paramsLeft & (0x01 << 5)))
             {
-                sscanf(line, "%*s %hhu", &(mission->weather.publGameTS.day));
+#ifdef _WIN_
+                uint2 d;
+                sscanf(line, "%*s %hu", &d);
+                mission->weather->publGameTS.day = (uint1)(d & 0xFF);
+#else
+                sscanf(line, "%*s %hhu", &(mission->weather->publGameTS.day));
+#endif
                 paramsLeft &= ~(0x01 << 5);
             } else if ((strstr(line, MSSN_KEY_WIND_DIRECTION) != NULL)  && (paramsLeft & (0x01 << 6)))
             {
-                sscanf(line, "%*s %hu", &(mission->weather.windDirectionDeg));
+                sscanf(line, "%*s %hu", &(mission->weather->windDirectionDeg));
                 paramsLeft &= ~(0x01 << 6);
             } else if ((strstr(line, MSSN_KEY_WIND_SPEED) != NULL)      && (paramsLeft & (0x01 << 7)))
             {
-                sscanf(line, "%*s %hu", &(mission->weather.windSpeedMS));
+                sscanf(line, "%*s %hu", &(mission->weather->windSpeedMS));
                 paramsLeft &= ~(0x01 << 7);
             } else if ((strstr(line, MSSN_KEY_GUST) != NULL)            && (paramsLeft & (0x01 << 8)))
             {
-                sscanf(line, "%*s %hhu", (uint1*)&(mission->weather.gust));
+#ifdef _WIN_
+                uint2 g;
+                sscanf(line, "%*s %hu", &g);
+                mission->weather->gust = (D_GUST)(g & 0xFF);
+#else
+                sscanf(line, "%*s %hhu", (uint1*)&(mission->weather->gust));
+#endif
                 paramsLeft &= ~(0x01 << 8);
             } else if ((strstr(line, MSSN_KEY_TURBULENCE) != NULL)      && (paramsLeft & (0x01 << 9)))
             {
-                sscanf(line, "%*s %hhu", (uint1*)&(mission->weather.turbulence));
+#ifdef _WIN_
+                uint2 t;
+                sscanf(line, "%*s %hu", &t);
+                mission->weather->turbulence = (D_TURBULENCE)(t & 0xFF);
+#else
+                sscanf(line, "%*s %hhu", (uint1*)&(mission->weather->turbulence));
+#endif
                 paramsLeft &= ~(0x01 << 9);
             }
         }
@@ -440,7 +498,7 @@ void mssn_list_resolve_conflicts()
         if (name != NULL)
             none = get_mssn_elem_by_name((char*)name);
 
-        mssn_list_resolve_branch(curr->data.name,
+        mssn_list_resolve_branch(curr->data->name,
                                  ((void**)&red),
                                  ((void**)&blue),
                                  ((void**)&none));
@@ -480,7 +538,7 @@ void mssn_list_resolve_conflicts()
                 unreferencedFound = TRUE;
 
                 sprintf(msg, "\"%s\" %s",
-                        curr->data.name,
+                        curr->data->name,
                         tr("has no references. Deleting"));
                 PRINT_STATUS_MSG_ERR(msg);
                 MSSN_COUNT--;
@@ -505,7 +563,7 @@ void mssn_list_resolve_conflicts()
 
                 if (curr == CURRENT) CURRENT = FIRST;
 
-                free(curr);
+                mssn_free(&curr);
                 curr = prev;
 
                 continue;
@@ -524,7 +582,7 @@ void mssn_list_resolve_conflicts()
         &&  (curr->mNext == NULL))
         {
             sprintf(msg, "\"%s\" %s",
-                    curr->data.name,
+                    curr->data->name,
                     tr("has no next missions. This may cause playing mission list only once"));
             PRINT_STATUS_MSG_WRN(msg);
         }
@@ -613,19 +671,19 @@ void mssn_list_save()
     {
         node = mxmlNewElement(root, XML_ELEM);
 
-        mxmlElementSetAttr(node, XML_ATTR_NAME, elem->data.name);
-        mxmlElementSetAttr(node, XML_ATTR_PATH, elem->data.path);
-        mxmlElementSetAttrf(node, XML_ATTR_DURATION, "%d", elem->data.sDuration);
+        mxmlElementSetAttr(node, XML_ATTR_NAME, elem->data->name);
+        mxmlElementSetAttr(node, XML_ATTR_PATH, elem->data->path);
+        mxmlElementSetAttrf(node, XML_ATTR_DURATION, "%d", elem->data->sDuration);
 
         if (elem == CURRENT)
             mxmlElementSetAttr(node, XML_ATTR_IS_CURRENT, IS_CURRENT_TRUE_VAL);
 
         if (elem->mNext != NULL)
-            mxmlElementSetAttr(node, XML_ATTR_NEXT, elem->mNext->data.name);
+            mxmlElementSetAttr(node, XML_ATTR_NEXT, elem->mNext->data->name);
         if (elem->mNextRed != NULL)
-            mxmlElementSetAttr(node, XML_ATTR_NEXT_RED, elem->mNextRed->data.name);
+            mxmlElementSetAttr(node, XML_ATTR_NEXT_RED, elem->mNextRed->data->name);
         if (elem->mNextBlue != NULL)
-            mxmlElementSetAttr(node, XML_ATTR_NEXT_BLUE, elem->mNextBlue->data.name);
+            mxmlElementSetAttr(node, XML_ATTR_NEXT_BLUE, elem->mNextBlue->data->name);
     }
 
     FILE *fp;
@@ -651,9 +709,7 @@ void mssn_list_clear()
         prev = curr;
         curr = curr->next;
 
-        free(prev->data.name);
-        free(prev->data.path);
-        free(prev);
+        mssn_free(&prev);
     }
 
     FIRST = NULL;
@@ -684,7 +740,7 @@ void gs_mssn_load()
 
     if (CURRENT != NULL)
     {
-        sprintf(msg2, "%s '%s'...", msg1, CURRENT->data.name);
+        sprintf(msg2, "%s '%s'...", msg1, CURRENT->data->name);
 
         PRINT_STATUS_NEW(msg2);
         gs_cmd_chat_all(msg2);
@@ -700,7 +756,7 @@ void gs_mssn_load()
     }
 
     LOADED = FALSE;
-    gs_cmd_mssn_load(CURRENT->data.path);
+    gs_cmd_mssn_load(CURRENT->data->path);
 
     int tries = 45;
     while ((LOADED == FALSE) && (DO_WORK == TRUE))
@@ -795,7 +851,7 @@ void gs_mssn_run()
 
     if (LOADED != FALSE)
     {
-        sprintf(msg2, "%s '%s'...", msg1, CURRENT->data.name);
+        sprintf(msg2, "%s '%s'...", msg1, CURRENT->data->name);
 
         PRINT_STATUS_NEW(msg2);
         gs_cmd_chat_all(msg2);
@@ -835,7 +891,7 @@ void gs_mssn_run()
         PRINT_STATUS_DONE();
         gs_cmd_chat_all(msgLaunched);
 
-        SECS_LEFT = CURRENT->data.sDuration;
+        SECS_LEFT = CURRENT->data->sDuration;
         INTERRUPTED = FALSE;
 
         pthread_create(&H_TIMER, NULL, &mssn_timer_watcher, NULL);

@@ -32,7 +32,7 @@ typedef enum
     WEATH_THUNDER
 } D_WEATHER;
 
-typedef struct
+typedef struct D_WEATHER_REPORT
 {
     /** Clouds height in meters */
     uint2 cloudsHeightM;
@@ -53,5 +53,8 @@ typedef struct
     D_TURBULENCE turbulence;
     D_WEATHER weather;
 } D_WEATHER_REPORT;
+
+void d_weather_init(D_WEATHER_REPORT** _this);
+void d_weather_free(D_WEATHER_REPORT** _this);
 
 #endif // D_WEATHER_H

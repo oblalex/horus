@@ -41,29 +41,29 @@ typedef struct
 } INI_CONTAINER;
 
 INI_CONTAINER* ini_start(char* filepath);
-void ini_end(INI_CONTAINER* this);
+void ini_end(INI_CONTAINER* _this);
 void ini_init(INI_CONTAINER** container, char* filepath);
-void ini_load(INI_CONTAINER* this);
-void ini_save(INI_CONTAINER* this);
-void ini_save_as(INI_CONTAINER* this, char* filepath);
-void ini_clear(INI_CONTAINER* this);
+void ini_load(INI_CONTAINER* _this);
+void ini_save(INI_CONTAINER* _this);
+void ini_save_as(INI_CONTAINER* _this, char* filepath);
+void ini_clear(INI_CONTAINER* _this);
 
-char* ini_value_get(INI_CONTAINER* this, const char* section_name, const char* key);
-char* ini_value_with_comment_get(INI_CONTAINER* this, const char* section_name, const char* key, char* comment);
-void ini_value_set(INI_CONTAINER* this, const char* sec, const char* key, const char* value);
-void ini_value_with_comment_set(INI_CONTAINER* this, const char* section_name, const char* key, const char* value, const char* comment);
+char* ini_value_get(INI_CONTAINER* _this, const char* section_name, const char* key);
+char* ini_value_with_comment_get(INI_CONTAINER* _this, const char* section_name, const char* key, char* comment);
+void ini_value_set(INI_CONTAINER* _this, const char* sec, const char* key, const char* value);
+void ini_value_with_comment_set(INI_CONTAINER* _this, const char* section_name, const char* key, const char* value, const char* comment);
 
-INI_SECTION* ini_section_get(INI_CONTAINER* this, const char* name);
-void ini_section_add(INI_CONTAINER* this, const char* name, const char* comment);
+INI_SECTION* ini_section_get(INI_CONTAINER* _this, const char* name);
+void ini_section_add(INI_CONTAINER* _this, const char* name, const char* comment);
 
 INI_RECORD* ini_record_get(INI_SECTION* section, const char* key);
-void ini_record_remove(INI_CONTAINER* this, const char* section_name, const char* key);
+void ini_record_remove(INI_CONTAINER* _this, const char* section_name, const char* key);
 void ini_section_records_clear(INI_SECTION* section);
 
-void ini_append(INI_CONTAINER* this, const char *name, const char *key, const char *value, const char *comment);
+void ini_append(INI_CONTAINER* _this, const char *name, const char *key, const char *value, const char *comment);
 
 void trim_new_line(char *buffer);
-BOOL ini_has_err(INI_CONTAINER* this);
+BOOL ini_has_err(INI_CONTAINER* _this);
 
 #define INI_PARSING_ERR 	tr("Unable to parse ini-file")
 #define INI_OPENING_ERR 	tr("Unable to open ini-file")

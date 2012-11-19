@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-typedef struct
+typedef struct TIMESTAMP_T
 {
     uint2    year;
     uint1    month;
@@ -15,6 +15,7 @@ typedef struct
     uint2    millisecond;
 } TIMESTAMP_T;
 
+void timestamp_init(TIMESTAMP_T* _this);
 void secondsToTimeString(int seconds, char* str);
 
 #endif // TIMESTAMP_T_H

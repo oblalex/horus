@@ -35,7 +35,7 @@ AC_PROG_CC
 localedir='${prefix}/'$PACKAGE_NAME'/l10n'
 AC_SUBST(localedir)
 
-AM_CFLAGS='--pedantic -Wall -Werror -Wfatal-errors -std=gnu11 -O2'
+AM_CFLAGS='--pedantic -Wall -Werror -Wfatal-errors -std=gnu99 -O2'
 AC_SUBST(AM_CFLAGS)
 
 AC_PROG_LIBTOOL
@@ -63,7 +63,8 @@ AC_CONFIG_FILES([
 	Makefile
 	src/Makefile
 	src/util/Makefile
-	src/mxml/Makefile
+	src/mxml/Makefile 
+	src/domain/Makefile
 	src/util/stack/Makefile
 	tests/Makefile	
 	tests/util/Makefile	

@@ -1,5 +1,6 @@
 #include "winstdin_helper.h"
 #include "str.h"
+#include <unistd.h>
 
 void stdin_line_rd(int fd, char* line, int size, int offset, RL_STAT* stat)
 {

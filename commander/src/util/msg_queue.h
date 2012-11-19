@@ -19,8 +19,8 @@ typedef struct
     MSG_QUEUE_ELEM* tail;
 } MSG_QUEUE;
 
-void msg_queue_put(MSG_QUEUE* this, MSG_T* msg);
-MSG_T* msg_queue_get(MSG_QUEUE* this);
-void msg_queue_clear(MSG_QUEUE* this, void (*delete_fn)(MSG_T*));
+void msg_queue_put(MSG_QUEUE* _this, MSG_T* msg);
+MSG_T* msg_queue_get(MSG_QUEUE* _this);
+void msg_queue_clear(MSG_QUEUE* _this, void (*delete_fn)(MSG_T*));
 
 #endif // MSG_QUEUE_H

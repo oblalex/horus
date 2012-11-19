@@ -275,7 +275,7 @@ int fork_win(void)
 void waitpid_win(int pid)
 {
 	HANDLE hProc;
-	if ( hProc = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, pid) )
+	if ( (hProc = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, pid)) )
 	{
 		WaitForSingleObject(hProc, INFINITE);
 		CloseHandle(hProc);

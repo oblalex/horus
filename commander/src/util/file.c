@@ -5,7 +5,7 @@
 #if defined(_WIN_)
 void hnd_line_rd(HANDLE hFile, char* line, int size, int offset, RL_STAT* stat)
 {
-    int readcount;
+    DWORD readcount = 0;
     BOOL success = FALSE;
     unsigned char c;
 
@@ -30,7 +30,7 @@ void hnd_line_rd(HANDLE hFile, char* line, int size, int offset, RL_STAT* stat)
 
 void line_rd(int fd, char* line, int size, int offset, RL_STAT* stat)
 {
-	int readcount;
+    int readcount = 0;
     unsigned char c;
 
 	(*stat).finished = FALSE;

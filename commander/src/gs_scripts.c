@@ -1,3 +1,4 @@
+#include <config.h>
 #include <wchar.h>
 #include <stdlib.h>
 
@@ -56,7 +57,13 @@ static void check_script_file_created(FILE* fd, char* fname)
     {
 		int len = 80;
 		wchar_t msg[len];
+
+#ifdef _WIN_
+        swprintf(msg, L"%S \"%S\"", tr("Unable to create file"), fname);
+#else
 		swprintf(msg, len, L"%s \"%s\"", tr("Unable to create file"), fname);
+#endif
+
         PRINT_STATUS_MSG_ERR((char*)&msg);
         PRINT_STATUS_FAIL();
         exit(EXIT_FAILURE);

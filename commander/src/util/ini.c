@@ -32,7 +32,7 @@ void ini_init(INI_CONTAINER** container, char* filepath)
 	(*container)->filepath = str_copy(filepath);
 }
 
-void ini_load(INI_CONTAINER* this)
+void ini_load(INI_CONTAINER* _this)
 {
 	FILE *in_stream;
 	char buffer[255];
@@ -45,9 +45,9 @@ void ini_load(INI_CONTAINER* this)
 
 	strcpy(comments, "");
 	strcpy(current_section, "");
-	this->error_msg = NULL;
+	_this->error_msg = NULL;
 
-	if ((in_stream = fopen(this->filepath, "r" )) != NULL)
+	if ((in_stream = fopen(_this->filepath, "r" )) != NULL)
 	{
 		while (fgets(buffer, sizeof(buffer), in_stream) != NULL)
 		{
@@ -59,14 +59,14 @@ void ini_load(INI_CONTAINER* this)
 					if (pdest == NULL)
 					{
 						fclose(in_stream);
-						this->error_msg = INI_PARSING_ERR;
+						_this->error_msg = INI_PARSING_ERR;
 						return;
 					}
 					index = pdest - buffer;
 					memcpy(current_section, buffer + 1, index - 1);
 					current_section[index - 1] = '\0';
-					ini_section_add(this, current_section, comments);	
-					if (ini_has_err(this) == TRUE) {
+					ini_section_add(_this, current_section, comments);	
+					if (ini_has_err(_this) == TRUE) {
 						fclose(in_stream);
 						return;
 					}
@@ -84,7 +84,7 @@ void ini_load(INI_CONTAINER* this)
 					if (pdest == NULL) 
 					{
 						fclose(in_stream);
-                        this->error_msg = INI_PARSING_ERR;
+                        _this->error_msg = INI_PARSING_ERR;
 						return;
 					}
 					index = pdest - buffer;
@@ -95,13 +95,13 @@ void ini_load(INI_CONTAINER* this)
 					if (strcmp(current_section, "") == 0)
 					{
 						fclose(in_stream);
-                        this->error_msg = INI_PARSING_ERR;
+                        _this->error_msg = INI_PARSING_ERR;
 						return;
 					}
 					else
 					{
-						ini_append(this, current_section, key, value, comments);
-						if (ini_has_err(this) == TRUE) {
+						ini_append(_this, current_section, key, value, comments);
+						if (ini_has_err(_this) == TRUE) {
 							fclose(in_stream);
 							return;
 						}
@@ -114,7 +114,7 @@ void ini_load(INI_CONTAINER* this)
 	}
 	else
 	{
-		this->error_msg = INI_OPENING_ERR;
+		_this->error_msg = INI_OPENING_ERR;
 	}
 }
 
@@ -124,14 +124,14 @@ void trim_new_line(char *buffer)
 		buffer[strlen(buffer)-1] = '\0';
 }
 
-void ini_append(INI_CONTAINER* this, const char *name, const char *key, const char *value, const char *comment)
+void ini_append(INI_CONTAINER* _this, const char *name, const char *key, const char *value, const char *comment)
 {
 	INI_SECTION* section;
 	INI_RECORD* record;
 	
-	this->error_msg = NULL;
+	_this->error_msg = NULL;
 	
-	section = ini_section_get(this, name);
+	section = ini_section_get(_this, name);
 
 	if (section != NULL)
 	{
@@ -141,7 +141,7 @@ void ini_append(INI_CONTAINER* this, const char *name, const char *key, const ch
 			record = (INI_RECORD*)malloc(sizeof(INI_RECORD));
 			if (record == NULL)
 			{
-				this->error_msg = INI_MALLOC_ERR_RECORD;
+				_this->error_msg = INI_MALLOC_ERR_RECORD;
 				return;
 			}
 			record->next = NULL;	
@@ -180,18 +180,18 @@ void ini_append(INI_CONTAINER* this, const char *name, const char *key, const ch
 	}
 	else
 	{
-		ini_section_add(this, name, "");
-		if (ini_has_err(this) == FALSE)
-			ini_append(this, name, key, value, comment);
+		ini_section_add(_this, name, "");
+		if (ini_has_err(_this) == FALSE)
+			ini_append(_this, name, key, value, comment);
 	}
 }
 
-void ini_section_add(INI_CONTAINER* this, const char* name, const char* comment)
+void ini_section_add(INI_CONTAINER* _this, const char* name, const char* comment)
 {
 	INI_SECTION* section;
-	section = ini_section_get(this, name);
+	section = ini_section_get(_this, name);
 	
-	this->error_msg = NULL;
+	_this->error_msg = NULL;
 
 	if (section == NULL)
 	{
@@ -199,7 +199,7 @@ void ini_section_add(INI_CONTAINER* this, const char* name, const char* comment)
 			
 		if (section == NULL)
 		{
-			this->error_msg = INI_MALLOC_ERR_SECTION;
+			_this->error_msg = INI_MALLOC_ERR_SECTION;
 			return;
 		}
 		
@@ -215,17 +215,17 @@ void ini_section_add(INI_CONTAINER* this, const char* name, const char* comment)
 		section->next = NULL;
 		section->records_count = 0;
 
-		this->sections_count++;
+		_this->sections_count++;
 
-		if (this->first == NULL)
+		if (_this->first == NULL)
 		{
-			this->first = section;
-			this->last  = section;
+			_this->first = section;
+			_this->last  = section;
 		}
 		else
 		{
-			this->last->next = section;
-			this->last = section;
+			_this->last->next = section;
+			_this->last = section;
 		}	
 	}
 	else
@@ -238,10 +238,10 @@ void ini_section_add(INI_CONTAINER* this, const char* name, const char* comment)
 	}
 }
 
-INI_SECTION* ini_section_get(INI_CONTAINER* this, const char* name)
+INI_SECTION* ini_section_get(INI_CONTAINER* _this, const char* name)
 {
 	BOOL found = FALSE;
-	INI_SECTION* section = this->first;
+	INI_SECTION* section = _this->first;
 	while (section != NULL)
 	{	
 		if (strcmp(section->name,name) == 0)
@@ -285,23 +285,23 @@ INI_RECORD* ini_record_get(INI_SECTION* section, const char* key)
 	}
 }
 
-void ini_end(INI_CONTAINER* this)
+void ini_end(INI_CONTAINER* _this)
 {
-	ini_save(this);
-	ini_clear(this);
+	ini_save(_this);
+	ini_clear(_this);
 }
 
-void ini_save_as(INI_CONTAINER* this, char* filepath)
+void ini_save_as(INI_CONTAINER* _this, char* filepath)
 {
 	FILE* stream;
-	INI_SECTION* section = this->first;
+	INI_SECTION* section = _this->first;
 	INI_RECORD* record;
 	
-	this->error_msg = NULL;
+	_this->error_msg = NULL;
 	
 	if ((stream = fopen(filepath, "w")) == NULL)
 	{
-		this->error_msg = INI_OPENING_ERR;
+		_this->error_msg = INI_OPENING_ERR;
 		return;
 	}
 
@@ -329,27 +329,27 @@ void ini_save_as(INI_CONTAINER* this, char* filepath)
 	fclose(stream);
 }
 
-void ini_save(INI_CONTAINER* this)
+void ini_save(INI_CONTAINER* _this)
 {
-	ini_save_as(this, this->filepath);
+	ini_save_as(_this, _this->filepath);
 }
 
-void ini_clear(INI_CONTAINER* this)
+void ini_clear(INI_CONTAINER* _this)
 {
-	if(this == NULL)
+	if(_this == NULL)
 		return;
 	
 	INI_SECTION* section;
-	section = this->first;
+	section = _this->first;
 	while (section != NULL)
 	{
-		this->first = section->next;
-		this->sections_count--;
+		_this->first = section->next;
+		_this->sections_count--;
 		ini_section_records_clear(section);
 		free(section);
-		section = this->first;
+		section = _this->first;
 	}
-	free(this->filepath);
+	free(_this->filepath);
 }
 
 void ini_section_records_clear(INI_SECTION* section)
@@ -369,9 +369,9 @@ void ini_section_records_clear(INI_SECTION* section)
 	}
 }
 
-void ini_record_remove(INI_CONTAINER* this, const char* section_name, const char* key)
+void ini_record_remove(INI_CONTAINER* _this, const char* section_name, const char* key)
 {	
-	INI_SECTION* section = ini_section_get(this, section_name);
+	INI_SECTION* section = ini_section_get(_this, section_name);
 	
 	if (section == NULL)
 		return;
@@ -407,18 +407,18 @@ void ini_record_remove(INI_CONTAINER* this, const char* section_name, const char
 	}
 }
 
-char* ini_value_get(INI_CONTAINER* this, const char* section_name, const char* key)
+char* ini_value_get(INI_CONTAINER* _this, const char* section_name, const char* key)
 {
-	INI_RECORD* result = ini_record_get(ini_section_get(this, section_name), key);
+	INI_RECORD* result = ini_record_get(ini_section_get(_this, section_name), key);
 	if (result != NULL)
 		return result->value;
 	else
 		return NULL;
 }
 
-char* ini_value_with_comment_get(INI_CONTAINER* this, const char* section_name, const char* key, char* comment)
+char* ini_value_with_comment_get(INI_CONTAINER* _this, const char* section_name, const char* key, char* comment)
 {
-	INI_RECORD* result = ini_record_get(ini_section_get(this, section_name), key);
+	INI_RECORD* result = ini_record_get(ini_section_get(_this, section_name), key);
 	if (result != NULL)
 	{
 		strcpy(comment, result->comments);
@@ -429,19 +429,19 @@ char* ini_value_with_comment_get(INI_CONTAINER* this, const char* section_name, 
 	}
 }
 
-void ini_value_set(INI_CONTAINER* this, const char* section_name, const char* key, const char* value)
+void ini_value_set(INI_CONTAINER* _this, const char* section_name, const char* key, const char* value)
 {
-	ini_value_with_comment_set(this, section_name, key, value, "");
+	ini_value_with_comment_set(_this, section_name, key, value, "");
 }
 
-void ini_value_with_comment_set(INI_CONTAINER* this, const char* section_name, const char* key, const char* value, const char* comment)
+void ini_value_with_comment_set(INI_CONTAINER* _this, const char* section_name, const char* key, const char* value, const char* comment)
 {
-	ini_append(this, section_name, key, value, comment);
+	ini_append(_this, section_name, key, value, comment);
 }
 
-BOOL ini_has_err(INI_CONTAINER* this)
+BOOL ini_has_err(INI_CONTAINER* _this)
 {
-	if (this->error_msg == NULL)
+	if (_this->error_msg == NULL)
 		return FALSE;
 	else
 		return TRUE;

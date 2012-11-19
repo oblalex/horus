@@ -54,10 +54,7 @@
  */
 
 #include <config.h>
-
-#if !defined(_WIN_)
-#  include <unistd.h>
-#endif /* !_WIN_ */
+#include <unistd.h>
 #include "mxml-private.h"
 
 

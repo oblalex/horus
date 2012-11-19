@@ -9,7 +9,7 @@ void sock_line_rd(SOCKET sock, char* line, int size, int offset, RL_STAT* stat)
 
     for ((*stat).length = 0; (*stat).length < size-offset-1; (*stat).length++)
     {
-        readcount = recv(sock, &c, 1, 0);
+        readcount = recv(sock, (char*)&c, 1, 0);
         if (readcount == 1)
         {
             *line = c;

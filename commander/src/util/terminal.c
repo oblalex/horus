@@ -35,7 +35,7 @@ void term_teardown()
 	term_styleReset();
 #if defined(_WIN_)
 	if (eventsThread) {
-		DWORD dwExitCode;
+        DWORD dwExitCode = 0;
 		TerminateThread(eventsThread, dwExitCode);
 	}
 	SetConsoleMode(hStdin, fdwSaveOldMode);
