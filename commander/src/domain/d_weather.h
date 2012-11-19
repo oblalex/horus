@@ -2,6 +2,7 @@
 #define D_WEATHER_H
 
 #include "../util/types.h"
+#include "../util/timestamp_t.h"
 
 typedef enum
 {

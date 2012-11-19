@@ -361,45 +361,45 @@ void mssn_load_weather_report(D_MISSION* mission)
             offset = 0;
             if ((strstr(line, MSSN_KEY_TIME) != NULL)                   && (paramsLeft & 0x01))
             {
-                sscanf(line, "%*s %u.%u",
-                       &(mission->weather.publGameTS.hour),
-                       &(mission->weather.publGameTS.minute));
+                sscanf(line, "%*s %hhu.%hhu",
+                             &(mission->weather.publGameTS.hour),
+                             &(mission->weather.publGameTS.minute));
                 paramsLeft &= ~(0x01);
             } else if ((strstr(line, MSSN_KEY_CLOUD_TYPE) != NULL)      && (paramsLeft & (0x01 << 1)))
             {
-                sscanf(line, "%*s %d", (int*)&(mission->weather.weather));
+                sscanf(line, "%*s %hhu", (uint1*)&(mission->weather.weather));
                 paramsLeft &= ~(0x01 << 1);
             } else if ((strstr(line, MSSN_KEY_CLOUD_HEIGTH) != NULL)    && (paramsLeft & (0x01 << 2)))
             {
-                sscanf(line, "%*s %d", &(mission->weather.cloudsHeightM));
+                sscanf(line, "%*s %hu", &(mission->weather.cloudsHeightM));
                 paramsLeft &= ~(0x01 << 2);
             } else if ((strstr(line, MSSN_KEY_YEAR) != NULL)            && (paramsLeft & (0x01 << 3)))
             {
-                sscanf(line, "%*s %u", &(mission->weather.publGameTS.year));
+                sscanf(line, "%*s %hu", &(mission->weather.publGameTS.year));
                 paramsLeft &= ~(0x01 << 3);
             } else if ((strstr(line, MSSN_KEY_MONTH) != NULL)           && (paramsLeft & (0x01 << 4)))
             {
-                sscanf(line, "%*s %u", &(mission->weather.publGameTS.month));
+                sscanf(line, "%*s %hhu", &(mission->weather.publGameTS.month));
                 paramsLeft &= ~(0x01 << 4);
             } else if ((strstr(line, MSSN_KEY_DAY) != NULL)             && (paramsLeft & (0x01 << 5)))
             {
-                sscanf(line, "%*s %u", &(mission->weather.publGameTS.day));
+                sscanf(line, "%*s %hhu", &(mission->weather.publGameTS.day));
                 paramsLeft &= ~(0x01 << 5);
             } else if ((strstr(line, MSSN_KEY_WIND_DIRECTION) != NULL)  && (paramsLeft & (0x01 << 6)))
             {
-                sscanf(line, "%*s %d", &(mission->weather.windDirectionDeg));
+                sscanf(line, "%*s %hu", &(mission->weather.windDirectionDeg));
                 paramsLeft &= ~(0x01 << 6);
             } else if ((strstr(line, MSSN_KEY_WIND_SPEED) != NULL)      && (paramsLeft & (0x01 << 7)))
             {
-                sscanf(line, "%*s %hd", &(mission->weather.windSpeedMS));
+                sscanf(line, "%*s %hu", &(mission->weather.windSpeedMS));
                 paramsLeft &= ~(0x01 << 7);
             } else if ((strstr(line, MSSN_KEY_GUST) != NULL)            && (paramsLeft & (0x01 << 8)))
             {
-                sscanf(line, "%*s %d", (int*)&(mission->weather.gust));
+                sscanf(line, "%*s %hhu", (uint1*)&(mission->weather.gust));
                 paramsLeft &= ~(0x01 << 8);
             } else if ((strstr(line, MSSN_KEY_TURBULENCE) != NULL)      && (paramsLeft & (0x01 << 9)))
             {
-                sscanf(line, "%*s %d", (int*)&(mission->weather.turbulence));
+                sscanf(line, "%*s %hhu", (uint1*)&(mission->weather.turbulence));
                 paramsLeft &= ~(0x01 << 9);
             }
         }
