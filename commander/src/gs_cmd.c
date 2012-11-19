@@ -3,6 +3,7 @@
 #include <wchar.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include <pthread.h>
 
@@ -13,6 +14,10 @@
 
 #include "util/print_status.h"
 #include "util/str.h"
+
+#ifndef _WIN_
+    #include <unistd.h>
+#endif
 
 static void gs_cmd_send(char* cmd);
 
