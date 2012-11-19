@@ -19,6 +19,14 @@
     #include "util/file.h"
 #endif
 
+static void get_server_ip(char* str_ip, int length);
+static void socket_make_nonblocking();
+static void socket_addr_prepare(struct sockaddr_in* addr);
+
+static int wait_rx(int sock);
+static int wait_tx(int sock);
+
+
 #if defined(_WIN_)
 	static SOCKET SOCKET_FD = INVALID_SOCKET;
 #else
