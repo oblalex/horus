@@ -1,11 +1,24 @@
 #include "main_parser.h"
 
+#include <config.h>
+#include "util/common.h"
+
 #include <string.h>
 #include <wchar.h>
 
-#include "config.h"
 #include "util/l10n.h"
 #include "util/terminal.h"
+
+/** Included from string.h */
+extern char *basename (const char *);
+
+static BOOL recon_version(char const *arg);
+static void print_version();
+
+static BOOL recon_help(char const *arg);
+static void print_help(char* exec_name);
+
+static void non_recon(char const *arg);
 
 /**
  * Parsing arguments is splitted into 2 steps: recognition and action on
@@ -21,8 +34,8 @@ void parseArgs(int argc, char const** argv)
 		if (recon_version(argv[i]) == TRUE)
 		{
 			print_version();
-		} else if (recon_help(argv[i]) == TRUE) {
-			print_help(basename(argv[0]));
+        } else if (recon_help(argv[i]) == TRUE) {
+            print_help(basename(argv[0]));
 		} else non_recon(argv[i]);
 	}
 }
