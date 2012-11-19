@@ -4,7 +4,6 @@
 
 #include <string.h>
 #include <stdlib.h>
-#include <regex.h>
 
 #include "gs.h"
 #include "gs_cmd.h"
@@ -42,18 +41,26 @@ static regex_t RE_mssn_time_left_set;
 
 void shell_parser_init()
 {
+    PRINT_STATUS_NEW(tr("Shell parser initialization"));
+
 	compile_regex(&RE_chat_all, SH_CHAT_ALL);
 	compile_regex(&RE_chat_user, SH_CHAT_USER);
 	compile_regex(&RE_chat_army, SH_CHAT_ARMY);
     compile_regex(&RE_mssn_time_left_set, SH_MSSN_TIME_LEFT_SET);
+
+    PRINT_STATUS_DONE();
 }
 
 void shell_parser_teardown()
 {
+    PRINT_STATUS_NEW(tr("Shell parser tearing down"));
+
 	regfree(&RE_chat_all);
 	regfree(&RE_chat_user);
 	regfree(&RE_chat_army);
     regfree(&RE_mssn_time_left_set);
+
+    PRINT_STATUS_DONE();
 }
 
 void shell_parse_string(char* str)

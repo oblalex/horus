@@ -16,6 +16,8 @@
 #include "gs_console.h"
 #include "gs_input_handlers.h"
 #include "gs_mission_manager.h"
+#include "console_parser.h"
+#include "pilot_manager.h"
 #include "util/print_status.h"
 
 static void gs_setup_termination_hooks();
@@ -140,7 +142,9 @@ static void gs_on_process_start()
 
 	if ((gs_is_running() == TRUE) && ((CONNECTED = gs_console_init()) == TRUE))
 	{
-			gs_cmd_init();
+            pm_init();
+            console_parser_init();
+            gs_cmd_init();
 			input_handlers_start();
             gs_cmd_kick_all();
             gs_mssn_start();
@@ -199,6 +203,8 @@ static void gs_on_process_stop()
         gs_mssn_manager_tearDown();
 		input_handlers_stop();
 		gs_cmd_tear_down();
+        console_parser_teardown();
+        pm_teardown();
 	}
 	gs_console_tear_down();
 	

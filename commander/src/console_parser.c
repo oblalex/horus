@@ -1,10 +1,34 @@
 #include "console_parser.h"
 #include "util/str.h"
 #include "util/print_status.h"
-#include <string.h>
+#include "util/regexxx.h"
 #include "gs_mission_manager.h"
+#include <string.h>
 
 static BOOL mission_match(char* str);
+
+static regex_t RE_user_join;
+static regex_t RE_user_left;
+
+void console_parser_init()
+{
+    PRINT_STATUS_NEW(tr("Console parser initialization"));
+
+    compile_regex(&RE_user_join, CNSL_USER_JOIN);
+    compile_regex(&RE_user_left, CNSL_USER_LEFT);
+
+    PRINT_STATUS_DONE();
+}
+
+void console_parser_teardown()
+{
+    PRINT_STATUS_NEW(tr("Console parser tearing down"));
+
+    regfree(&RE_user_join);
+    regfree(&RE_user_left);
+
+    PRINT_STATUS_DONE();
+}
 
 void console_parse_string(char* str)
 {
