@@ -14,6 +14,8 @@
 #include "util/print_status.h"
 #include "util/str.h"
 
+static void gs_cmd_send(char* cmd);
+
 static int GS_IN_FD;
 static pthread_mutex_t LOCK;
 static int channels;
