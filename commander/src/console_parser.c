@@ -4,6 +4,8 @@
 #include <string.h>
 #include "gs_mission_manager.h"
 
+static BOOL mission_match(char* str);
+
 void console_parse_string(char* str)
 {
     str_null_termitate(str);
