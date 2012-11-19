@@ -2,9 +2,11 @@
 
 #include <config.h>
 
-#if defined(_WIN_)
+#ifdef _WIN_
 	#include <windows.h>
 	#include "util/winproc.h"
+#else
+    #include <sys/wait.h>
 #endif
 
 #include <stdlib.h>
@@ -23,14 +25,14 @@
 #include "util/l10n.h"
 #include "util/print_status.h"
 
-#ifndef (_WIN_)
+#ifndef _WIN_
 static void* gs_process_create_raw();
 #endif
 
 static void gs_wait_loaded();
 static void gs_suppress_stdout();
 
-#ifdef (_WIN_)
+#ifdef _WIN_
 
 static PROCESS_INFORMATION GS_PINF;
 static HANDLE g_hChildStd_OUT_Rd = NULL;
