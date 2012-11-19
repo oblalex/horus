@@ -44,28 +44,6 @@ typedef struct D_MISSION_ELEM
     int refsCount;
 } D_MISSION_ELEM;
 
-static void mssn_set_current(D_MISSION_ELEM* value);
-static void mssn_status_reset();
-static void mssn_list_load();
-static void mssn_load_weather_report(D_MISSION* mission);
-static D_MISSION_ELEM* get_mssn_elem_by_name(char* name);
-static void mssn_list_resolve_conflicts();
-static void mssn_list_resolve_branch(char* name, void** nextRed, void** nextBlue, void** next);
-static void mssn_list_save();
-static void mssn_list_clear();
-static void mssn_list_history_clear();
-static void mssn_list_reload();
-static void mssn_list_print();
-
-static void msg_delete(MSG_T* msg);
-static void msg_enqueue(MSG_T* msg);
-
-static void* mssn_timer_watcher();
-static void* mssn_msg_dispatcher();
-static BOOL check_notificator_seconds(int* value, int range, int newValue);
-
-static void* handle_events_in();
-
 // Manager direct calls
 
 void gs_mssn_load();
