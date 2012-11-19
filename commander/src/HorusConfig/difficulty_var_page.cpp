@@ -1,15 +1,15 @@
 #include "difficulty_var_page.h"
 #include "ui_difficulty_var_page.h"
 
-#define _Vulnerability                  32768
-#define _RealisticPilotVulnerability    134217728
-#define _HeadShake                      1024
-#define _WindTurbulence                 1
-#define _Clouds                         131072
-#define _NoInstantSuccess               1048576
-#define _TakeoffLanding                 128
-#define _RealisticLanding               64
-#define _RealisticNavigationInstruments 268435456
+#define _Vulnerability                  32768ULL
+#define _RealisticPilotVulnerability    134217728ULL
+#define _HeadShake                      1024ULL
+#define _WindTurbulence                 1ULL
+#define _Clouds                         131072ULL
+#define _NoInstantSuccess               1048576ULL
+#define _TakeoffLanding                 128ULL
+#define _RealisticLanding               64ULL
+#define _RealisticNavigationInstruments 268435456ULL
 
 DifficultyVarPage::DifficultyVarPage(QWidget *parent) :
     QWidget(parent),

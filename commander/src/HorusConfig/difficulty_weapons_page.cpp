@@ -1,12 +1,12 @@
 #include "difficulty_weapons_page.h"
 #include "ui_difficulty_weapons_page.h"
 
-#define _RealisticGunnery           4096
-#define _LimitedAmmo                8192
-#define _LimitedFuel                16384
-#define _BombFuzes                  2147483648
-#define _RealisticTorpedoing        4294967296
-#define _RealisticMissilesVariation 274877906944
+#define _RealisticGunnery           4096ULL
+#define _LimitedAmmo                8192ULL
+#define _LimitedFuel                16384ULL
+#define _BombFuzes                  2147483648ULL
+#define _RealisticTorpedoing        4294967296ULL
+#define _RealisticMissilesVariation 274877906944ULL
 
 DifficultyWeaponsPage::DifficultyWeaponsPage(QWidget *parent) :
     QWidget(parent),

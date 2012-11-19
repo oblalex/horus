@@ -1,15 +1,15 @@
 #include "difficulty_flight_model_page.h"
 #include "ui_difficulty_flight_model_page.h"
 
-#define _SeparateEStart     524288
-#define _ComplexEManagement 8388608
-#define _EngineOverheat     16
-#define _TorqueGyroEffects  32
-#define _FlutterEffect      2
-#define _StallSpins         4
-#define _BlackoutsRedouts   8
-#define _GLimits            67108864
-#define _Reliability        33554432
+#define _SeparateEStart     524288ULL
+#define _ComplexEManagement 8388608ULL
+#define _EngineOverheat     16ULL
+#define _TorqueGyroEffects  32ULL
+#define _FlutterEffect      2ULL
+#define _StallSpins         4ULL
+#define _BlackoutsRedouts   8ULL
+#define _GLimits            67108864ULL
+#define _Reliability        33554432ULL
 
 DifficultyFlightModelPage::DifficultyFlightModelPage(QWidget *parent) :
     QWidget(parent),

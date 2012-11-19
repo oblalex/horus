@@ -1,15 +1,15 @@
 #include "difficulty_view_page.h"
 #include "ui_difficulty_view_page.h"
 
-#define _NoOutSideViews     512
-#define _NoSpeedBar         4194304
-#define _NoPadlock          65536
-#define _CockpitAlwaysOn    256
-#define _NoSelfView         137438953472
-#define _NoFoeView          8589934592
-#define _NoFriendlyView     17179869184
-#define _NoPlanesView       68719476736
-#define _NoACarrierView     34359738368
+#define _NoOutSideViews     512ULL
+#define _NoSpeedBar         4194304ULL
+#define _NoPadlock          65536ULL
+#define _CockpitAlwaysOn    256ULL
+#define _NoSelfView         137438953472ULL
+#define _NoFoeView          8589934592ULL
+#define _NoFriendlyView     17179869184ULL
+#define _NoPlanesView       68719476736ULL
+#define _NoACarrierView     34359738368ULL
 
 DifficultyViewPage::DifficultyViewPage(QWidget *parent) :
     QWidget(parent),

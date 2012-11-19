@@ -1,11 +1,11 @@
 #include "difficulty_map_icons_page.h"
 #include "ui_difficulty_map_icons_page.h"
 
-#define _NoMapIcons         262144
-#define _NoPlayerIcon       536870912
-#define _NoFogOfWarIcons    1073741824
-#define _NoMinimapPath      2097152
-#define _NoIcons            2048
+#define _NoMapIcons         262144ULL
+#define _NoPlayerIcon       536870912ULL
+#define _NoFogOfWarIcons    1073741824ULL
+#define _NoMinimapPath      2097152ULL
+#define _NoIcons            2048ULL
 
 DifficultyMapIconsPage::DifficultyMapIconsPage(QWidget *parent) :
     QWidget(parent),
