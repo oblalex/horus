@@ -1,6 +1,5 @@
 noinst_LTLIBRARIES = libmxml.la
 libmxml_la_SOURCES = mxml-attr.c \
-						mxmldoc.c \
 						mxml-entity.c \
 						mxml-file.c \
 						mxml-get.c \
