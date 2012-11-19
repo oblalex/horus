@@ -29,8 +29,8 @@ void str_null_termitate(char* str)
 
 int str_copy_symbols(char* src, int src_len, int max_count, int offset, char* dst, int dst_len)
 {
-    char* s_end = (char*)((*src)+src_len);
-    char* d_end = (char*)((*dst)+dst_len);
+    char* s_end = src+src_len;
+    char* d_end = dst+dst_len;
 
 	char* start = src;
 	src += offset;
@@ -57,8 +57,8 @@ int str_copy_symbols(char* src, int src_len, int max_count, int offset, char* ds
 
 void str_escape_unicode(char* src, int src_len, char* dst, int dst_len)
 {
-    char* s_end = (char*)((*src)+src_len);
-    char* d_end = (char*)((*dst)+dst_len);
+    char* s_end = src+src_len;
+    char* d_end = dst+dst_len;
 
     int code_len = 4;
 	char code[code_len+1];
