@@ -3,7 +3,12 @@
 #include <time.h>
 #include <string.h>
 
+#ifndef _WIN_
+    #include <unistd.h>
+#endif
+
 #include "gs.h"
+#include "gs_paths.h"
 #include "gs_scripts.h"
 #include "gs_process.h"
 #include "gs_cfg.h"
@@ -12,6 +17,15 @@
 #include "gs_input_handlers.h"
 #include "gs_mission_manager.h"
 #include "util/print_status.h"
+
+static void gs_setup_termination_hooks();
+static void gs_termination_handler(int signum);
+
+static void gs_check_launched_before();
+static void gs_prepare();
+static void gs_wait_loaded();
+static void gs_on_process_start();
+static void gs_on_process_stop();
 
 static BOOL LAUNCHED_BEFORE = FALSE;
 static BOOL DO_RUN = TRUE;
@@ -101,7 +115,7 @@ static void gs_check_launched_before()
 			if (DO_RUN == FALSE) break;
             char buf[40];
 			sprintf(buf, "%s...%d", tr("Restarting game server in"), i);
-			PRINT_STATUS_MSG_NOIND(&buf);
+            PRINT_STATUS_MSG_NOIND((char*)(&buf));
 			
         #if defined(_WIN_)
 			Sleep(1000);
