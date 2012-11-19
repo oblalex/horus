@@ -24,26 +24,6 @@
 
 void shell_parser_init();
 void shell_parser_teardown();
-
 void shell_parse_string(char* str);
-
-static BOOL exit_match(char* str);
-
-static BOOL chat_all_match(char* str);
-static BOOL chat_user_match(char* str);
-static BOOL chat_army_match(char* str);
-
-static BOOL mssn_load_match(char* str);
-static BOOL mssn_unload_match(char* str);
-static BOOL mssn_run_match(char* str);
-static BOOL mssn_rerun_match(char* str);
-static BOOL mssn_end_match(char* str);
-static BOOL mssn_start_match(char* str);
-static BOOL mssn_restart_match(char* str);
-static BOOL mssn_stop_match(char* str);
-static BOOL mssn_next_match(char* str);
-static BOOL mssn_prev_match(char* str);
-static BOOL mssn_time_left_match(char* str);
-static BOOL mssn_time_left_set_match(char* str);
 
 #endif // SHELL_PARSER_H

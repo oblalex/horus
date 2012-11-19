@@ -29,8 +29,8 @@ void str_null_termitate(char* str)
 
 int str_copy_symbols(char* src, int src_len, int max_count, int offset, char* dst, int dst_len)
 {
-	int s_end = src+src_len;
-	int d_end = dst+dst_len;
+    char* s_end = src+src_len;
+    char* d_end = dst+dst_len;
 
 	char* start = src;
 	src += offset;
@@ -57,10 +57,10 @@ int str_copy_symbols(char* src, int src_len, int max_count, int offset, char* ds
 
 void str_escape_unicode(char* src, int src_len, char* dst, int dst_len)
 {
-	int s_end = src+src_len;
-	int d_end = dst+dst_len;
+    char* s_end = src+src_len;
+    char* d_end = dst+dst_len;
 
-	int code_len;
+    int code_len = 4;
 	char code[code_len+1];
 	memset(&code, '\0', code_len+1);
 
@@ -119,7 +119,7 @@ unsigned short int cp1251_to_utf8(unsigned char in)
         out += in;
     } else {
         unsigned short int tmp = cp1251_to_utf8_table[in-0x80];
-        out = (((tmp >> 6) & 0x1F | 0xC0) << 8) | (tmp & 0x3F | 0x80);
+        out = ((((tmp >> 6) & 0x1F) | 0xC0) << 8) | ((tmp & 0x3F) | 0x80);
     }
 
     return out;

@@ -66,29 +66,6 @@ _mxml_snprintf(char       *buffer,	/* I - Output buffer */
 }
 #endif /* !HAVE_SNPRINTF */
 
-
-/*
- * '_mxml_strdup()' - Duplicate a string.
- */
-
-#ifndef HAVE_STRDUP
-char *					/* O - New string pointer */
-_mxml_strdup(const char *s)		/* I - String to duplicate */
-{
-  char	*t;				/* New string pointer */
-
-
-  if (s == NULL)
-    return (NULL);
-
-  if ((t = malloc(strlen(s) + 1)) == NULL)
-    return (NULL);
-
-  return (strcpy(t, s));
-}
-#endif /* !HAVE_STRDUP */
-
-
 /*
  * '_mxml_strdupf()' - Format and duplicate a string.
  */
@@ -128,7 +105,6 @@ _mxml_vsnprintf(char       *buffer,	/* O - Output buffer */
   char		*bufptr,		/* Pointer to position in buffer */
 		*bufend,		/* Pointer to end of buffer */
 		sign,			/* Sign of format width */
-		size,			/* Size character (h, l, L) */
 		type;			/* Format type character */
   int		width,			/* Width of field */
 		prec;			/* Number of characters of precision */
@@ -232,7 +208,6 @@ _mxml_vsnprintf(char       *buffer,	/* O - Output buffer */
 
       if (*format == 'l' && format[1] == 'l')
       {
-        size = 'L';
 
 	if (tptr < (tformat + sizeof(tformat) - 2))
 	{
@@ -247,7 +222,7 @@ _mxml_vsnprintf(char       *buffer,	/* O - Output buffer */
 	if (tptr < (tformat + sizeof(tformat) - 1))
 	  *tptr++ = *format;
 
-        size = *format++;
+        format++;
       }
 
       if (!*format)

@@ -2,6 +2,7 @@
 
 #include <errno.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -28,8 +29,8 @@ void gs_check_path_root()
         PRINT_STATUS_MSG_ERR(tr("1. This program is located in IL-2 server's subdirectory."));
         PRINT_STATUS_MSG_ERR(tr("2. You are located at that directory currently."));
 
-		wchar_t msg[80];
-		sprintf(msg, "%s \"%s\".", tr("3. IL-2 server's executable file is named as"), GS_EXE_NAME);
+        char msg[80];
+        sprintf(msg, "%s \"%s\".", tr("3. IL-2 server's executable file is named as"), GS_EXE_NAME);
 
         PRINT_STATUS_MSG_ERR((char*)&msg);
         PRINT_STATUS_FAIL();

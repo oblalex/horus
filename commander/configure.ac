@@ -35,6 +35,9 @@ AC_PROG_CC
 localedir='${prefix}/'$PACKAGE_NAME'/l10n'
 AC_SUBST(localedir)
 
+AM_CFLAGS='--pedantic -Wall -Werror -Wfatal-errors -std=gnu11 -O2'
+AC_SUBST(AM_CFLAGS)
+
 AC_PROG_LIBTOOL
 AM_PROG_CC_C_O
 

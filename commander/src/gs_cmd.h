@@ -45,6 +45,4 @@ void gs_cmd_mssn_run();
 void gs_cmd_mssn_end();
 void gs_cmd_mssn_unload();
 
-static void gs_cmd_send(char* cmd);
-
 #endif // GS_CMD_H

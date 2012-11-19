@@ -11,11 +11,6 @@ extern "C" {
 #include <stdarg.h>
 #include <ctype.h>
 
-#  ifndef HAVE_STRDUP
-extern char	*_mxml_strdup(const char *);
-#    define strdup _mxml_strdup
-#  endif /* !HAVE_STRDUP */
-
 extern char	*_mxml_strdupf(const char *, ...);
 extern char	*_mxml_vstrdupf(const char *, va_list);
 

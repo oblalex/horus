@@ -7,6 +7,13 @@
 #include "util/l10n.h"
 #include "util/print_status.h"
 
+static void gs_cfg_logging();
+static void gs_cfg_logging_chat();
+static void gs_cfg_logging_console();
+static void gs_cfg_logging_file();
+static void gs_cfg_console_connection();
+static void gs_cfg_version_checking();
+
 static INI_CONTAINER* cfg;
 
 void gs_cfg()

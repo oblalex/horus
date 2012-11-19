@@ -7,6 +7,8 @@
 #include "util/print_status.h"
 #include "util/l10n.h"
 
+static void check_script_file_created(FILE* fd, char* fname);
+
 void gs_scripts_generate()
 {
     PRINT_STATUS_NEW(tr("Generating server's scripts"));

@@ -5,6 +5,4 @@
 
 void console_parse_string(char* str);
 
-static BOOL mission_match(char* str);
-
 #endif // CONSOLE_PARSER_H

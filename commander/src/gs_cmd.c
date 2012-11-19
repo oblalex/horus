@@ -3,6 +3,7 @@
 #include <wchar.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include <pthread.h>
 
@@ -13,6 +14,12 @@
 
 #include "util/print_status.h"
 #include "util/str.h"
+
+#ifndef _WIN_
+    #include <unistd.h>
+#endif
+
+static void gs_cmd_send(char* cmd);
 
 static int GS_IN_FD;
 static pthread_mutex_t LOCK;
@@ -89,19 +96,19 @@ void gs_cmd_chat(char* msg, char* addressee)
 		sprintf(cmd, GS_CMD_CHAT, emsg, addressee);
     #endif
 
-		gs_cmd_send((char*)&cmd);
+        gs_cmd_send((char*)&cmd);
 	}
 }
 
 void gs_cmd_kick_all()
 {	
-	char* msg = tr("Kicking all!");
-	PRINT_STATUS_NEW(msg);	
+    char* msg = tr("Kicking all!");
+    PRINT_STATUS_NEW(msg);
 
 	int i;
 	for(i=0; i<3; i++)
-	{	
-		gs_cmd_chat_all(msg);
+    {
+        gs_cmd_chat_all(msg);
 		
     #if defined(_WIN_)
 		Sleep(2000);
@@ -147,7 +154,7 @@ void gs_cmd_mssn_unload()
 
 static void gs_cmd_send(char* cmd)
 {
-	pthread_mutex_lock(&LOCK);
+    pthread_mutex_lock(&LOCK);
 
 	console_line_wr(GS_IN_FD, cmd, strlen(cmd));
 

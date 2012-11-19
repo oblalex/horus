@@ -19,6 +19,14 @@
     #include "util/file.h"
 #endif
 
+static void get_server_ip(char* str_ip, int length);
+static void socket_make_nonblocking();
+static void socket_addr_prepare(struct sockaddr_in* addr);
+
+static int wait_rx(int sock);
+static int wait_tx(int sock);
+
+
 #if defined(_WIN_)
 	static SOCKET SOCKET_FD = INVALID_SOCKET;
 #else
@@ -170,7 +178,7 @@ static void get_server_ip(char* str_ip, int length)
 #if defined(_WIN_)
     system("echo off && setlocal && (FOR /f \"delims=: tokens=1-2\" %C IN ('ipconfig /all ^| find \"IP-\"') DO ECHO %D>tmpip) && (FOR /F \"tokens=1\" %A IN (tmpip) DO ECHO %A>"TMP_IP") && endlocal && echo on && del tmpip");
 #else
-	system("ip -4 -o addr show dev eth0 | awk '{ gsub(/\\/[0-9]+$/, \"\", $4); print $4 }' > " TMP_IP);
+    system("ip -4 -o addr show dev `ip a | grep '^[0-9]*: [^lo]' | awk -F\\: '{print $2}' | tr -d ' ' | head -n 1` | awk '{ gsub(/\\/[0-9]+$/, \"\", $4); print $4 }' > " TMP_IP);
 #endif
 
 	char* path = TMP_IP;

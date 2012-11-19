@@ -14,6 +14,9 @@
 	#include <unistd.h>
 #endif
 
+static void term_initResizeListener();
+static void term_setWidth(int value);
+
 static int TERM_WIDTH;
 
 void term_init()

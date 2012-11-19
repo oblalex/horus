@@ -1,7 +1,5 @@
 #include "regexxx.h"
 
-#include <regex.h>
-
 #include "print_status.h"
 
 BOOL compile_regex(regex_t* r, const char* regex_text)

@@ -36,6 +36,27 @@
 
 #define SECONDS_LEFT_BEFORE_END (10)
 
+static void mssn_set_current(D_MISSION_ELEM* value);
+static void mssn_list_load();
+static void mssn_load_weather_report(D_MISSION* mission);
+static D_MISSION_ELEM* get_mssn_elem_by_name(char* name);
+static void mssn_list_resolve_conflicts();
+static void mssn_list_resolve_branch(char* name, void** nextRed, void** nextBlue, void** next);
+static void mssn_list_save();
+static void mssn_list_clear();
+static void mssn_list_history_clear();
+static void mssn_list_print();
+
+static void msg_delete(MSG_T* msg);
+static void msg_enqueue(MSG_T* msg);
+
+static void* mssn_timer_watcher();
+static void* mssn_msg_dispatcher();
+static BOOL check_notificator_seconds(int* value, int range, int newValue);
+
+static void* handle_events_in();
+
+
 static CSTACK HISTORY;
 static D_MISSION_ELEM* FIRST = NULL;
 static D_MISSION_ELEM* LAST = NULL;
@@ -56,17 +77,6 @@ static pthread_mutex_t MSG_MTX = PTHREAD_MUTEX_INITIALIZER;
 static pthread_t H_TIMER;
 static pthread_t H_EVENT_PARSER;
 static pthread_t H_MSG_DISPATCHER;
-
-void mssn_status_reset()
-{
-    PRINT_STATUS_NEW(tr("Resetting mission status"));
-
-    SECS_LEFT = 0;
-    RUNNING = FALSE;
-    LOADED = FALSE;
-
-    PRINT_STATUS_DONE();
-}
 
 void mssn_list_load()
 {
@@ -126,7 +136,7 @@ void mssn_list_load()
 
                 free(elem);
                 continue;
-            } else if (get_mssn_elem_by_name(attrVal) != NULL)
+            } else if (get_mssn_elem_by_name((char*)attrVal) != NULL)
             {
                 sprintf(msg, "\"%s\" : %s", attrVal, tr("Name already exists in list. Skipping"));
                 PRINT_STATUS_MSG_ERR(msg);
@@ -154,7 +164,7 @@ void mssn_list_load()
 
                 free(elem);
                 continue;
-            } else if (gs_check_path_mission(elem->data.name, attrVal) == FALSE)
+            } else if (gs_check_path_mission(elem->data.name, (char*)attrVal) == FALSE)
             {
                 free(elem);
                 continue;
@@ -268,7 +278,7 @@ void mssn_list_print()
 {
     PRINT_STATUS_MSG(tr("Missions:"));
 
-    char* msg[255];
+    char msg[255];
 
     char* redName;
     char* blueName;
@@ -349,45 +359,45 @@ void mssn_load_weather_report(D_MISSION* mission)
             offset += stat.length;
         } else {
             offset = 0;
-            if ((strstr(line, MSSN_KEY_TIME) != NULL)                   && (paramsLeft && 0x01))
+            if ((strstr(line, MSSN_KEY_TIME) != NULL)                   && (paramsLeft & 0x01))
             {
-                sscanf(line, "%*s %d.%d",
+                sscanf(line, "%*s %u.%u",
                        &(mission->weather.publGameTS.hour),
                        &(mission->weather.publGameTS.minute));
                 paramsLeft &= ~(0x01);
-            } else if ((strstr(line, MSSN_KEY_CLOUD_TYPE) != NULL)      && (paramsLeft && (0x01 << 1)))
+            } else if ((strstr(line, MSSN_KEY_CLOUD_TYPE) != NULL)      && (paramsLeft & (0x01 << 1)))
             {
                 sscanf(line, "%*s %d", (int*)&(mission->weather.weather));
                 paramsLeft &= ~(0x01 << 1);
-            } else if ((strstr(line, MSSN_KEY_CLOUD_HEIGTH) != NULL)    && (paramsLeft && (0x01 << 2)))
+            } else if ((strstr(line, MSSN_KEY_CLOUD_HEIGTH) != NULL)    && (paramsLeft & (0x01 << 2)))
             {
                 sscanf(line, "%*s %d", &(mission->weather.cloudsHeightM));
                 paramsLeft &= ~(0x01 << 2);
-            } else if ((strstr(line, MSSN_KEY_YEAR) != NULL)            && (paramsLeft && (0x01 << 3)))
+            } else if ((strstr(line, MSSN_KEY_YEAR) != NULL)            && (paramsLeft & (0x01 << 3)))
             {
-                sscanf(line, "%*s %d", &(mission->weather.publGameTS.year));
+                sscanf(line, "%*s %u", &(mission->weather.publGameTS.year));
                 paramsLeft &= ~(0x01 << 3);
-            } else if ((strstr(line, MSSN_KEY_MONTH) != NULL)           && (paramsLeft && (0x01 << 4)))
+            } else if ((strstr(line, MSSN_KEY_MONTH) != NULL)           && (paramsLeft & (0x01 << 4)))
             {
-                sscanf(line, "%*s %d", &(mission->weather.publGameTS.month));
+                sscanf(line, "%*s %u", &(mission->weather.publGameTS.month));
                 paramsLeft &= ~(0x01 << 4);
-            } else if ((strstr(line, MSSN_KEY_DAY) != NULL)             && (paramsLeft && (0x01 << 5)))
+            } else if ((strstr(line, MSSN_KEY_DAY) != NULL)             && (paramsLeft & (0x01 << 5)))
             {
-                sscanf(line, "%*s %d", &(mission->weather.publGameTS.day));
+                sscanf(line, "%*s %u", &(mission->weather.publGameTS.day));
                 paramsLeft &= ~(0x01 << 5);
-            } else if ((strstr(line, MSSN_KEY_WIND_DIRECTION) != NULL)  && (paramsLeft && (0x01 << 6)))
+            } else if ((strstr(line, MSSN_KEY_WIND_DIRECTION) != NULL)  && (paramsLeft & (0x01 << 6)))
             {
                 sscanf(line, "%*s %d", &(mission->weather.windDirectionDeg));
                 paramsLeft &= ~(0x01 << 6);
-            } else if ((strstr(line, MSSN_KEY_WIND_SPEED) != NULL)      && (paramsLeft && (0x01 << 7)))
+            } else if ((strstr(line, MSSN_KEY_WIND_SPEED) != NULL)      && (paramsLeft & (0x01 << 7)))
             {
-                sscanf(line, "%*s %d", &(mission->weather.windSpeedMS));
+                sscanf(line, "%*s %hd", &(mission->weather.windSpeedMS));
                 paramsLeft &= ~(0x01 << 7);
-            } else if ((strstr(line, MSSN_KEY_GUST) != NULL)            && (paramsLeft && (0x01 << 8)))
+            } else if ((strstr(line, MSSN_KEY_GUST) != NULL)            && (paramsLeft & (0x01 << 8)))
             {
                 sscanf(line, "%*s %d", (int*)&(mission->weather.gust));
                 paramsLeft &= ~(0x01 << 8);
-            } else if ((strstr(line, MSSN_KEY_TURBULENCE) != NULL)      && (paramsLeft && (0x01 << 9)))
+            } else if ((strstr(line, MSSN_KEY_TURBULENCE) != NULL)      && (paramsLeft & (0x01 << 9)))
             {
                 sscanf(line, "%*s %d", (int*)&(mission->weather.turbulence));
                 paramsLeft &= ~(0x01 << 9);
@@ -416,19 +426,19 @@ void mssn_list_resolve_conflicts()
         name = mxmlElementGetAttr(node, XML_ATTR_NAME);
         red = NULL;
         if (name != NULL)
-            red = get_mssn_elem_by_name(name);
+            red = get_mssn_elem_by_name((char*)name);
 
         node = (mxml_node_t*)(curr->mNextBlue);
         name = mxmlElementGetAttr(node, XML_ATTR_NAME);
         blue = NULL;
         if (name != NULL)
-            blue = get_mssn_elem_by_name(name);
+            blue = get_mssn_elem_by_name((char*)name);
 
         node = (mxml_node_t*)(curr->mNext);
         name = mxmlElementGetAttr(node, XML_ATTR_NAME);
         none = NULL;
         if (name != NULL)
-            none = get_mssn_elem_by_name(name);
+            none = get_mssn_elem_by_name((char*)name);
 
         mssn_list_resolve_branch(curr->data.name,
                                  ((void**)&red),
@@ -653,17 +663,6 @@ void mssn_list_clear()
     PRINT_STATUS_DONE();
 }
 
-void mssn_list_reload()
-{
-    PRINT_STATUS_NEW(tr("Reloading missions list"));
-
-    mssn_list_clear();
-    mssn_status_reset();
-    mssn_list_load();
-
-    PRINT_STATUS_DONE();
-}
-
 void mssn_set_current(D_MISSION_ELEM* value)
 {
     CURRENT = value;
@@ -678,9 +677,9 @@ void gs_mssn_load()
         return;
     }
 
-    wchar_t* msg1 = tr("Loading mission");
-    wchar_t* msgFailed = tr("Mission loading failed.");
-    wchar_t* msgLoaded = tr("Mission loaded.");
+    char* msg1 = tr("Loading mission");
+    char* msgFailed = tr("Mission loading failed.");
+    char* msgLoaded = tr("Mission loaded.");
     char msg2[100];
 
     if (CURRENT != NULL)
@@ -744,7 +743,7 @@ void gs_mssn_unload()
         return;
     }
 
-    wchar_t* msg1 = tr("Unloading mission...");
+    char* msg1 = tr("Unloading mission...");
 
     PRINT_STATUS_NEW(msg1);
     gs_cmd_chat_all(msg1);
@@ -789,12 +788,12 @@ void gs_mssn_run()
         return;
     }
 
-    wchar_t* msg1 = tr("Launching mission");
-    wchar_t* msgFailed = tr("Mission launching failed.");
-    wchar_t* msgLaunched = tr("Mission launched.");
+    char* msg1 = tr("Launching mission");
+    char* msgFailed = tr("Mission launching failed.");
+    char* msgLaunched = tr("Mission launched.");
     char msg2[100];
 
-    if (LOADED != NULL)
+    if (LOADED != FALSE)
     {
         sprintf(msg2, "%s '%s'...", msg1, CURRENT->data.name);
 
@@ -856,7 +855,7 @@ void gs_mssn_end()
         return;
     }
 
-    wchar_t* msg1 = tr("Ending mission...");
+    char* msg1 = tr("Ending mission...");
 
     PRINT_STATUS_NEW(msg1);
     gs_cmd_chat_all(msg1);
@@ -1149,9 +1148,9 @@ void* mssn_timer_watcher()
 
         if (i == 0)
         {
-            gs_mssn_time_str(&timeStr);
-            gs_cmd_chat_all(&timeStr);
-            PRINT_STATUS_MSG_NOIND(&timeStr);
+            gs_mssn_time_str((char*)&timeStr);
+            gs_cmd_chat_all((char*)&timeStr);
+            PRINT_STATUS_MSG_NOIND((char*)&timeStr);
 
             if (                check_notificator_seconds(&i, _15min, _15min) == FALSE)
                 if (            check_notificator_seconds(&i, _05min, _05min) == FALSE)
@@ -1175,7 +1174,7 @@ void* mssn_timer_watcher()
 
     if (INTERRUPTED == TRUE)
     {
-        wchar_t* msg = tr("Mission was interrupted.");
+        char* msg = tr("Mission was interrupted.");
         gs_cmd_chat_all(msg);
         PRINT_STATUS_MSG_NOIND(msg);
     } else if (DO_WORK == TRUE)
@@ -1198,7 +1197,7 @@ void gs_mssn_time_str(char* str)
 {
     char* msg1 = tr("Mission time left");
     char  msg2[20];
-    secondsToTimeString(SECS_LEFT, &msg2);
+    secondsToTimeString(SECS_LEFT, (char*)&msg2);
     sprintf(str, "%s: %s.", msg1, msg2);
 }
 
@@ -1225,8 +1224,8 @@ void gs_mssn_seconds_left_set(int value)
 void gs_mssn_time_print()
 {
     char timeStr[80];
-    gs_mssn_time_str(&timeStr);
-    PRINT_STATUS_MSG_NOIND(&timeStr);
+    gs_mssn_time_str((char*)&timeStr);
+    PRINT_STATUS_MSG_NOIND((char*)&timeStr);
 }
 
 void gs_mssn_time_left_set(int h, int m, int s)
@@ -1295,6 +1294,8 @@ void* mssn_msg_dispatcher()
     }
 
     msg_queue_clear(&MSG_Q, &msg_delete);
+
+    return NULL;
 }
 
 void msg_enqueue(MSG_T* msg)

@@ -238,12 +238,14 @@ void MissionElem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 
 void MissionElem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
+    Q_UNUSED(event)
     MLV->setHighlighted(this);
     update();
 }
 
 void MissionElem::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
+    Q_UNUSED(event)
     MLV->setUnhighlighted(this);
     update();
 }

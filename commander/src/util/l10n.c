@@ -3,6 +3,8 @@
 #include <string.h>
 #include "common.h"
 
+static int get_locale_id(char *code);
+
 #ifdef _WIN_
     #include <windows.h>
     static UINT CP_OLD;
@@ -46,7 +48,7 @@ void locale_init(char* code)
 	textdomain(PACKAGE);
 }
 
-int get_locale_id(char *code)
+static int get_locale_id(char *code)
 {
     if (code == NULL) return 0;
 

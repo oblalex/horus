@@ -61,7 +61,6 @@
 
 void term_init();
 void term_teardown();
-static void term_initResizeListener();
 
 #if defined(_WIN_)
 DWORD WINAPI eventsThreadFunc(void* data);
@@ -90,7 +89,6 @@ void term_style(int attr, int fg, int bg);
  */
 void term_styleReset();
 
-static void term_setWidth(int value);
 int term_getWidth();
 
 #endif // TERMINAL_H
