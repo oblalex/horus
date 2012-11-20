@@ -8,10 +8,10 @@
 START_TEST (test_console_parser)
 {
     test_regex(CNSL_USER_JOIN,
-               "[7:39:13 PM]	socket channel '1', ip 192.168.1.34:21000, =435SAP=Alex, is complete created",
+               "socket channel '1', ip 192.168.1.34:21000, =435SAP=Alex, is complete created\\n",
                NULL);
     test_regex(CNSL_USER_LEFT,
-               "[7:40:50 PM]	socketConnection with 192.168.1.34:21000 on channel 1 lost.  Reason: ",
+               "socketConnection with 192.168.1.34:21000 on channel 1 lost.  Reason: \\n",
                NULL);
 }
 END_TEST

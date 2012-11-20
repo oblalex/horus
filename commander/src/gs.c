@@ -145,7 +145,7 @@ static void gs_on_process_start()
             pm_init();
             console_parser_init();
             gs_cmd_init();
-			input_handlers_start();
+            input_handlers_start();
             gs_cmd_kick_all();
             gs_mssn_start();
 			gs_process_wait();
