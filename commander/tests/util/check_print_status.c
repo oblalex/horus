@@ -8,7 +8,6 @@
 
 START_TEST (test_print_status_done)
 {
-	locale_init();
 	term_init();
 
 	PRINT_STATUS_NEW("Task 1");
@@ -31,6 +30,7 @@ Suite* print_status_suite (void)
 
 int main (void)
 {
+    locale_init("en");
 	int number_failed;
 	Suite *s = print_status_suite();
 	SRunner *sr = srunner_create (s);
