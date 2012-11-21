@@ -29,6 +29,5 @@ var searchData=
   ['mxml_2dsearch_2ec',['mxml-search.c',['../mxml-search_8c.html',1,'']]],
   ['mxml_2dset_2ec',['mxml-set.c',['../mxml-set_8c.html',1,'']]],
   ['mxml_2dstring_2ec',['mxml-string.c',['../mxml-string_8c.html',1,'']]],
-  ['mxml_2eh',['mxml.h',['../mxml_8h.html',1,'']]],
-  ['mxmldoc_2ec',['mxmldoc.c',['../mxmldoc_8c.html',1,'']]]
+  ['mxml_2eh',['mxml.h',['../mxml_8h.html',1,'']]]
 ];

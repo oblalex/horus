@@ -91,29 +91,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">gs_cfg.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br/>
+<div class="textblock"><code>#include &lt;<a class="el" href="config_8h_source.html">config.h</a>&gt;</code><br/>
+<code>#include &lt;stdlib.h&gt;</code><br/>
+<code>#include &lt;string.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="gs__cfg_8h_source.html">gs_cfg.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__paths_8h_source.html">gs_paths.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="ini_8h_source.html">util/ini.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="str_8h_source.html">util/str.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="l10n_8h_source.html">util/l10n.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="print__status_8h_source.html">util/print_status.h</a>&quot;</code><br/>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a471e75fbdba233c0dde49a3200ba59bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a471e75fbdba233c0dde49a3200ba59bb">gs_cfg</a> ()</td></tr>
-<tr class="separator:a471e75fbdba233c0dde49a3200ba59bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35a6cde554459ed9b31f296d2967ff06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a35a6cde554459ed9b31f296d2967ff06">gs_cfg_logging</a> ()</td></tr>
+<tr class="memitem:a35a6cde554459ed9b31f296d2967ff06"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a35a6cde554459ed9b31f296d2967ff06">gs_cfg_logging</a> ()</td></tr>
 <tr class="separator:a35a6cde554459ed9b31f296d2967ff06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadabfa335abfbfec34fb4c821cd575db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#aadabfa335abfbfec34fb4c821cd575db">gs_cfg_logging_chat</a> ()</td></tr>
+<tr class="memitem:aadabfa335abfbfec34fb4c821cd575db"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#aadabfa335abfbfec34fb4c821cd575db">gs_cfg_logging_chat</a> ()</td></tr>
 <tr class="separator:aadabfa335abfbfec34fb4c821cd575db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea60a3bec4577905204961b490eb34a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#aea60a3bec4577905204961b490eb34a1">gs_cfg_logging_console</a> ()</td></tr>
+<tr class="memitem:aea60a3bec4577905204961b490eb34a1"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#aea60a3bec4577905204961b490eb34a1">gs_cfg_logging_console</a> ()</td></tr>
 <tr class="separator:aea60a3bec4577905204961b490eb34a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8412513ed9a90d9a19c892687fc69fd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a8412513ed9a90d9a19c892687fc69fd1">gs_cfg_logging_file</a> ()</td></tr>
+<tr class="memitem:a8412513ed9a90d9a19c892687fc69fd1"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a8412513ed9a90d9a19c892687fc69fd1">gs_cfg_logging_file</a> ()</td></tr>
 <tr class="separator:a8412513ed9a90d9a19c892687fc69fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7419bb8aabed7994293853d25605c41d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a7419bb8aabed7994293853d25605c41d">gs_cfg_console_connection</a> ()</td></tr>
+<tr class="memitem:a7419bb8aabed7994293853d25605c41d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a7419bb8aabed7994293853d25605c41d">gs_cfg_console_connection</a> ()</td></tr>
 <tr class="separator:a7419bb8aabed7994293853d25605c41d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeeaebb2c71ea6b6d7a9fa633ce04fd09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#aeeaebb2c71ea6b6d7a9fa633ce04fd09">gs_cfg_version_checking</a> ()</td></tr>
+<tr class="memitem:aeeaebb2c71ea6b6d7a9fa633ce04fd09"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#aeeaebb2c71ea6b6d7a9fa633ce04fd09">gs_cfg_version_checking</a> ()</td></tr>
 <tr class="separator:aeeaebb2c71ea6b6d7a9fa633ce04fd09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43a0a192dc7610b9a003286446d9771a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a43a0a192dc7610b9a003286446d9771a">gs_cfg_load</a> ()</td></tr>
+<tr class="separator:a43a0a192dc7610b9a003286446d9771a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaeae9fee82395a2359042d97bf25d67e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#aaeae9fee82395a2359042d97bf25d67e">gs_cfg_fix_backslashes</a> ()</td></tr>
+<tr class="separator:aaeae9fee82395a2359042d97bf25d67e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af376a9b99b861319192166208c0f75f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#af376a9b99b861319192166208c0f75f7">gs_cfg_init</a> ()</td></tr>
+<tr class="separator:af376a9b99b861319192166208c0f75f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8638cdb738211ef53b6579a10f7fd9e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5c411708e29397e7252248b3e647de48">uint2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a8638cdb738211ef53b6579a10f7fd9e0">gs_cfg_getChannelsCount</a> ()</td></tr>
+<tr class="separator:a8638cdb738211ef53b6579a10f7fd9e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c3ef0da2d886e45ce0dcb2d113df51c"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a7c3ef0da2d886e45ce0dcb2d113df51c">gs_cfg_get</a> (const char *sec_name, const char *key)</td></tr>
 <tr class="separator:a7c3ef0da2d886e45ce0dcb2d113df51c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -121,26 +130,16 @@ Functions</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:a21939fa75b760421cae91bcf61c954c8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structINI__CONTAINER.html">INI_CONTAINER</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a21939fa75b760421cae91bcf61c954c8">cfg</a></td></tr>
 <tr class="separator:a21939fa75b760421cae91bcf61c954c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89a01b1d9ee7cd76fd88a8d580e07ad3"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="types_8h.html#a5c411708e29397e7252248b3e647de48">uint2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cfg_8c.html#a89a01b1d9ee7cd76fd88a8d580e07ad3">CHANNELS_COUNT</a></td></tr>
+<tr class="separator:a89a01b1d9ee7cd76fd88a8d580e07ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a471e75fbdba233c0dde49a3200ba59bb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void gs_cfg </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a7419bb8aabed7994293853d25605c41d"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void gs_cfg_console_connection </td>
@@ -149,6 +148,34 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aaeae9fee82395a2359042d97bf25d67e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gs_cfg_fix_backslashes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -179,9 +206,65 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a8638cdb738211ef53b6579a10f7fd9e0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5c411708e29397e7252248b3e647de48">uint2</a> gs_cfg_getChannelsCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af376a9b99b861319192166208c0f75f7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gs_cfg_init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a43a0a192dc7610b9a003286446d9771a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gs_cfg_load </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a35a6cde554459ed9b31f296d2967ff06"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void gs_cfg_logging </td>
@@ -190,6 +273,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -197,6 +285,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="aadabfa335abfbfec34fb4c821cd575db"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void gs_cfg_logging_chat </td>
@@ -205,6 +296,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -212,6 +308,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="aea60a3bec4577905204961b490eb34a1"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void gs_cfg_logging_console </td>
@@ -220,6 +319,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -227,6 +331,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a8412513ed9a90d9a19c892687fc69fd1"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void gs_cfg_logging_file </td>
@@ -235,6 +342,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -242,6 +354,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="aeeaebb2c71ea6b6d7a9fa633ce04fd09"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void gs_cfg_version_checking </td>
@@ -250,6 +365,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -275,10 +395,30 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a89a01b1d9ee7cd76fd88a8d580e07ad3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5c411708e29397e7252248b3e647de48">uint2</a> CHANNELS_COUNT</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 18 2012 12:41:32 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 22 2012 00:45:46 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

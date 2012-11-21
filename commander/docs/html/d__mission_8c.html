@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>Horus-commander: src/HorusMLE/main.cpp File Reference</title>
+<title>Horus-commander: src/domain/d_mission.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,44 +80,123 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d602cd4c71366b42397170945bc8be94.html">HorusMLE</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_59e154daa71ab644ff60a4d6c4d01bbf.html">domain</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">main.cpp File Reference</div>  </div>
+<div class="title">d_mission.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="main__window_8h_source.html">main_window.h</a>&quot;</code><br/>
-<code>#include &lt;QApplication&gt;</code><br/>
-<code>#include &lt;QDesktopWidget&gt;</code><br/>
-<code>#include &lt;QTranslator&gt;</code><br/>
-<code>#include &lt;QLibraryInfo&gt;</code><br/>
-<code>#include &quot;<a class="el" href="settings_8h_source.html">settings.h</a>&quot;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="d__mission_8h_source.html">d_mission.h</a>&quot;</code><br/>
+<code>#include &lt;stdlib.h&gt;</code><br/>
+<code>#include &lt;string.h&gt;</code><br/>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
-<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf72d4a819ee8b78dfb5e063b54b3244"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__mission_8c.html#abf72d4a819ee8b78dfb5e063b54b3244">d_mission_init</a> (<a class="el" href="structD__MISSION.html">D_MISSION</a> **_this)</td></tr>
+<tr class="separator:abf72d4a819ee8b78dfb5e063b54b3244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4390e81a9211384dc53f86ab7df9a893"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__mission_8c.html#a4390e81a9211384dc53f86ab7df9a893">d_mission_init_lazy</a> (<a class="el" href="structD__MISSION.html">D_MISSION</a> **_this)</td></tr>
+<tr class="separator:a4390e81a9211384dc53f86ab7df9a893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4c8fc51d1eca16353e8f11002ddac78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__mission_8c.html#ad4c8fc51d1eca16353e8f11002ddac78">d_mission_free</a> (<a class="el" href="structD__MISSION.html">D_MISSION</a> **_this)</td></tr>
+<tr class="separator:ad4c8fc51d1eca16353e8f11002ddac78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f14321393d0abc99a0a3463650d5cec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__mission_8c.html#a8f14321393d0abc99a0a3463650d5cec">d_mission_name_set</a> (<a class="el" href="structD__MISSION.html">D_MISSION</a> *_this, char *name)</td></tr>
+<tr class="separator:a8f14321393d0abc99a0a3463650d5cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e3742a364cae8ac1b3d738515a07aa2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__mission_8c.html#a4e3742a364cae8ac1b3d738515a07aa2">d_mission_path_set</a> (<a class="el" href="structD__MISSION.html">D_MISSION</a> *_this, char *path)</td></tr>
+<tr class="separator:a4e3742a364cae8ac1b3d738515a07aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a0ddf1224851353fc92bfbff6f499fa97"></a>
+<a class="anchor" id="ad4c8fc51d1eca16353e8f11002ddac78"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int main </td>
+          <td class="memname">void d_mission_free </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>argc</em>, </td>
+          <td class="paramtype"><a class="el" href="structD__MISSION.html">D_MISSION</a> **&#160;</td>
+          <td class="paramname"><em>_this</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abf72d4a819ee8b78dfb5e063b54b3244"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d_mission_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structD__MISSION.html">D_MISSION</a> **&#160;</td>
+          <td class="paramname"><em>_this</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4390e81a9211384dc53f86ab7df9a893"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d_mission_init_lazy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structD__MISSION.html">D_MISSION</a> **&#160;</td>
+          <td class="paramname"><em>_this</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8f14321393d0abc99a0a3463650d5cec"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d_mission_name_set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structD__MISSION.html">D_MISSION</a> *&#160;</td>
+          <td class="paramname"><em>_this</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>argv</em>[]&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4e3742a364cae8ac1b3d738515a07aa2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d_mission_path_set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structD__MISSION.html">D_MISSION</a> *&#160;</td>
+          <td class="paramname"><em>_this</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>path</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -132,7 +211,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 15 2012 00:05:53 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 22 2012 00:45:46 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

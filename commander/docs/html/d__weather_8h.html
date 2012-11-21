@@ -86,12 +86,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">d_weather.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="timestamp__t_8h_source.html">../util/timestamp_t.h</a>&quot;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="types_8h_source.html">../util/types.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="timestamp__t_8h_source.html">../util/timestamp_t.h</a>&quot;</code><br/>
 </div>
 <p><a href="d__weather_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -99,6 +102,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structD__WEATHER__REPORT.html">D_WEATHER_REPORT</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:aec93ea1a29588cc858e5240edfcf77c0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structD__WEATHER__REPORT.html">D_WEATHER_REPORT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__weather_8h.html#aec93ea1a29588cc858e5240edfcf77c0">D_WEATHER_REPORT</a></td></tr>
+<tr class="separator:aec93ea1a29588cc858e5240edfcf77c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -130,7 +138,27 @@ Enumerations</h2></td></tr>
 <br/>
  }</td></tr>
 <tr class="separator:a121f563c45f131199f76a5f653e1084a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ac7c185a743977e409f3a77eceabd9ce6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__weather_8h.html#ac7c185a743977e409f3a77eceabd9ce6">d_weather_init</a> (<a class="el" href="structD__WEATHER__REPORT.html">D_WEATHER_REPORT</a> **_this)</td></tr>
+<tr class="separator:ac7c185a743977e409f3a77eceabd9ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2cd6162a636d3e7da08a1075dde4d80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__weather_8h.html#ad2cd6162a636d3e7da08a1075dde4d80">d_weather_free</a> (<a class="el" href="structD__WEATHER__REPORT.html">D_WEATHER_REPORT</a> **_this)</td></tr>
+<tr class="separator:ad2cd6162a636d3e7da08a1075dde4d80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="aec93ea1a29588cc858e5240edfcf77c0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structD__WEATHER__REPORT.html">D_WEATHER_REPORT</a>  <a class="el" href="structD__WEATHER__REPORT.html">D_WEATHER_REPORT</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a class="anchor" id="ae19a748cbe98a4aff1af40d78260f886"></a>
 <div class="memitem">
@@ -212,10 +240,43 @@ Enumerations</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ad2cd6162a636d3e7da08a1075dde4d80"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d_weather_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structD__WEATHER__REPORT.html">D_WEATHER_REPORT</a> **&#160;</td>
+          <td class="paramname"><em>_this</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac7c185a743977e409f3a77eceabd9ce6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d_weather_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structD__WEATHER__REPORT.html">D_WEATHER_REPORT</a> **&#160;</td>
+          <td class="paramname"><em>_this</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 18 2012 12:41:32 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 22 2012 00:45:46 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

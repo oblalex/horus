@@ -92,8 +92,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">gs_mission_manager.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;config.h&gt;</code><br/>
+<div class="textblock"><code>#include &lt;<a class="el" href="config_8h_source.html">config.h</a>&gt;</code><br/>
 <code>#include &quot;<a class="el" href="gs__mission__manager_8h_source.html">gs_mission_manager.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="pilot__manager_8h_source.html">pilot_manager.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__paths_8h_source.html">gs_paths.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__cmd_8h_source.html">gs_cmd.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__input__handlers_8h_source.html">gs_input_handlers.h</a>&quot;</code><br/>
@@ -136,28 +137,42 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ade2c469d0f349cf8340511eeaad4b48e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#ade2c469d0f349cf8340511eeaad4b48e">mssn_status_reset</a> ()</td></tr>
-<tr class="separator:ade2c469d0f349cf8340511eeaad4b48e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cbe582bac1f341aa296d740375f71eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a4cbe582bac1f341aa296d740375f71eb">mssn_list_load</a> ()</td></tr>
+<tr class="memitem:afaed86c6b0d879b8aad400fb3bc3ff0c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#afaed86c6b0d879b8aad400fb3bc3ff0c">mssn_set_current</a> (<a class="el" href="structD__MISSION__ELEM.html">D_MISSION_ELEM</a> *value)</td></tr>
+<tr class="separator:afaed86c6b0d879b8aad400fb3bc3ff0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cbe582bac1f341aa296d740375f71eb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a4cbe582bac1f341aa296d740375f71eb">mssn_list_load</a> ()</td></tr>
 <tr class="separator:a4cbe582bac1f341aa296d740375f71eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b1aa90b0ec44e688879ca188a61c987"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a7b1aa90b0ec44e688879ca188a61c987">mssn_list_print</a> ()</td></tr>
-<tr class="separator:a7b1aa90b0ec44e688879ca188a61c987"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef21ee13b0dd8b59d137d13692182e49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structD__MISSION__LITE__ELEM.html">D_MISSION_LITE_ELEM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#aef21ee13b0dd8b59d137d13692182e49">get_mssn_elem_by_name</a> (char *name)</td></tr>
-<tr class="separator:aef21ee13b0dd8b59d137d13692182e49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c58cfab0f6a4e7327a9e6210ef8794b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a8c58cfab0f6a4e7327a9e6210ef8794b">mssn_load_weather_report</a> (<a class="el" href="structD__MISSION__LITE.html">D_MISSION_LITE</a> *mission)</td></tr>
-<tr class="separator:a8c58cfab0f6a4e7327a9e6210ef8794b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1a0e350a9e9895eb7058ea3403f9cc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#aa1a0e350a9e9895eb7058ea3403f9cc1">mssn_list_resolve_conflicts</a> ()</td></tr>
+<tr class="memitem:a31a812e5ec45e7e9a603c1d8b09d504c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a31a812e5ec45e7e9a603c1d8b09d504c">mssn_init</a> (<a class="el" href="structD__MISSION__ELEM.html">D_MISSION_ELEM</a> **_this)</td></tr>
+<tr class="separator:a31a812e5ec45e7e9a603c1d8b09d504c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cac92adb44e65e14aa490612a84bf4d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a0cac92adb44e65e14aa490612a84bf4d">mssn_free</a> (<a class="el" href="structD__MISSION__ELEM.html">D_MISSION_ELEM</a> **_this)</td></tr>
+<tr class="separator:a0cac92adb44e65e14aa490612a84bf4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54fa829b2e337c62132db3107ea3838e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a54fa829b2e337c62132db3107ea3838e">mssn_load_weather_report</a> (<a class="el" href="structD__MISSION.html">D_MISSION</a> *mission)</td></tr>
+<tr class="separator:a54fa829b2e337c62132db3107ea3838e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab651eb01cd1f03088faebdc0b9a58f35"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structD__MISSION__ELEM.html">D_MISSION_ELEM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#ab651eb01cd1f03088faebdc0b9a58f35">get_mssn_elem_by_name</a> (char *name)</td></tr>
+<tr class="separator:ab651eb01cd1f03088faebdc0b9a58f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1a0e350a9e9895eb7058ea3403f9cc1"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#aa1a0e350a9e9895eb7058ea3403f9cc1">mssn_list_resolve_conflicts</a> ()</td></tr>
 <tr class="separator:aa1a0e350a9e9895eb7058ea3403f9cc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac26f758ff4d6094ccb6c71cf6a324693"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#ac26f758ff4d6094ccb6c71cf6a324693">mssn_list_resolve_branch</a> (char *name, void **nextRed, void **nextBlue, void **next)</td></tr>
+<tr class="memitem:ac26f758ff4d6094ccb6c71cf6a324693"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#ac26f758ff4d6094ccb6c71cf6a324693">mssn_list_resolve_branch</a> (char *name, void **nextRed, void **nextBlue, void **next)</td></tr>
 <tr class="separator:ac26f758ff4d6094ccb6c71cf6a324693"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae81155fcb36b44c7f9cb6e722e825c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#aae81155fcb36b44c7f9cb6e722e825c0">mssn_list_save</a> ()</td></tr>
+<tr class="memitem:aae81155fcb36b44c7f9cb6e722e825c0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#aae81155fcb36b44c7f9cb6e722e825c0">mssn_list_save</a> ()</td></tr>
 <tr class="separator:aae81155fcb36b44c7f9cb6e722e825c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15b292cd3eb4d8325aea664bea255eaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a15b292cd3eb4d8325aea664bea255eaf">mssn_list_clear</a> ()</td></tr>
+<tr class="memitem:a15b292cd3eb4d8325aea664bea255eaf"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a15b292cd3eb4d8325aea664bea255eaf">mssn_list_clear</a> ()</td></tr>
 <tr class="separator:a15b292cd3eb4d8325aea664bea255eaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e78cb6e73acc887341906cb54bf3727"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a3e78cb6e73acc887341906cb54bf3727">mssn_list_reload</a> ()</td></tr>
-<tr class="separator:a3e78cb6e73acc887341906cb54bf3727"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae576e518045cc29aa82e4d4cd61205c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#ae576e518045cc29aa82e4d4cd61205c6">mssn_set_current</a> (<a class="el" href="structD__MISSION__LITE__ELEM.html">D_MISSION_LITE_ELEM</a> *value)</td></tr>
-<tr class="separator:ae576e518045cc29aa82e4d4cd61205c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a579b8d65407f741cb69f889385f572bd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a579b8d65407f741cb69f889385f572bd">mssn_list_history_clear</a> ()</td></tr>
+<tr class="separator:a579b8d65407f741cb69f889385f572bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b1aa90b0ec44e688879ca188a61c987"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a7b1aa90b0ec44e688879ca188a61c987">mssn_list_print</a> ()</td></tr>
+<tr class="separator:a7b1aa90b0ec44e688879ca188a61c987"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f2bad0d8d8df2893f8ff4e04af84eb5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a3f2bad0d8d8df2893f8ff4e04af84eb5">msg_delete</a> (<a class="el" href="structMSG__T.html">MSG_T</a> *msg)</td></tr>
+<tr class="separator:a3f2bad0d8d8df2893f8ff4e04af84eb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62619a770176abf1a4529170078daa97"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a62619a770176abf1a4529170078daa97">msg_enqueue</a> (<a class="el" href="structMSG__T.html">MSG_T</a> *msg)</td></tr>
+<tr class="separator:a62619a770176abf1a4529170078daa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dfffeb5a1f6d020aa84fa2e1fb4fe4e"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a6dfffeb5a1f6d020aa84fa2e1fb4fe4e">mssn_timer_watcher</a> ()</td></tr>
+<tr class="separator:a6dfffeb5a1f6d020aa84fa2e1fb4fe4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4273f6fd278a1cfb56476f067b798fd"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#ae4273f6fd278a1cfb56476f067b798fd">mssn_msg_dispatcher</a> ()</td></tr>
+<tr class="separator:ae4273f6fd278a1cfb56476f067b798fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa31218ef947ef26a76c19ae789ce8e03"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#aa31218ef947ef26a76c19ae789ce8e03">check_notificator_seconds</a> (int *value, int range, int newValue)</td></tr>
+<tr class="separator:aa31218ef947ef26a76c19ae789ce8e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ba910850bdf2e50c20ac71f22bfe451"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a2ba910850bdf2e50c20ac71f22bfe451">handle_events_in</a> ()</td></tr>
+<tr class="separator:a2ba910850bdf2e50c20ac71f22bfe451"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb681a1fc3c15e17cd485f435c4a2c9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#adb681a1fc3c15e17cd485f435c4a2c9a">gs_mssn_load</a> ()</td></tr>
 <tr class="separator:adb681a1fc3c15e17cd485f435c4a2c9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f4dfc32b75c68b67fe1d5e558060f2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a0f4dfc32b75c68b67fe1d5e558060f2c">gs_mssn_unload</a> ()</td></tr>
@@ -188,12 +203,6 @@ Functions</h2></td></tr>
 <tr class="separator:aa0047b9919b60535dba622792896d0d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac742f18aeb1df8e876b8464123ce7e75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#ac742f18aeb1df8e876b8464123ce7e75">gs_mssn_manager_tearDown</a> ()</td></tr>
 <tr class="separator:ac742f18aeb1df8e876b8464123ce7e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a579b8d65407f741cb69f889385f572bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a579b8d65407f741cb69f889385f572bd">mssn_list_history_clear</a> ()</td></tr>
-<tr class="separator:a579b8d65407f741cb69f889385f572bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a480a3c1f03c9a03e7d5d72a8865a9baa"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a480a3c1f03c9a03e7d5d72a8865a9baa">mssn_timer_watcher</a> ()</td></tr>
-<tr class="separator:a480a3c1f03c9a03e7d5d72a8865a9baa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa31218ef947ef26a76c19ae789ce8e03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#aa31218ef947ef26a76c19ae789ce8e03">check_notificator_seconds</a> (int *value, int range, int newValue)</td></tr>
-<tr class="separator:aa31218ef947ef26a76c19ae789ce8e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3141aeb162e393f7e55d1cfe8817c253"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a3141aeb162e393f7e55d1cfe8817c253">gs_mssn_time_str</a> (char *str)</td></tr>
 <tr class="separator:a3141aeb162e393f7e55d1cfe8817c253"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeba3dc485948fd2405f74c4b7cd49bbd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#aeba3dc485948fd2405f74c4b7cd49bbd">gs_mssn_seconds_left</a> ()</td></tr>
@@ -206,12 +215,6 @@ Functions</h2></td></tr>
 <tr class="separator:a30bddadfef753da859855b4a5f6b23ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66a9aa7725ecda8a65c4b21ad3eb1ba8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a66a9aa7725ecda8a65c4b21ad3eb1ba8">gs_mssn_running</a> ()</td></tr>
 <tr class="separator:a66a9aa7725ecda8a65c4b21ad3eb1ba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a434ddad4ef01e6ee3c4128427a60434d"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a434ddad4ef01e6ee3c4128427a60434d">mssn_msg_dispatcher</a> ()</td></tr>
-<tr class="separator:a434ddad4ef01e6ee3c4128427a60434d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62619a770176abf1a4529170078daa97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a62619a770176abf1a4529170078daa97">msg_enqueue</a> (<a class="el" href="structMSG__T.html">MSG_T</a> *msg)</td></tr>
-<tr class="separator:a62619a770176abf1a4529170078daa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f2bad0d8d8df2893f8ff4e04af84eb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a3f2bad0d8d8df2893f8ff4e04af84eb5">msg_delete</a> (<a class="el" href="structMSG__T.html">MSG_T</a> *msg)</td></tr>
-<tr class="separator:a3f2bad0d8d8df2893f8ff4e04af84eb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca5f7e5aa54a386b5c821887c05caf8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#aca5f7e5aa54a386b5c821887c05caf8c">gs_mssn_load_req</a> ()</td></tr>
 <tr class="separator:aca5f7e5aa54a386b5c821887c05caf8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0641ae78f4dc1367ad0d21201374af9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a0641ae78f4dc1367ad0d21201374af9c">gs_mssn_unload_req</a> ()</td></tr>
@@ -236,19 +239,17 @@ Functions</h2></td></tr>
 <tr class="separator:aea531c4ea0dc57144b2cb7232130b07b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7ab6d37e790e4b5d2a1379f50250d9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#ab7ab6d37e790e4b5d2a1379f50250d9e">gs_mssn_time_left_set_req</a> (int h, int m, int s)</td></tr>
 <tr class="separator:ab7ab6d37e790e4b5d2a1379f50250d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9dcae00b79c3cea0ccafd81aad08e64"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#ab9dcae00b79c3cea0ccafd81aad08e64">handle_events_in</a> ()</td></tr>
-<tr class="separator:ab9dcae00b79c3cea0ccafd81aad08e64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a38ccb1fcbf1ae556721fe91cec85435e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structCSTACK.html">CSTACK</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a38ccb1fcbf1ae556721fe91cec85435e">HISTORY</a></td></tr>
 <tr class="separator:a38ccb1fcbf1ae556721fe91cec85435e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5980b45dc78ab12add4ad146dc073fb7"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structD__MISSION__LITE__ELEM.html">D_MISSION_LITE_ELEM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a5980b45dc78ab12add4ad146dc073fb7">FIRST</a> = NULL</td></tr>
-<tr class="separator:a5980b45dc78ab12add4ad146dc073fb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5add1df6741c4a2ca2d7e23cbbaa6a30"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structD__MISSION__LITE__ELEM.html">D_MISSION_LITE_ELEM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a5add1df6741c4a2ca2d7e23cbbaa6a30">LAST</a> = NULL</td></tr>
-<tr class="separator:a5add1df6741c4a2ca2d7e23cbbaa6a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5d1ecf971c68527dbb1150cc20ce5fb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structD__MISSION__LITE__ELEM.html">D_MISSION_LITE_ELEM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#ab5d1ecf971c68527dbb1150cc20ce5fb">CURRENT</a> = NULL</td></tr>
-<tr class="separator:ab5d1ecf971c68527dbb1150cc20ce5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3afa9fcb661c2427a8294e9d431fc04"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structD__MISSION__ELEM.html">D_MISSION_ELEM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#aa3afa9fcb661c2427a8294e9d431fc04">FIRST</a> = NULL</td></tr>
+<tr class="separator:aa3afa9fcb661c2427a8294e9d431fc04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a359c50178aed90ad120ef4df876c6907"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structD__MISSION__ELEM.html">D_MISSION_ELEM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a359c50178aed90ad120ef4df876c6907">LAST</a> = NULL</td></tr>
+<tr class="separator:a359c50178aed90ad120ef4df876c6907"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07af734624cfde0e831701b26f5ed655"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structD__MISSION__ELEM.html">D_MISSION_ELEM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a07af734624cfde0e831701b26f5ed655">CURRENT</a> = NULL</td></tr>
+<tr class="separator:a07af734624cfde0e831701b26f5ed655"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a254ea83e46e9493872fc79ae46412e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a7a254ea83e46e9493872fc79ae46412e">MSSN_COUNT</a> = 0</td></tr>
 <tr class="separator:a7a254ea83e46e9493872fc79ae46412e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53ebe9585de6e827103e66edfe177fde"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__mission__manager_8c.html#a53ebe9585de6e827103e66edfe177fde">SECS_LEFT</a> = 0</td></tr>
@@ -413,6 +414,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="aa31218ef947ef26a76c19ae789ce8e03"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> check_notificator_seconds </td>
@@ -438,22 +442,35 @@ Variables</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="aef21ee13b0dd8b59d137d13692182e49"></a>
+<a class="anchor" id="ab651eb01cd1f03088faebdc0b9a58f35"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structD__MISSION__LITE__ELEM.html">D_MISSION_LITE_ELEM</a>* get_mssn_elem_by_name </td>
+          <td class="memname"><a class="el" href="structD__MISSION__ELEM.html">D_MISSION_ELEM</a> * get_mssn_elem_by_name </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>name</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -989,17 +1006,25 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab9dcae00b79c3cea0ccafd81aad08e64"></a>
+<a class="anchor" id="a2ba910850bdf2e50c20ac71f22bfe451"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void* handle_events_in </td>
+          <td class="memname">void * handle_events_in </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -1007,6 +1032,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a3f2bad0d8d8df2893f8ff4e04af84eb5"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void msg_delete </td>
@@ -1016,6 +1044,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -1023,6 +1056,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a62619a770176abf1a4529170078daa97"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void msg_enqueue </td>
@@ -1032,6 +1068,59 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0cac92adb44e65e14aa490612a84bf4d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mssn_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structD__MISSION__ELEM.html">D_MISSION_ELEM</a> **&#160;</td>
+          <td class="paramname"><em>_this</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a31a812e5ec45e7e9a603c1d8b09d504c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mssn_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structD__MISSION__ELEM.html">D_MISSION_ELEM</a> **&#160;</td>
+          <td class="paramname"><em>_this</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -1039,6 +1128,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a15b292cd3eb4d8325aea664bea255eaf"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void mssn_list_clear </td>
@@ -1047,6 +1139,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -1054,6 +1151,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a579b8d65407f741cb69f889385f572bd"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void mssn_list_history_clear </td>
@@ -1062,6 +1162,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -1069,6 +1174,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a4cbe582bac1f341aa296d740375f71eb"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void mssn_list_load </td>
@@ -1077,6 +1185,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -1084,6 +1197,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a7b1aa90b0ec44e688879ca188a61c987"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void mssn_list_print </td>
@@ -1092,21 +1208,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a3e78cb6e73acc887341906cb54bf3727"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mssn_list_reload </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -1114,6 +1220,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="ac26f758ff4d6094ccb6c71cf6a324693"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void mssn_list_resolve_branch </td>
@@ -1145,6 +1254,11 @@ Variables</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -1152,6 +1266,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="aa1a0e350a9e9895eb7058ea3403f9cc1"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void mssn_list_resolve_conflicts </td>
@@ -1160,6 +1277,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -1167,6 +1289,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="aae81155fcb36b44c7f9cb6e722e825c0"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void mssn_list_save </td>
@@ -1175,89 +1300,16 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a8c58cfab0f6a4e7327a9e6210ef8794b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mssn_load_weather_report </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structD__MISSION__LITE.html">D_MISSION_LITE</a> *&#160;</td>
-          <td class="paramname"><em>mission</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a434ddad4ef01e6ee3c4128427a60434d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void* mssn_msg_dispatcher </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ae576e518045cc29aa82e4d4cd61205c6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mssn_set_current </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structD__MISSION__LITE__ELEM.html">D_MISSION_LITE_ELEM</a> *&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ade2c469d0f349cf8340511eeaad4b48e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mssn_status_reset </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a480a3c1f03c9a03e7d5d72a8865a9baa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void* mssn_timer_watcher </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="ab5d1ecf971c68527dbb1150cc20ce5fb"></a>
+<a class="anchor" id="a54fa829b2e337c62132db3107ea3838e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1265,7 +1317,102 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structD__MISSION__LITE__ELEM.html">D_MISSION_LITE_ELEM</a>* CURRENT = NULL</td>
+          <td class="memname">void mssn_load_weather_report </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structD__MISSION.html">D_MISSION</a> *&#160;</td>
+          <td class="paramname"><em>mission</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae4273f6fd278a1cfb56476f067b798fd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * mssn_msg_dispatcher </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="afaed86c6b0d879b8aad400fb3bc3ff0c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mssn_set_current </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structD__MISSION__ELEM.html">D_MISSION_ELEM</a> *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6dfffeb5a1f6d020aa84fa2e1fb4fe4e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * mssn_timer_watcher </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a07af734624cfde0e831701b26f5ed655"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structD__MISSION__ELEM.html">D_MISSION_ELEM</a>* CURRENT = NULL</td>
         </tr>
       </table>
   </td>
@@ -1297,7 +1444,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5980b45dc78ab12add4ad146dc073fb7"></a>
+<a class="anchor" id="aa3afa9fcb661c2427a8294e9d431fc04"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1305,7 +1452,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structD__MISSION__LITE__ELEM.html">D_MISSION_LITE_ELEM</a>* FIRST = NULL</td>
+          <td class="memname"><a class="el" href="structD__MISSION__ELEM.html">D_MISSION_ELEM</a>* FIRST = NULL</td>
         </tr>
       </table>
   </td>
@@ -1417,7 +1564,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5add1df6741c4a2ca2d7e23cbbaa6a30"></a>
+<a class="anchor" id="a359c50178aed90ad120ef4df876c6907"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1425,7 +1572,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structD__MISSION__LITE__ELEM.html">D_MISSION_LITE_ELEM</a>* LAST = NULL</td>
+          <td class="memname"><a class="el" href="structD__MISSION__ELEM.html">D_MISSION_ELEM</a>* LAST = NULL</td>
         </tr>
       </table>
   </td>
@@ -1600,7 +1747,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 18 2012 12:41:32 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 22 2012 00:45:46 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

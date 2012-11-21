@@ -1,7 +1,6 @@
 var searchData=
 [
   ['aboutdialog',['AboutDialog',['../classAboutDialog.html#ad96fc2ce8de7568ace543b7c69c71c56',1,'AboutDialog']]],
-  ['add_5fvariable',['add_variable',['../mxmldoc_8c.html#aa76df94393290d13feeb55a5ecdc049c',1,'mxmldoc.c']]],
   ['addchild',['addChild',['../classConfigModule.html#a08168dd23402307143f1590d81cd5c6d',1,'ConfigModule']]],
   ['addedge',['addEdge',['../classMissionElem.html#a5bdb8ebcd306d726e28fbe5d8985b64d',1,'MissionElem']]],
   ['addfromelement',['addFromElement',['../classListFileHelper.html#a47d6772ef07524b85c584d6b34b40057',1,'ListFileHelper']]],

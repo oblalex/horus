@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>Horus-commander: src/HorusMLE/main_window.h File Reference</title>
+<title>Horus-commander: src/domain/d_pilot.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,40 +80,100 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d602cd4c71366b42397170945bc8be94.html">HorusMLE</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_59e154daa71ab644ff60a4d6c4d01bbf.html">domain</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">main_window.h File Reference</div>  </div>
+<div class="title">d_pilot.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;QMainWindow&gt;</code><br/>
-<code>#include &lt;QSpinBox&gt;</code><br/>
-<code>#include &lt;QLabel&gt;</code><br/>
-<code>#include &quot;<a class="el" href="mission__list__view_8h_source.html">mission_list_view.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="list__file__helper_8h_source.html">list_file_helper.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="settings_8h_source.html">settings.h</a>&quot;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="common_8h_source.html">../util/common.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="types_8h_source.html">../util/types.h</a>&quot;</code><br/>
 </div>
-<p><a href="main__window_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="d__pilot_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html">MainWindow</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structD__PILOT.html">D_PILOT</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespaceUi"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceUi.html">Ui</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a997bd4c86d059322130d8bcaed49f073"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structD__PILOT.html">D_PILOT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__pilot_8h.html#a997bd4c86d059322130d8bcaed49f073">D_PILOT</a></td></tr>
+<tr class="separator:a997bd4c86d059322130d8bcaed49f073"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a0db548aaa23b450ab19f1fa94360f406"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__pilot_8h.html#a0db548aaa23b450ab19f1fa94360f406">d_pilot_init</a> (<a class="el" href="structD__PILOT.html">D_PILOT</a> **_this, char *callsign)</td></tr>
+<tr class="separator:a0db548aaa23b450ab19f1fa94360f406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade3122a719ad9aaeba236576483f7b7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__pilot_8h.html#ade3122a719ad9aaeba236576483f7b7c">d_pilot_free</a> (<a class="el" href="structD__PILOT.html">D_PILOT</a> **_this)</td></tr>
+<tr class="separator:ade3122a719ad9aaeba236576483f7b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="a997bd4c86d059322130d8bcaed49f073"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structD__PILOT.html">D_PILOT</a>  <a class="el" href="structD__PILOT.html">D_PILOT</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ade3122a719ad9aaeba236576483f7b7c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d_pilot_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structD__PILOT.html">D_PILOT</a> **&#160;</td>
+          <td class="paramname"><em>_this</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0db548aaa23b450ab19f1fa94360f406"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d_pilot_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structD__PILOT.html">D_PILOT</a> **&#160;</td>
+          <td class="paramname"><em>_this</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>callsign</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 15 2012 00:05:53 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 22 2012 00:45:46 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

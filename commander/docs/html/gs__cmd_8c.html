@@ -91,28 +91,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">gs_cmd.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;config.h&gt;</code><br/>
+<div class="textblock"><code>#include &lt;<a class="el" href="config_8h_source.html">config.h</a>&gt;</code><br/>
 <code>#include &lt;wchar.h&gt;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
 <code>#include &lt;stdio.h&gt;</code><br/>
+<code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;time.h&gt;</code><br/>
 <code>#include &lt;pthread.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="gs__cmd_8h_source.html">gs_cmd.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__cfg_8h_source.html">gs_cfg.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="sys__cfg_8h_source.html">sys_cfg.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__console_8h_source.html">gs_console.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="print__status_8h_source.html">util/print_status.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="str_8h_source.html">util/str.h</a>&quot;</code><br/>
+<code>#include &lt;unistd.h&gt;</code><br/>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a1bbd75d564bac5f6ef14e212caf612ce"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a1bbd75d564bac5f6ef14e212caf612ce">gs_cmd_send</a> (char *cmd)</td></tr>
+<tr class="separator:a1bbd75d564bac5f6ef14e212caf612ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4fb70acd35cd0b9bf6f4810e9d0f6e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#af4fb70acd35cd0b9bf6f4810e9d0f6e9">gs_cmd_init</a> ()</td></tr>
 <tr class="separator:af4fb70acd35cd0b9bf6f4810e9d0f6e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af67a9115ea4474ada51d802b1121eb57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#af67a9115ea4474ada51d802b1121eb57">gs_cmd_exit</a> ()</td></tr>
 <tr class="separator:af67a9115ea4474ada51d802b1121eb57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2c0182fe55076fa55ee8af60d3fc214"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#ae2c0182fe55076fa55ee8af60d3fc214">gs_cmd_chat_all</a> (char *msg)</td></tr>
 <tr class="separator:ae2c0182fe55076fa55ee8af60d3fc214"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32565a7671d7966948afbe60414ab6b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a32565a7671d7966948afbe60414ab6b7">gs_cmd_chat_username</a> (char *username, char *msg)</td></tr>
-<tr class="separator:a32565a7671d7966948afbe60414ab6b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2b961f6e2beca01836cc6f55a204049"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#aa2b961f6e2beca01836cc6f55a204049">gs_cmd_chat_callsign</a> (char *username, char *msg)</td></tr>
+<tr class="separator:aa2b961f6e2beca01836cc6f55a204049"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5826213d64a81ada8df69165582c91a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a5826213d64a81ada8df69165582c91a1">gs_cmd_chat_usernum</a> (int num, char *msg)</td></tr>
 <tr class="separator:a5826213d64a81ada8df69165582c91a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9e14c470dff9f0dc86f38820454b60a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#ae9e14c470dff9f0dc86f38820454b60a">gs_cmd_chat_army</a> (char army_num, char *msg)</td></tr>
@@ -121,6 +126,8 @@ Functions</h2></td></tr>
 <tr class="separator:aa67a15bec9d56b62b4449ab859be24ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5f825df54c605f25ed860a2a6f00a96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#aa5f825df54c605f25ed860a2a6f00a96">gs_cmd_kick_all</a> ()</td></tr>
 <tr class="separator:aa5f825df54c605f25ed860a2a6f00a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bac39197202297fdbbe57c4d3261fa0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a7bac39197202297fdbbe57c4d3261fa0">gs_cmd_greet_user</a> (char *callsign)</td></tr>
+<tr class="separator:a7bac39197202297fdbbe57c4d3261fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dd024edb22be4f162c9844ede315f78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a7dd024edb22be4f162c9844ede315f78">gs_cmd_mssn_status</a> ()</td></tr>
 <tr class="separator:a7dd024edb22be4f162c9844ede315f78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e868351f7ed90b21e2ef6bc4285e757"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a0e868351f7ed90b21e2ef6bc4285e757">gs_cmd_mssn_load</a> (char *path)</td></tr>
@@ -131,8 +138,6 @@ Functions</h2></td></tr>
 <tr class="separator:a07094ace1fe3779889f3e92a88dfaaf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57a9d3a9f54dd860e3c9ebf22bc81d0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a57a9d3a9f54dd860e3c9ebf22bc81d0c">gs_cmd_mssn_unload</a> ()</td></tr>
 <tr class="separator:a57a9d3a9f54dd860e3c9ebf22bc81d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1bbd75d564bac5f6ef14e212caf612ce"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a1bbd75d564bac5f6ef14e212caf612ce">gs_cmd_send</a> (char *cmd)</td></tr>
-<tr class="separator:a1bbd75d564bac5f6ef14e212caf612ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a670701f11e6f94fc8aedeb5cf8035fbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a670701f11e6f94fc8aedeb5cf8035fbd">gs_cmd_tear_down</a> ()</td></tr>
 <tr class="separator:a670701f11e6f94fc8aedeb5cf8035fbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -142,8 +147,10 @@ Variables</h2></td></tr>
 <tr class="separator:a058786726124091e6fe161617173b83a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac49cd26ebb90fdb9730da15c401997be"><td class="memItemLeft" align="right" valign="top">static pthread_mutex_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#ac49cd26ebb90fdb9730da15c401997be">LOCK</a></td></tr>
 <tr class="separator:ac49cd26ebb90fdb9730da15c401997be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a178795099d0608972755dfef8d8367e3"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a178795099d0608972755dfef8d8367e3">channels</a></td></tr>
-<tr class="separator:a178795099d0608972755dfef8d8367e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39f8cf8daac010c0ce191cda17d7b767"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a39f8cf8daac010c0ce191cda17d7b767">GREETING_FORMAT</a></td></tr>
+<tr class="separator:a39f8cf8daac010c0ce191cda17d7b767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95799538ddd21d7d7aaf8629348c3ea4"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__cmd_8c.html#a95799538ddd21d7d7aaf8629348c3ea4">ABOUT_COMMANDER</a> [255]</td></tr>
+<tr class="separator:a95799538ddd21d7d7aaf8629348c3ea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="aa67a15bec9d56b62b4449ab859be24ba"></a>
@@ -214,12 +221,12 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a32565a7671d7966948afbe60414ab6b7"></a>
+<a class="anchor" id="aa2b961f6e2beca01836cc6f55a204049"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void gs_cmd_chat_username </td>
+          <td class="memname">void gs_cmd_chat_callsign </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>username</em>, </td>
@@ -274,6 +281,22 @@ Variables</h2></td></tr>
           <td class="memname">void gs_cmd_exit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7bac39197202297fdbbe57c4d3261fa0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gs_cmd_greet_user </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>callsign</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -427,7 +450,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a178795099d0608972755dfef8d8367e3"></a>
+<a class="anchor" id="a95799538ddd21d7d7aaf8629348c3ea4"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -435,7 +458,27 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int channels</td>
+          <td class="memname">char ABOUT_COMMANDER[255]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a39f8cf8daac010c0ce191cda17d7b767"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* GREETING_FORMAT</td>
         </tr>
       </table>
   </td>
@@ -490,7 +533,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 18 2012 12:41:32 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 22 2012 00:45:46 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

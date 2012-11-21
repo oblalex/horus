@@ -4,7 +4,6 @@ var searchData=
   ['line_5fwr',['line_wr',['../file_8c.html#a8528df73f834c2da96af5b73ad311f5f',1,'line_wr(int fd, char *line, int size):&#160;file.c'],['../file_8h.html#a8528df73f834c2da96af5b73ad311f5f',1,'line_wr(int fd, char *line, int size):&#160;file.c']]],
   ['listfilehelper',['ListFileHelper',['../classListFileHelper.html#a1425bf3e5f0f59bb3f7cf1cfda6620bc',1,'ListFileHelper']]],
   ['load',['load',['../classConfigModule.html#ae4989fde5da45f87897d408cf5a6bcd3',1,'ConfigModule::load()'],['../classDifficultyPage.html#adf444136903871cfa2d84e82219c3299',1,'DifficultyPage::load()'],['../classGeneralPage.html#a9419b3a686d1640e9903ea93826e36fb',1,'GeneralPage::load()'],['../classMainWindow.html#a692f2f28196cc9ee41b10e89c5d32922',1,'MainWindow::load()'],['../classNetPage.html#acbf89afd8ec48db885a2b918f6e2ee32',1,'NetPage::load()'],['../classSettings.html#a1eeeb01f1cc6cf7b841a3e112ee031d6',1,'Settings::load()']]],
-  ['load_5fcb',['load_cb',['../mxmldoc_8c.html#ab00caf15169bd74f90302cb488fda7eb',1,'mxmldoc.c']]],
   ['loadchildren',['loadChildren',['../classConfigModule.html#ac5e9b76847dbfd18eaf6437cd0a034e6',1,'ConfigModule']]],
   ['loadchildrendefaults',['loadChildrenDefaults',['../classConfigModule.html#a0dbb853f6f7f27acec0c0f1a15d68e5f',1,'ConfigModule']]],
   ['loadcode',['loadCode',['../classDifficultyPage.html#a945802db395456b7618e4db144276bf1',1,'DifficultyPage']]],

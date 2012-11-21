@@ -91,37 +91,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="d__mission_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef D_MISSION_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define D_MISSION_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="d__weather_8h.html">d_weather.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;../util/types.h&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a1a99dc1f559e40c2a92c31e45145b032">    6</a></span>&#160;<span class="preprocessor">#define MSSN_KEY_CLOUD_TYPE         (&quot;CloudType&quot;)</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="code" href="d__mission_8h.html#aa5f2f7a41cdd458cb229b2e1f564fa6a">    7</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MSSN_KEY_CLOUD_HEIGTH       (&quot;CloudHeight&quot;)</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a205891af28d01b2232cf18585921820a">    9</a></span>&#160;<span class="preprocessor">#define MSSN_KEY_TIME               (&quot;TIME&quot;)</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a61f036d1c4954e18a0923725c45026cc">   10</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MSSN_KEY_YEAR               (&quot;Year&quot;)</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="code" href="d__mission_8h.html#abbc507020ae5a5cacecf04cbecc25e39">   11</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MSSN_KEY_MONTH              (&quot;Month&quot;)</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a6370fbb23396d2e5a449d0aea191147a">   12</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MSSN_KEY_DAY                (&quot;Day&quot;)</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a1c1c2114f0467e1a152850c181eac42e">   14</a></span>&#160;<span class="preprocessor">#define MSSN_KEY_WIND_DIRECTION     (&quot;WindDirection&quot;)</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a9d4e7a5b4c7b7fa3551ec2cec2bfd43f">   15</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MSSN_KEY_WIND_SPEED         (&quot;WindSpeed&quot;)</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a8caf21269b63e05ab3271501da327f18">   16</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MSSN_KEY_GUST               (&quot;Gust&quot;)</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a29cd8e598b412917fe3e9819190ea7fd">   17</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MSSN_KEY_TURBULENCE         (&quot;Turbulence&quot;)</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="code" href="structD__MISSION__LITE.html">   19</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structD__MISSION__LITE.html">D_MISSION_LITE</a></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="code" href="structD__MISSION__LITE.html#ac50710062fb47eb9f840eb7a95efa953">   22</a></span>&#160;    <span class="keywordtype">char</span>*   <a class="code" href="structD__MISSION__LITE.html#ac50710062fb47eb9f840eb7a95efa953">name</a>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="code" href="structD__MISSION__LITE.html#aa334ef7a60945c2246b98622e62e92dd">   25</a></span>&#160;    <span class="keywordtype">char</span>*   <a class="code" href="structD__MISSION__LITE.html#aa334ef7a60945c2246b98622e62e92dd">path</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="code" href="structD__MISSION__LITE.html#a19832b3a098628d532b856fd4b36e653">   28</a></span>&#160;    <span class="keywordtype">int</span>     <a class="code" href="structD__MISSION__LITE.html#a19832b3a098628d532b856fd4b36e653">sDuration</a>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="code" href="structD__MISSION__LITE.html#a15152bae5ccd7402990d33c16ab5f7d8">   31</a></span>&#160;    <a class="code" href="structD__WEATHER__REPORT.html">D_WEATHER_REPORT</a> <a class="code" href="structD__MISSION__LITE.html#a15152bae5ccd7402990d33c16ab5f7d8">weather</a>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;} <a class="code" href="d__mission_8h.html#ac5e5e9f2aaa33338f6acbaea0e4ae2e2">D_MISSION_LITE</a>;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="d__weather_8h.html">d_weather.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a1a99dc1f559e40c2a92c31e45145b032">    8</a></span>&#160;<span class="preprocessor">#define MSSN_KEY_CLOUD_TYPE         &quot;CloudType&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="code" href="d__mission_8h.html#aa5f2f7a41cdd458cb229b2e1f564fa6a">    9</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MSSN_KEY_CLOUD_HEIGTH       &quot;CloudHeight&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a205891af28d01b2232cf18585921820a">   11</a></span>&#160;<span class="preprocessor">#define MSSN_KEY_TIME               &quot;TIME&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a61f036d1c4954e18a0923725c45026cc">   12</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MSSN_KEY_YEAR               &quot;Year&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="code" href="d__mission_8h.html#abbc507020ae5a5cacecf04cbecc25e39">   13</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MSSN_KEY_MONTH              &quot;Month&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a6370fbb23396d2e5a449d0aea191147a">   14</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MSSN_KEY_DAY                &quot;Day&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a1c1c2114f0467e1a152850c181eac42e">   16</a></span>&#160;<span class="preprocessor">#define MSSN_KEY_WIND_DIRECTION     &quot;WindDirection&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a9d4e7a5b4c7b7fa3551ec2cec2bfd43f">   17</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MSSN_KEY_WIND_SPEED         &quot;WindSpeed&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a8caf21269b63e05ab3271501da327f18">   18</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MSSN_KEY_GUST               &quot;Gust&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="code" href="d__mission_8h.html#a29cd8e598b412917fe3e9819190ea7fd">   19</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MSSN_KEY_TURBULENCE         &quot;Turbulence&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="code" href="d__mission_8h.html#acfe59d8d4b71dc3e02886572f2a58fa3">   21</a></span>&#160;<span class="preprocessor">#define MSSN_DEFAULT_DURATION       3600</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="code" href="structD__MISSION.html">   23</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structD__MISSION.html">D_MISSION</a></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="structD__MISSION.html#ae1689fbba6e9b407b1218f11ceccc685">   26</a></span>&#160;    <span class="keywordtype">char</span>*   <a class="code" href="structD__MISSION.html#ae1689fbba6e9b407b1218f11ceccc685">name</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="code" href="structD__MISSION.html#a79d2f8106a720825e76e47905a803451">   29</a></span>&#160;    <span class="keywordtype">char</span>*   <a class="code" href="structD__MISSION.html#a79d2f8106a720825e76e47905a803451">path</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="code" href="structD__MISSION.html#ac1ae7bed482fb78b4a26da3a8d2e53bc">   32</a></span>&#160;    <a class="code" href="types_8h.html#a1ee29ba590ccc63c8b19d1dae350b86a">uint4</a>   <a class="code" href="structD__MISSION.html#ac1ae7bed482fb78b4a26da3a8d2e53bc">sDuration</a>;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif // D_MISSION_H</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="structD__MISSION.html#a3c57c44e697e173759ec2ada2f90d9ea">   35</a></span>&#160;    <a class="code" href="structD__WEATHER__REPORT.html">D_WEATHER_REPORT</a>* <a class="code" href="structD__MISSION.html#a3c57c44e697e173759ec2ada2f90d9ea">weather</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;} <a class="code" href="d__mission_8h.html#a4d5e9bcdbc1b489d7250748d75af75f8">D_MISSION</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">void</span> <a class="code" href="d__mission_8c.html#abf72d4a819ee8b78dfb5e063b54b3244">d_mission_init</a>(<a class="code" href="structD__MISSION.html">D_MISSION</a>** _this);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span> <a class="code" href="d__mission_8c.html#a4390e81a9211384dc53f86ab7df9a893">d_mission_init_lazy</a>(<a class="code" href="structD__MISSION.html">D_MISSION</a>** _this);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> <a class="code" href="d__mission_8c.html#ad4c8fc51d1eca16353e8f11002ddac78">d_mission_free</a>(<a class="code" href="structD__MISSION.html">D_MISSION</a>** _this);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="d__mission_8c.html#a8f14321393d0abc99a0a3463650d5cec">d_mission_name_set</a>(<a class="code" href="structD__MISSION.html">D_MISSION</a>* _this, <span class="keywordtype">char</span>* name);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="d__mission_8c.html#a4e3742a364cae8ac1b3d738515a07aa2">d_mission_path_set</a>(<a class="code" href="structD__MISSION.html">D_MISSION</a>* _this, <span class="keywordtype">char</span>* path);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif // D_MISSION_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 18 2012 12:41:31 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 22 2012 00:45:46 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

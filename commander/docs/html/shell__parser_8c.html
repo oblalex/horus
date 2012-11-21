@@ -91,11 +91,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">shell_parser.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;config.h&gt;</code><br/>
+<div class="textblock"><code>#include &lt;<a class="el" href="config_8h_source.html">config.h</a>&gt;</code><br/>
 <code>#include &quot;<a class="el" href="shell__parser_8h_source.html">shell_parser.h</a>&quot;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
 <code>#include &lt;stdlib.h&gt;</code><br/>
-<code>#include &lt;regex.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="gs_8h_source.html">gs.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__cmd_8h_source.html">gs_cmd.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__mission__manager_8h_source.html">gs_mission_manager.h</a>&quot;</code><br/>
@@ -107,35 +106,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad1039c18b126da2a63464bc831f1d5c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#ad1039c18b126da2a63464bc831f1d5c6">shell_parser_init</a> ()</td></tr>
-<tr class="separator:ad1039c18b126da2a63464bc831f1d5c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5384b3c65983d828e1d5e5d79d92df8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#ae5384b3c65983d828e1d5e5d79d92df8">shell_parser_teardown</a> ()</td></tr>
-<tr class="separator:ae5384b3c65983d828e1d5e5d79d92df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63d64f787d677f6b6eb870d1512e7f54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a63d64f787d677f6b6eb870d1512e7f54">shell_parse_string</a> (char *str)</td></tr>
-<tr class="separator:a63d64f787d677f6b6eb870d1512e7f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a711a546409c16e7bb5bdb9de8057ca92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a711a546409c16e7bb5bdb9de8057ca92">exit_match</a> (char *str)</td></tr>
+<tr class="memitem:a711a546409c16e7bb5bdb9de8057ca92"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a711a546409c16e7bb5bdb9de8057ca92">exit_match</a> (char *str)</td></tr>
 <tr class="separator:a711a546409c16e7bb5bdb9de8057ca92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c81ca961a0cfa59a98b37159cd38013"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a6c81ca961a0cfa59a98b37159cd38013">chat_all_match</a> (char *str)</td></tr>
+<tr class="memitem:a6c81ca961a0cfa59a98b37159cd38013"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a6c81ca961a0cfa59a98b37159cd38013">chat_all_match</a> (char *str)</td></tr>
 <tr class="separator:a6c81ca961a0cfa59a98b37159cd38013"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70db8b43d78912a279929595b2304a5f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a70db8b43d78912a279929595b2304a5f">chat_user_match</a> (char *str)</td></tr>
+<tr class="memitem:a70db8b43d78912a279929595b2304a5f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a70db8b43d78912a279929595b2304a5f">chat_user_match</a> (char *str)</td></tr>
 <tr class="separator:a70db8b43d78912a279929595b2304a5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a999af0b9bcf79ab4af3bcb3f34397689"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a999af0b9bcf79ab4af3bcb3f34397689">chat_army_match</a> (char *str)</td></tr>
+<tr class="memitem:a999af0b9bcf79ab4af3bcb3f34397689"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a999af0b9bcf79ab4af3bcb3f34397689">chat_army_match</a> (char *str)</td></tr>
 <tr class="separator:a999af0b9bcf79ab4af3bcb3f34397689"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad87b967e17839474720d033242cc3bc0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#ad87b967e17839474720d033242cc3bc0">mssn_load_match</a> (char *str)</td></tr>
+<tr class="memitem:ad87b967e17839474720d033242cc3bc0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#ad87b967e17839474720d033242cc3bc0">mssn_load_match</a> (char *str)</td></tr>
 <tr class="separator:ad87b967e17839474720d033242cc3bc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa19683cd0b361cace7acec0f316c7753"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#aa19683cd0b361cace7acec0f316c7753">mssn_unload_match</a> (char *str)</td></tr>
+<tr class="memitem:aa19683cd0b361cace7acec0f316c7753"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#aa19683cd0b361cace7acec0f316c7753">mssn_unload_match</a> (char *str)</td></tr>
 <tr class="separator:aa19683cd0b361cace7acec0f316c7753"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade6f3df55ddd80ad0c79206fb7be0bb7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#ade6f3df55ddd80ad0c79206fb7be0bb7">mssn_run_match</a> (char *str)</td></tr>
+<tr class="memitem:ade6f3df55ddd80ad0c79206fb7be0bb7"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#ade6f3df55ddd80ad0c79206fb7be0bb7">mssn_run_match</a> (char *str)</td></tr>
 <tr class="separator:ade6f3df55ddd80ad0c79206fb7be0bb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5761d7535532ac9aaaadf6496f85b462"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a5761d7535532ac9aaaadf6496f85b462">mssn_rerun_match</a> (char *str)</td></tr>
+<tr class="memitem:a5761d7535532ac9aaaadf6496f85b462"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a5761d7535532ac9aaaadf6496f85b462">mssn_rerun_match</a> (char *str)</td></tr>
 <tr class="separator:a5761d7535532ac9aaaadf6496f85b462"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d9d86e9ee2fdf2bd84180baad21e0f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a9d9d86e9ee2fdf2bd84180baad21e0f8">mssn_end_match</a> (char *str)</td></tr>
+<tr class="memitem:a9d9d86e9ee2fdf2bd84180baad21e0f8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a9d9d86e9ee2fdf2bd84180baad21e0f8">mssn_end_match</a> (char *str)</td></tr>
 <tr class="separator:a9d9d86e9ee2fdf2bd84180baad21e0f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7aa5e3795d43170747451e74f51338a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#ad7aa5e3795d43170747451e74f51338a">mssn_start_match</a> (char *str)</td></tr>
+<tr class="memitem:ad7aa5e3795d43170747451e74f51338a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#ad7aa5e3795d43170747451e74f51338a">mssn_start_match</a> (char *str)</td></tr>
 <tr class="separator:ad7aa5e3795d43170747451e74f51338a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a151fc5ed2e141e30f5fbc27dc38110aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a151fc5ed2e141e30f5fbc27dc38110aa">mssn_restart_match</a> (char *str)</td></tr>
+<tr class="memitem:a151fc5ed2e141e30f5fbc27dc38110aa"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a151fc5ed2e141e30f5fbc27dc38110aa">mssn_restart_match</a> (char *str)</td></tr>
 <tr class="separator:a151fc5ed2e141e30f5fbc27dc38110aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f7299faf66d27faf73b27b495114c4b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a5f7299faf66d27faf73b27b495114c4b">mssn_stop_match</a> (char *str)</td></tr>
+<tr class="memitem:a5f7299faf66d27faf73b27b495114c4b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a5f7299faf66d27faf73b27b495114c4b">mssn_stop_match</a> (char *str)</td></tr>
 <tr class="separator:a5f7299faf66d27faf73b27b495114c4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00859717692215d2e08ab7db8a4663ae"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a00859717692215d2e08ab7db8a4663ae">mssn_next_match</a> (char *str)</td></tr>
 <tr class="separator:a00859717692215d2e08ab7db8a4663ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,6 +138,12 @@ Functions</h2></td></tr>
 <tr class="separator:af34d802509b80cdaf0063913c4fda66c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c8fa5b57e799abfd73913edb3e700f0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a1c8fa5b57e799abfd73913edb3e700f0">mssn_time_left_set_match</a> (char *str)</td></tr>
 <tr class="separator:a1c8fa5b57e799abfd73913edb3e700f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1039c18b126da2a63464bc831f1d5c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#ad1039c18b126da2a63464bc831f1d5c6">shell_parser_init</a> ()</td></tr>
+<tr class="separator:ad1039c18b126da2a63464bc831f1d5c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5384b3c65983d828e1d5e5d79d92df8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#ae5384b3c65983d828e1d5e5d79d92df8">shell_parser_teardown</a> ()</td></tr>
+<tr class="separator:ae5384b3c65983d828e1d5e5d79d92df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63d64f787d677f6b6eb870d1512e7f54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="shell__parser_8c.html#a63d64f787d677f6b6eb870d1512e7f54">shell_parse_string</a> (char *str)</td></tr>
+<tr class="separator:a63d64f787d677f6b6eb870d1512e7f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -161,6 +160,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a6c81ca961a0cfa59a98b37159cd38013"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> chat_all_match </td>
@@ -170,6 +172,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -177,6 +184,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a999af0b9bcf79ab4af3bcb3f34397689"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> chat_army_match </td>
@@ -186,6 +196,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -193,6 +208,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a70db8b43d78912a279929595b2304a5f"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> chat_user_match </td>
@@ -202,6 +220,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -209,6 +232,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a711a546409c16e7bb5bdb9de8057ca92"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> exit_match </td>
@@ -218,6 +244,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -225,6 +256,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a9d9d86e9ee2fdf2bd84180baad21e0f8"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> mssn_end_match </td>
@@ -234,6 +268,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -241,6 +280,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="ad87b967e17839474720d033242cc3bc0"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> mssn_load_match </td>
@@ -250,6 +292,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -305,6 +352,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a5761d7535532ac9aaaadf6496f85b462"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> mssn_rerun_match </td>
@@ -314,6 +364,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -321,6 +376,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a151fc5ed2e141e30f5fbc27dc38110aa"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> mssn_restart_match </td>
@@ -330,6 +388,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -337,6 +400,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="ade6f3df55ddd80ad0c79206fb7be0bb7"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> mssn_run_match </td>
@@ -346,6 +412,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -353,6 +424,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="ad7aa5e3795d43170747451e74f51338a"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> mssn_start_match </td>
@@ -362,6 +436,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -369,6 +448,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="a5f7299faf66d27faf73b27b495114c4b"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> mssn_stop_match </td>
@@ -378,6 +460,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -433,6 +520,9 @@ Variables</h2></td></tr>
 <a class="anchor" id="aa19683cd0b361cace7acec0f316c7753"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> mssn_unload_match </td>
@@ -442,6 +532,11 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -576,7 +671,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 18 2012 12:41:32 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 22 2012 00:45:46 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['wait_5frx',['wait_rx',['../gs__console_8c.html#aa9470b7260a101e8f09062863384c137',1,'wait_rx(int sock):&#160;gs_console.c'],['../gs__console_8h.html#aa9470b7260a101e8f09062863384c137',1,'wait_rx(int sock):&#160;gs_console.h']]],
-  ['wait_5ftx',['wait_tx',['../gs__console_8c.html#a0f4c79812ab511d449273232f15d9a8c',1,'wait_tx(int sock):&#160;gs_console.c'],['../gs__console_8h.html#a0f4c79812ab511d449273232f15d9a8c',1,'wait_tx(int sock):&#160;gs_console.h']]],
+  ['wait_5frx',['wait_rx',['../gs__console_8c.html#aa9470b7260a101e8f09062863384c137',1,'gs_console.c']]],
+  ['wait_5ftx',['wait_tx',['../gs__console_8c.html#a0f4c79812ab511d449273232f15d9a8c',1,'gs_console.c']]],
   ['waitd',['waitd',['../gs__console_8c.html#ab7a01083b07b86e2e2732a4f5eca5216',1,'gs_console.c']]],
   ['waitpid_5fwin',['waitpid_win',['../winproc_8c.html#a97d76d803d12a7fbb463c047a3cb2104',1,'waitpid_win(int pid):&#160;winproc.c'],['../winproc_8h.html#a97d76d803d12a7fbb463c047a3cb2104',1,'waitpid_win(int pid):&#160;winproc.c']]],
   ['weath_5fclear',['WEATH_CLEAR',['../d__weather_8h.html#a121f563c45f131199f76a5f653e1084aafdc9f9b55a56580121e0c22c71bd28c9',1,'d_weather.h']]],
@@ -11,11 +11,11 @@ var searchData=
   ['weath_5fprecipitation',['WEATH_PRECIPITATION',['../d__weather_8h.html#a121f563c45f131199f76a5f653e1084aa9dd2a3562eebe59f8138f6825a19e69b',1,'d_weather.h']]],
   ['weath_5fslight_5ffog',['WEATH_SLIGHT_FOG',['../d__weather_8h.html#a121f563c45f131199f76a5f653e1084aaba1af295da43a1e13dc4ad9fb158f287',1,'d_weather.h']]],
   ['weath_5fthunder',['WEATH_THUNDER',['../d__weather_8h.html#a121f563c45f131199f76a5f653e1084aa560f63c3e96b4158b836579443586257',1,'d_weather.h']]],
-  ['weather',['weather',['../structD__MISSION__LITE.html#a15152bae5ccd7402990d33c16ab5f7d8',1,'D_MISSION_LITE::weather()'],['../structD__WEATHER__REPORT.html#a697fe69cc5a841db5dca901ce5265c42',1,'D_WEATHER_REPORT::weather()']]],
+  ['weather',['weather',['../structD__MISSION.html#a3c57c44e697e173759ec2ada2f90d9ea',1,'D_MISSION::weather()'],['../structD__WEATHER__REPORT.html#a697fe69cc5a841db5dca901ce5265c42',1,'D_WEATHER_REPORT::weather()']]],
   ['wheelevent',['wheelEvent',['../classMissionListView.html#a1e15fccc1d0737754934711486885980',1,'MissionListView']]],
   ['whitespace',['whitespace',['../structmxml__text__s.html#a6e4dd78a7a659169ec60754120746717',1,'mxml_text_s']]],
-  ['winddirectiondeg',['windDirectionDeg',['../structD__WEATHER__REPORT.html#a1faa591ef4b52315e0ca9d9ee181d805',1,'D_WEATHER_REPORT']]],
-  ['windspeedms',['windSpeedMS',['../structD__WEATHER__REPORT.html#af63ee2335185fc98874535ec95fe76c2',1,'D_WEATHER_REPORT']]],
+  ['winddirectiondeg',['windDirectionDeg',['../structD__WEATHER__REPORT.html#a566fce8011cb7a0693d46b9c1aad0e9b',1,'D_WEATHER_REPORT']]],
+  ['windspeedms',['windSpeedMS',['../structD__WEATHER__REPORT.html#a635f6d1bb0a27281aded0eebc4f03dd5',1,'D_WEATHER_REPORT']]],
   ['wingeom',['winGeom',['../classSettings.html#addb2dcfebdecaefe9d3f80ac7dae0a4b',1,'Settings']]],
   ['winproc_2ec',['winproc.c',['../winproc_8c.html',1,'']]],
   ['winproc_2eh',['winproc.h',['../winproc_8h.html',1,'']]],
@@ -29,17 +29,5 @@ var searchData=
   ['wnd_5fx_5fkey',['WND_X_KEY',['../HorusMLE_2settings_8cpp.html#afbf3cb6789d46d530ad286136ddfbceb',1,'settings.cpp']]],
   ['wnd_5fy_5fkey',['WND_Y_KEY',['../HorusMLE_2settings_8cpp.html#a6361654fc4d073392ab08471b6a9c994',1,'settings.cpp']]],
   ['wrap',['wrap',['../struct__mxml__global__s.html#a7d7f3bfbefbf806b409072792cda4287',1,'_mxml_global_s']]],
-  ['write_5fdescription',['write_description',['../mxmldoc_8c.html#a8c2c9bc73bc243bdcb08d2734ce16493',1,'mxmldoc.c']]],
-  ['write_5felement',['write_element',['../mxmldoc_8c.html#a253e45d4211ef9e00b5ed2661f732098',1,'mxmldoc.c']]],
-  ['write_5ffile',['write_file',['../mxmldoc_8c.html#a4e71e6e5aaf8b16bca96182db5460896',1,'mxmldoc.c']]],
-  ['write_5fflags',['write_flags',['../gs__console_8c.html#a2740c2cba4a8f68c143a2b5216c2bf43',1,'gs_console.c']]],
-  ['write_5ffunction',['write_function',['../mxmldoc_8c.html#a963186669ef018bc48a0447a221a7444',1,'mxmldoc.c']]],
-  ['write_5fhtml',['write_html',['../mxmldoc_8c.html#af051b5eb801eb9501aa2729ff4a3beb8',1,'mxmldoc.c']]],
-  ['write_5fhtml_5fhead',['write_html_head',['../mxmldoc_8c.html#a8697112906c788a18dec2ac250b821a1',1,'mxmldoc.c']]],
-  ['write_5fman',['write_man',['../mxmldoc_8c.html#a16cce7ddd824abcdfe03b98037decfd4',1,'mxmldoc.c']]],
-  ['write_5fscu',['write_scu',['../mxmldoc_8c.html#ab1ee733d14e13da39edefd64b4d1e7b0',1,'mxmldoc.c']]],
-  ['write_5fstring',['write_string',['../mxmldoc_8c.html#ad33bb55c671d948d1dd24e42ef013396',1,'mxmldoc.c']]],
-  ['write_5ftoc',['write_toc',['../mxmldoc_8c.html#a7a094a0c0d9896ab920e63d6461ba020',1,'mxmldoc.c']]],
-  ['write_5ftokens',['write_tokens',['../mxmldoc_8c.html#a91fe3830b1c32bc84f6d2b83414deb4a',1,'mxmldoc.c']]],
-  ['ws_5fcb',['ws_cb',['../mxmldoc_8c.html#a77631898d3dd6ba3e7bf66da56e8494e',1,'mxmldoc.c']]]
+  ['write_5fflags',['write_flags',['../gs__console_8c.html#a2740c2cba4a8f68c143a2b5216c2bf43',1,'gs_console.c']]]
 ];

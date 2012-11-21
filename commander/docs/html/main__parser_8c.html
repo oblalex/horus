@@ -91,16 +91,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="main__parser_8h_source.html">main_parser.h</a>&quot;</code><br/>
+<code>#include &lt;<a class="el" href="config_8h_source.html">config.h</a>&gt;</code><br/>
+<code>#include &quot;<a class="el" href="common_8h_source.html">util/common.h</a>&quot;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
 <code>#include &lt;wchar.h&gt;</code><br/>
-<code>#include &quot;config.h&quot;</code><br/>
 <code>#include &quot;<a class="el" href="l10n_8h_source.html">util/l10n.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="terminal_8h_source.html">util/terminal.h</a>&quot;</code><br/>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4c2b7e6886daa6cc8e60c6f8ae9af768"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main__parser_8c.html#a4c2b7e6886daa6cc8e60c6f8ae9af768">parseArgs</a> (int argc, char const **argv)</td></tr>
-<tr class="separator:a4c2b7e6886daa6cc8e60c6f8ae9af768"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c42f4a0046f13eff609604e4e6dd88a"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main__parser_8c.html#a8c42f4a0046f13eff609604e4e6dd88a">basename</a> (const char *)</td></tr>
+<tr class="separator:a8c42f4a0046f13eff609604e4e6dd88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac18160945fe60ea6897e2822fcbf6857"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main__parser_8c.html#ac18160945fe60ea6897e2822fcbf6857">recon_version</a> (char const *arg)</td></tr>
 <tr class="separator:ac18160945fe60ea6897e2822fcbf6857"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a571433b70a39494d589b7d96ed5a9f1f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main__parser_8c.html#a571433b70a39494d589b7d96ed5a9f1f">print_version</a> ()</td></tr>
@@ -111,8 +112,27 @@ Functions</h2></td></tr>
 <tr class="separator:af2a7e79a02ea22d995e640b4731708a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a134755ed8e48411ce5b009b9cb451f0a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main__parser_8c.html#a134755ed8e48411ce5b009b9cb451f0a">non_recon</a> (char const *arg)</td></tr>
 <tr class="separator:a134755ed8e48411ce5b009b9cb451f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c2b7e6886daa6cc8e60c6f8ae9af768"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main__parser_8c.html#a4c2b7e6886daa6cc8e60c6f8ae9af768">parseArgs</a> (int argc, char const **argv)</td></tr>
+<tr class="separator:a4c2b7e6886daa6cc8e60c6f8ae9af768"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a8c42f4a0046f13eff609604e4e6dd88a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* basename </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Included from string.h </p>
+
+</div>
+</div>
 <a class="anchor" id="a134755ed8e48411ce5b009b9cb451f0a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -262,7 +282,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 18 2012 12:41:32 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 22 2012 00:45:46 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

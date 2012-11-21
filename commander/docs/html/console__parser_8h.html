@@ -85,6 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">console_parser.h File Reference</div>  </div>
@@ -94,13 +95,124 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <p><a href="console__parser_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a56569486aa5ddb0dfbf89367a75aba14"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8h.html#a56569486aa5ddb0dfbf89367a75aba14">CNSL_LN</a>&#160;&#160;&#160;&quot;\\\\n&quot;</td></tr>
+<tr class="separator:a56569486aa5ddb0dfbf89367a75aba14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac44358f9909017102d90e6ce5385159d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8h.html#ac44358f9909017102d90e6ce5385159d">CNSL_TIME</a>&#160;&#160;&#160;&quot;^\\[[[:digit:]]+:[[:digit:]]+:[[:digit:]]+[[:space:]]+[[:print:]]+\\][[:space:]]+&quot;</td></tr>
+<tr class="separator:ac44358f9909017102d90e6ce5385159d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a845af5377f7caf743041093594eb5b09"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8h.html#a845af5377f7caf743041093594eb5b09">CNSL_USER_JOIN</a>&#160;&#160;&#160;&quot;socket channel '([[:digit:]]+)', ip ([[:print:]]+):[[:digit:]]+, ([[:print:]]+), is complete created&quot; CNSL_LN</td></tr>
+<tr class="separator:a845af5377f7caf743041093594eb5b09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55600259b3b93030a5a842457912b0c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8h.html#a55600259b3b93030a5a842457912b0c5">CNSL_USER_LEFT</a>&#160;&#160;&#160;&quot;socketConnection with [[:print:]]+:[[:digit:]]+ on channel ([[:digit:]]+) lost.  Reason: &quot; CNSL_LN</td></tr>
+<tr class="separator:a55600259b3b93030a5a842457912b0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d4b93c61b14bd187e6af5c768c4a484"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8h.html#a6d4b93c61b14bd187e6af5c768c4a484">CNSL_CMD_HEAD</a>&#160;&#160;&#160;&quot;Chat: ([[:print:]]+): \\\\t&quot;</td></tr>
+<tr class="separator:a6d4b93c61b14bd187e6af5c768c4a484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad708b100eab76aaa14b567c92bb8b31c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8h.html#ad708b100eab76aaa14b567c92bb8b31c">CNSL_CMD_PREFIX</a>&#160;&#160;&#160;&quot;`&quot;</td></tr>
+<tr class="separator:ad708b100eab76aaa14b567c92bb8b31c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bb2daf3c26c4c75fb50d59ba9cd48c0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8h.html#a2bb2daf3c26c4c75fb50d59ba9cd48c0">CNSL_CMD_MTL</a>&#160;&#160;&#160;<a class="el" href="console__parser_8h.html#a6d4b93c61b14bd187e6af5c768c4a484">CNSL_CMD_HEAD</a> <a class="el" href="console__parser_8h.html#ad708b100eab76aaa14b567c92bb8b31c">CNSL_CMD_PREFIX</a> &quot;mtl&quot; CNSL_LN</td></tr>
+<tr class="separator:a2bb2daf3c26c4c75fb50d59ba9cd48c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aa2ab99ce3d70801c039c9e7b35f13089"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8h.html#aa2ab99ce3d70801c039c9e7b35f13089">console_parse_string</a> (char *str)</td></tr>
 <tr class="separator:aa2ab99ce3d70801c039c9e7b35f13089"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06ab0431ae751cbe6e77c65fac019b7d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8h.html#a06ab0431ae751cbe6e77c65fac019b7d">mission_match</a> (char *str)</td></tr>
-<tr class="separator:a06ab0431ae751cbe6e77c65fac019b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62cb6dea39784449532ffc6fce55cc06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8h.html#a62cb6dea39784449532ffc6fce55cc06">console_parser_init</a> ()</td></tr>
+<tr class="separator:a62cb6dea39784449532ffc6fce55cc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0e8663d2b0b9f8c0c995ea90cdf4a6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8h.html#ad0e8663d2b0b9f8c0c995ea90cdf4a6e">console_parser_teardown</a> ()</td></tr>
+<tr class="separator:ad0e8663d2b0b9f8c0c995ea90cdf4a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a6d4b93c61b14bd187e6af5c768c4a484"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CNSL_CMD_HEAD&#160;&#160;&#160;&quot;Chat: ([[:print:]]+): \\\\t&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2bb2daf3c26c4c75fb50d59ba9cd48c0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CNSL_CMD_MTL&#160;&#160;&#160;<a class="el" href="console__parser_8h.html#a6d4b93c61b14bd187e6af5c768c4a484">CNSL_CMD_HEAD</a> <a class="el" href="console__parser_8h.html#ad708b100eab76aaa14b567c92bb8b31c">CNSL_CMD_PREFIX</a> &quot;mtl&quot; CNSL_LN</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Group 1: Callsign</p>
+<p>Example: "socketConnection with 192.168.1.34:21000 on channel 1 lost.  Reason: \n" </p>
+
+</div>
+</div>
+<a class="anchor" id="ad708b100eab76aaa14b567c92bb8b31c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CNSL_CMD_PREFIX&#160;&#160;&#160;&quot;`&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a56569486aa5ddb0dfbf89367a75aba14"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CNSL_LN&#160;&#160;&#160;&quot;\\\\n&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac44358f9909017102d90e6ce5385159d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CNSL_TIME&#160;&#160;&#160;&quot;^\\[[[:digit:]]+:[[:digit:]]+:[[:digit:]]+[[:space:]]+[[:print:]]+\\][[:space:]]+&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Example: "[7:39:13 PM]  " </p>
+
+</div>
+</div>
+<a class="anchor" id="a845af5377f7caf743041093594eb5b09"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CNSL_USER_JOIN&#160;&#160;&#160;&quot;socket channel '([[:digit:]]+)', ip ([[:print:]]+):[[:digit:]]+, ([[:print:]]+), is complete created&quot; CNSL_LN</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Group 1: Channel number Group 2: IP without port Group 3: Callsign</p>
+<p>Example: "socket channel '1', ip 192.168.1.34:21000, =435SAP=Alex, is complete created\n" </p>
+
+</div>
+</div>
+<a class="anchor" id="a55600259b3b93030a5a842457912b0c5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CNSL_USER_LEFT&#160;&#160;&#160;&quot;socketConnection with [[:print:]]+:[[:digit:]]+ on channel ([[:digit:]]+) lost.  Reason: &quot; CNSL_LN</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Group 1: Channel number</p>
+<p>Example: "socketConnection with 192.168.1.34:21000 on channel 1 lost.  Reason: \n" </p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="aa2ab99ce3d70801c039c9e7b35f13089"></a>
 <div class="memitem">
@@ -118,26 +230,32 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a06ab0431ae751cbe6e77c65fac019b7d"></a>
+<a class="anchor" id="a62cb6dea39784449532ffc6fce55cc06"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> mission_match </td>
+          <td class="memname">void console_parser_init </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>str</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad0e8663d2b0b9f8c0c995ea90cdf4a6e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void console_parser_teardown </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>
@@ -145,7 +263,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 18 2012 12:41:32 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 22 2012 00:45:46 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

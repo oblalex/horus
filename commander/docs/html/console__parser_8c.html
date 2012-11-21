@@ -85,23 +85,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">console_parser.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="console__parser_8h_source.html">console_parser.h</a>&quot;</code><br/>
+<div class="textblock"><code>#include &lt;<a class="el" href="config_8h_source.html">config.h</a>&gt;</code><br/>
+<code>#include &quot;<a class="el" href="console__parser_8h_source.html">console_parser.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="str_8h_source.html">util/str.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="print__status_8h_source.html">util/print_status.h</a>&quot;</code><br/>
-<code>#include &lt;string.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="regexxx_8h_source.html">util/regexxx.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__mission__manager_8h_source.html">gs_mission_manager.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="pilot__manager_8h_source.html">pilot_manager.h</a>&quot;</code><br/>
+<code>#include &lt;string.h&gt;</code><br/>
+<code>#include &lt;stdlib.h&gt;</code><br/>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a048b7f5be165ebcfae36b848805e4122"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8c.html#a048b7f5be165ebcfae36b848805e4122">mission_match</a> (char *str)</td></tr>
+<tr class="separator:a048b7f5be165ebcfae36b848805e4122"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3222d49b858e004651b4e6205fe9e991"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8c.html#a3222d49b858e004651b4e6205fe9e991">user_join_match</a> (char *str)</td></tr>
+<tr class="separator:a3222d49b858e004651b4e6205fe9e991"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72fdc15b38cd8d9da1110f99d32b5c30"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8c.html#a72fdc15b38cd8d9da1110f99d32b5c30">user_left_match</a> (char *str)</td></tr>
+<tr class="separator:a72fdc15b38cd8d9da1110f99d32b5c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ea0ce0342874d9a69905d86ce3e756e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8c.html#a1ea0ce0342874d9a69905d86ce3e756e">mtl_match</a> (char *str)</td></tr>
+<tr class="separator:a1ea0ce0342874d9a69905d86ce3e756e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62cb6dea39784449532ffc6fce55cc06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8c.html#a62cb6dea39784449532ffc6fce55cc06">console_parser_init</a> ()</td></tr>
+<tr class="separator:a62cb6dea39784449532ffc6fce55cc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0e8663d2b0b9f8c0c995ea90cdf4a6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8c.html#ad0e8663d2b0b9f8c0c995ea90cdf4a6e">console_parser_teardown</a> ()</td></tr>
+<tr class="separator:ad0e8663d2b0b9f8c0c995ea90cdf4a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2ab99ce3d70801c039c9e7b35f13089"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8c.html#aa2ab99ce3d70801c039c9e7b35f13089">console_parse_string</a> (char *str)</td></tr>
 <tr class="separator:aa2ab99ce3d70801c039c9e7b35f13089"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a048b7f5be165ebcfae36b848805e4122"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8c.html#a048b7f5be165ebcfae36b848805e4122">mission_match</a> (char *str)</td></tr>
-<tr class="separator:a048b7f5be165ebcfae36b848805e4122"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a0f4f76b1ebbcd31ccf5de0c7fd941704"><td class="memItemLeft" align="right" valign="top">static regex_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8c.html#a0f4f76b1ebbcd31ccf5de0c7fd941704">RE_user_join</a></td></tr>
+<tr class="separator:a0f4f76b1ebbcd31ccf5de0c7fd941704"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ffc901f8deb508f478997cf52d598ba"><td class="memItemLeft" align="right" valign="top">static regex_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8c.html#a5ffc901f8deb508f478997cf52d598ba">RE_user_left</a></td></tr>
+<tr class="separator:a5ffc901f8deb508f478997cf52d598ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a226b2fbda5b64c710b50894d9a41f1b1"><td class="memItemLeft" align="right" valign="top">static regex_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console__parser_8c.html#a226b2fbda5b64c710b50894d9a41f1b1">RE_mtl</a></td></tr>
+<tr class="separator:a226b2fbda5b64c710b50894d9a41f1b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="aa2ab99ce3d70801c039c9e7b35f13089"></a>
@@ -120,9 +144,42 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a62cb6dea39784449532ffc6fce55cc06"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void console_parser_init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad0e8663d2b0b9f8c0c995ea90cdf4a6e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void console_parser_teardown </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a048b7f5be165ebcfae36b848805e4122"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> mission_match </td>
@@ -132,6 +189,144 @@ Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1ea0ce0342874d9a69905d86ce3e756e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> mtl_match </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3222d49b858e004651b4e6205fe9e991"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> user_join_match </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a72fdc15b38cd8d9da1110f99d32b5c30"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> user_left_match </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a226b2fbda5b64c710b50894d9a41f1b1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">regex_t RE_mtl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0f4f76b1ebbcd31ccf5de0c7fd941704"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">regex_t RE_user_join</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5ffc901f8deb508f478997cf52d598ba"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">regex_t RE_user_left</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -139,7 +334,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 18 2012 12:41:32 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 22 2012 00:45:46 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

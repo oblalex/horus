@@ -95,40 +95,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;signal.h&gt;</code><br/>
 <code>#include &lt;time.h&gt;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
+<code>#include &lt;unistd.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="gs_8h_source.html">gs.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="gs__paths_8h_source.html">gs_paths.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__scripts_8h_source.html">gs_scripts.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__process_8h_source.html">gs_process.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__cfg_8h_source.html">gs_cfg.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="sys__cfg_8h_source.html">sys_cfg.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__cmd_8h_source.html">gs_cmd.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__console_8h_source.html">gs_console.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__input__handlers_8h_source.html">gs_input_handlers.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="gs__mission__manager_8h_source.html">gs_mission_manager.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="console__parser_8h_source.html">console_parser.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="pilot__manager_8h_source.html">pilot_manager.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="print__status_8h_source.html">util/print_status.h</a>&quot;</code><br/>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a1571f764bf7be2b86128cbcdd969f0dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#a1571f764bf7be2b86128cbcdd969f0dd">gs_init</a> ()</td></tr>
-<tr class="separator:a1571f764bf7be2b86128cbcdd969f0dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed653f20af2cca3ce6d6f65af1af7c3c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#aed653f20af2cca3ce6d6f65af1af7c3c">gs_setup_termination_hooks</a> ()</td></tr>
 <tr class="separator:aed653f20af2cca3ce6d6f65af1af7c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fcce22b05373cbcc12fbb14dde04821"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#a2fcce22b05373cbcc12fbb14dde04821">gs_termination_handler</a> (int signum)</td></tr>
 <tr class="separator:a2fcce22b05373cbcc12fbb14dde04821"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64a676cb3b57000a077aab0448f1d72f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#a64a676cb3b57000a077aab0448f1d72f">gs_set_loadded</a> ()</td></tr>
-<tr class="separator:a64a676cb3b57000a077aab0448f1d72f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6020f4cb5c831d6e7e9c30aa910d08e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#ae6020f4cb5c831d6e7e9c30aa910d08e">gs_run</a> ()</td></tr>
-<tr class="separator:ae6020f4cb5c831d6e7e9c30aa910d08e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76f718e41ad8ceadee720d489effe43d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#a76f718e41ad8ceadee720d489effe43d">gs_check_launched_before</a> ()</td></tr>
 <tr class="separator:a76f718e41ad8ceadee720d489effe43d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10526c88ba311cebfe4abc94229861cf"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#a10526c88ba311cebfe4abc94229861cf">gs_prepare</a> ()</td></tr>
 <tr class="separator:a10526c88ba311cebfe4abc94229861cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba9bcbbf2ae1c297f28315f1af04feff"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#aba9bcbbf2ae1c297f28315f1af04feff">gs_on_process_start</a> ()</td></tr>
-<tr class="separator:aba9bcbbf2ae1c297f28315f1af04feff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14210524d21034296505d878fbb69c81"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#a14210524d21034296505d878fbb69c81">gs_wait_loaded</a> ()</td></tr>
 <tr class="separator:a14210524d21034296505d878fbb69c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53c0d3b5bc21332a488e185474b9d60f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#a53c0d3b5bc21332a488e185474b9d60f">gs_exit</a> ()</td></tr>
-<tr class="separator:a53c0d3b5bc21332a488e185474b9d60f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba9bcbbf2ae1c297f28315f1af04feff"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#aba9bcbbf2ae1c297f28315f1af04feff">gs_on_process_start</a> ()</td></tr>
+<tr class="separator:aba9bcbbf2ae1c297f28315f1af04feff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af87510d161211a0f4fe40219e7c194a6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#af87510d161211a0f4fe40219e7c194a6">gs_on_process_stop</a> ()</td></tr>
 <tr class="separator:af87510d161211a0f4fe40219e7c194a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1571f764bf7be2b86128cbcdd969f0dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#a1571f764bf7be2b86128cbcdd969f0dd">gs_init</a> ()</td></tr>
+<tr class="separator:a1571f764bf7be2b86128cbcdd969f0dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64a676cb3b57000a077aab0448f1d72f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#a64a676cb3b57000a077aab0448f1d72f">gs_set_loadded</a> ()</td></tr>
+<tr class="separator:a64a676cb3b57000a077aab0448f1d72f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6020f4cb5c831d6e7e9c30aa910d08e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#ae6020f4cb5c831d6e7e9c30aa910d08e">gs_run</a> ()</td></tr>
+<tr class="separator:ae6020f4cb5c831d6e7e9c30aa910d08e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53c0d3b5bc21332a488e185474b9d60f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#a53c0d3b5bc21332a488e185474b9d60f">gs_exit</a> ()</td></tr>
+<tr class="separator:a53c0d3b5bc21332a488e185474b9d60f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b2af2dd648c21b8b795ffd13b52453f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs_8c.html#a8b2af2dd648c21b8b795ffd13b52453f">gs_is_running</a> ()</td></tr>
 <tr class="separator:a8b2af2dd648c21b8b795ffd13b52453f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -465,7 +470,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 18 2012 12:41:32 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 22 2012 00:45:46 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

@@ -93,15 +93,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common_8h.html">util/common.h</a>&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordtype">void</span> <a class="code" href="console__parser_8c.html#aa2ab99ce3d70801c039c9e7b35f13089">console_parse_string</a>(<span class="keywordtype">char</span>* str);</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">static</span> <a class="code" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a> <a class="code" href="console__parser_8c.html#a048b7f5be165ebcfae36b848805e4122">mission_match</a>(<span class="keywordtype">char</span>* str);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#endif // CONSOLE_PARSER_H</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="code" href="console__parser_8h.html#a56569486aa5ddb0dfbf89367a75aba14">    6</a></span>&#160;<span class="preprocessor">#define CNSL_LN         &quot;\\\\n&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="code" href="console__parser_8h.html#ac44358f9909017102d90e6ce5385159d">   11</a></span>&#160;<span class="preprocessor">#define CNSL_TIME       &quot;^\\[[[:digit:]]+:[[:digit:]]+:[[:digit:]]+[[:space:]]+[[:print:]]+\\][[:space:]]+&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="code" href="console__parser_8h.html#a845af5377f7caf743041093594eb5b09">   20</a></span>&#160;<span class="preprocessor">#define CNSL_USER_JOIN  &quot;socket channel &#39;([[:digit:]]+)&#39;, ip ([[:print:]]+):[[:digit:]]+, ([[:print:]]+), is complete created&quot; CNSL_LN</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="code" href="console__parser_8h.html#a55600259b3b93030a5a842457912b0c5">   27</a></span>&#160;<span class="preprocessor">#define CNSL_USER_LEFT  &quot;socketConnection with [[:print:]]+:[[:digit:]]+ on channel ([[:digit:]]+) lost.  Reason: &quot; CNSL_LN</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="code" href="console__parser_8h.html#a6d4b93c61b14bd187e6af5c768c4a484">   30</a></span>&#160;<span class="preprocessor">#define CNSL_CMD_HEAD   &quot;Chat: ([[:print:]]+): \\\\t&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="code" href="console__parser_8h.html#ad708b100eab76aaa14b567c92bb8b31c">   32</a></span>&#160;<span class="preprocessor">#define CNSL_CMD_PREFIX &quot;`&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="console__parser_8h.html#a2bb2daf3c26c4c75fb50d59ba9cd48c0">   39</a></span>&#160;<span class="preprocessor">#define CNSL_CMD_MTL  CNSL_CMD_HEAD CNSL_CMD_PREFIX &quot;mtl&quot; CNSL_LN</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> <a class="code" href="console__parser_8c.html#aa2ab99ce3d70801c039c9e7b35f13089">console_parse_string</a>(<span class="keywordtype">char</span>* str);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="console__parser_8c.html#a62cb6dea39784449532ffc6fce55cc06">console_parser_init</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span> <a class="code" href="console__parser_8c.html#ad0e8663d2b0b9f8c0c995ea90cdf4a6e">console_parser_teardown</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif // CONSOLE_PARSER_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 18 2012 12:41:31 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 22 2012 00:45:46 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

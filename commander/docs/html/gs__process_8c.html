@@ -92,7 +92,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="gs__process_8h_source.html">gs_process.h</a>&quot;</code><br/>
-<code>#include &lt;config.h&gt;</code><br/>
+<code>#include &lt;<a class="el" href="config_8h_source.html">config.h</a>&gt;</code><br/>
+<code>#include &lt;sys/wait.h&gt;</code><br/>
 <code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;signal.h&gt;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
@@ -109,14 +110,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa1da6c74c66b60bc17fa906fb043ce69"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__process_8c.html#aa1da6c74c66b60bc17fa906fb043ce69">gs_process_create</a> ()</td></tr>
-<tr class="separator:aa1da6c74c66b60bc17fa906fb043ce69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bcdccfe8a9feea7f6f9794c507e0e48"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__process_8c.html#a9bcdccfe8a9feea7f6f9794c507e0e48">gs_process_create_raw</a> ()</td></tr>
-<tr class="separator:a9bcdccfe8a9feea7f6f9794c507e0e48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf6a81eaf8757dfe47db4bca69aeb1a6"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__process_8c.html#aaf6a81eaf8757dfe47db4bca69aeb1a6">gs_process_create_raw</a> ()</td></tr>
+<tr class="separator:aaf6a81eaf8757dfe47db4bca69aeb1a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14210524d21034296505d878fbb69c81"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__process_8c.html#a14210524d21034296505d878fbb69c81">gs_wait_loaded</a> ()</td></tr>
 <tr class="separator:a14210524d21034296505d878fbb69c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62bde45931708702460081d83d28ec1c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__process_8c.html#a62bde45931708702460081d83d28ec1c">gs_suppress_stdout</a> ()</td></tr>
 <tr class="separator:a62bde45931708702460081d83d28ec1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1da6c74c66b60bc17fa906fb043ce69"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a3e5b8192e7d9ffaf3542f1210aec18dd">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__process_8c.html#aa1da6c74c66b60bc17fa906fb043ce69">gs_process_create</a> ()</td></tr>
+<tr class="separator:aa1da6c74c66b60bc17fa906fb043ce69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88bfcd0d442cc0d70d9d1d6fed199693"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__process_8c.html#a88bfcd0d442cc0d70d9d1d6fed199693">gs_process_wait</a> ()</td></tr>
 <tr class="separator:a88bfcd0d442cc0d70d9d1d6fed199693"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e0cc1cc14cbbef74ca8f7a61fc5d4b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gs__process_8c.html#a0e0cc1cc14cbbef74ca8f7a61fc5d4b1">gs_process_kill</a> ()</td></tr>
@@ -143,7 +144,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9bcdccfe8a9feea7f6f9794c507e0e48"></a>
+<a class="anchor" id="aaf6a81eaf8757dfe47db4bca69aeb1a6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -151,7 +152,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void* gs_process_create_raw </td>
+          <td class="memname">static void * gs_process_create_raw </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -266,7 +267,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 18 2012 12:41:32 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 22 2012 00:45:46 for Horus-commander by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>
