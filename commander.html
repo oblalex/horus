@@ -74,7 +74,7 @@
 	<body>
 		<div id="forLayout"></div>
 		<div id="content">
-			<h3 style="text-align:right;">Current version: 0.3.0</h3>
+			<h3 style="text-align:right;">Current version: 0.4.1</h3>
 			<hr/>
 			<h3><a id="contents">Contents</a></h3>
 			<ul>
@@ -87,7 +87,11 @@
 						<li><a href="#shell_other">Others</a></li>
 					</ul>
 				</li>
-				<li><a href="#pilot_req">Pilot requests</a></li>
+				<li><a href="#pilot_req">Pilot requests</a>
+					<ul>
+						<li><a href="#req_time">Time requests</a></li>
+					</ul>
+				</li>
 				<li><a href="#installation">Installation</a>
 					<ul>
 						<li><a href="#install_lin">Linux</a></li>
@@ -245,7 +249,20 @@
 			<script>
 				$('#request-info').addPopup($('#request-info-pop-up'));
 			</script>
-			<span style="color:#777; padding-left:70px;">No pilot requests are available yet.</span>
+			<p>All pilot requests are starting with &lt;<a href="commander/docs/html/console__parser_8h.html#ad708b100eab76aaa14b567c92bb8b31c">CNSL_CMD_PREFIX</a>&gt;.</p>
+			<ul class="cmd_list">
+				<li><a id="req_time">Time requests:</a><br/><br/>
+					<table class="commands" cellspacing="0">
+						<col width="300"/>
+						<tr>
+							<td>`mtl</td>
+							<td>tell how much mission time left</td>
+						</tr>
+					</table>
+				</li>
+			</ul>
+
+
 			<hr/>
 			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="installation">Installation</a></h3>
 			<ul>
