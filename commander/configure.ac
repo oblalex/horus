@@ -4,7 +4,7 @@
 AC_PREREQ([2.68])
 AC_INIT(
 	[horus-commander],
-	[0.4.0],
+	[0.4.1],
 	https://github.com/oblalex/horus/issues,
 	,
 	http://oblalex.github.com/horus)
