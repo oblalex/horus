@@ -7,6 +7,7 @@
 #include "util/l10n.h"
 #include <pthread.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 static void pm_user_join(D_PILOT_ELEM* pe);
@@ -141,6 +142,10 @@ void pm_user_join(D_PILOT_ELEM* pe)
 
     COUNT++;
 
+    char msg[70];
+    sprintf(msg, tr("%s (%s) joined."), pe->data->callsign, pe->IP);
+    PRINT_STATUS_MSG_NOIND(msg);
+
     gs_cmd_greet_user(pe->data->callsign);
 }
 
@@ -176,6 +181,10 @@ void pm_user_left(uint2 channel)
         if (curr == LAST)
             LAST = prev;
     }
+
+    char msg[50];
+    sprintf(msg, tr("%s has left."), curr->data->callsign);
+    PRINT_STATUS_MSG_NOIND(msg);
 
     pm_elem_free(&curr);
     COUNT--;
