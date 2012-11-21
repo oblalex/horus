@@ -6,6 +6,7 @@
 #endif
 
 #include "gs_mission_manager.h"
+#include "pilot_manager.h"
 #include "gs_paths.h"
 #include "gs_cmd.h"
 #include "gs_input_handlers.h"
@@ -920,7 +921,7 @@ void gs_mssn_end()
     if (SECS_LEFT > SECONDS_LEFT_BEFORE_END)
     {
         INTERRUPTED = TRUE;
-        gs_mssn_seconds_left_set(SECONDS_LEFT_BEFORE_END);
+        gs_mssn_seconds_left_set(0);
     }
     pthread_join(H_TIMER, &res);
 
@@ -1266,7 +1267,7 @@ void gs_mssn_seconds_left_set(int value)
 {
     if (value < 0) return;
 
-    if (value > SECONDS_LEFT_BEFORE_END)
+    if ((value > SECONDS_LEFT_BEFORE_END) || (pm_pilot_count()==0))
     {
         SECS_LEFT = value;
     } else
