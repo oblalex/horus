@@ -1,3 +1,4 @@
+#include <config.h>
 #include "console_parser.h"
 #include "util/str.h"
 #include "util/print_status.h"
@@ -49,7 +50,9 @@ void console_parse_string(char* str)
     if (user_left_match(str)    == TRUE) return;
     if (mtl_match(str)          == TRUE) return;
 
+#ifndef _WIN_
     PRINT_STATUS_MSG(str);
+#endif
 }
 
 BOOL mission_match(char* str)
