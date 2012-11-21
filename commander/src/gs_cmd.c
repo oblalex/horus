@@ -23,14 +23,19 @@ static void gs_cmd_send(char* cmd);
 
 static int GS_IN_FD;
 static pthread_mutex_t LOCK;
-static int channels;
+
+static char*    GREETING_FORMAT;
+static char     ABOUT_COMMANDER[255];
 
 void gs_cmd_init()
 {
 	GS_IN_FD = get_gs_console_socket();
 	pthread_mutex_init(&LOCK, NULL);
 
-    channels = atoi(gs_cfg_get(GS_CFG_GRP_NET, GS_CFG_KEY_SERVER_CHANNELS_NO_GRP));
+    GREETING_FORMAT = tr("Hello, %s! Welcome to '%s' server!");
+    sprintf(ABOUT_COMMANDER,
+            tr("Server is under Horus Commander control (v.%s, oblalex.github.com/horus)."),
+            PACKAGE_VERSION);
 }
 
 void gs_cmd_exit()
@@ -43,15 +48,21 @@ void gs_cmd_chat_all(char* msg)
 	gs_cmd_chat(msg, CHAT_ADDRESSEE_ALL);
 }
 
-void gs_cmd_chat_username(char* username, char* msg)
+void gs_cmd_chat_callsign(char* username, char* msg)
 {
-	char eusername[strlen(username)*6-5];
-	str_escape_unicode(username, strlen(username), eusername, sizeof eusername);
+#ifdef _WIN_
+    // 3 is for "TO "
+    char addressee[strlen(username)+3];
+    sprintf(addressee, CHAT_ADDRESSEE_USERNAME, username);
+#else
+    char eusername[strlen(username)*6-5];
+    str_escape_unicode(username, strlen(username), eusername, sizeof eusername);
 
-	// 3 is for "TO "
-	char addressee[strlen(eusername)+3];
-	sprintf(addressee, CHAT_ADDRESSEE_USERNAME, eusername);
-	gs_cmd_chat(msg, addressee);
+    // 3 is for "TO "
+    char addressee[strlen(eusername)+3];
+    sprintf(addressee, CHAT_ADDRESSEE_USERNAME, eusername);
+#endif
+    gs_cmd_chat(msg, addressee);
 }
 
 void gs_cmd_chat_usernum(int num, char* msg)
@@ -71,12 +82,12 @@ void gs_cmd_chat_army(char army_num, char* msg)
 void gs_cmd_chat(char* msg, char* addressee)
 {
 #ifdef _WIN_
-    char cmd[(sizeof msg)+strlen(addressee)+9];
+    char cmd[strlen(msg)+strlen(addressee)+9];
 #else
     char emsg[GS_CMD_CHAT_MAX_LEN*6];
 
 	// 9 is for "chat \"", "\" ", '\0'
-	char cmd[(sizeof emsg)+strlen(addressee)+9];
+    char cmd[(sizeof emsg)+strlen(addressee)+9];
 #endif
 
 	char chunk[GS_CMD_CHAT_MAX_LEN*2];
@@ -105,7 +116,7 @@ void gs_cmd_kick_all()
     char* msg = tr("Kicking all!");
     PRINT_STATUS_NEW(msg);
 
-	int i;
+    uint2 i;
 	for(i=0; i<3; i++)
     {
         gs_cmd_chat_all(msg);
@@ -119,10 +130,20 @@ void gs_cmd_kick_all()
 
     char* cmd = GS_CMD_KICK_FIRST;
 
-    for(i=0; i<channels; i++)
+    for(i=0; i< gs_cfg_getChannelsCount(); i++)
 		gs_cmd_send(cmd);
 
 	PRINT_STATUS_DONE();
+}
+
+void gs_cmd_greet_user(char* callsign)
+{
+    char msg[255];
+    sprintf(msg, GREETING_FORMAT, callsign, gs_cfg_getServerName());
+
+    gs_cmd_chat_callsign(callsign, msg);
+    gs_cmd_chat_callsign(callsign, gs_cfg_getServerDescr());
+    gs_cmd_chat_callsign(callsign, ABOUT_COMMANDER);
 }
 
 void gs_cmd_mssn_status()

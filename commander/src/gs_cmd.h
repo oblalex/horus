@@ -32,7 +32,7 @@ void gs_cmd_tear_down();
 void gs_cmd_exit();
 
 void gs_cmd_chat_all(char* msg);
-void gs_cmd_chat_username(char* username, char* msg);
+void gs_cmd_chat_callsign(char* username, char* msg);
 void gs_cmd_chat_usernum(int num, char* msg);
 void gs_cmd_chat_army(char army_num, char* msg);
 void gs_cmd_chat(char* msg, char* addressee);
@@ -44,5 +44,7 @@ void gs_cmd_mssn_load(char* path);
 void gs_cmd_mssn_run();
 void gs_cmd_mssn_end();
 void gs_cmd_mssn_unload();
+
+void gs_cmd_greet_user(char* callsign);
 
 #endif // GS_CMD_H

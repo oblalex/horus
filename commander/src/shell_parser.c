@@ -129,9 +129,9 @@ BOOL chat_user_match(char* str)
 
 	if (regexec(&RE_chat_user, str, n_matches, m, 0)) return FALSE;
 	
-	char username[m[1].rm_eo-m[1].rm_so+1];
-	substring(m[1].rm_so, m[1].rm_eo, str, username, sizeof username);
-	gs_cmd_chat_username(username, str+m[2].rm_so);
+    char callsign[m[1].rm_eo-m[1].rm_so+1];
+    substring(m[1].rm_so, m[1].rm_eo, str, callsign, sizeof callsign);
+    gs_cmd_chat_callsign(callsign, str+m[2].rm_so);
 	return TRUE;
 }
 

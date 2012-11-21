@@ -18,8 +18,7 @@
 #define CNSL_USER_JOIN  "socket channel '([[:digit:]]+)', ip ([[:print:]]+):[[:digit:]]+, ([[:print:]]+), is complete created\\\\n"
 
 /**
- *  Group 1: IP without port
- *  Group 2: Channel number
+ *  Group 1: Channel number
  *
  *  Example: "socketConnection with 192.168.1.34:21000 on channel 1 lost.  Reason: \n"
  */

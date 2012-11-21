@@ -127,7 +127,7 @@ void pm_user_join(D_PILOT_ELEM* pe)
 
     COUNT++;
 
-    // TODO: print greetings
+    gs_cmd_greet_user(pe->data->callsign);
 }
 
 void pm_user_left(uint2 channel)

@@ -25,6 +25,8 @@ void str_null_termitate(char* str)
         str[last_char_id] = '\0';
     if (str[last_char_id-1]==10)
         str[last_char_id-1] = '\0';
+    if (str[last_char_id-1]==13)
+        str[last_char_id-1] = '\0';
 }
 
 int str_copy_symbols(char* src, int src_len, int max_count, int offset, char* dst, int dst_len)

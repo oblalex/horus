@@ -1,6 +1,7 @@
 #include "general_page.h"
 #include "ui_general_page.h"
 #include "gs_cfg_grp.h"
+#include "gs_cfg_key.h"
 #include "sys_cfg_key.h"
 #include "settings.h"
 
@@ -8,8 +9,8 @@
 #include <QString>
 #include <QMessageBox>
 
-static QString KEY_SNAME = QString(GS_CFG_GRP_NET).append("/serverName");
-static QString KEY_SDSCR = QString(GS_CFG_GRP_NET).append("/serverDescription");
+static QString KEY_SNAME = QString(GS_CFG_KEY_SERVER_NAME);
+static QString KEY_SDSCR = QString(GS_CFG_KEY_SERVER_DESCR);
 
 GeneralPage::GeneralPage(QWidget *parent) :
     QWidget(parent),
