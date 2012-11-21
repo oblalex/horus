@@ -1,5 +1,6 @@
 #include "pilot_manager.h"
 #include "gs_cmd.h"
+#include "gs_mission_manager.h"
 #include "domain/d_army.h"
 #include "util/print_status.h"
 #include "util/msg_queue.h"
@@ -10,6 +11,7 @@
 
 static void pm_user_join(D_PILOT_ELEM* pe);
 static void pm_user_left(uint2 channel);
+static void pm_mtl(char* callsign);
 
 static void msg_delete(MSG_T* msg);
 static void msg_enqueue(MSG_T* msg);
@@ -118,6 +120,18 @@ void pm_user_left_req(uint2 channel)
     msg_enqueue(msg);
 }
 
+void pm_mtl_req(char* callsign)
+{
+    MSG_T* msg = (MSG_T*)malloc(sizeof(MSG_T));
+    msg->type = PM_REQ_MTL;
+
+    char* data = (char*)malloc(strlen(callsign)+1);
+    strcpy(data, callsign);
+
+    msg->data = (void*)data;
+    msg_enqueue(msg);
+}
+
 void pm_user_join(D_PILOT_ELEM* pe)
 {
     if (FIRST == NULL) FIRST = pe;
@@ -167,6 +181,18 @@ void pm_user_left(uint2 channel)
     COUNT--;
 }
 
+static void pm_mtl(char* callsign)
+{
+    if (gs_mssn_running() == TRUE)
+    {
+        char timeStr[80];
+        gs_mssn_time_str((char*)&timeStr);
+        gs_cmd_chat_callsign(callsign, (char*)&timeStr);
+    } else {
+        gs_cmd_chat_callsign(callsign, tr("Mission is not running now."));
+    }
+}
+
 static void msg_delete(MSG_T* msg)
 {
     switch (msg->type)
@@ -178,6 +204,11 @@ static void msg_delete(MSG_T* msg)
         case PM_REQ_USR_LEFT:
         {
             free((uint2*)(msg->data));
+            break;
+        }
+        case PM_REQ_MTL:
+        {
+            free((char*)(msg->data));
             break;
         }
         default:
@@ -218,6 +249,11 @@ static void* pm_msg_dispatcher()
                 case PM_REQ_USR_LEFT:
                 {
                     pm_user_left(*((uint2*)(msg->data)));
+                    break;
+                }
+                case PM_REQ_MTL:
+                {
+                    pm_mtl((char*)(msg->data));
                     break;
                 }
 

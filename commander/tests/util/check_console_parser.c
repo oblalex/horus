@@ -13,6 +13,9 @@ START_TEST (test_console_parser)
     test_regex(CNSL_USER_LEFT,
                "socketConnection with 192.168.1.34:21000 on channel 1 lost.  Reason: \\n",
                NULL);
+    test_regex(CNSL_CMD_MTL,
+               "Chat: =435SAP=Alex: \\t`mtl\\n",
+               NULL);
 }
 END_TEST
 

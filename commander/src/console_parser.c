@@ -12,16 +12,19 @@ static BOOL mission_match(char* str);
 
 static BOOL user_join_match(char* str);
 static BOOL user_left_match(char* str);
+static BOOL mtl_match(char* str);
 
 static regex_t RE_user_join;
 static regex_t RE_user_left;
+static regex_t RE_mtl;
 
 void console_parser_init()
 {
     PRINT_STATUS_NEW(tr("Console parser initialization"));
 
-    compile_regex(&RE_user_join, CNSL_USER_JOIN);
-    compile_regex(&RE_user_left, CNSL_USER_LEFT);
+    compile_regex(&RE_user_join,    CNSL_USER_JOIN);
+    compile_regex(&RE_user_left,    CNSL_USER_LEFT);
+    compile_regex(&RE_mtl,          CNSL_CMD_MTL);
 
     PRINT_STATUS_DONE();
 }
@@ -32,6 +35,7 @@ void console_parser_teardown()
 
     regfree(&RE_user_join);
     regfree(&RE_user_left);
+    regfree(&RE_mtl);
 
     PRINT_STATUS_DONE();
 }
@@ -43,6 +47,7 @@ void console_parse_string(char* str)
     if (mission_match(str)      == TRUE) return;
     if (user_join_match(str)    == TRUE) return;
     if (user_left_match(str)    == TRUE) return;
+    if (mtl_match(str)          == TRUE) return;
 
     PRINT_STATUS_MSG(str);
 }
@@ -97,6 +102,21 @@ static BOOL user_left_match(char* str)
     substring(m[1].rm_so, m[1].rm_eo, str, channel, sizeof channel);
 
     pm_user_left_req(atoi(channel));
+
+    return TRUE;
+}
+
+static BOOL mtl_match(char* str)
+{
+    const int n_matches = 2;
+    regmatch_t m[n_matches];
+
+    if (regexec(&RE_mtl, str, n_matches, m, 0)) return FALSE;
+
+    char callsign[m[1].rm_eo-m[1].rm_so+1];
+    substring(m[1].rm_so, m[1].rm_eo, str, callsign, sizeof callsign);
+
+    pm_mtl_req(callsign);
 
     return TRUE;
 }

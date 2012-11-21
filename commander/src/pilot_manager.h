@@ -6,6 +6,7 @@
 
 #define PM_REQ_USR_JOIN     0
 #define PM_REQ_USR_LEFT     1
+#define PM_REQ_MTL          2
 
 typedef struct D_PILOT_ELEM
 {
@@ -29,6 +30,8 @@ void pm_elem_free(D_PILOT_ELEM** _this);
 
 void pm_user_join_req(char* callsign, char* ip, uint2 channel);
 void pm_user_left_req(uint2 channel);
+
+void pm_mtl_req(char* callsign);
 
 uint2 pm_pilot_count();
 
