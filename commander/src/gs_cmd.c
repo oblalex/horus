@@ -9,6 +9,7 @@
 
 #include "gs_cmd.h"
 #include "gs_cfg.h"
+#include "sys_cfg.h"
 
 #include "gs_console.h"
 
@@ -139,10 +140,10 @@ void gs_cmd_kick_all()
 void gs_cmd_greet_user(char* callsign)
 {
     char msg[255];
-    sprintf(msg, GREETING_FORMAT, callsign, gs_cfg_getServerName());
+    sprintf(msg, GREETING_FORMAT, callsign, sys_cfg_getServerName());
 
     gs_cmd_chat_callsign(callsign, msg);
-    gs_cmd_chat_callsign(callsign, gs_cfg_getServerDescr());
+    gs_cmd_chat_callsign(callsign, sys_cfg_getServerDescr());
     gs_cmd_chat_callsign(callsign, ABOUT_COMMANDER);
 }
 

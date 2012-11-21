@@ -91,6 +91,27 @@ void str_escape_unicode(char* src, int src_len, char* dst, int dst_len)
 	*dst = '\0';
 }
 
+void str_rm_double_symb(char* src, char* dst, char symb)
+{
+    char* end = src+strlen(src);
+
+    while (1)
+    {
+        if (src == NULL) break;
+        if (src != end)
+            if (((*src)==symb) && ((*(src+1))==symb))
+                src++;
+
+        (*dst) = (*src);
+
+        if (src == end) break;
+        src++;
+        dst++;
+    }
+
+    *(dst++) = '\0';
+}
+
 char* substring(int start, int stop, char* src, char* dst, int size)
 {
 	int count = stop - start;

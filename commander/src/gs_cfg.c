@@ -17,12 +17,11 @@ static void gs_cfg_logging_file();
 static void gs_cfg_console_connection();
 static void gs_cfg_version_checking();
 static void gs_cfg_load();
+static void gs_cfg_fix_backslashes();
 
 static INI_CONTAINER* cfg;
 
 static uint2 CHANNELS_COUNT;
-static char* SERVER_NAME;
-static char* SERVER_DESCR;
 
 void gs_cfg_init()
 {
@@ -46,6 +45,7 @@ void gs_cfg_init()
         gs_cfg_console_connection();
         gs_cfg_version_checking();
         gs_cfg_load();
+        gs_cfg_fix_backslashes();
 
         PRINT_STATUS_MSG(tr("Saving configuration"));
         ini_end(cfg);
@@ -66,48 +66,21 @@ void gs_cfg_init()
 
 void gs_cfg_load()
 {
-    char* value;
-    SERVER_NAME = NULL;
-    value = ini_value_get(cfg, GS_CFG_GRP_NET, GS_CFG_KEY_SERVER_NAME_NO_GRP);
-    if (value != NULL)
-    {
-        str_null_termitate(value);
-
-#ifdef _WIN_
-        char reEncoded[255];
-        utf8_to_cp1251((char*)value, (char*)reEncoded);
-        SERVER_NAME = (char*)malloc(sizeof(char)*strlen(reEncoded)+1);
-        memcpy(SERVER_NAME, reEncoded, strlen(reEncoded)+1);
-#else
-        SERVER_NAME = (char*)malloc(sizeof(char)*strlen(value)+1);
-        memcpy(SERVER_NAME, value, strlen(value)+1);
-#endif
-    }
-
-    SERVER_DESCR = NULL;
-    value = ini_value_get(cfg, GS_CFG_GRP_NET, GS_CFG_KEY_SERVER_DESCR_NO_GRP);
-    if (value != NULL)
-    {
-        str_null_termitate(value);
-
-#ifdef _WIN_
-        char reEncoded[255];
-        utf8_to_cp1251((char*)value, (char*)reEncoded);
-        SERVER_DESCR = (char*)malloc(sizeof(char)*strlen(reEncoded)+1);
-        memcpy(SERVER_DESCR, reEncoded, strlen(reEncoded)+1);
-#else
-        SERVER_DESCR = (char*)malloc(sizeof(char)*strlen(value)+1);
-        memcpy(SERVER_DESCR, value, strlen(value)+1);
-#endif
-    }
-
     CHANNELS_COUNT = atoi(ini_value_get(cfg, GS_CFG_GRP_NET, GS_CFG_KEY_SERVER_CHANNELS_NO_GRP));
 }
 
-void gs_cfg_teardown()
+void gs_cfg_fix_backslashes()
 {
-    if (SERVER_NAME     != NULL) free(SERVER_NAME);
-    if (SERVER_DESCR    != NULL) free(SERVER_DESCR);
+    char* src;
+    char dst[255];
+
+    src = ini_value_get(cfg, GS_CFG_GRP_NET, GS_CFG_KEY_SERVER_NAME_NO_GRP);
+    str_rm_double_symb(src, dst, '\\');
+    ini_value_set(cfg, GS_CFG_GRP_NET, GS_CFG_KEY_SERVER_NAME_NO_GRP, dst);
+
+    src = ini_value_get(cfg, GS_CFG_GRP_NET, GS_CFG_KEY_SERVER_DESCR_NO_GRP);
+    str_rm_double_symb(src, dst, '\\');
+    ini_value_set(cfg, GS_CFG_GRP_NET, GS_CFG_KEY_SERVER_DESCR_NO_GRP, dst);
 }
 
 void gs_cfg_logging()
@@ -160,16 +133,6 @@ void gs_cfg_version_checking()
 uint2 gs_cfg_getChannelsCount()
 {
     return CHANNELS_COUNT;
-}
-
-char* gs_cfg_getServerName()
-{
-    return SERVER_NAME;
-}
-
-char* gs_cfg_getServerDescr()
-{
-    return SERVER_DESCR;
 }
 
 char* gs_cfg_get(const char* sec_name, const char* key)

@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     difficulty_view_page.cpp \
     difficulty_map_icons_page.cpp \
     difficulty_var_page.cpp \
-    net_page.cpp
+    net_page.cpp \
+    ../util/str.c
 
 HEADERS  += main_window.h \
     config_module.h \
@@ -43,7 +44,9 @@ HEADERS  += main_window.h \
     ../gs_cfg_grp.h \
     ../sys_cfg_grp.h \
     ../sys_cfg_key.h \
-    ../gs_cfg_key.h
+    ../gs_cfg_key.h \
+    ../util/str.h \
+    config.h
 
 FORMS    += main_window.ui \
     general_page.ui \
@@ -59,11 +62,13 @@ RESOURCES += \
     img.qrc
 
 CONFIG += release
-INCLUDEPATH += ../
+INCLUDEPATH += ../ \
+    ../util/
 
 win32 {
     RC_FILE = qapp.rc
     release: DESTDIR = ./
+
 }
 
 TRANSLATIONS = l10n/horusConfig_ru.ts

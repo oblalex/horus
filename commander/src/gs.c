@@ -12,6 +12,7 @@
 #include "gs_scripts.h"
 #include "gs_process.h"
 #include "gs_cfg.h"
+#include "sys_cfg.h"
 #include "gs_cmd.h"
 #include "gs_console.h"
 #include "gs_input_handlers.h"
@@ -131,6 +132,7 @@ static void gs_check_launched_before()
 static void gs_prepare()
 {
     gs_cfg_init();
+    sys_cfg_init();
 	gs_scripts_generate();
 	
 	PRINT_STATUS_MULTI_START();
@@ -205,10 +207,10 @@ static void gs_on_process_stop()
 		gs_cmd_tear_down();
         console_parser_teardown();
         pm_teardown();
-	}
+    }
 
 	gs_console_tear_down();
-    gs_cfg_teardown();
+    sys_cfg_teardown();
 	
 	PRINT_STATUS_MULTI_STOP();
 	LAUNCHED_BEFORE = TRUE;

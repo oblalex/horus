@@ -8,6 +8,10 @@
 
 #include <config.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /** 
  * Create a copy of string.
  *
@@ -27,12 +31,18 @@ int str_copy_symbols(char* src, int src_len, int max_count, int offset, char* ds
 
 void str_escape_unicode(char* src, int src_len, char* dst, int dst_len);
 
+void str_rm_double_symb(char* src, char *dst, char symb);
+
 char* substring(int start, int stop, char* src, char* dst, int size);
 
 unsigned short int cp1251_to_utf8(unsigned char in);
 
 #ifdef _WIN_
 int utf8_to_cp1251(char *src, char *dst);
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif // STR_H

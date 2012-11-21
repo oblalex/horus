@@ -4,13 +4,14 @@
 #include "gs_cfg_key.h"
 #include "sys_cfg_key.h"
 #include "settings.h"
+#include "util/str.h"
 
 #include <QVariant>
 #include <QString>
 #include <QMessageBox>
 
-static QString KEY_SNAME = QString(GS_CFG_KEY_SERVER_NAME);
-static QString KEY_SDSCR = QString(GS_CFG_KEY_SERVER_DESCR);
+static QString KEY_SNAME = QString(SYS_CFG_KEY_SERVER_NAME);
+static QString KEY_SDSCR = QString(SYS_CFG_KEY_SERVER_DESCR);
 
 GeneralPage::GeneralPage(QWidget *parent) :
     QWidget(parent),
@@ -46,8 +47,20 @@ QString GeneralPage::pageName()
 
 void GeneralPage::save()
 {
-    Settings::setServerValue(KEY_SNAME, ui->sNameLn->text());
-    Settings::setServerValue(KEY_SDSCR, ui->sDescriptionLn->text());
+    char* name = ui->sNameLn->text().toUtf8().data();
+    char ename[strlen(name)*6-5];
+    str_escape_unicode(name, strlen(name), ename, sizeof ename);
+
+    Settings::setHorusValue(KEY_SNAME, ui->sNameLn->text());
+    Settings::setServerValue(GS_CFG_KEY_SERVER_NAME, ename);
+
+    char* descr = ui->sDescriptionLn->text().toUtf8().data();
+    char edescr[strlen(descr)*6-5];
+    str_escape_unicode(descr, strlen(descr), edescr, sizeof edescr);
+
+    Settings::setHorusValue(KEY_SDSCR, ui->sDescriptionLn->text());
+    Settings::setServerValue(GS_CFG_KEY_SERVER_DESCR, edescr);
+
     Settings::setHorusValue(QString(SYS_CFG_KEY_LANG),
                             ui->langBox->itemData(ui->langBox->currentIndex()).toString());
 
@@ -56,8 +69,8 @@ void GeneralPage::save()
 
 void GeneralPage::load()
 {
-    ui->sNameLn->setText(Settings::serverValue(KEY_SNAME, "").toString());
-    ui->sDescriptionLn->setText(Settings::serverValue(KEY_SDSCR, "").toString());
+    ui->sNameLn->setText(Settings::horusValue(KEY_SNAME, "").toString());
+    ui->sDescriptionLn->setText(Settings::horusValue(KEY_SDSCR, "").toString());
     selectLangInBox(Settings::horusValue(QString(SYS_CFG_KEY_LANG), SYS_CFG_LANG_EN).toString());
 
     loadChildren();
