@@ -147,6 +147,7 @@ void pm_user_join(D_PILOT_ELEM* pe)
     PRINT_STATUS_MSG_NOIND(msg);
 
     gs_cmd_greet_user(pe->data->callsign);
+    pm_mtl(pe->data->callsign);
 }
 
 void pm_user_left(uint2 channel)
