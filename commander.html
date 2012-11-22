@@ -350,7 +350,9 @@
 				and unpack it to any directory.</p>
 			<p>6. Run MinGW shell (find it in the applications menu).</p>
 			<p>7. Update PATH variable by adding path to Qt libraries and to "qmake". Case of working with Qt SDK is shown below.</p>
-			<pre class="code_snippet">PATH=/c/QtSDK/Desktop/Qt/4.8.1/mingw/bin:$PATH</pre>
+			<pre class="code_snippet">echo "export PATH=/c/QtSDK/Desktop/Qt/4.8.1/mingw/bin:\$PATH" >> ~/.inputrc
+source ~/.inputrc # Apply changes
+qmake -v          # Check qmake version</pre>
 			<p>8. Navigate to directory with Horus Commander sources:</p>
 			<pre class="code_snippet">cd /drive_letter/path/to/horus/sources
 cd commander</pre>
