@@ -80,6 +80,33 @@
 			<ul>
 				<li><a href="#about">About</a></li>
 				<li><a href="#features">Features</a></li>
+				<li><a href="#installation">Installation</a>
+					<ul>
+						<li><a href="#install_usr">Installation for regular users</a>
+							<ul>
+								<li><a href="#install_usr_lin">Linux</a></li>
+								<li><a href="#install_usr_win">Windows</a></li>
+							</ul>
+						</li>
+						<li><a href="#install_dev">Installation for developers</a>
+							<ul>
+								<li><a href="#install_dev_com">Common preparations</a></li>
+								<li><a href="#install_dev_lin">Linux</a></li>
+								<li><a href="#install_dev_win">Windows</a></li>
+								<li><a href="#install_dev_tip">Some tips</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><a href="#configure">Configuring</a></li>
+				<li><a href="#mssn_management">Missions management</a></li>
+				<li><a href="#launching">Launching</a>
+					<ul>
+						<li><a href="#launch_lin">Linux</a></li>
+						<li><a href="#launch_win">Windows</a></li>
+					</ul>
+				</li>
+				<li><a href="#changing_lang">Changing language</a></li>
 				<li><a href="#shell_cmd">Shell commands</a>
 					<ul>
 						<li><a href="#shell_chat">Chatting</a></li>
@@ -92,21 +119,6 @@
 						<li><a href="#req_time">Time requests</a></li>
 					</ul>
 				</li>
-				<li><a href="#installation">Installation</a>
-					<ul>
-						<li><a href="#install_lin">Linux</a></li>
-						<li><a href="#install_win">Windows</a></li>
-					</ul>
-				</li>
-				<li><a href="#configure">Configuring</a></li>
-				<li><a href="#mssn_management">Missions management</a></li>
-				<li><a href="#launching">Launching</a>
-					<ul>
-						<li><a href="#launch_lin">Linux</a></li>
-						<li><a href="#launch_win">Windows</a></li>
-					</ul>
-				</li>
-				<li><a href="#changing_lang">Changing language</a></li>
 				<li><a href="#developer_api">Developer's API</a></li>
 			</ul>
 			<hr/>
@@ -139,137 +151,36 @@
 					take maximum performance.
 				</li>
 			</ul>
-			<hr/>
-			<h3>
-				<a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="shell_cmd">Shell commands</a>
-				<img src="img/info.png" id="shell-info"/>
-			</h3>
-			<script>
-				$('#shell-info').addPopup($('#shell-info-pop-up'));
-			</script>
-			<ul class="cmd_list">
-				<li><a id="shell_chat">Chatting:</a><br/><br/>
-					<table class="commands" cellspacing="0">
-						<col width="300"/>
-						<tr>
-							<td>chall <span style="color:#070;">&lt;message&gt;</span></td>
-							<td>send message to everybody</td>
-						</tr>
-						<tr>
-							<td>chusr <span style="color:#909;">&lt;user&gt;</span>
-								<span style="color:#070;">&lt;message&gt;</span></td>
-							<td>send message to user</td>
-						</tr>
-						<tr>
-							<td>charm
-								<span style="color:#a50;">&lt;army&gt;</span>
-								<span style="color:#070;">&lt;message&gt;</span></td>
-							<td>send message to army:
-								<ul style="margin:0;">
-									<li>"none", "n", "0" - army none;</li>
-									<li>"red",&nbsp; "r", "1" - army red;</li>
-									<li>"blue", "b", "2" - army blue.</li>
-								</ul>
-							</td>
-						</tr>
-					</table>
-				</li><br/>
-				<li><a id="shell_mssn">Missions management:</a><br/><br/>
-					<table class="commands" cellspacing="0">
-						<col width="300"/>
-						<tr>
-							<td>mload</td>
-							<td>load current mission</td>
-						</tr>
-						<tr>
-							<td>muload</td>
-							<td>unload current mission</td>
-						</tr>
-						<tr>
-							<td>mrun</td>
-							<td>run loaded mission</td>
-						</tr>
-						<tr>
-							<td>mend</td>
-							<td>end loaded mission</td>
-						</tr>
-						<tr>
-							<td>mrerun</td>
-							<td>end and run mission again without file reloading</td>
-						</tr>
-						<tr>
-							<td>mstart</td>
-							<td>load and run current mission</td>
-						</tr>
-						<tr>
-							<td>mstop</td>
-							<td>end and unload current mission</td>
-						</tr>
-						<tr>
-							<td>mrestart</td>
-							<td>stop and start mission again with file reloading</td>
-						</tr>
-						<tr>
-							<td>mnext</td>
-							<td>interrupt and stop current mission. Select next and start it</td>
-						</tr>
-						<tr>
-							<td>mprev</td>
-							<td>
-								interrupt and stop current mission. Select previous and start it.
-								Missions history can contain up to
-								&lt;<a href="commander/docs/html/gs__mission__manager_8h.html#a43034bdd0ae7c6267b05ff35ae97cddf">HISTORY_SIZE</a>&gt; missions.</td>
-						</tr>
-						<tr>
-							<td>mtl</td>
-							<td>print mission time left</td>
-						</tr>
-						<tr>
-							<td>mtl set <span style="color:#070;">&lt;time&gt;</span></td>
-							<td>set mission time left in H:M:S format (e.g., 1:20:00)</td>
-						</tr>
-					</table>
-				</li><br/>
-				<li><a id="shell_other">Other:</a><br/><br/>
-					<table class="commands" cellspacing="0">
-						<col width="300"/>
-						<tr>
-							<td>exit</td>
-							<td>stop server and exit commander</td>
-						</tr>
-					</table>
-				</li>
-			</ul>
-			<hr/>
-
-			<h3>
-				<a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="pilot_req">Pilot requests</a>
-				<img src="img/info.png" id="request-info"/>
-			</h3>
-			<script>
-				$('#request-info').addPopup($('#request-info-pop-up'));
-			</script>
-			<p>All pilot requests are starting with &lt;<a href="commander/docs/html/console__parser_8h.html#ad708b100eab76aaa14b567c92bb8b31c">CNSL_CMD_PREFIX</a>&gt;.</p>
-			<ul class="cmd_list">
-				<li><a id="req_time">Time requests:</a><br/><br/>
-					<table class="commands" cellspacing="0">
-						<col width="300"/>
-						<tr>
-							<td>`mtl</td>
-							<td>tell how much mission time left</td>
-						</tr>
-					</table>
-				</li>
-			</ul>
-
 
 			<hr/>
 			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="installation">Installation</a></h3>
 			<ul>
-				<li><a href="#install_lin">Linux</a></li>
-				<li><a href="#install_win">Windows</a></li>
+				<li><a href="#install_usr">Installation for regular users</a>
+					<ul>
+						<li><a href="#install_usr_lin">Linux</a></li>
+						<li><a href="#install_usr_win">Windows</a></li>
+					</ul>
+				</li>
+				<li><a href="#install_dev">Installation for developers</a>
+					<ul>
+						<li><a href="#install_dev_com">Common preparations</a></li>
+						<li><a href="#install_dev_lin">Linux</a></li>
+						<li><a href="#install_dev_win">Windows</a></li>
+						<li><a href="#install_dev_tip">Some tips</a></li>
+					</ul>
+				</li>
 			</ul>
-			<h3><a id="gotop" href="#installation"><div class="gotop_bg" title="Go top"></div></a><a id="install_lin">Linux</a></h3>
+
+			<hr/>
+			<h3><a id="gotop" href="#installation"><div class="gotop_bg" title="Go top"></div></a><a id="install_usr">Installation for regular users</a></h3>
+			<ul>
+				<li><a href="#install_usr_lin">Linux</a></li>
+				<li><a href="#install_usr_win">Windows</a></li>
+			</ul>
+
+			<hr/>
+			<h3><a id="gotop" href="#install_usr"><div class="gotop_bg" title="Go top"></div></a><a id="install_usr_lin">Installation for regular Linux users</a></h3>
+
 			<p>1. Install next packages:</p>
 			<ul style="margin:0; font-size:16px;">
 				<li>git (not necessarily)</li>
@@ -281,10 +192,12 @@
 				<li>gettext + gettext-dev (&gt;=0.18.1)</li>
 				<li>qt (&gt;=4.8.1) + qt-creator</li>
 				<li>wine</li>
-			</ul>	
-			<p>2. Download
+			</ul>
+			<p>
+				2. Download
 				<a href="https://github.com/oblalex/horus/zipball/master">ZIP</a> archive and unpack it
-				or clone Horus repository to any directory:</p>
+				or clone Horus repository to any directory:
+			</p>
 			<pre class="code_snippet">git clone https://github.com/oblalex/horus.git</pre>
 			<p>3. Go to horus-commander subdirectory:</p>
 			<pre class="code_snippet">cd horus/commander</pre>
@@ -296,43 +209,90 @@
 			<pre class="code_snippet">../configure --prefix=/path/to/your/il-2/server/directory</pre>
 			<p>7. Build and install horus-commander:</p>
 			<pre class="code_snippet">make && make install-strip</pre>
+			
+			<hr/>
+			<h3><a id="gotop" href="#install_usr"><div class="gotop_bg" title="Go top"></div></a><a id="install_usr_win">Installation for regular Windows users</a></h3>
+			<p>
+				Download precompiled
+				<a href="http://oblalex.github.com/horus/bin/horus-commander.zip">binaries</a> for 32-bit Windows, unpack it to server's directory and go ahead to the <a href="#configure">configuring</a> section.
+			</p>
 
-			<h3><a id="gotop" href="#installation"><div class="gotop_bg" title="Go top"></div></a><a id="install_win">Windows</a></h3>
+			<hr/>
+			<h3><a id="gotop" href="#installation"><div class="gotop_bg" title="Go top"></div></a><a id="install_dev">Installation for developers</a></h3>
 			<ul>
-				<li>Download precompiled <a href="http://oblalex.github.com/horus/bin/horus-commander.zip">binaries</a> for 32-bit Windows
-					and unpack it to server's directory. If you are user and you just want to get everything working out-of-box, then 
-					this choise is right for you. Just get binaries and go to the <a href="#mssn_management">missions management</a>
-					section.
-				</li>
-				<li>If you are developer then you will need to build project from sources :</li>
+				<li><a href="#install_dev_com">Common preparations</a></li>
+				<li><a href="#install_dev_lin">Linux</a></li>
+				<li><a href="#install_dev_win">Windows</a></li>
+				<li><a href="#install_dev_tip">Some tips</a></li>
 			</ul>
-			<p>1. Install <a href="http://sourceforge.net/projects/mingw/files/Installer/mingw-get-inst/">MinGW</a>:
-				select latest version and download binary executable (e.g., <a href="http://sourceforge.net/projects/mingw/files/Installer/mingw-get-inst/mingw-get-inst-20120426/mingw-get-inst-20120426.exe/download">mingw-get-inst-20120426</a>):</p>
+
+			<hr/>
+			<h3><a id="gotop" href="#install_dev"><div class="gotop_bg" title="Go top"></div></a><a id="install_dev_com">Common preparations</a></h3>
+
+			<p>
+				1. Make sure you are understanding what
+				<a href="https://help.github.com/articles/where-can-i-learn-more-about-git-and-githubs">Git</a> is. You will use it very often. Lots of answeres for your questions can be found in
+				<a href="https://help.github.com/">GitHub help</a> section.
+			</p>
+			<p>2. Go to <a href="https://github.com">GitHub</a>, create free account if you do not have it yet and log in.
+			</p>
+			<p>
+				3. Go to this project's <a href="https://github.com/oblalex/horus">repository</a> and
+				<a href="https://help.github.com/articles/fork-a-repo">fork</a> it.
+			</p>
+
+			<h3><a id="gotop" href="#install_dev"><div class="gotop_bg" title="Go top"></div></a><a id="install_dev_lin">Installation for developers on Linux</a></h3>
+
+			<p>
+				1. Install packages listed in the <a href="#install_usr_lin">1st step</a> of the manual for regular users.
+			</p>
+			<p>
+				2. Configure <a href="https://help.github.com/articles/set-up-git#platform-linux">your Git</a>.
+			</p>
+			<p>
+				3. Configure <a href="https://help.github.com/articles/where-can-i-learn-more-about-git-and-github">secure connection</a>.
+			</p>
+			<p>4. Get you local Horus copy: </p>
+			<pre class="code_snippet">git clone https://github.com/your_login/horus.git</pre>
+			<p>5. Create a remote named "origin" pointing at your GitHub repo:</p>
+			<pre class="code_snippet">git remote add origin https://github.com/your_login/horus.git</pre>
+			<p>
+				6. Continue <a href="#install_usr_lin">the manual for regular users</a> from the 3rd step.
+			</p>
+
+			<hr/>
+			<h3><a id="gotop" href="#install_dev"><div class="gotop_bg" title="Go top"></div></a><a id="install_dev_win">Installation for developers on Windows</a></h3>
+
+			<p>
+				1. Install GitHub <a href="http://github-windows.s3.amazonaws.com/GitHubSetup.exe">application for Windows</a>.
+			</p>
+			<p>2. Install Windows <a href="http://support.microsoft.com/kb/968929">PowerShell</a>.</p>
+			<p>3. Follow <a href="http://windows.github.com/help.html">the manual</a>
+				to get your local clone.</p>
+			<p>
+				4. Install <a href="http://sourceforge.net/projects/mingw/files/Installer/mingw-get-inst/">MinGW</a>:
+				select latest version and download binary executable (e.g., <a href="http://sourceforge.net/projects/mingw/files/Installer/mingw-get-inst/mingw-get-inst-20120426/mingw-get-inst-20120426.exe/download">mingw-get-inst-20120426</a>):
+			</p>
 				<img class="screensh" src="img/install/wingw_1.png"/></br>
 				<img class="screensh" src="img/install/wingw_2.png"/>
-
-			<p>2. Install pkg-config:
+			<p>
+				5. Install "pkg-config":
 				<ol style="margin-left: 50px;">
 					<li>Download <a href="http://ftp.acc.umu.se/pub/gnome/binaries/win32/dependencies/pkg-config_0.26-1_win32.zip">pkg-config.exe</a> from GTK+ for Windows.</li>
-					<li>Then you can simply unzip this downloaded zip-file, and then copy the "pkg-config.exe" executable
-						into "C:\MinGW\bin"
+					<li>Then you can simply unzip this downloaded zip-file, and then copy the "pkg-config.exe" executable into "C:\MinGW\bin".
 					</li>
 					<li>Download
 						<a href="http://ftp.acc.umu.se/pub/gnome/binaries/win32/dependencies/pkg-config-dev_0.26-1_win32.zip">pkg.m4</a>.
 					</li>
-					<li>Unzip this zip, and then copy the "pkg.m4" executable into "C:\MinGW\share\aclocal"</li>
-
-
+					<li>Unzip this zip, and then copy the "pkg.m4" executable into "C:\MinGW\share\aclocal".</li>
 					<li>Now you have to download
-						<a href="http://ftp.gnome.org/pub/gnome/binaries/win32/glib/2.28/glib_2.28.1-1_win32.zip">GLib DLL</a>
-						too, always from GTK+ for Windows.</li>
-					<li>Once again, you have to unzip this downloaded zip-file, and then copy liglib-2.0-0.dll into "C:\MinGW\bin"</li>
-
-					<li>And at last, go to "C:\MinGW\bin" and copy "libintl-8.dll" to "intl.dll"</li>
+						<a href="http://ftp.gnome.org/pub/gnome/binaries/win32/glib/2.28/glib_2.28.1-1_win32.zip">GLib DLL</a> too, always from GTK+ for Windows.</li>
+					<li>Once again, you have to unzip this downloaded zip-file, and then copy "liglib-2.0-0.dll" into "C:\MinGW\bin".</li>
+					<li>And at last, go to "C:\MinGW\bin" and copy "libintl-8.dll" to "intl.dll".</li>
 				</ol>
 			</p>
-
-			<p>3. Install
+			<p>
+				6. Install
 				<a href="http://gnuwin32.sourceforge.net/packages/pcre.htm">PCRE</a>
 				library to MinGW environment:
 				<ol style="margin-left: 50px;">
@@ -341,29 +301,33 @@
 					<li>Copy files from "lib" to "C:\MinGW\lib" directory.</li>
 				</ol>
 			</p>
-			<p>4. Install Qt <a href="http://qt-project.org/downloads#qt-lib">libraries</a> and
+			<p>
+				7. Install Qt <a href="http://qt-project.org/downloads#qt-lib">libraries</a> and
 				<a href="http://qt-project.org/downloads#qt-creator">Qt Creator</a> or just
-				<a href="http://www.developer.nokia.com/Develop/Qt/Tools/">Qt SDK</a> which is much more heavy.</p>
-			<p>5. Download
+				<a href="http://www.developer.nokia.com/Develop/Qt/Tools/">Qt SDK</a> which is much more heavy but easier.
+			</p>
+			<p>
+				8. Download
 				<a href="https://github.com/oblalex/horus/zipball/master">ZIP</a> or
 				<a href="https://github.com/oblalex/horus/tarball/master">TAR</a> archive
-				and unpack it to any directory.</p>
-			<p>6. Run MinGW shell (find it in the applications menu).</p>
-			<p>7. Update PATH variable by adding path to Qt libraries and to "qmake". Case of working with Qt SDK is shown below.</p>
+				and unpack it to any directory.
+			</p>
+			<p>9. Run MinGW shell (find it in the applications menu).</p>
+			<p>10. Update PATH variable by adding path to Qt libraries and to "qmake". Case of working with Qt SDK is shown below.</p>
 			<pre class="code_snippet">echo "export PATH=/c/QtSDK/Desktop/Qt/4.8.1/mingw/bin:\$PATH" >> ~/.inputrc
 source ~/.inputrc # Apply changes
 qmake -v          # Check qmake version</pre>
-			<p>8. Navigate to directory with Horus Commander sources:</p>
+			<p>11. Navigate to directory with Horus Commander sources:</p>
 			<pre class="code_snippet">cd /drive_letter/path/to/horus/sources
 cd commander</pre>
-			<p>9. Make sure "configure.ac" has right format:</p>
+			<p>12. Make sure "configure.ac" has right format:</p>
 			<pre class="code_snippet">dos2unix configure.ac</pre>
-			<p>10. Configure, build and install in similar to Linux way:</p>
+			<p>13. Configure, build and install in Linux-similar way:</p>
 			<pre class="code_snippet">autoreconf -if
 mkdir build && cd build
 ../configure --prefix=/path/to/your/il-2/server/directory
 make && make install-strip</pre>
-			<p>11. Copy next MinGW and Qt libraries and <a href="http://gnuwin32.sourceforge.net/downlinks/pcre-bin-zip.php">PCRE binaries</a> to your builded "horus-commander" directory: <img src="img/info.png" id="lib-distro-info"/>
+			<p>14. Copy next MinGW and Qt libraries and <a href="http://gnuwin32.sourceforge.net/downlinks/pcre-bin-zip.php">PCRE binaries</a> to your builded "horus-commander" directory: <img src="img/info.png" id="lib-distro-info"/>
 				<ul style="margin-left: 50px;">
 					<li>libgcc_s_dw2-1.dll</li>
 					<li>libstdc++-6.dll</li>
@@ -380,6 +344,39 @@ make && make install-strip</pre>
 			<script>
 				$('#lib-distro-info').addPopup($('#lib-distro-info-pop-up'));
 			</script>
+
+			<hr/>
+			<h3><a id="gotop" href="#install_dev"><div class="gotop_bg" title="Go top"></div></a><a id="install_dev_tip">Some tips</a></h3>
+			<p>1. It's better to make several little logically-full commits instead of one big and messy one.</p>
+			<p>
+				2. Look at <a href="https://github.com/oblalex/horus/issues?state=open">unfinished tasks</a> list. Work on existing tasks or create your own.
+			</p>
+			<p>
+				3. Use separate <a href="http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging">branches</a> for separate tasks.
+			</p>
+			<p>
+				4. Use <a href="https://help.github.com/articles/using-pull-requests">pull requests</a> to
+				update main project's repository from your fork.
+			</p>
+			<p>
+				5. In your Linux shell or PowerShell on Windows use next commands to update your fork from main project's repository:
+			</p>
+			<pre class="code_snippet"># Use next 2 commands only once:
+
+git remote add upstream https://github.com/oblalex/horus.git    # Set a new remote
+git remote -v                                                   # Verify new remote
+
+
+# Use next 3 commands every time you want to update your fork from main project's repository:
+
+git fetch upstream             # Grab the upstream remote's branches
+git branch -va                 # List all local and remote-tracking branches
+git checkout master            # Check out your local master branch     / select another branch name
+git merge upstream/master      # Merge upstream's master into our own   \ if you need to update it
+</pre>
+
+			<p>You can call PowerShell on Windows in such way:</p></br>
+			<center><img class="screensh" src="img/install/call_powersh.png" /></center>
 
 			<hr/>
 			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="configure">Configuring</a></h3>
@@ -610,17 +607,16 @@ received from a particular client. Interval greater than this value is considere
 
 			<hr/>
 			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="launching">Launching</a></h3>
-			<p>It is recommended to have only one network adapter to be turned on. If you have wired and wireless or
-				some phisical and virtual adapters working together then server's IP-address might not be recognized properly.
-				Make sure you have read and understood the plot of the <a href="file:///home/oblalex/proj/horus/commander.html#mssn_management">previous section</a>. File "missions.xml" must be created and contain propper mission list.
-				Nothing will explode if you've got wrong mission list or no list at all, but no mission will be played.
-				This is for sure.
+			<p>
+				It is recommended to have only one network adapter to be turned on. If you have wired and wireless or some phisical and virtual adapters working together then server's IP-address might not be recognized properly. Make sure you have read and understood the plot of the <a href="file:///home/oblalex/proj/horus/commander.html#mssn_management">mission management</a> section. File "missions.xml" must be created and contain propper mission list. Nothing will explode if you've got wrong mission list or no list at all, but no mission will be played. This is for sure.
 			</p>
 			<ul>
 				<li><a href="#launch_lin">Linux</a></li>
 				<li><a href="#launch_win">Windows</a></li>
 			</ul>
-			<h3><a id="gotop" href="#launching"><div class="gotop_bg" title="Go top"></div></a><a id="launch_lin">Linux</a></h3>
+
+			<hr/>
+			<h3><a id="gotop" href="#launching"><div class="gotop_bg" title="Go top"></div></a><a id="launch_lin">Launching on Linux</a></h3>
 			<p>1. Go to installed horus-commander directory:</p>
 			<pre class="code_snippet">cd /path/to/your/il-2/server/directory/horus-commander</pre>
 			<p>2. Start commander:</p>
@@ -629,7 +625,9 @@ received from a particular client. Interval greater than this value is considere
 			<img class="screensh" src="img/exec/starting.png"/>
 			<p>Entering shell command 'exit' will cause to this:</p>
 			<img class="screensh" src="img/exec/stopping.png"/><br/>
-			<h3><a id="gotop" href="#launching"><div class="gotop_bg" title="Go top"></div></a><a id="launch_win">Windows</a></h3>
+
+			<hr/>
+			<h3><a id="gotop" href="#launching"><div class="gotop_bg" title="Go top"></div></a><a id="launch_win">Launching on Windows</a></h3>
 			<p>Launching on Windows is quite similar to described above. Go to installed horus-commander directory and
 				launch "horusCommander.exe". You should see such output:</p>
 			<img class="screensh" src="img/exec/starting_win.png"/>
@@ -669,6 +667,129 @@ received from a particular client. Interval greater than this value is considere
 				<a class="next" id="config_lang_next" href="#"><span>next</span></a>
 				<div class="pagination" id="config_lang_pag"></div>
 			</div>
+
+<hr/>
+			<h3>
+				<a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="shell_cmd">Shell commands</a>
+				<img src="img/info.png" id="shell-info"/>
+			</h3>
+			<script>
+				$('#shell-info').addPopup($('#shell-info-pop-up'));
+			</script>
+			<ul class="cmd_list">
+				<li><a id="shell_chat">Chatting:</a><br/><br/>
+					<table class="commands" cellspacing="0">
+						<col width="300"/>
+						<tr>
+							<td>chall <span style="color:#070;">&lt;message&gt;</span></td>
+							<td>send message to everybody</td>
+						</tr>
+						<tr>
+							<td>chusr <span style="color:#909;">&lt;user&gt;</span>
+								<span style="color:#070;">&lt;message&gt;</span></td>
+							<td>send message to user</td>
+						</tr>
+						<tr>
+							<td>charm
+								<span style="color:#a50;">&lt;army&gt;</span>
+								<span style="color:#070;">&lt;message&gt;</span></td>
+							<td>send message to army:
+								<ul style="margin:0;">
+									<li>"none", "n", "0" - army none;</li>
+									<li>"red",&nbsp; "r", "1" - army red;</li>
+									<li>"blue", "b", "2" - army blue.</li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</li><br/>
+				<li><a id="shell_mssn">Missions management:</a><br/><br/>
+					<table class="commands" cellspacing="0">
+						<col width="300"/>
+						<tr>
+							<td>mload</td>
+							<td>load current mission</td>
+						</tr>
+						<tr>
+							<td>muload</td>
+							<td>unload current mission</td>
+						</tr>
+						<tr>
+							<td>mrun</td>
+							<td>run loaded mission</td>
+						</tr>
+						<tr>
+							<td>mend</td>
+							<td>end loaded mission</td>
+						</tr>
+						<tr>
+							<td>mrerun</td>
+							<td>end and run mission again without file reloading</td>
+						</tr>
+						<tr>
+							<td>mstart</td>
+							<td>load and run current mission</td>
+						</tr>
+						<tr>
+							<td>mstop</td>
+							<td>end and unload current mission</td>
+						</tr>
+						<tr>
+							<td>mrestart</td>
+							<td>stop and start mission again with file reloading</td>
+						</tr>
+						<tr>
+							<td>mnext</td>
+							<td>interrupt and stop current mission. Select next and start it</td>
+						</tr>
+						<tr>
+							<td>mprev</td>
+							<td>
+								interrupt and stop current mission. Select previous and start it.
+								Missions history can contain up to
+								&lt;<a href="commander/docs/html/gs__mission__manager_8h.html#a43034bdd0ae7c6267b05ff35ae97cddf">HISTORY_SIZE</a>&gt; missions.</td>
+						</tr>
+						<tr>
+							<td>mtl</td>
+							<td>print mission time left</td>
+						</tr>
+						<tr>
+							<td>mtl set <span style="color:#070;">&lt;time&gt;</span></td>
+							<td>set mission time left in H:M:S format (e.g., 1:20:00)</td>
+						</tr>
+					</table>
+				</li><br/>
+				<li><a id="shell_other">Other:</a><br/><br/>
+					<table class="commands" cellspacing="0">
+						<col width="300"/>
+						<tr>
+							<td>exit</td>
+							<td>stop server and exit commander</td>
+						</tr>
+					</table>
+				</li>
+			</ul>
+			<hr/>
+
+			<h3>
+				<a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="pilot_req">Pilot requests</a>
+				<img src="img/info.png" id="request-info"/>
+			</h3>
+			<script>
+				$('#request-info').addPopup($('#request-info-pop-up'));
+			</script>
+			<p>All pilot requests are starting with &lt;<a href="commander/docs/html/console__parser_8h.html#ad708b100eab76aaa14b567c92bb8b31c">CNSL_CMD_PREFIX</a>&gt;.</p>
+			<ul class="cmd_list">
+				<li><a id="req_time">Time requests:</a><br/><br/>
+					<table class="commands" cellspacing="0">
+						<col width="300"/>
+						<tr>
+							<td>`mtl</td>
+							<td>tell how much mission time left</td>
+						</tr>
+					</table>
+				</li>
+			</ul>
 
 			<hr/>
 			<h3><a id="gotop" href="#contents"><div class="gotop_bg" title="Go top"></div></a><a id="developer_api">Developer's API</a></h3>
