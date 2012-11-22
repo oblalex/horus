@@ -310,7 +310,29 @@
 				select latest version and download binary executable (e.g., <a href="http://sourceforge.net/projects/mingw/files/Installer/mingw-get-inst/mingw-get-inst-20120426/mingw-get-inst-20120426.exe/download">mingw-get-inst-20120426</a>):</p>
 				<img class="screensh" src="img/install/wingw_1.png"/></br>
 				<img class="screensh" src="img/install/wingw_2.png"/>
-			<p>2. Install
+
+			<p>2. Install pkg-config:
+				<ol style="margin-left: 50px;">
+					<li>Download <a href="http://ftp.acc.umu.se/pub/gnome/binaries/win32/dependencies/pkg-config_0.26-1_win32.zip">pkg-config.exe</a> from GTK+ for Windows.</li>
+					<li>Then you can simply unzip this downloaded zip-file, and then copy the "pkg-config.exe" executable
+						into "C:\MinGW\bin"
+					</li>
+					<li>Download
+						<a href="http://ftp.acc.umu.se/pub/gnome/binaries/win32/dependencies/pkg-config-dev_0.26-1_win32.zip">pkg.m4</a>.
+					</li>
+					<li>Unzip this zip, and then copy the "pkg.m4" executable into "C:\MinGW\share\aclocal"</li>
+
+
+					<li>Now you have to download
+						<a href="http://ftp.gnome.org/pub/gnome/binaries/win32/glib/2.28/glib_2.28.1-1_win32.zip">GLib DLL</a>
+						too, always from GTK+ for Windows.</li>
+					<li>Once again, you have to unzip this downloaded zip-file, and then copy liglib-2.0-0.dll into "C:\MinGW\bin"</li>
+
+					<li>And at last, go to "C:\MinGW\bin" and copy "libintl-8.dll" to "intl.dll"</li>
+				</ol>
+			</p>
+
+			<p>3. Install
 				<a href="http://gnuwin32.sourceforge.net/packages/pcre.htm">PCRE</a>
 				library to MinGW environment:
 				<ol style="margin-left: 50px;">
@@ -319,27 +341,27 @@
 					<li>Copy files from "lib" to "C:\MinGW\lib" directory.</li>
 				</ol>
 			</p>
-			<p>3. Install Qt <a href="http://qt-project.org/downloads#qt-lib">libraries</a> and
+			<p>4. Install Qt <a href="http://qt-project.org/downloads#qt-lib">libraries</a> and
 				<a href="http://qt-project.org/downloads#qt-creator">Qt Creator</a> or just
 				<a href="http://www.developer.nokia.com/Develop/Qt/Tools/">Qt SDK</a> which is much more heavy.</p>
-			<p>4. Download
+			<p>5. Download
 				<a href="https://github.com/oblalex/horus/zipball/master">ZIP</a> or
 				<a href="https://github.com/oblalex/horus/tarball/master">TAR</a> archive
 				and unpack it to any directory.</p>
-			<p>5. Run MinGW shell (find it in the applications menu).</p>
-			<p>6. Update PATH variable by adding path to Qt libraries and to "qmake". Case of working with Qt SDK is shown below.</p>
+			<p>6. Run MinGW shell (find it in the applications menu).</p>
+			<p>7. Update PATH variable by adding path to Qt libraries and to "qmake". Case of working with Qt SDK is shown below.</p>
 			<pre class="code_snippet">PATH=/c/QtSDK/Desktop/Qt/4.8.1/mingw/bin:$PATH</pre>
-			<p>7. Navigate to directory with Horus Commander sources:</p>
+			<p>8. Navigate to directory with Horus Commander sources:</p>
 			<pre class="code_snippet">cd /drive_letter/path/to/horus/sources
 cd commander</pre>
-			<p>8. Make sure "configure.ac" has right format:</p>
+			<p>9. Make sure "configure.ac" has right format:</p>
 			<pre class="code_snippet">dos2unix configure.ac</pre>
-			<p>9. Configure, build and install in similar to Linux way:</p>
+			<p>10. Configure, build and install in similar to Linux way:</p>
 			<pre class="code_snippet">autoreconf -if
 mkdir build && cd build
 ../configure --prefix=/path/to/your/il-2/server/directory
 make && make install-strip</pre>
-			<p>10. Copy next MinGW and Qt libraries and <a href="http://gnuwin32.sourceforge.net/downlinks/pcre-bin-zip.php">PCRE binaries</a> to your builded "horus-commander" directory: <img src="img/info.png" id="lib-distro-info"/>
+			<p>11. Copy next MinGW and Qt libraries and <a href="http://gnuwin32.sourceforge.net/downlinks/pcre-bin-zip.php">PCRE binaries</a> to your builded "horus-commander" directory: <img src="img/info.png" id="lib-distro-info"/>
 				<ul style="margin-left: 50px;">
 					<li>libgcc_s_dw2-1.dll</li>
 					<li>libstdc++-6.dll</li>
