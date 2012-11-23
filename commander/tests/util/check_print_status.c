@@ -1,42 +1,55 @@
-#include <check.h>
 #include <stdlib.h>
 #include <wchar.h>
 
 #include "../src/util/l10n.h"
 #include "../src/util/print_status.h"
 #include "../src/util/terminal.h"
+#include "MinUnit.h"
 
-START_TEST (test_print_status_done)
+static char* test_print_status_done()
 {
 	term_init();
 
 	PRINT_STATUS_NEW("Task 1");
 	PRINT_STATUS_DONE();
 
+    PRINT_STATUS_NEW("Task 2");
+        PRINT_STATUS_NEW("Subtask 1");
+            PRINT_STATUS_NEW("Subtask 1");
+            PRINT_STATUS_MSG("Test message");
+            PRINT_STATUS_MSG_NOIND("Test message with no indent");
+            PRINT_STATUS_DONE();
+        PRINT_STATUS_DONE();
+        PRINT_STATUS_NEW("Subtask 2");
+        PRINT_STATUS_DONE();
+        PRINT_STATUS_NEW("Subtask 3");
+        PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE();
+
+    PRINT_STATUS_NEW("Task 3");
+        PRINT_STATUS_NEW("Subtask 1");
+        PRINT_STATUS_MSG_WRN("Test warning");
+        PRINT_STATUS_MSG_WRN_NOIND("Test warning with no indent");
+        PRINT_STATUS_DONE();
+        PRINT_STATUS_NEW("Subtask 2");
+        PRINT_STATUS_MSG_ERR("Test error");
+        PRINT_STATUS_MSG_ERR_NOIND("Test error with no indent");
+        PRINT_STATUS_FAIL();
+    PRINT_STATUS_DONE();
+
 	term_styleReset();
+
+    return 0;
 }
-END_TEST
 
-Suite* print_status_suite (void)
+static char* all_tests()
 {
-	Suite *s = suite_create ("Print Status");
-
-	TCase *tc_core = tcase_create ("Core");
-	tcase_add_test (tc_core, test_print_status_done);
-	suite_add_tcase (s, tc_core);
-
-	return s;
+     mu_run_test(test_print_status_done);
+     return 0;
 }
 
 int main (void)
 {
     locale_init("en");
-	int number_failed;
-	Suite *s = print_status_suite();
-	SRunner *sr = srunner_create (s);
-	srunner_run_all (sr, CK_NORMAL);
-	number_failed = srunner_ntests_failed (sr);
-	srunner_free (sr);
-	return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return mu_run_tests(&all_tests, "Print status");
 }
-

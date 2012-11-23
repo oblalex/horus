@@ -20,16 +20,6 @@ LT_INIT
 AC_CONFIG_SRCDIR([src/main.c])
 AC_CONFIG_HEADERS([config.h ])
 
-PKG_CHECK_MODULES(
-	[CHECK],
-	[check >= 0.9.4],
-	[have_check="yes"],
-	[
-	 	[have_check="no"],
-		AC_MSG_WARN([Check not found; cannot run unit tests!])
-	]
-)
-
 AC_PROG_CC
 
 localedir='${prefix}/'$PACKAGE_NAME'/l10n'

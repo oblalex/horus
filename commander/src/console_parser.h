@@ -34,7 +34,7 @@
 /**
  *  Group 1: Callsign
  *
- *  Example: "socketConnection with 192.168.1.34:21000 on channel 1 lost.  Reason: \n"
+ *  Example: "Chat: =435SAP=Alex: \\t`mtl\\n"
  */
 #define CNSL_CMD_MTL  CNSL_CMD_HEAD CNSL_CMD_PREFIX "mtl" CNSL_LN
 

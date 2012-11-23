@@ -1,7 +1,7 @@
-#include <check.h>
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "MinUnit.h"
 #include "../../src/util/stack/circular_stack.h"
 
 static CSTACK stack;
@@ -20,7 +20,7 @@ void printStack()
     printf("\n");
 }
 
-START_TEST (test_circular_stack)
+char* test_circular_stack()
 {
     cstack_init(&stack, 3, sizeof(int));
 
@@ -55,27 +55,16 @@ START_TEST (test_circular_stack)
 
     printStack();
 
+    return 0;
 }
-END_TEST
 
-Suite* circular_stack_suite (void)
+static char* all_tests()
 {
-    Suite *s = suite_create ("Circular stack");
-
-	TCase *tc_core = tcase_create ("Core");
-    tcase_add_test (tc_core, test_circular_stack);
-	suite_add_tcase (s, tc_core);
-
-	return s;
+    mu_run_test(test_circular_stack);
+    return 0;
 }
 
 int main (void)
 {
-	int number_failed;
-    Suite *s = circular_stack_suite();
-	SRunner *sr = srunner_create (s);
-	srunner_run_all (sr, CK_NORMAL);
-	number_failed = srunner_ntests_failed (sr);
-	srunner_free (sr);
-	return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return mu_run_tests(&all_tests, "Circular stack");
 }
