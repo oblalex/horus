@@ -6,6 +6,8 @@ compiler:
 install:
   - sudo apt-get install gcc-4.7 libqt4-dev qt4-qmake autoconf automake libtool autopoint
 before_script:
+  - gcc-4.7.0 --verision
+  - gcc-4.7 --verision
   - export CC=gcc-4.7
   - gcc --version
   - cd commander 
