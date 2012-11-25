@@ -176,20 +176,25 @@ static void socket_addr_prepare(struct sockaddr_in* addr)
 
 static void get_server_ip(char* str_ip, int length)
 {
+    int ret = -1;
 #if defined(_WIN_)
-    system("echo off && setlocal && (FOR /f \"delims=: tokens=1-2\" %C IN ('ipconfig /all ^| find \"IP-\"') DO ECHO %D>tmpip) && (FOR /F \"tokens=1\" %A IN (tmpip) DO ECHO %A>"TMP_IP") && endlocal && echo on && del tmpip");
+    ret = system("echo off && setlocal && (FOR /f \"delims=: tokens=1-2\" %C IN ('ipconfig /all ^| find \"IP-\"') DO ECHO %D>tmpip) && (FOR /F \"tokens=1\" %A IN (tmpip) DO ECHO %A>"TMP_IP") && endlocal && echo on && del tmpip");
 #else
-    system("ip -4 -o addr show dev `ip a | grep '^[0-9]*: [^lo]' | awk -F\\: '{print $2}' | tr -d ' ' | head -n 1` | awk '{ gsub(/\\/[0-9]+$/, \"\", $4); print $4 }' > " TMP_IP);
+    ret = system("ip -4 -o addr show dev `ip a | grep '^[0-9]*: [^lo]' | awk -F\\: '{print $2}' | tr -d ' ' | head -n 1` | awk '{ gsub(/\\/[0-9]+$/, \"\", $4); print $4 }' > " TMP_IP);
 #endif
 
 	char* path = TMP_IP;
-	FILE* file = fopen(path, "r");
 
-	if (file != NULL)
-	{
-		fgets (str_ip, length, file);
-		fclose (file);
-	}
+    if (ret==0)
+    {
+        FILE* file = fopen(path, "r");
+
+        if (file != NULL)
+        {
+            fgets (str_ip, length, file);
+            fclose (file);
+        }
+    }
 
 	unlink(path);
 }
