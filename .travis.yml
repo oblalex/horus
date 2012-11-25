@@ -5,5 +5,5 @@ compiler:
   - gcc
 install:
   - sudo apt-get update
-  - sudo apt-get install libqt4-dev qt4-qmake
+  - sudo apt-get install libqt4-dev qt4-qmake autoconf automake
 script: cd commander && autoreconf -if && ./configure && make && make check
