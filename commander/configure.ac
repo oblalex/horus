@@ -25,7 +25,7 @@ AC_PROG_CC
 localedir='${prefix}/'$PACKAGE_NAME'/l10n'
 AC_SUBST(localedir)
 
-AM_CFLAGS='--pedantic -Wall -Werror -Wfatal-errors -std=gnu99 -O2'
+AM_CFLAGS='--pedantic -Wall -Wno-error=unused-result -Werror -Wfatal-errors -std=gnu99 -O2'
 AC_SUBST(AM_CFLAGS)
 
 AC_PROG_LIBTOOL
