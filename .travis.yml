@@ -4,9 +4,15 @@ language:
 compiler:
   - gcc
 install:
-  - sudo apt-get install gcc-4.7 libqt4-dev qt4-qmake autoconf automake libtool autopoint
+  - sudo apt-get install libqt4-dev qt4-qmake autoconf automake libtool autopoint
 before_script:
-  - uname -a
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test # GCC 4.7
+  - sudo apt-get -qq update
+  - '[[ $CC == "clang" ]] && exit 1 || [[ $CC == "gcc" ]]
+      && sudo apt-get -qq install gcc-4.7
+      && export CXX=g++-4.7
+      && export CC=gcc-4.7'
+  - ./configure $BUILD_TYPE
   - gcc --version
   - cd commander 
   - autoreconf -if
