@@ -15,5 +15,7 @@ before_script:
   - gcc --version
   - cd commander 
   - autoreconf -if
-  - ./configure
+  - mkdir build
+  - cd build
+  - ../configure
 script: make && make check
