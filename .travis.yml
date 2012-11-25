@@ -5,5 +5,5 @@ compiler:
   - gcc
 install:
   - sudo apt-get update
-  - sudo apt-get install libqt4-dev qt4-qmake autoconf automake libtool autopoint
+  - sudo apt-get install gcc-4.7 libqt4-dev qt4-qmake autoconf automake libtool autopoint
 script: cd commander && autoreconf -if && ./configure && make && make check
