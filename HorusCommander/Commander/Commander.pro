@@ -22,3 +22,5 @@ FORMS    += mainwindow.ui
 win32 {
     DEFINES += _WIN32_
 }
+
+CPPFLAGS +=	"--pedantic -Wall -Wno-error=unused-result -Werror -Wfatal-errors -std=gnu99"
