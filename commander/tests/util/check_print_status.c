@@ -10,32 +10,34 @@ static char* test_print_status_done()
 {
 	term_init();
 
-	PRINT_STATUS_NEW("Task 1");
-	PRINT_STATUS_DONE();
+    BOOL shLock = FALSE;
 
-    PRINT_STATUS_NEW("Task 2");
-        PRINT_STATUS_NEW("Subtask 1");
-            PRINT_STATUS_NEW("Subtask 1");
-            PRINT_STATUS_MSG("Test message");
-            PRINT_STATUS_MSG_NOIND("Test message with no indent");
-            PRINT_STATUS_DONE();
-        PRINT_STATUS_DONE();
-        PRINT_STATUS_NEW("Subtask 2");
-        PRINT_STATUS_DONE();
-        PRINT_STATUS_NEW("Subtask 3");
-        PRINT_STATUS_DONE();
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_NEW("Task 1", shLock);
+    PRINT_STATUS_DONE(shLock);
 
-    PRINT_STATUS_NEW("Task 3");
-        PRINT_STATUS_NEW("Subtask 1");
-        PRINT_STATUS_MSG_WRN("Test warning");
-        PRINT_STATUS_MSG_WRN_NOIND("Test warning with no indent");
-        PRINT_STATUS_DONE();
-        PRINT_STATUS_NEW("Subtask 2");
-        PRINT_STATUS_MSG_ERR("Test error");
-        PRINT_STATUS_MSG_ERR_NOIND("Test error with no indent");
-        PRINT_STATUS_FAIL();
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_NEW("Task 2", shLock);
+        PRINT_STATUS_NEW("Subtask 1", shLock);
+            PRINT_STATUS_NEW("Subtask 1", shLock);
+            PRINT_STATUS_MSG("Test message", shLock);
+            PRINT_STATUS_MSG_NOIND("Test message with no indent", shLock);
+            PRINT_STATUS_DONE(shLock);
+        PRINT_STATUS_DONE(shLock);
+        PRINT_STATUS_NEW("Subtask 2", shLock);
+        PRINT_STATUS_DONE(shLock);
+        PRINT_STATUS_NEW("Subtask 3", shLock);
+        PRINT_STATUS_DONE(shLock);
+    PRINT_STATUS_DONE(shLock);
+
+    PRINT_STATUS_NEW("Task 3", shLock);
+        PRINT_STATUS_NEW("Subtask 1", shLock);
+        PRINT_STATUS_MSG_WRN("Test warning", shLock);
+        PRINT_STATUS_MSG_WRN_NOIND("Test warning with no indent", shLock);
+        PRINT_STATUS_DONE(shLock);
+        PRINT_STATUS_NEW("Subtask 2", shLock);
+        PRINT_STATUS_MSG_ERR("Test error", shLock);
+        PRINT_STATUS_MSG_ERR_NOIND("Test error with no indent", shLock);
+        PRINT_STATUS_FAIL(shLock);
+    PRINT_STATUS_DONE(shLock);
 
 	term_styleReset();
 
