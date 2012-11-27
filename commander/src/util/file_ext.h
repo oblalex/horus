@@ -6,5 +6,6 @@
 #define FILE_EXT_INI ".ini"
 #define FILE_EXT_LOG ".log"
 #define FILE_EXT_XML ".xml"
+#define FILE_EXT_TXT ".txt"
 
 #endif // FILE_EXT_H

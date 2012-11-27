@@ -38,6 +38,10 @@
 #define SYS_CFG_NAME 		"config" FILE_EXT_INI
 #define PATH_SYS_CFG 		PATH_CURRENT SYS_CFG_NAME
 
+/** Commanders shell's history file name */
+#define SH_HISTORY_NAME      "shHistory" FILE_EXT_TXT
+#define PATH_SH_HISTORY_NAME PATH_CURRENT SH_HISTORY_NAME
+
 /** Main server's command file name */
 #define GS_CMDF_MAIN_NAME 	"server" FILE_EXT_CMD
 #define PATH_GS_CMDF_MAIN 	PATH_GS GS_CMDF_MAIN_NAME

@@ -15,5 +15,5 @@ void event_parse_string(char* str)
 {
     str_null_termitate(str);
     // TODO:
-    PRINT_STATUS_MSG(str);
+    PRINT_STATUS_MSG(str, TRUE);
 }

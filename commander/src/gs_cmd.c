@@ -114,8 +114,10 @@ void gs_cmd_chat(char* msg, char* addressee)
 
 void gs_cmd_kick_all()
 {	
+    BOOL shLock = TRUE;
+    
     char* msg = tr("Kicking all!");
-    PRINT_STATUS_NEW(msg);
+    PRINT_STATUS_NEW(msg, shLock);
 
     uint2 i;
 	for(i=0; i<3; i++)
@@ -134,7 +136,7 @@ void gs_cmd_kick_all()
     for(i=0; i< gs_cfg_getChannelsCount(); i++)
 		gs_cmd_send(cmd);
 
-	PRINT_STATUS_DONE();
+	PRINT_STATUS_DONE(shLock);
 }
 
 void gs_cmd_greet_user(char* callsign)

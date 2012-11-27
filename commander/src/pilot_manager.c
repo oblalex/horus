@@ -32,9 +32,11 @@ static D_PILOT_ELEM*    FIRST;
 static D_PILOT_ELEM*    LAST;
 static uint2            COUNT;
 
+static BOOL shLock = TRUE;
+
 void pm_init()
 {
-    PRINT_STATUS_NEW(tr("Pilot manager initialization"));
+    PRINT_STATUS_NEW(tr("Pilot manager initialization"), shLock);
 
     DO_WORK = TRUE;
 
@@ -44,19 +46,19 @@ void pm_init()
 
     pthread_create(&H_MSG_DISPATCHER, NULL, &pm_msg_dispatcher, NULL);
 
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE(shLock);
 }
 
 void pm_teardown()
 {
-    PRINT_STATUS_NEW(tr("Pilot manager tearing down"));
+    PRINT_STATUS_NEW(tr("Pilot manager tearing down"), shLock);
 
     DO_WORK = FALSE;
 
     pthread_cond_signal(&MSG_CND);
     pm_lst_clear();
 
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE(shLock);
 }
 
 void pm_lst_clear()
@@ -144,7 +146,7 @@ void pm_user_join(D_PILOT_ELEM* pe)
 
     char msg[70];
     sprintf(msg, tr("%s (%s) joined."), pe->data->callsign, pe->IP);
-    PRINT_STATUS_MSG_NOIND(msg);
+    PRINT_STATUS_MSG_NOIND(msg, shLock);
 
     gs_cmd_greet_user(pe->data->callsign);
     pm_mtl(pe->data->callsign);
@@ -185,7 +187,7 @@ void pm_user_left(uint2 channel)
 
     char msg[50];
     sprintf(msg, tr("%s has left."), curr->data->callsign);
-    PRINT_STATUS_MSG_NOIND(msg);
+    PRINT_STATUS_MSG_NOIND(msg, shLock);
 
     pm_elem_free(&curr);
     COUNT--;

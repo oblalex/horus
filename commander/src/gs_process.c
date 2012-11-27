@@ -40,7 +40,9 @@ static HANDLE g_hChildStd_OUT_Wr = NULL;
 
 BOOL gs_process_create()
 {
-	PRINT_STATUS_NEW(tr("Creating game server process"));
+	BOOL shLock = FALSE;
+
+	PRINT_STATUS_NEW(tr("Creating game server process"), shLock);
 
     SECURITY_ATTRIBUTES sec;
     sec.nLength = sizeof(SECURITY_ATTRIBUTES);
@@ -49,15 +51,15 @@ BOOL gs_process_create()
 
     if ( ! CreatePipe(&g_hChildStd_OUT_Rd, &g_hChildStd_OUT_Wr, &sec, 0) )
     {
-        PRINT_STATUS_MSG_ERR(tr("StdoutRd CreatePipe"));
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_MSG_ERR(tr("StdoutRd CreatePipe"), shLock);
+        PRINT_STATUS_FAIL(shLock);
         return FALSE;
     }
 
     if ( ! SetHandleInformation(g_hChildStd_OUT_Rd, HANDLE_FLAG_INHERIT, 0) )
     {
-        PRINT_STATUS_MSG_ERR(tr("Stdout SetHandleInformation"));
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_MSG_ERR(tr("Stdout SetHandleInformation"), shLock);
+        PRINT_STATUS_FAIL(shLock);
         return FALSE;
     }
 
@@ -91,7 +93,7 @@ BOOL gs_process_create()
 	
 	gs_wait_loaded();
 	
-	PRINT_STATUS_DONE();
+	PRINT_STATUS_DONE(shLock);
 	return TRUE;
 }
 #else
@@ -100,14 +102,15 @@ static pid_t GS_PID = (pid_t) 0;
 
 BOOL gs_process_create()
 {
-	PRINT_STATUS_NEW(tr("Creating game server process"));
+	BOOL shLock = FALSE;
+	PRINT_STATUS_NEW(tr("Creating game server process"), shLock);
 
 	GS_PID = fork();
 	
 	if (GS_PID < 0)
 	{
-		PRINT_STATUS_MSG_ERR(tr("Failed to fork"));
-		PRINT_STATUS_FAIL();
+		PRINT_STATUS_MSG_ERR(tr("Failed to fork"), shLock);
+		PRINT_STATUS_FAIL(shLock);
 		return FALSE;
 	} else if (GS_PID == 0) {
 		signal(SIGINT,	SIG_IGN);
@@ -121,7 +124,7 @@ BOOL gs_process_create()
 		_exit(127);
 	}
 
-	PRINT_STATUS_DONE();
+	PRINT_STATUS_DONE(shLock);
 	return TRUE;
 }
 
@@ -225,7 +228,7 @@ void gs_process_wait()
 	waitpid(GS_PID, &childExitStatus, 0);
 	GS_PID = (pid_t) 0;
 #endif
-	PRINT_STATUS_MSG(tr("Game server's process finished"));
+	PRINT_STATUS_MSG(tr("Game server's process finished"), FALSE);
 }
 
 void gs_process_kill()

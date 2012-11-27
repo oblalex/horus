@@ -3,6 +3,7 @@
 
 #include "util/common.h"
 
+#define SH_PROMPT 		"> "
 #define SH_EXIT 		"exit"
 
 #define SH_CHAT_ALL 	"^chall[[:space:]]+([[:print:]]+)"
@@ -24,6 +25,11 @@
 
 void shell_parser_init();
 void shell_parser_teardown();
+
+void shell_handle_in(BOOL (*run_condition)());
 void shell_parse_string(char* str);
+
+void shell_lock();
+void shell_unlock();
 
 #endif // SHELL_PARSER_H

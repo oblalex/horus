@@ -39,7 +39,9 @@ static fd_set read_flags, write_flags;
 
 BOOL gs_console_init()
 {
-	PRINT_STATUS_NEW(tr("Initializing console socket"));
+	BOOL shLock = FALSE;
+
+	PRINT_STATUS_NEW(tr("Initializing console socket"), shLock);
 
 	BOOL result = TRUE;
 	
@@ -66,7 +68,7 @@ BOOL gs_console_init()
 		if (SOCKET_FD < 0)
 	#endif
 		{
-			PRINT_STATUS_MSG_ERR(tr("Socket not created"));
+			PRINT_STATUS_MSG_ERR(tr("Socket not created"), shLock);
 			result = FALSE;
 			break;
 		}
@@ -82,7 +84,7 @@ BOOL gs_console_init()
 		if ((connect(SOCKET_FD, (struct sockaddr*)&addr, sizeof(addr)) < 0) && (errno != EINPROGRESS))
 	#endif
 		{
-			PRINT_STATUS_MSG_ERR(tr("Connection failed"));
+			PRINT_STATUS_MSG_ERR(tr("Connection failed"), shLock);
 			result = FALSE;
 			break;
 		}
@@ -104,7 +106,7 @@ BOOL gs_console_init()
 		if (res < 0)
 	#endif
 		{
-			PRINT_STATUS_MSG_ERR(tr("Select failed"));
+			PRINT_STATUS_MSG_ERR(tr("Select failed"), shLock);
 			result = FALSE;
 		}
 		
@@ -113,9 +115,9 @@ BOOL gs_console_init()
 
 	if	(result == TRUE)
 	{
-		PRINT_STATUS_DONE();
+		PRINT_STATUS_DONE(shLock);
 	} else {
-		PRINT_STATUS_FAIL();
+		PRINT_STATUS_FAIL(shLock);
 	}
 
 	return result;
@@ -130,7 +132,7 @@ static void socket_make_nonblocking()
 	
 	if (WSAIoctl(SOCKET_FD, FIONBIO, &iMode, sizeof(iMode), NULL, 0, &num_bytes, &overlapped, NULL) == SOCKET_ERROR)
 	{
-		PRINT_STATUS_MSG_ERR(tr("Cannot make non-blocking"));
+		PRINT_STATUS_MSG_ERR(tr("Cannot make non-blocking"), FALSE);
 	}
 	Sleep(1000);
 #else
@@ -165,7 +167,7 @@ static void socket_addr_prepare(struct sockaddr_in* addr)
 #if defined(_WIN_)
 	if (WSAHtons(SOCKET_FD, (u_short)portNo, &((*addr).sin_port)) == SOCKET_ERROR) 
 	{
-		PRINT_STATUS_MSG_ERR(tr("WSAHtons call failed"));
+		PRINT_STATUS_MSG_ERR(tr("WSAHtons call failed"), FALSE);
 	}
 #else
 	(*addr).sin_port = htons(portNo);
@@ -203,7 +205,9 @@ void gs_console_tear_down()
 {
 	if (SOCKET_FD == 0) return;
 
-	PRINT_STATUS_NEW(tr("Closing console socket"));
+	BOOL shLock = FALSE;
+
+	PRINT_STATUS_NEW(tr("Closing console socket"), shLock);
 
 #if defined(_WIN_)
 	closesocket(SOCKET_FD);
@@ -214,7 +218,7 @@ void gs_console_tear_down()
 	
 	SOCKET_FD = 0;
 
-	PRINT_STATUS_DONE();
+	PRINT_STATUS_DONE(shLock);
 }
 
 int get_gs_console_socket()

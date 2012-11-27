@@ -21,24 +21,26 @@ static regex_t RE_mtl;
 
 void console_parser_init()
 {
-    PRINT_STATUS_NEW(tr("Console parser initialization"));
+    BOOL shLock = FALSE;
+    PRINT_STATUS_NEW(tr("Console parser initialization"), shLock);
 
     compile_regex(&RE_user_join,    CNSL_USER_JOIN);
     compile_regex(&RE_user_left,    CNSL_USER_LEFT);
     compile_regex(&RE_mtl,          CNSL_CMD_MTL);
 
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE(shLock);
 }
 
 void console_parser_teardown()
 {
-    PRINT_STATUS_NEW(tr("Console parser tearing down"));
+    BOOL shLock = TRUE;
+    PRINT_STATUS_NEW(tr("Console parser tearing down"), shLock);
 
     regfree(&RE_user_join);
     regfree(&RE_user_left);
     regfree(&RE_mtl);
 
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE(shLock);
 }
 
 void console_parse_string(char* str)
@@ -51,7 +53,7 @@ void console_parse_string(char* str)
     if (mtl_match(str)          == TRUE) return;
 
 #ifndef _WIN_
-    PRINT_STATUS_MSG(str);
+    PRINT_STATUS_MSG(str, TRUE);
 #endif
 }
 

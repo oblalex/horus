@@ -6,6 +6,7 @@
 
 #include "str.h"
 #include "print_status.h"
+#include "linenoise.h"
 
 static STACK_STR statuses;
 static BOOL STATUS_LAST_OPER_WAS_PUSH = FALSE;
@@ -13,8 +14,8 @@ static BOOL STATUS_LAST_OPER_WAS_PUSH = FALSE;
 static BOOL MULTIMODE = FALSE;
 static pthread_mutex_t LOCK;
 
-#define MULTILOCK() if (MULTIMODE==TRUE) pthread_mutex_lock(&LOCK);
-#define MULTIUNLOCK() if (MULTIMODE==TRUE) pthread_mutex_unlock(&LOCK);
+static void MULTILOCK();
+static void MULTIUNLOCK();
 
 void print_status_tail(int color, const char* status)
 {
@@ -78,9 +79,11 @@ void print_status_raw(char* str, int color, const char* status)
     print_status_tail(color, status);
 }
 
-void PRINT_STATUS_NEW(char* str)
+void PRINT_STATUS_NEW(char* str, BOOL shLock)
 {	
 	MULTILOCK();
+
+    if (shLock) linenoiseLock();
 
 	char* str_new = str_copy(str);	
 	print_status_raw(str_new, TC_YELLOW, STATUS_MSG_BUSY);
@@ -91,8 +94,18 @@ void PRINT_STATUS_NEW(char* str)
 
 	MULTIUNLOCK();
 }
+
+void PRINT_STATUS_DONE(BOOL shUnlock)
+{
+    print_status_finished(TC_GREEN, (char*)STATUS_MSG_DONE, shUnlock);
+}
+
+void PRINT_STATUS_FAIL(BOOL shUnlock)
+{
+    print_status_finished(TC_RED,   (char*)STATUS_MSG_FAIL, shUnlock);
+}
 	
-void print_status_finished(int color, const char* status)
+void print_status_finished(int color, const char* status, BOOL shUnlock)
 {
 	MULTILOCK();
 
@@ -133,12 +146,16 @@ void print_status_finished(int color, const char* status)
 	STATUS_LAST_OPER_WAS_PUSH = FALSE;
 	fflush(stdout);
 
+    if (shUnlock) linenoiseUnlock();
+
 	MULTIUNLOCK();
 }
 
-void print_status_msg(int color, char* str, BOOL do_indent)
+void print_status_msg(int color, char* str, BOOL do_indent, BOOL shLock)
 {
 	MULTILOCK();
+
+    if (shLock) linenoiseLock();
 
 #ifdef _WIN_
     char buf[255];
@@ -174,10 +191,20 @@ void print_status_msg(int color, char* str, BOOL do_indent)
 	term_styleReset();
 	
 	STATUS_LAST_OPER_WAS_PUSH = FALSE;
-	fflush(stdout);
+    fflush(stdout);
+
+    if (shLock) linenoiseUnlock();
 
 	MULTIUNLOCK();
 }
+
+void PRINT_STATUS_MSG(char* msg, BOOL shLock)     {print_status_msg(TC_CYAN, msg, TRUE, shLock);}
+void PRINT_STATUS_MSG_WRN(char* msg, BOOL shLock) {print_status_msg(TC_YELLOW,  msg, TRUE, shLock);}
+void PRINT_STATUS_MSG_ERR(char* msg, BOOL shLock) {print_status_msg(TC_RED,  msg, TRUE, shLock);}
+
+void PRINT_STATUS_MSG_NOIND(char* msg, BOOL shLock)     {print_status_msg(TC_CYAN, msg, FALSE, shLock);}
+void PRINT_STATUS_MSG_WRN_NOIND(char* msg, BOOL shLock) {print_status_msg(TC_YELLOW,  msg, FALSE, shLock);}
+void PRINT_STATUS_MSG_ERR_NOIND(char* msg, BOOL shLock) {print_status_msg(TC_RED,  msg, FALSE, shLock);}
 
 void PRINT_STATUSES_RESET()
 {
@@ -185,6 +212,12 @@ void PRINT_STATUSES_RESET()
 	{
 		free(pop(&statuses));
 	}
+}
+
+void PRINT_STATUS_ORDER_RESET(){
+    MULTILOCK();
+    STATUS_LAST_OPER_WAS_PUSH = FALSE;
+    MULTIUNLOCK();
 }
 
 void PRINT_STATUS_MULTI_START()
@@ -199,8 +232,12 @@ void PRINT_STATUS_MULTI_STOP()
 	pthread_mutex_destroy(&LOCK);
 }
 
-void PRINT_STATUS_ORDER_RESET(){
-	MULTILOCK();
-	STATUS_LAST_OPER_WAS_PUSH = FALSE;
-	MULTIUNLOCK();
+void MULTILOCK()
+{
+    if (MULTIMODE==TRUE) pthread_mutex_lock(&LOCK);
+}
+
+void MULTIUNLOCK()
+{
+    if (MULTIMODE==TRUE) pthread_mutex_unlock(&LOCK);
 }

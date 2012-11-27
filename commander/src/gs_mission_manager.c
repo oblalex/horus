@@ -85,11 +85,13 @@ static pthread_t H_MSG_DISPATCHER;
 
 void mssn_list_load()
 {
-    PRINT_STATUS_NEW(tr("Loading missions list"));
+    BOOL shLock = FALSE;
+
+    PRINT_STATUS_NEW(tr("Loading missions list"), shLock);
 
     if (gs_check_path_mission_list() == FALSE)
     {
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_FAIL(shLock);
         return;
     }
 
@@ -102,8 +104,8 @@ void mssn_list_load()
 
     if (tree == NULL)
     {
-        PRINT_STATUS_MSG_ERR(tr("XML document is invalid"));
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_MSG_ERR(tr("XML document is invalid"), shLock);
+        PRINT_STATUS_FAIL(shLock);
         return;
     }
 
@@ -136,14 +138,14 @@ void mssn_list_load()
             if (attrVal == NULL)
             {
                 sprintf(msg, "#%d : %s ", i, tr("name is not set. Skipping"));
-                PRINT_STATUS_MSG_ERR(msg);
+                PRINT_STATUS_MSG_ERR(msg, shLock);
 
                 mssn_free(&elem);
                 continue;
             } else if (get_mssn_elem_by_name((char*)attrVal) != NULL)
             {
                 sprintf(msg, "\"%s\" : %s", attrVal, tr("Name already exists in list. Skipping"));
-                PRINT_STATUS_MSG_ERR(msg);
+                PRINT_STATUS_MSG_ERR(msg, shLock);
 
                 mssn_free(&elem);
                 continue;
@@ -162,7 +164,7 @@ void mssn_list_load()
             if (attrVal == NULL)
             {
                 sprintf(msg, "\"%s\" : %s", elem->data->name, tr("path is not set. Skipping"));
-                PRINT_STATUS_MSG_ERR(msg);
+                PRINT_STATUS_MSG_ERR(msg, shLock);
 
                 mssn_free(&elem);
                 continue;
@@ -183,7 +185,7 @@ void mssn_list_load()
             if (elem->data->sDuration == 0)
             {
                 sprintf(msg, "\"%s\" : %s", elem->data->name, tr("duration is not set. Using default value"));
-                PRINT_STATUS_MSG_WRN(msg);
+                PRINT_STATUS_MSG_WRN(msg, shLock);
 
                 elem->data->sDuration = MSSN_DEFAULT_DURATION;
             }
@@ -233,7 +235,7 @@ void mssn_list_load()
                             tr("Only one mission can be current. Changing"),
                             CURRENT->data->name,
                             elem->data->name);
-                    PRINT_STATUS_MSG_WRN(msg);
+                    PRINT_STATUS_MSG_WRN(msg, shLock);
                 }
                 CURRENT = elem;
             }
@@ -268,16 +270,18 @@ void mssn_list_load()
 
     if (MSSN_COUNT == 0)
     {
-        PRINT_STATUS_MSG_WRN(tr("Missions list is empty"));
+        PRINT_STATUS_MSG_WRN(tr("Missions list is empty"), shLock);
         return;
     } else mssn_list_print();
 
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE(shLock);
 }
 
 void mssn_list_print()
 {
-    PRINT_STATUS_MSG(tr("Missions:"));
+    BOOL shLock = FALSE;
+
+    PRINT_STATUS_MSG(tr("Missions:"), shLock);
 
     char msg[255];
 
@@ -305,7 +309,7 @@ void mssn_list_print()
                 redName,
                 blueName,
                 nextName);
-        PRINT_STATUS_MSG(msg);
+        PRINT_STATUS_MSG(msg, shLock);
     }
 }
 
@@ -470,6 +474,8 @@ void mssn_list_resolve_conflicts()
 {
     if (FIRST == NULL) return;
 
+    BOOL shLock = FALSE;
+
     D_MISSION_ELEM* curr = FIRST;
 
     D_MISSION_ELEM* red;
@@ -541,7 +547,7 @@ void mssn_list_resolve_conflicts()
                 sprintf(msg, "\"%s\" %s",
                         curr->data->name,
                         tr("has no references. Deleting"));
-                PRINT_STATUS_MSG_ERR(msg);
+                PRINT_STATUS_MSG_ERR(msg, shLock);
                 MSSN_COUNT--;
 
                 if (curr->mNextRed != NULL)
@@ -585,13 +591,14 @@ void mssn_list_resolve_conflicts()
             sprintf(msg, "\"%s\" %s",
                     curr->data->name,
                     tr("has no next missions. This may cause playing mission list only once"));
-            PRINT_STATUS_MSG_WRN(msg);
+            PRINT_STATUS_MSG_WRN(msg, shLock);
         }
     }
 }
 
 void mssn_list_resolve_branch(char* name, void** nextRed, void** nextBlue, void** next)
 {
+    BOOL shLock = FALSE;
     char msg[100];
 
     if ((*next) != NULL)
@@ -601,7 +608,7 @@ void mssn_list_resolve_branch(char* name, void** nextRed, void** nextBlue, void*
             sprintf(msg, "\"%s\" : %s",
                     name,
                     tr("setting next BLUE map equal to next NONE map"));
-            PRINT_STATUS_MSG_WRN(msg);
+            PRINT_STATUS_MSG_WRN(msg, shLock);
 
             (*nextBlue) = (*next);
         } else if (((*nextRed) == NULL) && ((*nextBlue) != NULL))
@@ -609,7 +616,7 @@ void mssn_list_resolve_branch(char* name, void** nextRed, void** nextBlue, void*
             sprintf(msg, "\"%s\" : %s",
                     name,
                     tr("setting next RED map equal to next NONE map"));
-            PRINT_STATUS_MSG_WRN(msg);
+            PRINT_STATUS_MSG_WRN(msg, shLock);
 
             (*nextRed) = (*next);
         } else if (((*nextRed) == NULL) && ((*nextBlue) == NULL))
@@ -617,7 +624,7 @@ void mssn_list_resolve_branch(char* name, void** nextRed, void** nextBlue, void*
             sprintf(msg, "\"%s\" : %s",
                     name,
                     tr("setting next RED and BLUE maps equal to next NONE map"));
-            PRINT_STATUS_MSG_WRN(msg);
+            PRINT_STATUS_MSG_WRN(msg, shLock);
 
             (*nextRed)  = (*next);
             (*nextBlue) = (*next);
@@ -628,7 +635,7 @@ void mssn_list_resolve_branch(char* name, void** nextRed, void** nextBlue, void*
             sprintf(msg, "\"%s\" : %s",
                     name,
                     tr("setting next BLUE and NONE maps equal to next RED map"));
-            PRINT_STATUS_MSG_WRN(msg);
+            PRINT_STATUS_MSG_WRN(msg, shLock);
 
             (*next) = (*nextRed);
             (*nextBlue) = next;
@@ -637,7 +644,7 @@ void mssn_list_resolve_branch(char* name, void** nextRed, void** nextBlue, void*
             sprintf(msg, "\"%s\" : %s",
                     name,
                     tr("setting next RED and NONE maps equal to next BLUE map"));
-            PRINT_STATUS_MSG_WRN(msg);
+            PRINT_STATUS_MSG_WRN(msg, shLock);
 
             (*next) = (*nextBlue);
             (*nextRed) = (*next);
@@ -646,7 +653,7 @@ void mssn_list_resolve_branch(char* name, void** nextRed, void** nextBlue, void*
             sprintf(msg, "\"%s\" : %s",
                     name,
                     tr("setting next NONE map equal to next RED map"));
-            PRINT_STATUS_MSG_WRN(msg);
+            PRINT_STATUS_MSG_WRN(msg, shLock);
 
             (*next)  = (*nextRed);
         }
@@ -655,7 +662,9 @@ void mssn_list_resolve_branch(char* name, void** nextRed, void** nextBlue, void*
 
 void mssn_list_save()
 {
-    PRINT_STATUS_NEW(tr("Saving missions list"));
+    BOOL shLock = FALSE;
+
+    PRINT_STATUS_NEW(tr("Saving missions list"), shLock);
 
     mxmlSetWrapMargin(0);
 
@@ -693,14 +702,16 @@ void mssn_list_save()
     mxmlSaveFile(tree, fp, MXML_NO_CALLBACK);
     fclose(fp);
 
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE(shLock);
 }
 
 void mssn_list_clear()
 {
     if (FIRST == NULL) return;
 
-    PRINT_STATUS_NEW(tr("Clearing missions list"));
+    BOOL shLock = FALSE;
+
+    PRINT_STATUS_NEW(tr("Clearing missions list"), shLock);
 
     D_MISSION_ELEM* curr = FIRST;
     D_MISSION_ELEM* prev = NULL;
@@ -717,7 +728,7 @@ void mssn_list_clear()
     LAST = NULL;
     CURRENT = NULL;
 
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE(shLock);
 }
 
 void mssn_set_current(D_MISSION_ELEM* value)
@@ -728,9 +739,11 @@ void mssn_set_current(D_MISSION_ELEM* value)
 
 void gs_mssn_load()
 {
+    BOOL shLock = TRUE;
+
     if (LOADED == TRUE)
     {
-        PRINT_STATUS_MSG_WRN(tr("Mission is already loaded"));
+        PRINT_STATUS_MSG_WRN(tr("Mission is already loaded"), shLock);
         return;
     }
 
@@ -743,13 +756,13 @@ void gs_mssn_load()
     {
         sprintf(msg2, "%s '%s'...", msg1, CURRENT->data->name);
 
-        PRINT_STATUS_NEW(msg2);
+        PRINT_STATUS_NEW(msg2, shLock);
         gs_cmd_chat_all(msg2);
     } else {
         sprintf(msg2, "%s...", msg1);
-        PRINT_STATUS_NEW(msg2);
-        PRINT_STATUS_MSG_ERR(tr("Current mission is not selected"));
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_NEW(msg2, shLock);
+        PRINT_STATUS_MSG_ERR(tr("Current mission is not selected"), shLock);
+        PRINT_STATUS_FAIL(shLock);
 
         gs_cmd_chat_all(msg2);
         gs_cmd_chat_all(msgFailed);
@@ -771,38 +784,40 @@ void gs_mssn_load()
         tries--;
         if (tries == 0)
         {
-            PRINT_STATUS_MSG_ERR(tr("Mission loading timeout"));
+            PRINT_STATUS_MSG_ERR(tr("Mission loading timeout"), shLock);
             break;
         }
     }
 
     if (LOADED == TRUE)
     {
-        PRINT_STATUS_DONE();
+        PRINT_STATUS_DONE(shLock);
         gs_cmd_chat_all(msgLoaded);
     } else {
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_FAIL(shLock);
         gs_cmd_chat_all(msgFailed);
     }
 }
 
 void gs_mssn_unload()
 {
+    BOOL shLock = TRUE;
+
     if (LOADED == FALSE)
     {
-        PRINT_STATUS_MSG_WRN(tr("Mission is not loaded"));
+        PRINT_STATUS_MSG_WRN(tr("Mission is not loaded"), shLock);
         return;
     }
 
     if (RUNNING == TRUE)
     {
-        PRINT_STATUS_MSG_WRN(tr("Mission is still running"));
+        PRINT_STATUS_MSG_WRN(tr("Mission is still running"), shLock);
         return;
     }
 
     char* msg1 = tr("Unloading mission...");
 
-    PRINT_STATUS_NEW(msg1);
+    PRINT_STATUS_NEW(msg1, shLock);
     gs_cmd_chat_all(msg1);
 
     gs_cmd_mssn_unload();
@@ -820,7 +835,7 @@ void gs_mssn_unload()
         tries--;
         if (tries == 0)
         {
-            PRINT_STATUS_MSG_ERR(tr("Mission unloading timeout"));
+            PRINT_STATUS_MSG_ERR(tr("Mission unloading timeout"), shLock);
             break;
         }
     }
@@ -829,19 +844,21 @@ void gs_mssn_unload()
     ||  ((LOADED == FALSE) && (DO_WORK == TRUE)))
     {
         LOADED = FALSE;
-        PRINT_STATUS_DONE();
+        PRINT_STATUS_DONE(shLock);
         gs_cmd_chat_all(tr("Mission unloaded."));
     } else {
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_FAIL(shLock);
         gs_cmd_chat_all(tr("Mission unloading failed."));
     }
 }
 
 void gs_mssn_run()
 {
+    BOOL shLock = TRUE;
+
     if (RUNNING == TRUE)
     {
-        PRINT_STATUS_MSG_WRN(tr("Mission is already running"));
+        PRINT_STATUS_MSG_WRN(tr("Mission is already running"), shLock);
         return;
     }
 
@@ -854,13 +871,13 @@ void gs_mssn_run()
     {
         sprintf(msg2, "%s '%s'...", msg1, CURRENT->data->name);
 
-        PRINT_STATUS_NEW(msg2);
+        PRINT_STATUS_NEW(msg2, shLock);
         gs_cmd_chat_all(msg2);
     } else {
         sprintf(msg2, "%s...", msg1);
-        PRINT_STATUS_NEW(msg2);
-        PRINT_STATUS_MSG_ERR(tr("Mission is not loaded"));
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_NEW(msg2, shLock);
+        PRINT_STATUS_MSG_ERR(tr("Mission is not loaded"), shLock);
+        PRINT_STATUS_FAIL(shLock);
 
         gs_cmd_chat_all(msg2);
         gs_cmd_chat_all(msgFailed);
@@ -882,14 +899,14 @@ void gs_mssn_run()
         tries--;
         if (tries == 0)
         {
-            PRINT_STATUS_MSG_ERR(tr("Mission launching timeout"));
+            PRINT_STATUS_MSG_ERR(tr("Mission launching timeout"), shLock);
             break;
         }
     }
 
     if (RUNNING == TRUE)
     {
-        PRINT_STATUS_DONE();
+        PRINT_STATUS_DONE(shLock);
         gs_cmd_chat_all(msgLaunched);
 
         SECS_LEFT = CURRENT->data->sDuration;
@@ -899,22 +916,24 @@ void gs_mssn_run()
         pthread_create(&H_EVENT_PARSER, NULL, &handle_events_in, NULL);
 
     } else {
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_FAIL(shLock);
         gs_cmd_chat_all(msgFailed);
     }
 }
 
 void gs_mssn_end()
 {
+    BOOL shLock = TRUE;
+
     if (RUNNING == FALSE)
     {
-        PRINT_STATUS_MSG_WRN(tr("Mission is not running"));
+        PRINT_STATUS_MSG_WRN(tr("Mission is not running"), shLock);
         return;
     }
 
     char* msg1 = tr("Ending mission...");
 
-    PRINT_STATUS_NEW(msg1);
+    PRINT_STATUS_NEW(msg1, shLock);
     gs_cmd_chat_all(msg1);
 
     void *res;
@@ -940,7 +959,7 @@ void gs_mssn_end()
         tries--;
         if (tries == 0)
         {
-            PRINT_STATUS_MSG_ERR(tr("Mission ending timeout"));
+            PRINT_STATUS_MSG_ERR(tr("Mission ending timeout"), shLock);
             break;
         }
     }
@@ -949,39 +968,43 @@ void gs_mssn_end()
     ||  ((RUNNING == FALSE) && (DO_WORK == TRUE)))
     {
         RUNNING = FALSE;
-        PRINT_STATUS_DONE();
+        PRINT_STATUS_DONE(shLock);
 
         pthread_join(H_EVENT_PARSER, &res);
 
     } else {
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_FAIL(shLock);
         gs_cmd_chat_all(tr("Mission ending failed."));
     }
 }
 
 void gs_mssn_rerun()
 {
-    PRINT_STATUS_NEW(tr("Re-running mission"));
+    BOOL shLock = TRUE;
+
+    PRINT_STATUS_NEW(tr("Re-running mission"), shLock);
 
     gs_mssn_end();
     gs_mssn_run();
 
     if (RUNNING == TRUE)
     {
-        PRINT_STATUS_DONE();
+        PRINT_STATUS_DONE(shLock);
     } else {
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_FAIL(shLock);
     }
 }
 
 void gs_mssn_next()
 {
-    PRINT_STATUS_NEW(tr("Going to next mission"));
+    BOOL shLock = TRUE;
+
+    PRINT_STATUS_NEW(tr("Going to next mission"), shLock);
 
     if (CURRENT == NULL)
     {
-        PRINT_STATUS_MSG_ERR(tr("Current mission is not selected"));
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_MSG_ERR(tr("Current mission is not selected"), shLock);
+        PRINT_STATUS_FAIL(shLock);
         return;
     }
 
@@ -995,7 +1018,7 @@ void gs_mssn_next()
 
         if (RUNNING == FALSE)
         {
-            PRINT_STATUS_FAIL();
+            PRINT_STATUS_FAIL(shLock);
             return;
         }
     } else if (LOADED == TRUE) {
@@ -1005,26 +1028,28 @@ void gs_mssn_next()
 
         if (LOADED == FALSE)
         {
-            PRINT_STATUS_FAIL();
+            PRINT_STATUS_FAIL(shLock);
             return;
         }
     } else {
         CURRENT = CURRENT->mNext;
     }
     mssn_list_save();
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE(shLock);
 }
 
 void gs_mssn_prev()
 {
-    PRINT_STATUS_NEW(tr("Going to previous mission"));
+    BOOL shLock = TRUE;
+
+    PRINT_STATUS_NEW(tr("Going to previous mission"), shLock);
 
     D_MISSION_ELEM* PREV = (D_MISSION_ELEM*) cstack_retrieve(&HISTORY);
 
     if (PREV == NULL)
     {
-        PRINT_STATUS_MSG_ERR(tr("Previous mission is not selected"));
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_MSG_ERR(tr("Previous mission is not selected"), shLock);
+        PRINT_STATUS_FAIL(shLock);
         return;
     }
 
@@ -1036,7 +1061,7 @@ void gs_mssn_prev()
 
         if (RUNNING == FALSE)
         {
-            PRINT_STATUS_FAIL();
+            PRINT_STATUS_FAIL(shLock);
             return;
         }
     } else if (LOADED == TRUE) {
@@ -1046,25 +1071,27 @@ void gs_mssn_prev()
 
         if (LOADED == FALSE)
         {
-            PRINT_STATUS_FAIL();
+            PRINT_STATUS_FAIL(shLock);
             return;
         }
     } else {
         CURRENT = PREV;
     }
     mssn_list_save();
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE(shLock);
 }
 
 void gs_mssn_start()
 {
+    BOOL shLock = TRUE;
+
     if (RUNNING == TRUE)
     {
-        PRINT_STATUS_MSG_WRN(tr("Mission is already running"));
+        PRINT_STATUS_MSG_WRN(tr("Mission is already running"), shLock);
         return;
     }
 
-    PRINT_STATUS_NEW(tr("Starting mission"));
+    PRINT_STATUS_NEW(tr("Starting mission"), shLock);
 
     gs_mssn_load();
 
@@ -1072,27 +1099,29 @@ void gs_mssn_start()
     {
         gs_mssn_run();
     } else {
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_FAIL(shLock);
         return;
     }
 
     if (RUNNING == TRUE)
     {
-        PRINT_STATUS_DONE();
+        PRINT_STATUS_DONE(shLock);
     } else {
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_FAIL(shLock);
     }
 }
 
 void gs_mssn_stop()
 {
-    PRINT_STATUS_NEW(tr("Stopping mission"));
+    BOOL shLock = TRUE;
+
+    PRINT_STATUS_NEW(tr("Stopping mission"), shLock);
 
     gs_mssn_end();
 
     if (RUNNING == TRUE)
     {
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_FAIL(shLock);
         return;
     }
 
@@ -1100,24 +1129,26 @@ void gs_mssn_stop()
 
     if (LOADED == FALSE)
     {
-        PRINT_STATUS_DONE();
+        PRINT_STATUS_DONE(shLock);
     } else {
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_FAIL(shLock);
     }
 }
 
 void gs_mssn_restart()
 {
-    PRINT_STATUS_NEW(tr("Re-starting mission"));
+    BOOL shLock = TRUE;
+
+    PRINT_STATUS_NEW(tr("Re-starting mission"), shLock);
 
     gs_mssn_stop();
     gs_mssn_start();
 
     if (RUNNING == TRUE)
     {
-        PRINT_STATUS_DONE();
+        PRINT_STATUS_DONE(shLock);
     } else {
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_FAIL(shLock);
     }
 }
 
@@ -1143,7 +1174,9 @@ void gs_mssn_manager_init()
 {
     if (DO_WORK == TRUE) return;
 
-    PRINT_STATUS_NEW(tr("Initializing mission manager"));
+    BOOL shLock = FALSE;
+
+    PRINT_STATUS_NEW(tr("Initializing mission manager"), shLock);
 
     DO_WORK = TRUE;
 
@@ -1152,14 +1185,16 @@ void gs_mssn_manager_init()
     mssn_list_load();
     pthread_create(&H_MSG_DISPATCHER, NULL, &mssn_msg_dispatcher, NULL);
 
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE(shLock);
 }
 
 void gs_mssn_manager_tearDown()
 {
     if (DO_WORK == FALSE) return;
 
-    PRINT_STATUS_NEW(tr("Releasing mission manager"));
+    BOOL shLock = TRUE;
+
+    PRINT_STATUS_NEW(tr("Releasing mission manager"), shLock);
 
     DO_WORK = FALSE;
     pthread_cond_signal(&MSG_CND);
@@ -1167,7 +1202,7 @@ void gs_mssn_manager_tearDown()
     mssn_list_clear();
     mssn_list_history_clear();
 
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE(shLock);
 }
 
 void mssn_list_history_clear()
@@ -1195,6 +1230,8 @@ void* mssn_timer_watcher()
 
     char timeStr[80];
 
+    BOOL shLock = TRUE;
+
     while (SECS_LEFT > 0)
     {
         if (SECS_LEFT_CHANGED == TRUE)
@@ -1207,7 +1244,7 @@ void* mssn_timer_watcher()
         {
             gs_mssn_time_str((char*)&timeStr);
             gs_cmd_chat_all((char*)&timeStr);
-            PRINT_STATUS_MSG_NOIND((char*)&timeStr);
+            PRINT_STATUS_MSG_NOIND((char*)&timeStr, shLock);
 
             if (                check_notificator_seconds(&i, _15min, _15min) == FALSE)
                 if (            check_notificator_seconds(&i, _05min, _05min) == FALSE)
@@ -1233,7 +1270,7 @@ void* mssn_timer_watcher()
     {
         char* msg = tr("Mission was interrupted.");
         gs_cmd_chat_all(msg);
-        PRINT_STATUS_MSG_NOIND(msg);
+        PRINT_STATUS_MSG_NOIND(msg, shLock);
     } else if (DO_WORK == TRUE)
         gs_mssn_next_req();
 
@@ -1282,14 +1319,14 @@ void gs_mssn_time_print()
 {
     char timeStr[80];
     gs_mssn_time_str((char*)&timeStr);
-    PRINT_STATUS_MSG_NOIND((char*)&timeStr);
+    PRINT_STATUS_MSG_NOIND((char*)&timeStr, TRUE);
 }
 
 void gs_mssn_time_left_set(int h, int m, int s)
 {
     if (RUNNING == FALSE)
     {
-        PRINT_STATUS_MSG_ERR_NOIND(tr("Mission is not running"));
+        PRINT_STATUS_MSG_ERR_NOIND(tr("Mission is not running"), TRUE);
         return;
     }
     gs_mssn_seconds_left_set((h*3600) + (m*60) + s);
@@ -1472,7 +1509,9 @@ void gs_mssn_time_left_set_req(int h, int m, int s)
 
 void* handle_events_in()
 {
-    PRINT_STATUS_MSG_NOIND(tr("Events parsing started"));
+    BOOL shLock = TRUE;
+
+    PRINT_STATUS_MSG_NOIND(tr("Events parsing started"), shLock);
 
     int o_flags = O_RDONLY;
 
@@ -1484,6 +1523,6 @@ void* handle_events_in()
     handle_input(events_fd, &gs_mssn_running, &line_rd, &event_parse_string);
     close(events_fd);
 
-    PRINT_STATUS_MSG_NOIND(tr("Events parsing stopped"));
+    PRINT_STATUS_MSG_NOIND(tr("Events parsing stopped"), shLock);
     return NULL;
 }

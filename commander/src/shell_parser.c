@@ -2,17 +2,21 @@
 
 #include "shell_parser.h"
 
-#include <string.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 #include "gs.h"
 #include "gs_cmd.h"
+#include "gs_paths.h"
 #include "gs_mission_manager.h"
 #include "domain/d_army.h"
 #include "util/print_status.h"
 #include "util/str.h"
 #include "util/l10n.h"
 #include "util/regexxx.h"
+#include "util/linenoise.h"
 
 static BOOL exit_match(char* str);
 
@@ -41,26 +45,57 @@ static regex_t RE_mssn_time_left_set;
 
 void shell_parser_init()
 {
-    PRINT_STATUS_NEW(tr("Shell parser initialization"));
+    BOOL shLock = FALSE;
+    PRINT_STATUS_NEW(tr("Shell parser initialization"), shLock);
 
 	compile_regex(&RE_chat_all, SH_CHAT_ALL);
 	compile_regex(&RE_chat_user, SH_CHAT_USER);
 	compile_regex(&RE_chat_army, SH_CHAT_ARMY);
     compile_regex(&RE_mssn_time_left_set, SH_MSSN_TIME_LEFT_SET);
 
-    PRINT_STATUS_DONE();
+    linenoiseHistoryLoad(SH_HISTORY_NAME);
+
+    PRINT_STATUS_DONE(shLock);
 }
 
 void shell_parser_teardown()
 {
-    PRINT_STATUS_NEW(tr("Shell parser tearing down"));
+    BOOL shLock = TRUE;
+    PRINT_STATUS_NEW(tr("Shell parser tearing down"), shLock);
 
 	regfree(&RE_chat_all);
 	regfree(&RE_chat_user);
 	regfree(&RE_chat_army);
     regfree(&RE_mssn_time_left_set);
 
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE(shLock);
+}
+
+void shell_handle_in(BOOL (*run_condition)())
+{
+    char* line;
+
+    while((*run_condition)() == TRUE)
+    {
+        line = linenoise(SH_PROMPT);
+
+        if(line==NULL)
+        {
+            gs_exit();
+            break;
+        }
+
+        if (line[0] != '\0')
+        {
+            shell_parse_string(line);
+            linenoiseHistoryAdd(line);
+            linenoiseHistorySave(SH_HISTORY_NAME);
+        } else {
+            usleep(20*1000);
+        }
+
+        free(line);
+    }
 }
 
 void shell_parse_string(char* str)
@@ -102,7 +137,7 @@ void shell_parse_string(char* str)
 
     if (exit_match(fstr)         == TRUE) return;
 
-	PRINT_STATUS_MSG_ERR(tr("Unknown command."));
+    PRINT_STATUS_MSG_ERR(tr("Unknown command."), FALSE);
 }
 
 BOOL exit_match(char* str)
@@ -256,4 +291,14 @@ static BOOL mssn_time_left_set_match(char* str)
 
     gs_mssn_time_left_set_req(atoi(h_str), atoi(m_str), atoi(s_str));
     return TRUE;
+}
+
+void shell_lock()
+{
+    linenoiseLock();
+}
+
+void shell_unlock()
+{
+    linenoiseUnlock();
 }

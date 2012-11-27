@@ -20,27 +20,31 @@
 
 void gs_check_path_root()
 {
-    PRINT_STATUS_NEW(tr("Checking root path"));
+    BOOL shLock = FALSE;
+
+    PRINT_STATUS_NEW(tr("Checking root path"), shLock);
 	const char* const path = PATH_GS_EXE;
     if (access(path, X_OK) != -1) {
-        PRINT_STATUS_DONE();
+        PRINT_STATUS_DONE(shLock);
     } else {
-        PRINT_STATUS_MSG_ERR(tr("Please, make sure in following:"));
-        PRINT_STATUS_MSG_ERR(tr("1. This program is located in IL-2 server's subdirectory."));
-        PRINT_STATUS_MSG_ERR(tr("2. You are located at that directory currently."));
+        PRINT_STATUS_MSG_ERR(tr("Please, make sure in following:"), shLock);
+        PRINT_STATUS_MSG_ERR(tr("1. This program is located in IL-2 server's subdirectory."), shLock);
+        PRINT_STATUS_MSG_ERR(tr("2. You are located at that directory currently."), shLock);
 
         char msg[80];
         sprintf(msg, "%s \"%s\".", tr("3. IL-2 server's executable file is named as"), GS_EXE_NAME);
 
-        PRINT_STATUS_MSG_ERR((char*)&msg);
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_MSG_ERR((char*)&msg, shLock);
+        PRINT_STATUS_FAIL(shLock);
         exit(EXIT_FAILURE);
     }
 }
 
 void gs_check_path_logs()
 {
-    PRINT_STATUS_NEW(tr("Checking logs path"));
+    BOOL shLock = FALSE;
+
+    PRINT_STATUS_NEW(tr("Checking logs path"), shLock);
 
     char* path = PATH_GS_LOGS_DIR;
 	
@@ -53,7 +57,7 @@ void gs_check_path_logs()
 	if ((stat(path, &st) != 0) && (errno == ENOENT))
 #endif	
     {
-        PRINT_STATUS_MSG(tr("Creating missing directory"));
+        PRINT_STATUS_MSG(tr("Creating missing directory"), shLock);
 		int mk_result;
 		
 	#ifdef _WIN_
@@ -67,41 +71,44 @@ void gs_check_path_logs()
 			char err_msg[80];
 			sprintf(err_msg, "%s \"%s\".", tr("Failed to create"), path);
 			
-            PRINT_STATUS_MSG_ERR((char*)&err_msg);
-            PRINT_STATUS_FAIL();
+            PRINT_STATUS_MSG_ERR((char*)&err_msg, shLock);
+            PRINT_STATUS_FAIL(shLock);
             exit(EXIT_FAILURE);
         }
     }
 
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE(shLock);
 }
 
 BOOL gs_check_path_mission_list()
 {
-    PRINT_STATUS_NEW(tr("Checking missions list path"));
+    BOOL shLock = FALSE;
+
+    PRINT_STATUS_NEW(tr("Checking missions list path"), shLock);
     const char* const path = PATH_GS_MISSION_LIST;
     if (access(path, X_OK) != -1) {
-        PRINT_STATUS_DONE();
+        PRINT_STATUS_DONE(shLock);
         return TRUE;
     } else {
-        PRINT_STATUS_MSG_ERR(tr("Missions list was not found. Please, read the manual about missions managing."));
-        PRINT_STATUS_FAIL();
+        PRINT_STATUS_MSG_ERR(tr("Missions list was not found. Please, read the manual about missions managing."), shLock);
+        PRINT_STATUS_FAIL(shLock);
         return FALSE;
     }
 }
 
 BOOL gs_check_path_mission(char* name, char* path)
 {
+    BOOL shLock = FALSE;
     char fullPath[255];
     sprintf(fullPath, "%s%s", PATH_GS_MISSIONS_DIR, path);
     if (access(fullPath, X_OK) != -1) {
         return TRUE;
     } else {
-        PRINT_STATUS_MSG_ERR(tr("Mission's path is wrong:"));
+        PRINT_STATUS_MSG_ERR(tr("Mission's path is wrong:"), shLock);
 
         char msg[255];
         sprintf(msg, "\"%s\" : \"%s\"", name, path);
-        PRINT_STATUS_MSG_ERR(msg);
+        PRINT_STATUS_MSG_ERR(msg, shLock);
         return FALSE;
     }
 }

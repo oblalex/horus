@@ -19,6 +19,7 @@
 #include "gs_mission_manager.h"
 #include "console_parser.h"
 #include "pilot_manager.h"
+#include "shell_parser.h"
 #include "util/print_status.h"
 
 static void gs_setup_termination_hooks();
@@ -48,7 +49,8 @@ void gs_init()
 
 static void gs_setup_termination_hooks()
 {
-    PRINT_STATUS_NEW(tr("Setting up signal hooks"));
+	BOOL shLock = FALSE;
+    PRINT_STATUS_NEW(tr("Setting up signal hooks"), shLock);
 
 	#if !defined(_WIN_)
 	signal(SIGPIPE,	SIG_IGN);
@@ -58,7 +60,7 @@ static void gs_setup_termination_hooks()
 	signal(SIGTERM,	gs_termination_handler);
 	signal(SIGABRT,	gs_termination_handler);
 
-    PRINT_STATUS_DONE();
+    PRINT_STATUS_DONE(shLock);
 }
 
 static void gs_termination_handler(int signum)
@@ -101,9 +103,9 @@ void gs_run()
 
         if (DO_RUN == TRUE)
         {
-            PRINT_STATUS_MSG_ERR_NOIND(gs_is_down_msg);
+            PRINT_STATUS_MSG_ERR_NOIND(gs_is_down_msg, TRUE);
         } else {
-            PRINT_STATUS_MSG(gs_is_down_msg);
+            PRINT_STATUS_MSG(gs_is_down_msg, TRUE);
             break;
         }
     }
@@ -118,7 +120,7 @@ static void gs_check_launched_before()
 			if (DO_RUN == FALSE) break;
             char buf[40];
 			sprintf(buf, "%s...%d", tr("Restarting game server in"), i);
-            PRINT_STATUS_MSG_NOIND((char*)(&buf));
+            PRINT_STATUS_MSG_NOIND((char*)(&buf), TRUE);
 			
         #if defined(_WIN_)
 			Sleep(1000);
@@ -150,7 +152,7 @@ static void gs_on_process_start()
             input_handlers_start();
             gs_cmd_kick_all();
             gs_mssn_start();
-			gs_process_wait();
+            gs_process_wait();
 	} else {
 		gs_process_kill();
 	}
@@ -159,7 +161,8 @@ static void gs_on_process_start()
 
 static void gs_wait_loaded()
 {
-	PRINT_STATUS_NEW(tr("Waiting for server is loaded"));
+	BOOL shLock = FALSE;
+	PRINT_STATUS_NEW(tr("Waiting for server is loaded"), shLock);
 	
 	int tries = 30;
 	while ((LOADED == FALSE) && (DO_RUN == TRUE))
@@ -173,16 +176,16 @@ static void gs_wait_loaded()
 		tries--;
 		if (tries == 0)
 		{
-			PRINT_STATUS_MSG_ERR(tr("Game server loading timeout"));
+			PRINT_STATUS_MSG_ERR(tr("Game server loading timeout"), shLock);
 			break;
 		}
 	}
 
 	if (LOADED == TRUE)
 	{
-		PRINT_STATUS_DONE();
+		PRINT_STATUS_DONE(shLock);
 	} else {
-		PRINT_STATUS_FAIL();
+		PRINT_STATUS_FAIL(shLock);
 	}
 }
 

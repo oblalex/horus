@@ -1,9 +1,5 @@
 #include <config.h>
 
-#ifdef _WIN_
-    #include "util/winstdin_helper.h"
-#endif
-
 #include <stdlib.h>
 #include <pthread.h>
 #include <time.h>
@@ -21,35 +17,33 @@ static pthread_t h_gs_out, h_shell_in;
 
 void input_handlers_start()
 {
-    PRINT_STATUS_NEW(tr("Starting console and shell handling threads"));
+	BOOL shLock = TRUE;
+
+    PRINT_STATUS_NEW(tr("Starting console and shell handling threads"), shLock);
 
 	pthread_create(&h_gs_out, NULL, &handle_gs_out, NULL);
 
 	shell_parser_init();
 	pthread_create(&h_shell_in, NULL, &handle_shell_in, NULL);
 		
-	PRINT_STATUS_DONE();
+	PRINT_STATUS_DONE(shLock);
 }
 
 void* handle_gs_out()
 {
-	PRINT_STATUS_MSG_NOIND(tr("Game server's output processing started"));
+	BOOL shLock = TRUE;
+	PRINT_STATUS_MSG_NOIND(tr("Game server's output processing started"), shLock);
     handle_input(get_gs_console_socket(), &gs_is_running, &console_line_rd, &console_parse_string);
-    PRINT_STATUS_MSG(tr("Game server's output processing finished"));
+    PRINT_STATUS_MSG(tr("Game server's output processing finished"), shLock);
 	return NULL;
 }
 
 void* handle_shell_in()
 {
-	PRINT_STATUS_MSG_NOIND(tr("User's shell activated"));
-
-#ifdef _WIN_
-    handle_input(STDIN_FILENO, &gs_is_running, &stdin_line_rd, &shell_parse_string);
-#else
-    handle_input(STDIN_FILENO, &gs_is_running, &line_rd, &shell_parse_string);
-#endif
-
-    PRINT_STATUS_MSG(tr("User's shell deactivated"));
+	BOOL shLock = TRUE;
+	PRINT_STATUS_MSG_NOIND(tr("User's shell activated"), shLock);
+    shell_handle_in(&gs_is_running);
+    PRINT_STATUS_MSG(tr("User's shell deactivated"), shLock);
 	return NULL;
 }
 
@@ -76,12 +70,13 @@ void handle_input(int fd, BOOL (*run_condition)(), void (*read_fn)(int, char*, i
 
 void input_handlers_stop()
 {
-    PRINT_STATUS_NEW(tr("Stopping console and shell handling threads"));
+	BOOL shLock = TRUE;
+    PRINT_STATUS_NEW(tr("Stopping console and shell handling threads"), shLock);
 
     void* res;
     pthread_join(h_gs_out, &res);
     pthread_join(h_shell_in, &res);
 	shell_parser_teardown();
 
-	PRINT_STATUS_DONE();
+	PRINT_STATUS_DONE(shLock);
 }

@@ -24,20 +24,20 @@
 
 void print_status_tail(int color, const char* status);
 void print_status_raw(char* str, int color, const char* status);
-void PRINT_STATUS_NEW(char* str);
+void PRINT_STATUS_NEW(char* str, BOOL shLock);
 
-void print_status_finished(int color, const char* status);
-#define PRINT_STATUS_DONE() print_status_finished(TC_GREEN, (char*)STATUS_MSG_DONE);
-#define PRINT_STATUS_FAIL() print_status_finished(TC_RED,   (char*)STATUS_MSG_FAIL);
+void print_status_finished(int color, const char* status, BOOL shUnlock);
+void PRINT_STATUS_DONE(BOOL shUnlock);
+void PRINT_STATUS_FAIL(BOOL shUnlock);
 
-void print_status_msg(int color, char* str, BOOL do_indent);
-#define PRINT_STATUS_MSG(STR)     print_status_msg(TC_CYAN, STR, TRUE);
-#define PRINT_STATUS_MSG_WRN(STR) print_status_msg(TC_YELLOW,  STR, TRUE);
-#define PRINT_STATUS_MSG_ERR(STR) print_status_msg(TC_RED,  STR, TRUE);
+void print_status_msg(int color, char* str, BOOL do_indent, BOOL shLock);
+void PRINT_STATUS_MSG(char* msg, BOOL shLock);
+void PRINT_STATUS_MSG_WRN(char* msg, BOOL shLock);
+void PRINT_STATUS_MSG_ERR(char* msg, BOOL shLock);
 
-#define PRINT_STATUS_MSG_NOIND(STR)     print_status_msg(TC_CYAN, STR, FALSE);
-#define PRINT_STATUS_MSG_WRN_NOIND(STR) print_status_msg(TC_YELLOW,  STR, FALSE);
-#define PRINT_STATUS_MSG_ERR_NOIND(STR) print_status_msg(TC_RED,  STR, FALSE);
+void PRINT_STATUS_MSG_NOIND(char* msg, BOOL shLock);
+void PRINT_STATUS_MSG_WRN_NOIND(char* msg, BOOL shLock);
+void PRINT_STATUS_MSG_ERR_NOIND(char* msg, BOOL shLock);
 
 void PRINT_STATUS_ORDER_RESET();
 

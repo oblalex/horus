@@ -12,7 +12,8 @@ libutil_la_SOURCES = str.c \
           regexxx.c \
           timestamp_t.c \
           msg_queue.c \
-          circular_buffer.c
+          circular_buffer.c \
+          linenoise.c
 
 if WIN
 libutil_la_SOURCES += winproc.c winsock_helper.c winstdin_helper.c
