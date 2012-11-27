@@ -1255,7 +1255,7 @@ void gs_mssn_time_str(char* str)
     char* msg1 = tr("Mission time left");
     char  msg2[20];
     secondsToTimeString(SECS_LEFT, (char*)&msg2);
-    sprintf(str, "%s: %s.", msg1, msg2);
+    sprintf(str, "%s: %s", msg1, msg2);
 }
 
 int gs_mssn_seconds_left()
