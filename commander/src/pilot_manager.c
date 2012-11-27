@@ -284,3 +284,22 @@ uint2 pm_pilot_count()
 {
     return COUNT;
 }
+
+uint2 pm_pilots_list(char*** callsignes)
+{
+    if (((*callsignes)== NULL) && (COUNT>0)) (*callsignes) = (char**)malloc(sizeof(char)*COUNT);
+
+    D_PILOT_ELEM* curr;
+    char* callsign;
+
+    for (curr = FIRST;
+         curr != NULL;
+         curr = curr->next)
+    {
+        callsign = curr->data->callsign;
+        (*callsignes)[0] = (char*)malloc(sizeof(char)*strlen(callsign)+1);
+        memcpy((*callsignes)[0], callsign, strlen(callsign)+1);
+    }
+
+    return COUNT;
+}

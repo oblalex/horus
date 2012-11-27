@@ -336,8 +336,8 @@ static int linenoisePrompt(int fd, char *buf, size_t buflen, const char *prompt)
 
             if (WAS_LOCK==TRUE)
             {
-                refreshLine(fd,prompt,buf,len,pos,cols);
                 WAS_LOCK = FALSE;
+                goto up_down_arrow;
             }
 
 #ifdef _WIN_

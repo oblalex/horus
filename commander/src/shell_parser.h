@@ -3,12 +3,32 @@
 
 #include "util/common.h"
 
-#define SH_PROMPT 		"> "
-#define SH_EXIT 		"exit"
+typedef struct
+{
+    char* cmd;
+    int ln;
+} SH_CMD_RAW;
 
-#define SH_CHAT_ALL 	"^chall[[:space:]]+([[:print:]]+)"
-#define SH_CHAT_USER 	"^chusr[[:space:]]+([[:print:]]+)[[:space:]]+([[:print:]]+)"
-#define SH_CHAT_ARMY 	"^charm[[:space:]]+(red|blue|none|r|b|n|1|2|0)[[:space:]]+([[:print:]]+)"
+#define SH_CMD_COUNT            16
+
+#define SH_PROMPT               "> "
+#define SH_EXIT                 "exit"
+
+#define SH_CHAT_ALL_RAW         "chall"
+#define SH_CHAT_USER_RAW        "chusr"
+#define SH_CHAT_ARMY_RAW        "charm"
+
+#define SH_CHAT_ALL             "^" SH_CHAT_ALL_RAW  "[[:space:]]+([[:print:]]+)"
+#define SH_CHAT_USER            "^" SH_CHAT_USER_RAW "[[:space:]]+([[:print:]]+)[[:space:]]+([[:print:]]+)"
+
+#define SH_CHAT_ARMY_R          "red"
+#define SH_CHAT_ARMY_B          "blue"
+#define SH_CHAT_ARMY_N          "none"
+
+#define SH_CHAT_ARMY            "^" SH_CHAT_ARMY_RAW "[[:space:]]+(" \
+                                SH_CHAT_ARMY_R "|" \
+                                SH_CHAT_ARMY_B "|" \
+                                SH_CHAT_ARMY_N "|r|b|n|1|2|0)[[:space:]]+([[:print:]]+)"
 
 #define SH_MSSN_LOAD            "mload"
 #define SH_MSSN_UNLOAD          "muload"

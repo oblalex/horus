@@ -34,5 +34,6 @@ void pm_user_left_req(uint2 channel);
 void pm_mtl_req(char* callsign);
 
 uint2 pm_pilot_count();
+uint2 pm_pilots_list(char*** callsignes);
 
 #endif // PILOT_MANAGER_H

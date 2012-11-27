@@ -11,12 +11,22 @@
 #include "gs_cmd.h"
 #include "gs_paths.h"
 #include "gs_mission_manager.h"
+#include "pilot_manager.h"
 #include "domain/d_army.h"
 #include "util/print_status.h"
 #include "util/str.h"
 #include "util/l10n.h"
 #include "util/regexxx.h"
 #include "util/linenoise.h"
+
+static void completion(const char *buf, linenoiseCompletions *lc);
+
+static void regexInit();
+static void regexFree();
+
+static void extensionsInit();
+static void cmdRawAdd(char* cmd, int pos);
+static void extensionsFree();
 
 static BOOL exit_match(char* str);
 
@@ -43,19 +53,60 @@ static regex_t RE_chat_army;
 
 static regex_t RE_mssn_time_left_set;
 
+static SH_CMD_RAW CMDS_RAW[SH_CMD_COUNT] = {{ 0 }};
+
 void shell_parser_init()
 {
     BOOL shLock = FALSE;
     PRINT_STATUS_NEW(tr("Shell parser initialization"), shLock);
 
-	compile_regex(&RE_chat_all, SH_CHAT_ALL);
-	compile_regex(&RE_chat_user, SH_CHAT_USER);
-	compile_regex(&RE_chat_army, SH_CHAT_ARMY);
-    compile_regex(&RE_mssn_time_left_set, SH_MSSN_TIME_LEFT_SET);
-
-    linenoiseHistoryLoad(SH_HISTORY_NAME);
+    regexInit();
+    extensionsInit();
 
     PRINT_STATUS_DONE(shLock);
+}
+
+
+void regexInit()
+{
+    compile_regex(&RE_chat_all, SH_CHAT_ALL);
+    compile_regex(&RE_chat_user, SH_CHAT_USER);
+    compile_regex(&RE_chat_army, SH_CHAT_ARMY);
+    compile_regex(&RE_mssn_time_left_set, SH_MSSN_TIME_LEFT_SET);
+}
+
+void extensionsInit()
+{
+    linenoiseSetCompletionCallback(completion);
+    linenoiseHistoryLoad(SH_HISTORY_NAME);
+
+    int i = 0;
+    cmdRawAdd(SH_EXIT,          i++);
+
+    cmdRawAdd(SH_CHAT_ALL_RAW,  i++);
+    cmdRawAdd(SH_CHAT_USER_RAW, i++);
+    cmdRawAdd(SH_CHAT_ARMY_RAW, i++);
+
+    cmdRawAdd(SH_MSSN_LOAD,     i++);
+    cmdRawAdd(SH_MSSN_UNLOAD,   i++);
+    cmdRawAdd(SH_MSSN_END,      i++);
+    cmdRawAdd(SH_MSSN_RUN,      i++);
+    cmdRawAdd(SH_MSSN_RERUN,    i++);
+    cmdRawAdd(SH_MSSN_START,    i++);
+    cmdRawAdd(SH_MSSN_STOP,     i++);
+    cmdRawAdd(SH_MSSN_RESTART,  i++);
+    cmdRawAdd(SH_MSSN_NEXT,     i++);
+    cmdRawAdd(SH_MSSN_PREV,     i++);
+
+    cmdRawAdd(SH_MSSN_TIME_LEFT, i++);
+    cmdRawAdd(SH_MSSN_TIME_LEFT " set", i++);
+}
+
+void cmdRawAdd(char* cmd, int pos)
+{
+    CMDS_RAW[pos].ln = strlen(cmd);
+    CMDS_RAW[pos].cmd = (char*)malloc(sizeof(char)*CMDS_RAW[pos].ln);
+    memcpy(CMDS_RAW[pos].cmd, cmd, CMDS_RAW[pos].ln+1);
 }
 
 void shell_parser_teardown()
@@ -63,12 +114,75 @@ void shell_parser_teardown()
     BOOL shLock = TRUE;
     PRINT_STATUS_NEW(tr("Shell parser tearing down"), shLock);
 
-	regfree(&RE_chat_all);
-	regfree(&RE_chat_user);
-	regfree(&RE_chat_army);
-    regfree(&RE_mssn_time_left_set);
+    regexFree();
+    extensionsFree();
 
     PRINT_STATUS_DONE(shLock);
+}
+
+void regexFree()
+{
+    regfree(&RE_chat_all);
+    regfree(&RE_chat_user);
+    regfree(&RE_chat_army);
+    regfree(&RE_mssn_time_left_set);
+}
+
+void extensionsFree()
+{
+    int i;
+    for(i=0; i<SH_CMD_COUNT; ++i)
+        free(CMDS_RAW[i].cmd);
+}
+
+void completion(const char *buf, linenoiseCompletions *lc)
+{
+    int i, j, ln, used;
+    ln = strlen(buf);
+
+    if (ln == 0) return;
+
+    for(i=0; i<SH_CMD_COUNT; ++i)
+    {
+        used = 1;
+
+
+        for (j = 0; (j<ln) && (j<CMDS_RAW[i].ln); j++)
+            if ((buf[j] != CMDS_RAW[i].cmd[j]) && (buf[j] != '\0') && (CMDS_RAW[i].cmd[j] != '\0'))
+            {
+                used = 0;
+                break;
+            }
+
+        if (used)
+        {
+            linenoiseAddCompletion(lc, CMDS_RAW[i].cmd);
+            if (strcmp(CMDS_RAW[i].cmd, SH_CHAT_ARMY_RAW)==0)
+            {
+                linenoiseAddCompletion(lc, SH_CHAT_ARMY_RAW " " SH_CHAT_ARMY_R);
+                linenoiseAddCompletion(lc, SH_CHAT_ARMY_RAW " " SH_CHAT_ARMY_B);
+                linenoiseAddCompletion(lc, SH_CHAT_ARMY_RAW " " SH_CHAT_ARMY_N);
+            } else if (strcmp(CMDS_RAW[i].cmd, SH_CHAT_USER_RAW)==0)
+            {
+                char** callsignes = NULL;
+                uint2 cnt = pm_pilots_list(&callsignes);
+                int i;
+
+                char cmd[50];
+
+                for(i=0; i<cnt; ++i)
+                {
+                    strcpy(cmd, SH_CHAT_USER_RAW " ");
+                    strcat(cmd, callsignes[i]);
+
+                    linenoiseAddCompletion(lc, cmd);
+                    free(callsignes[i]);
+                }
+
+                if (callsignes!=NULL) free (callsignes);
+            }
+        }
+    }
 }
 
 void shell_handle_in(BOOL (*run_condition)())
