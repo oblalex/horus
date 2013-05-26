@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+  <head>
+    <title>Map Height Teller</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        #map_height{
+            display:none;
+        }
+        #result{
+            margin: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function() {
+
+            var map_img = $("#map_main");
+            var height_img = $("#map_height");
+            var result_div = $("#result");
+
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext("2d");
+
+            height_img.load(function(){
+                canvas.width  = height_img.width();
+                canvas.height = height_img.height();
+                context.drawImage(height_img[0], 0, 0, height_img.width(), height_img.height());
+            });
+
+            map_img.click(function(e) {
+                var offset = $(this).offset();
+                var coord_x = e.clientX - offset.left;
+                var coord_y = e.clientY - offset.top;
+
+                var pixel = context.getImageData(coord_x/2, coord_y/2, 1, 1).data;
+
+                result_div.text(pixel[0] + ", " + pixel[1] + ", " + pixel[2] + " for (" + coord_x + ";" + coord_y + ")");
+            });
+        });
+    </script>
+    </head>
+    <body>
+        <img src="Map.png" id="map_main"/>
+        <img src="Map_h.png" id="map_height"/>
+        <div id="result"></div>
+    </body>
+</html>
