@@ -19,13 +19,13 @@
     </style>
     <script type="text/javascript">
         function GetH(R) {
-        if (R < 64) return R;
-            else if (R < 96) return 64 + (R - 64) * 2;
-            else if (R < 128) return 128 + (R - 96) * 4;
-            else if (R < 160) return 256 + (R - 128) * 8;
-            else if (R < 192) return 512 + (R - 160) * 16;
-            else if (R < 224) return 1024 + (R - 192) * 32;
-            else return 2048 + (R - 224) * 64
+            if (R < 64) return R;
+                else if (R < 96) return 64 + (R - 64) * 2;
+                else if (R < 128) return 128 + (R - 96) * 4;
+                else if (R < 160) return 256 + (R - 128) * 8;
+                else if (R < 192) return 512 + (R - 160) * 16;
+                else if (R < 224) return 1024 + (R - 192) * 32;
+                else return 2048 + (R - 224) * 64
         }
 
         $(function() {
