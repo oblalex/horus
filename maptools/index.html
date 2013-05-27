@@ -45,8 +45,8 @@
 
             map_img.click(function(e) {
                 var offset = $(this).offset();
-                var coord_x = e.clientX - offset.left;
-                var coord_y = e.clientY - offset.top;
+                var coord_x = e.pageX - offset.left;
+                var coord_y = e.pageY - offset.top;
 
                 var pixel = context.getImageData(coord_x/2, coord_y/2, 1, 1).data;
 
