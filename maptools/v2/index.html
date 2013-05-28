@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script>
+        function GetH(R) {
+            if (R < 64) return R;
+          else if (R < 96) return 64 + (R - 64) * 2;
+          else if (R < 128) return 128 + (R - 96) * 4;
+          else if (R < 160) return 256 + (R - 128) * 8;
+          else if (R < 192) return 512 + (R - 160) * 16;
+          else if (R < 224) return 1024 + (R - 192) * 32;
+          else return 2048 + (R - 224) * 64;
+      }
+
+      $(function() {
+          var jCanvas_map = $('#map_main');
+          var jResult = $("#result");
+          var jChooser = $("#image_chooser");
+
+          var canvas_map = jCanvas_map[0];
+          var context_map = canvas_map.getContext('2d');
+
+          var canvas_height = document.createElement('canvas');
+          var context_height = canvas_height.getContext("2d");
+
+          var map_image_obj = new Image();
+          var heigh_image_obj = new Image();
+
+          jChooser.change(function() {
+              var prefix = "../Maps/"+$(this).val();
+              map_image_obj.src = prefix+"/Map.png";
+              heigh_image_obj.src = prefix+"/Map_h.png";
+          });
+
+          map_image_obj.onload = function(){
+              canvas_map.width = map_image_obj.width;
+              canvas_map.height = map_image_obj.height;
+              context_map.drawImage(map_image_obj, 0, 0, map_image_obj.width, map_image_obj.height);
+              drawBoard(canvas_map.width, canvas_map.height, 0);
+          };
+
+          heigh_image_obj.onload = function(){
+              canvas_height.width  = heigh_image_obj.width;
+              canvas_height.height = heigh_image_obj.height;
+              context_height.drawImage(heigh_image_obj, 0, 0, heigh_image_obj.width, heigh_image_obj.height);
+          };
+
+          function drawBoard(bw,bh,p){
+              for (var x = 0; x < bw; x += 100) {
+                  context_map.moveTo(0.5 + x + p, p);
+                  context_map.lineTo(0.5 + x + p, bh + p);
+              }
+
+              for (var y = 0; y < bh; y += 100) {
+                  context_map.moveTo(p,0.5 + y + p);
+                  context_map.lineTo(bw + p,0.5 + y + p);
+              }
+
+              context_map.moveTo(0, bh-0.5);
+              context_map.lineTo(bw-0.5, bh-0.5);
+              context_map.lineTo(bw-0.5, 0);
+
+              context_map.strokeStyle = "gray";
+              context_map.stroke();
+          }
+
+          jCanvas_map.click(function(e) {
+              var offset = $(this).offset();
+              var coord_x = e.pageX - offset.left;
+              var coord_y = e.pageY - offset.top;
+
+              var pixel = context_height.getImageData(coord_x/2, coord_y/2, 1, 1).data;
+
+              jResult.text(
+                  GetH(pixel[0]) + " m at ("
+                  + Math.floor(coord_x) + ";"
+                  + Math.floor(map_image_obj.height-coord_y) + ")"
+              );
+          });
+
+          jChooser.trigger('change');
+      });
+  </script>
+</head>
+<body>
+    <form name="form1">
+    <select size=1 name="imagename" id="image_chooser">
+         <option value="Ardennes">Ardennes</option>
+         <option value="BalatonSummer">BalatonSummer</option>
+         <option value="BalatonWinter">BalatonWinter</option>
+         <option value="Berlin">Berlin</option>
+         <option value="Bessarabia">Bessarabia</option>
+         <option value="BessarabiaIasi">BessarabiaIasi</option>
+         <option value="BessarabiaOdessa">BessarabiaOdessa</option>
+         <option value="Burma">Burma</option>
+         <option value="Chichi">Chichi</option>
+         <option value="CoralSeaOnline1">CoralSeaOnline1</option>
+         <option value="CoralSeaOnline2">CoralSeaOnline2</option>
+         <option value="Crimea">Crimea</option>
+         <option value="Desert">Desert</option>
+         <option value="Empty1">Empty1</option>
+         <option value="Empty2">Empty2</option>
+         <option value="Empty4">Empty4</option>
+         <option value="FinsGulfSummer">FinsGulfSummer</option>
+         <option value="FinsGulfWinter">FinsGulfWinter</option>
+         <option value="Guadal">Guadal</option>
+         <option value="GuadalEarly">GuadalEarly</option>
+         <option value="Hawaii">Hawaii</option>
+         <option value="Italy_DF">Italy_DF</option>
+         <option value="IwoOnline">IwoOnline</option>
+         <option value="Japan1">Japan1</option>
+         <option value="KhalkhinGol">KhalkhinGol</option>
+         <option value="Kiev">Kiev</option>
+         <option value="Kuban">Kuban</option>
+         <option value="Kurland">Kurland</option>
+         <option value="KurlandOnline">KurlandOnline</option>
+         <option value="Kursk">Kursk</option>
+         <option value="Lviv">Lviv</option>
+         <option value="Manchuria">Manchuria</option>
+         <option value="MarianasOnline">MarianasOnline</option>
+         <option value="Midway">Midway</option>
+         <option value="Moscow">Moscow</option>
+         <option value="MTO">MTO</option>
+         <option value="Net1">Net1</option>
+         <option value="Net2">Net2</option>
+         <option value="Net3Summer">Net3Summer</option>
+         <option value="Net5Summer">Net5Summer</option>
+         <option value="Net6Island">Net6Island</option>
+         <option value="Net7Islands">Net7Islands</option>
+         <option value="Net8Islands">Net8Islands</option>
+         <option value="NetIslands">NetIslands</option>
+         <option value="NetMountains">NetMountains</option>
+         <option value="NewGuinea">NewGuinea</option>
+         <option value="Normandy1">Normandy1</option>
+         <option value="Normandy2">Normandy2</option>
+         <option value="Normandy3">Normandy3</option>
+         <option value="Norway">Norway</option>
+         <option value="NWEurope">NWEurope</option>
+         <option value="OkinawaOnline">OkinawaOnline</option>
+         <option value="PalauOnline">PalauOnline</option>
+         <option value="Prokhorovka">Prokhorovka</option>
+         <option value="SandsOfTime">SandsOfTime</option>
+         <option value="Singapore1">Singapore1</option>
+         <option value="Singapore2">Singapore2</option>
+         <option value="Slovakia">Slovakia</option>
+         <option value="Smolensk">Smolensk</option>
+         <option value="Stalingrad">Stalingrad</option>
+         <option value="Tarawa">Tarawa</option>
+         <option value="Wake">Wake</option>
+        </select>
+    </form>
+    <div id="result"></div>
+    <canvas id="map_main"></canvas>
+</body>
+</html>
