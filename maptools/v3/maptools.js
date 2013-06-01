@@ -98,7 +98,7 @@ $(function () {
         /* horizontal scrollbars */
         var hscrollArea = new Kinetic.Rect({
                 x: 10,
-                y: stage.intensityToHeighteight() - 30,
+                y: stage.getHeight() - 30,
                 width: stage.getWidth() - 40,
                 height: 20,
                 fill: 'black',
@@ -106,7 +106,7 @@ $(function () {
             });
         var hscroll = new Kinetic.Rect({
                 x: 10,
-                y: stage.intensityToHeighteight() - 30,
+                y: stage.getHeight() - 30,
                 width: 130,
                 height: 20,
                 fill: '#888',
@@ -132,7 +132,7 @@ $(function () {
                 x: stage.getWidth() - 30,
                 y: 10,
                 width: 20,
-                height: stage.intensityToHeighteight() - 40,
+                height: stage.getHeight() - 40,
                 fill: 'black',
                 opacity: 0.3
             });
@@ -147,8 +147,8 @@ $(function () {
                     var newY = pos.y;
                     if (newY < 10) {
                         newY = 10;
-                    } else if (newY > stage.intensityToHeighteight() - 100) {
-                        newY = stage.intensityToHeighteight() - 100;
+                    } else if (newY > stage.getHeight() - 100) {
+                        newY = stage.getHeight() - 100;
                     }
                     return {
                         x: this.getAbsolutePosition().x,
@@ -162,7 +162,7 @@ $(function () {
         /* background update */
         var updateBackgroundPos = function () {
             var x = (hscroll.getPosition().x - 10) * ((image.getWidth() - hscrollArea.getWidth()) / hscrollArea.getWidth());
-            var y = (vscroll.getPosition().y - 10) * ((image.intensityToHeighteight() - vscrollArea.intensityToHeighteight()) / vscrollArea.intensityToHeighteight());
+            var y = (vscroll.getPosition().y - 10) * ((image.getHeight() - vscrollArea.getHeight()) / vscrollArea.getHeight());
             update_curent_info(0, $("#content").position().top);
             img_grp.setOffset(x, y);
         };
@@ -189,7 +189,7 @@ $(function () {
             img_grp.removeChildren();
             layer.removeChildren();
             var is_bigger_w = stage.getWidth() < map_image.width;
-            var is_bigger_h = stage.intensityToHeighteight() < map_image.height;
+            var is_bigger_h = stage.getHeight() < map_image.height;
             var is_big_map = Math.floor(map_image.width / CELL_SIZE) > MAX_LETTERS;
             img_grp.setOffset(0, 0);
             image.setSize(map_image.width, map_image.height);
@@ -243,15 +243,15 @@ $(function () {
             vscroll.setX(0);
             hscroll.setY(0);
             if (is_bigger_w) {
-                hscrollArea.setY(stage.intensityToHeighteight() - 30);
+                hscrollArea.setY(stage.getHeight() - 30);
                 hscrollArea.setWidth(stage.getWidth() - 40);
-                hscroll.setY(stage.intensityToHeighteight() - 30);
+                hscroll.setY(stage.getHeight() - 30);
                 areas.add(hscrollArea);
                 scrollbars.add(hscroll);
             }
             if (is_bigger_h) {
                 vscrollArea.setX(stage.getWidth() - 30);
-                vscrollArea.setHeight(stage.intensityToHeighteight() - 40);
+                vscrollArea.setHeight(stage.getHeight() - 40);
                 vscroll.setX(stage.getWidth() - 30);
                 areas.add(vscrollArea);
                 scrollbars.add(vscroll);
