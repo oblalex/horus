@@ -49,7 +49,15 @@ $(function () {
         function squareLabel(x, y) {
             return squareName(x) + ":" + squareNumber(y);
         }
-
+        function intensityToHeight(intensity) {
+            if (intensity < 64) return intensity;
+            else if (intensity < 96) return 64 + (intensity - 64) * 2;
+            else if (intensity < 128) return 128 + (intensity - 96) * 4;
+            else if (intensity < 160) return 256 + (intensity - 128) * 8;
+            else if (intensity < 192) return 512 + (intensity - 160) * 16;
+            else if (intensity < 224) return 1024 + (intensity - 192) * 32;
+            else return 2048 + (intensity - 224) * 64;
+        }
         function update_curent_info(x, y) {
             var offX = (img_grp.getOffsetX() % CELL_SIZE);
             var offY = (img_grp.getOffsetY() % CELL_SIZE);
@@ -86,15 +94,6 @@ $(function () {
 
             var pixel = context_height.getImageData(map_x/(2*CELL_SIZE), heigh_image.height-(map_y/(2*CELL_SIZE)), 1, 1).data;
             $("#height_holder").text(intensityToHeight(pixel[0]) + " m");
-        }
-        function intensityToHeight(intensity) {
-            if (intensity < 64) return intensity;
-            else if (intensity < 96) return 64 + (intensity - 64) * 2;
-            else if (intensity < 128) return 128 + (intensity - 96) * 4;
-            else if (intensity < 160) return 256 + (intensity - 128) * 8;
-            else if (intensity < 192) return 512 + (intensity - 160) * 16;
-            else if (intensity < 224) return 1024 + (intensity - 192) * 32;
-            else return 2048 + (intensity - 224) * 64;
         }
         /* horizontal scrollbars */
         var hscrollArea = new Kinetic.Rect({
