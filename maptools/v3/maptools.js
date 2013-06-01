@@ -190,7 +190,7 @@ $(function () {
             layer.removeChildren();
             var is_bigger_w = stage.getWidth() < map_image.width;
             var is_bigger_h = stage.getHeight() < map_image.height;
-            var is_big_map = Math.floor(map_image.width / CELL_SIZE) > MAX_LETTERS;
+            is_big_map = Math.floor(map_image.width / CELL_SIZE) > MAX_LETTERS;
             img_grp.setOffset(0, 0);
             image.setSize(map_image.width, map_image.height);
             image.setImage(map_image);
