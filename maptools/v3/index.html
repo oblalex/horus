@@ -169,23 +169,6 @@
                     strokeWidth: 1
                 });
 
-            /* scrollbars */
-            scrollbars.on('mouseover', function () {
-                document.body.style.cursor = 'pointer';
-            });
-            scrollbars.on('mouseout', function () {
-                document.body.style.cursor = 'default';
-            });
-
-            var updateBackgroundPos = function () {
-                var x = (hscroll.getPosition().x-10) * ((image.getWidth()-hscrollArea.getWidth())/hscrollArea.getWidth());
-                var y = (vscroll.getPosition().y-10) * ((image.getHeight()-vscrollArea.getHeight())/vscrollArea.getHeight());
-                img_grp.setOffset(x, y);
-            };
-
-            hscroll.on('dragmove', updateBackgroundPos);
-            vscroll.on('dragmove', updateBackgroundPos);
-
             /* image */
             var map_image = new Image();
             map_image.onload = function () {
@@ -200,7 +183,7 @@
                 var is_bigger_w = stage.getWidth() < map_image.width;
                 var is_bigger_h = stage.getHeight() < map_image.height;
 
-                image.setOffset(0, 0);
+                img_grp.setOffset(0, 0);
                 image.setSize(map_image.width, map_image.height);
                 image.setImage(map_image);
 
@@ -256,6 +239,7 @@
 
                 layer.add(img_grp);
 
+                /* current cell */
                 var current_cell = new Kinetic.Rect({
                     x: 0,
                     y: 0,
@@ -269,28 +253,56 @@
 
                 layer.add(current_cell);
                 layer.on('mousemove', function(e) {
-                    var x = e.x;
-                    var y = e.y-$("#content").position().top;
+                    update_current_cell(e.x, e.y);
+                });
 
-                    if (x>=map_image.width || y>=map_image.height) return;
+                function update_current_cell(x, y){
+                    var offX = (img_grp.getOffsetX() % CELL_SIZE);
+                    var offY = (img_grp.getOffsetY() % CELL_SIZE);
 
-                    var px = Math.floor(x / CELL_SIZE) * CELL_SIZE;
-                    var py = Math.floor(y / CELL_SIZE) * CELL_SIZE;
+                    var ox = x + offX;
+                    var oy = y - $("#content").position().top + offY;
 
-                    if ((map_image.width-px)<CELL_SIZE){
-                        current_cell.setWidth((map_image.width - px)-2);
+                    if (ox>=map_image.width || oy>=map_image.height) return;
+
+                    var px = (Math.floor(ox / CELL_SIZE) * CELL_SIZE) - offX;
+                    var py = (Math.floor(oy / CELL_SIZE) * CELL_SIZE) - offY;
+
+                    var dx = map_image.width-img_grp.getOffsetX()-px;
+                    if (dx<CELL_SIZE){
+                        current_cell.setWidth(dx-2);
                     } else {
                         current_cell.setWidth(CELL_SIZE);
                     }
 
-                    if ((map_image.height-py)<CELL_SIZE){
-                        current_cell.setHeight((map_image.height - py));
+                    var dy = map_image.height-img_grp.getOffsetY()-py;
+                    if (dy<CELL_SIZE){
+                        current_cell.setHeight(dy);
                     } else {
                         current_cell.setHeight(CELL_SIZE);
                     }
 
                     current_cell.setPosition(px, py);
                     layer.draw();
+                }
+
+                /* background update */
+                var updateBackgroundPos = function () {
+                    var x = (hscroll.getPosition().x-10) * ((image.getWidth()-hscrollArea.getWidth())/hscrollArea.getWidth());
+                    var y = (vscroll.getPosition().y-10) * ((image.getHeight()-vscrollArea.getHeight())/vscrollArea.getHeight());
+                    update_current_cell(0, $("#content").position().top);
+                    img_grp.setOffset(x, y);
+                };
+
+                hscroll.on('dragmove', updateBackgroundPos);
+                vscroll.on('dragmove', updateBackgroundPos);
+
+                /* scrollbars */
+                scrollbars.on('mouseover', function () {
+                    document.body.style.cursor = 'pointer';
+                });
+                scrollbars.on('mouseout', function () {
+                    document.body.style.cursor = 'default';
                 });
 
                 /* Draw scrolls */
