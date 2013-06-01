@@ -4,343 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link rel="stylesheet" type="text/css" href="../ink/css/ink.css">
-
-    <style type="text/css">
-        html, body {
-            height: 100%;
-            background: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            padding: 1em 0;
-            margin-bottom: 2.5em;
-        }
-        header h1 {
-            font-size: 1.5em;
-        }
-        header h1 small:before  {
-            content: "|";
-            margin: 0 0.5em;
-            font-size: 1.6em;
-        }
-        header nav{
-            margin-top: -3px;
-        }
-        footer {
-            background: #101010;
-            border: 0;
-            margin-top: 0 !important;
-            color: white;
-            position: fixed;
-            width: 100%;
-            padding: 20px 0;
-            top:0, left:0;
-            height: 65px;
-        }
-        footer * {
-            line-height: inherit;
-        }
-        footer p {
-            margin-top: 0;
-        }
-        footer .ink-navigation ul.menu.horizontal li {
-            margin-right: 2em;
-            line-height: inherit;
-        }
-        footer .ink-navigation ul.menu.horizontal li a {
-            padding: 0;
-            color: white;
-            text-decoration: underline;
-        }
-        footer p {
-            color: white;
-        }
-        footer .ink-navigation ul.menu.horizontal li a:hover {
-            color: #c91111;
-        }
-        div + section {
-            margin: 0;
-        }
-        #content{
-            border-top: 3px solid #101010;
-            padding-bottom: 60px;
-        }
-        #container{
-            overflow: hidden;
-            background-color: #F4F4F4;
-        }
-        #display_loading{
-            visibility: hidden;
-        }
-        #height_holder{
-            display: inline;
-            margin-left: 15px;
-            background: url('../img/mountain.png') no-repeat;
-            background-position: left 0px top -6px;
-            padding-left: 35px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="maptools.css">
 
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.5.2.min.js"></script>
-    <script>
-        $(function() {
-            /* declarations */
-            var CELL_SIZE = 100;
-            var areas = new Kinetic.Group();
-            var scrollbars = new Kinetic.Group();
-            var stage = new Kinetic.Stage({
-                    container: "container",
-                    width: 300,
-                    height: 300
-                });
-            var container = stage.getContainer();
-            var layer = new Kinetic.Layer();
-            var image = new Kinetic.Image();
-            var img_grp = new Kinetic.Group();
-            stage.add(layer);
-
-            /* horizontal scrollbars */
-            var hscrollArea = new Kinetic.Rect({
-                    x: 10,
-                    y: stage.getHeight() - 30,
-                    width: stage.getWidth() - 40,
-                    height: 20,
-                    fill: 'black',
-                    opacity: 0.3
-                });
-
-            var hscroll = new Kinetic.Rect({
-                    x: 10,
-                    y: stage.getHeight() - 30,
-                    width: 130,
-                    height: 20,
-                    fill: '#888',
-                    draggable: true,
-                    dragBoundFunc: function (pos) {
-                        var newX = pos.x;
-                        if (newX < 10) {
-                            newX = 10;
-                        } else if (newX > stage.getWidth() - 160) {
-                            newX = stage.getWidth() - 160;
-                        }
-                        return {
-                            x: newX,
-                            y: this.getAbsolutePosition().y
-                        }
-                    },
-                    opacity: 0.9,
-                    stroke: 'black',
-                    strokeWidth: 1
-                });
-
-            /* vertical scrollbars */
-            var vscrollArea = new Kinetic.Rect({
-                    x: stage.getWidth() - 30,
-                    y: 10,
-                    width: 20,
-                    height: stage.getHeight() - 40,
-                    fill: 'black',
-                    opacity: 0.3
-                });
-
-            var vscroll = new Kinetic.Rect({
-                    x: stage.getWidth() - 30,
-                    y: 10,
-                    width: 20,
-                    height: 70,
-                    fill: '#888',
-                    draggable: true,
-                    dragBoundFunc: function (pos) {
-                        var newY = pos.y;
-                        if (newY < 10) {
-                            newY = 10;
-                        } else if (newY > stage.getHeight() - 100) {
-                            newY = stage.getHeight() - 100;
-                        }
-                        return {
-                            x: this.getAbsolutePosition().x,
-                            y: newY
-                        }
-                    },
-                    opacity: 0.9,
-                    stroke: 'black',
-                    strokeWidth: 1
-                });
-
-            /* image */
-            var map_image = new Image();
-            map_image.onload = function () {
-                stage.setWidth($(window).width());
-                stage.setHeight($("footer").position().top - $("#content").position().top - 3);
-
-                areas.removeChildren();
-                scrollbars.removeChildren();
-                img_grp.removeChildren();
-                layer.removeChildren();
-
-                var is_bigger_w = stage.getWidth() < map_image.width;
-                var is_bigger_h = stage.getHeight() < map_image.height;
-
-                img_grp.setOffset(0, 0);
-                image.setSize(map_image.width, map_image.height);
-                image.setImage(map_image);
-
-                img_grp.add(image);
-
-                /* Draw grid verticals */
-                var l = new Kinetic.Line({
-                    stroke: "#777",
-                    strokeWidth:1,
-                    points: [map_image.width-2, 0, map_image.width-2, map_image.height]
-                });
-                img_grp.add(l);
-
-                var l = new Kinetic.Line({
-                    stroke: "#777",
-                    strokeWidth:1,
-                    points: [2, 0, 2, map_image.height]
-                });
-                img_grp.add(l);
-
-                for (i = 0; i < map_image.width; i+= CELL_SIZE) {
-                    var l = new Kinetic.Line({
-                        stroke: "#777",
-                        strokeWidth:1,
-                        points: [i, 0, i, map_image.height-1]
-                    });
-                    img_grp.add(l);
-                }
-
-                /* Draw grid horizontals */
-                var l = new Kinetic.Line({
-                    stroke: "#777",
-                    strokeWidth:1,
-                    points: [0, map_image.height, map_image.width-2, map_image.height]
-                });
-                img_grp.add(l);
-
-                var l = new Kinetic.Line({
-                    stroke: "#777",
-                    strokeWidth:1,
-                    points: [0, 1, map_image.width-2, 1]
-                });
-                img_grp.add(l);
-
-                for (i = 0; i < map_image.height; i+= CELL_SIZE) {
-                    var l = new Kinetic.Line({
-                        stroke: "#777",
-                        strokeWidth:1,
-                        points: [0, i, map_image.width-1, i]
-                    });
-                    img_grp.add(l);
-                }
-
-                layer.add(img_grp);
-
-                /* current cell */
-                var current_cell = new Kinetic.Rect({
-                    x: 0,
-                    y: 0,
-                    width: CELL_SIZE,
-                    height: CELL_SIZE,
-                    opacity: 0.2,
-                    fill: "#FF0",
-                    stroke: "black",
-                    strokeWidth: 2
-                });
-
-                layer.add(current_cell);
-                layer.on('mousemove', function(e) {
-                    update_current_cell(e.x, e.y);
-                });
-
-                function update_current_cell(x, y){
-                    var offX = (img_grp.getOffsetX() % CELL_SIZE);
-                    var offY = (img_grp.getOffsetY() % CELL_SIZE);
-
-                    var ox = x + offX;
-                    var oy = y - $("#content").position().top + offY;
-
-                    if (ox>=map_image.width || oy>=map_image.height) return;
-
-                    var px = (Math.floor(ox / CELL_SIZE) * CELL_SIZE) - offX;
-                    var py = (Math.floor(oy / CELL_SIZE) * CELL_SIZE) - offY;
-
-                    var dx = map_image.width-img_grp.getOffsetX()-px;
-                    if (dx<CELL_SIZE){
-                        current_cell.setWidth(dx-2);
-                    } else {
-                        current_cell.setWidth(CELL_SIZE);
-                    }
-
-                    var dy = map_image.height-img_grp.getOffsetY()-py;
-                    if (dy<CELL_SIZE){
-                        current_cell.setHeight(dy);
-                    } else {
-                        current_cell.setHeight(CELL_SIZE);
-                    }
-
-                    current_cell.setPosition(px, py);
-                    layer.draw();
-                }
-
-                /* background update */
-                var updateBackgroundPos = function () {
-                    var x = (hscroll.getPosition().x-10) * ((image.getWidth()-hscrollArea.getWidth())/hscrollArea.getWidth());
-                    var y = (vscroll.getPosition().y-10) * ((image.getHeight()-vscrollArea.getHeight())/vscrollArea.getHeight());
-                    update_current_cell(0, $("#content").position().top);
-                    img_grp.setOffset(x, y);
-                };
-
-                hscroll.on('dragmove', updateBackgroundPos);
-                vscroll.on('dragmove', updateBackgroundPos);
-
-                /* scrollbars */
-                scrollbars.on('mouseover', function () {
-                    document.body.style.cursor = 'pointer';
-                });
-                scrollbars.on('mouseout', function () {
-                    document.body.style.cursor = 'default';
-                });
-
-                /* Draw scrolls */
-                vscroll.setX(0);
-                hscroll.setY(0);
-
-                if (is_bigger_w){
-                    hscrollArea.setY(stage.getHeight() - 30);
-                    hscrollArea.setWidth(stage.getWidth() - 40);
-                    hscroll.setY(stage.getHeight() - 30);
-                    areas.add(hscrollArea);
-                    scrollbars.add(hscroll);
-                }
-                if (is_bigger_h){
-                    vscrollArea.setX(stage.getWidth() - 30);
-                    vscrollArea.setHeight(stage.getHeight() - 40);
-                    vscroll.setX(stage.getWidth() - 30);
-                    areas.add(vscrollArea);
-                    scrollbars.add(vscroll);
-                }
-                if (is_bigger_w || is_bigger_h) {
-                    layer.add(areas);
-                    layer.add(scrollbars);
-                }
-
-                layer.draw();
-                $("#display_loading").css('visibility', 'hidden');
-            };
-
-            $("#image_chooser").change(function () {
-                    var prefix = "../Maps/" + $(this).val();
-                    map_image.src = prefix + "/Map.png";
-                    //heigh_image_obj.src = prefix+"/Map_h.png";
-                    $("#display_loading").css('visibility', 'visible');
-                });
-            $("#image_chooser").trigger('change');
-        });
-    </script>
+    <script src="maptools.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="ink-grid">
@@ -369,71 +37,75 @@
     </section>
     <footer>
         <div class="ink-grid">
-            <select size=1 name="imagename" id="image_chooser">
-                <option value="Ardennes">Ardennes</option>
-                <option value="BalatonSummer">BalatonSummer</option>
-                <option value="BalatonWinter">BalatonWinter</option>
-                <option value="Berlin">Berlin</option>
-                <option value="Bessarabia">Bessarabia</option>
-                <option value="BessarabiaIasi">BessarabiaIasi</option>
-                <option value="BessarabiaOdessa">BessarabiaOdessa</option>
-                <option value="Burma">Burma</option>
-                <option value="Chichi">Chichi</option>
-                <option value="CoralSeaOnline1">CoralSeaOnline1</option>
-                <option value="CoralSeaOnline2">CoralSeaOnline2</option>
-                <option value="Crimea">Crimea</option>
-                <option value="Desert">Desert</option>
-                <option value="Empty1">Empty1</option>
-                <option value="Empty2">Empty2</option>
-                <option value="Empty4">Empty4</option>
-                <option value="FinsGulfSummer">FinsGulfSummer</option>
-                <option value="FinsGulfWinter">FinsGulfWinter</option>
-                <option value="Guadal">Guadal</option>
-                <option value="GuadalEarly">GuadalEarly</option>
-                <option value="Hawaii">Hawaii</option>
-                <option value="Italy_DF">Italy_DF</option>
-                <option value="IwoOnline">IwoOnline</option>
-                <option value="Japan1">Japan1</option>
-                <option value="KhalkhinGol">KhalkhinGol</option>
-                <option value="Kiev">Kiev</option>
-                <option value="Kuban">Kuban</option>
-                <option value="Kurland">Kurland</option>
-                <option value="KurlandOnline">KurlandOnline</option>
-                <option value="Kursk">Kursk</option>
-                <option value="Lviv">Lviv</option>
-                <option value="Manchuria">Manchuria</option>
-                <option value="MarianasOnline">MarianasOnline</option>
-                <option value="Midway">Midway</option>
-                <option value="Moscow">Moscow</option>
-                <option value="MTO">MTO</option>
-                <option value="Net1">Net1</option>
-                <option value="Net2">Net2</option>
-                <option value="Net3Summer">Net3Summer</option>
-                <option value="Net5Summer">Net5Summer</option>
-                <option value="Net6Island">Net6Island</option>
-                <option value="Net7Islands">Net7Islands</option>
-                <option value="Net8Islands">Net8Islands</option>
-                <option value="NetIslands">NetIslands</option>
-                <option value="NetMountains">NetMountains</option>
-                <option value="NewGuinea">NewGuinea</option>
-                <option value="Normandy1">Normandy1</option>
-                <option value="Normandy2">Normandy2</option>
-                <option value="Normandy3">Normandy3</option>
-                <option value="Norway">Norway</option>
-                <option value="NWEurope">NWEurope</option>
-                <option value="OkinawaOnline">OkinawaOnline</option>
-                <option value="PalauOnline">PalauOnline</option>
-                <option value="Prokhorovka">Prokhorovka</option>
-                <option value="SandsOfTime">SandsOfTime</option>
-                <option value="Singapore1">Singapore1</option>
-                <option value="Singapore2">Singapore2</option>
-                <option value="Slovakia">Slovakia</option>
-                <option value="Smolensk">Smolensk</option>
-                <option value="Stalingrad">Stalingrad</option>
-                <option value="Tarawa">Tarawa</option>
-                <option value="Wake">Wake</option>
-            </select>
-            <img src="../img/loader.gif" title="Loading image..." id="display_loading"/>
+            <div class="push-left" id="image_chooser_wrap">
+                <select size=1 name="imagename" id="image_chooser">
+                    <option value="Ardennes">Ardennes</option>
+                    <option value="BalatonSummer">BalatonSummer</option>
+                    <option value="BalatonWinter">BalatonWinter</option>
+                    <option value="Berlin">Berlin</option>
+                    <option value="Bessarabia">Bessarabia</option>
+                    <option value="BessarabiaIasi">BessarabiaIasi</option>
+                    <option value="BessarabiaOdessa">BessarabiaOdessa</option>
+                    <option value="Burma">Burma</option>
+                    <option value="Chichi">Chichi</option>
+                    <option value="CoralSeaOnline1">CoralSeaOnline1</option>
+                    <option value="CoralSeaOnline2">CoralSeaOnline2</option>
+                    <option value="Crimea">Crimea</option>
+                    <option value="Desert">Desert</option>
+                    <option value="Empty1">Empty1</option>
+                    <option value="Empty2">Empty2</option>
+                    <option value="Empty4">Empty4</option>
+                    <option value="FinsGulfSummer">FinsGulfSummer</option>
+                    <option value="FinsGulfWinter">FinsGulfWinter</option>
+                    <option value="Guadal">Guadal</option>
+                    <option value="GuadalEarly">GuadalEarly</option>
+                    <option value="Hawaii">Hawaii</option>
+                    <option value="Italy_DF">Italy_DF</option>
+                    <option value="IwoOnline">IwoOnline</option>
+                    <option value="Japan1">Japan1</option>
+                    <option value="KhalkhinGol">KhalkhinGol</option>
+                    <option value="Kiev">Kiev</option>
+                    <option value="Kuban">Kuban</option>
+                    <option value="Kurland">Kurland</option>
+                    <option value="KurlandOnline">KurlandOnline</option>
+                    <option value="Kursk">Kursk</option>
+                    <option value="Lviv">Lviv</option>
+                    <option value="Manchuria">Manchuria</option>
+                    <option value="MarianasOnline">MarianasOnline</option>
+                    <option value="Midway">Midway</option>
+                    <option value="Moscow">Moscow</option>
+                    <option value="MTO">MTO</option>
+                    <option value="Net1">Net1</option>
+                    <option value="Net2">Net2</option>
+                    <option value="Net3Summer">Net3Summer</option>
+                    <option value="Net5Summer">Net5Summer</option>
+                    <option value="Net6Island">Net6Island</option>
+                    <option value="Net7Islands">Net7Islands</option>
+                    <option value="Net8Islands">Net8Islands</option>
+                    <option value="NetIslands">NetIslands</option>
+                    <option value="NetMountains">NetMountains</option>
+                    <option value="NewGuinea">NewGuinea</option>
+                    <option value="Normandy1">Normandy1</option>
+                    <option value="Normandy2">Normandy2</option>
+                    <option value="Normandy3">Normandy3</option>
+                    <option value="Norway">Norway</option>
+                    <option value="NWEurope">NWEurope</option>
+                    <option value="OkinawaOnline">OkinawaOnline</option>
+                    <option value="PalauOnline">PalauOnline</option>
+                    <option value="Prokhorovka">Prokhorovka</option>
+                    <option value="SandsOfTime">SandsOfTime</option>
+                    <option value="Singapore1">Singapore1</option>
+                    <option value="Singapore2">Singapore2</option>
+                    <option value="Slovakia">Slovakia</option>
+                    <option value="Smolensk">Smolensk</option>
+                    <option value="Stalingrad">Stalingrad</option>
+                    <option value="Tarawa">Tarawa</option>
+                    <option value="Wake">Wake</option>
+                </select>
+                <img src="../img/loader.gif" title="Loading image..." id="display_loading"/>
+            </div>
+            <div id="position_holder">x: 0; y: 0</div>
+            <div id="square_holder">A1</div>
             <div id="height_holder">0 m</div>
         </div>
     </footer>

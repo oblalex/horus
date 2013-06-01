@@ -1,0 +1,77 @@
+html,
+body {
+    height: 100%;
+    background: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+header {
+    padding: 1em 0;
+    margin-bottom: 2.5em;
+}
+header h1 { font-size: 1.5em }
+header h1 small:before {
+    content: "|";
+    margin: 0 0.5em;
+    font-size: 1.6em;
+}
+header nav { margin-top: -3px }
+footer {
+    background: #101010;
+    border: 0;
+    margin-top: 0 !important;
+    color: white;
+    position: fixed;
+    width: 100%;
+    padding: 20px 0;
+    top: 0, left:0;
+    height: 65px;
+}
+footer * { line-height: inherit }
+footer p { margin-top: 0 }
+footer .ink-navigation ul.menu.horizontal li {
+    margin-right: 2em;
+    line-height: inherit;
+}
+footer .ink-navigation ul.menu.horizontal li a {
+    padding: 0;
+    color: white;
+    text-decoration: underline;
+}
+footer p { color: white }
+footer .ink-navigation ul.menu.horizontal li a:hover { color: #c91111 }
+div + section { margin: 0 }
+#content {
+    border-top: 3px solid #101010;
+    padding-bottom: 60px;
+}
+#container {
+    overflow: hidden;
+    background-color: #F4F4F4;
+}
+#image_chooser_wrap {
+    display: inline-block;
+    margin-right: 15px;
+}
+#display_loading { visibility: hidden }
+#height_holder {
+    display: inline-block;
+    background: url('../img/mountain.png') no-repeat;
+    background-position: left 0px top -6px;
+    padding-left: 35px;
+    width: 100px;
+    padding-bottom: 1px;
+}
+#position_holder {
+    background: url('../img/position.png') no-repeat;
+    display: inline-block;
+    padding-left: 22px;
+    width: 180px;
+}
+#square_holder {
+    background: url('../img/grid.png') no-repeat;
+    display: inline-block;
+    padding-left: 22px;
+    display: inline-block;
+    width: 70px;
+}
