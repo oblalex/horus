@@ -84,10 +84,10 @@ $(function () {
             $("#position_holder").text("x: " + map_x + "; y: " + map_y);
             $("#square_holder").text(squareLabel(map_x, map_y));
 
-            var pixel = context_height.getImageData(map_x/(2*CELL_SIZE), map_y/(2*CELL_SIZE), 1, 1).data;
-            $("#height_holder").text(GetH(pixel[0]) + " m");
+            var pixel = context_height.getImageData(map_x/(2*CELL_SIZE), heigh_image.height-(map_y/(2*CELL_SIZE)), 1, 1).data;
+            $("#height_holder").text(intensityToHeight(pixel[0]) + " m");
         }
-        function GetH(intensity) {
+        function intensityToHeight(intensity) {
             if (intensity < 64) return intensity;
             else if (intensity < 96) return 64 + (intensity - 64) * 2;
             else if (intensity < 128) return 128 + (intensity - 96) * 4;
@@ -99,7 +99,7 @@ $(function () {
         /* horizontal scrollbars */
         var hscrollArea = new Kinetic.Rect({
                 x: 10,
-                y: stage.getHeight() - 30,
+                y: stage.intensityToHeighteight() - 30,
                 width: stage.getWidth() - 40,
                 height: 20,
                 fill: 'black',
@@ -107,7 +107,7 @@ $(function () {
             });
         var hscroll = new Kinetic.Rect({
                 x: 10,
-                y: stage.getHeight() - 30,
+                y: stage.intensityToHeighteight() - 30,
                 width: 130,
                 height: 20,
                 fill: '#888',
@@ -133,7 +133,7 @@ $(function () {
                 x: stage.getWidth() - 30,
                 y: 10,
                 width: 20,
-                height: stage.getHeight() - 40,
+                height: stage.intensityToHeighteight() - 40,
                 fill: 'black',
                 opacity: 0.3
             });
@@ -148,8 +148,8 @@ $(function () {
                     var newY = pos.y;
                     if (newY < 10) {
                         newY = 10;
-                    } else if (newY > stage.getHeight() - 100) {
-                        newY = stage.getHeight() - 100;
+                    } else if (newY > stage.intensityToHeighteight() - 100) {
+                        newY = stage.intensityToHeighteight() - 100;
                     }
                     return {
                         x: this.getAbsolutePosition().x,
@@ -163,7 +163,7 @@ $(function () {
         /* background update */
         var updateBackgroundPos = function () {
             var x = (hscroll.getPosition().x - 10) * ((image.getWidth() - hscrollArea.getWidth()) / hscrollArea.getWidth());
-            var y = (vscroll.getPosition().y - 10) * ((image.getHeight() - vscrollArea.getHeight()) / vscrollArea.getHeight());
+            var y = (vscroll.getPosition().y - 10) * ((image.intensityToHeighteight() - vscrollArea.intensityToHeighteight()) / vscrollArea.intensityToHeighteight());
             update_curent_info(0, $("#content").position().top);
             img_grp.setOffset(x, y);
         };
@@ -190,7 +190,7 @@ $(function () {
             img_grp.removeChildren();
             layer.removeChildren();
             var is_bigger_w = stage.getWidth() < map_image.width;
-            var is_bigger_h = stage.getHeight() < map_image.height;
+            var is_bigger_h = stage.intensityToHeighteight() < map_image.height;
             var is_big_map = Math.floor(map_image.width / CELL_SIZE) > MAX_LETTERS;
             img_grp.setOffset(0, 0);
             image.setSize(map_image.width, map_image.height);
@@ -244,15 +244,15 @@ $(function () {
             vscroll.setX(0);
             hscroll.setY(0);
             if (is_bigger_w) {
-                hscrollArea.setY(stage.getHeight() - 30);
+                hscrollArea.setY(stage.intensityToHeighteight() - 30);
                 hscrollArea.setWidth(stage.getWidth() - 40);
-                hscroll.setY(stage.getHeight() - 30);
+                hscroll.setY(stage.intensityToHeighteight() - 30);
                 areas.add(hscrollArea);
                 scrollbars.add(hscroll);
             }
             if (is_bigger_h) {
                 vscrollArea.setX(stage.getWidth() - 30);
-                vscrollArea.setHeight(stage.getHeight() - 40);
+                vscrollArea.setHeight(stage.intensityToHeighteight() - 40);
                 vscroll.setX(stage.getWidth() - 30);
                 areas.add(vscrollArea);
                 scrollbars.add(vscroll);
