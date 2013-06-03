@@ -1,5 +1,6 @@
 $(function () {
     var SCROLL_BAR_PLACE = 20
+    , CELL_SIDE = 100
     , map_canvas = document.getElementById("container")
     , map_ctx = map_canvas.getContext("2d")
     , map_canvas_wrap = $("#container-wrapper")
@@ -18,6 +19,25 @@ $(function () {
         var cleft = (-ui.position.left * map_canvas.width / map_canvas_wrap.width());
         map_canvas.style.left = cleft + "px"
     });
+
+    function drawBoard(bw, bh, p){
+        for (var x = 0; x < bw; x += CELL_SIDE) {
+            map_ctx.moveTo(0.5 + x + p, p);
+            map_ctx.lineTo(0.5 + x + p, bh + p);
+        }
+
+        for (var y = 0; y < bh; y += CELL_SIDE) {
+            map_ctx.moveTo(p,0.5 + y + p);
+            map_ctx.lineTo(bw + p,0.5 + y + p);
+        }
+
+        map_ctx.moveTo(0, bh-0.5);
+        map_ctx.lineTo(bw-0.5, bh-0.5);
+        map_ctx.lineTo(bw-0.5, 0);
+
+        map_ctx.strokeStyle = "gray";
+        map_ctx.stroke();
+    }
 
     map_img.onload = function (){
         /* Init canvas and containers geometry */
@@ -48,6 +68,7 @@ $(function () {
 
         /* Draw image*/
         map_ctx.drawImage(this, 0, 0, this.width, this.height);
+        drawBoard(map_canvas.width, map_canvas.height, 0);
     };
     map_img.src = "http://placehold.it/2350x1150";
 });
