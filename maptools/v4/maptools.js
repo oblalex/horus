@@ -4,7 +4,10 @@ $(function () {
     , map_canvas = document.getElementById("container")
     , map_ctx = map_canvas.getContext("2d")
     , map_canvas_wrap = $("#container-wrapper")
-    , map_img = new Image();
+    , height_canvas = document.createElement('canvas')
+    , height_ctx = height_canvas.getContext("2d")
+    , map_img = new Image()
+    , height_img = new Image();
 
     $(".bar").draggable({
         containment: "parent"
@@ -40,6 +43,8 @@ $(function () {
     }
 
     map_img.onload = function (){
+        height_img.src = map_img.src.replace("Map.png", "Map_h.png");
+
         /* Init canvas and containers geometry */
         map_canvas.width = this.width;
         map_canvas.height = this.height;
@@ -70,5 +75,16 @@ $(function () {
         map_ctx.drawImage(this, 0, 0, this.width, this.height);
         drawBoard(map_canvas.width, map_canvas.height, 0);
     };
-    map_img.src = "http://placehold.it/2350x1150";
+    height_img.onload = function () {
+        height_canvas.width  = height_img.width;
+        height_canvas.height = height_img.height;
+        height_ctx.drawImage(height_img, 0, 0, height_img.width, height_img.height);
+        $("#display_loading").css('visibility', 'hidden');
+    };
+
+    $("#image_chooser").change(function () {
+        map_img.src = "../Maps/" + $(this).val() + "/Map.png";
+        $("#display_loading").css('visibility', 'visible');
+    });
+    $("#image_chooser").trigger('change');
 });
