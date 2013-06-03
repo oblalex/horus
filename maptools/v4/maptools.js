@@ -1,6 +1,8 @@
 $(function () {
-    var SCROLL_BAR_PLACE = 20
+    var MAX_LETTERS = 26
+    , SCROLL_BAR_PLACE = 20
     , CELL_SIDE = 100
+    , is_wide_map = false
     , map_canvas = document.getElementById("container")
     , map_ctx = map_canvas.getContext("2d")
     , map_canvas_wrap = $("#container-wrapper")
@@ -21,6 +23,59 @@ $(function () {
     $("#hbar").on("drag", function (event, ui) {
         var cleft = (-ui.position.left * map_canvas.width / map_canvas_wrap.width());
         map_canvas.style.left = cleft + "px"
+    });
+
+    function squareName(x) {
+        var k = Math.floor(x / CELL_SIDE);
+        var name = '';
+        if (is_wide_map) {
+            var periods = Math.floor(k / MAX_LETTERS)
+            name += String.fromCharCode(65 + periods);
+        }
+        name += String.fromCharCode(65 + (k % MAX_LETTERS));
+        return name;
+    }
+
+    function squareNumber(y) {
+        return Math.floor(y / CELL_SIDE) + 1;
+    }
+
+    function squareLabel(x, y) {
+        return squareName(x) + ":" + squareNumber(y);
+
+    }
+    function intensityToHeight(intensity) {
+        if (intensity < 64) return intensity;
+        else if (intensity < 96) return 64 + (intensity - 64) * 2;
+        else if (intensity < 128) return 128 + (intensity - 96) * 4;
+        else if (intensity < 160) return 256 + (intensity - 128) * 8;
+        else if (intensity < 192) return 512 + (intensity - 160) * 16;
+        else if (intensity < 224) return 1024 + (intensity - 192) * 32;
+        else return 2048 + (intensity - 224) * 64;
+    }
+
+    $(map_canvas).mousemove(function(e){
+        var x = e.clientX
+        , offX = map_canvas.style.left
+        , y = e.clientY-$("#content").position().top - 2
+        , offY = map_canvas.style.top;
+
+        if (offX){
+            x -= parseInt(offX.replace("px", ""));
+        }
+
+        if (offY){
+            y -= parseInt(offY.replace("px", ""));
+        }
+
+        var plainY = y;
+        y = map_img.height-y;
+
+        $("#square_holder").text(squareLabel(x, y));
+        $("#position_holder").text("x: " + x*CELL_SIDE + "; y: " + y*CELL_SIDE);
+
+        var pixel = height_ctx.getImageData(x/2, plainY/2, 1, 1).data;
+        $("#height_holder").text(intensityToHeight(pixel[0]) + " m");
     });
 
     function drawBoard(bw, bh, p){
@@ -51,6 +106,8 @@ $(function () {
 
         map_canvas_wrap.width($(window).width() - SCROLL_BAR_PLACE);
         map_canvas_wrap.height($("footer").position().top - $("#content").position().top-3 - SCROLL_BAR_PLACE);
+
+        is_wide_map = Math.floor(this.width / CELL_SIDE) > MAX_LETTERS;
 
         /* Init scrollbars */
         if(this.width > map_canvas_wrap.width()){
