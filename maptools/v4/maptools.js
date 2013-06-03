@@ -29,9 +29,9 @@ $(function () {
             map_ctx.lineTo(0.5 + x + p, bh + p);
         }
 
-        for (var y = 0; y < bh; y += CELL_SIDE) {
-            map_ctx.moveTo(p,0.5 + y + p);
-            map_ctx.lineTo(bw + p,0.5 + y + p);
+        for (var y = bh; y > 0; y -= 100) {
+            map_ctx.moveTo(p, 0.5 + y + p);
+            map_ctx.lineTo(bw + p, 0.5 + y + p);
         }
 
         map_ctx.moveTo(0, bh-0.5);

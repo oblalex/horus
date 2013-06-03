@@ -18,6 +18,10 @@
           var jCanvas_map = $('#map_main');
           var jResult = $("#result");
           var jChooser = $("#image_chooser");
+          var jResultSize = $("#resultSize");
+          var jResultPixel = $("#resultPixel");
+          var jResultMetric = $("#resultMetric");
+          var jResultAltitude = $("#resultAltitude");
 
           var canvas_map = jCanvas_map[0];
           var context_map = canvas_map.getContext('2d');
@@ -38,6 +42,7 @@
               canvas_map.width = map_image_obj.width;
               canvas_map.height = map_image_obj.height;
               context_map.drawImage(map_image_obj, 0, 0, map_image_obj.width, map_image_obj.height);
+              jResultSize.text("Size: " + map_image_obj.width + " x " + map_image_obj.height);
               drawBoard(canvas_map.width, canvas_map.height, 0);
           };
 
@@ -53,14 +58,15 @@
                   context_map.lineTo(0.5 + x + p, bh + p);
               }
 
-              for (var y = 0; y < bh; y += 100) {
+              for (var y = bh; y > 0; y -= 100) {
                   context_map.moveTo(p,0.5 + y + p);
                   context_map.lineTo(bw + p,0.5 + y + p);
               }
 
-              context_map.moveTo(0, bh-0.5);
+              context_map.moveTo(0, 0+0.5);
+              context_map.lineTo(bw-0.5, 0+0.5);
               context_map.lineTo(bw-0.5, bh-0.5);
-              context_map.lineTo(bw-0.5, 0);
+              context_map.lineTo(0, bh-0.5);
 
               context_map.strokeStyle = "gray";
               context_map.stroke();
@@ -73,20 +79,20 @@
 
               var pixel = context_height.getImageData(coord_x/2, coord_y/2, 1, 1).data;
 
-              jResult.text(
-                  GetH(pixel[0]) + " m at ("
-                  + Math.floor(coord_x) + ";"
-                  + Math.floor(map_image_obj.height-coord_y) + ")"
-              );
+              //jResultPixel.text("px[" + Math.floor(coord_x) + "," + Math.floor(coord_y) + "]");
+              jResultPixel.text("px[" + coord_x + "," + coord_y + "]");
+              jResultMetric.text("m[" +coord_x*100+","+(map_image_obj.height-coord_y)*100+"]");
+              jResultAltitude.text("H = " + GetH(pixel[0]));
           });
-
           jChooser.trigger('change');
       });
   </script>
 </head>
 <body>
-    <form name="form1">
-    <select size=1 name="imagename" id="image_chooser">
+<table border="0" bordercolor="" style="background-color:" cellpadding="10" cellspacing="0">
+  <tr>
+    <td>
+      <select size=1 name="imagename" id="image_chooser">
          <option value="Ardennes">Ardennes</option>
          <option value="BalatonSummer">BalatonSummer</option>
          <option value="BalatonWinter">BalatonWinter</option>
@@ -149,9 +155,15 @@
          <option value="Stalingrad">Stalingrad</option>
          <option value="Tarawa">Tarawa</option>
          <option value="Wake">Wake</option>
-        </select>
-    </form>
-    <div id="result"></div>
-    <canvas id="map_main"></canvas>
+      </select>
+    </td>
+    <td><div id="result"></div></td>
+    <td><div id="resultSize"></div></td>
+    <td><div id="resultPixel"></div></td>
+    <td><div id="resultMetric"></div></td>
+    <td><div id="resultAltitude"></div></td>
+  </tr>
+</table>
+<canvas id="map_main"></canvas>
 </body>
 </html>
