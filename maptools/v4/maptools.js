@@ -103,6 +103,8 @@ $(function () {
         /* Init canvas and containers geometry */
         map_canvas.width = this.width;
         map_canvas.height = this.height;
+        map_canvas.style.top = 0 + "px";
+        map_canvas.style.left = 0 + "px";
 
         map_canvas_wrap.width($(window).width() - SCROLL_BAR_PLACE);
         map_canvas_wrap.height($("footer").position().top - $("#content").position().top-3 - SCROLL_BAR_PLACE);
