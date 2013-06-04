@@ -130,6 +130,8 @@ $(function () {
             $("#vscroll").css('visibility', 'hidden');
         }
 
+        $("#map_size_holder").text(map_canvas.height*CELL_SIDE+" x "+map_canvas.width*CELL_SIDE);
+
         /* Draw image*/
         map_ctx.drawImage(this, 0, 0, this.width, this.height);
         drawBoard(map_canvas.width, map_canvas.height, 0);
@@ -146,4 +148,5 @@ $(function () {
         $("#display_loading").css('visibility', 'visible');
     });
     $("#image_chooser").trigger('change');
+    $('.chzn-select').chosen();
 });
