@@ -171,7 +171,7 @@ $(function () {
 
     $("#map_selector").change(function () {
         map_img.src = "../Maps/" + $(this).val() + "/Map.png";
-        $("#display_loading").css('visibility', 'hidden');
+        $("#display_loading").css('visibility', 'visible');
     });
 
     $('#slideOne').change(function () {
