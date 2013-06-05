@@ -42,8 +42,8 @@ $(function () {
 
     function squareLabel(x, y) {
         return squareName(x) + ":" + squareNumber(y);
-
     }
+
     function intensityToHeight(intensity) {
         if (intensity < 64) return intensity;
         else if (intensity < 96) return 64 + (intensity - 64) * 2;
