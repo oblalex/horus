@@ -16,37 +16,9 @@ var MAX_LETTERS = 26
     , current_height = 0;
 
 
-function initShareButtons(){
-    var YaShareInstance = new Ya.share({
-        element: 'ya_share',
-        elementStyle: {
-                'type': 'icon',
-                'border': false,
-                'quickServices': ['facebook', 'gplus', 'vkontakte', 'twitter', 'yaru']
-            },
-        onready: function(instance) {
-            $('#tester')
-            .show()
-            .find('input[type=button]')
-            .click(function() {
-                var parent = $(this).parent();
-                instance.updateShareLink(
-                    parent.find('input[type=text]:first').val(),
-                    parent.find('input[type=text]:last').val(),
-                    {
-                        twitter: {link: 'http://ya.ru', title: 'ya.ru'}
-                    }
-                );
-            });
-        }
-    });
-    YaShareInstance.updateShareLink('http://api.yandex.ru', 'API');
-}
-
 function initUI(){
     $(document).tooltip();
     $('#map_selector').chosen().trigger('change');
-    initShareButtons();
 }
 
 function drawBoard(bw, bh, p){
@@ -130,8 +102,8 @@ $(function () {
     height_ctx = height_canvas.getContext("2d");
 
     $(map_canvas).mousemove(function(e){
-        current_pos_x = e.clientX + (window.pageXOffset || document.documentElement.scrollLeft) + 1
-        , current_pos_y = e.clientY - $("#placeholder").position().top + (window.pageYOffset || document.documentElement.scrollTop);
+        current_pos_x = e.clientX + (window.pageXOffset || document.documentElement.scrollLeft)
+        , current_pos_y = e.clientY - $("#placeholder").position().top + 1 + (window.pageYOffset || document.documentElement.scrollTop);
 
         var pixel = height_ctx.getImageData(current_pos_x/2, current_pos_y/2, 1, 1).data;
         current_height = intensityToHeight(pixel[0]);
