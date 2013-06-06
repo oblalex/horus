@@ -33,13 +33,13 @@
         <MapText Code="Bastogne" NameEng="Bastogne" NameRus="Бастонь" X="24909" Y="6046" Type="2"/>
         <MapText Code="Houffalize" NameEng="Houffalize" NameRus="Уффализ" X="30162" Y="21186" Type="2"/>
         <MapText Code="St_Vith" NameEng="St Vith" NameRus="Сен-Вит" X="52929" Y="37512" Type="2"/>
-        <MapText Code="Asth" NameEng="Asth" NameRus="Аст" X="26047" Y="37564" Type="5"/>
-        <MapText Code="Bonn-Hangelan" NameEng="Bonn-Hangelar" NameRus="Бонн-Ангелан" X="57562" Y="36658" Type="5"/>
-        <MapText Code="Eindhoven" NameEng="Eindhoven" NameRus="Эйндховен" X="8293" Y="37284" Type="5"/>
-        <MapText Code="Frankfurt" NameEng="Frankfurt" NameRus="Франкфурт" X="57449" Y="14127" Type="5"/>
-        <MapText Code="Meinz" NameEng="Meinz" NameRus="Мейнц" X="52875" Y="1421" Type="5"/>
-        <MapText Code="Merzhausen" NameEng="Merzhausen" NameRus="Мерцхаузен" X="57844" Y="23501" Type="5"/>
-        <MapText Code="Metzbroek" NameEng="Metzbroek" NameRus="Мецброк" X="1694" Y="31691" Type="5"/>
+        <MapText Code="Asth" NameEng="Asth" NameRus="Аст" X="26047" Y="37564" Type="3"/>
+        <MapText Code="Bonn-Hangelan" NameEng="Bonn-Hangelar" NameRus="Бонн-Ангелан" X="57562" Y="36658" Type="3"/>
+        <MapText Code="Eindhoven" NameEng="Eindhoven" NameRus="Эйндховен" X="8293" Y="37284" Type="3"/>
+        <MapText Code="Frankfurt" NameEng="Frankfurt" NameRus="Франкфурт" X="57449" Y="14127" Type="3"/>
+        <MapText Code="Meinz" NameEng="Meinz" NameRus="Мейнц" X="52875" Y="1421" Type="3"/>
+        <MapText Code="Merzhausen" NameEng="Merzhausen" NameRus="Мерцхаузен" X="57844" Y="23501" Type="3"/>
+        <MapText Code="Metzbroek" NameEng="Metzbroek" NameRus="Мецброк" X="1694" Y="31691" Type="3"/>
     </Towns>
     <Airfields>
         <Airfield ID="1" X="1779.42" Y="30932.93" A="290" T1="1" Res="B_17F_g"/>

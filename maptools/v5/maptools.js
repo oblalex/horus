@@ -11,6 +11,7 @@ var MAX_LETTERS = 26
     , height_ctx
     , map_img = new Image()
     , height_img = new Image()
+    , map_path = null
     , current_pos_x = 0
     , current_pos_y = 0
     , current_height = 0;
@@ -38,6 +39,38 @@ function drawBoard(bw, bh, p){
 
     map_ctx.strokeStyle = "gray";
     map_ctx.stroke();
+}
+
+function drawStroked(text, type, x, y) {
+    var font_size = 12+(type-1)*2.5;
+
+    map_ctx.font = font_size + "px Sans-serif";
+    map_ctx.lineWidth = 2;
+
+    var metrics = map_ctx.measureText(text);
+
+    x -= metrics.width/2;
+    y += font_size/2;
+
+    if (x<3) x=3;
+    if(x+metrics.width > map_img.width) x = map_img.width-metrics.width-3;
+
+    map_ctx.strokeStyle = 'white';
+    map_ctx.strokeText(text, x, y);
+    map_ctx.fillStyle = 'black';
+    map_ctx.fillText(text, x, y);
+}
+
+function drawMapData(){
+    $.get(map_path + "Props.xml", {}, function (xml){
+        $('MapText', xml).each(function(i){
+            drawStroked(
+                $(this).attr('NameEng')
+                , $(this).attr('Type')
+                , $(this).attr('X')/CELL_SIDE
+                , map_img.height-($(this).attr('Y')/CELL_SIDE));
+        });
+    });
 }
 
 function squareName(x) {
@@ -118,7 +151,7 @@ $(function () {
     });
 
     map_img.onload = function (){
-        height_img.src = map_img.src.replace("Map.png", "Map_h.png");
+        height_img.src = map_path + "Map_h.png";
 
         /* Init canvas and containers geometry */
         map_canvas.width = this.width;
@@ -128,9 +161,10 @@ $(function () {
 
         is_wide_map = Math.floor(this.width / CELL_SIDE) > MAX_LETTERS;
 
-        /* Draw image*/
+        /* Draw image */
         map_ctx.drawImage(this, 0, 0, this.width, this.height);
         drawBoard(map_canvas.width, map_canvas.height, 0);
+        drawMapData();
         displayMapSize();
     };
 
@@ -142,7 +176,8 @@ $(function () {
     };
 
     $("#map_selector").change(function () {
-        map_img.src = "../Maps/" + $(this).val() + "/Map.png";
+        map_path = "../Maps/" + $(this).val() + "/";
+        map_img.src = map_path + "Map.png";
         $("#display_loading").css('visibility', 'visible');
     });
 
