@@ -11,6 +11,7 @@ var MAX_LETTERS = 26
     , height_ctx
     , map_img = new Image()
     , height_img = new Image()
+    , airplane_img = new Image()
     , map_path = null
     , current_pos_x = 0
     , current_pos_y = 0
@@ -20,6 +21,7 @@ var MAX_LETTERS = 26
 function initUI(){
     $(document).tooltip();
     $('#map_selector').chosen().trigger('change');
+    airplane_img.src = "../img/airplane.png";
 }
 
 function drawBoard(bw, bh, p){
@@ -39,6 +41,23 @@ function drawBoard(bw, bh, p){
 
     map_ctx.strokeStyle = "gray";
     map_ctx.stroke();
+}
+
+function drawRotatedImage(image, x, y, angle) {
+    map_ctx.save();
+    map_ctx.translate(x, y);
+    map_ctx.rotate(angle * Math.PI/180);
+    map_ctx.drawImage(image, -(image.width/2), -(image.height/2));
+    map_ctx.restore();
+}
+
+function drawField(x, y, angle, type) {
+    map_ctx.beginPath();
+    map_ctx.fillStyle = "black";
+    map_ctx.arc(x, y, 11, 0, 4 * Math.PI, false);
+    map_ctx.fill();
+
+    drawRotatedImage(airplane_img, x, y, angle);
 }
 
 function drawStroked(text, type, x, y) {
@@ -63,6 +82,13 @@ function drawStroked(text, type, x, y) {
 
 function drawMapData(){
     $.get(map_path + "Props.xml", {}, function (xml){
+        $('Airfield', xml).each(function(i){
+            drawField(
+                $(this).attr('X')/CELL_SIDE
+                , map_img.height-($(this).attr('Y')/CELL_SIDE)
+                , $(this).attr('A')
+                , $(this).attr('T1'));
+        });
         $('MapText', xml).each(function(i){
             drawStroked(
                 $(this).attr('NameEng')
