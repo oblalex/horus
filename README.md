@@ -6,7 +6,7 @@ IL-2 Horus system
 Main purpose of this project is to create a set of different tools for
 working with [IL-2 Sturmovik] dedicated server.
 
-The central place among all tools is taken by controlling and statistics gathering system
+The central place among all tools is taken by control and statistics gathering system
 for dedicated server. That system is going to become an alternative to
 [IL2 Server Commander] and [FBDaemon].
 
