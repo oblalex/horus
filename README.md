@@ -1,19 +1,16 @@
-This project has moved to [Horus-System]
------
+IL-2 Horus system
+-----------------
 
-<br/><br/><br/><br/>
+**WARNING! This repo is abandoned! It was splitted into a [set of separate projects].**
 
-![Horus](https://raw.github.com/oblalex/horus/gh-pages/img/horus_black.png)
+Main purpose of this project is to create a set of different tools for
+working with [IL-2 Sturmovik] dedicated server.
 
-[IL-2 Sturmovik]  dedicated server controlling and statistics gathering system. 
-Includes  server commander, web application and missions generator.
+The central place among all tools is taken by controlling and statistics gathering system
+for dedicated server. That system is going to become an alternative to
+[IL2 Server Commander] and [FBDaemon].
 
-This project is an alternative to [IL2 Server Commander] and [FBDaemon]. 
-<br/><br/><br/><br/>
-More info at [home page].
-
-[Horus-System]:https://github.com/IL2HorusTeam/Horus-System
+[set of separate projects]:http://il2horusteam.github.io/projects/
 [IL-2 Sturmovik]:http://en.wikipedia.org/wiki/IL-2_Sturmovik_(video_game)
 [IL2 Server Commander]:http://wiki.sturmovik.de/index.php?title=IL2_Server_Commander_English_Version
 [FBDaemon]:http://wiki.sturmovik.de/index.php?title=FBDaemon
-[home page]:http://oblalex.github.com/horus/
